@@ -1,39 +1,122 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../layout/flexbox-grid.html">
+<link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
+<link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
+<link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
+<link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../../layout/shared-styles.html">
+<link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../i18n/profile/page-03-i18n.html">
 <dom-module id="page-03">
     <template>
-        <style>
-             :host {
-                display: block
-            }
-        </style>
-        Page 03
-
-
+        <style include="flexbox-grid shared-styles"></style>
+        <nylon-panel-card>
+            <div slot="content">
+                <fieldset>
+                    <legend>[[i18n.page03.title]]</legend>
+                    <div class="row middle-md">
+                        <app-toolbar slot="header" class="col-md-12">
+                            <div main-title></div>
+                            <paper-button raised class="btn-primary" on-click="_openPanelRight">
+                                <iron-icon icon="add-circle-outline"></iron-icon> [[i18n.button.add]]
+                            </paper-button>
+                        </app-toolbar>
+                        <div slot="content" class="col-md-12">
+                            <vaadin-grid slot="content" sub-slot="grid" items="[[datas]]">
+                                <vaadin-grid-column width="10px">
+                                    <template class="header">#</template>
+                                    <template>[[_index(index)]]</template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column>
+                                    <template class="header">[[i18n.page03.school]]</template>
+                                    <template>[[item.name]]</template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column>
+                                    <template class="header">[[i18n.page03.level]]</template>
+                                    <template>[[item.task]]</template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column>
+                                    <template class="header">[[i18n.page03.degree]]</template>
+                                    <template>[[item.task]]</template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column>
+                                    <template class="header">[[i18n.page03.faculty]]</template>
+                                    <template>[[item.task]]</template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column>
+                                    <template class="header">[[i18n.page03.major]]</template>
+                                    <template>[[item.task]]</template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column>
+                                    <template class="header">[[i18n.page03.majorSub]]</template>
+                                    <template>[[item.task]]</template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column>
+                                    <template class="header">[[i18n.page03.minorSub]]</template>
+                                    <template>[[item.task]]</template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column>
+                                    <template class="header">[[i18n.page03.yearGra]]</template>
+                                    <template>[[item.task]]</template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column>
+                                    <template class="header">[[i18n.common.updater]]/[[i18n.common.date]]</template>
+                                    <template>[[item.task]]</template>
+                                </vaadin-grid-column>
+                            </vaadin-grid>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </nylon-panel-card>
+        <nylon-panel-right id="panelRight" title="[[i18n.title]]">
+            <nylon-panel-card slot="content">
+                <div slot="content">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <paper-input label="ชื่อ" value="{{data.name}}"></paper-input>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <paper-input label="งาน" value="{{data.task}}"></paper-input>
+                        </div>
+                    </div>
+                </div>
+                <app-toolbar slot="footer">
+                    <div main-title></div>
+                    <paper-button raised on-click="_closePanelRight">
+                        <iron-icon icon="clear"></iron-icon>[[i18n.button.close]]
+                    </paper-button>
+                    <paper-button raised class="btn-success" on-click="_save">
+                        <iron-icon icon="check"></iron-icon>[[i18n.button.save]]
+                    </paper-button>
+                </app-toolbar>
+            </nylon-panel-card>
+        </nylon-panel-right>
     </template>
 
     <script>
-        class Page03 extends Polymer.Element {
+        class Page03 extends ReduxMixin(Polymer.Element) {
             static get is() {
                 return 'page-03';
             }
             static get properties() {
                 return {
-
+                    i18n: {
+                        type: Object,
+                        statePath: 'i18n'
+                    }
                 };
             }
-            constructor() {
-                super();
+            _openPanelRight() {
+                this.$.panelRight.open();
             }
-            ready() {
-                super.ready();
-
-                Polymer.RenderStatus.afterNextRender(this, function () {
-
-                });
+            _closePanelRight() {
+                this.$.panelRight.close();
             }
 
         }
-
         window.customElements.define(Page03.is, Page03);
     </script>
 </dom-module>
