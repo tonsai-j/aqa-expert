@@ -47,20 +47,30 @@
                             <template>[[item.role]]</template>
                         </vaadin-grid-column>
                     </vaadin-grid>
+                    จำนวนรายการทั้งหมด 0 รายการ
                 </fieldset>
             </div>
+            <app-toolbar slot="footer">
+                <div main-title></div>
+                <paper-button raised class="btn-default">
+                    <iron-icon icon="arrow-back"></iron-icon>[[i18n.button.previous]]</paper-button>
+                <paper-button raised class="btn-default">
+                    [[i18n.button.next]]
+                    <iron-icon icon="arrow-forward"></iron-icon>
+                </paper-button>
+            </app-toolbar>
         </nylon-panel-card>
         <nylon-panel-right id="right" title="สาขาที่เชี่ยวชาญ" width="80%">
             <nylon-panel-card slot="content">
                 <div slot="content">
-                    <div class="col-md-4">
+                    <div class="col-md-offset-1  col-md-4">
                         <vaadin-combo-box always-float-label label="กลุ่มสาขาผู้เชี่ยวชาญ" items='{{amphoeList}}'>
                             <template>
                                 [[item.label]]
                             </template>
                         </vaadin-combo-box>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-offset-1 col-md-8">
                         <vaadin-combo-box always-float-label label="ประเภทความเชี่ยวชาญ" items='{{amphoeList}}'>
                             <template>
                                 [[item.label]]
