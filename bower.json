@@ -36,6 +36,7 @@
     "paper-progress": "PolymerElements/paper-progress#^2.0.1",
     "lazy-imports": "Polymer/lazy-imports#^2.0.0",
     "paper-radio-group": "PolymerElements/paper-radio-group#^2.0.0",
-    "paper-radio-button": "PolymerElements/paper-radio-button#^2.0.0"
+    "paper-radio-button": "PolymerElements/paper-radio-button#^2.0.0",
+    "vaadin-combo-box": "^2.0.0"
   }
 }
