@@ -1,0 +1,114 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../layout/flexbox-grid.html">
+<link rel="import" href="../../components/nylon-panel-card/nylon-panel-card.html">
+<link rel="import" href="../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
+<link rel="import" href="../../../bower_components/iron-icons/social-icons.html">
+<link rel="import" href="../../layout/shared-styles.html">
+<link rel="import" href="../../redux-mixin.html">
+<link rel="import" href="../../redux/register/register-redux.html">
+<link rel="import" href="../../i18n/register/main-i18n.html">
+<dom-module id="page-register">
+    <template>
+        <style include="flexbox-grid shared-styles"></style>
+        <div class="container">
+            <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-offset-1 col-xs-10">
+                <nylon-panel-card id="panelCard">
+                    <div slot="content" class="middle-md">
+                        <h3>[[i18n.register.title]]</h3>
+                        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offset-2 col-xs-8">
+                            <paper-input id="inputTaxNo" label="[[i18n.register.taxno]]" value="{{data.taxno}}" allowed-pattern="[0-9]" maxlength="13"
+                                required></paper-input>
+                        </div>
+                        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offset-2 col-xs-8">
+                            <vaadin-combo-box label="[[i18n.register.level]]" items='{{level}}' value="{{data.level_id}}" item-label-path="level_name"
+                                item-value-path="id">
+                                <template>
+                                    [[item.level_name]]
+                                </template>
+                            </vaadin-combo-box>
+                        </div>
+                    </div>
+                    <app-toolbar slot="footer">
+                        <div main-title></div>
+                        <paper-button raised class="btn-success" on-click="_register">
+                            <iron-icon icon="social:person-add"></iron-icon>&nbsp;[[i18n.button.register]]
+                        </paper-button>
+                    </app-toolbar>
+                </nylon-panel-card>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        /**
+         * `page-register` Description
+         *
+         * @summary ShortDescription.
+         * @customElement
+         * @polymer
+         * @extends {Polymer.Element}
+         */
+        class PageRegister extends ReduxMixin(Polymer.Element) {
+            /**
+             * String providing the tag name to register the element under.
+             */
+            static get is() {
+                return 'page-register';
+            }
+
+            /**
+             * Object describing property-related metadata used by Polymer features
+             */
+            static get properties() {
+                return {
+                    i18n: {
+                        type: Object,
+                        statePath: 'i18n'
+                    },
+                    level: {
+                        type: Array,
+                        statePath: 'register.level'
+                    },
+                    data: {
+                        type: Object,
+                        value: {
+                            taxno: '',
+                            level_id: 1
+                        }
+                    }
+                };
+            }
+
+            /**
+             * Instance of the element is created/upgraded. Use: initializing state,
+             * set up event listeners, create shadow dom.
+             * @constructor
+             */
+            constructor() {
+                super();
+            }
+
+            /**
+             * Use for one-time configuration of your component after local DOM is initialized. 
+             */
+            ready() {
+                super.ready();
+
+            }
+
+            nylonPagesActive() {
+                Nylon.dispatch('REGISTER_GET_LIST_LEVEL')
+            }
+            _register(e) {
+                if (this.$.inputTaxNo.validate()) {
+                    Nylon.dispatch('REGISTER_POST', this.data)
+                }
+            }
+
+        }
+
+        window.customElements.define(PageRegister.is, PageRegister);
+    </script>
+</dom-module>

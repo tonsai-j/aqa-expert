@@ -1,0 +1,43 @@
+<script>
+    Nylon.addReducer('register', function (state, action) {
+        state = state || {
+            level: []
+        }
+
+        switch (action.type) {
+            case 'REGISTER_GET_LIST_LEVEL':
+                state.level = action.payload
+                return state
+            default:
+                return state
+        }
+        return state
+    })
+
+
+    Nylon.addAction({
+        REGISTER_GET_LIST_LEVEL: function () {
+            // console.log(Nylon.$);
+            //  var progress = Nylon.$['page-register'].$.panelCard.progress({ position: 'top' })
+            //  progress()
+            return dispatch =>
+                axios.get('/level').then(
+                    res => {
+                        dispatch({ type: 'REGISTER_GET_LIST_LEVEL', payload: res.data })
+                    }
+                )
+        },
+        REGISTER_POST: function (data) {
+            var progress = Nylon.$['page-register'].$.panelCard.progress({ position: 'top' })
+            return dispatch =>
+                axios.post('/register', data).then(
+                    res => {
+                        progress(() => {
+                            Nylon.dispatch('PROFILE_LOGIN', res.data)
+                        })
+                    }
+                )
+        }
+    })
+
+</script>

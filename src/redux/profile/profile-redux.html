@@ -15,12 +15,13 @@
                 { name: 'ภาคที่สะดวกในการประเมิน', component: 'page-11' },
                 { name: 'บุคคลอ้างอิง', component: 'page-12' },
                 { name: 'ไฟล์เอกสาร', component: 'page-13' }
-            ]
+            ],
+            login: {}
         }
 
         switch (action.type) {
-            case 'GET_PROFILE':
-                return state
+            case 'PROFILE_LOGIN':
+                state.login = action.payload
             default:
                 return state
         }
@@ -29,8 +30,11 @@
 
 
     Nylon.addAction({
-        getList: function () {
-            return Nylon.dispatch('GET_REGISTER');
+        PROFILE_LOGIN: function (data) {
+            return dispatch => {
+                dispatch({ type: 'PROFILE_LOGIN', payload: data })
+                Nylon.redirect('/profile/ข้อมูลพื้นฐาน');
+            }
         }
     })
 

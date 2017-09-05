@@ -14,13 +14,13 @@
         </style>
         <div class="row" style="padding-left: 20px">
             <app-toolbar slot="header">
-                <div main-title>ผู้ประเมินภายนอกระดับการศึกษาขั้นพื้นฐาน (ปฐมวัย) : อุทุมพร อินโท</div>
+                <div main-title>ผู้ประเมินภายนอกระดับการศึกษาขั้นพื้นฐาน (ปฐมวัย) : [[profile.login.taxno]]</div>
             </app-toolbar>
         </div>
         <div class="row">
             <div class="col-sm-2">
                 <ul>
-                    <template is="dom-repeat" items="{{menu}}">
+                    <template is="dom-repeat" items="{{profile.menu}}">
                         <li on-click="_changePage" style="cursor: pointer">
                             [[item.name]]
                         </li>
@@ -43,9 +43,9 @@
                     _params: {
                         type: Object
                     },
-                    menu: {
-                        type: Array,
-                        statePath: 'profile.menu'
+                    profile: {
+                        type: Object,
+                        statePath: 'profile'
                     },
                     currentPage: {
                         type: Number,
@@ -62,6 +62,7 @@
              */
             ready() {
                 super.ready();
+                // Nylon.dispatch('PROFILE_GET');
                 // console.log(this._params)
             }
             _changePage(e) {
@@ -69,6 +70,9 @@
                 // this.set('_params.name', e.model.name);
                 // console.log(e.model);
                 Nylon.redirect('/profile/' + e.model.item.name);
+            }
+            nylonPagesActive() {
+              
             }
 
         }
