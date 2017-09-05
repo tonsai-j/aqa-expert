@@ -1,5 +1,5 @@
 <script>
-    Nylon.addReducer('register', function (state, action) {
+    Nylon.addReducer('profile', function (state, action) {
         state = state || {
             menu: [
                 { name: 'ข้อมูลพื้นฐาน', component: 'page-01' },
@@ -19,7 +19,7 @@
         }
 
         switch (action.type) {
-            case 'GET_REGISTER':
+            case 'GET_PROFILE':
                 return state
             default:
                 return state

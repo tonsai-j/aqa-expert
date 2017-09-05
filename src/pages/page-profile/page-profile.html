@@ -3,8 +3,8 @@
 <link rel="import" href="./pages/page-list.html">
 <link rel="import" href="../../layout/flexbox-grid.html">
 <link rel="import" href="../../redux-mixin.html">
-<link rel="import" href="../../redux/register-redux.html">
-<dom-module id="page-register">
+<link rel="import" href="../../redux/profile-redux.html">
+<dom-module id="page-profile">
     <template>
         <style include="flexbox-grid">
             li:hover {
@@ -28,9 +28,9 @@
     </template>
 
     <script>
-        class PageRegister extends ReduxMixin(Polymer.Element) {
+        class PageProfile extends ReduxMixin(Polymer.Element) {
             static get is() {
-                return 'page-register';
+                return 'page-profile';
             }
             static get properties() {
                 return {
@@ -39,7 +39,7 @@
                     },
                     menu: {
                         type: Array,
-                        statePath:'register.menu'
+                        statePath:'profile.menu'
                     },
                     currentPage: {
                         type: Number,
@@ -62,11 +62,11 @@
                 this.set('currentPage', e.model.index);
                 // this.set('_params.name', e.model.name);
                 // console.log(e.model);
-                Nylon.redirect('/register/' + e.model.item.name);
+                Nylon.redirect('/profile/' + e.model.item.name);
             }
 
         }
 
-        window.customElements.define(PageRegister.is, PageRegister);
+        window.customElements.define(PageProfile.is, PageProfile);
     </script>
 </dom-module>
