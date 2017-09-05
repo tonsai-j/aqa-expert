@@ -1,15 +1,107 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 
+<link rel="import" href="../../../layout/flexbox-grid.html">
+
+<link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
+
+<link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
+
 <dom-module id="page-02">
     <template>
-        <style>
+        <style include='flexbox-grid'>
              :host {
                 display: block
             }
+
+            .border {
+                border: 1px solid black;
+            }
+
+            .label {
+                text-align: right;
+            }
+
+            .input {
+                text-align: left;
+            }
         </style>
-        Page 02
+        <nylon-panel-card>
+            <div slot="header">
+                ผู้ประเมินภายนอกระดับการศึกษาขั้นพื้นฐาน (ปฐมวัย)
+            </div>
+            <div slot="content">
+                <div>
+                    <fieldset>
+                        <legend>รายละเอียด:</legend>
+                        <div class="row">
+                            <div class="label col-md-3">
+                                ชื่อผู้ประเมินภายนอกระดับการศึกษาขั้นพื้นฐาน (ปฐมวัย)
+                            </div>
+                            <div class="input col-md-9">
+                                <paper-input no-label-float></paper-input>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <legend>ที่จัดส่งเอกสาร:</legend>
+                        <div class="row">
+                            <div class="label col-md-3">
+                                ชื่อผู้ประเมินภายนอกระดับการศึกษาขั้นพื้นฐาน (ปฐมวัย)
+                            </div>
+                            <div class="input col-md-9">
+                                <paper-input no-label-float></paper-input>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <legend>ที่อยู่ที่สะดวกในการติดต่อ:</legend>
+                        <div class="row">
+                            <div class="label col-md-3">
+                                ชื่อผู้ประเมินภายนอกระดับการศึกษาขั้นพื้นฐาน (ปฐมวัย)
+                            </div>
+                            <div class="input col-md-9">
+                                <paper-input no-label-float></paper-input>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <legend>ที่ทำงาน (คัดลอกจากที่อยู่ที่สะดวกในการติดต่อ):</legend>
+                        <div class="row">
+                            <div class="label col-md-3">
+                                ชื่อผู้ประเมินภายนอกระดับการศึกษาขั้นพื้นฐาน (ปฐมวัย)
+                            </div>
+                            <div class="input col-md-9">
+                                <paper-input no-label-float></paper-input>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div slot="footer">
+                1312323123123
+            </div>
 
-
+        </nylon-panel-card>
+        <!-- <div class=" border">
+            <div class="row">
+                <div class="col-md-3">
+                    ชื่อผู้ประเมินภายนอกระดับการศึกษาขั้นพื้นฐาน (ปฐมวัย)
+                </div>
+                <div class="col-md-9">
+                    
+                </div>
+            </div>
+        </div>
+        <div class=" border">1</div>
+        <div class=" border">2</div>
+        <div class=" border">2</div>
+        <div class=" border">2</div> -->
     </template>
 
     <script>
