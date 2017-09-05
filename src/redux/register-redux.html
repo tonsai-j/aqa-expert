@@ -1,0 +1,37 @@
+<script>
+    Nylon.addReducer('register', function (state, action) {
+        state = state || {
+            menu: [
+                { name: 'ข้อมูลพื้นฐาน', component: 'page-01' },
+                { name: 'ที่อยู่ในการติดต่อ', component: 'page-02' },
+                { name: 'วุฒิการศึกษา', component: 'page-03' },
+                { name: 'สาขาเชี่ยวชาญ', component: 'page-04' },
+                { name: 'ประวัติการทำงาน', component: 'page-05' },
+                { name: 'ความสามารถอื่นๆ', component: 'page-06' },
+                { name: 'ประวัติการประเมิน', component: 'page-07' },
+                { name: 'ผลงานทางวิชาการ', component: 'page-08' },
+                { name: 'ประวัติการอบรมประกันคุณภาพภายใน', component: 'page-09' },
+                { name: 'บัญชีธนาคาร', component: 'page-10' },
+                { name: 'ภาคที่สะดวกในการประเมิน', component: 'page-11' },
+                { name: 'บุคคลอ้างอิง', component: 'page-12' },
+                { name: 'ไฟล์เอกสาร', component: 'page-13' }
+            ]
+        }
+
+        switch (action.type) {
+            case 'GET_REGISTER':
+                return state
+            default:
+                return state
+        }
+        return state
+    })
+
+
+    Nylon.addAction({
+        getList: function () {
+            return Nylon.dispatch('GET_REGISTER');
+        }
+    })
+
+</script>

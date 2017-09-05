@@ -2,6 +2,7 @@
 <link rel="import" href="../../../bower_components/polymer/lib/elements/dom-repeat.html">
 <link rel="import" href="./pages/page-list.html">
 <link rel="import" href="../../layout/flexbox-grid.html">
+<link rel="import" href="../../redux-mixin.html">
 <dom-module id="page-register">
     <template>
         <style include="flexbox-grid">
@@ -26,7 +27,7 @@
     </template>
 
     <script>
-        class PageRegister extends Polymer.Element {
+        class PageRegister extends ReduxMixin(Polymer.Element) {
             static get is() {
                 return 'page-register';
             }
