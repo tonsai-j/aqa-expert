@@ -1,0 +1,84 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="./pages/page-list.html">
+<link rel="import" href="../../layout/flexbox-grid.html">
+<dom-module id="page-register">
+    <template>
+        <style include="flexbox-grid">
+            li:hover {
+                color: blue
+            }
+        </style>
+        <div class="row">
+            <div class="col-sm-2">
+                <ul>
+                    <template is="dom-repeat" items="{{menu}}">
+                        <li on-click="_changePage" style="cursor: pointer">
+                            [[item.name]]
+                        </li>
+                    </template>
+                </ul>
+            </div>
+            <div class="col-sm-10" style="padding-top:15px">
+                <page-list selected="[[_params.name]]"></page-list>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        class PageRegister extends Polymer.Element {
+            static get is() {
+                return 'page-register';
+            }
+            static get properties() {
+                return {
+                    _params: {
+                        type: Object
+                    },
+                    menu: {
+                        type: Array,
+                        value: [
+                            { name: 'ข้อมูลพื้นฐาน' },
+                            { name: 'ที่อยู่ในการติดต่อ' },
+                            { name: 'วุฒิการศึกษา' },
+                            { name: 'สาขาเชี่ยวชาญ' },
+                            { name: 'ประวัติการทำงาน' },
+                            { name: 'ความสามารถอื่นๆ' },
+                            { name: 'ประวัติการประเมิน' },
+                            { name: 'ผลงานทางวิชาการ' },
+                            { name: 'ประวัติการอบรมประกันคุณภาพภายใน' },
+                            { name: 'บัญชีธนาคาร' },
+                            { name: 'ภาคที่สะดวกในการประเมิน' },
+                            { name: 'บุคคลอ้างอิง' },
+                            { name: 'ไฟล์เอกสาร' }
+                        ]
+                    },
+                    currentPage: {
+                        type: Number,
+                        value: 0
+                    }
+                };
+            }
+            constructor() {
+                super();
+            }
+
+            /**
+             * Use for one-time configuration of your component after local DOM is initialized. 
+             */
+            ready() {
+                super.ready();
+                console.log(this._params)
+            }
+            _changePage(e) {
+                this.set('currentPage', e.model.index);
+                // this.set('_params.name', e.model.name);
+                // console.log(e.model);
+                Nylon.redirect('/register/' + e.model.item.name);
+            }
+
+        }
+
+        window.customElements.define(PageRegister.is, PageRegister);
+    </script>
+</dom-module>

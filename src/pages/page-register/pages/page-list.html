@@ -1,0 +1,106 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../../../../bower_components/lazy-imports/lazy-imports-mixin.html">
+
+
+
+<dom-module id="page-list">
+    <link rel="lazy-import" group="page-01" href="./page-01.html">
+    <link rel="lazy-import" group="page-02" href="./page-02.html">
+    <!-- <link rel="lazy-import" href="./page-03.html">
+    <link rel="lazy-import" href="./page-04.html">
+    <link rel="lazy-import" href="./page-05.html">
+    <link rel="lazy-import" href="./page-06.html">
+    <link rel="lazy-import" href="./page-07.html">
+    <link rel="lazy-import" href="./page-08.html">
+    <link rel="lazy-import" href="./page-09.html">
+    <link rel="lazy-import" href="./page-10.html">
+    <link rel="lazy-import" href="./page-11.html">
+    <link rel="lazy-import" href="./page-12.html">
+    <link rel="lazy-import" href="./page-13.html"> -->
+    <template>
+        <iron-pages selected="{{selected}}" attr-for-selected="name" selected-item="{{itemChanged}}">
+            <page-01 name="ข้อมูลพื้นฐาน"></page-01>
+            <page-02 name="ที่อยู่ในการติดต่อ"></page-02>
+            <!-- <page-03></page-03>
+            <page-04></page-04>
+            <page-05></page-05>
+            <page-06></page-06>
+            <page-07></page-07>
+            <page-08></page-08>
+            <page-09></page-09>
+            <page-10></page-10>
+            <page-11></page-11>
+            <page-12></page-12>
+            <page-13></page-13> -->
+        </iron-pages>
+    </template>
+
+    <script>
+        /**
+         * `page-all` Description
+         *
+         * @summary ShortDescription.
+         * @customElement
+         * @polymer
+         * @extends {Polymer.Element}
+         */
+        class PageList extends Polymer.LazyImportsMixin(Polymer.Element) {
+            /**
+             * String providing the tag name to register the element under.
+             */
+            static get is() {
+                return 'page-list';
+            }
+
+            /**
+             * Object describing property-related metadata used by Polymer features
+             */
+            static get properties() {
+                return {
+                    selected: {
+                        type: String,
+                        observer: '_selectedChanged'
+                    },
+                    itemChanged: {
+                        type: String,
+                        observer: '_itemChanged'
+                    }
+                };
+
+
+            }
+            _selectedChanged(val) {
+                //console.log(val)
+            }
+
+            _itemChanged(el) {
+                if (!el)
+                    return
+
+                this.importLazyGroup(el.localName).then((results) => {
+                    this.dispatchEvent(new CustomEvent('import-loaded', results));
+                });
+            }
+
+            /**
+             * Instance of the element is created/upgraded. Use: initializing state,
+             * set up event listeners, create shadow dom.
+             * @constructor
+             */
+            constructor() {
+                super();
+            }
+
+            /**
+             * Use for one-time configuration of your component after local DOM is initialized. 
+             */
+            ready() {
+                super.ready();
+            }
+
+        }
+
+        window.customElements.define(PageList.is, PageList);
+    </script>
+</dom-module>

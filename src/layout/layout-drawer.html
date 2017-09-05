@@ -40,7 +40,7 @@
                 z-index: 1
             }
 
-            iron-selector > paper-icon-item {
+            iron-selector>paper-icon-item {
                 cursor: pointer;
             }
         </style>
@@ -48,13 +48,17 @@
         <app-drawer id="drawer" no-focus-trap="false">
             <br>
             <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-                <paper-icon-item name="page-view" href="/" on-click="_redirect">
+                <!-- <paper-icon-item name="page-view" href="/" on-click="_redirect">
                     <iron-icon icon="bookmark-border" slot="item-icon"></iron-icon>
                     View One
                 </paper-icon-item>
                 <paper-icon-item  name="page-view2" href="/view2/test" on-click="_redirect">
                     <iron-icon icon="bookmark-border" slot="item-icon"></iron-icon>
                     View Two
+                </paper-icon-item> -->
+                <paper-icon-item name="page-register" href="/register/ข้อมูลพื้นฐาน" on-click="_redirect">
+                    <iron-icon icon="bookmark-border" slot="item-icon"></iron-icon>
+                    Register
                 </paper-icon-item>
             </iron-selector>
         </app-drawer>
@@ -83,11 +87,11 @@
                 this.$.drawer.toggle();
             }
 
-            _redirect(e){
+            _redirect(e) {
                 Nylon.redirect(e.currentTarget.getAttribute('href'))
-                setTimeout(()=>{
+                setTimeout(() => {
                     this.$.drawer.close()
-                },500)
+                }, 500)
             }
 
         }

@@ -41,7 +41,7 @@
         let elementName = e.detail.element.localName
         let resolvedUrl = this.resolveUrl(`pages/${elementName}/${elementName}.html`);
         //console.log(this.$.nylonInit.$.layoutMain.$.progress)
-        var progress = this.$.nylonInit.$.layoutMain.progress()
+        //var progress = this.$.nylonInit.$.layoutMain.progress()
 
         Polymer.importHref(
           resolvedUrl,
@@ -51,7 +51,7 @@
             if(!Nylon.$[elementName])
               Nylon.$[elementName] = e.detail.element
 
-            progress()
+            //progress()
             e.detail.active()
           },
           () => {
