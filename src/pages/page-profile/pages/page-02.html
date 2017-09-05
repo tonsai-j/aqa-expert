@@ -12,6 +12,10 @@
 
 <link rel="import" href="../../../layout/shared-styles.html">
 
+<link rel="import" href="../../../nylon-i18n.html">
+
+<link rel="import" href="../../../i18n/profile/page-02-i18n.html">
+
 <link rel="import" href="../../../redux/profile/page-02-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
 
@@ -41,15 +45,15 @@
             <div slot="content">
                 <div>
                     <fieldset>
-                        <legend>ที่จัดส่งเอกสาร:</legend>
+                        <legend>[[i18n.page02.doc_send]]:</legend>
                         <div class="row middle-md">
                             <div class="label col-md-3">
-                                สถานที่จัดส่งเอกสาร
+                                [[i18n.page02.address_doc_send]]
                             </div>
                             <div class="input col-md-9">
                                 <paper-radio-group selected="small">
-                                    <paper-radio-button name="small">ที่อยู่ที่สะดวกในการติดต่อ</paper-radio-button>
-                                    <paper-radio-button name="medium">ที่อยู่ที่ทำงาน</paper-radio-button>
+                                    <paper-radio-button name="small">[[i18n.page02.address_contract]]</paper-radio-button>
+                                    <paper-radio-button name="medium">[[i18n.page02.address_work]]</paper-radio-button>
                                 </paper-radio-group>
                             </div>
                         </div>
@@ -57,25 +61,30 @@
                 </div>
                 <div>
                     <fieldset>
-                        <legend>ที่อยู่ที่สะดวกในการติดต่อ:</legend>
+                        <legend>
+                            <div class="row middle-md">
+                                    &nbsp;&nbsp;[[i18n.page02.address_contract]]&nbsp;&nbsp;(
+                                <paper-input no-label-float></paper-input>)&nbsp;&nbsp;
+                            </div>
+                        </legend>
                         <div class="row middle-md">
                             <div class="label col-md-1">
                                 <!-- หมู่ที่ : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="เลขที่*"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.home_number]]*"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- หมู่ที่ : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="หมู่ที่"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.village_no]]"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- หมู่บ้าน : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="หมู่บ้าน"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.village_name]]"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
@@ -83,19 +92,19 @@
                                 <!-- อาคาร : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="อาคาร"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.building]]"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- ซอย : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="ซอย"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.alley]]"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- ถนน : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="ถนน"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.road]]"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
@@ -103,7 +112,7 @@
                                 <!-- ภาค* : -->
                             </div>
                             <div class="input col-md-3">
-                                <vaadin-combo-box always-float-label label="ภาค*" items='{{regionList}}'>
+                                <vaadin-combo-box always-float-label label="[[i18n.page02.region]]*" items='{{regionList}}'>
                                     <template>
                                         [[item.label]]
                                     </template>
@@ -113,7 +122,7 @@
                                 <!-- จังหวัด* : -->
                             </div>
                             <div class="input col-md-3">
-                                <vaadin-combo-box always-float-label label="จังหวัด*" items='{{provinceList}}'>
+                                <vaadin-combo-box always-float-label label="[[i18n.page02.province]]*" items='{{provinceList}}'>
                                     <template>
                                         [[item.label]]
                                     </template>
@@ -123,7 +132,7 @@
                                 <!-- อำเภอ/เขต* : -->
                             </div>
                             <div class="input col-md-3">
-                                <vaadin-combo-box always-float-label label="อำเภอ/เขต*" items='{{amphoeList}}'>
+                                <vaadin-combo-box always-float-label label="[[i18n.page02.amphoe]]*" items='{{amphoeList}}'>
                                     <template>
                                         [[item.label]]
                                     </template>
@@ -135,7 +144,7 @@
                                 <!-- ตำบล/แขวง : -->
                             </div>
                             <div class="input col-md-3">
-                                <vaadin-combo-box always-float-label label="ตำบล/แขวง" items='{{districtList}}'>
+                                <vaadin-combo-box always-float-label label="[[i18n.page02.district]]" items='{{districtList}}'>
                                     <template>
                                         [[item.label]]
                                     </template>
@@ -145,7 +154,7 @@
                                 <!-- รหัสไปรษณีย์* : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="รหัสไปรษณีย์*"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.zipcode]]*"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
@@ -153,19 +162,19 @@
                                 <!-- โทรศัพท์ : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="โทรศัพท์"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.telephone]]"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- โทรสาร : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="โทรสาร"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.fax]]"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- โทรศัพท์เคลื่อนที่* : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="โทรศัพท์เคลื่อนที่*"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.mobile_phone]]*"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
@@ -173,13 +182,13 @@
                                 <!-- อีเมล* : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="อีเมล*"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.email]]*"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- Line ID : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="Line ID"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.line_id]]"></paper-input>
                             </div>
                             <!-- <div class="label col-md-2">
                                 :
@@ -190,14 +199,14 @@
                         </div>
                         <div class="row middle-md">
                             <div class="label col-md-2">
-                                ช่วงเวลาที่สะดวก :
+                                [[i18n.page02.time_free]] :
                             </div>
                             <div class="input col-md-3">
                                 <div class="row middle-md">
                                     <div class="col-md-5">
                                         <paper-input type=time no-label-float></paper-input>
                                     </div>
-                                    <div class="label col-md-2"> ถึง</div>
+                                    <div class="label col-md-2"> [[i18n.page02.to]]</div>
                                     <div class="col-md-5">
                                         <paper-input type=time no-label-float></paper-input>
                                     </div>
@@ -206,15 +215,20 @@
                         </div>
                     </fieldset>
                 </div>
+                <br>
                 <div>
                     <fieldset>
-                        <legend>ที่อยู่ที่ทำงาน (คัดลอกจากที่อยู่ที่สะดวกในการติดต่อ)</legend>
+                        <legend>
+                            <div class="row middle-md">&nbsp;&nbsp;[[i18n.page02.address_work]]
+                                <paper-button raised class="btn-default">([[i18n.page02.copy_address]])</paper-button>&nbsp;&nbsp;
+                            </div>
+                        </legend>
                         <div class="row middle-md">
                             <div class="label col-md-1">
                                 <!-- ชื่อองค์กร : -->
                             </div>
                             <div class="input col-md-5">
-                                <paper-input always-float-label label="ชื่อองค์กร*"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.company_name]]*"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
@@ -222,19 +236,19 @@
                                 <!-- หมู่ที่ : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="เลขที่*"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.home_number]]*"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- หมู่ที่ : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="หมู่ที่"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.village_no]]"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- หมู่บ้าน : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="หมู่บ้าน"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.village_name]]"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
@@ -242,19 +256,19 @@
                                 <!-- อาคาร : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="อาคาร"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.building]]"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- ซอย : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="ซอย"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.alley]]"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- ถนน : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="ถนน"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.road]]"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
@@ -262,7 +276,7 @@
                                 <!-- ภาค* : -->
                             </div>
                             <div class="input col-md-3">
-                                <vaadin-combo-box always-float-label label="ภาค*" items='{{regionList}}'>
+                                <vaadin-combo-box always-float-label label="[[i18n.page02.region]]*" items='{{regionList}}'>
                                     <template>
                                         [[item.label]]
                                     </template>
@@ -272,7 +286,7 @@
                                 <!-- จังหวัด* : -->
                             </div>
                             <div class="input col-md-3">
-                                <vaadin-combo-box always-float-label label="จังหวัด*" items='{{provinceList}}'>
+                                <vaadin-combo-box always-float-label label="[[i18n.page02.province]]*" items='{{provinceList}}'>
                                     <template>
                                         [[item.label]]
                                     </template>
@@ -282,7 +296,7 @@
                                 <!-- อำเภอ/เขต* : -->
                             </div>
                             <div class="input col-md-3">
-                                <vaadin-combo-box always-float-label label="อำเภอ/เขต*" items='{{amphoeList}}'>
+                                <vaadin-combo-box always-float-label label="[[i18n.page02.amphoe]]*" items='{{amphoeList}}'>
                                     <template>
                                         [[item.label]]
                                     </template>
@@ -294,7 +308,7 @@
                                 <!-- ตำบล/แขวง : -->
                             </div>
                             <div class="input col-md-3">
-                                <vaadin-combo-box always-float-label label="ตำบล/แขวง" items='{{districtList}}'>
+                                <vaadin-combo-box always-float-label label="[[i18n.page02.district]]" items='{{districtList}}'>
                                     <template>
                                         [[item.label]]
                                     </template>
@@ -304,7 +318,7 @@
                                 <!-- รหัสไปรษณีย์* : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="รหัสไปรษณีย์*"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.zipcode]]*"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
@@ -312,19 +326,19 @@
                                 <!-- โทรศัพท์ : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="โทรศัพท์"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.telephone]]"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- โทรสาร : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="โทรสาร"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.fax]]"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- โทรศัพท์เคลื่อนที่* : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="โทรศัพท์เคลื่อนที่*"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.mobile_phone]]*"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
@@ -332,31 +346,31 @@
                                 <!-- อีเมล* : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="อีเมล*"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.email]]*"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- Line ID : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="Line ID"></paper-input>
+                                <paper-input always-float-label label="[[i18n.page02.line_id]]"></paper-input>
                             </div>
                             <!-- <div class="label col-md-2">
-                                    :
-                                </div>
-                                <div class="input col-md-2">
-                                    <paper-input always-float-label label=""></paper-input>
-                                </div> -->
+                                :
+                            </div>
+                            <div class="input col-md-2">
+                                <paper-input always-float-label label=""></paper-input>
+                            </div> -->
                         </div>
                         <div class="row middle-md">
                             <div class="label col-md-2">
-                                ช่วงเวลาที่สะดวก :
+                                [[i18n.page02.time_free]] :
                             </div>
                             <div class="input col-md-3">
                                 <div class="row middle-md">
                                     <div class="col-md-5">
                                         <paper-input type=time no-label-float></paper-input>
                                     </div>
-                                    <div class="label col-md-2"> ถึง</div>
+                                    <div class="label col-md-2"> [[i18n.page02.to]]</div>
                                     <div class="col-md-5">
                                         <paper-input type=time no-label-float></paper-input>
                                     </div>
@@ -367,13 +381,15 @@
                 </div>
             </div>
             <app-toolbar slot="footer">
-                    <div main-title></div>
+                <div main-title></div>
                 <paper-button raised class="btn-default">
-                    <iron-icon icon="arrow-back"></iron-icon>ย้อนกลับ</paper-button>
+                    <iron-icon icon="arrow-back"></iron-icon>[[i18n.button.previous]]</paper-button>
                 <paper-button raised class="btn-success">
-                    <iron-icon icon="save"></iron-icon>บันทึก</paper-button>
+                    <iron-icon icon="save"></iron-icon>[[i18n.button.save]]</paper-button>
                 <paper-button raised class="btn-default">
-                    ถัดไป<iron-icon icon="arrow-forward"></iron-icon></paper-button>
+                    [[i18n.button.next]]
+                    <iron-icon icon="arrow-forward"></iron-icon>
+                </paper-button>
             </app-toolbar>
 
         </nylon-panel-card>
@@ -401,6 +417,11 @@
              */
             static get properties() {
                 return {
+                    i18n: {
+                        type: Object,
+                        statePath: 'i18n',
+                        observer: 'getdata'
+                    },
                     data: {
                         statePath: 'page02Redux.data'
                     },
@@ -442,7 +463,9 @@
                     // console.log(111);
                 });
             }
-
+            getdata(data) {
+                console.log(data);
+            }
         }
 
         window.customElements.define(Page02.is, Page02);
