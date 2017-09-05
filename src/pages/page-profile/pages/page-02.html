@@ -4,10 +4,20 @@
 <link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../../../bower_components/paper-radio-group/paper-radio-group.html">
 <link rel="import" href="../../../../bower_components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
+<link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../../my-icons.html">
+
+<link rel="import" href="../../../layout/shared-styles.html">
+
+<link rel="import" href="../../../redux/profile/page-02-redux.html">
+<link rel="import" href="../../../redux-mixin.html">
 
 <dom-module id="page-02">
     <template>
-        <style include='flexbox-grid'>
+        <style include='flexbox-grid shared-styles'>
              :host {
                 display: block
             }
@@ -25,23 +35,10 @@
             }
         </style>
         <nylon-panel-card>
-            <div slot="header">
+            <!-- <div slot="header">
                 ผู้ประเมินภายนอกระดับการศึกษาขั้นพื้นฐาน (ปฐมวัย)
-            </div>
+            </div> -->
             <div slot="content">
-                <div>
-                    <fieldset>
-                        <legend>รายละเอียด:</legend>
-                        <div class="row middle-md">
-                            <div class="label col-md-3">
-                                ชื่อผู้ประเมินภายนอกระดับการศึกษาขั้นพื้นฐาน (ปฐมวัย)
-                            </div>
-                            <div class="input col-md-4">
-                                <paper-input no-label-float></paper-input>
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
                 <div>
                     <fieldset>
                         <legend>ที่จัดส่งเอกสาร:</legend>
@@ -63,126 +60,136 @@
                         <legend>ที่อยู่ที่สะดวกในการติดต่อ:</legend>
                         <div class="row middle-md">
                             <div class="label col-md-1">
-                                เลขที่* :
+                                <!-- หมู่ที่ : -->
                             </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="เลขที่*"></paper-input>
                             </div>
-                            <div class="label col-md-2">
-                                หมู่ที่ :
+                            <div class="label col-md-1">
+                                <!-- หมู่ที่ : -->
                             </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="หมู่ที่"></paper-input>
                             </div>
-                            <div class="label col-md-2">
-                                หมู่บ้าน :
+                            <div class="label col-md-1">
+                                <!-- หมู่บ้าน : -->
                             </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="หมู่บ้าน"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
                             <div class="label col-md-1">
-                                อาการ :
+                                <!-- อาคาร : -->
                             </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="อาคาร"></paper-input>
                             </div>
-                            <div class="label col-md-2">
-                                ซอย :
+                            <div class="label col-md-1">
+                                <!-- ซอย : -->
                             </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="ซอย"></paper-input>
                             </div>
-                            <div class="label col-md-2">
-                                ถนน :
+                            <div class="label col-md-1">
+                                <!-- ถนน : -->
                             </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="ถนน"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
                             <div class="label col-md-1">
-                                ภาค* :
+                                <!-- ภาค* : -->
                             </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                            <div class="input col-md-3">
+                                <vaadin-combo-box always-float-label label="ภาค*" items='{{regionList}}'>
+                                    <template>
+                                        [[item.label]]
+                                    </template>
+                                </vaadin-combo-box>
                             </div>
-                            <div class="label col-md-2">
-                                จังหวัด* :
+                            <div class="label col-md-1">
+                                <!-- จังหวัด* : -->
                             </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                            <div class="input col-md-3">
+                                <vaadin-combo-box always-float-label label="จังหวัด*" items='{{provinceList}}'>
+                                    <template>
+                                        [[item.label]]
+                                    </template>
+                                </vaadin-combo-box>
                             </div>
-                            <div class="label col-md-2">
-                                อำเภอ/เขต* :
+                            <div class="label col-md-1">
+                                <!-- อำเภอ/เขต* : -->
                             </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                            <div class="input col-md-3">
+                                <vaadin-combo-box always-float-label label="อำเภอ/เขต*" items='{{amphoeList}}'>
+                                    <template>
+                                        [[item.label]]
+                                    </template>
+                                </vaadin-combo-box>
                             </div>
                         </div>
                         <div class="row middle-md">
                             <div class="label col-md-1">
-                                ตำบล/แขวง :
+                                <!-- ตำบล/แขวง : -->
                             </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                            <div class="input col-md-3">
+                                <vaadin-combo-box always-float-label label="ตำบล/แขวง" items='{{districtList}}'>
+                                    <template>
+                                        [[item.label]]
+                                    </template>
+                                </vaadin-combo-box>
                             </div>
-                            <div class="label col-md-2">
-                                รหัสไปรษณีย์* :
-                            </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
-                            </div>
-                            <!-- <div class="label col-md-2">
-                                     :
-                                </div>
-                                <div class="input col-md-2">
-                                    <paper-input no-label-float></paper-input>
-                                </div> -->
-                        </div>
-                        <div class="row middle-md">
                             <div class="label col-md-1">
-                                โทรศัพท์ :
+                                <!-- รหัสไปรษณีย์* : -->
                             </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
-                            </div>
-                            <div class="label col-md-2">
-                                โทรสาร :
-                            </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
-                            </div>
-                            <div class="label col-md-2">
-                                โทรศัพท์เคลื่อนที่* :
-                            </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="รหัสไปรษณีย์*"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
                             <div class="label col-md-1">
-                                อีเมล* :
+                                <!-- โทรศัพท์ : -->
                             </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="โทรศัพท์"></paper-input>
                             </div>
-                            <div class="label col-md-2">
-                                Line ID :
+                            <div class="label col-md-1">
+                                <!-- โทรสาร : -->
                             </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="โทรสาร"></paper-input>
+                            </div>
+                            <div class="label col-md-1">
+                                <!-- โทรศัพท์เคลื่อนที่* : -->
+                            </div>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="โทรศัพท์เคลื่อนที่*"></paper-input>
+                            </div>
+                        </div>
+                        <div class="row middle-md">
+                            <div class="label col-md-1">
+                                <!-- อีเมล* : -->
+                            </div>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="อีเมล*"></paper-input>
+                            </div>
+                            <div class="label col-md-1">
+                                <!-- Line ID : -->
+                            </div>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="Line ID"></paper-input>
                             </div>
                             <!-- <div class="label col-md-2">
                                 :
                             </div>
                             <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                                <paper-input always-float-label label=""></paper-input>
                             </div> -->
                         </div>
                         <div class="row middle-md">
-                            <div class="label col-md-1">
+                            <div class="label col-md-2">
                                 ช่วงเวลาที่สะดวก :
                             </div>
                             <div class="input col-md-3">
@@ -201,129 +208,147 @@
                 </div>
                 <div>
                     <fieldset>
-                        <legend>ที่อยู่ที่ทำงาน (คัดลอกจากที่อยู่ที่สะดวกในการติดต่อ):</legend>
+                        <legend>ที่อยู่ที่ทำงาน (คัดลอกจากที่อยู่ที่สะดวกในการติดต่อ)</legend>
                         <div class="row middle-md">
                             <div class="label col-md-1">
-                                เลขที่* :
+                                <!-- ชื่อองค์กร : -->
                             </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
-                            </div>
-                            <div class="label col-md-2">
-                                หมู่ที่ :
-                            </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
-                            </div>
-                            <div class="label col-md-2">
-                                หมู่บ้าน :
-                            </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                            <div class="input col-md-5">
+                                <paper-input always-float-label label="ชื่อองค์กร*"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
                             <div class="label col-md-1">
-                                อาการ :
+                                <!-- หมู่ที่ : -->
                             </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="เลขที่*"></paper-input>
                             </div>
-                            <div class="label col-md-2">
-                                ซอย :
+                            <div class="label col-md-1">
+                                <!-- หมู่ที่ : -->
                             </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="หมู่ที่"></paper-input>
                             </div>
-                            <div class="label col-md-2">
-                                ถนน :
+                            <div class="label col-md-1">
+                                <!-- หมู่บ้าน : -->
                             </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="หมู่บ้าน"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
                             <div class="label col-md-1">
-                                ภาค* :
+                                <!-- อาคาร : -->
                             </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="อาคาร"></paper-input>
                             </div>
-                            <div class="label col-md-2">
-                                จังหวัด* :
+                            <div class="label col-md-1">
+                                <!-- ซอย : -->
                             </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="ซอย"></paper-input>
                             </div>
-                            <div class="label col-md-2">
-                                อำเภอ/เขต* :
+                            <div class="label col-md-1">
+                                <!-- ถนน : -->
                             </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="ถนน"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
                             <div class="label col-md-1">
-                                ตำบล/แขวง :
+                                <!-- ภาค* : -->
                             </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                            <div class="input col-md-3">
+                                <vaadin-combo-box always-float-label label="ภาค*" items='{{regionList}}'>
+                                    <template>
+                                        [[item.label]]
+                                    </template>
+                                </vaadin-combo-box>
                             </div>
-                            <div class="label col-md-2">
-                                รหัสไปรษณีย์* :
+                            <div class="label col-md-1">
+                                <!-- จังหวัด* : -->
                             </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
+                            <div class="input col-md-3">
+                                <vaadin-combo-box always-float-label label="จังหวัด*" items='{{provinceList}}'>
+                                    <template>
+                                        [[item.label]]
+                                    </template>
+                                </vaadin-combo-box>
+                            </div>
+                            <div class="label col-md-1">
+                                <!-- อำเภอ/เขต* : -->
+                            </div>
+                            <div class="input col-md-3">
+                                <vaadin-combo-box always-float-label label="อำเภอ/เขต*" items='{{amphoeList}}'>
+                                    <template>
+                                        [[item.label]]
+                                    </template>
+                                </vaadin-combo-box>
+                            </div>
+                        </div>
+                        <div class="row middle-md">
+                            <div class="label col-md-1">
+                                <!-- ตำบล/แขวง : -->
+                            </div>
+                            <div class="input col-md-3">
+                                <vaadin-combo-box always-float-label label="ตำบล/แขวง" items='{{districtList}}'>
+                                    <template>
+                                        [[item.label]]
+                                    </template>
+                                </vaadin-combo-box>
+                            </div>
+                            <div class="label col-md-1">
+                                <!-- รหัสไปรษณีย์* : -->
+                            </div>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="รหัสไปรษณีย์*"></paper-input>
+                            </div>
+                        </div>
+                        <div class="row middle-md">
+                            <div class="label col-md-1">
+                                <!-- โทรศัพท์ : -->
+                            </div>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="โทรศัพท์"></paper-input>
+                            </div>
+                            <div class="label col-md-1">
+                                <!-- โทรสาร : -->
+                            </div>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="โทรสาร"></paper-input>
+                            </div>
+                            <div class="label col-md-1">
+                                <!-- โทรศัพท์เคลื่อนที่* : -->
+                            </div>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="โทรศัพท์เคลื่อนที่*"></paper-input>
+                            </div>
+                        </div>
+                        <div class="row middle-md">
+                            <div class="label col-md-1">
+                                <!-- อีเมล* : -->
+                            </div>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="อีเมล*"></paper-input>
+                            </div>
+                            <div class="label col-md-1">
+                                <!-- Line ID : -->
+                            </div>
+                            <div class="input col-md-3">
+                                <paper-input always-float-label label="Line ID"></paper-input>
                             </div>
                             <!-- <div class="label col-md-2">
-                                         :
-                                    </div>
-                                    <div class="input col-md-2">
-                                        <paper-input no-label-float></paper-input>
-                                    </div> -->
+                                    :
+                                </div>
+                                <div class="input col-md-2">
+                                    <paper-input always-float-label label=""></paper-input>
+                                </div> -->
                         </div>
                         <div class="row middle-md">
-                            <div class="label col-md-1">
-                                โทรศัพท์ :
-                            </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
-                            </div>
                             <div class="label col-md-2">
-                                โทรสาร :
-                            </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
-                            </div>
-                            <div class="label col-md-2">
-                                โทรศัพท์เคลื่อนที่* :
-                            </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
-                            </div>
-                        </div>
-                        <div class="row middle-md">
-                            <div class="label col-md-1">
-                                อีเมล* :
-                            </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
-                            </div>
-                            <div class="label col-md-2">
-                                Line ID :
-                            </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
-                            </div>
-                            <!-- <div class="label col-md-2">
-                                :
-                            </div>
-                            <div class="input col-md-2">
-                                <paper-input no-label-float></paper-input>
-                            </div> -->
-                        </div>
-                        <div class="row middle-md">
-                            <div class="label col-md-1">
                                 ช่วงเวลาที่สะดวก :
                             </div>
                             <div class="input col-md-3">
@@ -341,25 +366,17 @@
                     </fieldset>
                 </div>
             </div>
-            <div slot="footer">
-                1312323123123
-            </div>
+            <app-toolbar slot="footer">
+                    <div main-title></div>
+                <paper-button raised class="btn-default">
+                    <iron-icon icon="arrow-back"></iron-icon>ย้อนกลับ</paper-button>
+                <paper-button raised class="btn-success">
+                    <iron-icon icon="save"></iron-icon>บันทึก</paper-button>
+                <paper-button raised class="btn-default">
+                    ถัดไป<iron-icon icon="arrow-forward"></iron-icon></paper-button>
+            </app-toolbar>
 
         </nylon-panel-card>
-        <!-- <div class=" border">
-            <div class="row">
-                <div class="col-md-3">
-                    ชื่อผู้ประเมินภายนอกระดับการศึกษาขั้นพื้นฐาน (ปฐมวัย)
-                </div>
-                <div class="col-md-9">
-                    
-                </div>
-            </div>
-        </div>
-        <div class=" border">1</div>
-        <div class=" border">2</div>
-        <div class=" border">2</div>
-        <div class=" border">2</div> -->
     </template>
 
     <script>
@@ -371,7 +388,7 @@
          * @polymer
          * @extends {Polymer.Element}
          */
-        class Page02 extends Polymer.Element {
+        class Page02 extends ReduxMixin(Polymer.Element) {
             /**
              * String providing the tag name to profile the element under.
              */
@@ -384,7 +401,21 @@
              */
             static get properties() {
                 return {
-
+                    data: {
+                        statePath: 'page02Redux.data'
+                    },
+                    regionList: {
+                        statePath: 'page02Redux.region'
+                    },
+                    provinceList: {
+                        statePath: 'page02Redux.province'
+                    },
+                    amphoeList: {
+                        statePath: 'page02Redux.amphoe'
+                    },
+                    districtList: {
+                        statePath: 'page02Redux.district'
+                    }
                 };
             }
 
@@ -404,7 +435,11 @@
                 super.ready();
 
                 Polymer.RenderStatus.afterNextRender(this, function () {
-
+                    Nylon.dispatch('GET_LIST_REGION')
+                    Nylon.dispatch('GET_LIST_PROVINCE')
+                    Nylon.dispatch('GET_LIST_AMPHOE')
+                    Nylon.dispatch('GET_LIST_DISTRICT')
+                    // console.log(111);
                 });
             }
 
