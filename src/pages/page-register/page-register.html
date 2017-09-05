@@ -3,6 +3,7 @@
 <link rel="import" href="./pages/page-list.html">
 <link rel="import" href="../../layout/flexbox-grid.html">
 <link rel="import" href="../../redux-mixin.html">
+<link rel="import" href="../../redux/register-redux.html">
 <dom-module id="page-register">
     <template>
         <style include="flexbox-grid">
@@ -38,21 +39,7 @@
                     },
                     menu: {
                         type: Array,
-                        value: [
-                            { name: 'ข้อมูลพื้นฐาน' },
-                            { name: 'ที่อยู่ในการติดต่อ' },
-                            { name: 'วุฒิการศึกษา' },
-                            { name: 'สาขาเชี่ยวชาญ' },
-                            { name: 'ประวัติการทำงาน' },
-                            { name: 'ความสามารถอื่นๆ' },
-                            { name: 'ประวัติการประเมิน' },
-                            { name: 'ผลงานทางวิชาการ' },
-                            { name: 'ประวัติการอบรมประกันคุณภาพภายใน' },
-                            { name: 'บัญชีธนาคาร' },
-                            { name: 'ภาคที่สะดวกในการประเมิน' },
-                            { name: 'บุคคลอ้างอิง' },
-                            { name: 'ไฟล์เอกสาร' }
-                        ]
+                        statePath:'register.menu'
                     },
                     currentPage: {
                         type: Number,
@@ -69,7 +56,7 @@
              */
             ready() {
                 super.ready();
-                console.log(this._params)
+                // console.log(this._params)
             }
             _changePage(e) {
                 this.set('currentPage', e.model.index);
