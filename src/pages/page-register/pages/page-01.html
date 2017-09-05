@@ -1,14 +1,63 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
+<link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../../layout/flexbox-grid.html">
 
 <dom-module id="page-01">
     <template>
-        <style>
+        <style include="flexbox-grid">
              :host {
                 display: block
             }
         </style>
-        Page 01
+        ผู้ประเมินภายนอกระดับการศึกษาขั้นพื้นฐาน (ปฐมวัย)
+        <!-- <input type="text" id=""> -->
+        <nylon-panel-card>
 
+            <div slot="header">
+
+            </div>
+            <div slot="content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6" style="text-align: right">
+                                รหัสการสมัคร:
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6" style="text-align: right">
+                                ตำแหน่งทางวิชาการ:
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div style="text-align: right">รหัสการสมัคร</div>
+                                <div style="text-align: right">ตำแหน่งทางวิชาการ</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div><input type="text"></div>
+                                <div><input type="text"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <fieldset>
+                    <legend>ข้อมูลพื้นฐาน:</legend>
+                    รหัสการสมัคร: <input type="text"><br> ตำแหน่งทางวิชาการ: <input type="text"><br> คำนำหน้าชื่อ (ไทย):
+                    <input type="text"><br> ชื่อ: <input type="text"><br> Title: <input type="text"><br> Name: <input type="text"><br>                    เพศ: <input type="text"><br> เชื้อชาติ: <input type="text"><br> วัน/เดือน/ปี(พ.ศ.)เกิด: <input type="text"><br>                    เลขที่บัตรประชาชน: <input type="text"><br> สถานะการทำงาน: <input type="text"><br>
+                </fieldset> -->
+            </div>
+
+        </nylon-panel-card>
 
     </template>
 
