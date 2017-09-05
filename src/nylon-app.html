@@ -1,12 +1,13 @@
 <script>
-  window.Nylon = window.Nylon || {$:{}}
+  window.Nylon = window.Nylon || { $: {} }
+
 </script>
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 
 <link rel="import" href="./nylon-axios.html">
 <link rel="import" href="./redux-mixin.html">
 <link rel="import" href="./i18n/common-i18n.html">
-
+<link rel="import" href="./i18n/button-i18n.html">
 <link rel="import" href="./nylon-init.html">
 <link rel="import" href="./layout/shared-styles.html">
 
@@ -48,7 +49,7 @@
           () => {
             this.$.nylonInit.$.layoutMain.$.layoutDrawer.page = elementName
 
-            if(!Nylon.$[elementName])
+            if (!Nylon.$[elementName])
               Nylon.$[elementName] = e.detail.element
 
             //progress()
