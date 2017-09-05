@@ -37,6 +37,7 @@
     "lazy-imports": "Polymer/lazy-imports#^2.0.0",
     "paper-radio-group": "PolymerElements/paper-radio-group#^2.0.0",
     "paper-radio-button": "PolymerElements/paper-radio-button#^2.0.0",
-    "vaadin-combo-box": "^2.0.0"
+    "vaadin-combo-box": "^2.0.0",
+    "cpol-image": "3mp3ri0r/cpol-image#^1.0.0"
   }
 }

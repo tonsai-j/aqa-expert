@@ -4,339 +4,236 @@
 <link rel="import" href="../../../layout/flexbox-grid.html">
 <link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
 <link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../layout/shared-styles.html">
+<link rel="import" href="../../../../bower_components/cpol-image/cpol-image.html">
+<link rel="import" href="../../../redux/profile/page-01-redux.html">
+<link rel="import" href="../../../redux-mixin.html">
+
 
 <dom-module id="page-01">
     <template>
-        <style include="flexbox-grid">
+        <style include="flexbox-grid shared-styles">
              :host {
                 display: block
             }
         </style>
 
-        <!-- <input type="text" id=""> -->
-        <nylon-panel-card>
-            <div slot="content">
-                <div>กรุณากรอกข้อมูลในช่อง*</div>
-                <div class="row middle-md">
-                    <div class="col-md-offset-2 col-md-8">
-                        <paper-input label="รหัสการสมัคร:"></paper-input>
-                    </div>
-                </div>
-                <div class="row middle-md">
-                    <div class="col-md-offset-2 col-md-8">
-                        <paper-input label="สถานะ:"></paper-input>
-                    </div>
-                </div>
-                <div class="row middle-md">
-                    <div class="col-md-offset-2 col-md-8">
-                        <vaadin-combo-box id="" label="ตำแหน่งทางวิชาการ:"></vaadin-combo-box>
-                    </div>
-                </div>
-                <div class="row middle-md">
-                    <div class="col-md-offset-2 col-md-8">
-                        <paper-input label="คำนำหน้าชื่อ(ไทย):"></paper-input>
-                    </div>
-                </div>
-                <div class="row middle-md">
-                    <div class="col-md-offset-2 col-md-8">
-                        <paper-input label="ชื่อ*:"></paper-input>
-                    </div>
-                </div>
-                <div class="row middle-md">
-                    <div class="col-md-offset-2 col-md-8">
-                        <paper-input label="นามสกุล:"></paper-input>
-                    </div>
-                </div>
-                <div class="row middle-md">
-                    <div class="col-md-offset-2 col-md-8">
-                        <paper-input label="Title:"></paper-input>
-                    </div>
-                </div>
-                <div class="row middle-md">
-                    <div class="col-md-offset-2 col-md-8">
-                        <paper-input label="Name:"></paper-input>
-                    </div>
-                </div>
-                <div class="row middle-md">
-                    <div class="col-md-offset-2 col-md-8">
-                        <paper-input label="lastname:"></paper-input>
-                    </div>
-                </div>
-                <div class="row middle-md">
-                    <div class="col-md-offset-2 col-md-8">
-                        <vaadin-combo-box id="" label="เพศ:"></vaadin-combo-box>
-                    </div>
-                </div>
-                <div class="row middle-md">
-                    <div class="col-md-offset-2 col-md-8">
-                        <vaadin-combo-box id="" label="เชื้อชาติ:"></vaadin-combo-box>
-                    </div>
-                </div>
-                <div class="row middle-md">
-                    <div class="col-md-offset-2 col-md-8">
-                        <vaadin-combo-box id="" label="ศาสนา:"></vaadin-combo-box>
-                    </div>
-                </div>
-                <div class="row middle-md">
-                    <div class="col-md-offset-2 col-md-8">
-                        <vaadin-combo-box id="" label="สัญชาติ:"></vaadin-combo-box>
-                    </div>
-                </div>
-                <div class="row middle-md">
-                    <div class="col-md-offset-2 col-md-8">
-                        <vaadin-combo-box id="" label="วัน/เดือน/ปี(พ.ศ.)เกิด:"></vaadin-combo-box>
-                    </div>
-                </div>
-                <div class="row middle-md">
-                    <div class="col-md-offset-2 col-md-8">
-                        <paper-input label="อายุ:" ></paper-input>
-                        <!-- <vaadin-combo-box id="" label="อายุ:"></vaadin-combo-box> -->
-                    </div>
-                </div>
-                <div class="row middle-md">
-                    <div class="col-md-offset-2 col-md-8">
-                        <paper-input label="เลขที่บัตรประชาชน:"></paper-input>
-                    </div>
-                </div>
-                <div class="row middle-md">
-                    <div class="col-md-offset-2 col-md-8">
-                        <vaadin-combo-box id="" label="วันที่ออกบัตรประชาชน:"></vaadin-combo-box>
-                    </div>
-                </div>
-                <div class="row middle-md">
-                    <div class="col-md-offset-2 col-md-8">
-                        <vaadin-combo-box id="" label="วันที่บัตรหมดอายุ:"></vaadin-combo-box>
-                    </div>
-                </div>
-                <div class="row middle-md">
-                    <div class="col-md-offset-2 col-md-8">
-                        <vaadin-combo-box id="" label="สถานะการทำงาน:"></vaadin-combo-box>
-                    </div>
-                </div>
 
-                <!-- <div class="row middle-md col-md-offset-2 col-md-8">
-                    <vaadin-combo-box id="" label="ตำแหน่งทางวิชาการ"></vaadin-combo-box>
-                </div> -->
-            </div>
+        <nylon-panel-card>
+
+            <div slot="content">
+                <fieldset>
+                    <legend>ข้อมูลพื้นฐาน:</legend>
+                    <div><br>กรุณากรอกข้อมูลในช่อง*</div>
+                    <div class="row middle-md">
+                        <div class="col-md-offset-9 col-md-12">
+                            <input id="ifile" type="file">
+                            <cpol-image output-data='{{result}}'></cpol-image>
+                            <!-- <paper-button on-tap='_exe'>Process</paper-button> -->
+                            <img src$='[[_computeBlob(hasil)]]'>
+                        </div>
+                    </div>
+
+                    <div class="row middle-md">
+                        <div class="col-md-offset-2 col-md-5">
+                            <paper-input label="รหัสการสมัคร:"></paper-input>
+                        </div>
+                    </div>
+                    <div class="row middle-md">
+                        <div class="col-md-offset-2 col-md-5">
+                            <paper-input label="สถานะ:"></paper-input>
+                        </div>
+                    </div>
+                    <div class="row middle-md">
+                        <div class="col-md-offset-2 col-md-5">
+                            <vaadin-combo-box id="" label="ตำแหน่งทางวิชาการ:" items='{{academicList}}'>
+                                <template>
+                                    [[item.label]]
+                                </template>
+                            </vaadin-combo-box>
+                        </div>
+                    </div>
+                    <div class="row middle-md">
+                        <div class="col-md-offset-2 col-md-5">
+                            <paper-input label="คำนำหน้าชื่อ(ไทย):"></paper-input>
+                        </div>
+                    </div>
+                    <div class="row middle-md">
+                        <div class="col-md-offset-2 col-md-5">
+                            <paper-input label="ชื่อ*:"></paper-input>
+                        </div>
+                    </div>
+                    <div class="row middle-md">
+                        <div class="col-md-offset-2 col-md-5">
+                            <paper-input label="นามสกุล:"></paper-input>
+                        </div>
+                    </div>
+                    <div class="row middle-md">
+                        <div class="col-md-offset-2 col-md-5">
+                            <paper-input label="Title:"></paper-input>
+                        </div>
+                    </div>
+                    <div class="row middle-md">
+                        <div class="col-md-offset-2 col-md-5">
+                            <paper-input label="Name:"></paper-input>
+                        </div>
+                    </div>
+                    <div class="row middle-md">
+                        <div class="col-md-offset-2 col-md-5">
+                            <paper-input label="lastname:"></paper-input>
+                        </div>
+                    </div>
+                    <div class="row middle-md">
+                        <div class="col-md-offset-2 col-md-5">
+                            <vaadin-combo-box id="" label="เพศ:" items='{{genderList}}'>
+                                <template>
+                                    [[item.label]]
+                                </template>
+                            </vaadin-combo-box>
+                        </div>
+                    </div>
+                    <div class="row middle-md">
+                        <div class="col-md-offset-2 col-md-5">
+                            <vaadin-combo-box id="" label="เชื้อชาติ:" items='{{raceList}}'>
+                                <template>
+                                    [[item.label]]
+                                </template>
+                            </vaadin-combo-box>
+                        </div>
+                    </div>
+                    <div class="row middle-md">
+                        <div class="col-md-offset-2 col-md-5">
+                            <vaadin-combo-box id="" label="ศาสนา:" items='{{religionList}}'>
+                                <template>
+                                    [[item.label]]
+                                </template>
+                            </vaadin-combo-box>
+                        </div>
+                    </div>
+                    <div class="row middle-md">
+                        <div class="col-md-offset-2 col-md-5">
+                            <vaadin-combo-box id="" label="สัญชาติ:" items='{{nationalityList}}'>
+                                <template>
+                                    [[item.label]]
+                                </template>
+                            </vaadin-combo-box>
+                        </div>
+                    </div>
+                    <div class="row middle-md">
+                        <div class="col-md-offset-2 col-md-5">
+                            <!-- <vaadin-combo-box id="" label="วัน/เดือน/ปี(พ.ศ.)เกิด:"></vaadin-combo-box> -->
+                            <paper-input label="วัน/เดือน/ปี(พ.ศ.)เกิด:" type="date"></paper-input>
+                        </div>
+                    </div>
+                    <div class="row middle-md">
+                        <div class="col-md-offset-2 col-md-5">
+                            <paper-input label="อายุ:"></paper-input>
+                        </div>
+                    </div>
+                    <div class="row middle-md">
+                        <div class="col-md-offset-2 col-md-5">
+                            <paper-input label="เลขที่บัตรประชาชน:"></paper-input>
+                        </div>
+                    </div>
+                    <div class="row middle-md">
+                        <div class="col-md-offset-2 col-md-5">
+                            <!-- <vaadin-combo-box id="" label="วันที่ออกบัตรประชาชน:"></vaadin-combo-box> -->
+                            <paper-input label="วันที่ออกบัตรประชาชน:" type="date"></paper-input>
+                        </div>
+                    </div>
+                    <div class="row middle-md">
+                        <div class="col-md-offset-2 col-md-5">
+                            <!-- <vaadin-combo-box id="" label="วันที่บัตรหมดอายุ:"></vaadin-combo-box> -->
+                            <paper-input label="วันที่บัตรหมดอายุ:" type="date"></paper-input>
+                        </div>
+                    </div>
+                    <div class="row middle-md">
+                        <div class="col-md-offset-2 col-md-5">
+                            <vaadin-combo-box id="" label="สถานะการทำงาน:"></vaadin-combo-box>
+                        </div>
+                    </div>
+                </fieldset>
+                <div>
+                    <br>
+                    <paper-button raised class="btn-success" on-click="_saveData">
+                        <iron-icon icon="check"></iron-icon>&nbsp;&nbsp;บันทึก
+                    </paper-button>
+                    <!-- <paper-button raised class="btn-success" on-click="">บันทึก
+                    </paper-button> -->
+                    <paper-button raised class="btn-default" on-click="">
+                        <iron-icon icon="arrow-back"></iron-icon>&nbsp;&nbsp;ย้อนกลับ
+                    </paper-button>
+
+                </div>
 
         </nylon-panel-card>
-        <!-- <div class="row">
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-6" style="text-align: right">
-                                รหัสการสมัคร:
-                            </div>
-                            <div class="col-md-6">
-                         <input type="text"> 
-                                <paper-input type="text"></paper-input>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6" style="text-align: right">
-                                ตำแหน่งทางวิชาการ:
-                            </div>
-                            <div class="col-md-6">
-                                <vaadin-combo-box id="" label="ตำแหน่งทางวิชาการ"></vaadin-combo-box>
-                               <input type="text"> 
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6" style="text-align: right">
-                                คำนำหน้าชื่อ(ไทย):
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6" style="text-align: right">
-                                ชื่อ*:
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6" style="text-align: right">
-                                Title:
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6" style="text-align: right">
-                                Name:
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6" style="text-align: right">
-                                เพศ:
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6" style="text-align: right">
-                                เชื้อชาติ:
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6" style="text-align: right">
-                                วัน/เดือน/ปี(พ.ศ.)เกิด:
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6" style="text-align: right">
-                                เลขที่บัตรประชาชน:
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6" style="text-align: right">
-                                วันที่ออกบัตรประชาชน:
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6" style="text-align: right">
-                                สถานะการทำงาน:
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-6" style="text-align: right">
-                                    สถานะ:
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text">
-                                  <paper-input type="text"></paper-input> 
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6" style="text-align: right">
-                                    นามสกุล:
-                                </div>
-                                <div class="col-md-6">
-                                    <vaadin-combo-box id="" label="Element"></vaadin-combo-box>
-                                    <input type="text">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6" style="text-align: right">
-                                </div>
-                                <div class="col-md-6">
-                                </div>
-                            </div> -->
-        <!-- <div class="row">
-                                <div class="col-md-6" style="text-align: right">
-                                    Lastname:
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text">
-                                </div>
-                            </div>  -->
-        <!-- <div class="row">
-                                <div class="col-md-6" style="text-align: right">
-                                    ศาสนา:
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text">
-                                </div>
-                            </div> -->
-        <!-- <div class="row">
-                                <div class="col-md-6" style="text-align: right">
-                                    สัญชาติ:
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6" style="text-align: right">
-                                    อายุ:
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text">
-                                    <input type="text">
-                                </div>
-                            </div>
-
-                    </div>
-                </div> -->
-        <!-- <fieldset>
-                    <legend>ข้อมูลพื้นฐาน:</legend>
-                    รหัสการสมัคร: <input type="text"><br> ตำแหน่งทางวิชาการ: <input type="text"><br> คำนำหน้าชื่อ (ไทย):
-                    <input type="text"><br> ชื่อ: <input type="text"><br> Title: <input type="text"><br> Name: <input type="text"><br>                    เพศ: <input type="text"><br> เชื้อชาติ: <input type="text"><br> วัน/เดือน/ปี(พ.ศ.)เกิด: <input type="text"><br>                    เลขที่บัตรประชาชน: <input type="text"><br> สถานะการทำงาน: <input type="text"><br>
-                </fieldset> -->
 
     </template>
 
     <script>
-        /**
-         * `page-01` Description
-         *
-         * @summary ShortDescription.
-         * @customElement
-         * @polymer
-         * @extends {Polymer.Element}
-         */
-        class Page01 extends Polymer.Element {
-            /**
-             * String providing the tag name to profile the element under.
-             */
+        class Page01 extends ReduxMixin(Polymer.Element) {
+
             static get is() {
                 return 'page-01';
             }
 
-            /**
-             * Object describing property-related metadata used by Polymer features
-             */
+
             static get properties() {
                 return {
+                    i18n: {
+                        type: Object,
+                        statePath: 'i18n'
+                    },
+                    academicList: {
+                        statePath: 'page01.academic'
+                    },
+                    genderList: {
+                        statePath: 'page01.gender'
+                    },
+                    raceList: {
+                        statePath: 'page01.race'
+                    },
+                    religionList: {
+                        statePath: 'page01.religion'
+                    },
+                    nationalityList: {
+                        statePath: 'page01.nationality'
+                    }
 
                 };
             }
 
-            /**
-             * Instance of the element is created/upgraded. Use: initializing state,
-             * set up event listeners, create shadow dom.
-             * @constructor
-             */
-            constructor() {
-                super();
-            }
 
-            /**
-             * Use for one-time configuration of your component after local DOM is initialized. 
-             */
+
+
             ready() {
                 super.ready();
-
+                console.log(this.academicList)
                 Polymer.RenderStatus.afterNextRender(this, function () {
-
+                    Nylon.dispatch('GET_LIST_ACADAMIC')
+                    Nylon.dispatch('GET_LIST_GENDER')
+                    Nylon.dispatch('GET_LIST_RACE')
+                    Nylon.dispatch('GET_LIST_RELIGIONC')
+                    Nylon.dispatch('GET_LIST_NATIONALITY')
+                    // console.log(111);
                 });
             }
 
+            _saveData() {
+                // if (!this.select.id || this.select.id == "") {
+                //     Nylon.dispatch('view2AddData', this.select)
+                // } else {
+                //     Nylon.dispatch('view2EditData', this.select)
+                // }
+            }
+            // _exe() {
+            //     this.$.coba.processImageFile(this.$.ifile.files);
+            // }
+
         }
+
+
 
         window.customElements.define(Page01.is, Page01);
     </script>

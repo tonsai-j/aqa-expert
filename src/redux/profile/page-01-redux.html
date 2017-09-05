@@ -1,0 +1,168 @@
+<script>
+    Nylon.addReducer('page01', function (state, action) {
+        state = state || {
+            academic: [],
+            gender: [],
+            race: [],
+            religion: [],
+            nationality: [],
+
+        }
+
+        switch (action.type) {
+            case 'GET_LIST_ACADAMIC':
+                state.academic = action.payload
+                return state
+            case 'GET_LIST_GENDER':
+                state.gender = action.payload
+                return state
+            case 'GET_LIST_RACE':
+                state.race = action.payload
+                return state
+            case 'GET_LIST_RELIGIONC':
+                state.religion = action.payload
+                return state
+            case 'GET_LIST_NATIONALITY':
+                state.nationality = action.payload
+                return state
+            default:
+                return state
+        }
+        return state
+    })
+
+    Nylon.addAction({
+        GET_LIST_ACADAMIC: function () {
+            return dispatch => {
+                let res = {
+                    data: [
+                        {
+                            value: 1,
+                            label: 'ศาสตราจารย์'
+                        },
+                        {
+                            value: 2,
+                            label: 'รองศาสตราจารย์'
+                        },
+                        {
+                            value: 3,
+                            label: 'ผู้ช่วยศาสตราจารย์'
+                        },
+                        {
+                            value: 4,
+                            label: ''
+                        },
+
+                    ]
+                }
+                
+                dispatch({ type: 'GET_LIST_ACADAMIC', payload: res.data })
+            }
+        },
+        GET_LIST_GENDER: function () {
+            return dispatch => {
+                let res = {
+                    data: [
+                        {
+                            value: 1,
+                            label: 'ชาย'
+                        },
+                        {
+                            value: 2,
+                            label: 'หญิง'
+                        },
+                    ]
+                }
+                dispatch({ type: 'GET_LIST_GENDER', payload: res.data })
+            }
+        },
+        GET_LIST_RACE: function () {
+            return dispatch => {
+                let res = {
+                    data: [
+                        {
+                            value: 1,
+                            label: 'ไทย'
+                        },
+                        {
+                            value: 2,
+                            label: 'ลาว'
+                        },
+                        {
+                            value: 3,
+                            label: 'จีน'
+                        },
+                        {
+                            value: 4,
+                            label: 'ชิลี'
+                        },
+                        {
+                            value: 5,
+                            label: 'บราซิล'
+                        },
+                    ]
+                }
+                dispatch({ type: 'GET_LIST_RACE', payload: res.data })
+            }
+        },
+        GET_LIST_RELIGIONC: function () {
+            return dispatch => {
+                let res = {
+                    data: [
+                        {
+                            value: 1,
+                            label: 'พุทธ'
+                        },
+                        {
+                            value: 2,
+                            label: 'คริสต์'
+                        },
+                        {
+                            value: 3,
+                            label: 'อิสลาม'
+                        },
+                        {
+                            value: 4,
+                            label: 'ฮินดู'
+                        },
+                        {
+                            value: 5,
+                            label: 'นิวเอจ'
+                        },
+                    ]
+                }
+                dispatch({ type: 'GET_LIST_RELIGIONC', payload: res.data })
+            }
+        },
+        GET_LIST_NATIONALITY: function () {
+            return dispatch => {
+                let res = {
+                    data: [
+                        {
+                            value: 1,
+                            label: 'ไทย'
+                        },
+                        {
+                            value: 2,
+                            label: 'ลาว'
+                        },
+                        {
+                            value: 3,
+                            label: 'จีน'
+                        },
+                        {
+                            value: 4,
+                            label: 'ชิลี'
+                        },
+                        {
+                            value: 5,
+                            label: 'บราซิล'
+                        },
+                    ]
+                }
+                dispatch({ type: 'GET_LIST_NATIONALITY', payload: res.data })
+            }
+        },
+    })
+
+</script>
