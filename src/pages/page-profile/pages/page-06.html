@@ -1,13 +1,237 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
-
+<link rel="import" href="../../../layout/flexbox-grid.html">
+<link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
+<link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../../../bower_components/paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../../../../bower_components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
+<link rel="import" href="../../../my-icons.html">
+<link rel="import" href="../../../layout/shared-styles.html">
+<link rel="import" href="../../../nylon-i18n.html">
+<link rel="import" href="../../../i18n/profile/page-02-i18n.html">
+<link rel="import" href="../../../redux/profile/page-02-redux.html">
+<link rel="import" href="../../../redux-mixin.html">
 <dom-module id="page-06">
     <template>
-        <style>
+        <style include="shared-styles flexbox-grid">
              :host {
                 display: block
             }
+
+            .label {
+                text-align: right;
+            }
+
+            .input {
+                text-align: left;
+            }
+
+            paper-radio-button {
+                display: inline-block
+            }
         </style>
-        Page 06
+        <nylon-panel-card>
+            <div slot="content">
+                <fieldset>
+                    <legend>ความสามารถด้านการศึกษา</legend>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-5">
+                            <paper-checkbox>มีประสบการ์ณด้านการบริหารสถานศึกษา</paper-checkbox>
+                        </div>
+                        <div class="col-md-1">
+                            <paper-input label="" no-label-float>
+                                <div slot="suffix">
+                                    ปี
+                                </div>
+                            </paper-input>
+                        </div>
+                    </div>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-5">
+                            <paper-checkbox>มีประสบการ์ณด้านการจัดการเรียนการสอน</paper-checkbox>
+                        </div>
+                        <div class="col-md-1">
+                            <paper-input label="" no-label-float>
+                                <div slot="suffix">
+                                    ปี
+                                </div>
+                            </paper-input>
+                        </div>
+                    </div>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-5">
+                            <paper-checkbox>มีประสบการ์ณด้านการประกันคุณภาพ</paper-checkbox>
+                        </div>
+                        <div class="col-md-1">
+                            <paper-input label="" no-label-float>
+                                <div slot="suffix">
+                                    ปี
+                                </div>
+                            </paper-input>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div slot="content">
+                <fieldset>
+                    <legend>ความสามารถด้านคอมพิวเตอร์</legend>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-3">
+                            <div class="label">Microsoft Word :</div>
+                        </div>
+                        <div class="col-md-6">
+                            <paper-radio-group selected="b" aria-labelledby="label2">
+                                <paper-radio-button name="a">ดีมาก</paper-radio-button>
+                                <paper-radio-button name="b">ดี</paper-radio-button>
+                                <paper-radio-button name="c">พอใช้</paper-radio-button>
+                                <paper-radio-button name="d">ไม่มีทักษะ</paper-radio-button>
+                            </paper-radio-group>
+                        </div>
+                    </div>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-3">
+                            <div class="label">Microsoft Excel :</div>
+                        </div>
+                        <div class="col-md-6">
+                            <paper-radio-group selected="b" aria-labelledby="label2">
+                                <paper-radio-button name="a">ดีมาก</paper-radio-button>
+                                <paper-radio-button name="b">ดี</paper-radio-button>
+                                <paper-radio-button name="c">พอใช้</paper-radio-button>
+                                <paper-radio-button name="d">ไม่มีทักษะ</paper-radio-button>
+                            </paper-radio-group>
+                        </div>
+                    </div>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-3">
+                            <div class="label">Microsoft Power Point :</div>
+                        </div>
+                        <div class="col-md-6">
+                            <paper-radio-group selected="b" aria-labelledby="label2">
+                                <paper-radio-button name="a">ดีมาก</paper-radio-button>
+                                <paper-radio-button name="b">ดี</paper-radio-button>
+                                <paper-radio-button name="c">พอใช้</paper-radio-button>
+                                <paper-radio-button name="d">ไม่มีทักษะ</paper-radio-button>
+                            </paper-radio-group>
+                        </div>
+                    </div>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-3">
+                            <div class="label">Email :</div>
+                        </div>
+                        <div class="col-md-6">
+                            <paper-radio-group selected="b" aria-labelledby="label2">
+                                <paper-radio-button name="a">ดีมาก</paper-radio-button>
+                                <paper-radio-button name="b">ดี</paper-radio-button>
+                                <paper-radio-button name="c">พอใช้</paper-radio-button>
+                                <paper-radio-button name="d">ไม่มีทักษะ</paper-radio-button>
+                            </paper-radio-group>
+                        </div>
+                    </div>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-3">
+                            <div class="label">Smart Device (Smartphone/Tablet/Notebook):</div>
+                        </div>
+                        <div class="col-md-6">
+                            <paper-radio-group selected="b" aria-labelledby="label2">
+                                <paper-radio-button name="a">ดีมาก</paper-radio-button>
+                                <paper-radio-button name="b">ดี</paper-radio-button>
+                                <paper-radio-button name="c">พอใช้</paper-radio-button>
+                                <paper-radio-button name="d">ไม่มีทักษะ</paper-radio-button>
+                            </paper-radio-group>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div slot="content">
+                <fieldset>
+                    <legend>ความสามารถด้านการพิพม์</legend>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-3">
+                            <div class="label">ภาษาไทย :</div>
+                        </div>
+                        <div class="col-md-6">
+                            <paper-radio-group selected="b" aria-labelledby="label2">
+                                <paper-radio-button name="a">ดีมาก</paper-radio-button>
+                                <paper-radio-button name="b">ดี</paper-radio-button>
+                                <paper-radio-button name="c">พอใช้</paper-radio-button>
+                                <paper-radio-button name="d">ไม่มีทักษะ</paper-radio-button>
+                            </paper-radio-group>
+                        </div>
+                    </div>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-3">
+                            <div class="label">ภาษาอังกฤษ :</div>
+                        </div>
+                        <div class="col-md-6">
+                            <paper-radio-group selected="b" aria-labelledby="label2">
+                                <paper-radio-button name="a">ดีมาก</paper-radio-button>
+                                <paper-radio-button name="b">ดี</paper-radio-button>
+                                <paper-radio-button name="c">พอใช้</paper-radio-button>
+                                <paper-radio-button name="d">ไม่มีทักษะ</paper-radio-button>
+                            </paper-radio-group>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div slot="content">
+                    <fieldset>
+                        <legend>ความสามารถด้านภาษา</legend>
+                        <div class="row col-md-offset-1 middle-md">
+                            <div class="col-md-3">
+                                <div class="label">ภาษาจีน :</div>
+                            </div>
+                            <div class="col-md-6">
+                                <paper-radio-group selected="b" aria-labelledby="label2">
+                                    <paper-radio-button name="a">ดีมาก</paper-radio-button>
+                                    <paper-radio-button name="b">ดี</paper-radio-button>
+                                    <paper-radio-button name="c">พอใช้</paper-radio-button>
+                                    <paper-radio-button name="d">ไม่มีทักษะ</paper-radio-button>
+                                </paper-radio-group>
+                            </div>
+                        </div>
+                        <div class="row col-md-offset-1 middle-md">
+                                <div class="col-md-3">
+                                    <div class="label">ภาษาญี่ปุน :</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <paper-radio-group selected="b" aria-labelledby="label2">
+                                        <paper-radio-button name="a">ดีมาก</paper-radio-button>
+                                        <paper-radio-button name="b">ดี</paper-radio-button>
+                                        <paper-radio-button name="c">พอใช้</paper-radio-button>
+                                        <paper-radio-button name="d">ไม่มีทักษะ</paper-radio-button>
+                                    </paper-radio-group>
+                                </div>
+                            </div>
+                        <div class="row col-md-offset-1 middle-md">
+                            <div class="col-md-3">
+                                <div class="label">ภาษาอังกฤษ :</div>
+                            </div>
+                            <div class="col-md-6">
+                                <paper-radio-group selected="b" aria-labelledby="label2">
+                                    <paper-radio-button name="a">ดีมาก</paper-radio-button>
+                                    <paper-radio-button name="b">ดี</paper-radio-button>
+                                    <paper-radio-button name="c">พอใช้</paper-radio-button>
+                                    <paper-radio-button name="d">ไม่มีทักษะ</paper-radio-button>
+                                </paper-radio-group>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            <app-toolbar slot="footer">
+                <div main-title></div>
+                <paper-button raised class="btn-default">
+                    <iron-icon icon="arrow-back"></iron-icon>[[i18n.button.previous]]</paper-button>
+                <paper-button raised class="btn-default">
+                    [[i18n.button.next]]
+                    <iron-icon icon="arrow-forward"></iron-icon>
+                </paper-button>
+            </app-toolbar>
+        </nylon-panel-card>
+
 
 
     </template>
@@ -21,7 +245,7 @@
          * @polymer
          * @extends {Polymer.Element}
          */
-        class Page06 extends Polymer.Element {
+        class Page06 extends ReduxMixin(Polymer.Element) {
             /**
              * String providing the tag name to profile the element under.
              */
@@ -34,7 +258,10 @@
              */
             static get properties() {
                 return {
-
+                    i18n: {
+                        type: Object,
+                        statePath: 'i18n',
+                    },
                 };
             }
 
@@ -57,7 +284,12 @@
 
                 });
             }
-
+            openPanelRight() {
+                this.$.right.open()
+            }
+            closePanelRight() {
+                this.$.right.close()
+            }
         }
 
         window.customElements.define(Page06.is, Page06);

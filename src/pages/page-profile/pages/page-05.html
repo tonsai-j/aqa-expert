@@ -1,22 +1,20 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../layout/flexbox-grid.html">
-<link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
 <link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
 <link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
-
 <link rel="import" href="../../../../bower_components/paper-checkbox/paper-checkbox.html">
-
 <link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
+<link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
 <link rel="import" href="../../../my-icons.html">
 <link rel="import" href="../../../layout/shared-styles.html">
 <link rel="import" href="../../../nylon-i18n.html">
 <link rel="import" href="../../../i18n/profile/page-02-i18n.html">
 <link rel="import" href="../../../redux/profile/page-02-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
-<link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
 
 <dom-module id="page-05">
     <template>
@@ -107,7 +105,7 @@
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <paper-input label="ตำแหน่งแรกเข้า" always-float-label ></paper-input>
+                            <paper-input label="ตำแหน่งแรกเข้า" always-float-label></paper-input>
                         </div>
                         <div class="col-md-4">
                             <vaadin-combo-box always-float-label label="ระดับ" items='{{amphoeList}}'>
@@ -118,17 +116,17 @@
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
-                            <div class="col-md-4">
-                                <paper-input label="ตำแหน่งสุดท้าย" always-float-label ></paper-input>
-                            </div>
-                            <div class="col-md-4">
-                                <vaadin-combo-box always-float-label label="ระดับ" items='{{amphoeList}}'>
-                                    <template>
-                                        [[item.label]]
-                                    </template>
-                                </vaadin-combo-box>
-                            </div>
+                        <div class="col-md-4">
+                            <paper-input label="ตำแหน่งสุดท้าย" always-float-label></paper-input>
                         </div>
+                        <div class="col-md-4">
+                            <vaadin-combo-box always-float-label label="ระดับ" items='{{amphoeList}}'>
+                                <template>
+                                    [[item.label]]
+                                </template>
+                            </vaadin-combo-box>
+                        </div>
+                    </div>
 
 
                 </div>
