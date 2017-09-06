@@ -1,13 +1,157 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../layout/flexbox-grid.html">
+<link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
+<link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
+<link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
+
+<link rel="import" href="../../../../bower_components/paper-input/paper-textarea.html">
+
+<link rel="import" href="../../../../bower_components/vaadin-upload/vaadin-upload.html">
+
+<link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
+<link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
+<link rel="import" href="../../../my-icons.html">
+<link rel="import" href="../../../layout/shared-styles.html">
+<link rel="import" href="../../../nylon-i18n.html">
+<link rel="import" href="../../../i18n/profile/page-02-i18n.html">
+<link rel="import" href="../../../redux/profile/page-02-redux.html">
+<link rel="import" href="../../../redux-mixin.html">
 
 <dom-module id="page-09">
     <template>
-        <style>
+        <style include="shared-styles flexbox-grid">
              :host {
                 display: block
             }
+
+            .label {
+                text-align: right;
+            }
+
+            .input {
+                text-align: left;
+            }
+
+            paper-radio-button {
+                display: inline-block
+            }
         </style>
-        Page 09
+        <nylon-panel-card>
+            <div slot="content">
+                <fieldset>
+                    <legend>ประวัติการเข้าอบรม การประกันคุณภาพภายใน</legend>
+                    <div class="row end-md middle-md">
+                        <div class="label col-md-3">
+                            <paper-button raised class="btn-primary" on-tap=openPanelRight>
+                                <iron-icon icon="add-circle-outline"></iron-icon>[[i18n.button.add]]</paper-button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row  middle-md">
+                        <div class="col-md-12">
+                            <vaadin-grid items='[{"name": "John", "surname": "Lennon", "role": "singer"}, {"name": "Ringo", "surname": "Starr", "role": "drums"}]'>
+                                <vaadin-grid-column>
+                                    <template class="header">ลำดับ</template>
+                                    <template>[[item.name]]</template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column>
+                                    <template class="header">โครงการ/หลักสูตร</template>
+                                    <template>[[item.surname]]</template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column>
+                                    <template class="header">วันที่เข้าอบรม</template>
+                                    <template>[[item.role]]</template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column>
+                                    <template class="header">วันสิ้นสุดการอบรม</template>
+                                    <template>[[item.role]]</template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column>
+                                    <template class="header">จำนวนชั่วโมงการอบรบ</template>
+                                    <template>[[item.role]]</template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column>
+                                    <template class="header">ไฟล์แนบ</template>
+                                    <template>[[item.role]]</template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column>
+                                    <template class="header">ผู้ปรับปรุงข้อมู/วันที่ปรับปรุง</template>
+                                    <template>[[item.role]]</template>
+                                </vaadin-grid-column>
+                            </vaadin-grid>
+                            จำนวนรายการทั้งหมด 0 รายการ
+                        </div>
+                    </div>
+                </fieldset>
+                </fieldset>
+            </div>
+        </nylon-panel-card>
+        <nylon-panel-right id="right" title="ประวัติการทำงาน" width="80%">
+            <nylon-panel-card slot="content">
+                <div slot="content">
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-7">
+                            <paper-input label="โครงการ*" always-float-label></paper-input>
+                        </div>
+                        <div class="col-md-2">
+                            <paper-input label="อบรมครั้งที่*" always-float-label></paper-input>
+                        </div>
+                    </div>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-9">
+                            <vaadin-combo-box always-float-label label="ประเภท" items='{{amphoeList}}'>
+                                <template>
+                                    [[item.label]]
+                                </template>
+                            </vaadin-combo-box>
+                        </div>
+                    </div>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-9">
+                            <paper-textarea label="สถานที่จัดอบรม*" always-float-label rows=2></paper-textarea>
+                        </div>
+                    </div>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-3">
+                            <paper-input label="วันที่เริ่มการอบรม*" always-float-label type=date></paper-input>
+                        </div>
+                        <div class="col-md-3">
+                            <paper-input label="วันที่สิ้นสุดการอบรม*" always-float-label type=date></paper-input>
+                        </div>
+                        <div class="col-md-3">
+                            <paper-input label="จำนวนชั่วโมงการอบรม*" always-float-label></paper-input>
+                        </div>
+                    </div>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-9">
+                            <vaadin-upload accept="application/pdf"
+                              headers='{"X-Foo": "Bar"}'
+                              max-files="3" 
+                              max-file-size="1000000"
+                              method=POST
+                              target=http://localhost:3000/api/upload
+                              on-upload-request="_addHeader">
+                                <iron-icon slot="drop-label-icon" icon="description"></iron-icon>
+                                <span slot="drop-label">Up to 3&nbsp;PDF&nbsp;files, 1&nbsp;MB&nbsp;each</span>
+                            </vaadin-upload>
+                        </div>
+                    </div>
+
+                </div>
+                <app-toolbar slot="footer">
+                    <div main-title></div>
+                    <paper-button raised on-click="closePanelRight">
+                        <iron-icon icon="clear"></iron-icon>[[i18n.button.close]]
+                    </paper-button>
+                    <paper-button raised class="btn-success" on-click="_save">
+                        <iron-icon icon="check"></iron-icon>[[i18n.button.save]]
+                    </paper-button>
+                </app-toolbar>
+            </nylon-panel-card>
+        </nylon-panel-right>
 
 
     </template>
@@ -21,7 +165,7 @@
          * @polymer
          * @extends {Polymer.Element}
          */
-        class Page09 extends Polymer.Element {
+        class Page09 extends ReduxMixin(Polymer.Element) {
             /**
              * String providing the tag name to profile the element under.
              */
@@ -34,7 +178,10 @@
              */
             static get properties() {
                 return {
-
+                    i18n: {
+                        type: Object,
+                        statePath: 'i18n',
+                    },
                 };
             }
 
@@ -57,7 +204,18 @@
 
                 });
             }
-
+            openPanelRight() {
+                this.$.right.open()
+            }
+            closePanelRight() {
+                this.$.right.close()
+            }
+            _addHeader(e){
+                console.log(11111)
+                event.detail.xhr.setRequestHeader('draft-status', '1')
+                event.detail.xhr.setRequestHeader('company-taxno', '2')
+                event.detail.xhr.setRequestHeader('draft-id', '3')
+            }
         }
 
         window.customElements.define(Page09.is, Page09);
