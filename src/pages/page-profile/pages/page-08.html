@@ -11,7 +11,7 @@
 <link rel="import" href="../../../my-icons.html">
 <link rel="import" href="../../../layout/shared-styles.html">
 <link rel="import" href="../../../nylon-i18n.html">
-<link rel="import" href="../../../i18n/profile/page-02-i18n.html">
+<link rel="import" href="../../../i18n/profile/page-08-i18n.html">
 <link rel="import" href="../../../redux/profile/page-02-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
 
@@ -37,7 +37,7 @@
         <nylon-panel-card>
             <div slot="content">
                 <fieldset>
-                    <legend>ผลงานทางวิชาการ</legend>
+                    <legend>[[i18n.page08.title]]</legend>
                     <div class="row end-md middle-md">
                         <div class="label col-md-3">
                             <paper-button raised class="btn-primary" on-tap=openPanelRight>
@@ -49,23 +49,23 @@
                         <div class="col-md-12">
                             <vaadin-grid id='material' items='[{"name": "John", "surname": "Lennon", "role": "singer"}, {"name": "Ringo", "surname": "Starr", "role": "drums"}]'>
                                 <vaadin-grid-column>
-                                    <template class="header">ลำดับ</template>
+                                    <template class="header">[[i18n.page08.order]]</template>
                                     <template>[[item.name]]</template>
                                 </vaadin-grid-column>
                                 <vaadin-grid-column>
-                                    <template class="header">ประเภทผลงาน</template>
+                                    <template class="header">[[i18n.page08.type]]</template>
                                     <template>[[item.surname]]</template>
                                 </vaadin-grid-column>
                                 <vaadin-grid-column>
-                                    <template class="header">ชื่อผลงาน</template>
+                                    <template class="header">[[i18n.page08.name]]</template>
                                     <template>[[item.role]]</template>
                                 </vaadin-grid-column>
                                 <vaadin-grid-column>
-                                    <template class="header">ปีที่เผยแพร่</template>
+                                    <template class="header">[[i18n.page08.year]]</template>
                                     <template>[[item.role]]</template>
                                 </vaadin-grid-column>
                                 <vaadin-grid-column>
-                                    <template class="header">ผู้ปรับปรุงข้อมู/วันที่ปรับปรุง</template>
+                                    <template class="header">[[i18n.page08.date]]</template>
                                     <template>[[item.role]]</template>
                                 </vaadin-grid-column>
                             </vaadin-grid>
@@ -76,24 +76,24 @@
                 </fieldset>
             </div>
         </nylon-panel-card>
-        <nylon-panel-right id="right" title="ประวัติการทำงาน" width="80%">
+        <nylon-panel-right id="right" title="[[i18n.page08.history]]" width="80%">
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <vaadin-combo-box always-float-label label="ประเภทผลงาน" items='{{amphoeList}}'>
+                            <vaadin-combo-box always-float-label label="[[i18n.page08.type]]" items='{{amphoeList}}'>
                                 <template>
                                     [[item.label]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
                         <div class="col-md-4">
-                            <paper-input label="ชื่อผลงาน" always-float-label></paper-input>
+                            <paper-input label="[[i18n.page08.name]]" always-float-label></paper-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <paper-input label="ปีที่เผยแพร้" always-float-label></paper-input>
+                            <paper-input label="[[i18n.page08.year]]" always-float-label></paper-input>
                         </div>
                     </div>
                 </div>

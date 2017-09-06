@@ -10,7 +10,7 @@
 <link rel="import" href="../../../my-icons.html">
 <link rel="import" href="../../../layout/shared-styles.html">
 <link rel="import" href="../../../nylon-i18n.html">
-<link rel="import" href="../../../i18n/profile/page-02-i18n.html">
+<link rel="import" href="../../../i18n/profile/page-13-i18n.html">
 <link rel="import" href="../../../redux/profile/page-02-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
 
@@ -24,25 +24,25 @@
         <nylon-panel-card>
             <div slot="content">
                 <fieldset>
-                    <legend>เอกสารแนบ</legend>
+                    <legend>[[i18n.page13.title]]</legend>
                     <div class="row  middle-md">
                         <div class="col-md-12">
                             <vaadin-grid id='material' items='{{documentFile}}'>
 
                                 <vaadin-grid-column width=5%>
-                                    <template class="header text-center">ลำดับ</template>
+                                    <template class="header text-center">[[i18n.page13.order]]</template>
                                     <template>
                                         <div class="text-center">[[index]]</div>
                                     </template>
                                 </vaadin-grid-column>
 
                                 <vaadin-grid-column width=45% flex-grow="0" resizable>
-                                    <template class="header ">ชื่อเอกสารแนบ</template>
+                                    <template class="header ">[[i18n.page13.name]]</template>
                                     <template>[[item.name]]</template>
                                 </vaadin-grid-column>
 
                                 <vaadin-grid-column width=35% flex-grow="0" resizable>
-                                    <template class="header">ไฟล์แนบ</template>
+                                    <template class="header">[[i18n.page13.file]]</template>
                                     <template>[[item.file]]</template>
                                 </vaadin-grid-column>
 
