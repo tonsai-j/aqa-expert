@@ -1,12 +1,12 @@
 <script>
     Nylon.addReducer('register', function (state, action) {
         state = state || {
-            level: []
+            typeAssessor: []
         }
 
         switch (action.type) {
-            case 'REGISTER_GET_LIST_LEVEL':
-                state.level = action.payload
+            case 'REGISTER_GET_TYPE_ASSESSOR':
+                state.typeAssessor = action.payload
                 return state
             default:
                 return state
@@ -16,14 +16,14 @@
 
 
     Nylon.addAction({
-        REGISTER_GET_LIST_LEVEL: function () {
+        REGISTER_GET_TYPE_ASSESSOR: function () {
             // console.log(Nylon.$);
             //  var progress = Nylon.$['page-register'].$.panelCard.progress({ position: 'top' })
             //  progress()
             return dispatch =>
-                axios.get('/level').then(
+                axios.get('/type/assessor').then(
                     res => {
-                        dispatch({ type: 'REGISTER_GET_LIST_LEVEL', payload: res.data })
+                        dispatch({ type: 'REGISTER_GET_TYPE_ASSESSOR', payload: res.data })
                     }
                 )
         },

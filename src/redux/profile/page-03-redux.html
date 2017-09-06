@@ -1,0 +1,30 @@
+<script>
+    Nylon.addReducer('profile03', function (state, action) {
+        state = state || {
+            typeAssessor: [],
+            school: []
+        }
+
+        switch (action.type) {
+            case 'PROFILE_03_GET_TYPE_ASSESSOR':
+                state.typeAssessor = action.data
+            default:
+                return state
+        }
+        return state
+    })
+
+
+    Nylon.addAction({
+        PROFILE_03_GET_TYPE_ASSESSOR: function () {
+            return dispatch => {
+                axios.get('/type/assessor').then(
+                    res => {
+                        dispatch({ type: 'PROFILE_03_GET_TYPE_ASSESSOR', data: res.data })
+                    }
+                )
+            }
+        }
+    })
+
+</script>
