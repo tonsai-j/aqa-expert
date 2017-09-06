@@ -9,7 +9,7 @@
 <link rel="import" href="../../../my-icons.html">
 <link rel="import" href="../../../layout/shared-styles.html">
 <link rel="import" href="../../../nylon-i18n.html">
-<link rel="import" href="../../../i18n/profile/page-02-i18n.html">
+<link rel="import" href="../../../i18n/profile/page-04-i18n.html">
 <link rel="import" href="../../../redux/profile/page-02-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
 <link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
@@ -25,7 +25,7 @@
         <nylon-panel-card>
             <div slot="content">
                 <fieldset>
-                    <legend>สาขาเชี่ยวชาญ</legend>
+                    <legend>[[i18n.page04.title]]</legend>
                     <div class="row end-md middle-md">
                         <div class="label col-md-3">
                             <paper-button raised class="btn-primary" on-tap=openPanelRight>
@@ -35,15 +35,15 @@
                     <br>
                     <vaadin-grid id='material' items='[{"name": "John", "surname": "Lennon", "role": "admin/20-08-2560"}, {"name": "Ringo", "surname": "Starr", "role": "admin/20-08-2560"}]'>
                         <vaadin-grid-column>
-                            <template class="header">กลุ่มสาขาเชี่ยวชาญ</template>
+                            <template class="header">[[i18n.page04.group]]</template>
                             <template>[[item.name]]</template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
-                            <template class="header">ประเภทความเชี่ยวชาญ</template>
+                            <template class="header">[[i18n.page04.type]]</template>
                             <template>[[item.surname]]</template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
-                            <template class="header">ผู้ปรับปรุงข้อมูล/วันที่ปรับปรุง</template>
+                            <template class="header">[[i18n.page04.date]]</template>
                             <template>[[item.role]]</template>
                         </vaadin-grid-column>
                     </vaadin-grid>

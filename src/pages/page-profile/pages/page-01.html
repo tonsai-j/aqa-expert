@@ -9,6 +9,7 @@
 <link rel="import" href="../../../../bower_components/cpol-image/cpol-image.html">
 <link rel="import" href="../../../redux/profile/page-01-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../i18n/profile/page-01-i18n.html">
 
 
 <dom-module id="page-01">
@@ -24,19 +25,115 @@
 
             <div slot="content">
                 <fieldset>
-                    <legend>ข้อมูลพื้นฐาน:</legend>
-                    <div><br>กรุณากรอกข้อมูลในช่อง*</div>
-                    <div class="row middle-md">
+                    <legend>[[i18n.page01.basic_data]]:</legend>
+                    <div><br>[[i18n.page01.field]]*</div><br>
+                    <!-- <div class="row middle-md">
                         <div class="col-md-offset-9 col-md-12">
                             <input id="ifile" type="file">
-                            <cpol-image output-data='{{result}}'></cpol-image>
-                            <!-- <paper-button on-tap='_exe'>Process</paper-button> -->
-                            <img src$='[[_computeBlob(hasil)]]'>
+                            <cpol-image output-data='{{result}}'></cpol-image> -->
+                    <!-- <paper-button on-tap='_exe'>Process</paper-button> -->
+                    <!-- <img src$='[[_computeBlob(hasil)]]'>
+                        </div>
+                    </div> -->
+
+                    <div class="row middle-md col-md-offset-1">
+                        <div class="col-md-2 col-md-3">
+                            <paper-input always-float-label label="[[i18n.page01.code]]:"></paper-input>
+                        </div>
+                        <div class="col-md-2 col-md-3">
+                            <paper-input always-float-label label="[[i18n.page01.work]]:"></paper-input>
+                        </div>
+                        <div class="col-md-2 col-md-3">
+                            <vaadin-combo-box always-float-label label="[[i18n.page01.academic]]:" items='{{academicList}}'>
+                                <template>
+                                    [[item.label]]
+                                </template>
+                            </vaadin-combo-box>
+                        </div>
+                    </div>
+                    <div class="row middle-md col-md-offset-1">
+                        <div class="col-md-2 col-md-3">
+                            <paper-input always-float-label label="[[i18n.page01.prefix]]:"></paper-input>
+                        </div>
+                        <div class="col-md-2 col-md-3">
+                            <paper-input always-float-label label="[[i18n.page01.name]]*:"></paper-input>
+                        </div>
+                        <div class="col-md-2 col-md-3">
+                            <paper-input always-float-label label="[[i18n.page01.lastname]]*:"></paper-input>
+                        </div>
+                        <div class="col-md-2 col-md-3">
+                            <div class="row end-md ">
+                                <input id="ifile" type="file">
+                                <cpol-image output-data='{{result}}'></cpol-image>
+                                <!-- <paper-button on-tap='_exe'>Process</paper-button> -->
+                                <img src$='[[_computeBlob(hasil)]]'>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row middle-md col-md-offset-1">
+                        <div class="col-md-2 col-md-3">
+                            <paper-input always-float-label label="[[i18n.page01.title_eng]]:"></paper-input>
+                        </div>
+                        <div class="col-md-2 col-md-3">
+                            <paper-input always-float-label label="[[i18n.page01.name_eng]]:"></paper-input>
+                        </div>
+                        <div class="col-md-2 col-md-3">
+                            <paper-input always-float-label label="[[i18n.page01.lastname_eng]]:"></paper-input>
+                        </div>
+                    </div>
+                    <div class="row middle-md col-md-offset-1">
+                        <div class="col-md-2 col-md-3">
+                            <vaadin-combo-box always-float-label label="[[i18n.page01.gender]]:" items='{{genderList}}'>
+                                <template>
+                                    [[item.label]]
+                                </template>
+                            </vaadin-combo-box>
+                        </div>
+                        <div class="col-md-2 col-md-3">
+                            <vaadin-combo-box always-float-label label="[[i18n.page01.ethnicity]]:" items='{{raceList}}'>
+                                <template>
+                                    [[item.label]]
+                                </template>
+                            </vaadin-combo-box>
+                        </div>
+                        <div class="col-md-2 col-md-3">
+                            <vaadin-combo-box always-float-label label="[[i18n.page01.religion]]:" items='{{religionList}}'>
+                                <template>
+                                    [[item.label]]
+                                </template>
+                            </vaadin-combo-box>
+                        </div>
+                    </div>
+                    <div class="row middle-md col-md-offset-1">
+                        <div class="col-md-2 col-md-3">
+                            <vaadin-combo-box always-float-label label="[[i18n.page01.nationality]]:" items='{{nationalityList}}'>
+                                <template>
+                                    [[item.label]]
+                                </template>
+                            </vaadin-combo-box>
+                        </div>
+                        <div class="col-md-2 col-md-3">
+                            <!-- <paper-input always-float-label label="Name:"></paper-input> -->
+                            <paper-input always-float-label label="[[i18n.page01.birth]]:" type="date"></paper-input>
+                        </div>
+                        <div class="col-md-2 col-md-3">
+                            <paper-input always-float-label label="[[i18n.page01.age]]:"></paper-input>
+                        </div>
+                    </div>
+                    <div class="row middle-md col-md-offset-1">
+                        <div class="col-md-2 col-md-3">
+                            <paper-input always-float-label label="[[i18n.page01.id_card]]:"></paper-input>
+                        </div>
+                        <div class="col-md-2 col-md-3">
+                            <paper-input always-float-label label="[[i18n.page01.date_of_issue]]:" type="date"></paper-input>
+                        </div>
+                        <div class="col-md-2 col-md-3">
+                            <paper-input always-float-label label="[[i18n.page01.expiration_date]]:" type="date"></paper-input>
                         </div>
                     </div>
 
-                    <div class="row middle-md">
-                        <div class="col-md-offset-2 col-md-5">
+                    <!-- <div class="row middle-md">
+                        <div class="col-md-offset-2 col-md-1">
                             <paper-input label="รหัสการสมัคร:"></paper-input>
                         </div>
                     </div>
@@ -122,7 +219,6 @@
                     </div>
                     <div class="row middle-md">
                         <div class="col-md-offset-2 col-md-5">
-                            <!-- <vaadin-combo-box id="" label="วัน/เดือน/ปี(พ.ศ.)เกิด:"></vaadin-combo-box> -->
                             <paper-input label="วัน/เดือน/ปี(พ.ศ.)เกิด:" type="date"></paper-input>
                         </div>
                     </div>
@@ -138,13 +234,11 @@
                     </div>
                     <div class="row middle-md">
                         <div class="col-md-offset-2 col-md-5">
-                            <!-- <vaadin-combo-box id="" label="วันที่ออกบัตรประชาชน:"></vaadin-combo-box> -->
                             <paper-input label="วันที่ออกบัตรประชาชน:" type="date"></paper-input>
                         </div>
                     </div>
                     <div class="row middle-md">
                         <div class="col-md-offset-2 col-md-5">
-                            <!-- <vaadin-combo-box id="" label="วันที่บัตรหมดอายุ:"></vaadin-combo-box> -->
                             <paper-input label="วันที่บัตรหมดอายุ:" type="date"></paper-input>
                         </div>
                     </div>
@@ -152,20 +246,18 @@
                         <div class="col-md-offset-2 col-md-5">
                             <vaadin-combo-box id="" label="สถานะการทำงาน:"></vaadin-combo-box>
                         </div>
-                    </div>
+                    </div> -->
                 </fieldset>
-                <div>
-                    <br>
+                <app-toolbar slot="footer">
+                    <div main-title></div>
                     <paper-button raised class="btn-success" on-click="_saveData">
-                        <iron-icon icon="check"></iron-icon>&nbsp;&nbsp;บันทึก
+                        <iron-icon icon="save"></iron-icon>&nbsp;&nbsp;[[i18n.button.save]]
                     </paper-button>
-                    <!-- <paper-button raised class="btn-success" on-click="">บันทึก
-                    </paper-button> -->
                     <paper-button raised class="btn-default" on-click="">
-                        <iron-icon icon="arrow-back"></iron-icon>&nbsp;&nbsp;ย้อนกลับ
+                        <iron-icon icon="arrow-back"></iron-icon>&nbsp;&nbsp;[[i18n.button.previous]]
                     </paper-button>
+                </app-toolbar>
 
-                </div>
 
         </nylon-panel-card>
 
@@ -186,19 +278,19 @@
                         statePath: 'i18n'
                     },
                     academicList: {
-                        statePath: 'page01.academic'
+                        statePath: 'profile_page01.academic'
                     },
                     genderList: {
-                        statePath: 'page01.gender'
+                        statePath: 'profile_page01.gender'
                     },
                     raceList: {
-                        statePath: 'page01.race'
+                        statePath: 'profile_page01.race'
                     },
                     religionList: {
-                        statePath: 'page01.religion'
+                        statePath: 'profile_page01.religion'
                     },
                     nationalityList: {
-                        statePath: 'page01.nationality'
+                        statePath: 'profile_page01.nationality'
                     }
 
                 };
@@ -209,13 +301,13 @@
 
             ready() {
                 super.ready();
-                console.log(this.academicList)
+                // console.log(this.academicList)
                 Polymer.RenderStatus.afterNextRender(this, function () {
-                    Nylon.dispatch('GET_LIST_ACADAMIC')
-                    Nylon.dispatch('GET_LIST_GENDER')
-                    Nylon.dispatch('GET_LIST_RACE')
-                    Nylon.dispatch('GET_LIST_RELIGIONC')
-                    Nylon.dispatch('GET_LIST_NATIONALITY')
+                    Nylon.dispatch('PROFILE_GET_LIST_ACADAMIC')
+                    Nylon.dispatch('PROFILE_GET_LIST_GENDER')
+                    Nylon.dispatch('PROFILE_GET_LIST_RACE')
+                    Nylon.dispatch('PROFILE_GET_LIST_RELIGIONC')
+                    Nylon.dispatch('PROFILE_GET_LIST_NATIONALITY')
                     // console.log(111);
                 });
             }

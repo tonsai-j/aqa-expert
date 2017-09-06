@@ -66,11 +66,11 @@
                         <div class="col-md-12">
                             <vaadin-grid id='material' items='[{"name": "John", "surname": "Lennon", "role": "singer"}, {"name": "Ringo", "surname": "Starr", "role": "drums"}]'>
                                 <vaadin-grid-column>
-                                    <template class="header">Name</template>
+                                    <template class="header">ลำดับ</template>
                                     <template>[[item.name]]</template>
                                 </vaadin-grid-column>
                                 <vaadin-grid-column>
-                                    <template class="header">Surname</template>
+                                    <template class="header">ชื่อสถานศึกษา</template>
                                     <template>[[item.surname]]</template>
                                 </vaadin-grid-column>
                                 <vaadin-grid-column>
@@ -129,7 +129,7 @@
                     <div class="row end-md middle-md">
                         <div class="label col-md-3">
                             <paper-button raised class="btn-defalse" on-tap=>
-                                <iron-icon icon="search"></iron-icon>ค้นหา</paper-button>
+                                <iron-icon icon="search"></iron-icon>[[i18n.button.search]]</paper-button>
                         </div>
                     </div>
                     <br>
@@ -137,11 +137,11 @@
                         <div class="col-md-12">
                             <vaadin-grid id='material' items='[{"name": "John", "surname": "Lennon", "role": "singer"}, {"name": "Ringo", "surname": "Starr", "role": "drums"}]'>
                                 <vaadin-grid-column>
-                                    <template class="header">Name</template>
+                                    <template class="header">ลำดับ</template>
                                     <template>[[item.name]]</template>
                                 </vaadin-grid-column>
                                 <vaadin-grid-column>
-                                    <template class="header">Surname</template>
+                                    <template class="header">ชื่อสถานศึกษา</template>
                                     <template>[[item.surname]]</template>
                                 </vaadin-grid-column>
                                 <vaadin-grid-column>
