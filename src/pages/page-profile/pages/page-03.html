@@ -78,18 +78,26 @@
                 <div slot="content">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <vaadin-combo-box label="[[i18n.page03.level]]" items='{{level}}' value="{{data.level_id}}" item-label-path="level_name"
+                            <vaadin-combo-box label="[[i18n.page03.level]]" items='{{eduLevel}}' value="{{data.edu_level_id}}" item-label-path="edu_level_name"
                                 item-value-path="id">
                                 <template>
-                                    [[item.level_name]]
+                                    [[item.edu_level_name]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <vaadin-combo-box label="[[i18n.page03.school]]" items='{{level}}' value="{{data.level_id}}" item-label-path="level_name"
+                            <vaadin-combo-box label="[[i18n.page03.typeAcademy]]" items='{{typeAcademy}}' value="{{data.type_academy_id}}" item-label-path="type_academy_name"
                                 item-value-path="id">
                                 <template>
-                                    [[item.level_name]]
+                                    [[item.type_academy_name]]
+                                </template>
+                            </vaadin-combo-box>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <vaadin-combo-box label="[[i18n.page03.school]]" items='{{typeAcademy}}' value="{{data.type_academy_id}}" item-label-path="type_academy_name"
+                                item-value-path="id">
+                                <template>
+                                    [[item.type_academy_name]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
@@ -155,9 +163,13 @@
                         type: Object,
                         statePath: 'i18n'
                     },
-                    level: {
-                        type: Object,
-                        statePath: 'profile03.level'
+                    eduLevel: {
+                        type: Array,
+                        statePath: 'profile03.eduLevel'
+                    },
+                    typeAcademy: {
+                        type: Array,
+                        statePath: 'profile03.typeAcademy'
                     }
                 };
             }
@@ -169,7 +181,8 @@
             }
             ready() {
                 super.ready();
-                Nylon.dispatch('PROFILE_03_GET_LEVEL');
+                Nylon.dispatch('PROFILE_03_GET_EDU_LEVEL');
+                Nylon.dispatch('PROFILE_03_GET_TYPE_ACADEMY');
             }
 
         }
