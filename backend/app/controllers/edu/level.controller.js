@@ -1,5 +1,5 @@
 exports.list = function (req, res) {
-    r.table('type_assessor')
+    r.table('edu_level')
         .orderBy('id')
         .run()
         .then(function (data) {
