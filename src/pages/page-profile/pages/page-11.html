@@ -1,13 +1,130 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../layout/flexbox-grid.html">
+<link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
+<link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid-selection-column.html">
+<link rel="import" href="../../../../bower_components/paper-checkbox/paper-checkbox.html">
+
+<link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
+<link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
+<link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
+<link rel="import" href="../../../my-icons.html">
+<link rel="import" href="../../../layout/shared-styles.html">
+<link rel="import" href="../../../nylon-i18n.html">
+<link rel="import" href="../../../i18n/profile/page-02-i18n.html">
+<link rel="import" href="../../../redux/profile/page-02-redux.html">
+<link rel="import" href="../../../redux-mixin.html">
 
 <dom-module id="page-11">
     <template>
-        <style>
+        <style include="shared-styles flexbox-grid">
              :host {
                 display: block
             }
+
+            .label {
+                text-align: right;
+            }
+
+            .input {
+                text-align: left;
+            }
+
+            paper-radio-button {
+                display: inline-block
+            }
         </style>
-        Page 11
+        <nylon-panel-card>
+            <div slot="content">
+                <fieldset>
+                    <legend>ภาคที่สะดวกในการประเมิน</legend>
+                    <div class="row end-md middle-md">
+                        <div class="label col-md-3">
+                            <paper-button raised class="btn-primary" on-tap=openPanelRight>
+                                <iron-icon icon="add-circle-outline"></iron-icon>[[i18n.button.add]]</paper-button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row  middle-md">
+                        <div class="col-md-12">
+                            <vaadin-grid id='material' items='[{"name": "John", "surname": "Lennon", "role": "singer"}, {"name": "Ringo", "surname": "Starr", "role": "drums"}]'>
+                                <vaadin-grid-column>
+                                    <template class="header">อันดับ</template>
+                                    <template>[[item.name]]</template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column>
+                                    <template class="header">ชื่อภูมิภาค</template>
+                                    <template>[[item.surname]]</template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column>
+                                    <template class="header">จังหวัด</template>
+                                    <template>[[item.role]]</template>
+                                </vaadin-grid-column>
+                            </vaadin-grid>
+                            จำนวนรายการทั้งหมด 0 รายการ
+                        </div>
+                    </div>
+                </fieldset>
+                </fieldset>
+            </div>
+        </nylon-panel-card>
+        <nylon-panel-right id="right" title="ภาคที่สะดวกในการประเมิน" width="80%">
+            <nylon-panel-card slot="content">
+                <div slot="content">
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-2">
+                            <vaadin-combo-box always-float-label label="ลำดับที่" items='{{amphoeList}}'>
+                                <template>
+                                    [[item.label]]
+                                </template>
+                            </vaadin-combo-box>
+                        </div>
+                        <div class="col-md-6">
+                            <vaadin-combo-box always-float-label label="ภูมิภาค" items='{{amphoeList}}'>
+                                <template>
+                                    [[item.label]]
+                                </template>
+                            </vaadin-combo-box>
+                        </div>
+                    </div>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-9">
+                            <vaadin-grid id='material' items='[{"name": "John", "surname": "Lennon", "role": "singer"}, {"name": "Ringo", "surname": "Starr", "role": "drums"}]'>
+                                <vaadin-grid-selection-column width="66px" flex="0" select-all="{{selectAll}}">
+                                    <template class="header">
+                                        <paper-checkbox checked="{{selectAll}}"></paper-checkbox>
+                                    </template>
+                                    <template>
+                                        <paper-checkbox checked="{{selected}}"></paper-checkbox>
+                                    </template>
+                                </vaadin-grid-selection-column>
+                                <vaadin-grid-column>
+                                    <template class="header">ลำดับ</template>
+                                    <template>[[item.name]]</template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column>
+                                    <template class="header">จังหวัด</template>
+                                    <template>[[item.surname]]</template>
+                                </vaadin-grid-column>
+                            </vaadin-grid>
+                        </div>
+                    </div>
+
+                </div>
+                <app-toolbar slot="footer">
+                    <div main-title></div>
+                    <paper-button raised on-click="closePanelRight">
+                        <iron-icon icon="clear"></iron-icon>[[i18n.button.close]]
+                    </paper-button>
+                    <paper-button raised class="btn-success" on-click="_save">
+                        <iron-icon icon="check"></iron-icon>[[i18n.button.save]]
+                    </paper-button>
+                </app-toolbar>
+            </nylon-panel-card>
+        </nylon-panel-right>
 
 
     </template>
@@ -21,7 +138,7 @@
          * @polymer
          * @extends {Polymer.Element}
          */
-        class Page11 extends Polymer.Element {
+        class Page11 extends ReduxMixin(Polymer.Element) {
             /**
              * String providing the tag name to profile the element under.
              */
@@ -34,7 +151,10 @@
              */
             static get properties() {
                 return {
-
+                    i18n: {
+                        type: Object,
+                        statePath: 'i18n',
+                    },
                 };
             }
 
@@ -57,7 +177,12 @@
 
                 });
             }
-
+            openPanelRight() {
+                this.$.right.open()
+            }
+            closePanelRight() {
+                this.$.right.close()
+            }
         }
 
         window.customElements.define(Page11.is, Page11);
