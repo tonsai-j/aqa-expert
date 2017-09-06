@@ -1,13 +1,68 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../layout/flexbox-grid.html">
+<link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
+<link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
+<link rel="import" href="../../../../bower_components/vaadin-upload/vaadin-upload.html">
+<link rel="import" href="../../../my-icons.html">
+<link rel="import" href="../../../layout/shared-styles.html">
+<link rel="import" href="../../../nylon-i18n.html">
+<link rel="import" href="../../../i18n/profile/page-02-i18n.html">
+<link rel="import" href="../../../redux/profile/page-02-redux.html">
+<link rel="import" href="../../../redux-mixin.html">
 
 <dom-module id="page-13">
     <template>
-        <style>
+        <style include="shared-styles flexbox-grid">
              :host {
                 display: block
             }
         </style>
-        Page 13
+        <nylon-panel-card>
+            <div slot="content">
+                <fieldset>
+                    <legend>เอกสารแนบ</legend>
+                    <div class="row  middle-md">
+                        <div class="col-md-12">
+                            <vaadin-grid id='material' items='{{documentFile}}'>
+
+                                <vaadin-grid-column width=5%>
+                                    <template class="header text-center">ลำดับ</template>
+                                    <template>
+                                        <div class="text-center">[[index]]</div>
+                                    </template>
+                                </vaadin-grid-column>
+
+                                <vaadin-grid-column width=45% flex-grow="0" resizable>
+                                    <template class="header ">ชื่อเอกสารแนบ</template>
+                                    <template>[[item.name]]</template>
+                                </vaadin-grid-column>
+
+                                <vaadin-grid-column width=35% flex-grow="0" resizable>
+                                    <template class="header">ไฟล์แนบ</template>
+                                    <template>[[item.file]]</template>
+                                </vaadin-grid-column>
+
+                                <vaadin-grid-column width=20%>
+                                    <template class="header">
+                                        <div class="text-center">Attach</div>
+                                    </template>
+                                    <template>
+                                        <div class="text-center">
+                                            <input type="file" id="profile_pic" name="profile_pic" accept=".jpg, .jpeg, .pdf">
+                                        </div>
+                                    </template>
+                                </vaadin-grid-column>
+                            </vaadin-grid>
+                            จำนวนรายการทั้งหมด {{documentFile.length}} รายการ
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </nylon-panel-card>
 
 
     </template>
@@ -21,7 +76,7 @@
          * @polymer
          * @extends {Polymer.Element}
          */
-        class Page13 extends Polymer.Element {
+        class Page13 extends ReduxMixin(Polymer.Element) {
             /**
              * String providing the tag name to profile the element under.
              */
@@ -34,7 +89,45 @@
              */
             static get properties() {
                 return {
-
+                    i18n: {
+                        type: Object,
+                        statePath: 'i18n',
+                    },
+                    documentFile: {
+                        type: Array,
+                        value: [
+                            {
+                                id: 1,
+                                name: 'สำเนาบัตรประจำตัวประชาชน',
+                                priority: true
+                            },
+                            {
+                                id: 2,
+                                name: 'สำเนาทะเบียนบ้าน',
+                                priority: true
+                            },
+                            {
+                                id: 3,
+                                name: 'สำเนาแสดงวุฒิการศึกษาสูงสุด',
+                                priority: true
+                            },
+                            {
+                                id: 4,
+                                name: 'สำเนาใบรับรองประวัติอาชญากรรม (จากสำนักงานตำรวจแห่งชาติ หรือสถานีตำนวนประจำจังหวัด) (ถ้ามี)',
+                                priority: false
+                            },
+                            {
+                                id: 5,
+                                name: 'สำเนาเอกสารการเปลี่ยนชื่อ-นามสกุล (ถ้ามี)',
+                                priority: false
+                            },
+                            {
+                                id: 6,
+                                name: 'สำเนาเอกสารการทดสอบภาษาอังกฤษ (ถ้ามี)',
+                                priority: false
+                            },
+                        ]
+                    }
                 };
             }
 
