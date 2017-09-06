@@ -1,5 +1,5 @@
 <script>
-    Nylon.addReducer('page01', function (state, action) {
+    Nylon.addReducer('profile_page01', function (state, action) {
         state = state || {
             academic: [],
             gender: [],
@@ -10,19 +10,19 @@
         }
 
         switch (action.type) {
-            case 'GET_LIST_ACADAMIC':
+            case 'PROFILE_GET_LIST_ACADAMIC':
                 state.academic = action.payload
                 return state
-            case 'GET_LIST_GENDER':
+            case 'PROFILE_GET_LIST_GENDER':
                 state.gender = action.payload
                 return state
-            case 'GET_LIST_RACE':
+            case 'PROFILE_GET_LIST_RACE':
                 state.race = action.payload
                 return state
-            case 'GET_LIST_RELIGIONC':
+            case 'PROFILE_GET_LIST_RELIGIONC':
                 state.religion = action.payload
                 return state
-            case 'GET_LIST_NATIONALITY':
+            case 'PROFILE_GET_LIST_NATIONALITY':
                 state.nationality = action.payload
                 return state
             default:
@@ -32,7 +32,7 @@
     })
 
     Nylon.addAction({
-        GET_LIST_ACADAMIC: function () {
+        PROFILE_GET_LIST_ACADAMIC: function () {
             return dispatch => {
                 let res = {
                     data: [
@@ -56,10 +56,10 @@
                     ]
                 }
                 
-                dispatch({ type: 'GET_LIST_ACADAMIC', payload: res.data })
+                dispatch({ type: 'PROFILE_GET_LIST_ACADAMIC', payload: res.data })
             }
         },
-        GET_LIST_GENDER: function () {
+        PROFILE_GET_LIST_GENDER: function () {
             return dispatch => {
                 let res = {
                     data: [
@@ -73,10 +73,10 @@
                         },
                     ]
                 }
-                dispatch({ type: 'GET_LIST_GENDER', payload: res.data })
+                dispatch({ type: 'PROFILE_GET_LIST_GENDER', payload: res.data })
             }
         },
-        GET_LIST_RACE: function () {
+        PROFILE_GET_LIST_RACE: function () {
             return dispatch => {
                 let res = {
                     data: [
@@ -102,10 +102,10 @@
                         },
                     ]
                 }
-                dispatch({ type: 'GET_LIST_RACE', payload: res.data })
+                dispatch({ type: 'PROFILE_GET_LIST_RACE', payload: res.data })
             }
         },
-        GET_LIST_RELIGIONC: function () {
+        PROFILE_GET_LIST_RELIGIONC: function () {
             return dispatch => {
                 let res = {
                     data: [
@@ -131,10 +131,10 @@
                         },
                     ]
                 }
-                dispatch({ type: 'GET_LIST_RELIGIONC', payload: res.data })
+                dispatch({ type: 'PROFILE_GET_LIST_RELIGIONC', payload: res.data })
             }
         },
-        GET_LIST_NATIONALITY: function () {
+        PROFILE_GET_LIST_NATIONALITY: function () {
             return dispatch => {
                 let res = {
                     data: [
@@ -160,7 +160,7 @@
                         },
                     ]
                 }
-                dispatch({ type: 'GET_LIST_NATIONALITY', payload: res.data })
+                dispatch({ type: 'PROFILE_GET_LIST_NATIONALITY', payload: res.data })
             }
         },
     })

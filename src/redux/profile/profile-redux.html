@@ -21,7 +21,7 @@
 
         switch (action.type) {
             case 'PROFILE_LOGIN':
-                state.login = action.payload
+                state.login = action.data
             default:
                 return state
         }
@@ -32,8 +32,17 @@
     Nylon.addAction({
         PROFILE_LOGIN: function (data) {
             return dispatch => {
-                dispatch({ type: 'PROFILE_LOGIN', payload: data })
+                dispatch({ type: 'PROFILE_LOGIN', data: data })
                 Nylon.redirect('/profile/ข้อมูลพื้นฐาน');
+            }
+        },
+        PROFILE_LOGIN_UPDATE: function (field, data) {
+            return dispatch => {
+                dispatch({
+                    type: 'PROFILE_LOGIN_UPDATE',
+                    field: field,
+                    data: data
+                })
             }
         }
     })
