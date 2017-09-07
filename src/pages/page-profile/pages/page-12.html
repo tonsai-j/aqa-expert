@@ -83,6 +83,18 @@
                         </div>
                     </div>
                 </fieldset>
+                <app-toolbar slot="footer">
+                    <div main-title></div>
+                    <paper-button raised class="btn-default">
+                        <iron-icon icon="arrow-back"></iron-icon>[[i18n.button.previous]]</paper-button>
+                    <paper-button raised class="btn-success">
+                        <iron-icon icon="save"></iron-icon>[[i18n.button.save]]</paper-button>
+                    <paper-button raised class="btn-default">
+                        [[i18n.button.next]]
+                        <iron-icon icon="arrow-forward"></iron-icon>
+                    </paper-button>
+                </app-toolbar>
+
             </div>
         </nylon-panel-card>
 

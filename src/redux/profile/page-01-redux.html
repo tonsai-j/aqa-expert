@@ -1,11 +1,13 @@
 <script>
     Nylon.addReducer('profile_page01', function (state, action) {
         state = state || {
+            data: {},
             academic: [],
             gender: [],
             race: [],
             religion: [],
             nationality: [],
+            status: [],
 
         }
 
@@ -24,6 +26,9 @@
                 return state
             case 'PROFILE_GET_LIST_NATIONALITY':
                 state.nationality = action.payload
+                return state
+            case 'PROFILE_GET_LIST_STATUS':
+                state.status = action.payload
                 return state
             default:
                 return state
@@ -55,7 +60,7 @@
 
                     ]
                 }
-                
+
                 dispatch({ type: 'PROFILE_GET_LIST_ACADAMIC', payload: res.data })
             }
         },
@@ -163,6 +168,32 @@
                 dispatch({ type: 'PROFILE_GET_LIST_NATIONALITY', payload: res.data })
             }
         },
+        PROFILE_GET_LIST_STATUS: function () {
+            return dispatch => {
+                let res = {
+                    data: [
+                        {
+                            value: 1,
+                            label: 'เกษียณราชการ'
+                        },
+                        {
+                            value: 2,
+                            label: 'ประกอบธุรกิจส่วนตัว'
+                        },
+                        {
+                            value: 3,
+                            label: 'พนักงานของรัฐ'
+                        },
+                        {
+                            value: 4,
+                            label: 'พนักงานของเอกชน'
+                        },
+                    ]
+                }
+                dispatch({ type: 'PROFILE_GET_LIST_STATUS', payload: res.data })
+            }
+        },
+
     })
 
 </script>
