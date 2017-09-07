@@ -2,30 +2,32 @@
 <link rel="import" href="../../../bower_components/polymer/lib/elements/dom-repeat.html">
 <link rel="import" href="../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../bower_components/iron-selector/iron-selector.html">
+
+<link rel="import" href="../../../bower_components/paper-styles/color.html">
+
 <link rel="import" href="./pages/page-list.html">
 <link rel="import" href="../../layout/flexbox-grid.html">
 <link rel="import" href="../../redux-mixin.html">
 <link rel="import" href="../../redux/profile/profile-redux.html">
 <dom-module id="page-profile">
     <template>
-        <style include="flexbox-grid">
-            .row{
-                margin: 0;
-            }
+        <style include="flexbox-grid flexbox-grid-remove-padding">
             iron-selector>* {
-                /* padding-left: 15px; */
+                padding-left: 15px;
                 padding-top: 3px;
                 cursor: pointer;
             }
 
             .menu:hover {
-                background-color: #dd4b39;
+                background-color: var(--paper-indigo-500);
+                font-weight: bold;
                 color: #fff;
             }
 
             .iron-selected {
                 /* padding-left: 15px; */
-                background-color: #dd4b39;
+                background-color: var(--paper-blue-500);
+                font-weight: bold;
                 color: #fff;
                 /* border-left: 4px solid #dd4b39; */
             }
