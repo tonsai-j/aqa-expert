@@ -1,4 +1,4 @@
 module.exports = function (app) {
-    var controller = require('../controllers/school.controller')
+    var controller = require('../controllers/academy.controller')
     app.get(['/', '/list'], controller.list)
 }
