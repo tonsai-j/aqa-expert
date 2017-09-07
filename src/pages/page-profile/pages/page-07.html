@@ -14,6 +14,7 @@
 <link rel="import" href="../../../i18n/profile/page-07-i18n.html">
 <link rel="import" href="../../../redux/profile/page-02-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../mixins/common-mixin.html">
 
 <dom-module id="page-07">
     <template>
@@ -40,7 +41,7 @@
                     <legend></legend>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-3">
-                                [[i18n.page07.number]]* :
+                            [[i18n.page07.number]]* :
                         </div>
                         <div class="col-md-2">
                             <paper-input label="" no-label-float>
@@ -88,22 +89,24 @@
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <vaadin-combo-box always-float-label label="[[i18n.page07.education]]" items='{{amphoeList}}' value="{{evaluation.education}}">
+                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page07.education]]" items='{{amphoeList}}' value="{{evaluation.education}}"
+                                item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
                         <div class="col-md-4">
-                            <paper-input label="[[i18n.page07.code]]" always-float-label value="{{evaluation.code}}"></paper-input>
+                            <paper-input label="[[i18n.page07.code]]" class="required" required always-float-label value="{{evaluation.code}}"></paper-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <paper-input label="[[i18n.page07.name]]" always-float-label value="{{evaluation.name}}"></paper-input>
+                            <paper-input label="[[i18n.page07.name]]" class="required" required always-float-label value="{{evaluation.name}}"></paper-input>
                         </div>
                         <div class="col-md-4">
-                            <vaadin-combo-box always-float-label label="[[i18n.page07.type]]" items='{{amphoeList}}' value="{{evaluation.type}}">
+                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page07.type]]" items='{{amphoeList}}' value="{{evaluation.type}}" item-label-path="label"
+                                item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -112,14 +115,16 @@
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <vaadin-combo-box always-float-label label="[[i18n.page07.province]]" items='{{amphoeList}}' value="{{evaluation.province}}">
+                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page07.province]]" items='{{amphoeList}}' value="{{evaluation.province}}"
+                                item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
                         <div class="col-md-4">
-                            <vaadin-combo-box always-float-label label="[[i18n.page07.amphoe]]" items='{{amphoeList}}' value="{{evaluation.amphoe}}">
+                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page07.amphoe]]" items='{{amphoeList}}' value="{{evaluation.amphoe}}"
+                                item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -175,7 +180,7 @@
          * @polymer
          * @extends {Polymer.Element}
          */
-        class Page07 extends ReduxMixin(Polymer.Element) {
+        class Page07 extends commonMixin(ReduxMixin(Polymer.Element)) {
             /**
              * String providing the tag name to profile the element under.
              */
@@ -230,16 +235,24 @@
             closePanelRight() {
                 this.$.right.close()
             }
-            _save() {
-                // console.log(this.evaluation);
-                Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'evaluation', this.evaluation,
-                    () => {
 
-                    }
-                );
-                Nylon.toast({
-                    msg: 'บันทึกเรียบร้อย'
-                })
+            _save() {
+                console.log(this.validateForm('.required'));
+                if (this.validateForm('.required')) {
+                    Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'evaluation', this.evaluation,
+                        () => {
+
+                        }
+                    );
+                    Nylon.toast({
+                        msg: 'บันทึกเรียบร้อย'
+                    })
+                } else {
+                    Nylon.toast({
+                        msg: 'กรุณากรอกข้อมูลให้ครบ'
+                    })
+                }
+
             }
 
         }
