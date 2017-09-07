@@ -12,7 +12,7 @@
 <link rel="import" href="../../../layout/shared-styles.html">
 <link rel="import" href="../../../nylon-i18n.html">
 <link rel="import" href="../../../i18n/profile/page-08-i18n.html">
-<link rel="import" href="../../../redux/profile/page-02-redux.html">
+<link rel="import" href="../../../redux/profile/page-08-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
 
 <dom-module id="page-08">
@@ -81,9 +81,12 @@
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <vaadin-combo-box always-float-label label="[[i18n.page08.type]]" items='{{amphoeList}}'>
+                            <vaadin-combo-box always-float-label label="[[i18n.page08.type]]" 
+                            items='{{research_type}}'
+                            item-label-path='research_type_th'
+                            item-value-path='id'>
                                 <template>
-                                    [[item.label]]
+                                    [[item.research_type_th]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
@@ -136,6 +139,10 @@
                         type: Object,
                         statePath: 'i18n',
                     },
+                    research_type:{
+                        statePath:'profile_page08.research_type',
+                        observer:'setInit'
+                    }
 
                 };
             }
@@ -156,8 +163,12 @@
                 super.ready();
 
                 Polymer.RenderStatus.afterNextRender(this, function () {
+                    console.log(1);
                     Nylon.dispatch('PROFILE_GET_LIST_RESEARCH_TYPE')
                 });
+            }
+            setInit(data){
+                console.log(data);
             }
             openPanelRight() {
                 this.$.right.open()
