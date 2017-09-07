@@ -26,6 +26,13 @@
             case 'PROFILE_UPDATE':
                 state.info[action.field] = action.data
                 return state
+            case 'PROFILE_PUSH':
+                if (!state.info.hasOwnProperty(action.field))
+                    state.info[action.field] = [];
+                var list = state.info[action.field].slice(0)
+                list.push(action.data)
+                state.info[action.field] = list
+                return state
             default:
                 return state
         }
@@ -52,6 +59,14 @@
                         callback();
                     }
                 )
+            }
+        },
+        PROFILE_PUSH: function (id, field, data, callback) {
+            // console.log(Nylon.store.getState().profile.info[field])
+            return dispatch => {
+                dispatch({ type: 'PROFILE_PUSH', field: field, data: data })
+                // console.log(Nylon.store.getState().profile.info[field])
+                Nylon.dispatch('PROFILE_UPDATE', id, field, Nylon.store.getState().profile.info[field], () => callback());
             }
         }
     })

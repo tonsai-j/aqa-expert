@@ -144,7 +144,7 @@
                             <paper-input label="[[i18n.page03.minor]]" value="{{data.minor}}"></paper-input>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <paper-input label="[[i18n.page03.year]]" value="{{data.year}}" allowed-pattern="[0-9]" maxlength="13" class="required" required></paper-input>
+                            <paper-input label="[[i18n.page03.year]]" value="{{data.year}}" allowed-pattern="[0-9]" maxlength="4" class="required" required></paper-input>
                         </div>
                     </div>
                 </div>
@@ -236,16 +236,28 @@
                 this.set('data.' + e.target.getAttribute('name'), e.detail.value);
             }
             _save() {
-                if (this.validateForm('.required')) {
-                    this.push('datas', this.data);
-                    Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'education', this.datas,
-                        () => {
-                            this._closePanelRight();
-                            this.set('data', {});
-                        }
-                    );
+                // if (this.validateForm('.required')) {
+                var newData = Object.assign(this.data, {
+                    date_created: new Date(),
+                    date_updated: new Date(),
+                    creater: this.info.taxno,
+                    updater: this.info.taxno
+                });
+                // console.log(newData)
+                Nylon.dispatch('PROFILE_PUSH', this.info.id, 'education', newData
+                    , () => {
+                        this._closePanelRight();
+                        this.set('data', {});
+                    });
+                // this.push('datas', this.data);
+                // Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'education', this.datas,
+                //     () => {
+                //         this._closePanelRight();
+                //         this.set('data', {});
+                //     }
+                // );
 
-                }
+                // }
             }
 
         }
