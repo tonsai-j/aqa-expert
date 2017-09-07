@@ -62,9 +62,10 @@
             _itemChanged(el) {
                 if (!el)
                     return
-
+                console.log(el.localName);
                 this.importLazyGroup(el.localName).then((results) => {
                     this.dispatchEvent(new CustomEvent('import-loaded', results));
+                    console.log(results);
                 });
             }
             constructor() {

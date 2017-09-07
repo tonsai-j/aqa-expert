@@ -1,9 +1,7 @@
 <link rel="import" href="../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../bower_components/polymer/lib/elements/dom-repeat.html">
 <link rel="import" href="../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
-
 <link rel="import" href="../../../bower_components/iron-selector/iron-selector.html">
-
 <link rel="import" href="./pages/page-list.html">
 <link rel="import" href="../../layout/flexbox-grid.html">
 <link rel="import" href="../../redux-mixin.html">
@@ -11,63 +9,49 @@
 <dom-module id="page-profile">
     <template>
         <style include="flexbox-grid">
-            ul {
+            .row{
                 margin: 0;
-                padding: 0;
-                list-style-type: none;
             }
-
-            li {
-                padding-left: 25px;
-                border-left: 4px solid #dd4b39;
-            }
-
-            li:hover {
-                /* color: blue; */
-                color: #fff;
-                background-color: #dd4b39;
-                cursor: pointer;
-            }
-
             iron-selector>* {
-                padding: 8px;
+                /* padding-left: 15px; */
+                padding-top: 3px;
+                cursor: pointer;
             }
 
-            .iron-selected:hover {
-                color: #fff;
+            .menu:hover {
                 background-color: #dd4b39;
-                cursor: pointer;
+                color: #fff;
             }
+
             .iron-selected {
-                padding-left: 25px;
-                border-left: 4px solid #dd4b39;
-                cursor: pointer;
+                /* padding-left: 15px; */
+                background-color: #dd4b39;
+                color: #fff;
+                /* border-left: 4px solid #dd4b39; */
+            }
+
+            .border {
+                border: 1px solid black;
             }
         </style>
-
-
-
-        <div class="row" style="padding-left: 20px">
-            <app-toolbar slot="header">
-                <div main-title>[[info.type_assessor.type_assessor_name]] : [[info.taxno]]</div>
-            </app-toolbar>
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="row" style="padding-left: 20px">
+                    <app-toolbar slot="header">
+                        <div main-title>[[info.type_assessor.type_assessor_name]] : [[info.taxno]]</div>
+                    </app-toolbar>
+                </div>
+            </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
-                <!-- <ul>
+            <div class="col-md-2 ">
+                <iron-selector selected="{{currentPage}}" attr-for-selected="name">
                     <template is="dom-repeat" items="{{menu}}">
-                        <li on-click="_changePage">
-                            [[item.name]]
-                        </li>
-                    </template>
-                </ul> -->
-                <iron-selector selected="bar" attr-for-selected="name">
-                    <template is="dom-repeat" items="{{menu}}">
-                        <div name="[[item.name]]" on-click="_changePage">[[item.name]]</div>
+                        <div class="menu" name="[[item.name]]" on-click="_changePage">[[item.name]]</div>
                     </template>
                 </iron-selector>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-10 ">
                 <page-list selected="[[_params.name]]"></page-list>
             </div>
         </div>
@@ -81,7 +65,8 @@
             static get properties() {
                 return {
                     _params: {
-                        type: Object
+                        type: Object,
+                        observer: 'setMenu'
                     },
                     menu: {
                         type: Object,
@@ -92,8 +77,8 @@
                         statePath: 'profile.info'
                     },
                     currentPage: {
-                        type: Number,
-                        value: 0
+                        type: String,
+                        value: ''
                     }
                 };
             }
@@ -109,11 +94,10 @@
                 // Nylon.dispatch('PROFILE_GET');
                 // console.log(this._params)
             }
+            setMenu(e) {
+                this.set('currentPage', e.name)
+            }
             _changePage(e) {
-                this.set('currentPage', e.model.index);
-                console.log(e.model.item.name);
-                // this.set('_params.name', e.model.name);
-                // console.log(e.model);
                 Nylon.redirect('/profile/' + e.model.item.name);
             }
         }
