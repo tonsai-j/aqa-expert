@@ -3,20 +3,35 @@
         state = state || {
             eduLevel: [],
             typeAcademy: [],
-            school: []
+            academy: [],
+            faculty: [],
+            facultyGroup: [],
+            fieldStudy: []
         }
 
         switch (action.type) {
             case 'PROFILE_03_GET_EDU_LEVEL':
                 state.eduLevel = action.data
+                return state
             case 'PROFILE_03_GET_TYPE_ACADEMY':
                 state.typeAcademy = action.data
-            case 'PROFILE_03_GET_SCHOOL':
-                state.school = action.data
+                return state
+            case 'PROFILE_03_GET_ACADEMY':
+                state.academy = action.data
+                return state
+            case 'PROFILE_03_GET_FACULTY':
+                state.faculty = action.data
+                return state
+            case 'PROFILE_03_GET_FACULTY_GROUP':
+                state.facultyGroup = action.data
+                return state
+            case 'PROFILE_03_GET_FILED_STUDY':
+                state.fieldStudy = action.data
+                return state
             default:
                 return state
         }
-        return state
+
     })
 
 
@@ -32,18 +47,48 @@
         },
         PROFILE_03_GET_TYPE_ACADEMY: function () {
             return dispatch => {
-                axios.get('/type/academy').then(
+                axios.get('/type/academy?work_group_id=H').then(
                     res => {
                         dispatch({ type: 'PROFILE_03_GET_TYPE_ACADEMY', data: res.data })
                     }
                 )
             }
         },
-        PROFILE_03_GET_SCHOOL: function (typeAcademyId) {
+        PROFILE_03_GET_ACADEMY: function (typeAcademyId) {
+            var link = '/academy?work_group_id=H';
+            if (typeAcademyId != '')
+                link += `&type_academy_id=${typeAcademyId}`;
             return dispatch => {
-                axios.get(`/school?type_academy_id=${typeAcademyId}`).then(
+                axios.get(link).then(
                     res => {
-                        dispatch({ type: 'PROFILE_03_GET_SCHOOL', data: res.data })
+                        dispatch({ type: 'PROFILE_03_GET_ACADEMY', data: res.data })
+                    }
+                )
+            }
+        },
+        PROFILE_03_GET_FACULTY: function () {
+            return dispatch => {
+                axios.get('/faculty').then(
+                    res => {
+                        dispatch({ type: 'PROFILE_03_GET_FACULTY', data: res.data })
+                    }
+                )
+            }
+        },
+        PROFILE_03_GET_FACULTY_GROUP: function () {
+            return dispatch => {
+                axios.get('/faculty/group').then(
+                    res => {
+                        dispatch({ type: 'PROFILE_03_GET_FACULTY_GROUP', data: res.data })
+                    }
+                )
+            }
+        },
+        PROFILE_03_GET_FILED_STUDY: function () {
+            return dispatch => {
+                axios.get('/field/study').then(
+                    res => {
+                        dispatch({ type: 'PROFILE_03_GET_FILED_STUDY', data: res.data })
                     }
                 )
             }

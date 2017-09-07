@@ -1,6 +1,7 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../layout/shared-styles.html">
 <link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../mixins/validate-form-mixin.html">
 <link rel="import" href="../../../i18n/profile/page-03-i18n.html">
 <link rel="import" href="../../../redux/profile/page-03-redux.html">
 <link rel="import" href="../../../layout/flexbox-grid.html">
@@ -32,36 +33,36 @@
                                     <template>[[_index(index)]]</template>
                                 </vaadin-grid-column>
                                 <vaadin-grid-column>
-                                    <template class="header">[[i18n.page03.school]]</template>
-                                    <template>[[item.name]]</template>
+                                    <template class="header">[[i18n.page03.academy]]</template>
+                                    <template>[[item.academy.academy_name]]</template>
                                 </vaadin-grid-column>
                                 <vaadin-grid-column>
-                                    <template class="header">[[i18n.page03.level]]</template>
-                                    <template>[[item.task]]</template>
+                                    <template class="header">[[i18n.page03.eduLevel]]</template>
+                                    <template>[[item.edu_level.edu_level_name]]</template>
                                 </vaadin-grid-column>
                                 <vaadin-grid-column>
                                     <template class="header">[[i18n.page03.degree]]</template>
-                                    <template>[[item.task]]</template>
+                                    <template>[[item.degree_full]]</template>
                                 </vaadin-grid-column>
                                 <vaadin-grid-column>
                                     <template class="header">[[i18n.page03.faculty]]</template>
-                                    <template>[[item.task]]</template>
+                                    <template>[[item.faculty.faculty_name]]</template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column>
+                                    <template class="header">[[i18n.page03.fieldStudy]]</template>
+                                    <template>[[item.field_study.field_study_name]]</template>
                                 </vaadin-grid-column>
                                 <vaadin-grid-column>
                                     <template class="header">[[i18n.page03.major]]</template>
-                                    <template>[[item.task]]</template>
+                                    <template>[[item.major]]</template>
                                 </vaadin-grid-column>
                                 <vaadin-grid-column>
-                                    <template class="header">[[i18n.page03.majorSub]]</template>
-                                    <template>[[item.task]]</template>
+                                    <template class="header">[[i18n.page03.minor]]</template>
+                                    <template>[[item.minor]]</template>
                                 </vaadin-grid-column>
                                 <vaadin-grid-column>
-                                    <template class="header">[[i18n.page03.minorSub]]</template>
-                                    <template>[[item.task]]</template>
-                                </vaadin-grid-column>
-                                <vaadin-grid-column>
-                                    <template class="header">[[i18n.page03.yearGra]]</template>
-                                    <template>[[item.task]]</template>
+                                    <template class="header">[[i18n.page03.year]]</template>
+                                    <template>[[item.year]]</template>
                                 </vaadin-grid-column>
                                 <vaadin-grid-column>
                                     <template class="header">[[i18n.common.updater]]/[[i18n.common.date]]</template>
@@ -77,9 +78,10 @@
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="row">
-                        <!-- <div class="col-xs-12 col-sm-12 col-md-12">
-                            <vaadin-combo-box label="[[i18n.page03.level]]" items='{{eduLevel}}' value="{{data.edu_level_id}}" item-label-path="edu_level_name"
-                                item-value-path="id">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <vaadin-combo-box label="[[i18n.page03.eduLevel]]" items='{{eduLevel}}' value="{{data.edu_level_id}}" item-label-path="edu_level_name"
+                                item-value-path="id" on-selected-item-changed="_getObject" name="edu_level" class="required"
+                                required auto-validate>
                                 <template>
                                     [[item.edu_level_name]]
                                 </template>
@@ -87,55 +89,62 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <vaadin-combo-box label="[[i18n.page03.typeAcademy]]" items='{{typeAcademy}}' value="{{data.type_academy_id}}" item-label-path="type_academy_name"
-                                item-value-path="id">
+                                item-value-path="id" on-change="_getAacademy" on-selected-item-changed="_getObject" name="type_academy"
+                                class="required" required auto-validate>
                                 <template>
                                     [[item.type_academy_name]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <vaadin-combo-box label="[[i18n.page03.school]]" items='{{typeAcademy}}' value="{{data.type_academy_id}}" item-label-path="type_academy_name"
-                                item-value-path="id">
+                            <vaadin-combo-box label="[[i18n.page03.academy]]" items='{{academy}}' value="{{data.academy_id}}" item-label-path="academy_name"
+                                item-value-path="id" on-selected-item-changed="_getObject" name="academy" class="required" required
+                                auto-validate>
                                 <template>
-                                    [[item.type_academy_name]]
+                                    [[item.academy_name]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <vaadin-combo-box label="[[i18n.page03.faculty]]" items='{{level}}' value="{{data.level_id}}" item-label-path="level_name"
-                                item-value-path="id">
+                            <vaadin-combo-box label="[[i18n.page03.faculty]]" items='{{faculty}}' value="{{data.faculty_id}}" item-label-path="faculty_name"
+                                item-value-path="id" on-selected-item-changed="_getObject" name="faculty" class="required" required
+                                auto-validate>
                                 <template>
-                                    [[item.level_name]]
+                                    [[item.faculty_name]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <vaadin-combo-box label="[[i18n.page03.department]]" items='{{level}}' value="{{data.level_id}}" item-label-path="level_name"
-                                item-value-path="id">
+                            <vaadin-combo-box label="[[i18n.page03.facultyGroup]]" items='{{facultyGroup}}' value="{{data.faculty_group_id}}" item-label-path="faculty_group_name"
+                                item-value-path="id" on-selected-item-changed="_getObject" name="faculty_group">
                                 <template>
-                                    [[item.level_name]]
+                                    [[item.faculty_group_name]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <vaadin-combo-box label="[[i18n.page03.major]]" items='{{level}}' value="{{data.level_id}}" item-label-path="level_name"
-                                item-value-path="id">
+                            <vaadin-combo-box label="[[i18n.page03.fieldStudy]]" items='{{fieldStudy}}' value="{{data.field_study_id}}" item-label-path="field_study_name"
+                                item-value-path="id" on-selected-item-changed="_getObject" name="field_study" class="required"
+                                required auto-validate>
                                 <template>
-                                    [[item.level_name]]
+                                    [[item.field_study_name]]
                                 </template>
                             </vaadin-combo-box>
-                        </div> -->
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <paper-input label="[[i18n.page03.degree]] ([[i18n.page03.full]])" value="{{data.degree_full}}" required></paper-input>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <paper-input label="[[i18n.page03.degree]] ([[i18n.page03.short]])" value="{{data.degree_short}}" required></paper-input>
+                            <paper-input label="[[i18n.page03.degree]] ([[i18n.page03.full]])" value="{{data.degree_full}}" class="required" required></paper-input>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <paper-input label="[[i18n.page03.majorSub]]" value="{{data.major}}" required></paper-input>
+                            <paper-input label="[[i18n.page03.degree]] ([[i18n.page03.short]])" value="{{data.degree_short}}"></paper-input>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <paper-input label="[[i18n.page03.minorSub]]" value="{{data.minor}}" required></paper-input>
+                            <paper-input label="[[i18n.page03.major]]" value="{{data.major}}" class="required" required></paper-input>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <paper-input label="[[i18n.page03.minor]]" value="{{data.minor}}"></paper-input>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <paper-input label="[[i18n.page03.year]]" value="{{data.year}}" allowed-pattern="[0-9]" maxlength="13" class="required" required></paper-input>
                         </div>
                     </div>
                 </div>
@@ -153,7 +162,7 @@
     </template>
 
     <script>
-        class Page03 extends ReduxMixin(Polymer.Element) {
+        class Page03 extends ValidateFormMixin(ReduxMixin(Polymer.Element)) {
             static get is() {
                 return 'page-03';
             }
@@ -171,18 +180,34 @@
                         type: Array,
                         statePath: 'profile03.typeAcademy'
                     },
+                    academy: {
+                        type: Array,
+                        statePath: 'profile03.academy'
+                    },
+                    faculty: {
+                        type: Array,
+                        statePath: 'profile03.faculty'
+                    },
+                    facultyGroup: {
+                        type: Array,
+                        statePath: 'profile03.facultyGroup'
+                    },
+                    fieldStudy: {
+                        type: Array,
+                        statePath: 'profile03.fieldStudy'
+                    },
                     info: {
                         type: Object,
                         statePath: 'profile.info'
                     },
                     data: {
                         type: Object,
-                        value: {
-                            degree_full: '',
-                            degree_short: '',
-                            major: '',
-                            minor: ''
-                        }
+                        value: {}
+                    },
+                    datas: {
+                        type: Array,
+                        statePath: 'profile.info.education',
+                        value: []
                     }
                 };
             }
@@ -196,19 +221,31 @@
                 super.ready();
                 Nylon.dispatch('PROFILE_03_GET_EDU_LEVEL');
                 Nylon.dispatch('PROFILE_03_GET_TYPE_ACADEMY');
+                Nylon.dispatch('PROFILE_03_GET_ACADEMY', '');
+                Nylon.dispatch('PROFILE_03_GET_FACULTY');
+                Nylon.dispatch('PROFILE_03_GET_FACULTY_GROUP');
+                Nylon.dispatch('PROFILE_03_GET_FILED_STUDY');
+            }
+            _index(i) {
+                return i + 1;
+            }
+            _getAacademy(e) {
+                Nylon.dispatch('PROFILE_03_GET_ACADEMY', e.target.value);
+            }
+            _getObject(e) {
+                this.set('data.' + e.target.getAttribute('name'), e.detail.value);
             }
             _save() {
-                // console.log(this.data);
-                // console.log(this.info.id);
-                Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'education', this.data,
-                    () => {
-                        this._closePanelRight();
-                    }
-                );
-                // , function (_this) {
-                // this._closePanelRight();
-                // });
+                if (this.validateForm('.required')) {
+                    this.push('datas', this.data);
+                    Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'education', this.datas,
+                        () => {
+                            this._closePanelRight();
+                            this.set('data', {});
+                        }
+                    );
 
+                }
             }
 
         }
