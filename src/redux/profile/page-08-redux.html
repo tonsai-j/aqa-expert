@@ -1,0 +1,46 @@
+<script>
+        Nylon.addReducer('profile_page08', function (state, action) {
+            state = state || {
+                research_type: [],
+    
+            }
+    
+            switch (action.type) {
+                case 'PROFILE_GET_LIST_RESEARCH_TYPE':
+                    state.research_type = action.payload
+                    return state
+                default:
+                    return state
+            }
+            return state
+        })
+    
+        Nylon.addAction({
+            PROFILE_GET_LIST_RESEARCH_TYPE: function () {
+                return dispatch => {
+                   axios.get('/type/research').then(
+                    res => {
+                        // progress(() => {
+                            dispatch({ type: 'PROFILE_GET_LIST_RESEARCH_TYPE', payload: res.data })
+                        // })
+                    }
+                )
+                    .catch(
+                    err => {
+                        // progress(() => {
+                            console.log({ err })
+                        //     Nylon.$['page-view2'].$.list.$.pc1.notify({
+                        //         status: 'error',
+                        //         msg: err.response.data.msg,
+                        //         position: 'top'
+                        //     })
+                        // })
+                    }
+                    )
+                }
+            },
+            
+    
+        })
+    
+    </script>

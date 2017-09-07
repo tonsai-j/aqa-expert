@@ -156,7 +156,7 @@
                 super.ready();
 
                 Polymer.RenderStatus.afterNextRender(this, function () {
-
+                    Nylon.dispatch('PROFILE_GET_LIST_RESEARCH_TYPE')
                 });
             }
             openPanelRight() {

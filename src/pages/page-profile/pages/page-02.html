@@ -377,7 +377,11 @@
                 <div main-title></div>
                 <paper-button raised class="btn-default">
                     <iron-icon icon="arrow-back"></iron-icon>[[i18n.button.previous]]</paper-button>
+<<<<<<< HEAD
                 <paper-button raised class="btn-success" on-click="_save">
+=======
+                <paper-button raised class="btn-success" on-tap="saveData">
+>>>>>>> 3c121d95384b2bcca4c4707bde8142578325480a
                     <iron-icon icon="save"></iron-icon>[[i18n.button.save]]</paper-button>
                 <paper-button raised class="btn-default">
                     [[i18n.button.next]]
@@ -416,18 +420,19 @@
                         observer: 'getdata'
                     },
                     data: {
-                        statePath: 'page02Redux.data'
+                        statePath: 'profile_page02.data'
                     },
                     regionList: {
-                        statePath: 'page02Redux.region'
+                        statePath: 'profile_page02.region'
                     },
                     provinceList: {
-                        statePath: 'page02Redux.province'
+                        statePath: 'profile_page02.province'
                     },
                     amphoeList: {
-                        statePath: 'page02Redux.amphoe'
+                        statePath: 'profile_page02.amphoe'
                     },
                     districtList: {
+<<<<<<< HEAD
                         statePath: 'page02Redux.district'
                     },
                     info: {
@@ -439,6 +444,10 @@
                         statePath: 'profile.info.address',
                         value: {}
                     },
+=======
+                        statePath: 'profile_page02.district'
+                    }
+>>>>>>> 3c121d95384b2bcca4c4707bde8142578325480a
                 };
             }
 
@@ -468,6 +477,7 @@
             getdata(data) {
                 // console.log(data);
             }
+<<<<<<< HEAD
             _save() {
                 // console.log(this.address);
                 Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'address', this.address,
@@ -475,6 +485,10 @@
 
                     }
                 );
+=======
+            saveData(){
+                console.log(this.data);
+>>>>>>> 3c121d95384b2bcca4c4707bde8142578325480a
             }
         }
 
