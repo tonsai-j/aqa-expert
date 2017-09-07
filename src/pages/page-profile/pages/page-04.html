@@ -64,14 +64,16 @@
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="col-md-offset-1  col-md-4">
-                        <vaadin-combo-box always-float-label label="กลุ่มสาขาผู้เชี่ยวชาญ" items='{{amphoeList}}'>
+                        <vaadin-combo-box always-float-label label="[[i18n.page04.group]]" items='{{amphoeList}}' value="{{specialization.specialized_branches}}" item-label-path="label"
+                        item-value-path="value">
                             <template>
                                 [[item.label]]
                             </template>
                         </vaadin-combo-box>
                     </div>
                     <div class="col-md-offset-1 col-md-8">
-                        <vaadin-combo-box always-float-label label="ประเภทความเชี่ยวชาญ" items='{{amphoeList}}'>
+                        <vaadin-combo-box always-float-label label="[[i18n.page04.type]]" items='{{amphoeList}}' value="{{specialization.specialized_type}}" item-label-path="label"
+                        item-value-path="value">
                             <template>
                                 [[item.label]]
                             </template>
@@ -118,6 +120,15 @@
                         type: Object,
                         statePath: 'i18n',
                     },
+                    info: {
+                        type: Object,
+                        statePath: 'profile.info'
+                    },
+                    specialization: {
+                        type: Object,
+                        statePath: 'profile.info.specialization',
+                        value: {}
+                    },
                 };
             }
 
@@ -140,12 +151,22 @@
 
                 });
             }
+
             openPanelRight() {
                 this.$.right.open()
             }
             closePanelRight() {
                 this.$.right.close()
             }
+            _save() {
+                // console.log(this.address);
+                Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'specialization', this.specialization,
+                    () => {
+                        this._closePanelRight();
+                    }
+                );
+            }
+
         }
 
         window.customElements.define(Page04.is, Page04);

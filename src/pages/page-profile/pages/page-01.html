@@ -44,7 +44,8 @@
                             <vaadin-combo-box always-float-label label="[[i18n.page01.status]]:" items='{{statusList}}' value="{{basic.status}}"></vaadin-combo-box>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <vaadin-combo-box always-float-label label="[[i18n.page01.academic]]:" items='{{academicList}}' value="{{basic.academic}}">
+                            <vaadin-combo-box always-float-label label="[[i18n.page01.academic]]:" items='{{academicList}}' value="{{basic.academic}}" item-label-path="label"
+                            item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -83,7 +84,8 @@
                     </div>
                     <div class="row middle-md col-md-offset-1">
                         <div class="col-md-2 col-md-3">
-                            <vaadin-combo-box always-float-label label="[[i18n.page01.gender]]:" items='{{genderList}}' value="{{basic.gender}}">
+                            <vaadin-combo-box always-float-label label="[[i18n.page01.gender]]:" items='{{genderList}}' value="{{basic.gender}}" item-label-path="label"
+                                item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -219,6 +221,9 @@
 
                     }
                 );
+                Nylon.toast({
+                    msg: 'บันทึกเรียบร้อย'
+                })
             }
             _calcAge(e) {
                 var age = new Date(new Date - new Date(e.target.value)).getFullYear() - 1970;
