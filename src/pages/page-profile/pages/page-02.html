@@ -377,7 +377,7 @@
                 <div main-title></div>
                 <paper-button raised class="btn-default">
                     <iron-icon icon="arrow-back"></iron-icon>[[i18n.button.previous]]</paper-button>
-                <paper-button raised class="btn-success">
+                <paper-button raised class="btn-success" on-tap="saveData">
                     <iron-icon icon="save"></iron-icon>[[i18n.button.save]]</paper-button>
                 <paper-button raised class="btn-default">
                     [[i18n.button.next]]
@@ -416,19 +416,19 @@
                         observer: 'getdata'
                     },
                     data: {
-                        statePath: 'page02Redux.data'
+                        statePath: 'profile_page02.data'
                     },
                     regionList: {
-                        statePath: 'page02Redux.region'
+                        statePath: 'profile_page02.region'
                     },
                     provinceList: {
-                        statePath: 'page02Redux.province'
+                        statePath: 'profile_page02.province'
                     },
                     amphoeList: {
-                        statePath: 'page02Redux.amphoe'
+                        statePath: 'profile_page02.amphoe'
                     },
                     districtList: {
-                        statePath: 'page02Redux.district'
+                        statePath: 'profile_page02.district'
                     }
                 };
             }
@@ -458,6 +458,9 @@
             }
             getdata(data) {
                 // console.log(data);
+            }
+            saveData(){
+                console.log(this.data);
             }
         }
 

@@ -34,52 +34,52 @@
         <nylon-panel-card>
             <div slot="content">
                 <fieldset>
-                    <legend>[[i18n.page12.title]] (คนที่ 1)</legend>
+                    <legend>[[i18n.page12.references]] (คนที่ 1)</legend>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.name]]" always-float-label></paper-input>
+                            <paper-input label="[[i18n.page12.name]]" always-float-label value="{{data.name}}"></paper-input>
                         </div>
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.lastname]]" always-float-label></paper-input>
+                            <paper-input label="[[i18n.page12.lastname]]" always-float-label value="{{data.lastname}}"></paper-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.phone]]" always-float-label></paper-input>
+                            <paper-input label="[[i18n.page12.phone]]" always-float-label value="{{data.phone}}"></paper-input>
                         </div>
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.cell_phone]]" always-float-label></paper-input>
+                            <paper-input label="[[i18n.page12.cell_phone]]" always-float-label value="{{data.cell_phone}}"></paper-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-8">
-                            <paper-input label="[[i18n.page12.email]]" always-float-label></paper-input>
+                            <paper-input label="[[i18n.page12.email]]" always-float-label value="{{data.email}}"></paper-input>
                         </div>
                     </div>
                 </fieldset>
             </div>
             <div slot="content">
                 <fieldset>
-                    <legend>[[i18n.page12.title]] (คนที่ 2)</legend>
+                    <legend>[[i18n.page12.references]] (คนที่ 2)</legend>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.name]]" always-float-label></paper-input>
+                            <paper-input label="[[i18n.page12.name]]" always-float-label value="{{data.name}}"></paper-input>
                         </div>
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.lastname]]" always-float-label></paper-input>
+                            <paper-input label="[[i18n.page12.lastname]]" always-float-label value="{{data.lastname}}"></paper-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.phone]]" always-float-label></paper-input>
+                            <paper-input label="[[i18n.page12.phone]]" always-float-label value="{{data.phone}}"></paper-input>
                         </div>
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.cell_phone]]" always-float-label></paper-input>
+                            <paper-input label="[[i18n.page12.cell_phone]]" always-float-label value="{{data.cell_phone}}"></paper-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-8">
-                            <paper-input label="[[i18n.page12.email]]" always-float-label></paper-input>
+                            <paper-input label="[[i18n.page12.email]]" always-float-label value="{{data.email}}"></paper-input>
                         </div>
                     </div>
                 </fieldset>
@@ -126,6 +126,10 @@
                         type: Object,
                         statePath: 'i18n',
                     },
+                    data:{
+                        type:Object,
+                        value:{}
+                    }
                 };
             }
 
