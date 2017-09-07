@@ -23,7 +23,7 @@
 
         <nylon-panel-card>
 
-            <div slot="content">
+            <div slot="content" items="[[basic]]">
                 <fieldset>
                     <legend>[[i18n.page01.basic_data]]:</legend>
                     <div><br>[[i18n.page01.field]]*</div><br>
@@ -41,7 +41,7 @@
                             <paper-input always-float-label label="[[i18n.page01.code]]:"></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <paper-input always-float-label label="[[i18n.page01.work]]:"></paper-input>
+                            <vaadin-combo-box always-float-label label="[[i18n.page01.work]]:" items='{{statusList}}'></vaadin-combo-box>
                         </div>
                         <div class="col-md-2 col-md-3">
                             <vaadin-combo-box always-float-label label="[[i18n.page01.academic]]:" items='{{academicList}}'>
@@ -131,122 +131,6 @@
                             <paper-input always-float-label label="[[i18n.page01.expiration_date]]:" type="date"></paper-input>
                         </div>
                     </div>
-
-                    <!-- <div class="row middle-md">
-                        <div class="col-md-offset-2 col-md-1">
-                            <paper-input label="รหัสการสมัคร:"></paper-input>
-                        </div>
-                    </div>
-                    <div class="row middle-md">
-                        <div class="col-md-offset-2 col-md-5">
-                            <paper-input label="สถานะ:"></paper-input>
-                        </div>
-                    </div>
-                    <div class="row middle-md">
-                        <div class="col-md-offset-2 col-md-5">
-                            <vaadin-combo-box id="" label="ตำแหน่งทางวิชาการ:" items='{{academicList}}'>
-                                <template>
-                                    [[item.label]]
-                                </template>
-                            </vaadin-combo-box>
-                        </div>
-                    </div>
-                    <div class="row middle-md">
-                        <div class="col-md-offset-2 col-md-5">
-                            <paper-input label="คำนำหน้าชื่อ(ไทย):"></paper-input>
-                        </div>
-                    </div>
-                    <div class="row middle-md">
-                        <div class="col-md-offset-2 col-md-5">
-                            <paper-input label="ชื่อ*:"></paper-input>
-                        </div>
-                    </div>
-                    <div class="row middle-md">
-                        <div class="col-md-offset-2 col-md-5">
-                            <paper-input label="นามสกุล:"></paper-input>
-                        </div>
-                    </div>
-                    <div class="row middle-md">
-                        <div class="col-md-offset-2 col-md-5">
-                            <paper-input label="Title:"></paper-input>
-                        </div>
-                    </div>
-                    <div class="row middle-md">
-                        <div class="col-md-offset-2 col-md-5">
-                            <paper-input label="Name:"></paper-input>
-                        </div>
-                    </div>
-                    <div class="row middle-md">
-                        <div class="col-md-offset-2 col-md-5">
-                            <paper-input label="lastname:"></paper-input>
-                        </div>
-                    </div>
-                    <div class="row middle-md">
-                        <div class="col-md-offset-2 col-md-5">
-                            <vaadin-combo-box id="" label="เพศ:" items='{{genderList}}'>
-                                <template>
-                                    [[item.label]]
-                                </template>
-                            </vaadin-combo-box>
-                        </div>
-                    </div>
-                    <div class="row middle-md">
-                        <div class="col-md-offset-2 col-md-5">
-                            <vaadin-combo-box id="" label="เชื้อชาติ:" items='{{raceList}}'>
-                                <template>
-                                    [[item.label]]
-                                </template>
-                            </vaadin-combo-box>
-                        </div>
-                    </div>
-                    <div class="row middle-md">
-                        <div class="col-md-offset-2 col-md-5">
-                            <vaadin-combo-box id="" label="ศาสนา:" items='{{religionList}}'>
-                                <template>
-                                    [[item.label]]
-                                </template>
-                            </vaadin-combo-box>
-                        </div>
-                    </div>
-                    <div class="row middle-md">
-                        <div class="col-md-offset-2 col-md-5">
-                            <vaadin-combo-box id="" label="สัญชาติ:" items='{{nationalityList}}'>
-                                <template>
-                                    [[item.label]]
-                                </template>
-                            </vaadin-combo-box>
-                        </div>
-                    </div>
-                    <div class="row middle-md">
-                        <div class="col-md-offset-2 col-md-5">
-                            <paper-input label="วัน/เดือน/ปี(พ.ศ.)เกิด:" type="date"></paper-input>
-                        </div>
-                    </div>
-                    <div class="row middle-md">
-                        <div class="col-md-offset-2 col-md-5">
-                            <paper-input label="อายุ:"></paper-input>
-                        </div>
-                    </div>
-                    <div class="row middle-md">
-                        <div class="col-md-offset-2 col-md-5">
-                            <paper-input label="เลขที่บัตรประชาชน:"></paper-input>
-                        </div>
-                    </div>
-                    <div class="row middle-md">
-                        <div class="col-md-offset-2 col-md-5">
-                            <paper-input label="วันที่ออกบัตรประชาชน:" type="date"></paper-input>
-                        </div>
-                    </div>
-                    <div class="row middle-md">
-                        <div class="col-md-offset-2 col-md-5">
-                            <paper-input label="วันที่บัตรหมดอายุ:" type="date"></paper-input>
-                        </div>
-                    </div>
-                    <div class="row middle-md">
-                        <div class="col-md-offset-2 col-md-5">
-                            <vaadin-combo-box id="" label="สถานะการทำงาน:"></vaadin-combo-box>
-                        </div>
-                    </div> -->
                 </fieldset>
                 <app-toolbar slot="footer">
                     <div main-title></div>
@@ -273,6 +157,10 @@
 
             static get properties() {
                 return {
+                    basic: {
+                        type: Object,
+                        statePath: 'profile_page01.data'
+                    },
                     i18n: {
                         type: Object,
                         statePath: 'i18n'
@@ -291,6 +179,9 @@
                     },
                     nationalityList: {
                         statePath: 'profile_page01.nationality'
+                    },
+                    statusList: {
+                        statePath: 'profile_page01.status'
                     }
 
                 };
@@ -308,6 +199,7 @@
                     Nylon.dispatch('PROFILE_GET_LIST_RACE')
                     Nylon.dispatch('PROFILE_GET_LIST_RELIGIONC')
                     Nylon.dispatch('PROFILE_GET_LIST_NATIONALITY')
+                    Nylon.dispatch('PROFILE_GET_LIST_STATUS')
                     // console.log(111);
                 });
             }
