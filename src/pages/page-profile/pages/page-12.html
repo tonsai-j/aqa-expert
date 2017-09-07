@@ -11,6 +11,7 @@
 <link rel="import" href="../../../i18n/profile/page-12-i18n.html">
 <link rel="import" href="../../../redux/profile/page-02-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../mixins/common-mixin.html">
 
 <dom-module id="page-12">
     <template>
@@ -37,23 +38,23 @@
                     <legend>[[i18n.page12.references]] (คนที่ 1)</legend>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.name]]" always-float-label value="{{data.name}}"></paper-input>
+                            <paper-input label="[[i18n.page12.name]]" class="required" required always-float-label value="{{person.name}}" ></paper-input>
                         </div>
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.lastname]]" always-float-label value="{{data.lastname}}"></paper-input>
+                            <paper-input label="[[i18n.page12.lastname]]" class="required" required always-float-label value="{{person.lastname}}"></paper-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.phone]]" always-float-label value="{{data.phone}}"></paper-input>
+                            <paper-input label="[[i18n.page12.phone]]" class="required" required always-float-label value="{{person.phone}}"></paper-input>
                         </div>
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.cell_phone]]" always-float-label value="{{data.cell_phone}}"></paper-input>
+                            <paper-input label="[[i18n.page12.cell_phone]]" class="required" required always-float-label value="{{person.cell_phone}}"></paper-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-8">
-                            <paper-input label="[[i18n.page12.email]]" always-float-label value="{{data.email}}"></paper-input>
+                            <paper-input label="[[i18n.page12.email]]" class="required" required always-float-label value="{{person.email}}"></paper-input>
                         </div>
                     </div>
                 </fieldset>
@@ -63,23 +64,23 @@
                     <legend>[[i18n.page12.references]] (คนที่ 2)</legend>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.name]]" always-float-label value="{{data.name}}"></paper-input>
+                            <paper-input label="[[i18n.page12.name]]" class="required" required always-float-label value="{{person.name}}"></paper-input>
                         </div>
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.lastname]]" always-float-label value="{{data.lastname}}"></paper-input>
+                            <paper-input label="[[i18n.page12.lastname]]" class="required" required always-float-label value="{{person.lastname}}"></paper-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.phone]]" always-float-label value="{{data.phone}}"></paper-input>
+                            <paper-input label="[[i18n.page12.phone]]" class="required" required always-float-label value="{{person.phone}}"></paper-input>
                         </div>
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.cell_phone]]" always-float-label value="{{data.cell_phone}}"></paper-input>
+                            <paper-input label="[[i18n.page12.cell_phone]]" class="required" required always-float-label value="{{person.cell_phone}}"></paper-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-8">
-                            <paper-input label="[[i18n.page12.email]]" always-float-label value="{{data.email}}"></paper-input>
+                            <paper-input label="[[i18n.page12.email]]" class="required" required always-float-label value="{{person.email}}"></paper-input>
                         </div>
                     </div>
                 </fieldset>
@@ -87,7 +88,7 @@
                     <div main-title></div>
                     <paper-button raised class="btn-default">
                         <iron-icon icon="arrow-back"></iron-icon>[[i18n.button.previous]]</paper-button>
-                    <paper-button raised class="btn-success">
+                    <paper-button raised class="btn-success" on-click="_save">
                         <iron-icon icon="save"></iron-icon>[[i18n.button.save]]</paper-button>
                     <paper-button raised class="btn-default">
                         [[i18n.button.next]]
@@ -109,7 +110,7 @@
          * @polymer
          * @extends {Polymer.Element}
          */
-        class Page12 extends ReduxMixin(Polymer.Element) {
+        class Page12 extends commonMixin(ReduxMixin(Polymer.Element)) {
             /**
              * String providing the tag name to profile the element under.
              */
@@ -126,10 +127,19 @@
                         type: Object,
                         statePath: 'i18n',
                     },
-                    data:{
-                        type:Object,
-                        value:{}
-                    }
+                    data: {
+                        type: Object,
+                        value: {}
+                    },
+                    info: {
+                        type: Object,
+                        statePath: 'profile.info'
+                    },
+                    person: {
+                        type: Object,
+                        // statePath: 'profile.info.person',
+                        value: {}
+                    },
                 };
             }
 
@@ -157,6 +167,24 @@
             }
             closePanelRight() {
                 this.$.right.close()
+            }
+            _save() {
+                console.log(this.validateForm('.required'));
+                if (this.validateForm('.required')) {
+                    Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'person', this.person,
+                        () => {
+
+                        }
+                    );
+                    Nylon.toast({
+                        msg: 'บันทึกเรียบร้อย'
+                    })
+                } else {
+                    Nylon.toast({
+                        msg: 'กรุณากรอกข้อมูลให้ครบ'
+                    })
+                }
+
             }
         }
 
