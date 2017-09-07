@@ -11,6 +11,7 @@
 <link rel="import" href="../../../i18n/profile/page-10-i18n.html">
 <link rel="import" href="../../../redux/profile/page-10-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../mixins/common-mixin.html">
 
 <dom-module id="page-10">
     <template>
@@ -28,7 +29,8 @@
                             <!-- [[i18n.page10.bank]]* : -->
                         </div>
                         <div class="input col-md-3">
-                            <vaadin-combo-box always-float-label label="[[i18n.page10.bank]]*" items='{{bankList}}'>
+                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page10.bank]]*" items='{{bankList}}' 
+                            value="{{bank.bank}}" item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -39,7 +41,8 @@
                             <!-- [[i18n.page10.account_Types]]* : -->
                         </div>
                         <div class="input col-md-3">
-                            <vaadin-combo-box always-float-label label="[[i18n.page10.account_Types]]*" items='{{typeList}}'>
+                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page10.account_Types]]*" items='{{typeList}}' 
+                            value="{{bank.account_types}}" item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -51,7 +54,7 @@
                             <!-- [[i18n.page10.branch]]* : -->
                         </div>
                         <div class="input col-md-3">
-                            <paper-input always-float-label label="[[i18n.page10.branch]]*"></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page10.branch]]*" value="{{bank.branch}}"></paper-input>
                         </div>
 
                     </div>
@@ -60,7 +63,7 @@
                             <!-- [[i18n.page10.account_number]]* : -->
                         </div>
                         <div class="input col-md-3">
-                            <paper-input always-float-label label="[[i18n.page10.account_number]]*"></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page10.account_number]]*" value="{{bank.account_number}}"></paper-input>
                         </div>
                         <div class="input col-md-3">
                            โดยไม่ต้องใส่เครื่องหมายขีด "-"
@@ -72,7 +75,7 @@
                             <!-- [[i18n.page10.account_name]]* : -->
                         </div>
                         <div class="input col-md-3">
-                            <paper-input always-float-label label="[[i18n.page10.account_name]]*"></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page10.account_name]]*" value="{{bank.account_name}}"></paper-input>
                         </div>
 
                     </div>
@@ -91,7 +94,7 @@
                     <div main-title></div>
                     <paper-button raised class="btn-default">
                         <iron-icon icon="arrow-back"></iron-icon>[[i18n.button.previous]]</paper-button>
-                    <paper-button raised class="btn-success">
+                    <paper-button raised class="btn-success" on-click="_save">
                         <iron-icon icon="save"></iron-icon>[[i18n.button.save]]</paper-button>
                     <paper-button raised class="btn-default">[[i18n.button.next]]
                         <iron-icon icon="arrow-forward"></iron-icon>
@@ -106,7 +109,7 @@
     </template>
 
     <script>
-        class Page10 extends ReduxMixin(Polymer.Element) {
+        class Page10 extends commonMixin(ReduxMixin(Polymer.Element)) {
 
             static get is() {
                 return 'page-10';
@@ -125,6 +128,15 @@
                     typeList: {
                         statePath: 'profile_page10.account_Types'
                     },
+                    info: {
+                        type: Object,
+                        statePath: 'profile.info'
+                    },
+                    bank: {
+                        type: Object,
+                        // statePath: 'profile.info.bank',
+                        value: {}
+                    },
                 };
             }
 
@@ -136,6 +148,24 @@
                     Nylon.dispatch('PROFILE_GET_LIST_ACCOUNT_TYPE')
                     // console.log(111);
                 });
+            }
+            _save() {
+                console.log(this.validateForm('.required'));
+                if (this.validateForm('.required')) {
+                    Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'bank', this.bank,
+                        () => {
+
+                        }
+                    );
+                    Nylon.toast({
+                        msg: 'บันทึกเรียบร้อย'
+                    })
+                } else {
+                    Nylon.toast({
+                        msg: 'กรุณากรอกข้อมูลให้ครบ'
+                    })
+                }
+
             }
 
         }
