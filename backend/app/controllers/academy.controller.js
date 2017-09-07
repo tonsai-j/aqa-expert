@@ -1,5 +1,5 @@
 exports.list = function (req, res) {
-    var typeAcademy = req.query.type_academic_id;
+    var typeAcademy = req.query.type_academy_id;
     var workGroup = req.query.work_group_id;
     var query = r.table('academy');
 
