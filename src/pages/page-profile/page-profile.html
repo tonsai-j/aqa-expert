@@ -33,17 +33,19 @@
                 padding: 8px;
             }
 
+            .iron-selected:hover {
+                color: #fff;
+                background-color: #dd4b39;
+                cursor: pointer;
+            }
             .iron-selected {
-                background-color: var(--google-blue-500);
-                color: white;
+                padding-left: 25px;
+                border-left: 4px solid #dd4b39;
+                cursor: pointer;
             }
         </style>
 
-        <iron-selector selected="bar" attr-for-selected="name">
-            <template is="dom-repeat" items="{{profile.menu}}">
-                <div name="[[item.name]]">[[item.name]]</div>
-            </template>
-        </iron-selector>
+
 
         <div class="row" style="padding-left: 20px">
             <app-toolbar slot="header">
@@ -52,13 +54,18 @@
         </div>
         <div class="row">
             <div class="col-md-2">
-                <ul>
-                    <template is="dom-repeat" items="{{profile.menu}}">
+                <!-- <ul>
+                    <template is="dom-repeat" items="{{menu}}">
                         <li on-click="_changePage">
                             [[item.name]]
                         </li>
                     </template>
-                </ul>
+                </ul> -->
+                <iron-selector selected="bar" attr-for-selected="name">
+                    <template is="dom-repeat" items="{{menu}}">
+                        <div name="[[item.name]]" on-click="_changePage">[[item.name]]</div>
+                    </template>
+                </iron-selector>
             </div>
             <div class="col-md-10">
                 <page-list selected="[[_params.name]]"></page-list>
