@@ -1,6 +1,9 @@
 <link rel="import" href="../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../bower_components/polymer/lib/elements/dom-repeat.html">
 <link rel="import" href="../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+
+<link rel="import" href="../../../bower_components/iron-selector/iron-selector.html">
+
 <link rel="import" href="./pages/page-list.html">
 <link rel="import" href="../../layout/flexbox-grid.html">
 <link rel="import" href="../../redux-mixin.html">
@@ -8,26 +11,63 @@
 <dom-module id="page-profile">
     <template>
         <style include="flexbox-grid">
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style-type: none;
+            }
+
+            li {
+                padding-left: 25px;
+                border-left: 4px solid #dd4b39;
+            }
+
             li:hover {
-                color: blue
+                /* color: blue; */
+                color: #fff;
+                background-color: #dd4b39;
+                cursor: pointer;
+            }
+
+            iron-selector>* {
+                padding: 8px;
+            }
+
+            .iron-selected:hover {
+                color: #fff;
+                background-color: #dd4b39;
+                cursor: pointer;
+            }
+            .iron-selected {
+                padding-left: 25px;
+                border-left: 4px solid #dd4b39;
+                cursor: pointer;
             }
         </style>
+
+
+
         <div class="row" style="padding-left: 20px">
             <app-toolbar slot="header">
                 <div main-title>[[info.type_assessor.type_assessor_name]] : [[info.taxno]]</div>
             </app-toolbar>
         </div>
         <div class="row">
-            <div class="col-sm-2">
-                <ul>
+            <div class="col-md-2">
+                <!-- <ul>
                     <template is="dom-repeat" items="{{menu}}">
-                        <li on-click="_changePage" style="cursor: pointer">
+                        <li on-click="_changePage">
                             [[item.name]]
                         </li>
                     </template>
-                </ul>
+                </ul> -->
+                <iron-selector selected="bar" attr-for-selected="name">
+                    <template is="dom-repeat" items="{{menu}}">
+                        <div name="[[item.name]]" on-click="_changePage">[[item.name]]</div>
+                    </template>
+                </iron-selector>
             </div>
-            <div class="col-sm-10" style="padding-top:15px">
+            <div class="col-md-10">
                 <page-list selected="[[_params.name]]"></page-list>
             </div>
         </div>
@@ -71,6 +111,7 @@
             }
             _changePage(e) {
                 this.set('currentPage', e.model.index);
+                console.log(e.model.item.name);
                 // this.set('_params.name', e.model.name);
                 // console.log(e.model);
                 Nylon.redirect('/profile/' + e.model.item.name);
