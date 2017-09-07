@@ -13,6 +13,7 @@
 <link rel="import" href="../../../redux/profile/page-02-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
 <link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
+<link rel="import" href="../../../mixins/common-mixin.html">
 
 
 <dom-module id="page-04">
@@ -64,16 +65,16 @@
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="col-md-offset-1  col-md-4">
-                        <vaadin-combo-box always-float-label label="[[i18n.page04.group]]" items='{{amphoeList}}' value="{{specialization.specialized_branches}}" item-label-path="label"
-                        item-value-path="value">
+                        <vaadin-combo-box class="required" required always-float-label label="[[i18n.page04.group]]" items='{{amphoeList}}' value="{{specialization.specialized_branches}}"
+                            item-label-path="label" item-value-path="value">
                             <template>
                                 [[item.label]]
                             </template>
                         </vaadin-combo-box>
                     </div>
                     <div class="col-md-offset-1 col-md-8">
-                        <vaadin-combo-box always-float-label label="[[i18n.page04.type]]" items='{{amphoeList}}' value="{{specialization.specialized_type}}" item-label-path="label"
-                        item-value-path="value">
+                        <vaadin-combo-box class="required" required always-float-label label="[[i18n.page04.type]]" items='{{amphoeList}}' value="{{specialization.specialized_type}}"
+                            item-label-path="label" item-value-path="value">
                             <template>
                                 [[item.label]]
                             </template>
@@ -103,7 +104,7 @@
          * @polymer
          * @extends {Polymer.Element}
          */
-        class Page04 extends ReduxMixin(Polymer.Element) {
+        class Page04 extends commonMixin(ReduxMixin(Polymer.Element)) {
             /**
              * String providing the tag name to profile the element under.
              */
@@ -158,13 +159,24 @@
             closePanelRight() {
                 this.$.right.close()
             }
+
             _save() {
-                // console.log(this.address);
-                Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'specialization', this.specialization,
-                    () => {
-                        this._closePanelRight();
-                    }
-                );
+                console.log(this.validateForm('.required'));
+                if (this.validateForm('.required')) {
+                    Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'specialization', this.specialization,
+                        () => {
+                            this._closePanelRight();
+                        }
+                    );
+                    Nylon.toast({
+                        msg: 'บันทึกเรียบร้อย'
+                    })
+                } else {
+                    Nylon.toast({
+                        msg: 'กรุณากรอกข้อมูลให้ครบ'
+                    })
+                }
+
             }
 
         }
