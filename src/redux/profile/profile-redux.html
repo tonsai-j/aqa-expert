@@ -16,16 +16,20 @@
                 { name: 'บุคคลอ้างอิง', component: 'page-12' },
                 { name: 'ไฟล์เอกสาร', component: 'page-13' }
             ],
-            login: {}
+            info: {}
         }
 
         switch (action.type) {
             case 'PROFILE_LOGIN':
-                state.login = action.data
+                state.info = action.data
+                return state
+            case 'PROFILE_UPDATE':
+                state.info[action.field] = action.data
+                return state
             default:
                 return state
         }
-        return state
+
     })
 
 
@@ -36,13 +40,18 @@
                 Nylon.redirect('/profile/ข้อมูลพื้นฐาน');
             }
         },
-        PROFILE_LOGIN_UPDATE: function (field, data) {
+        PROFILE_UPDATE: function (id, field, data, callback) {
             return dispatch => {
-                dispatch({
-                    type: 'PROFILE_LOGIN_UPDATE',
-                    field: field,
-                    data: data
-                })
+                axios.put('/profile', { id: id, field: field, data: data }).then(
+                    res => {
+                        dispatch({
+                            type: 'PROFILE_UPDATE',
+                            field: field,
+                            data: data
+                        })
+                        callback();
+                    }
+                )
             }
         }
     })
