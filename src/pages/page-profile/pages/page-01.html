@@ -44,11 +44,11 @@
                         </div>
                         <div class="col-md-2 col-md-3">
                             <vaadin-combo-box class="required" required always-float-label label="[[i18n.page01.status]]:" items='{{statusList}}' value="{{basic.status}}"
-                                item-label-path="label" item-value-path="value"></vaadin-combo-box>
+                                item-label-path="label" item-value-path="value" auto-validate></vaadin-combo-box>
                         </div>
                         <div class="col-md-2 col-md-3">
                             <vaadin-combo-box class="required" required always-float-label label="[[i18n.page01.academic]]:" items='{{academicList}}'
-                                value="{{basic.academic}}" item-label-path="label" item-value-path="value">
+                                value="{{basic.academic}}" item-label-path="label" item-value-path="value" auto-validate>
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -57,13 +57,13 @@
                     </div>
                     <div class="row middle-md col-md-offset-1">
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.prefix]]:" value="{{basic.prefix}}"></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.prefix]]:" value="{{basic.prefix}}" auto-validate></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.name]]*:" value="{{basic.name}}"></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.name]]*:" value="{{basic.name}}" auto-validate></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.lastname]]*:" value="{{basic.lastname}}"></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.lastname]]*:" value="{{basic.lastname}}" auto-validate></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
                             <div class="row end-md ">
@@ -76,26 +76,26 @@
                     </div>
                     <div class="row middle-md col-md-offset-1">
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.title_eng]]:" value="{{basic.title_en}}"></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.title_eng]]:" value="{{basic.title_en}}" auto-validate></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.name_eng]]:" value="{{basic.name_en}}"></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.name_eng]]:" value="{{basic.name_en}}" auto-validate></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.lastname_eng]]:" value="{{basic.lastname_en}}"></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.lastname_eng]]:" value="{{basic.lastname_en}}" auto-validate></paper-input>
                         </div>
                     </div>
                     <div class="row middle-md col-md-offset-1">
                         <div class="col-md-2 col-md-3">
                             <vaadin-combo-box class="required" required always-float-label label="[[i18n.page01.gender]]:" items='{{genderList}}' value="{{basic.gender}}"
-                                item-label-path="label" item-value-path="value">
+                                item-label-path="label" item-value-path="value" auto-validate>
                                 <template>
                                     [[item.label]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page01.ethnicity]]:" items='{{raceList}}' value="{{basic.ethnicity}}">
+                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page01.ethnicity]]:" items='{{raceList}}' value="{{basic.ethnicity}}" auto-validate>
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -103,7 +103,7 @@
                         </div>
                         <div class="col-md-2 col-md-3">
                             <vaadin-combo-box class="required" required always-float-label label="[[i18n.page01.religion]]:" items='{{religionList}}'
-                                value="{{basic.religion}}" item-label-path="label" item-value-path="value">
+                                value="{{basic.religion}}" item-label-path="label" item-value-path="value" auto-validate>
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -113,7 +113,7 @@
                     <div class="row middle-md col-md-offset-1">
                         <div class="col-md-2 col-md-3">
                             <vaadin-combo-box class="required" required always-float-label label="[[i18n.page01.nationality]]:" items='{{nationalityList}}'
-                                value="{{basic.nationality}}" item-label-path="label" item-value-path="value">
+                                value="{{basic.nationality}}" item-label-path="label" item-value-path="value" auto-validate>
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -122,7 +122,7 @@
                         <div class="col-md-2 col-md-3">
                             <!-- <paper-input always-float-label label="Name:"></paper-input> -->
                             <paper-input class="required" required always-float-label label="[[i18n.page01.birth]]:" type="date" value="{{basic.birth}}"
-                                on-change="_calcAge"></paper-input>
+                                on-change="_calcAge" auto-validate></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
                             <paper-input always-float-label label="[[i18n.page01.age]]:" value="[[age]]" disabled></paper-input>
@@ -133,10 +133,10 @@
                             <paper-input always-float-label label="[[i18n.page01.id_card]]:" value="[[info.taxno]]" disabled></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.date_of_issue]]:" type="date" value="{{basic.date_of_issue}}"></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.date_of_issue]]:" type="date" value="{{basic.date_of_issue}}" auto-validate></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.expiration_date]]:" type="date" value="{{basic.expiration_date}}"></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.expiration_date]]:" type="date" value="{{basic.expiration_date}}" auto-validate></paper-input>
                         </div>
                     </div>
                 </fieldset>
