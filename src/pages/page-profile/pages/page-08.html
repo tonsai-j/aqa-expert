@@ -8,7 +8,7 @@
 <link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
 <link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
-<link rel="import" href="../../../mixins/validate-form-mixin.html">
+<link rel="import" href="../../../mixins/common-mixin.html">
 <link rel="import" href="../../../my-icons.html">
 <link rel="import" href="../../../layout/shared-styles.html">
 <link rel="import" href="../../../nylon-i18n.html">
@@ -83,7 +83,7 @@
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
                             <vaadin-combo-box class="required" required always-float-label label="[[i18n.page08.type]]" items='{{research_type}}' item-label-path='research_type_th'
-                                item-value-path='id' value="{{data.research_type_id}}" on-selected-item-changed='getObject' set-pop='research_type'>
+                                item-value-path='id' value="{{data.research_type_id}}" on-selected-item-changed='getObjectCombobox' set-object='research_type'>
                                 <template>
                                     [[item.research_type_th]]
                                 </template>
@@ -121,7 +121,7 @@
          * @polymer
          * @extends {Polymer.Element}
          */
-        class Page08 extends ValidateFormMixin(ReduxMixin(Polymer.Element)) {
+        class Page08 extends commonMixin(ReduxMixin(Polymer.Element)) {
             /**
              * String providing the tag name to profile the element under.
              */
@@ -188,19 +188,11 @@
                 // }
                 // console.log(allTrue.every(elem => elem == true));
                 // // console.log(this.$.right);
-                // console.log(this.data);
+                console.log(this.data);
             }
-            getObject(e) {
-                console.log(e.detail.getAttribute('set-pop'));
-                // if ((e.detail.queueProperty === true)
-                //     && (e.detail.value !== null)
-                //     && (e.detail.value.id !== '0')) {
-                //     this.set('data.research_type', e.detail.value)
-                // } else {
-                //     delete this.data.research_type
-                // }
-
-            }
+            // getObject(e){
+            //     this.getObjectCombobox(e)
+            // }
             openPanelRight() {
                 this.$.right.open()
             }

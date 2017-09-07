@@ -2,9 +2,11 @@
 
 <script>
     commonMixin = Parent => class TestMixin extends Parent {
+        
         queryFrom(required) {
             return this.shadowRoot.querySelectorAll(required)
         }
+
         extarFrom(required) {
             let arr = this.queryFrom(required)
             let allTrue = []
@@ -13,11 +15,23 @@
             }
             return allTrue
         }
+
         validateForm(required) {
             return this.extarFrom(required).every(elem => elem == true)
         }
+
         autoIndex(index) {
             return index + 1
+        }
+
+        getObjectCombobox(e) {
+            if ((e.detail.queueProperty === true)
+                && (e.detail.value !== null)
+                && (e.detail.value.id !== '0')) {
+                this.set(`data.${e.currentTarget.getAttribute('set-object')}`, e.detail.value)
+            } else {
+                delete this.data[e.currentTarget.getAttribute('set-object')]
+            }
         }
     }
 
