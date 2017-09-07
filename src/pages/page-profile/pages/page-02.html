@@ -14,6 +14,7 @@
 <link rel="import" href="../../../i18n/profile/page-02-i18n.html">
 <link rel="import" href="../../../redux/profile/page-02-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../mixins/common-mixin.html">
 
 <dom-module id="page-02">
     <template>
@@ -65,19 +66,19 @@
                                 <!-- หมู่ที่ : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.home_number]]*" value="{{address.home_number}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.home_number]]*" value="{{address.home_number}}"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- หมู่ที่ : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.village_no]]" value="{{address.village_no}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.village_no]]" value="{{address.village_no}}"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- หมู่บ้าน : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.village_name]]" value="{{address.village_name}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.village_name]]" value="{{address.village_name}}"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
@@ -85,19 +86,19 @@
                                 <!-- อาคาร : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.building]]" value="{{address.building}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.building]]" value="{{address.building}}"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- ซอย : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.alley]]" value="{{address.alley}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.alley]]" value="{{address.alley}}"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- ถนน : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.road]]" value="{{address.road}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.road]]" value="{{address.road}}"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
@@ -105,7 +106,7 @@
                                 <!-- ภาค* : -->
                             </div>
                             <div class="input col-md-3">
-                                <vaadin-combo-box always-float-label label="[[i18n.page02.region]]*" items='{{regionList}}' value="{{address.region}}">
+                                <vaadin-combo-box class="required" required always-float-label label="[[i18n.page02.region]]*" items='{{regionList}}' value="{{address.region}}">
                                     <template>
                                         [[item.label]]
                                     </template>
@@ -115,7 +116,7 @@
                                 <!-- จังหวัด* : -->
                             </div>
                             <div class="input col-md-3">
-                                <vaadin-combo-box always-float-label label="[[i18n.page02.province]]*" items='{{provinceList}}' value="{{address.province}}">
+                                <vaadin-combo-box class="required" required always-float-label label="[[i18n.page02.province]]*" items='{{provinceList}}' value="{{address.province}}">
                                     <template>
                                         [[item.label]]
                                     </template>
@@ -125,7 +126,7 @@
                                 <!-- อำเภอ/เขต* : -->
                             </div>
                             <div class="input col-md-3">
-                                <vaadin-combo-box always-float-label label="[[i18n.page02.amphoe]]*" items='{{amphoeList}}' value="{{address.amphoe}}">
+                                <vaadin-combo-box class="required" required always-float-label label="[[i18n.page02.amphoe]]*" items='{{amphoeList}}' value="{{address.amphoe}}">
                                     <template>
                                         [[item.label]]
                                     </template>
@@ -137,7 +138,7 @@
                                 <!-- ตำบล/แขวง : -->
                             </div>
                             <div class="input col-md-3">
-                                <vaadin-combo-box always-float-label label="[[i18n.page02.district]]" items='{{districtList}}' value="{{address.district}}">
+                                <vaadin-combo-box class="required" required always-float-label label="[[i18n.page02.district]]" items='{{districtList}}' value="{{address.district}}">
                                     <template>
                                         [[item.label]]
                                     </template>
@@ -147,7 +148,7 @@
                                 <!-- รหัสไปรษณีย์* : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.zipcode]]*" value="{{address.zipcode}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.zipcode]]*" value="{{address.zipcode}}"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
@@ -155,19 +156,19 @@
                                 <!-- โทรศัพท์ : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.telephone]]" value="{{address.telephone}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.telephone]]" value="{{address.telephone}}"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- โทรสาร : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.fax]]" value="{{address.fax}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.fax]]" value="{{address.fax}}"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- โทรศัพท์เคลื่อนที่* : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.mobile_phone]]*" value="{{address.mobile_phone}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.mobile_phone]]*" value="{{address.mobile_phone}}"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
@@ -175,13 +176,13 @@
                                 <!-- อีเมล* : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.email]]*" value="{{address.email}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.email]]*" value="{{address.email}}"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- Line ID : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.line_id]]" value="{{address.line_id}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.line_id]]" value="{{address.line_id}}"></paper-input>
                             </div>
                             <!-- <div class="label col-md-2">
                                 :
@@ -221,7 +222,7 @@
                                 <!-- ชื่อองค์กร : -->
                             </div>
                             <div class="input col-md-5">
-                                <paper-input always-float-label label="[[i18n.page02.company_name]]*" value="{{address.company_name}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.company_name]]*" value="{{address.company_name}}"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
@@ -229,19 +230,19 @@
                                 <!-- หมู่ที่ : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.home_number]]*" value="{{address.home_number}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.home_number]]*" value="{{address.home_number}}"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- หมู่ที่ : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.village_no]]" value="{{address.village_no}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.village_no]]" value="{{address.village_no}}"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- หมู่บ้าน : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.village_name]]" value="{{address.village_name}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.village_name]]" value="{{address.village_name}}"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
@@ -249,19 +250,19 @@
                                 <!-- อาคาร : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.building]]" value="{{address.building}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.building]]" value="{{address.building}}"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- ซอย : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.alley]]" value="{{address.alley}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.alley]]" value="{{address.alley}}"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- ถนน : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.road]]" value="{{address.road}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.road]]" value="{{address.road}}"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
@@ -269,7 +270,7 @@
                                 <!-- ภาค* : -->
                             </div>
                             <div class="input col-md-3">
-                                <vaadin-combo-box always-float-label label="[[i18n.page02.region]]*" items='{{regionList}}' value="{{address.region}}">
+                                <vaadin-combo-box class="required" required always-float-label label="[[i18n.page02.region]]*" items='{{regionList}}' value="{{address.region}}">
                                     <template>
                                         [[item.label]]
                                     </template>
@@ -279,7 +280,7 @@
                                 <!-- จังหวัด* : -->
                             </div>
                             <div class="input col-md-3">
-                                <vaadin-combo-box always-float-label label="[[i18n.page02.province]]*" items='{{provinceList}}' value="{{address.province}}">
+                                <vaadin-combo-box class="required" required always-float-label label="[[i18n.page02.province]]*" items='{{provinceList}}' value="{{address.province}}">
                                     <template>
                                         [[item.label]]
                                     </template>
@@ -289,7 +290,7 @@
                                 <!-- อำเภอ/เขต* : -->
                             </div>
                             <div class="input col-md-3">
-                                <vaadin-combo-box always-float-label label="[[i18n.page02.amphoe]]*" items='{{amphoeList}}' value="{{address.amphoe}}">
+                                <vaadin-combo-box class="required" required always-float-label label="[[i18n.page02.amphoe]]*" items='{{amphoeList}}' value="{{address.amphoe}}">
                                     <template>
                                         [[item.label]]
                                     </template>
@@ -301,7 +302,7 @@
                                 <!-- ตำบล/แขวง : -->
                             </div>
                             <div class="input col-md-3">
-                                <vaadin-combo-box always-float-label label="[[i18n.page02.district]]" items='{{districtList}}' value="{{address.district}}">
+                                <vaadin-combo-box class="required" required always-float-label label="[[i18n.page02.district]]" items='{{districtList}}' value="{{address.district}}">
                                     <template>
                                         [[item.label]]
                                     </template>
@@ -311,7 +312,7 @@
                                 <!-- รหัสไปรษณีย์* : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.zipcode]]*" value="{{address.zipcode}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.zipcode]]*" value="{{address.zipcode}}"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
@@ -319,19 +320,19 @@
                                 <!-- โทรศัพท์ : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.telephone]]" value="{{address.telephone}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.telephone]]" value="{{address.telephone}}"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- โทรสาร : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.fax]]" value="{{address.fax}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.fax]]" value="{{address.fax}}"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- โทรศัพท์เคลื่อนที่* : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.mobile_phone]]*" value="{{address.mobile_phone}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.mobile_phone]]*" value="{{address.mobile_phone}}"></paper-input>
                             </div>
                         </div>
                         <div class="row middle-md">
@@ -339,13 +340,13 @@
                                 <!-- อีเมล* : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.email]]*" value="{{address.email}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.email]]*" value="{{address.email}}"></paper-input>
                             </div>
                             <div class="label col-md-1">
                                 <!-- Line ID : -->
                             </div>
                             <div class="input col-md-3">
-                                <paper-input always-float-label label="[[i18n.page02.line_id]]" value="{{address.line_id}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.line_id]]" value="{{address.line_id}}"></paper-input>
                             </div>
                             <!-- <div class="label col-md-2">
                                 :
@@ -397,7 +398,7 @@
          * @polymer
          * @extends {Polymer.Element}
          */
-        class Page02 extends ReduxMixin(Polymer.Element) {
+        class Page02 extends commonMixin(ReduxMixin(Polymer.Element)) {
             /**
              * String providing the tag name to profile the element under.
              */
@@ -468,16 +469,24 @@
             getdata(data) {
                 // console.log(data);
             }
-            _save() {
-                // console.log(this.address);
-                Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'address', this.address,
-                    () => {
 
-                    }
-                );
-                Nylon.toast({
-                    msg: 'บันทึกเรียบร้อย'
-                })
+            _save() {
+                console.log(this.validateForm('.required'));
+                if (this.validateForm('.required')) {
+                    Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'address', this.address,
+                        () => {
+
+                        }
+                    );
+                    Nylon.toast({
+                        msg: 'บันทึกเรียบร้อย'
+                    })
+                } else {
+                    Nylon.toast({
+                        msg: 'กรุณากรอกข้อมูลให้ครบ'
+                    })
+                }
+
             }
         }
 
