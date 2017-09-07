@@ -83,7 +83,7 @@
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
                             <vaadin-combo-box class="required" required always-float-label label="[[i18n.page08.type]]" items='{{research_type}}' item-label-path='research_type_th'
-                                item-value-path='id' value="{{data.research_type_id}}" on-selected-item-changed='getObject'>
+                                item-value-path='id' value="{{data.research_type_id}}" on-selected-item-changed='getObject' set-pop='research_type'>
                                 <template>
                                     [[item.research_type_th]]
                                 </template>
@@ -191,13 +191,14 @@
                 // console.log(this.data);
             }
             getObject(e) {
-                if ((e.detail.queueProperty === true)
-                    && (e.detail.value !== null)
-                    && (e.detail.value.id !== '0')) {
-                    this.set('data.research_type', e.detail.value)
-                } else {
-                    delete this.data.research_type
-                }
+                console.log(e.detail.getAttribute('set-pop'));
+                // if ((e.detail.queueProperty === true)
+                //     && (e.detail.value !== null)
+                //     && (e.detail.value.id !== '0')) {
+                //     this.set('data.research_type', e.detail.value)
+                // } else {
+                //     delete this.data.research_type
+                // }
 
             }
             openPanelRight() {

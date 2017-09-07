@@ -377,11 +377,7 @@
                 <div main-title></div>
                 <paper-button raised class="btn-default">
                     <iron-icon icon="arrow-back"></iron-icon>[[i18n.button.previous]]</paper-button>
-<<<<<<< HEAD
                 <paper-button raised class="btn-success" on-click="_save">
-=======
-                <paper-button raised class="btn-success" on-tap="saveData">
->>>>>>> 3c121d95384b2bcca4c4707bde8142578325480a
                     <iron-icon icon="save"></iron-icon>[[i18n.button.save]]</paper-button>
                 <paper-button raised class="btn-default">
                     [[i18n.button.next]]
@@ -440,7 +436,7 @@
                     },
                     address: {
                         type: Object,
-                        statePath: 'profile.info.address',
+                        // statePath: 'profile.info.address',
                         value: {}
                     },
                 };
@@ -479,6 +475,9 @@
 
                     }
                 );
+                Nylon.toast({
+                    msg: 'บันทึกเรียบร้อย'
+                })
             }
         }
 
