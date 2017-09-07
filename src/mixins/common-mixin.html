@@ -1,8 +1,8 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-
+<script src="../../node_modules/numeral/min/numeral.min.js"></script>
 <script>
     commonMixin = Parent => class TestMixin extends Parent {
-        
+
         queryFrom(required) {
             return this.shadowRoot.querySelectorAll(required)
         }
@@ -30,9 +30,36 @@
                 && (e.detail.value.id !== '0')) {
                 this.set(`data.${e.currentTarget.getAttribute('set-object')}`, e.detail.value)
             } else {
+                
                 delete this.data[e.currentTarget.getAttribute('set-object')]
             }
         }
+        // formatNumber(number) {
+        //     //    console.log(number);
+        //     if (number == null) {
+        //         return "";
+        //     } else {
+        //         var num = numeral(number).format('0,0.00');
+        //         return num
+        //     }
+
+        // }
+        // changeString2Num (ob, param) {
+        //     if (typeof ob.value == "string") {
+        //         var pathChange = ob.path.split(".");
+        //         // undefined
+        //         if (pathChange.length == 2) {
+        //             if (pathChange[1] == param) {
+        //                 // console.log(numeral().unformat(ob.value));
+        //                 // console.log(ob.value);
+        //                 ob.base[param] = numeral(ob.value).format('0,0.00')
+        //                 // ob.base[param] = numeral().unformat(ob.value);
+        //                 // // console.log(ob.base[param]);
+        //             }
+        //         }
+        //     }
+        // }
+        
     }
 
 </script>

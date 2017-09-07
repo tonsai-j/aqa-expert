@@ -27,43 +27,52 @@
                             </paper-button>
                         </app-toolbar>
                         <div slot="content" class="col-md-12">
-                            <vaadin-grid slot="content" sub-slot="grid" items="[[datas]]">
+                            <vaadin-grid id='material' slot="content" sub-slot="grid" items="[[datas]]">
                                 <vaadin-grid-column width="10px">
                                     <template class="header">#</template>
                                     <template>[[_index(index)]]</template>
                                 </vaadin-grid-column>
-                                <vaadin-grid-column>
+
+                                <vaadin-grid-column flex-grow="0" resizable>
                                     <template class="header">[[i18n.page03.academy]]</template>
                                     <template>[[item.academy.academy_name]]</template>
                                 </vaadin-grid-column>
-                                <vaadin-grid-column>
+
+                                <vaadin-grid-column flex-grow="0" resizable>
                                     <template class="header">[[i18n.page03.eduLevel]]</template>
                                     <template>[[item.edu_level.edu_level_name]]</template>
                                 </vaadin-grid-column>
-                                <vaadin-grid-column>
+
+                                <vaadin-grid-column flex-grow="0" resizable>
                                     <template class="header">[[i18n.page03.degree]]</template>
                                     <template>[[item.degree_full]]</template>
                                 </vaadin-grid-column>
-                                <vaadin-grid-column>
+
+                                <vaadin-grid-column flex-grow="0" resizable>
                                     <template class="header">[[i18n.page03.faculty]]</template>
                                     <template>[[item.faculty.faculty_name]]</template>
                                 </vaadin-grid-column>
-                                <vaadin-grid-column>
+
+                                <vaadin-grid-column flex-grow="0" resizable>
                                     <template class="header">[[i18n.page03.fieldStudy]]</template>
                                     <template>[[item.field_study.field_study_name]]</template>
                                 </vaadin-grid-column>
-                                <vaadin-grid-column>
+
+                                <vaadin-grid-column flex-grow="0" resizable>
                                     <template class="header">[[i18n.page03.major]]</template>
                                     <template>[[item.major]]</template>
                                 </vaadin-grid-column>
-                                <vaadin-grid-column>
+
+                                <vaadin-grid-column flex-grow="0" resizable>
                                     <template class="header">[[i18n.page03.minor]]</template>
                                     <template>[[item.minor]]</template>
                                 </vaadin-grid-column>
-                                <vaadin-grid-column>
+
+                                <vaadin-grid-column flex-grow="0" resizable>
                                     <template class="header">[[i18n.page03.year]]</template>
                                     <template>[[item.year]]</template>
                                 </vaadin-grid-column>
+
                                 <vaadin-grid-column>
                                     <template class="header">[[i18n.common.updater]]/[[i18n.common.date]]</template>
                                     <template>[[item.task]]</template>

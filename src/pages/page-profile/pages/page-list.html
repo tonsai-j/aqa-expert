@@ -1,6 +1,11 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../../../../bower_components/lazy-imports/lazy-imports-mixin.html">
+
+<link rel="import" href="../../../layout/flexbox-grid.html">
+
+<link rel="import" href="../../../../bower_components/paper-progress/paper-progress.html">
+
 <link rel="import" href="../../../redux-mixin.html">
 <link rel="import" href="../../../redux/profile/profile-redux.html">
 <dom-module id="page-list">
@@ -19,6 +24,15 @@
     <link rel="lazy-import" group="page-12" href="./page-12.html">
     <link rel="lazy-import" group="page-13" href="./page-13.html">
     <template>
+        <style include="flexbox-grid">
+            paper-progress {
+                width: 100%;
+            }
+        </style>
+        <paper-progress hidden={{setShow}} indeterminate class="red"></paper-progress>
+        <!-- <div class="row middle-md center">
+            Loading...
+        </div> -->
         <iron-pages selected="{{selected}}" attr-for-selected="name" selected-item="{{itemChanged}}" id="ironPageMenu">
             <page-01 name="ข้อมูลพื้นฐาน"></page-01>
             <page-02 name="ที่อยู่ในการติดต่อ"></page-02>
@@ -54,6 +68,10 @@
                         type: Array,
                         statePath: 'profile.menu',
                         // observer: '_listMenu'
+                    },
+                    setShow: {
+                        type: Boolean,
+                        value: true
                     }
                 };
 
@@ -62,10 +80,10 @@
             _itemChanged(el) {
                 if (!el)
                     return
-                // console.log(el.localName);
+                this.set('setShow', false)
                 this.importLazyGroup(el.localName).then((results) => {
                     this.dispatchEvent(new CustomEvent('import-loaded', results));
-                    // console.log(results);
+                    this.set('setShow', true)
                 });
             }
             constructor() {

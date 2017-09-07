@@ -40,7 +40,8 @@
             <div class="col-md-12 ">
                 <div class="row" style="padding-left: 20px">
                     <app-toolbar slot="header">
-                        <div main-title>[[info.type_assessor.type_assessor_name]] : [[info.taxno]]</div>
+                        <!-- <div main-title>[[info.type_assessor.type_assessor_name]] : [[info.taxno]]</div> -->
+                        <div main-title>[[info.type_assessor.type_assessor_name]] : [[basic.name]] [[basic.lastname]]</div>
                     </app-toolbar>
                 </div>
             </div>
@@ -81,7 +82,12 @@
                     currentPage: {
                         type: String,
                         value: ''
-                    }
+                    },
+                    basic: {
+                        type: Object,
+                        statePath: 'profile.info.basic',
+                        value: {}
+                    },
                 };
             }
             constructor() {
