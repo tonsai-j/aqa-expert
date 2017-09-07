@@ -16,6 +16,8 @@
 <link rel="import" href="../../../i18n/profile/page-09-i18n.html">
 <link rel="import" href="../../../redux/profile/page-02-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../mixins/common-mixin.html">
+
 
 <dom-module id="page-09">
     <template>
@@ -91,15 +93,16 @@
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-7">
-                            <paper-input label="[[i18n.page09.projects]]*" always-float-label></paper-input>
+                            <paper-input label="[[i18n.page09.projects]]*" class="required" required always-float-label value="{{quality.projects}}"></paper-input>
                         </div>
                         <div class="col-md-2">
-                            <paper-input label="[[i18n.page09.time]]*" always-float-label></paper-input>
+                            <paper-input label="[[i18n.page09.time]]*" class="required" required always-float-label value="{{quality.time}}"></paper-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-9">
-                            <vaadin-combo-box always-float-label label="[[i18n.page09.type]]" items='{{amphoeList}}'>
+                            <vaadin-combo-box  always-float-label label="[[i18n.page09.type]]" items='{{amphoeList}}' 
+                            value="{{quality.type}}" item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -108,18 +111,18 @@
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-9">
-                            <paper-textarea label="[[i18n.page09.facility]]*" always-float-label rows=2></paper-textarea>
+                            <paper-textarea label="[[i18n.page09.facility]]*" class="required" required always-float-label rows=2 value="{{quality.facility}}"></paper-textarea>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-3">
-                            <paper-input label="[[i18n.page09.training]]*" always-float-label type=date></paper-input>
+                            <paper-input label="[[i18n.page09.training]]*" class="required" required always-float-label type=date value="{{quality.training}}"></paper-input>
                         </div>
                         <div class="col-md-3">
-                            <paper-input label="[[i18n.page09.end]]*" always-float-label type=date></paper-input>
+                            <paper-input label="[[i18n.page09.end]]*" class="required" required always-float-label type=date value="{{quality.end}}"></paper-input>
                         </div>
                         <div class="col-md-3">
-                            <paper-input label="[[i18n.page09.hours]]*" always-float-label></paper-input>
+                            <paper-input label="[[i18n.page09.hours]]*" class="required" required always-float-label value="{{quality.hours}}"></paper-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
@@ -162,7 +165,7 @@
          * @polymer
          * @extends {Polymer.Element}
          */
-        class Page09 extends ReduxMixin(Polymer.Element) {
+        class Page09 extends commonMixin(ReduxMixin(Polymer.Element)) {
             /**
              * String providing the tag name to profile the element under.
              */
@@ -179,27 +182,23 @@
                         type: Object,
                         statePath: 'i18n',
                     },
+                    info: {
+                        type: Object,
+                        statePath: 'profile.info'
+                    },
+                    quality: {
+                        type: Object,
+                        // statePath: 'profile.info.quality',
+                        value: {}
+                    },
                 };
             }
 
-            /**
-             * Instance of the element is created/upgraded. Use: initializing state,
-             * set up event listeners, create shadow dom.
-             * @constructor
-             */
-            constructor() {
-                super();
-            }
+           
 
-            /**
-             * Use for one-time configuration of your component after local DOM is initialized. 
-             */
             ready() {
                 super.ready();
 
-                Polymer.RenderStatus.afterNextRender(this, function () {
-
-                });
             }
             openPanelRight() {
                 this.$.right.open()
@@ -212,6 +211,24 @@
                 event.detail.xhr.setRequestHeader('draft-status', '1')
                 event.detail.xhr.setRequestHeader('company-taxno', '2')
                 event.detail.xhr.setRequestHeader('draft-id', '3')
+            }
+            _save() {
+                console.log(this.validateForm('.required'));
+                if (this.validateForm('.required')) {
+                    Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'quality', this.quality,
+                        () => {
+
+                        }
+                    );
+                    Nylon.toast({
+                        msg: 'บันทึกเรียบร้อย'
+                    })
+                } else {
+                    Nylon.toast({
+                        msg: 'กรุณากรอกข้อมูลให้ครบ'
+                    })
+                }
+
             }
         }
 
