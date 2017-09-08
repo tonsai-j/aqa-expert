@@ -8,23 +8,51 @@
 <link rel="import" href="../../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../../bower_components/iron-icon/iron-icon.html">
 
+<link rel="import" href="../../layout/shared-styles.html">
+
 
 <dom-module id="nylon-dialog">
     <template>
-        <style>
+        <style include="shared-styles">
              :host {
                 display: block;
+            }
+
+            .icon-dialog {
+                width: 4em;
+                height: 4em;
+            }
+
+            .delete {
+                color: var(--paper-red-400);
             }
         </style>
         <paper-toast id="elToast">
             <iron-icon icon="[[icon]]"></iron-icon>&nbsp;&nbsp;[[msg]]
         </paper-toast>
-        <paper-dialog id="elConfirm" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
+        <!-- <paper-dialog id="elConfirm" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
             <h2>[[title]]</h2>
             <div>[[msg]]</div>
             <div class="buttons">
                 <paper-button dialog-dismiss on-click="takeAction" ans="cancel">Cancel</paper-button>
                 <paper-button dialog-confirm autofocus on-click="takeAction" ans="ok">OK</paper-button>
+            </div>
+        </paper-dialog> -->
+        <paper-dialog modal id="elConfirm" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
+            <div class="middle center-lg cente-md center-sm center-xl">
+                <div>
+                    <iron-icon id='iconDialog' class="icon-dialog delete" icon="delete"></iron-icon>
+                </div>
+                <div>
+                    <h2>[[title]]</h2>
+                </div>
+                <div>
+                    <div>[[msg]]</div>
+                </div>
+            </div>
+            <div id="buttonsdialog" class="buttons">
+                <!-- <paper-button dialog-dismiss raised class="btn-default" on-click="takeAction" ans="cancel">Cancel</paper-button>
+                <paper-button dialog-confirm raised class="delete btn-success " autofocus on-click="takeAction" ans="ok">OK</paper-button> -->
             </div>
         </paper-dialog>
     </template>
@@ -35,9 +63,9 @@
 
             static get properties() {
                 return {
-                    title:String,
-                    msg:String,
-                    icon:String
+                    title: String,
+                    msg: String,
+                    icon: String,
                 }
             }
 
@@ -50,9 +78,9 @@
                 Nylon.toast = this.openToast.bind(this)
             }
 
-            connectedCallback(){
+            connectedCallback() {
                 super.connectedCallback()
-                
+
                 // Nylon.confirm({
                 //     status:'waring',
                 //     title:'ยืนยันการลบ',
@@ -67,34 +95,64 @@
                 // })
             }
 
-            openToast(op){
+            openToast(op) {
                 this.icon = op.icon || 'speaker-notes'
                 this.msg = op.msg
                 this.$.elToast.open()
             }
-
-            openConfirm(op,callbackOk,callbackCancel){
+            // openConfirm(op, callbackOk, callbackCancel) {
+            //     this.icon = op.icon || 'speaker-notes'
+            //     this.msg = op.msg
+            //     this.title = op.title
+            //     this.callbackOk = callbackOk
+            //     this.callbackCancel = callbackCancel
+            //     this.$.elConfirm.open()
+            // }
+            // takeAction(e) {
+            //     if (e.currentTarget.getAttribute('ans') == "ok") {
+            //         this.callbackOk()
+            //     } else {
+            //         if (this.callbackCancel)
+            //             this.callbackCancel()
+            //     }
+            // }
+            openConfirm(op) {
                 this.icon = op.icon || 'speaker-notes'
                 this.msg = op.msg
                 this.title = op.title
-                this.callbackOk = callbackOk
-                this.callbackCancel = callbackCancel
+                this.$.iconDialog.icon = op.icon || 'speaker-notes'
+                this.$.iconDialog.style = op.style || ''
+                const setAttValue = (newElement, att, value) => {
+                    switch (att) {
+                        case 'label':
+                            newElement.innerHTML = value
+                            break;
+                        case 'action':
+                            newElement.addEventListener('tap',value)
+                            break;
+                        default:
+                            let newClass = document.createAttribute(att)
+                            newClass.value = value
+                            newElement.setAttributeNode(newClass)
+                            break;
+                    }
+                    return newElement
+                }
+
+                for (let i = 0; i < op.btn.length; i++) {
+                    let newElement = document.createElement('paper-button')
+
+                    for (var att in op.btn[i]) {
+                        if (op.btn[i].hasOwnProperty(att)) {
+                            newElement = setAttValue(newElement, 'raised', true)
+                            newElement = setAttValue(newElement, att, op.btn[i][att])
+                        }
+                    }
+                    // console.log(newElement);
+                    Polymer.dom(this.$.buttonsdialog).appendChild(newElement)
+                }
                 this.$.elConfirm.open()
             }
-
-
-
-            takeAction(e){
-                if(e.currentTarget.getAttribute('ans')=="ok"){
-                    this.callbackOk()
-                }else{
-                    if(this.callbackCancel)
-                        this.callbackCancel()
-                }
-            }
-
-
-
         }
 
         window.customElements.define(NylonDialog.is, NylonDialog);
