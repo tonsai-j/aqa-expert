@@ -83,7 +83,7 @@
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
                             <vaadin-combo-box class="required" required always-float-label label="[[i18n.page08.type]]" items='{{research_type}}' item-label-path='research_type_th'
-                                item-value-path='id' value="{{data.research_type_id}}" on-selected-item-changed='getObjectCombobox' set-object='research_type'>
+                                item-value-path='id' value="{{data.research_type_id}}" on-selected-item-changed='getObjectCombobox' object-name='research_type'>
                                 <template>
                                     [[item.research_type_th]]
                                 </template>

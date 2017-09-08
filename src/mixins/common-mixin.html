@@ -28,10 +28,9 @@
             if ((e.detail.queueProperty === true)
                 && (e.detail.value !== null)
                 && (e.detail.value.id !== '0')) {
-                this.set(`data.${e.currentTarget.getAttribute('set-object')}`, e.detail.value)
-            } else {
-                
-                delete this.data[e.currentTarget.getAttribute('set-object')]
+                this.set(`data.${e.currentTarget.getAttribute('object-name')}`, e.detail.value)
+            } else {  
+                delete this.data[e.currentTarget.getAttribute('object-name')]
             }
         }
         // formatNumber(number) {

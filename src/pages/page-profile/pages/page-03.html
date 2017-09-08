@@ -1,7 +1,7 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../layout/shared-styles.html">
 <link rel="import" href="../../../redux-mixin.html">
-<link rel="import" href="../../../mixins/validate-form-mixin.html">
+<link rel="import" href="../../../mixins/common-mixin.html">
 <link rel="import" href="../../../i18n/profile/page-03-i18n.html">
 <link rel="import" href="../../../redux/profile/page-03-redux.html">
 <link rel="import" href="../../../layout/flexbox-grid.html">
@@ -89,7 +89,7 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <vaadin-combo-box label="[[i18n.page03.eduLevel]]" items='{{eduLevel}}' value="{{data.edu_level_id}}" item-label-path="edu_level_name"
-                                item-value-path="id" on-selected-item-changed="_getObject" name="edu_level" class="required"
+                                item-value-path="id" on-selected-item-changed="getObjectCombobox" object-name="edu_level" class="required"
                                 required auto-validate>
                                 <template>
                                     [[item.edu_level_name]]
@@ -98,7 +98,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <vaadin-combo-box label="[[i18n.page03.typeAcademy]]" items='{{typeAcademy}}' value="{{data.type_academy_id}}" item-label-path="type_academy_name"
-                                item-value-path="id" on-change="_getAacademy" on-selected-item-changed="_getObject" name="type_academy"
+                                item-value-path="id" on-change="_getAacademy" on-selected-item-changed="getObjectCombobox" object-name="type_academy"
                                 class="required" required auto-validate>
                                 <template>
                                     [[item.type_academy_name]]
@@ -107,8 +107,8 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <vaadin-combo-box label="[[i18n.page03.academy]]" items='{{academy}}' value="{{data.academy_id}}" item-label-path="academy_name"
-                                item-value-path="id" on-selected-item-changed="_getObject" name="academy" class="required" required
-                                auto-validate>
+                                item-value-path="id" on-selected-item-changed="getObjectCombobox" object-name="academy" class="required"
+                                required auto-validate>
                                 <template>
                                     [[item.academy_name]]
                                 </template>
@@ -116,8 +116,8 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <vaadin-combo-box label="[[i18n.page03.faculty]]" items='{{faculty}}' value="{{data.faculty_id}}" item-label-path="faculty_name"
-                                item-value-path="id" on-selected-item-changed="_getObject" name="faculty" class="required" required
-                                auto-validate>
+                                item-value-path="id" on-selected-item-changed="getObjectCombobox" object-name="faculty" class="required"
+                                required auto-validate>
                                 <template>
                                     [[item.faculty_name]]
                                 </template>
@@ -125,7 +125,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <vaadin-combo-box label="[[i18n.page03.facultyGroup]]" items='{{facultyGroup}}' value="{{data.faculty_group_id}}" item-label-path="faculty_group_name"
-                                item-value-path="id" on-selected-item-changed="_getObject" name="faculty_group">
+                                item-value-path="id" on-selected-item-changed="getObjectCombobox" object-name="faculty_group">
                                 <template>
                                     [[item.faculty_group_name]]
                                 </template>
@@ -133,7 +133,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <vaadin-combo-box label="[[i18n.page03.fieldStudy]]" items='{{fieldStudy}}' value="{{data.field_study_id}}" item-label-path="field_study_name"
-                                item-value-path="id" on-selected-item-changed="_getObject" name="field_study" class="required"
+                                item-value-path="id" on-selected-item-changed="getObjectCombobox" object-name="field_study" class="required"
                                 required auto-validate>
                                 <template>
                                     [[item.field_study_name]]
@@ -171,7 +171,7 @@
     </template>
 
     <script>
-        class Page03 extends ValidateFormMixin(ReduxMixin(Polymer.Element)) {
+        class Page03 extends CommonMixin(ReduxMixin(Polymer.Element)) {
             static get is() {
                 return 'page-03';
             }
@@ -241,9 +241,7 @@
             _getAacademy(e) {
                 Nylon.dispatch('PROFILE_03_GET_ACADEMY', e.target.value);
             }
-            _getObject(e) {
-                this.set('data.' + e.target.getAttribute('name'), e.detail.value);
-            }
+
             _save() {
                 // if (this.validateForm('.required')) {
                 var newData = Object.assign(this.data, {
