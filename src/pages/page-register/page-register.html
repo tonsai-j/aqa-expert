@@ -26,10 +26,13 @@
         </style>
         <div class="box">
             <nylon-panel-card id="panelCard">
-                <div slot="header" class="middle-md" >
+                <div slot="header" class="">
+                    <div class="middle-md row around-md">
+                        <h3>[[i18n.register.title]]</h3>
+                    </div>
                 </div>
                 <div slot="content" class="middle-md">
-                    <h3>[[i18n.register.title]]</h3>
+
                     <div class="col-xs-12">
                         <paper-input id="inputTaxNo" label="[[i18n.register.taxno]]" value="{{data.taxno}}" allowed-pattern="[0-9]" maxlength="13"
                             required></paper-input>
