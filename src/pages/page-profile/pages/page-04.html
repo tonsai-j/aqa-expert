@@ -47,6 +47,17 @@
                             <template class="header">[[i18n.page04.date]]</template>
                             <template>[[item.role]]</template>
                         </vaadin-grid-column>
+                        <vaadin-grid-column>
+                            <template class="header">
+                                <div style="text-align: center">[[i18n.common.tools]]</div>
+                            </template>
+                            <template>
+                                <span style="text-align: center">
+                                <paper-icon-button icon="icons:create" action="edit" on-click="_openPanelRight"></paper-icon-button>
+                                <paper-icon-button icon="icons:delete-forever" on-click="_confirmDel"></paper-icon-button>
+                                </span>
+                            </template>
+                        </vaadin-grid-column>
                     </vaadin-grid>
                     จำนวนรายการทั้งหมด 0 รายการ
                 </fieldset>
@@ -86,9 +97,8 @@
                                 [[item.label]]
                             </template>
                         </vaadin-combo-box> -->
-                        <vaadin-combo-box class="required" required always-float-label label="[[i18n.page04.group]]" items='{{specialisttype}}'
-                            value="{{data.specialist_type_id}}" item-label-path="specialisttype_name" item-value-path="id"
-                            on-selected-item-changed="getObject" object-name="data.specialist_type">
+                        <vaadin-combo-box class="required" required always-float-label label="[[i18n.page04.type]]" items='{{specialisttype}}' value="{{data.specialist_type_id}}"
+                            item-label-path="specialisttype_name" item-value-path="id" on-selected-item-changed="getObject" object-name="data.specialist_type">
                             <template>
                                 [[item.specialisttype_name]]
                             </template>
@@ -97,7 +107,7 @@
                 </div>
                 <app-toolbar slot="footer">
                     <div main-title></div>
-                    <paper-button raised on-click="closePanelRight">
+                    <paper-button raised on-click="_closePanelRight">
                         <iron-icon icon="clear"></iron-icon>[[i18n.button.close]]
                     </paper-button>
                     <paper-button raised class="btn-success" on-click="_save">
@@ -154,6 +164,9 @@
                         type: Object,
                         value: {}
                     },
+                    _index: {
+                        type: Number
+                    }
                 };
             }
 
@@ -180,6 +193,20 @@
             openPanelRight() {
                 this.$.right.open()
             }
+           
+            // _confirmDel(e) {
+            //     console.log(this.info.id)
+            //     Nylon.confirm({
+            //         title: this.i18n.confirm.delete.title,
+            //         msg: this.i18n.confirm.delete.msg
+            //     }, (cf) => {
+            //         Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'specialization', e.model.index
+            //             , () => {
+            //                 this._closePanelRight();
+            //                 this.set('data', {});
+            //             });
+            //     });
+            // }
             _closePanelRight() {
                 this.$.right.close()
             }
@@ -203,8 +230,35 @@
                         msg: 'กรุณากรอกข้อมูลให้ครบ'
                     })
                 }
-
             }
+            // _save() {
+            //     if (this.validateForm('.required')) {
+            //         if (typeof this._index === 'undefined') {
+            //             var newData = Object.assign(this.data, {
+            //                 date_created: new Date().toISOString(),
+            //                 date_updated: new Date().toISOString(),
+            //                 creater: this.info.taxno,
+            //                 updater: this.info.taxno
+            //             });
+            //             Nylon.dispatch('PROFILE_PUSH_ARRAY', this.info.id, 'specialization', newData
+            //                 , () => {
+            //                     this._closePanelRight();
+            //                     this.set('data', {});
+            //                 });
+            //         } else {
+            //             var newData = Object.assign(this.data, {
+            //                 date_updated: new Date(),
+            //                 updater: this.info.taxno
+            //             });
+            //             Nylon.dispatch('PROFILE_UPDATE_ARRAY', this.info.id, 'specialization', this._index, newData
+            //                 , () => {
+            //                     this._closePanelRight();
+            //                     this.set('data', {});
+            //                 });
+            //         }
+            //     }
+
+            // }
 
         }
 
