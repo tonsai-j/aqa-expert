@@ -10,7 +10,7 @@
 <link rel="import" href="../../../layout/shared-styles.html">
 <link rel="import" href="../../../nylon-i18n.html">
 <link rel="import" href="../../../i18n/profile/page-04-i18n.html">
-<link rel="import" href="../../../redux/profile/page-02-redux.html">
+<link rel="import" href="../../../redux/profile/page-04-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
 <link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
@@ -65,18 +65,32 @@
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="col-md-offset-1  col-md-4">
-                        <vaadin-combo-box class="required" required always-float-label label="[[i18n.page04.group]]" items='{{amphoeList}}' value="{{specialization.specialized_branches}}"
+                        <!-- <vaadin-combo-box class="required" required always-float-label label="[[i18n.page04.group]]" items='{{amphoeList}}' value="{{specialization.specialized_branches}}"
                             item-label-path="label" item-value-path="value">
                             <template>
                                 [[item.label]]
                             </template>
+                        </vaadin-combo-box> -->
+                        <vaadin-combo-box class="required" required always-float-label label="[[i18n.page04.group]]" items='{{specialistgroup}}'
+                            value="{{data.specialist_group_id}}" item-label-path="specialistgroup_name" item-value-path="id"
+                            on-selected-item-changed="getObject" object-name="data.specialist_group">
+                            <template>
+                                [[item.specialistgroup_name]]
+                            </template>
                         </vaadin-combo-box>
                     </div>
                     <div class="col-md-offset-1 col-md-8">
-                        <vaadin-combo-box class="required" required always-float-label label="[[i18n.page04.type]]" items='{{amphoeList}}' value="{{specialization.specialized_type}}"
+                        <!-- <vaadin-combo-box class="required" required always-float-label label="[[i18n.page04.type]]" items='{{amphoeList}}' value="{{specialization.specialized_type}}"
                             item-label-path="label" item-value-path="value">
                             <template>
                                 [[item.label]]
+                            </template>
+                        </vaadin-combo-box> -->
+                        <vaadin-combo-box class="required" required always-float-label label="[[i18n.page04.group]]" items='{{specialisttype}}'
+                            value="{{data.specialist_type_id}}" item-label-path="specialisttype_name" item-value-path="id"
+                            on-selected-item-changed="getObject" object-name="data.specialist_type">
+                            <template>
+                                [[item.specialisttype_name]]
                             </template>
                         </vaadin-combo-box>
                     </div>
@@ -121,6 +135,12 @@
                         type: Object,
                         statePath: 'i18n',
                     },
+                    specialistgroup: {
+                        statePath: 'profile_page04.specialistgroup'
+                    },
+                    specialisttype: {
+                        statePath: 'profile_page04.specialisttype'
+                    },
                     info: {
                         type: Object,
                         statePath: 'profile.info'
@@ -128,6 +148,10 @@
                     specialization: {
                         type: Object,
                         statePath: 'profile.info.specialization',
+                        value: {}
+                    },
+                    data: {
+                        type: Object,
                         value: {}
                     },
                 };
@@ -147,23 +171,26 @@
              */
             ready() {
                 super.ready();
-
                 Polymer.RenderStatus.afterNextRender(this, function () {
-
+                    Nylon.dispatch('PROFILE_04_GET_SPECIALISTGROUP')
+                    Nylon.dispatch('PROFILE_04_GET_SPECIALISTTYPE')
                 });
             }
 
             openPanelRight() {
                 this.$.right.open()
             }
-            closePanelRight() {
+            _closePanelRight() {
                 this.$.right.close()
             }
 
             _save() {
-                console.log(this.validateForm('.required'));
+                // console.log(this.data)
+                // console.log(this.validateForm('.required'));
                 if (this.validateForm('.required')) {
-                    Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'specialization', this.specialization,
+                    console.log(this.info.id)
+                    console.log(this.data)
+                    Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'specialization', this.data,
                         () => {
                             this._closePanelRight();
                         }

@@ -15,7 +15,6 @@
 <link rel="import" href="../../../redux/profile/page-02-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
-<link rel="import" href="../../../mixins/common-mixin.html">
 
 <dom-module id="page-02">
     <template>
@@ -516,22 +515,22 @@
             }
 
             _save() {
-                console.log(this.data)
+                // console.log(this.data)
                 // console.log(this.validateForm('.required'));
-                // if (this.validateForm('.required')) {
-                //     Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'address', this.address,
-                //         () => {
+                if (this.validateForm('.required')) {
+                    Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'address', this.data,
+                        () => {
 
-                //         }
-                //     );
-                //     Nylon.toast({
-                //         msg: 'บันทึกเรียบร้อย'
-                //     })
-                // } else {
-                //     Nylon.toast({
-                //         msg: 'กรุณากรอกข้อมูลให้ครบ'
-                //     })
-                // }
+                        }
+                    );
+                    Nylon.toast({
+                        msg: 'บันทึกเรียบร้อย'
+                    })
+                } else {
+                    Nylon.toast({
+                        msg: 'กรุณากรอกข้อมูลให้ครบ'
+                    })
+                }
 
             }
         }

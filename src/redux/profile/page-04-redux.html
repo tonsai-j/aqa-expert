@@ -1,0 +1,44 @@
+<script>
+    Nylon.addReducer('profile_page04', function (state, action) {
+        state = state || {
+            specialistgroup: [],
+            specialisttype: [],
+        }
+
+        switch (action.type) {
+            case 'PROFILE_04_GET_SPECIALISTGROUP':
+                state.specialistgroup = action.payload
+                return state
+            case 'PROFILE_04_GET_SPECIALISTTYPE':
+                state.specialisttype = action.payload
+                return state
+            default:
+                return state
+        }
+
+    })
+
+
+    Nylon.addAction({
+        PROFILE_04_GET_SPECIALISTGROUP: function () {
+            return dispatch => {
+                axios.get('/specialistgroup').then(
+                    res => {
+                        dispatch({ type: 'PROFILE_04_GET_SPECIALISTGROUP', payload: res.data })
+                    }
+                )
+            }
+        },
+        PROFILE_04_GET_SPECIALISTTYPE: function () {
+            return dispatch => {
+                axios.get('/specialisttype').then(
+                    res => {
+                        dispatch({ type: 'PROFILE_04_GET_SPECIALISTTYPE', payload: res.data })
+                    }
+                )
+            }
+        },
+      
+    })
+
+</script>
