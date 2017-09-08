@@ -30,7 +30,7 @@
                             <vaadin-grid id='material' slot="content" sub-slot="grid" items="[[datas]]">
                                 <vaadin-grid-column width="10px">
                                     <template class="header">#</template>
-                                    <template>[[_index(index)]]</template>
+                                    <template>[[autoIndex(index)]]</template>
                                 </vaadin-grid-column>
 
                                 <vaadin-grid-column flex-grow="0" resizable>
@@ -234,9 +234,6 @@
                 Nylon.dispatch('PROFILE_03_GET_FACULTY');
                 Nylon.dispatch('PROFILE_03_GET_FACULTY_GROUP');
                 Nylon.dispatch('PROFILE_03_GET_FILED_STUDY');
-            }
-            _index(i) {
-                return i + 1;
             }
             _getAacademy(e) {
                 Nylon.dispatch('PROFILE_03_GET_ACADEMY', e.target.value);
