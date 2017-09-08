@@ -265,31 +265,31 @@
             }
 
             _save() {
-                // if (this.validateForm('.required')) {
-                if (typeof this._index === 'undefined') {
-                    var newData = Object.assign(this.data, {
-                        date_created: new Date().toISOString(),
-                        date_updated: new Date().toISOString(),
-                        creater: this.info.taxno,
-                        updater: this.info.taxno
-                    });
-                    Nylon.dispatch('PROFILE_PUSH_ARRAY', this.info.id, 'education', newData
-                        , () => {
-                            this._closePanelRight();
-                            this.set('data', {});
+                if (this.validateForm('.required')) {
+                    if (typeof this._index === 'undefined') {
+                        var newData = Object.assign(this.data, {
+                            date_created: new Date().toISOString(),
+                            date_updated: new Date().toISOString(),
+                            creater: this.info.taxno,
+                            updater: this.info.taxno
                         });
-                } else {
-                    var newData = Object.assign(this.data, {
-                        date_updated: new Date(),
-                        updater: this.info.taxno
-                    });
-                    Nylon.dispatch('PROFILE_UPDATE_ARRAY', this.info.id, 'education', this._index, newData
-                        , () => {
-                            this._closePanelRight();
-                            this.set('data', {});
+                        Nylon.dispatch('PROFILE_PUSH_ARRAY', this.info.id, 'education', newData
+                            , () => {
+                                this._closePanelRight();
+                                this.set('data', {});
+                            });
+                    } else {
+                        var newData = Object.assign(this.data, {
+                            date_updated: new Date(),
+                            updater: this.info.taxno
                         });
+                        Nylon.dispatch('PROFILE_UPDATE_ARRAY', this.info.id, 'education', this._index, newData
+                            , () => {
+                                this._closePanelRight();
+                                this.set('data', {});
+                            });
+                    }
                 }
-                // }
 
             }
             _confirmDel(e) {
