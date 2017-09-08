@@ -22,60 +22,68 @@
                     <div class="row middle-md">
                         <app-toolbar slot="header" class="col-md-12">
                             <div main-title></div>
-                            <paper-button raised class="btn-primary" on-click="_openPanelRight">
+                            <paper-button raised class="btn-primary" action="add" on-click="_openPanelRight">
                                 <iron-icon icon="add-circle-outline"></iron-icon> [[i18n.button.add]]
                             </paper-button>
                         </app-toolbar>
                         <div slot="content" class="col-md-12">
                             <vaadin-grid id='material' slot="content" sub-slot="grid" items="[[datas]]">
-                                <vaadin-grid-column width="10px">
+                                <vaadin-grid-column width="20px" flex-grow="0">
                                     <template class="header">#</template>
                                     <template>[[autoIndex(index)]]</template>
                                 </vaadin-grid-column>
 
-                                <vaadin-grid-column flex-grow="0" resizable>
+                                <vaadin-grid-column width="200px" flex-grow="0" resizable>
                                     <template class="header">[[i18n.page03.academy]]</template>
                                     <template>[[item.academy.academy_name]]</template>
                                 </vaadin-grid-column>
 
-                                <vaadin-grid-column flex-grow="0" resizable>
+                                <vaadin-grid-column width="100px" flex-grow="0" resizable>
                                     <template class="header">[[i18n.page03.eduLevel]]</template>
                                     <template>[[item.edu_level.edu_level_name]]</template>
                                 </vaadin-grid-column>
 
-                                <vaadin-grid-column flex-grow="0" resizable>
+                                <vaadin-grid-column width="200px" flex-grow="0" resizable>
                                     <template class="header">[[i18n.page03.degree]]</template>
                                     <template>[[item.degree_full]]</template>
                                 </vaadin-grid-column>
 
-                                <vaadin-grid-column flex-grow="0" resizable>
+                                <!-- <vaadin-grid-column flex-grow="0" resizable>
                                     <template class="header">[[i18n.page03.faculty]]</template>
                                     <template>[[item.faculty.faculty_name]]</template>
-                                </vaadin-grid-column>
+                                </vaadin-grid-column> -->
 
-                                <vaadin-grid-column flex-grow="0" resizable>
+                                <!-- <vaadin-grid-column flex-grow="0" resizable>
                                     <template class="header">[[i18n.page03.fieldStudy]]</template>
                                     <template>[[item.field_study.field_study_name]]</template>
-                                </vaadin-grid-column>
+                                </vaadin-grid-column> -->
 
-                                <vaadin-grid-column flex-grow="0" resizable>
+                                <!-- <vaadin-grid-column flex-grow="0" resizable>
                                     <template class="header">[[i18n.page03.major]]</template>
                                     <template>[[item.major]]</template>
-                                </vaadin-grid-column>
+                                </vaadin-grid-column> -->
 
-                                <vaadin-grid-column flex-grow="0" resizable>
+                                <!-- <vaadin-grid-column flex-grow="0" resizable>
                                     <template class="header">[[i18n.page03.minor]]</template>
                                     <template>[[item.minor]]</template>
-                                </vaadin-grid-column>
+                                </vaadin-grid-column> -->
 
-                                <vaadin-grid-column flex-grow="0" resizable>
+                                <vaadin-grid-column width="100px" flex-grow="0" resizable>
                                     <template class="header">[[i18n.page03.year]]</template>
                                     <template>[[item.year]]</template>
                                 </vaadin-grid-column>
 
-                                <vaadin-grid-column>
+                                <vaadin-grid-column width="150px">
                                     <template class="header">[[i18n.common.updater]]/[[i18n.common.date]]</template>
                                     <template>[[item.updater]] [[item.date_updated]]</template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column width="50px">
+                                    <template class="header">[[i18n.common.edit]]</template>
+                                    <template>
+                                        <paper-button raised class="btn-primary" action="edit" on-click="_openPanelRight">
+                                            <iron-icon icon="icons:create"></iron-icon> [[i18n.button.edit]]
+                                        </paper-button>
+                                    </template>
                                 </vaadin-grid-column>
                             </vaadin-grid>
                         </div>
@@ -89,8 +97,8 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <vaadin-combo-box label="[[i18n.page03.eduLevel]]" items='{{eduLevel}}' value="{{data.edu_level_id}}" item-label-path="edu_level_name"
-                                item-value-path="id" on-selected-item-changed="getObjectCombobox" object-name="edu_level" class="required"
-                                required auto-validate>
+                                item-value-path="id" on-selected-item-changed="getObject" object-name="data.edu_level" class="required"
+                                required>
                                 <template>
                                     [[item.edu_level_name]]
                                 </template>
@@ -98,8 +106,8 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <vaadin-combo-box label="[[i18n.page03.typeAcademy]]" items='{{typeAcademy}}' value="{{data.type_academy_id}}" item-label-path="type_academy_name"
-                                item-value-path="id" on-change="_getAacademy" on-selected-item-changed="getObjectCombobox" object-name="type_academy"
-                                class="required" required auto-validate>
+                                item-value-path="id" on-change="_getAacademy" on-selected-item-changed="getObject" object-name="data.type_academy"
+                                class="required" required>
                                 <template>
                                     [[item.type_academy_name]]
                                 </template>
@@ -107,8 +115,8 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <vaadin-combo-box label="[[i18n.page03.academy]]" items='{{academy}}' value="{{data.academy_id}}" item-label-path="academy_name"
-                                item-value-path="id" on-selected-item-changed="getObjectCombobox" object-name="academy" class="required"
-                                required auto-validate>
+                                item-value-path="id" on-selected-item-changed="getObject" object-name="data.academy" class="required"
+                                required>
                                 <template>
                                     [[item.academy_name]]
                                 </template>
@@ -116,8 +124,8 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <vaadin-combo-box label="[[i18n.page03.faculty]]" items='{{faculty}}' value="{{data.faculty_id}}" item-label-path="faculty_name"
-                                item-value-path="id" on-selected-item-changed="getObjectCombobox" object-name="faculty" class="required"
-                                required auto-validate>
+                                item-value-path="id" on-selected-item-changed="getObject" object-name="data.faculty" class="required"
+                                required>
                                 <template>
                                     [[item.faculty_name]]
                                 </template>
@@ -125,7 +133,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <vaadin-combo-box label="[[i18n.page03.facultyGroup]]" items='{{facultyGroup}}' value="{{data.faculty_group_id}}" item-label-path="faculty_group_name"
-                                item-value-path="id" on-selected-item-changed="getObjectCombobox" object-name="faculty_group">
+                                item-value-path="id" on-selected-item-changed="getObject" object-name="data.faculty_group">
                                 <template>
                                     [[item.faculty_group_name]]
                                 </template>
@@ -133,8 +141,8 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <vaadin-combo-box label="[[i18n.page03.fieldStudy]]" items='{{fieldStudy}}' value="{{data.field_study_id}}" item-label-path="field_study_name"
-                                item-value-path="id" on-selected-item-changed="getObjectCombobox" object-name="field_study" class="required"
-                                required auto-validate>
+                                item-value-path="id" on-selected-item-changed="getObject" object-name="data.field_study" class="required"
+                                required>
                                 <template>
                                     [[item.field_study_name]]
                                 </template>
@@ -217,10 +225,20 @@
                         type: Array,
                         statePath: 'profile.info.education',
                         value: []
+                    },
+                    _index: {
+                        type: Number
                     }
                 };
             }
-            _openPanelRight() {
+            _openPanelRight(e) {
+                if (e.currentTarget.getAttribute('action') == 'edit') {
+                    this.set('data', e.model.item)
+                    this.set('_index', e.model.index)
+                } else {
+                    this.set('data', {})
+                    this.set('_index', undefined)
+                }
                 this.$.panelRight.open();
             }
             _closePanelRight() {
@@ -241,27 +259,31 @@
 
             _save() {
                 // if (this.validateForm('.required')) {
-                var newData = Object.assign(this.data, {
-                    date_created: new Date(),
-                    date_updated: new Date(),
-                    creater: this.info.taxno,
-                    updater: this.info.taxno
-                });
-                // console.log(newData)
-                Nylon.dispatch('PROFILE_PUSH', this.info.id, 'education', newData
-                    , () => {
-                        this._closePanelRight();
-                        this.set('data', {});
+                if (typeof this._index === 'undefined') {
+                    var newData = Object.assign(this.data, {
+                        date_created: new Date(),
+                        date_updated: new Date(),
+                        creater: this.info.taxno,
+                        updater: this.info.taxno
                     });
-                // this.push('datas', this.data);
-                // Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'education', this.datas,
-                //     () => {
-                //         this._closePanelRight();
-                //         this.set('data', {});
-                //     }
-                // );
-
+                    Nylon.dispatch('PROFILE_PUSH_ARRAY', this.info.id, 'education', newData
+                        , () => {
+                            this._closePanelRight();
+                            this.set('data', {});
+                        });
+                } else {
+                    var newData = Object.assign(this.data, {
+                        date_updated: new Date(),
+                        updater: this.info.taxno
+                    });
+                    Nylon.dispatch('PROFILE_UPDATE_ARRAY', this.info.id, 'education', this._index, newData
+                        , () => {
+                            this._closePanelRight();
+                            this.set('data', {});
+                        });
+                }
                 // }
+
             }
 
         }
