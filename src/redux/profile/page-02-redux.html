@@ -31,108 +31,126 @@
     Nylon.addAction({
         GET_LIST_REGION: function () {
             return dispatch => {
-                let res = {
-                    data: [
-                        {
-                            value: 1,
-                            label: 'ภาคเหนือ'
-                        },
-                        {
-                            value: 2,
-                            label: 'ภาคตะวันออกเฉียงเหนือ'
-                        },
-                        {
-                            value: 3,
-                            label: 'ภาคตะวันตก'
-                        },
-                        {
-                            value: 4,
-                            label: 'ภาคกลาง'
-                        },
-                        {
-                            value: 5,
-                            label: 'ภาคตะวันออก'
-                        },
-                        {
-                            value: 6,
-                            label: 'ภาคใต้'
-                        }
-                    ]
-                }
-                dispatch({ type: 'GET_LIST_REGION', payload: res.data })
-                // axios.get('/todolist').then(
-                //     res => {
-                //         progress(() => {
-                //             dispatch({ type: 'VIEW_2_GET_DATA', payload: res.data })
-                //         })
-                //     }
-                // )
-                //     .catch(
-                //     err => {
-                //         progress(() => {
-                //             console.log({ err })
-                //             Nylon.$['page-view2'].$.list.$.pc1.notify({
-                //                 status: 'error',
-                //                 msg: err.response.data.msg,
-                //                 position: 'top'
-                //             })
-                //         })
-                //     }
-                //     )
+                axios.get('/region').then(
+                    res => {
+                        dispatch({ type: 'GET_LIST_REGION', payload: res.data })
+                    }
+                )
             }
         },
+        // GET_LIST_REGION: function () {
+        //     return dispatch => {
+        //         let res = {
+        //             data: [
+        //                 {
+        //                     value: 1,
+        //                     label: 'ภาคเหนือ'
+        //                 },
+        //                 {
+        //                     value: 2,
+        //                     label: 'ภาคตะวันออกเฉียงเหนือ'
+        //                 },
+        //                 {
+        //                     value: 3,
+        //                     label: 'ภาคตะวันตก'
+        //                 },
+        //                 {
+        //                     value: 4,
+        //                     label: 'ภาคกลาง'
+        //                 },
+        //                 {
+        //                     value: 5,
+        //                     label: 'ภาคตะวันออก'
+        //                 },
+        //                 {
+        //                     value: 6,
+        //                     label: 'ภาคใต้'
+        //                 }
+        //             ]
+        //         }
+        //         dispatch({ type: 'GET_LIST_REGION', payload: res.data })
+        //         // axios.get('/todolist').then(
+        //         //     res => {
+        //         //         progress(() => {
+        //         //             dispatch({ type: 'VIEW_2_GET_DATA', payload: res.data })
+        //         //         })
+        //         //     }
+        //         // )
+        //         //     .catch(
+        //         //     err => {
+        //         //         progress(() => {
+        //         //             console.log({ err })
+        //         //             Nylon.$['page-view2'].$.list.$.pc1.notify({
+        //         //                 status: 'error',
+        //         //                 msg: err.response.data.msg,
+        //         //                 position: 'top'
+        //         //             })
+        //         //         })
+        //         //     }
+        //         //     )
+        //     }
+        // },
         GET_LIST_PROVINCE: function () {
             return dispatch => {
-                let res = {
-                    data: [
-                        {
-                            value: 1,
-                            label: 'จังหวัดเชียงใหม่'
-                        },
-                        {
-                            value: 2,
-                            label: 'จังหวัดขอนแก่น '
-                        },
-                        {
-                            value: 3,
-                            label: 'จังหวัดกาญจนบุรี '
-                        },
-                        {
-                            value: 4,
-                            label: 'กรุงเทพมหานคร'
-                        },
-                        {
-                            value: 5,
-                            label: 'จังหวัดชลบุรี '
-                        },
-                        {
-                            value: 6,
-                            label: 'จังหวัดกระบี่'
-                        }
-                    ]
-                }
-                dispatch({ type: 'GET_LIST_PROVINCE', payload: res.data })
-                // axios.get('/todolist').then(
-                //     res => {
-                //         progress(() => {
-                //             dispatch({ type: 'VIEW_2_GET_DATA', payload: res.data })
-                //         })
-                //     }
-                // )
-                //     .catch(
-                //     err => {
-                //         progress(() => {
-                //             console.log({ err })
-                //             Nylon.$['page-view2'].$.list.$.pc1.notify({
-                //                 status: 'error',
-                //                 msg: err.response.data.msg,
-                //                 position: 'top'
-                //             })
-                //         })
-                //     }
-                //     )
+                axios.get('/province').then(
+                    res => {
+                        dispatch({ type: 'GET_LIST_PROVINCE', payload: res.data })
+                    }
+                )
             }
         },
+        // GET_LIST_PROVINCE: function () {
+        //     return dispatch => {
+        //         let res = {
+        //             data: [
+        //                 {
+        //                     value: 1,
+        //                     label: 'จังหวัดเชียงใหม่'
+        //                 },
+        //                 {
+        //                     value: 2,
+        //                     label: 'จังหวัดขอนแก่น '
+        //                 },
+        //                 {
+        //                     value: 3,
+        //                     label: 'จังหวัดกาญจนบุรี '
+        //                 },
+        //                 {
+        //                     value: 4,
+        //                     label: 'กรุงเทพมหานคร'
+        //                 },
+        //                 {
+        //                     value: 5,
+        //                     label: 'จังหวัดชลบุรี '
+        //                 },
+        //                 {
+        //                     value: 6,
+        //                     label: 'จังหวัดกระบี่'
+        //                 }
+        //             ]
+        //         }
+        //         dispatch({ type: 'GET_LIST_PROVINCE', payload: res.data })
+        //         // axios.get('/todolist').then(
+        //         //     res => {
+        //         //         progress(() => {
+        //         //             dispatch({ type: 'VIEW_2_GET_DATA', payload: res.data })
+        //         //         })
+        //         //     }
+        //         // )
+        //         //     .catch(
+        //         //     err => {
+        //         //         progress(() => {
+        //         //             console.log({ err })
+        //         //             Nylon.$['page-view2'].$.list.$.pc1.notify({
+        //         //                 status: 'error',
+        //         //                 msg: err.response.data.msg,
+        //         //                 position: 'top'
+        //         //             })
+        //         //         })
+        //         //     }
+        //         //     )
+        //     }
+        // },
         GET_LIST_AMPHOE: function () {
             return dispatch => {
                 let res = {

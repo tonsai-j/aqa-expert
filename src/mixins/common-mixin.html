@@ -28,12 +28,22 @@
             if ((e.detail.queueProperty === true)
                 && (e.detail.value !== null)
                 && (e.detail.value.id !== '0')) {
+                    console.log(e.detail.value)
                 this.set(`data.${e.currentTarget.getAttribute('object-name')}`, e.detail.value)
+                console.log(this.data)
             } else {
                 delete this.data[e.currentTarget.getAttribute('object-name')]
             }
         }
-        
+        getObject(e) {
+            if ((e.detail.queueProperty === true)
+                && (e.detail.value !== null)
+                && (e.detail.value.id !== '0')) {
+                this.set(`${e.currentTarget.getAttribute('object-name')}`, e.detail.value)
+            } else {
+                delete this[e.currentTarget.getAttribute('object-name')]
+            }
+        }
         changeDate(date) {
             let time = new Date(date)
             date = new Date(time.setHours(time.getHours() + 7)).toISOString()
