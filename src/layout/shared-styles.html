@@ -146,16 +146,19 @@
         }
         ;
         --vaadin-grid-body-cell: {
-          min-height: calc(var(--font-size-default) * 3)/*48px;*/
+          /* min-height: calc(var(--font-size-default) * 5)48px; */
+          min-height: 40px;
+          font-size: var(--font-size-h5);
           color: rgba(0, 0, 0, var(--dark-primary-opacity));
           word-warp font-size: 17px;
         }
         ;
         --vaadin-grid-footer-cell: {
-          min-height: 64px;
+          min-height: calc(var(--font-size-default) * 4);
           color: rgba(0, 0, 0, var(--dark-secondary-opacity));
-          font-size: 16px;
+          font-size: var(--font-size-h5);
           font-weight: bold;
+          padding: 5px 5px;
         }
         ;
         --vaadin-grid-body-row-hover-cell: {
