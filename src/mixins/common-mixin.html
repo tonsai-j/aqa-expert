@@ -1,7 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <script src="../../node_modules/numeral/min/numeral.min.js"></script>
 <script>
-    commonMixin = Parent => class TestMixin extends Parent {
+    CommonMixin = Parent => class TestMixin extends Parent {
 
         queryFrom(required) {
             return this.shadowRoot.querySelectorAll(required)

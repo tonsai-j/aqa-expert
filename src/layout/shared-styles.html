@@ -5,49 +5,69 @@
 <dom-module id="shared-styles">
   <template>
     <style include="flexbox-grid">
+      :root {
+
+
+       --font-size-default:          .8em;
+       --font-size-large:         calc(var(--font-size-default) * 1.25);/*// ~20px*/
+       --font-size-small:         calc(var(--font-size-default) * 0.85); /*// ~14px*/
+
+
+       --font-size-h1:            calc(var(--font-size-default) * 2.6);  /*// ~42px*/
+       --font-size-h2:            calc(var(--font-size-default) * 2.15); /*// ~34px*/
+       --font-size-h3:            calc(var(--font-size-default) * 1.7); /*// ~27px*/
+       --font-size-h4:            calc(var(--font-size-default) * 1.25); /*// ~20px*/
+       --font-size-h5:            var(--font-size-default);               /*// ~16px*/
+       --font-size-h6:            var(--font-size-small);                /*// ~14px*/
+
+       --gl-font-family: {
+         font-family: 'CSChatThaiUI','tahoma', sans-serif;
+         -webkit-font-smoothing: antialiased;
+        }
+        --gl-margin: {
+            margin: 1px;
+        }
+
+    }
       paper-input {
+        --paper-input-container-input:{
+          font-size: var(--font-size-h4);
+        }
         --paper-input-container-disabled: {
           opacity: 1;
-          @apply(--gl-form-input-container-disabled);
         }
         --paper-input-container-label: {
           color: var(--paper-input-label-color-success);
-          @apply(--gl-form-input-label-color-success);
         }
         --paper-input-container-underline: {
           border-bottom: var(--paper-input-border-success);
-          @apply(--gl-form-input-border-success);
         }
         --paper-input-container-underline-disabled: {
           display: none;
-          @apply(--gl-form-input-container-underline-disabled);
         }
         --paper-input-container-label-floating: {
-          font-size: 20px;
-          @apply(--gl-form-input-container-label-floating);
+          font-size: var(--font-size-h4);
         }
       }
 
       vaadin-combo-box {
+        --paper-input-container-input:{
+          font-size: var(--font-size-h4);
+        }
         --paper-input-container-disabled: {
           opacity: 1;
-          @apply(--gl-form-input-container-disabled);
         }
         --paper-input-container-label: {
           color: var(--paper-input-label-color-success);
-          @apply(--gl-form-input-label-color-success);
         }
         --paper-input-container-underline: {
           border-bottom: var(--paper-input-border-success);
-          @apply(--gl-form-input-border-success);
         }
         --paper-input-container-underline-disabled: {
           display: none;
-          @apply(--gl-form-input-container-underline-disabled);
         }
         --paper-input-container-label-floating: {
-          font-size: 20px;
-          @apply(--gl-form-input-container-label-floating);
+          font-size: var(--font-size-h4);
         }
       }
 

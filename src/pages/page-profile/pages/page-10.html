@@ -1,11 +1,11 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
-<link rel="import" href="../../../layout/flexbox-grid.html">
 <link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
-<link rel="import" href="../../../layout/shared-styles.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
+<link rel="import" href="../../../layout/flexbox-grid.html">
+<link rel="import" href="../../../layout/shared-styles.html">
 <link rel="import" href="../../../nylon-i18n.html">
 <link rel="import" href="../../../i18n/profile/page-10-i18n.html">
 <link rel="import" href="../../../redux/profile/page-10-redux.html">
@@ -18,73 +18,72 @@
              :host {
                 display: block
             }
+
+            #wrapper {
+                text-align: center;
+                margin: 0 auto;
+                padding: 0px;
+                width: 995px;
+            }
+
+            #output_image {
+                border: 1px solid black;
+                width: 10em;
+                height: 10em;
+            }
         </style>
         <nylon-panel-card>
             <div slot="content">
                 <fieldset>
                     <legend>[[i18n.page10.bank_account]]:</legend>
-                    <div class="row middle-md">
-                        <div class="label col-md-1 ">
-                            <!-- [[i18n.page10.bank]]* : -->
-                        </div>
-                        <div class="input col-md-3">
-                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page10.bank]]*" items='{{bankList}}' 
-                            value="{{bank.bank}}" item-label-path="label" item-value-path="value">
+                    <div class="row middle-md col-md-offset-1">
+                        <div class="input col-md-4">
+                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page10.bank]]*" items='{{bankList}}' value="{{bank.bank}}"
+                                item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
+                            </vaadin-combo-box>
                         </div>
-                    </div>
-                    <div class="row middle-md">
-                        <div class="label col-md-1">
-                            <!-- [[i18n.page10.account_Types]]* : -->
-                        </div>
-                        <div class="input col-md-3">
-                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page10.account_Types]]*" items='{{typeList}}' 
-                            value="{{bank.account_types}}" item-label-path="label" item-value-path="value">
+                        <div class="input col-md-4">
+                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page10.account_Types]]*" items='{{typeList}}'
+                                value="{{bank.account_types}}" item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
+                            </vaadin-combo-box>
                         </div>
-
                     </div>
-                    <div class="row middle-md">
-                        <div class="label col-md-1 ">
-                            <!-- [[i18n.page10.branch]]* : -->
-                        </div>
-                        <div class="input col-md-3">
+                    <div class="row middle-md col-md-offset-1">
+                        <div class="input col-md-4">
                             <paper-input class="required" required always-float-label label="[[i18n.page10.branch]]*" value="{{bank.branch}}"></paper-input>
                         </div>
-
                     </div>
-                    <div class="row middle-md middle-md">
-                        <div class="label col-md-1">
-                            <!-- [[i18n.page10.account_number]]* : -->
+                    <div class="row middle-md col-md-offset-1">
+                        <div class="input col-md-4">
+                            <paper-input class="required" required always-float-label allowed-pattern="[0-9]" label="[[i18n.page10.account_number]]*" value="{{bank.account_number}}"></paper-input>
                         </div>
                         <div class="input col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page10.account_number]]*" value="{{bank.account_number}}"></paper-input>
-                        </div>
-                        <div class="input col-md-3">
-                           โดยไม่ต้องใส่เครื่องหมายขีด "-"
+                            โดยไม่ต้องใส่เครื่องหมายขีด "-"
                         </div>
 
                     </div>
-                    <div class="row middle-md">
-                        <div class="label col-md-1">
-                            <!-- [[i18n.page10.account_name]]* : -->
-                        </div>
-                        <div class="input col-md-3">
+                    <div class="row middle-md col-md-offset-1">
+                        <div class="input col-md-8">
                             <paper-input class="required" required always-float-label label="[[i18n.page10.account_name]]*" value="{{bank.account_name}}"></paper-input>
                         </div>
-
                     </div>
-                    <div class="row middle-md">
-                        <div class="label col-md-1">
+                    <div class="row middle-md col-md-offset-1">
+                        <div class="label col-md-8">
                             [[i18n.page10.photo_account]]* :
                         </div>
-                        <div class="input col-md-3">
-                            <input id="ifile" type="file">
-                            <img src$='[[_computeBlob(hasil)]]'>
+                    </div>
+                    <div class="row middle-md col-md-offset-1">
+                        <div class=" col-md-4">
+                            <img id="output_image" src$="[[rootPath]]/images/I20170901111610.jpg" />
+                        </div>
+                        <div class=" col-md-3">
+                            <input id="ifile" type=file accept="image/*" onchange="preview_image">
                         </div>
                     </div>
                 </fieldset>
@@ -98,12 +97,8 @@
                         <iron-icon icon="arrow-forward"></iron-icon>
                     </paper-button>
                 </app-toolbar>
-
-
             </div>
         </nylon-panel-card>
-
-
     </template>
 
     <script>
@@ -119,6 +114,9 @@
                     i18n: {
                         type: Object,
                         statePath: 'i18n',
+                    },
+                    rootPath: {
+                        type: String,
                     },
                     bankList: {
                         statePath: 'profile_page10.bank'
@@ -147,8 +145,16 @@
                     // console.log(111);
                 });
             }
+            preview_image(e) {
+                var reader = new FileReader();
+                reader.onload = () => {
+                    var output = this.$.output_image;
+                    output.src = reader.result;
+                }
+                reader.readAsDataURL(event.target.files[0]);
+            }
             _save() {
-                console.log(this.validateForm('.required'));
+                // console.log(this.validateForm('.required'));
                 if (this.validateForm('.required')) {
                     Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'bank', this.bank,
                         () => {
