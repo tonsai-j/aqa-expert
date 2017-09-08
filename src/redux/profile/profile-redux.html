@@ -38,6 +38,11 @@
                 list[action.index] = action.data;
                 state.info[action.field] = list
                 return state
+            case 'PROFILE_SPLICE_ARRAY':
+                var list = state.info[action.field].slice(0);
+                list.splice(action.index, 1);
+                state.info[action.field] = list
+                return state
             default:
                 return state
         }
@@ -78,6 +83,12 @@
             // console.log(Nylon.store.getState().profile.info[field])
             return dispatch => {
                 dispatch({ type: 'PROFILE_UPDATE_ARRAY', field: field, index: index, data: data })
+                Nylon.dispatch('PROFILE_UPDATE', id, field, Nylon.store.getState().profile.info[field], () => callback());
+            }
+        },
+        PROFILE_SPLICE_ARRAY: function (id, field, index, callback) {
+            return dispatch => {
+                dispatch({ type: 'PROFILE_SPLICE_ARRAY', field: field, index: index })
                 Nylon.dispatch('PROFILE_UPDATE', id, field, Nylon.store.getState().profile.info[field], () => callback());
             }
         }

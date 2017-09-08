@@ -10,6 +10,7 @@
 <link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
 <dom-module id="page-03">
@@ -22,15 +23,18 @@
                     <div class="row middle-md">
                         <app-toolbar slot="header" class="col-md-12">
                             <div main-title></div>
+                            <!-- <paper-icon-button class="btn-primary" icon="icons:add-circle" action="add" on-click="_openPanelRight"></paper-icon-button> -->
                             <paper-button raised class="btn-primary" action="add" on-click="_openPanelRight">
-                                <iron-icon icon="add-circle-outline"></iron-icon> [[i18n.button.add]]
+                                <iron-icon icon="icons:add-circle"></iron-icon>
                             </paper-button>
                         </app-toolbar>
                         <div slot="content" class="col-md-12">
                             <vaadin-grid id='material' slot="content" sub-slot="grid" items="[[datas]]">
                                 <vaadin-grid-column width="20px" flex-grow="0">
                                     <template class="header">#</template>
-                                    <template>[[autoIndex(index)]]</template>
+                                    <template>
+                                        <div style="text-align: center">[[autoIndex(index)]]</div>
+                                    </template>
                                 </vaadin-grid-column>
 
                                 <vaadin-grid-column width="200px" flex-grow="0" resizable>
@@ -43,7 +47,7 @@
                                     <template>[[item.edu_level.edu_level_name]]</template>
                                 </vaadin-grid-column>
 
-                                <vaadin-grid-column width="200px" flex-grow="0" resizable>
+                                <vaadin-grid-column width="250px" flex-grow="0" resizable>
                                     <template class="header">[[i18n.page03.degree]]</template>
                                     <template>[[item.degree_full]]</template>
                                 </vaadin-grid-column>
@@ -77,12 +81,15 @@
                                     <template class="header">[[i18n.common.updater]]/[[i18n.common.date]]</template>
                                     <template>[[item.updater]] [[item.date_updated]]</template>
                                 </vaadin-grid-column>
-                                <vaadin-grid-column width="50px">
-                                    <template class="header">[[i18n.common.edit]]</template>
+                                <vaadin-grid-column>
+                                    <template class="header">
+                                        <div style="text-align: center">[[i18n.common.tools]]</div>
+                                    </template>
                                     <template>
-                                        <paper-button raised class="btn-primary" action="edit" on-click="_openPanelRight">
-                                            <iron-icon icon="icons:create"></iron-icon> [[i18n.button.edit]]
-                                        </paper-button>
+                                        <span style="text-align: center">
+                                        <paper-icon-button icon="icons:create" action="edit" on-click="_openPanelRight"></paper-icon-button>
+                                        <paper-icon-button icon="icons:delete-forever" on-click="_confirmDel"></paper-icon-button>
+                                        </span>
                                     </template>
                                 </vaadin-grid-column>
                             </vaadin-grid>
@@ -261,8 +268,8 @@
                 // if (this.validateForm('.required')) {
                 if (typeof this._index === 'undefined') {
                     var newData = Object.assign(this.data, {
-                        date_created: new Date(),
-                        date_updated: new Date(),
+                        date_created: new Date().toISOString(),
+                        date_updated: new Date().toISOString(),
                         creater: this.info.taxno,
                         updater: this.info.taxno
                     });
@@ -284,6 +291,18 @@
                 }
                 // }
 
+            }
+            _confirmDel(e) {
+                Nylon.confirm({
+                    title: this.i18n.confirm.delete.title,
+                    msg: this.i18n.confirm.delete.msg
+                }, (cf) => {
+                    Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'education', e.model.index
+                        , () => {
+                            this._closePanelRight();
+                            this.set('data', {});
+                        });
+                });
             }
 
         }
