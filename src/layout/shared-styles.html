@@ -125,46 +125,6 @@
         color: #707070;
       }
 
-      vaadin-grid#material {
-
-        font-family: Roboto, sans-serif;
-        --divider-color: rgba(0, 0, 0, var(--dark-divider-opacity));
-
-        --vaadin-grid-cell: {
-          padding: 0;
-        }
-        ;
-
-        --vaadin-grid-header-cell: {
-          height: 64px;
-          color: rgba(0, 0, 0, var(--dark-secondary-opacity));
-          font-size: 12px;
-        }
-        ;
-
-        --vaadin-grid-body-cell: {
-          height: 48px;
-          color: rgba(0, 0, 0, var(--dark-primary-opacity));
-          font-size: 13px;
-        }
-        ;
-
-        --vaadin-grid-body-row-hover-cell: {
-          background-color: var(--paper-grey-200);
-        }
-        ;
-
-        --vaadin-grid-body-row-selected-cell: {
-          background-color: var(--paper-grey-100);
-        }
-        ;
-
-        --vaadin-grid-focused-cell: {
-          box-shadow: none;
-          font-weight: bold;
-        }
-        ;
-      }
 
       vaadin-grid#material {
         font-family: 'CSChatThaiUI', sans-serif;
@@ -175,9 +135,9 @@
         }
         ;
         --vaadin-grid-header-cell: {
-          min-height: 64px;
+          min-height: calc(var(--font-size-default) * 4);
           color: rgba(0, 0, 0, var(--dark-secondary-opacity));
-          font-size: 16px;
+          font-size: var(--font-size-h5);
           font-weight: bold;
           background-color: #F1F1F1;
           padding: 5px 5px;
@@ -186,7 +146,7 @@
         }
         ;
         --vaadin-grid-body-cell: {
-          min-height: 48px;
+          min-height: calc(var(--font-size-default) * 3)/*48px;*/
           color: rgba(0, 0, 0, var(--dark-primary-opacity));
           word-warp font-size: 17px;
         }
