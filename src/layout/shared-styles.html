@@ -5,32 +5,29 @@
 <dom-module id="shared-styles">
   <template>
     <style include="flexbox-grid">
-      :root {
+       :root {
 
 
-       --font-size-default:          .8em;
-       --font-size-large:         calc(var(--font-size-default) * 1.25);/*// ~20px*/
-       --font-size-small:         calc(var(--font-size-default) * 0.85); /*// ~14px*/
-
-
-       --font-size-h1:            calc(var(--font-size-default) * 2.6);  /*// ~42px*/
-       --font-size-h2:            calc(var(--font-size-default) * 2.15); /*// ~34px*/
-       --font-size-h3:            calc(var(--font-size-default) * 1.7); /*// ~27px*/
-       --font-size-h4:            calc(var(--font-size-default) * 1.25); /*// ~20px*/
-       --font-size-h5:            var(--font-size-default);               /*// ~16px*/
-       --font-size-h6:            var(--font-size-small);                /*// ~14px*/
-
-       --gl-font-family: {
-         font-family: 'CSChatThaiUI','tahoma', sans-serif;
-         -webkit-font-smoothing: antialiased;
+        --font-size-default: .8em;
+        --font-size-large: calc(var(--font-size-default) * 1.25);        /*// ~20px*/
+        --font-size-small: calc(var(--font-size-default) * 0.85);        /*// ~14px*/
+        --font-size-h1: calc(var(--font-size-default) * 2.6);        /*// ~42px*/
+        --font-size-h2: calc(var(--font-size-default) * 2.15);        /*// ~34px*/
+        --font-size-h3: calc(var(--font-size-default) * 1.7);        /*// ~27px*/
+        --font-size-h4: calc(var(--font-size-default) * 1.25);        /*// ~20px*/
+        --font-size-h5: var(--font-size-default);        /*// ~16px*/
+        --font-size-h6: var(--font-size-small);        /*// ~14px*/
+        --nylon-font-family: {
+          font-family: 'CSChatThaiUI', 'tahoma', sans-serif;
+          -webkit-font-smoothing: antialiased;
         }
-        --gl-margin: {
-            margin: 1px;
+        --nylon-margin: {
+          margin: 1px;
         }
+      }
 
-    }
       paper-input {
-        --paper-input-container-input:{
+        --paper-input-container-input: {
           font-size: var(--font-size-h4);
         }
         --paper-input-container-disabled: {
@@ -51,7 +48,7 @@
       }
 
       vaadin-combo-box {
-        --paper-input-container-input:{
+        --paper-input-container-input: {
           font-size: var(--font-size-h4);
         }
         --paper-input-container-disabled: {
@@ -69,6 +66,41 @@
         --paper-input-container-label-floating: {
           font-size: var(--font-size-h4);
         }
+      }
+
+      .nylon-ex-large {
+        font-size: calc(var(--font-size-default) * 2);
+        padding: 14px 16px 14px 16px;
+        margin: var(--nylon-margin);
+        @apply --nylon-font-family;
+      }
+
+      .nylon-large {
+        font-size: var(--font-size-h3);
+        padding: 10px 16px 10px 16px;
+        margin: var(--nylon-margin);
+        @apply --nylon-font-family;
+      }
+
+      .nylon-default {
+        font-size: var(--font-size-h5);
+        padding: 6px 12px 6px 12px;
+        margin: var(--nylon-margin);
+        @apply --nylon-font-family;
+      }
+
+      .nylon-small {
+        font-size: var(--font-size-h5);
+        padding: 5px 10px 5px 10px;
+        margin: var(--nylon-margin);
+        @apply --nylon-font-family;
+      }
+
+      .nylon-ex-small {
+        font-size: var(--font-size-h6);
+        padding: 1px 8px 1px 8px;
+        margin: var(--nylon-margin);
+        @apply --nylon-font-family;
       }
 
       .card {
