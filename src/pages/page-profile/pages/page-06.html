@@ -40,10 +40,10 @@
                     <legend>[[i18n.page06.title_1]]</legend>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-5">
-                            <paper-checkbox>[[i18n.page06.title_2]]</paper-checkbox>
+                            [[i18n.page06.title_2]]
                         </div>
                         <div class="col-md-1">
-                            <paper-input label="" no-label-float>
+                            <paper-input label="" no-label-float value="{{data.year_computer}}" allowed-pattern="[0-9]">
                                 <div slot="suffix">
                                     [[i18n.page06.year]]
                                 </div>
@@ -52,10 +52,10 @@
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-5">
-                            <paper-checkbox>[[i18n.page06.teaching]]</paper-checkbox>
+                            [[i18n.page06.teaching]]
                         </div>
                         <div class="col-md-1">
-                            <paper-input label="" no-label-float>
+                            <paper-input label="" no-label-float value="{{data.year_teach}}" allowed-pattern="[0-9]">
                                 <div slot="suffix">
                                     [[i18n.page06.year]]
                                 </div>
@@ -64,10 +64,10 @@
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-5">
-                            <paper-checkbox>[[i18n.page06.quality]]</paper-checkbox>
+                            [[i18n.page06.quality]]
                         </div>
                         <div class="col-md-1">
-                            <paper-input label="" no-label-float>
+                            <paper-input label="" no-label-float value="{{data.year_quality}}" allowed-pattern="[0-9]">
                                 <div slot="suffix">
                                     [[i18n.page06.year]]
                                 </div>
@@ -195,7 +195,7 @@
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-3">
-                            <div class="label">[[i18n.page06.Japan]] :</div>
+                            <div class="label">[[i18n.page06.japan]] :</div>
                         </div>
                         <div class="col-md-6">
                             <paper-radio-group selected="b" aria-labelledby="label2">
@@ -224,10 +224,10 @@
             <app-toolbar slot="footer">
                 <div main-title></div>
                 <paper-button raised class="btn-default">
-                    <iron-icon icon="arrow-back"></iron-icon>[[i18n.button.previous]]</paper-button>
+                    <iron-icon icon="icons:autorenew"></iron-icon>[[i18n.button.reset]]
+                </paper-button>
                 <paper-button raised class="btn-default">
-                    [[i18n.button.next]]
-                    <iron-icon icon="arrow-forward"></iron-icon>
+                    <iron-icon icon="icons:save"></iron-icon>[[i18n.button.save]]
                 </paper-button>
             </app-toolbar>
         </nylon-panel-card>
@@ -262,7 +262,15 @@
                         type: Object,
                         statePath: 'i18n',
                     },
-                    
+                    info: {
+                        type: Object,
+                        statePath: 'profile.info'
+                    },
+                    data: {
+                        type: Object,
+                        statePath: 'profile.info.skill',
+                        value: {}
+                    }
                 };
             }
 
@@ -280,16 +288,6 @@
              */
             ready() {
                 super.ready();
-
-                Polymer.RenderStatus.afterNextRender(this, function () {
-
-                });
-            }
-            openPanelRight() {
-                this.$.right.open()
-            }
-            closePanelRight() {
-                this.$.right.close()
             }
         }
 
