@@ -83,27 +83,27 @@
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <!-- <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.agency_type]]" items='{{amphoeList}}'
-                                value="{{history.agency_type}}" item-label-path="label" item-value-path="value">
+                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.agency_type]]" items='{{saluList}}'
+                                value="{{data.salu_name_id}}" item-label-path="salu_name_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.salu">
                                 <template>
-                                    [[item.label]]
+                                    [[item.salu_name_th]]
                                 </template>
-                            </vaadin-combo-box> -->
-                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.agency_type]]" items='{{saluList}}' value="{{data.salu_id}}"
+                            </vaadin-combo-box>
+                            <!-- <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.agency_type]]" items='{{saluList}}' value="{{data.salu_id}}"
                                 item-label-path="salu_name_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.salu"
                                 class="required" required auto-validate>
                                 <template>
                                     [[item.salu_name_th]]
                                 </template>
-                            </vaadin-combo-box>
+                            </vaadin-combo-box> -->
                         </div>
                         <div class="col-md-4">
-                            <paper-input label="[[i18n.page05.agency_name]]" class="required" required always-float-label value="{{history.agency_name}}"></paper-input>
+                            <paper-input label="[[i18n.page05.agency_name]]" class="required" required always-float-label value="{{data.agency_name}}"></paper-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <paper-input label="[[i18n.page05.s_date]]" class="required" required always-float-label type=date value="{{history.s_date}}"></paper-input>
+                            <paper-input label="[[i18n.page05.s_date]]" class="required" required always-float-label type=date value="{{data.start_date}}"></paper-input>
                         </div>
                         <div class="col-md-4">
                             <paper-input label="[[i18n.page05.to]]" class="required" required always-float-label type=date value="{{history.to}}"></paper-input>
@@ -114,7 +114,7 @@
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <paper-input label="[[i18n.page05.first_position]]" class="required" required always-float-label value="{{history.first_position}}"></paper-input>
+                            <paper-input label="[[i18n.page05.first_position]]" class="required" required always-float-label value="{{data.first_position_1}}"></paper-input>
                         </div>
                         <div class="col-md-4">
                             <!-- <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{amphoeList}}' value="{{history.degree}}"
@@ -123,9 +123,9 @@
                                     [[item.label]]
                                 </template>
                             </vaadin-combo-box> -->
-                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{workpos1List}}' value="{{data.history_1.workpos1_id}}"
+                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{workpos1List}}' value="{{data.history_1_id}}"
                                 item-label-path="workpos1_name_th" item-value-path="id" on-selected-item-changed="getObject"
-                                object-name="data.history_1.workpos1" class="required" required auto-validate>
+                                object-name="data.history_1" class="required" required auto-validate>
                                 <template>
                                     [[item.workpos1_name_th]]
                                 </template>
@@ -134,7 +134,7 @@
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <paper-input label="[[i18n.page05.final_position]]" class="required" required always-float-label value="{{history.final_position}}"></paper-input>
+                            <paper-input label="[[i18n.page05.final_position]]" class="required" required always-float-label value="{{data.final_position_2}}"></paper-input>
                         </div>
                         <div class="col-md-4">
                             <!-- <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{amphoeList}}' value="{{history.degree}}"
@@ -143,9 +143,9 @@
                                     [[item.label]]
                                 </template>
                             </vaadin-combo-box> -->
-                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{workpos1List}}' value="{{data.history_2.workpos1_id}}"
+                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{workpos1List}}' value="{{data.history_2_id}}"
                                 item-label-path="workpos1_name_th" item-value-path="id" on-selected-item-changed="getObject"
-                                object-name="data.history_2.workpos1" class="required" required auto-validate>
+                                object-name="data.history_2" class="required" required auto-validate>
                                 <template>
                                     [[item.workpos1_name_th]]
                                 </template>
