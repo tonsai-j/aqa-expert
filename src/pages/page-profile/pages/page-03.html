@@ -23,14 +23,16 @@
             <div slot="content">
                 <fieldset>
                     <legend>[[i18n.page03.title]]</legend>
-                    <div class="row middle-md">
-                        <app-toolbar slot="header" class="col-md-12">
-                            <div main-title></div>
-                            <!-- <paper-icon-button class="btn-primary" icon="icons:add-circle" action="add" on-click="_openPanelRight"></paper-icon-button> -->
+                    <div class="row end-md middle-md">
+                        <div class="label col-md-3">
                             <paper-button raised class="btn-primary" action="add" on-click="_openPanelRight">
                                 <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]
                             </paper-button>
-                        </app-toolbar>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row middle-md">
+
                         <div slot="content" class="col-md-12">
                             <vaadin-grid id='material' slot="content" sub-slot="grid" items="[[datas]]">
                                 <vaadin-grid-column width="20px" flex-grow="0">
@@ -320,7 +322,7 @@
                     btn: [
                         {
                             label: this.i18n.button.close.label,
-                            icon:  this.i18n.button.close.icon,
+                            icon: this.i18n.button.close.icon,
                             class: 'btn-default',
                             'dialog-dismiss': true
                         },
