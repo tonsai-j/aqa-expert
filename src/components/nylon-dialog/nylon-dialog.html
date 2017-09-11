@@ -41,7 +41,7 @@
         <paper-dialog id="elConfirm" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
             <div class="middle center-lg cente-md center-sm center-xl">
                 <div>
-                    <iron-icon id='iconDialog' class="icon-dialog delete" icon="delete"></iron-icon>
+                    <iron-icon id='iconDialog' class="icon-dialog" icon="{{icon}}"></iron-icon>
                 </div>
                 <div>
                     <h2>[[title]]</h2>
@@ -138,9 +138,7 @@
                     }
                     return newElement
                 }
-
-
-
+                
                 if (op.btn !== undefined && op.btn.length !== 0 && Array.isArray(op.btn)) {
                     // ลบ element ออก
                     while (this.$.buttonsdialog.firstChild) {
