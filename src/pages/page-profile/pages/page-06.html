@@ -224,10 +224,10 @@
             <app-toolbar slot="footer">
                 <div main-title></div>
                 <paper-button raised class="btn-default">
-                    <iron-icon icon="icons:autorenew"></iron-icon>[[i18n.button.reset]]
+                    <iron-icon icon="[[i18n.button.reset.icon]]"></iron-icon>[[i18n.button.reset.label]]
                 </paper-button>
                 <paper-button raised class="btn-primary" on-click="_save">
-                    <iron-icon icon="icons:save"></iron-icon>[[i18n.button.save]]
+                    <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>[[i18n.button.save.label]]
                 </paper-button>
             </app-toolbar>
         </nylon-panel-card>
@@ -305,14 +305,15 @@
                     Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'skills', this.data,
                         () => {
                             Nylon.toast({
-                                icon: 'icons:cloud-done',
-                                msg: 'บันทึกเรียบร้อย'
+                                icon: this.i18n.toast.update.icon,
+                                msg: this.i18n.toast.update.msg
                             })
                         }
                     );
                 } else {
                     Nylon.toast({
-                        msg: 'กรุณากรอกข้อมูลให้ครบ'
+                        icon: this.i18n.toast.required.icon,
+                        msg: this.i18n.toast.required.msg
                     })
                 }
 
