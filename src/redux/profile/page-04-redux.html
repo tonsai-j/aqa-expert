@@ -22,7 +22,7 @@
     Nylon.addAction({
         PROFILE_04_GET_SPECIALISTGROUP: function () {
             return dispatch => {
-                axios.get('/specialistgroup').then(
+                axios.get('/group/specialist').then(
                     res => {
                         dispatch({ type: 'PROFILE_04_GET_SPECIALISTGROUP', payload: res.data })
                     }
@@ -31,7 +31,7 @@
         },
         PROFILE_04_GET_SPECIALISTTYPE: function () {
             return dispatch => {
-                axios.get('/specialisttype').then(
+                axios.get('/type/specialist').then(
                     res => {
                         dispatch({ type: 'PROFILE_04_GET_SPECIALISTTYPE', payload: res.data })
                     }
