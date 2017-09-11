@@ -64,7 +64,7 @@
                             <paper-input class="required" required always-float-label label="[[i18n.page01.prefix]]:" value="{{basic.prefix}}" auto-validate></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.name]]*:" value="{{basic.name}}" auto-validate></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.name]]*:" value="{{basic.firstname}}" auto-validate></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
                             <paper-input class="required" required always-float-label label="[[i18n.page01.lastname]]*:" value="{{basic.lastname}}" auto-validate></paper-input>
@@ -75,7 +75,7 @@
                             <paper-input class="required" required always-float-label label="[[i18n.page01.title_eng]]:" value="{{basic.title_en}}" auto-validate></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.name_eng]]:" value="{{basic.name_en}}" auto-validate></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.name_eng]]:" value="{{basic.firstname_en}}" auto-validate></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
                             <paper-input class="required" required always-float-label label="[[i18n.page01.lastname_eng]]:" value="{{basic.lastname_en}}"
@@ -119,7 +119,7 @@
                         </div>
                         <div class="col-md-2 col-md-3">
                             <!-- <paper-input always-float-label label="Name:"></paper-input> -->
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.birth]]:" type="date" value="{{basic.birth}}"
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.birth]]:" type="date" value="{{basic.birth_date}}"
                                 on-change="_calcAge" auto-validate></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
@@ -131,11 +131,11 @@
                             <paper-input always-float-label label="[[i18n.page01.id_card]]:" value="[[info.taxno]]" disabled></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.date_of_issue]]:" type="date" value="{{basic.date_of_issue}}"
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.date_of_issue]]:" type="date" value="{{basic.issue_date}}"
                                 auto-validate></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.expiration_date]]:" type="date" value="{{basic.expiration_date}}"
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.expiration_date]]:" type="date" value="{{basic.expire_date}}"
                                 auto-validate></paper-input>
                         </div>
                     </div>
@@ -213,7 +213,11 @@
                     age: {
                         type: Number,
                         value: 0
-                    }
+                    },
+                    data: {
+                        type: Object,
+                        value: {}
+                    },
                 };
             }
 
@@ -222,7 +226,7 @@
 
             ready() {
                 super.ready();
-                // console.log(this.academicList)
+                // console.log(this.basic)
                 Polymer.RenderStatus.afterNextRender(this, function () {
                     Nylon.dispatch('PROFILE_GET_LIST_ACADAMIC')
                     Nylon.dispatch('PROFILE_GET_LIST_GENDER')
@@ -242,8 +246,10 @@
                 reader.readAsDataURL(event.target.files[0]);
             }
             _save() {
-                console.log(this.validateForm('.required'));
+                // console.log(this.validateForm('.required'));
                 if (this.validateForm('.required')) {
+                    this.set('data.issue_date', new Date(this.data.issue_date).toISOString());
+                    this.set('data.expire_date', new Date(this.data.expire_date).toISOString());
                     Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'basic', this.basic,
                         () => {
                             Nylon.toast({

@@ -31,7 +31,7 @@
                     <div class="row end-md middle-md">
                         <div class="label col-md-3">
                             <paper-button raised class="btn-primary" on-tap=_openPanelRight>
-                                <iron-icon icon="add-circle-outline"></iron-icon>[[i18n.button.add]]</paper-button>
+                                <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]</paper-button>
                         </div>
                     </div>
                     <br>
@@ -70,8 +70,8 @@
                             </template>
                             <template>
                                 <span style="text-align: center">
-                                <paper-icon-button icon="icons:create" action="edit" on-click="_openPanelRight"></paper-icon-button>
-                                <paper-icon-button icon="icons:delete-forever" on-click="_confirmDel"></paper-icon-button>
+                                <paper-icon-button icon="[[i18n.button.edit.icon]]" action="edit" on-click="_openPanelRight"></paper-icon-button>
+                                <paper-icon-button icon="[[i18n.button.delete.icon]]" on-click="_confirmDel"></paper-icon-button>
                                 </span>
                             </template>
                         </vaadin-grid-column>
@@ -82,10 +82,10 @@
             <app-toolbar slot="footer">
                 <div main-title></div>
                 <paper-button raised class="btn-default">
-                    <iron-icon icon="arrow-back"></iron-icon>[[i18n.button.previous]]</paper-button>
+                    <iron-icon icon="[[i18n.button.back.icon]]"></iron-icon>[[i18n.button.back.label]]</paper-button>
                 <paper-button raised class="btn-default">
-                    [[i18n.button.next]]
-                    <iron-icon icon="arrow-forward"></iron-icon>
+                    [[i18n.button.next.label]]
+                    <iron-icon icon="[[i18n.button.next.icon]]"></iron-icon>
                 </paper-button>
             </app-toolbar>
         </nylon-panel-card>
@@ -169,10 +169,10 @@
                 <app-toolbar slot="footer">
                     <div main-title></div>
                     <paper-button raised on-click="_closePanelRight">
-                        <iron-icon icon="clear"></iron-icon>[[i18n.button.close]]
+                        <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>[[i18n.button.close.label]]
                     </paper-button>
                     <paper-button raised class="btn-success" on-click="_save">
-                        <iron-icon icon="check"></iron-icon>[[i18n.button.save]]
+                        <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>[[i18n.button.save.label]]
                     </paper-button>
                 </app-toolbar>
             </nylon-panel-card>
@@ -288,39 +288,77 @@
 
             }
 
+            // _confirmDel(e) {
+            //     // Nylon.confirm({
+            //     //     title: this.i18n.confirm.delete.title,
+            //     //     msg: this.i18n.confirm.delete.msg
+            //     // });
+            //     Nylon.confirm({
+            //         status: 'waring',
+            //         title: 'ยืนยันการลบ',
+            //         msg: 'หากต้องการลบให้กดปุ่ม ok',
+            //         icon: 'delete',
+            //         btn: [
+            //             {
+            //                 label: 'ปิด',
+            //                 icon: 'close',
+            //                 type: 'close',
+            //                 class: 'btn-default',
+            //                 'dialog-dismiss': true
+            //             },
+            //             {
+            //                 label: 'ลบ',
+            //                 icon: 'delete',
+            //                 type: 'ok',
+            //                 class: 'btn-default',
+            //                 'dialog-confirm': true,
+            //                 'autofocus': true,
+            //                 action: () => {
+            //                     Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'working', e.model.index
+            //                         , () => {
+            //                             this._closePanelRight()
+            //                             this.set('data', {})
+            //                             Nylon.toast({
+            //                                 icon: 'delete',
+            //                                 msg: 'ลบเรียบร้อย'
+            //                             })
+            //                         });
+            //                 }
+            //             }
+            //         ]
+            //     })
+            // }
+
             _confirmDel(e) {
                 // Nylon.confirm({
                 //     title: this.i18n.confirm.delete.title,
                 //     msg: this.i18n.confirm.delete.msg
                 // });
                 Nylon.confirm({
-                    status: 'waring',
-                    title: 'ยืนยันการลบ',
-                    msg: 'หากต้องการลบให้กดปุ่ม ok',
-                    icon: 'delete',
+                    title: this.i18n.confirm.delete.title,
+                    msg: this.i18n.confirm.delete.msg,
+                    icon: this.i18n.confirm.delete.icon,
                     btn: [
                         {
-                            label: 'ปิด',
-                            icon: 'close',
-                            type: 'close',
+                            label: this.i18n.button.close.label,
+                            icon: this.i18n.button.close.icon,
                             class: 'btn-default',
                             'dialog-dismiss': true
                         },
                         {
-                            label: 'ลบ',
-                            icon: 'delete',
-                            type: 'ok',
+                            label: this.i18n.button.delete.label,
+                            icon: this.i18n.button.delete.icon,
                             class: 'btn-default',
                             'dialog-confirm': true,
                             'autofocus': true,
                             action: () => {
-                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'working', e.model.index
+                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'education', e.model.index
                                     , () => {
                                         this._closePanelRight()
                                         this.set('data', {})
                                         Nylon.toast({
-                                            icon: 'delete',
-                                            msg: 'ลบเรียบร้อย'
+                                            icon: this.i18n.toast.delete.icon,
+                                            msg: this.i18n.toast.delete.msg
                                         })
                                     });
                             }
@@ -328,6 +366,7 @@
                     ]
                 })
             }
+
         }
 
         window.customElements.define(Page05.is, Page05);
