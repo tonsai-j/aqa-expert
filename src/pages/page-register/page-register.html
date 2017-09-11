@@ -59,7 +59,7 @@
                     <app-toolbar slot="footer">
                         <div main-title></div>
                         <paper-button raised class="btn-success" on-click="_register">
-                            <iron-icon icon="social:person-add"></iron-icon>&nbsp;[[i18n.button.login.label]]
+                            <iron-icon icon="social:person-add"></iron-icon>&nbsp;[[i18n.button.register.label]]
                         </paper-button>
                     </app-toolbar>
                 </nylon-panel-card>
@@ -129,7 +129,13 @@
             }
             _register(e) {
                 if (this.validateForm('.required')) {
-                    Nylon.dispatch('REGISTER_POST', this.data)
+                    // console.log(this.checkPersonID(this.data.taxno));
+                    if (this.checkPersonID(this.data.taxno)) {
+                        Nylon.dispatch('REGISTER_POST', this.data)
+                    } else {
+                        
+                    }
+                    
                 } else {
                     Nylon.toast('required')
                     
