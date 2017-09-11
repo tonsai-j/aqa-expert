@@ -1,8 +1,9 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../../../../bower_components/lazy-imports/lazy-imports-mixin.html">
-
 <link rel="import" href="../../../layout/flexbox-grid.html">
+<link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../../my-icons.html">
 
 <link rel="import" href="../../../../bower_components/paper-progress/paper-progress.html">
 
@@ -24,15 +25,22 @@
     <link rel="lazy-import" group="page-12" href="./page-12.html">
     <link rel="lazy-import" group="page-13" href="./page-13.html">
     <template>
-        <style include="flexbox-grid">
+        <style include="flexbox-grid flexbox-grid-remove-padding">
             paper-progress {
                 width: 100%;
             }
+
+            #icon-load {
+                top: 30%;
+                width: 10em;
+                height: 10em;
+                color: #BDBDBD;
+            }
         </style>
         <paper-progress hidden={{setShow}} indeterminate class="red"></paper-progress>
-        <!-- <div class="row middle-md center">
-            Loading...
-        </div> -->
+        <div class="row middle-md  center-md" style="{{checkStyle(setShow)}}">
+            <iron-icon  id="icon-load" icon="view-list"></iron-icon>
+        </div>
         <iron-pages selected="{{selected}}" attr-for-selected="name" selected-item="{{itemChanged}}" id="ironPageMenu">
             <page-01 name="ข้อมูลพื้นฐาน"></page-01>
             <page-02 name="ที่อยู่ในการติดต่อ"></page-02>
@@ -93,7 +101,14 @@
             ready() {
                 super.ready();
             }
-
+            checkStyle(setShow){
+                if (setShow) {
+                    return 'display: none;'  
+                }else {
+                    return 'display: block;'
+                }
+                
+            }
             // _listMenu() {
             //     for (var i = 0; i < this.listMenu.length; i++) {
             //         var newElement = document.createElement(this.listMenu[i]['component']);
