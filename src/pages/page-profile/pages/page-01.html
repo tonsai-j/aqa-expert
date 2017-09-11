@@ -15,16 +15,9 @@
 
 <dom-module id="page-01">
     <template>
-        <style include="flexbox-grid shared-styles">
+        <style include="flexbox-grid  shared-styles">
              :host {
                 display: block
-            }
-
-            #wrapper {
-                text-align: center;
-                margin: 0 auto;
-                padding: 0px;
-                width: 995px;
             }
 
             #output_image {
@@ -76,12 +69,6 @@
                         <div class="col-md-2 col-md-3">
                             <paper-input class="required" required always-float-label label="[[i18n.page01.lastname]]*:" value="{{basic.lastname}}" auto-validate></paper-input>
                         </div>
-                        <!-- <div class="col-md-2 col-md-3">
-                            <div class="row end-md ">
-                                <img id="output_image" />
-                                <input id="ifile" type=file accept="image/*" on-change="preview_image">
-                            </div>
-                        </div> -->
                     </div>
                     <div class="row middle-md col-md-offset-1">
                         <div class="col-md-2 col-md-3">
@@ -163,15 +150,16 @@
                         </div>
                     </div>
                 </fieldset>
-                <app-toolbar slot="footer">
-                    <div main-title></div>
-                    <paper-button raised class="btn-success" on-click="_save">
-                        <iron-icon icon="save"></iron-icon>&nbsp;&nbsp;[[i18n.button.save]]
-                    </paper-button>
-                    <paper-button raised class="btn-default" on-click="">
-                        <iron-icon icon="arrow-back"></iron-icon>&nbsp;&nbsp;[[i18n.button.previous]]
-                    </paper-button>
-                </app-toolbar>
+            </div>
+            <app-toolbar slot="footer">
+                <div main-title></div>
+                <paper-button raised class="btn-success" on-click="_save">
+                    <iron-icon icon="save"></iron-icon>&nbsp;&nbsp;[[i18n.button.save]]
+                </paper-button>
+                <!-- <paper-button raised class="btn-default" on-click="">
+                    <iron-icon icon="arrow-back"></iron-icon>&nbsp;&nbsp;[[i18n.button.previous]]
+                </paper-button> -->
+            </app-toolbar>
 
 
         </nylon-panel-card>

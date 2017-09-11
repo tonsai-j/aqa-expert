@@ -61,7 +61,8 @@
                     </div>
                     <div class="row middle-md col-md-offset-1">
                         <div class="input col-md-4">
-                            <paper-input class="required" required always-float-label allowed-pattern="[0-9]" label="[[i18n.page10.account_number]]*" value="{{bank.account_number}}"></paper-input>
+                            <paper-input class="required" required always-float-label allowed-pattern="[0-9]" label="[[i18n.page10.account_number]]*"
+                                value="{{bank.account_number}}"></paper-input>
                         </div>
                         <div class="input col-md-3">
                             โดยไม่ต้องใส่เครื่องหมายขีด "-"
@@ -87,16 +88,17 @@
                         </div>
                     </div>
                 </fieldset>
-                <app-toolbar slot="footer">
-                    <div main-title></div>
-                    <paper-button raised class="btn-default">
-                        <iron-icon icon="arrow-back"></iron-icon>[[i18n.button.previous]]</paper-button>
-                    <paper-button raised class="btn-success" on-click="_save">
-                        <iron-icon icon="save"></iron-icon>[[i18n.button.save]]</paper-button>
-                    <paper-button raised class="btn-default">[[i18n.button.next]]
-                        <iron-icon icon="arrow-forward"></iron-icon>
-                    </paper-button>
-                </app-toolbar>
+            </div>
+            <app-toolbar slot="footer">
+                <div main-title></div>
+                <!-- <paper-button raised class="btn-default">
+                    <iron-icon icon="arrow-back"></iron-icon>[[i18n.button.previous]]</paper-button> -->
+                <paper-button raised class="btn-success" on-click="_save">
+                    <iron-icon icon="save"></iron-icon>[[i18n.button.save]]</paper-button>
+                <!-- <paper-button raised class="btn-default">[[i18n.button.next]]
+                    <iron-icon icon="arrow-forward"></iron-icon> -->
+                </paper-button>
+            </app-toolbar>
             </div>
         </nylon-panel-card>
     </template>
