@@ -5,7 +5,7 @@
             typeAcademy: [],
             academy: [],
             faculty: [],
-            facultyGroup: [],
+            groupFaculty: [],
             fieldStudy: []
         }
 
@@ -22,8 +22,8 @@
             case 'PROFILE_03_GET_FACULTY':
                 state.faculty = action.data
                 return state
-            case 'PROFILE_03_GET_FACULTY_GROUP':
-                state.facultyGroup = action.data
+            case 'PROFILE_03_GET_GROUP_FACULTY':
+                state.groupFaculty = action.data
                 return state
             case 'PROFILE_03_GET_FILED_STUDY':
                 state.fieldStudy = action.data
@@ -47,7 +47,7 @@
         },
         PROFILE_03_GET_TYPE_ACADEMY: function () {
             return dispatch => {
-                axios.get('/type/academy?work_group_id=H').then(
+                axios.get('/type/academy?group_work_id=H').then(
                     res => {
                         dispatch({ type: 'PROFILE_03_GET_TYPE_ACADEMY', data: res.data })
                     }
@@ -75,11 +75,11 @@
                 )
             }
         },
-        PROFILE_03_GET_FACULTY_GROUP: function () {
+        PROFILE_03_GET_GROUP_FACULTY: function () {
             return dispatch => {
-                axios.get('/faculty/group').then(
+                axios.get('/group/faculty').then(
                     res => {
-                        dispatch({ type: 'PROFILE_03_GET_FACULTY_GROUP', data: res.data })
+                        dispatch({ type: 'PROFILE_03_GET_GROUP_FACULTY', data: res.data })
                     }
                 )
             }

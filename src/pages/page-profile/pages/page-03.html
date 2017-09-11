@@ -142,10 +142,10 @@
                             </vaadin-combo-box>
                         </div>
                         <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
-                            <vaadin-combo-box label="[[i18n.page03.facultyGroup]]" items='{{facultyGroup}}' value="{{data.faculty_group_id}}" item-label-path="faculty_group_name"
-                                item-value-path="id" on-selected-item-changed="getObject" object-name="data.faculty_group">
+                            <vaadin-combo-box label="[[i18n.page03.groupFaculty]]" items='{{groupFaculty}}' value="{{data.group_faculty_id}}" item-label-path="group_faculty_name"
+                                item-value-path="id" on-selected-item-changed="getObject" object-name="data.group_faculty">
                                 <template>
-                                    [[item.faculty_group_name]]
+                                    [[item.group_faculty_name]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
@@ -215,9 +215,9 @@
                         type: Array,
                         statePath: 'profile03.faculty'
                     },
-                    facultyGroup: {
+                    groupFaculty: {
                         type: Array,
-                        statePath: 'profile03.facultyGroup'
+                        statePath: 'profile03.groupFaculty'
                     },
                     fieldStudy: {
                         type: Array,
@@ -260,7 +260,7 @@
                 Nylon.dispatch('PROFILE_03_GET_TYPE_ACADEMY');
                 Nylon.dispatch('PROFILE_03_GET_ACADEMY', '');
                 Nylon.dispatch('PROFILE_03_GET_FACULTY');
-                Nylon.dispatch('PROFILE_03_GET_FACULTY_GROUP');
+                Nylon.dispatch('PROFILE_03_GET_GROUP_FACULTY');
                 Nylon.dispatch('PROFILE_03_GET_FILED_STUDY');
             }
             _getAacademy(e) {
