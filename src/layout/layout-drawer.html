@@ -17,6 +17,7 @@
                 font-family: CSChatThaiUI, sans-serif;
                 -webkit-font-smoothing: antialiased;
             } */
+
              :host {
                 display: block;
                 z-index: 1;
@@ -62,12 +63,12 @@
                     View Two
                 </paper-icon-item> -->
                 <paper-icon-item name="page-register" href="/register" on-click="_redirect">
-                    <iron-icon icon="bookmark-border" slot="item-icon"></iron-icon>
-                    [[i18n.menu.register]]
+                    <iron-icon icon="[[i18n.menu.register.icon]]" slot="item-icon"></iron-icon>
+                    [[i18n.menu.register.label]]
                 </paper-icon-item>
                 <paper-icon-item name="page-profile" href="/profile/ข้อมูลพื้นฐาน" on-click="_redirect">
-                    <iron-icon icon="bookmark-border" slot="item-icon"></iron-icon>
-                    [[i18n.menu.profile]]
+                    <iron-icon icon="[[i18n.menu.profile.icon]]" slot="item-icon"></iron-icon>
+                    [[i18n.menu.profile.label]]
                 </paper-icon-item>
 
             </iron-selector>
