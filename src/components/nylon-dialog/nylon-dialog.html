@@ -100,7 +100,7 @@
                 // })
             }
 
-            openToast(op = 'insert') {
+            openToast(op = 'insert', titie) {
                 let title = { icon: '', msg: '' }
                 switch (op) {
                     case 'insert':
@@ -119,7 +119,13 @@
                         title.icon = this.i18n.toast.delete.icon
                         title.msg = this.i18n.toast.delete.msg
                         break;
+                    case 'error':
+                        title.icon = this.i18n.toast.error.icon
+                        title.msg = this.i18n.toast.error.msg
+                        break;
                     default:
+                        title.icon = titie.icon || 'speaker-notes'
+                        title.msg = titie.msg || ''
                         break;
                 }
                 this.icon = title.icon
