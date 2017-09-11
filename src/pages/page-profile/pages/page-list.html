@@ -3,6 +3,9 @@
 <link rel="import" href="../../../../bower_components/lazy-imports/lazy-imports-mixin.html">
 <link rel="import" href="../../../../bower_components/paper-progress/paper-progress.html">
 <link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
+
+<link rel="import" href="../../../../bower_components/polymer/lib/utils/debounce.html">
+
 <link rel="import" href="../../../redux/profile/profile-redux.html">
 <link rel="import" href="../../../layout/flexbox-grid.html">
 <link rel="import" href="../../../my-icons.html">
@@ -38,7 +41,7 @@
         </style>
         <paper-progress hidden={{setShow}} indeterminate class="red"></paper-progress>
         <div class="row middle-md  center-md" style="{{checkStyle(setShow)}}">
-            <iron-icon  id="icon-load" icon="view-list"></iron-icon>
+            <iron-icon id="icon-load" icon="view-list"></iron-icon>
         </div>
         <iron-pages selected="{{selected}}" attr-for-selected="name" selected-item="{{itemChanged}}" id="ironPageMenu">
             <page-01 name="ข้อมูลพื้นฐาน"></page-01>
@@ -88,10 +91,20 @@
                 if (!el)
                     return
                 this.set('setShow', false)
-                this.importLazyGroup(el.localName).then((results) => {
-                    this.dispatchEvent(new CustomEvent('import-loaded', results));
-                    this.set('setShow', true)
-                });
+
+                // this._debounceJob = Polymer.Debouncer.debounce(this._debounceJob, Polymer.Async.timeOut.after(300), () => {
+                //     this.dispatchEvent(new CustomEvent('import-loaded', results));
+                //     this.set('setShow', true)
+                // })
+                this._debouncer = Polymer.Debouncer.debounce(
+                    this._debouncer, // initially undefined
+                    Polymer.Async.timeOut.after(300),
+                    () => {
+                        this.importLazyGroup(el.localName).then(results => {
+                            this.dispatchEvent(new CustomEvent('import-loaded', results));
+                            this.set('setShow', true)
+                        })
+                    })
             }
             constructor() {
                 super();
@@ -100,13 +113,13 @@
             ready() {
                 super.ready();
             }
-            checkStyle(setShow){
+            checkStyle(setShow) {
                 if (setShow) {
-                    return 'display: none;'  
-                }else {
+                    return 'display: none;'
+                } else {
                     return 'display: block;'
                 }
-                
+
             }
             // _listMenu() {
             //     for (var i = 0; i < this.listMenu.length; i++) {
