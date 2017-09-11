@@ -252,16 +252,12 @@
                     this.set('data.expire_date', new Date(this.data.expire_date).toISOString());
                     Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'basic', this.basic,
                         () => {
-                            Nylon.toast({
-                                msg: 'บันทึกเรียบร้อย'
-                            })
+                            Nylon.toast('update')
                         }
                     );
 
                 } else {
-                    Nylon.toast({
-                        msg: 'กรุณากรอกข้อมูลให้ครบ'
-                    })
+                    Nylon.toast('required')
                 }
 
             }

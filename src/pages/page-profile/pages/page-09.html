@@ -101,8 +101,8 @@
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-9">
-                            <vaadin-combo-box  always-float-label label="[[i18n.page09.type]]" items='{{amphoeList}}' 
-                            value="{{quality.type}}" item-label-path="label" item-value-path="value">
+                            <vaadin-combo-box always-float-label label="[[i18n.page09.type]]" items='{{amphoeList}}' value="{{quality.type}}" item-label-path="label"
+                                item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -194,7 +194,7 @@
                 };
             }
 
-           
+
 
             ready() {
                 super.ready();
@@ -217,16 +217,11 @@
                 if (this.validateForm('.required')) {
                     Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'quality', this.quality,
                         () => {
-
+                            Nylon.toast('update')
                         }
                     );
-                    Nylon.toast({
-                        msg: 'บันทึกเรียบร้อย'
-                    })
                 } else {
-                    Nylon.toast({
-                        msg: 'กรุณากรอกข้อมูลให้ครบ'
-                    })
+                    Nylon.toast('required')
                 }
 
             }

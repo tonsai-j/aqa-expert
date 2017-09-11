@@ -418,7 +418,7 @@
                     <iron-icon icon="arrow-back"></iron-icon>[[i18n.button.previous]]</paper-button> -->
                 <paper-button raised class="btn-success" on-click="_save">
                     <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                <!-- <paper-busn-icon icon="arrow-forward"></iron-icon> -->
+                    <!-- <paper-busn-icon icon="arrow-forward"></iron-icon> -->
                 </paper-button>
             </app-toolbar>
 
@@ -518,16 +518,12 @@
                 if (this.validateForm('.required')) {
                     Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'address', this.data,
                         () => {
-
+                            Nylon.toast('update')
                         }
                     );
-                    Nylon.toast({
-                        msg: 'บันทึกเรียบร้อย'
-                    })
+
                 } else {
-                    Nylon.toast({
-                        msg: 'กรุณากรอกข้อมูลให้ครบ'
-                    })
+                    Nylon.toast('required')
                 }
 
             }

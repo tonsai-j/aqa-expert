@@ -38,7 +38,7 @@
                     <legend>[[i18n.page12.references]] (คนที่ 1)</legend>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.name]]" class="required" required always-float-label value="{{person.name}}" ></paper-input>
+                            <paper-input label="[[i18n.page12.name]]" class="required" required always-float-label value="{{person.name}}"></paper-input>
                         </div>
                         <div class=" col-md-4">
                             <paper-input label="[[i18n.page12.lastname]]" class="required" required always-float-label value="{{person.lastname}}"></paper-input>
@@ -173,16 +173,11 @@
                 if (this.validateForm('.required')) {
                     Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'person', this.person,
                         () => {
-
+                            Nylon.toast('update')
                         }
                     );
-                    Nylon.toast({
-                        msg: 'บันทึกเรียบร้อย'
-                    })
                 } else {
-                    Nylon.toast({
-                        msg: 'กรุณากรอกข้อมูลให้ครบ'
-                    })
+                    Nylon.toast('required')
                 }
 
             }

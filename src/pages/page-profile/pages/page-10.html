@@ -160,16 +160,12 @@
                 if (this.validateForm('.required')) {
                     Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'bank', this.bank,
                         () => {
-
+                            Nylon.toast('update')
                         }
                     );
-                    Nylon.toast({
-                        msg: 'บันทึกเรียบร้อย'
-                    })
+
                 } else {
-                    Nylon.toast({
-                        msg: 'กรุณากรอกข้อมูลให้ครบ'
-                    })
+                    Nylon.toast('required')
                 }
 
             }

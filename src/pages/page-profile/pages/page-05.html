@@ -264,10 +264,7 @@
                             , () => {
                                 this._closePanelRight();
                                 this.set('data', {});
-                                Nylon.toast({
-                                    icon: 'check',
-                                    msg: 'บันทึกเรียบร้อย'
-                                })
+                                Nylon.toast('insert')
                             });
                     } else {
                         var newData = Object.assign(this.data, {
@@ -278,10 +275,7 @@
                             , () => {
                                 this._closePanelRight();
                                 this.set('data', {});
-                                Nylon.toast({
-                                    icon: 'check',
-                                    msg: 'บันทึกเรียบร้อย'
-                                })
+                                Nylon.toast('update')
                             });
                     }
                 }
@@ -356,10 +350,7 @@
                                     , () => {
                                         this._closePanelRight()
                                         this.set('data', {})
-                                        Nylon.toast({
-                                            icon: this.i18n.toast.delete.icon,
-                                            msg: this.i18n.toast.delete.msg
-                                        })
+                                        Nylon.toast('delete')
                                     });
                             }
                         }
