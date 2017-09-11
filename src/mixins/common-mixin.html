@@ -9,9 +9,14 @@
 
         extarFrom(required) {
             let arr = this.queryFrom(required)
-            let allTrue = []
+            let allTrue = [];
+            let fc = false;
             for (var index = 0; index < arr.length; index++) {
                 allTrue.push(arr[index].validate())
+                if (!arr[index].validate() && fc == false) {
+                    arr[index].focus();
+                    fc = true;
+                }
             }
             return allTrue
         }
@@ -28,7 +33,7 @@
             if ((e.detail.queueProperty === true)
                 && (e.detail.value !== null)
                 && (e.detail.value.id !== '0')) {
-                    console.log(e.detail.value)
+                console.log(e.detail.value)
                 this.set(`data.${e.currentTarget.getAttribute('object-name')}`, e.detail.value)
                 console.log(this.data)
             } else {
