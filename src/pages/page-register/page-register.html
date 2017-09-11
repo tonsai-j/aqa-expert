@@ -11,7 +11,12 @@
 <link rel="import" href="../../i18n/register/main-i18n.html">
 <dom-module id="page-register">
     <template>
-        <style include="flexbox-grid flexbox-grid-remove-padding shared-styles">
+        <style include="shared-styles flexbox-grid flexbox-grid-remove-padding ">
+            .row {
+                padding-right: 0rem;
+                padding-left: 0rem;
+            }
+
             .header {
                 top: 50%;
                 text-align: center;
@@ -57,7 +62,7 @@
             </nylon-panel-card>
         </div> -->
         <div class="container row center-md center-lg center-sm">
-            <div class="col-lg-6 col-md-8  col-sm-10  col-xs-12">
+            <div class="col-lg-5 col-md-8  col-sm-10  col-xs-12">
                 <nylon-panel-card id="panelCard">
                     <div slot="header">
                         <div class="header">
@@ -151,23 +156,23 @@
             }
             _register(e) {
                 // if (this.$.inputTaxNo.validate()) {
-                    if (this.$.comboTypeAss.value == '') {
-                        this.$.comboTypeAss.open();
-                        return false;
+                if (this.$.comboTypeAss.value == '') {
+                    this.$.comboTypeAss.open();
+                    return false;
+                } else {
+                    if (this.checkPersonID(this.data.taxno)) {
+                        Nylon.dispatch('REGISTER_POST', this.data)
                     } else {
-                        if (this.checkPersonID(this.data.taxno)) {
-                            Nylon.dispatch('REGISTER_POST', this.data)
-                        } else {
-                            // Nylon.toast({
-                            //     msg:'เลขบัตรประชาชนผิดผลาด'
-                            // })
-                            // Nylon.confirm({
-                            //     status: 'waring',
-                            //     title: 'ยืนยันการลบ',
-                            //     msg: 'หากต้องการลบให้กดปุ่ม ok',
-                            // }, (confirm) => {
-                            //     console.log('callback ok')
-                            // })
+                        // Nylon.toast({
+                        //     msg:'เลขบัตรประชาชนผิดผลาด'
+                        // })
+                        // Nylon.confirm({
+                        //     status: 'waring',
+                        //     title: 'ยืนยันการลบ',
+                        //     msg: 'หากต้องการลบให้กดปุ่ม ok',
+                        // }, (confirm) => {
+                        //     console.log('callback ok')
+                        // })
                         //     Nylon.confirm({
                         //         status: 'waring',
                         //         title: 'ยืนยันการลบ',
@@ -212,11 +217,11 @@
                         //             }
                         //         ]
                         //     })
-                        }
-                        // console.log(this.data)
-                        // console.log(this.checkPersonID(this.data.taxno));
-                        Nylon.dispatch('REGISTER_POST', this.data)
                     }
+                    // console.log(this.data)
+                    // console.log(this.checkPersonID(this.data.taxno));
+                    Nylon.dispatch('REGISTER_POST', this.data)
+                }
                 // }
             }
 
