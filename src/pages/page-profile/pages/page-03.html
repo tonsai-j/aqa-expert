@@ -28,7 +28,7 @@
                             <div main-title></div>
                             <!-- <paper-icon-button class="btn-primary" icon="icons:add-circle" action="add" on-click="_openPanelRight"></paper-icon-button> -->
                             <paper-button raised class="btn-primary" action="add" on-click="_openPanelRight">
-                                <iron-icon icon="icons:add-circle"></iron-icon>
+                                <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]
                             </paper-button>
                         </app-toolbar>
                         <div slot="content" class="col-md-12">
@@ -90,8 +90,8 @@
                                     </template>
                                     <template>
                                         <span style="text-align: center">
-                                        <paper-icon-button icon="icons:create" action="edit" on-click="_openPanelRight"></paper-icon-button>
-                                        <paper-icon-button icon="icons:delete-forever" on-click="_confirmDel"></paper-icon-button>
+                                        <paper-icon-button icon="[[i18n.button.edit.icon]]" action="edit" on-click="_openPanelRight"></paper-icon-button>
+                                        <paper-icon-button icon="[[i18n.button.delete.icon]]" on-click="_confirmDel"></paper-icon-button>
                                         </span>
                                     </template>
                                 </vaadin-grid-column>
@@ -178,7 +178,7 @@
                 <app-toolbar slot="footer">
                     <div main-title></div>
                     <paper-button raised on-click="_closePanelRight">
-                        <iron-icon icon="clear"></iron-icon>[[i18n.button.close]]
+                        <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>[[i18n.button.close.label]]
                     </paper-button>
                     <paper-button raised class="btn-success" on-click="_save">
                         <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>[[i18n.button.save.label]]
@@ -319,14 +319,14 @@
                     icon: this.i18n.confirm.delete.icon,
                     btn: [
                         {
-                            label: this.i18n.button.close,
-                            icon: 'close',
+                            label: this.i18n.button.close.label,
+                            icon:  this.i18n.button.close.icon,
                             class: 'btn-default',
                             'dialog-dismiss': true
                         },
                         {
-                            label: this.i18n.button.delete,
-                            icon: 'delete',
+                            label: this.i18n.button.delete.label,
+                            icon: this.i18n.button.delete.icon,
                             class: 'btn-default',
                             'dialog-confirm': true,
                             'autofocus': true,
