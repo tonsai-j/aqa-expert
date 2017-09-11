@@ -45,11 +45,11 @@
                     <div slot="content" class="middle-md">
                         <div class="col-xs-12">
                             <paper-input id="inputTaxNo" class="required input" required label="[[i18n.register.taxno]]" value="{{data.taxno}}" allowed-pattern="[0-9]"
-                                maxlength="13" required></paper-input>
+                                maxlength="13" required on-keyup="_enter"></paper-input>
                         </div>
                         <div class="col-xs-12">
-                            <vaadin-combo-box id="comboTypeAss" class="required input" required  label="[[i18n.register.level]]" items='{{typeAssessor}}' value="{{data.type_assessor_id}}"
-                                item-label-path="type_assessor_name" item-value-path="id">
+                            <vaadin-combo-box id="comboTypeAss" class="required input" required label="[[i18n.register.level]]" items='{{typeAssessor}}'
+                                value="{{data.type_assessor_id}}" item-label-path="type_assessor_name" item-value-path="id">
                                 <template>
                                     [[item.type_assessor_name]]
                                 </template>
@@ -58,8 +58,11 @@
                     </div>
                     <app-toolbar slot="footer">
                         <div main-title></div>
+                        <paper-button raised class="btn-default" on-click="_clear">
+                            <iron-icon icon="[[i18n.button.reset.icon]]"></iron-icon>&nbsp;[[i18n.button.reset.label]]
+                        </paper-button>
                         <paper-button raised class="btn-success" on-click="_register">
-                            <iron-icon icon="social:person-add"></iron-icon>&nbsp;[[i18n.button.register.label]]
+                            <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp;[[i18n.button.register.label]]
                         </paper-button>
                     </app-toolbar>
                 </nylon-panel-card>
@@ -127,20 +130,28 @@
             nylonPagesActive() {
                 Nylon.dispatch('REGISTER_GET_TYPE_ASSESSOR')
             }
+            _enter(e) {
+                if (e.code === 'Enter') {
+                    this._register();
+                }
+            }
+            _clear() {
+                this.set('data.taxno', '');
+            }
             _register(e) {
                 if (this.validateForm('.required')) {
                     // console.log(this.checkPersonID(this.data.taxno));
                     // if (this.checkPersonID(this.data.taxno)) {
-                        Nylon.dispatch('REGISTER_POST', this.data)
+                    Nylon.dispatch('REGISTER_POST', this.data)
                     // } else {
-                        
+
                     // }
-                    
+
                 } else {
                     Nylon.toast('required')
-                    
+
                 }
-               
+
             }
 
             checkPersonID(id) {
