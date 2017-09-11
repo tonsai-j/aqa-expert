@@ -17,9 +17,11 @@
                 padding-top: 3px;
                 cursor: pointer;
             }
-            .menu{
+
+            .menu {
                 font-size: .8em;
             }
+
             .menu:hover {
                 background-color: var(--paper-indigo-500);
                 font-weight: bold;
@@ -108,7 +110,12 @@
                 this.set('currentPage', e.name)
             }
             _changePage(e) {
-                Nylon.redirect('/profile/' + e.model.item.name);
+                if (typeof this.info.id === 'undefined') {
+                    Nylon.redirect('/register');
+                } else {
+                    Nylon.redirect('/profile/' + e.model.item.name);
+                }
+
             }
         }
 
