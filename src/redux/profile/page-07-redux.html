@@ -1,0 +1,46 @@
+<script>
+    Nylon.addReducer('profile07', function (state, action) {
+        state = state || {
+            typeAcademy: [],
+            academy: []
+        }
+
+        switch (action.type) {
+            case 'PROFILE_07_GET_TYPE_ACADEMY':
+                state.typeAcademy = action.data
+                return state
+            case 'PROFILE_07_GET_ACADEMY':
+                state.academy = action.data
+                return state
+            default:
+                return state
+        }
+
+    })
+
+
+    Nylon.addAction({
+        PROFILE_07_GET_TYPE_ACADEMY: function (groupWorkId) {
+            return dispatch => {
+                axios.get(`/type/academy?group_work_id=${groupWorkId}`).then(
+                    res => {
+                        dispatch({ type: 'PROFILE_07_GET_TYPE_ACADEMY', data: res.data })
+                    }
+                )
+            }
+        },
+        PROFILE_07_GET_ACADEMY: function (groupWorkId, typeAcademyId) {
+            var link = `/academy?group_work_id=${groupWorkId}`;
+            if (typeAcademyId != '')
+                link += `&type_academy_id=${typeAcademyId}`;
+            return dispatch => {
+                axios.get(link).then(
+                    res => {
+                        dispatch({ type: 'PROFILE_07_GET_ACADEMY', data: res.data })
+                    }
+                )
+            }
+        }
+    })
+
+</script>
