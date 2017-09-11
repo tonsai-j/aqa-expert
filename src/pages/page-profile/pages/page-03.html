@@ -5,6 +5,9 @@
 <link rel="import" href="../../../i18n/profile/page-03-i18n.html">
 <link rel="import" href="../../../redux/profile/page-03-redux.html">
 <link rel="import" href="../../../layout/flexbox-grid.html">
+
+<link rel="import" href="../../../my-icons.html">
+
 <link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
 <link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
 <link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
@@ -102,7 +105,7 @@
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-4">
                             <vaadin-combo-box label="[[i18n.page03.eduLevel]]" items='{{eduLevel}}' value="{{data.edu_level_id}}" item-label-path="edu_level_name"
                                 item-value-path="id" on-selected-item-changed="getObject" object-name="data.edu_level" class="required"
                                 required>
@@ -111,7 +114,7 @@
                                 </template>
                             </vaadin-combo-box>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="col-xs-12 col-sm-12 col-md-4">
                             <vaadin-combo-box label="[[i18n.page03.typeAcademy]]" items='{{typeAcademy}}' value="{{data.type_academy_id}}" item-label-path="type_academy_name"
                                 item-value-path="id" on-change="_getAacademy" on-selected-item-changed="getObject" object-name="data.type_academy"
                                 class="required" required>
@@ -120,7 +123,7 @@
                                 </template>
                             </vaadin-combo-box>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
                             <vaadin-combo-box label="[[i18n.page03.academy]]" items='{{academy}}' value="{{data.academy_id}}" item-label-path="academy_name"
                                 item-value-path="id" on-selected-item-changed="getObject" object-name="data.academy" class="required"
                                 required>
@@ -129,7 +132,7 @@
                                 </template>
                             </vaadin-combo-box>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="col-md-offset-1  col-xs-12 col-sm-12 col-md-8">
                             <vaadin-combo-box label="[[i18n.page03.faculty]]" items='{{faculty}}' value="{{data.faculty_id}}" item-label-path="faculty_name"
                                 item-value-path="id" on-selected-item-changed="getObject" object-name="data.faculty" class="required"
                                 required>
@@ -138,7 +141,7 @@
                                 </template>
                             </vaadin-combo-box>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
                             <vaadin-combo-box label="[[i18n.page03.facultyGroup]]" items='{{facultyGroup}}' value="{{data.faculty_group_id}}" item-label-path="faculty_group_name"
                                 item-value-path="id" on-selected-item-changed="getObject" object-name="data.faculty_group">
                                 <template>
@@ -146,7 +149,7 @@
                                 </template>
                             </vaadin-combo-box>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
                             <vaadin-combo-box label="[[i18n.page03.fieldStudy]]" items='{{fieldStudy}}' value="{{data.field_study_id}}" item-label-path="field_study_name"
                                 item-value-path="id" on-selected-item-changed="getObject" object-name="data.field_study" class="required"
                                 required>
@@ -155,19 +158,19 @@
                                 </template>
                             </vaadin-combo-box>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
                             <paper-input label="[[i18n.page03.degree]] ([[i18n.page03.full]])" value="{{data.degree_full}}" class="required" required></paper-input>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
                             <paper-input label="[[i18n.page03.degree]] ([[i18n.page03.short]])" value="{{data.degree_short}}"></paper-input>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-4">
                             <paper-input label="[[i18n.page03.major]]" value="{{data.major}}" class="required" required></paper-input>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class=" col-xs-12 col-sm-12 col-md-4">
                             <paper-input label="[[i18n.page03.minor]]" value="{{data.minor}}"></paper-input>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-4">
                             <paper-input label="[[i18n.page03.year]]" value="{{data.year}}" allowed-pattern="[0-9]" maxlength="4" class="required" required></paper-input>
                         </div>
                     </div>
@@ -277,6 +280,10 @@
                             , () => {
                                 this._closePanelRight();
                                 this.set('data', {});
+                                Nylon.toast({
+                                    icon: 'check',
+                                    msg: 'บันทึกเรียบร้อย'
+                                })
                             });
                     } else {
                         var newData = Object.assign(this.data, {
@@ -287,22 +294,54 @@
                             , () => {
                                 this._closePanelRight();
                                 this.set('data', {});
+                                Nylon.toast({
+                                    icon: 'check',
+                                    msg: 'บันทึกเรียบร้อย'
+                                })
                             });
                     }
                 }
 
             }
             _confirmDel(e) {
+                // Nylon.confirm({
+                //     title: this.i18n.confirm.delete.title,
+                //     msg: this.i18n.confirm.delete.msg
+                // });
                 Nylon.confirm({
-                    title: this.i18n.confirm.delete.title,
-                    msg: this.i18n.confirm.delete.msg
-                }, (cf) => {
-                    Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'education', e.model.index
-                        , () => {
-                            this._closePanelRight();
-                            this.set('data', {});
-                        });
-                });
+                    status: 'waring',
+                    title: 'ยืนยันการลบ',
+                    msg: 'หากต้องการลบให้กดปุ่ม ok',
+                    icon: 'delete',
+                    btn: [
+                        {
+                            label: 'ปิด',
+                            icon: 'close',
+                            type: 'close',
+                            class: 'btn-default',
+                            'dialog-dismiss': true
+                        },
+                        {
+                            label: 'ลบ',
+                            icon: 'delete',
+                            type: 'ok',
+                            class: 'btn-default',
+                            'dialog-confirm': true,
+                            'autofocus': true,
+                            action: () => {
+                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'education', e.model.index
+                                    , () => {
+                                        this._closePanelRight()
+                                        this.set('data', {})
+                                        Nylon.toast({
+                                            icon: 'delete',
+                                            msg: 'ลบเรียบร้อย'
+                                        })
+                                    });
+                            }
+                        }
+                    ]
+                })
             }
 
         }

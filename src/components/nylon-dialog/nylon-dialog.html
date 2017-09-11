@@ -30,15 +30,15 @@
         <paper-toast id="elToast">
             <iron-icon icon="[[icon]]"></iron-icon>&nbsp;&nbsp;[[msg]]
         </paper-toast>
-        <paper-dialog id="elConfirm" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
+        <!-- <paper-dialog id="elConfirm" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
             <h2>[[title]]</h2>
             <div>[[msg]]</div>
             <div class="buttons">
                 <paper-button dialog-dismiss on-click="takeAction" ans="cancel">Cancel</paper-button>
                 <paper-button dialog-confirm autofocus on-click="takeAction" ans="ok">OK</paper-button>
             </div>
-        </paper-dialog>
-        <!-- <paper-dialog modal id="elConfirm" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
+        </paper-dialog> -->
+        <paper-dialog id="elConfirm" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
             <div class="middle center-lg cente-md center-sm center-xl">
                 <div>
                     <iron-icon id='iconDialog' class="icon-dialog delete" icon="delete"></iron-icon>
@@ -52,7 +52,7 @@
             </div>
             <div id="buttonsdialog" class="buttons">
             </div>
-        </paper-dialog> -->
+        </paper-dialog>
     </template>
 
     <script>
@@ -98,61 +98,72 @@
                 this.msg = op.msg
                 this.$.elToast.open()
             }
-            openConfirm(op, callbackOk, callbackCancel) {
-                this.icon = op.icon || 'speaker-notes'
-                this.msg = op.msg
-                this.title = op.title
-                this.callbackOk = callbackOk
-                this.callbackCancel = callbackCancel
-                this.$.elConfirm.open()
-            }
-            takeAction(e) {
-                if (e.currentTarget.getAttribute('ans') == "ok") {
-                    this.callbackOk()
-                } else {
-                    if (this.callbackCancel)
-                        this.callbackCancel()
-                }
-                // console.log(111);
-            }
-
-            // openConfirm(op) {
+            // openConfirm(op, callbackOk, callbackCancel) {
             //     this.icon = op.icon || 'speaker-notes'
             //     this.msg = op.msg
             //     this.title = op.title
-            //     this.$.iconDialog.icon = op.icon || 'speaker-notes'
-            //     this.$.iconDialog.style = op.style || ''
-            //     const setAttValue = (newElement, att, value) => {
-            //         switch (att) {
-            //             case 'label':
-            //                 newElement.innerHTML = value
-            //                 break;
-            //             case 'action':
-            //                 newElement.addEventListener('tap',value)
-            //                 break;
-            //             default:
-            //                 let newClass = document.createAttribute(att)
-            //                 newClass.value = value
-            //                 newElement.setAttributeNode(newClass)
-            //                 break;
-            //         }
-            //         return newElement
-            //     }
-
-            //     for (let i = 0; i < op.btn.length; i++) {
-            //         let newElement = document.createElement('paper-button')
-
-            //         for (var att in op.btn[i]) {
-            //             if (op.btn[i].hasOwnProperty(att)) {
-            //                 newElement = setAttValue(newElement, 'raised', true)
-            //                 newElement = setAttValue(newElement, att, op.btn[i][att])
-            //             }
-            //         }
-            //         // console.log(newElement);
-            //         Polymer.dom(this.$.buttonsdialog).appendChild(newElement)
-            //     }
+            //     this.callbackOk = callbackOk
+            //     this.callbackCancel = callbackCancel
             //     this.$.elConfirm.open()
             // }
+            // takeAction(e) {
+            //     if (e.currentTarget.getAttribute('ans') == "ok") {
+            //         this.callbackOk()
+            //     } else {
+            //         if (this.callbackCancel)
+            //             this.callbackCancel()
+            //     }
+            //     // console.log(111);
+            // }
+
+            openConfirm(op) {
+                this.icon = op.icon || 'speaker-notes'
+                this.msg = op.msg
+                this.title = op.title
+                this.$.iconDialog.icon = op.icon || 'speaker-notes'
+                this.$.iconDialog.style = op.style || ''
+                const setAttValue = (newElement, att, value) => {
+                    switch (att) {
+                        case 'label':
+                            newElement.innerHTML = value
+                            break;
+                        case 'action':
+                            newElement.addEventListener('tap', value)
+                            break;
+                        default:
+                            let newClass = document.createAttribute(att)
+                            newClass.value = value
+                            newElement.setAttributeNode(newClass)
+                            break;
+                    }
+                    return newElement
+                }
+
+
+
+                if (op.btn !== undefined && op.btn.length !== 0 && Array.isArray(op.btn)) {
+                    // ลบ element ออก
+                    while (this.$.buttonsdialog.firstChild) {
+                        this.$.buttonsdialog.removeChild(this.$.buttonsdialog.firstChild);
+                    }
+                    // เพิ่มปุ่มเข้าไป
+                    for (let i = 0; i < op.btn.length; i++) {
+                        let newElement = document.createElement('paper-button')
+
+                        for (var att in op.btn[i]) {
+                            if (op.btn[i].hasOwnProperty(att)) {
+                                newElement = setAttValue(newElement, 'raised', true)
+                                newElement = setAttValue(newElement, att, op.btn[i][att])
+                            }
+                        }
+                        Polymer.dom(this.$.buttonsdialog).appendChild(newElement)
+                    }
+                } else {
+                    // console.log(111);
+                }
+
+                this.$.elConfirm.open()
+            }
         }
 
         window.customElements.define(NylonDialog.is, NylonDialog);
