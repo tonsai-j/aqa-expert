@@ -41,7 +41,7 @@
                         </vaadin-grid-column>
                         <vaadin-grid-column>
                             <template class="header">[[i18n.page04.type]]</template>
-                            <template>[[item.specialist_type.type_specialist_name]]</template>
+                            <template>[[item.type_specialist.type_specialist_name]]</template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
                             <template class="header">[[i18n.page04.date]]</template>
@@ -99,7 +99,7 @@
                         </vaadin-combo-box> -->
                         <vaadin-combo-box class="required" required always-float-label label="[[i18n.page04.type]]" items='{{specialisttype}}' value="{{data.type_specialist_id}}"
                             item-label-path="type_specialist_name" item-value-path="id" on-selected-item-changed="getObject"
-                            object-name="data.specialist_type">
+                            object-name="data.type_specialist">
                             <template>
                                 [[item.type_specialist_name]]
                             </template>
