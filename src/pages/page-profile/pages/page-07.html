@@ -233,10 +233,7 @@
                             () => {
                                 this._closePanelRight();
                                 this.set('data', {});
-                                Nylon.toast({
-                                    icon: this.i18n.toast.insert.icon,
-                                    msg: this.i18n.toast.insert.msg
-                                })
+                                Nylon.toast('insert')
                             }
                         );
                     } else {
@@ -248,17 +245,11 @@
                             , () => {
                                 this._closePanelRight();
                                 this.set('data', {});
-                                Nylon.toast({
-                                    icon: this.i18n.toast.update.icon,
-                                    msg: this.i18n.toast.update.msg
-                                })
+                                Nylon.toast('update')
                             });
                     }
                 } else {
-                    Nylon.toast({
-                        icon: this.i18n.toast.required.icon,
-                        msg: this.i18n.toast.required.msg
-                    })
+                    Nylon.toast('required')
                 }
             }
 
@@ -289,10 +280,7 @@
                                     , () => {
                                         this._closePanelRight()
                                         this.set('data', {})
-                                        Nylon.toast({
-                                            icon: this.i18n.toast.delete.icon,
-                                            msg: this.i18n.toast.delete.msg
-                                        })
+                                        Nylon.toast('delete')
                                     });
                             }
                         }

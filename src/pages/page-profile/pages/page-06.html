@@ -304,16 +304,11 @@
                     }
                     Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'skills', this.data,
                         () => {
-                            Nylon.toast({
-                                icon: 'icons:cloud-done',
-                                msg: 'บันทึกเรียบร้อย'
-                            })
+                            Nylon.toast('update')
                         }
                     );
                 } else {
-                    Nylon.toast({
-                        msg: 'กรุณากรอกข้อมูลให้ครบ'
-                    })
+                    Nylon.toast('required')
                 }
 
 
