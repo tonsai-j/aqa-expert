@@ -7,8 +7,11 @@
 <link rel="import" href="../../../bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="../../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../../bower_components/iron-icon/iron-icon.html">
-
+<link rel="import" href="../../nylon-i18n.html">
+<link rel="import" href="../../i18n/toast-i18n.html">
 <link rel="import" href="../../layout/shared-styles.html">
+<link rel="import" href="../../redux-mixin.html">
+<link rel="import" href="../../my-icons.html">
 
 
 <dom-module id="nylon-dialog">
@@ -56,7 +59,7 @@
     </template>
 
     <script>
-        class NylonDialog extends Polymer.Element {
+        class NylonDialog extends ReduxMixin(Polymer.Element) {
             static get is() { return 'nylon-dialog'; }
 
             static get properties() {
@@ -64,6 +67,10 @@
                     title: String,
                     msg: String,
                     icon: String,
+                    i18n: {
+                        type: Object,
+                        statePath: 'i18n'
+                    },
                 }
             }
 
@@ -93,9 +100,30 @@
                 // })
             }
 
-            openToast(op) {
-                this.icon = op.icon || 'speaker-notes'
-                this.msg = op.msg
+            openToast(op = 'insert') {
+                let title = { icon: '', msg: '' }
+                switch (op) {
+                    case 'insert':
+                        title.icon = this.i18n.toast.insert.icon
+                        title.msg = this.i18n.toast.insert.msg
+                        break;
+                    case 'required':
+                        title.icon = this.i18n.toast.required.icon
+                        title.msg = this.i18n.toast.required.msg
+                        break;
+                    case 'update':
+                        title.icon = this.i18n.toast.update.icon
+                        title.msg = this.i18n.toast.update.msg
+                        break;
+                    case 'delete':
+                        title.icon = this.i18n.toast.delete.icon
+                        title.msg = this.i18n.toast.delete.msg
+                        break;
+                    default:
+                        break;
+                }
+                this.icon = title.icon
+                this.msg = title.msg
                 this.$.elToast.open()
             }
             // openConfirm(op, callbackOk, callbackCancel) {
@@ -138,7 +166,7 @@
                     }
                     return newElement
                 }
-                
+
                 if (op.btn !== undefined && op.btn.length !== 0 && Array.isArray(op.btn)) {
                     // ลบ element ออก
                     while (this.$.buttonsdialog.firstChild) {

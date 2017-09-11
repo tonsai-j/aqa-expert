@@ -5,6 +5,9 @@
 <link rel="import" href="../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
 <link rel="import" href="../../../bower_components/iron-icons/social-icons.html">
+
+<link rel="import" href="../../mixins/common-mixin.html">
+
 <link rel="import" href="../../layout/shared-styles.html">
 <link rel="import" href="../../redux-mixin.html">
 <link rel="import" href="../../redux/register/register-redux.html">
@@ -31,36 +34,6 @@
                 text-align: left;
             }
         </style>
-        <!-- <div class="box">
-            <nylon-panel-card id="panelCard">
-                <div slot="header" class="">
-                    <div class="middle-md row around-md">
-                        <h3>[[i18n.register.title]]</h3>
-                    </div>
-                </div>
-                <div slot="content" class="middle-md">
-
-                    <div class="col-xs-12">
-                        <paper-input id="inputTaxNo" label="[[i18n.register.taxno]]" value="{{data.taxno}}" allowed-pattern="[0-9]" maxlength="13"
-                            required></paper-input>
-                    </div>
-                    <div class="col-xs-12">
-                        <vaadin-combo-box id="comboTypeAss" label="[[i18n.register.level]]" items='{{typeAssessor}}' value="{{data.type_assessor_id}}"
-                            item-label-path="type_assessor_name" item-value-path="id">
-                            <template>
-                                [[item.type_assessor_name]]
-                            </template>
-                        </vaadin-combo-box>
-                    </div>
-                </div>
-                <app-toolbar slot="footer">
-                    <div main-title></div>
-                    <paper-button raised class="btn-success" on-click="_register">
-                        <iron-icon icon="social:person-add"></iron-icon>&nbsp;[[i18n.button.register]]
-                    </paper-button>
-                </app-toolbar>
-            </nylon-panel-card>
-        </div> -->
         <div class="container row center-md center-lg center-sm">
             <div class="col-lg-5 col-md-8  col-sm-10  col-xs-12">
                 <nylon-panel-card id="panelCard">
@@ -86,7 +59,7 @@
                     <app-toolbar slot="footer">
                         <div main-title></div>
                         <paper-button raised class="btn-success" on-click="_register">
-                            <iron-icon icon="social:person-add"></iron-icon>&nbsp;[[i18n.button.register]]
+                            <iron-icon icon="social:person-add"></iron-icon>&nbsp;[[i18n.button.login.label]]
                         </paper-button>
                     </app-toolbar>
                 </nylon-panel-card>
@@ -103,7 +76,7 @@
          * @polymer
          * @extends {Polymer.Element}
          */
-        class PageRegister extends ReduxMixin(Polymer.Element) {
+        class PageRegister extends CommonMixin(ReduxMixin(Polymer.Element)) {
             /**
              * String providing the tag name to register the element under.
              */
@@ -161,11 +134,10 @@
                     return false;
                 } else {
                     if (this.checkPersonID(this.data.taxno)) {
+                        // Nylon.toast('update')
                         Nylon.dispatch('REGISTER_POST', this.data)
                     } else {
-                        // Nylon.toast({
-                        //     msg:'เลขบัตรประชาชนผิดผลาด'
-                        // })
+                        Nylon.toast('required')
                         // Nylon.confirm({
                         //     status: 'waring',
                         //     title: 'ยืนยันการลบ',
@@ -220,7 +192,7 @@
                     }
                     // console.log(this.data)
                     // console.log(this.checkPersonID(this.data.taxno));
-                    Nylon.dispatch('REGISTER_POST', this.data)
+                    // Nylon.dispatch('REGISTER_POST', this.data)
                 }
                 // }
             }
