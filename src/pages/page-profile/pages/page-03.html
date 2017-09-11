@@ -181,7 +181,7 @@
                         <iron-icon icon="clear"></iron-icon>[[i18n.button.close]]
                     </paper-button>
                     <paper-button raised class="btn-success" on-click="_save">
-                        <iron-icon icon="check"></iron-icon>[[i18n.button.save]]
+                        <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>[[i18n.button.save.label]]
                     </paper-button>
                 </app-toolbar>
             </nylon-panel-card>
@@ -281,13 +281,13 @@
                                 this._closePanelRight();
                                 this.set('data', {});
                                 Nylon.toast({
-                                    icon: 'check',
-                                    msg: 'บันทึกเรียบร้อย'
+                                    icon: this.i18n.toast.insert.icon,
+                                    msg: this.i18n.toast.insert.msg
                                 })
                             });
                     } else {
                         var newData = Object.assign(this.data, {
-                            date_updated: new Date(),
+                            date_updated: new Date().toISOString(),
                             updater: this.info.taxno
                         });
                         Nylon.dispatch('PROFILE_UPDATE_ARRAY', this.info.id, 'education', this._index, newData
@@ -295,11 +295,16 @@
                                 this._closePanelRight();
                                 this.set('data', {});
                                 Nylon.toast({
-                                    icon: 'check',
-                                    msg: 'บันทึกเรียบร้อย'
+                                    icon: this.i18n.toast.update.icon,
+                                    msg: this.i18n.toast.update.msg
                                 })
                             });
                     }
+                } else {
+                    Nylon.toast({
+                        icon: this.i18n.toast.required.icon,
+                        msg: this.i18n.toast.required.msg
+                    })
                 }
 
             }
@@ -309,22 +314,19 @@
                 //     msg: this.i18n.confirm.delete.msg
                 // });
                 Nylon.confirm({
-                    status: 'waring',
-                    title: 'ยืนยันการลบ',
-                    msg: 'หากต้องการลบให้กดปุ่ม ok',
-                    icon: 'delete',
+                    title: this.i18n.confirm.delete.title,
+                    msg: this.i18n.confirm.delete.msg,
+                    icon: this.i18n.confirm.delete.icon,
                     btn: [
                         {
-                            label: 'ปิด',
+                            label: this.i18n.button.close,
                             icon: 'close',
-                            type: 'close',
                             class: 'btn-default',
                             'dialog-dismiss': true
                         },
                         {
-                            label: 'ลบ',
+                            label: this.i18n.button.delete,
                             icon: 'delete',
-                            type: 'ok',
                             class: 'btn-default',
                             'dialog-confirm': true,
                             'autofocus': true,
@@ -334,8 +336,8 @@
                                         this._closePanelRight()
                                         this.set('data', {})
                                         Nylon.toast({
-                                            icon: 'delete',
-                                            msg: 'ลบเรียบร้อย'
+                                            icon: this.i18n.toast.delete.icon,
+                                            msg: this.i18n.toast.delete.msg
                                         })
                                     });
                             }
