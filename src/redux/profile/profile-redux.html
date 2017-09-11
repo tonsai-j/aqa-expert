@@ -11,25 +11,34 @@
                 { name: 'ประวัติการประเมิน', component: 'page-07', field: 'assessment' },
                 { name: 'ผลงานทางวิชาการ', component: 'page-08', field: 'researches' },
                 { name: 'ประวัติการอบรมประกันคุณภาพภายใน', component: 'page-09', field: 'training' },
-                { name: 'บัญชีธนาคาร', component: 'page-10', field: 'bank_account' },
+                { name: 'บัญชีธนาคาร', component: 'page-10', field: 'bank' },
                 { name: 'ภาคที่สะดวกในการประเมิน', component: 'page-11', field: 'zone' },
                 { name: 'บุคคลอ้างอิง', component: 'page-12', field: 'references' },
                 { name: 'ไฟล์เอกสาร', component: 'page-13', field: 'documents' }
             ],
             info: {
                 basic: {},
-                address: {},
+                address: {
+                    address1: {},
+                    address2: {},
+                    address_selected: ''
+                },
                 education: [],
                 specialist: [],
-                working:[],
-                skills:{},
-                assessment:[],
-                researches:[],
-                training:[],
-                bank_account:{},
-                zone:[],
-                references:[],
-                documents:[]
+                working: [],
+                skills: {
+                    computer: {},
+                    edu: {},
+                    lang: {},
+                    type: {}
+                },
+                assessment: [],
+                researches: [],
+                training: [],
+                bank: {},
+                zone: [],
+                references: [],
+                documents: []
             }
         }
 
