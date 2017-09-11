@@ -2,21 +2,35 @@
     Nylon.addReducer('profile', function (state, action) {
         state = state || {
             menu: [
-                { name: 'ข้อมูลพื้นฐาน', component: 'page-01' },
-                { name: 'ที่อยู่ในการติดต่อ', component: 'page-02' },
-                { name: 'วุฒิการศึกษา', component: 'page-03' },
-                { name: 'สาขาเชี่ยวชาญ', component: 'page-04' },
-                { name: 'ประวัติการทำงาน', component: 'page-05' },
-                { name: 'ความสามารถอื่นๆ', component: 'page-06' },
-                { name: 'ประวัติการประเมิน', component: 'page-07' },
-                { name: 'ผลงานทางวิชาการ', component: 'page-08' },
-                { name: 'ประวัติการอบรมประกันคุณภาพภายใน', component: 'page-09' },
-                { name: 'บัญชีธนาคาร', component: 'page-10' },
-                { name: 'ภาคที่สะดวกในการประเมิน', component: 'page-11' },
-                { name: 'บุคคลอ้างอิง', component: 'page-12' },
-                { name: 'ไฟล์เอกสาร', component: 'page-13' }
+                { name: 'ข้อมูลพื้นฐาน', component: 'page-01', field: 'basic' },
+                { name: 'ที่อยู่ในการติดต่อ', component: 'page-02', field: 'address' },
+                { name: 'วุฒิการศึกษา', component: 'page-03', field: 'education' },
+                { name: 'สาขาเชี่ยวชาญ', component: 'page-04', field: 'specialist' },
+                { name: 'ประวัติการทำงาน', component: 'page-05', field: 'working' },
+                { name: 'ความสามารถอื่นๆ', component: 'page-06', field: 'skills' },
+                { name: 'ประวัติการประเมิน', component: 'page-07', field: 'assessment' },
+                { name: 'ผลงานทางวิชาการ', component: 'page-08', field: 'researches' },
+                { name: 'ประวัติการอบรมประกันคุณภาพภายใน', component: 'page-09', field: 'training' },
+                { name: 'บัญชีธนาคาร', component: 'page-10', field: 'bank_account' },
+                { name: 'ภาคที่สะดวกในการประเมิน', component: 'page-11', field: 'zone' },
+                { name: 'บุคคลอ้างอิง', component: 'page-12', field: 'references' },
+                { name: 'ไฟล์เอกสาร', component: 'page-13', field: 'documents' }
             ],
-            info: {}
+            info: {
+                basic: {},
+                address: {},
+                education: [],
+                specialist: [],
+                working:[],
+                skills:{},
+                assessment:[],
+                researches:[],
+                training:[],
+                bank_account:{},
+                zone:[],
+                references:[],
+                documents:[]
+            }
         }
 
         switch (action.type) {
