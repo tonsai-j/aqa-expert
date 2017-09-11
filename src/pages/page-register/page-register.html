@@ -44,11 +44,11 @@
                     </div>
                     <div slot="content" class="middle-md">
                         <div class="col-xs-12">
-                            <paper-input id="inputTaxNo" class="input" label="[[i18n.register.taxno]]" value="{{data.taxno}}" allowed-pattern="[0-9]"
+                            <paper-input id="inputTaxNo" class="required input" required label="[[i18n.register.taxno]]" value="{{data.taxno}}" allowed-pattern="[0-9]"
                                 maxlength="13" required></paper-input>
                         </div>
                         <div class="col-xs-12">
-                            <vaadin-combo-box id="comboTypeAss" class="input" label="[[i18n.register.level]]" items='{{typeAssessor}}' value="{{data.type_assessor_id}}"
+                            <vaadin-combo-box id="comboTypeAss" class="required input" required  label="[[i18n.register.level]]" items='{{typeAssessor}}' value="{{data.type_assessor_id}}"
                                 item-label-path="type_assessor_name" item-value-path="id">
                                 <template>
                                     [[item.type_assessor_name]]
@@ -59,11 +59,7 @@
                     <app-toolbar slot="footer">
                         <div main-title></div>
                         <paper-button raised class="btn-success" on-click="_register">
-<<<<<<< HEAD
                             <iron-icon icon="social:person-add"></iron-icon>&nbsp;[[i18n.button.login.label]]
-=======
-                            <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp;[[i18n.button.register.label]]
->>>>>>> 61c99e6dcd854e2aea63bfbfecef6d9ac33b21bb
                         </paper-button>
                     </app-toolbar>
                 </nylon-panel-card>
@@ -132,73 +128,13 @@
                 Nylon.dispatch('REGISTER_GET_TYPE_ASSESSOR')
             }
             _register(e) {
-                // if (this.$.inputTaxNo.validate()) {
-                if (this.$.comboTypeAss.value == '') {
-                    this.$.comboTypeAss.open();
-                    return false;
+                if (this.validateForm('.required')) {
+                    Nylon.dispatch('REGISTER_POST', this.data)
                 } else {
-                    if (this.checkPersonID(this.data.taxno)) {
-                        // Nylon.toast('update')
-                        Nylon.dispatch('REGISTER_POST', this.data)
-                    } else {
-                        Nylon.toast('required')
-                        // Nylon.confirm({
-                        //     status: 'waring',
-                        //     title: 'ยืนยันการลบ',
-                        //     msg: 'หากต้องการลบให้กดปุ่ม ok',
-                        // }, (confirm) => {
-                        //     console.log('callback ok')
-                        // })
-                        //     Nylon.confirm({
-                        //         status: 'waring',
-                        //         title: 'ยืนยันการลบ',
-                        //         msg: 'หากต้องการลบให้กดปุ่ม ok',
-                        //         icon: 'delete',
-                        //         btn: [
-                        //         {
-                        //                 label: 'ปิด',
-                        //                 icon: 'close',
-                        //                 type:'close',
-                        //                 class: 'btn-default',
-                        //                 action: () => {
-                        //                     console.log('ปิด');
-                        //                 }
-                        //             },
-                        //             {
-                        //                 label: 'ลบ',
-                        //                 icon: 'delete',
-                        //                 type:'ok',
-                        //                 class: 'btn-default',
-                        //                 action: () => {
-                        //                     console.log('ลบ');
-                        //                 }
-                        //             },
-                        //             {
-                        //                 label: 'เพิ่ม',
-                        //                 icon: 'add',
-                        //                 type:'ok',
-                        //                 class: 'btn-primary',
-                        //                 action: () => {
-                        //                     console.log('เพิ่ม');
-                        //                 }
-                        //             },
-                        //             {
-                        //                 label: 'แก้ไข',
-                        //                 icon: 'add',
-                        //                 type:'ok',
-                        //                 class: 'btn-success',
-                        //                 action: () => {
-                        //                     console.log('แก้ไข');
-                        //                 }
-                        //             }
-                        //         ]
-                        //     })
-                    }
-                    // console.log(this.data)
-                    // console.log(this.checkPersonID(this.data.taxno));
-                    // Nylon.dispatch('REGISTER_POST', this.data)
+                    Nylon.toast('required')
+                    
                 }
-                // }
+               
             }
 
             checkPersonID(id) {
