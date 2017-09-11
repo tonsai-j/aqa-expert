@@ -30,39 +30,50 @@
                     <legend>[[i18n.page05.title]]</legend>
                     <div class="row end-md middle-md">
                         <div class="label col-md-3">
-                            <paper-button raised class="btn-primary" on-tap=openPanelRight>
+                            <paper-button raised class="btn-primary" on-tap=_openPanelRight>
                                 <iron-icon icon="add-circle-outline"></iron-icon>[[i18n.button.add]]</paper-button>
                         </div>
                     </div>
                     <br>
-                    <vaadin-grid id='material' items='[{"name": "John", "surname": "Lennon", "role": "admin/20-08-2560"}, {"name": "Ringo", "surname": "Starr", "role": "admin/20-08-2560"}]'>
+                    <vaadin-grid id='material' items='{{working}}'>
                         <vaadin-grid-column>
                             <template class="header">[[i18n.page05.order]]</template>
-                            <template>[[item.name]]</template>
+                            <template>[[autoIndex(index)]]</template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
                             <template class="header">[[i18n.page05.department]]</template>
-                            <template>[[item.surname]]</template>
+                            <template>[[item.agency_name]]</template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
                             <template class="header">[[i18n.page05.s_date]]</template>
-                            <template>[[item.surname]]</template>
+                            <template>[[item.work_start_date]]</template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
                             <template class="header">[[i18n.page05.e_date]]</template>
-                            <template>[[item.surname]]</template>
+                            <template>[[item.work_end_date]]</template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
                             <template class="header">[[i18n.page05.first_position]]</template>
-                            <template>[[item.surname]]</template>
+                            <template>[[item.first_position]]</template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
                             <template class="header">[[i18n.page05.final_position]]</template>
-                            <template>[[item.surname]]</template>
+                            <template>[[item.final_position]]</template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
                             <template class="header">[[i18n.page05.date]]</template>
-                            <template>[[item.role]]</template>
+                            <template>[[item.updater]] [[item.date_updated]]</template>
+                        </vaadin-grid-column>
+                        <vaadin-grid-column>
+                            <template class="header">
+                                <div style="text-align: center">[[i18n.common.tools]]</div>
+                            </template>
+                            <template>
+                                <span style="text-align: center">
+                                <paper-icon-button icon="icons:create" action="edit" on-click="_openPanelRight"></paper-icon-button>
+                                <paper-icon-button icon="icons:delete-forever" on-click="_confirmDel"></paper-icon-button>
+                                </span>
+                            </template>
                         </vaadin-grid-column>
                     </vaadin-grid>
                     จำนวนรายการทั้งหมด 0 รายการ
@@ -83,8 +94,8 @@
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.agency_type]]" items='{{saluList}}'
-                                value="{{data.salu_name_id}}" item-label-path="salu_name_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.salu">
+                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.agency_type]]" items='{{saluList}}' value="{{data.salu_name_id}}"
+                                item-label-path="salu_name_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.salu">
                                 <template>
                                     [[item.salu_name_th]]
                                 </template>
@@ -103,29 +114,29 @@
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <paper-input label="[[i18n.page05.s_date]]" class="required" required always-float-label type=date value="{{data.start_date}}"></paper-input>
+                            <paper-input label="[[i18n.page05.s_date]]" class="required" required always-float-label type="date" value="{{data.work_start_date}}"></paper-input>
                         </div>
                         <div class="col-md-4">
-                            <paper-input label="[[i18n.page05.to]]" class="required" required always-float-label type=date value="{{history.to}}"></paper-input>
+                            <paper-input label="[[i18n.page05.to]]" class="required" required always-float-label type="date" value="{{data.work_end_date}}"></paper-input>
                         </div>
                         <div class="col-md-2">
-                            <paper-checkbox>[[i18n.page05.present]]</paper-checkbox>
+                            <paper-checkbox>[[i18n.page05.present]] </paper-checkbox>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <paper-input label="[[i18n.page05.first_position]]" class="required" required always-float-label value="{{data.first_position_1}}"></paper-input>
+                            <paper-input label="[[i18n.page05.first_position]]" class="required" required always-float-label value="{{data.first_position}}"></paper-input>
                         </div>
                         <div class="col-md-4">
-                            <!-- <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{amphoeList}}' value="{{history.degree}}"
+                            <!-- <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{amphoeList}}' value="{{working.degree}}"
                                 item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
                             </vaadin-combo-box> -->
-                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{workpos1List}}' value="{{data.history_1_id}}"
+                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{workpos1List}}' value="{{data.working_1_id}}"
                                 item-label-path="workpos1_name_th" item-value-path="id" on-selected-item-changed="getObject"
-                                object-name="data.history_1" class="required" required auto-validate>
+                                object-name="data.working_1" auto-validate>
                                 <template>
                                     [[item.workpos1_name_th]]
                                 </template>
@@ -134,18 +145,18 @@
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <paper-input label="[[i18n.page05.final_position]]" class="required" required always-float-label value="{{data.final_position_2}}"></paper-input>
+                            <paper-input label="[[i18n.page05.final_position]]" class="required" required always-float-label value="{{data.final_position}}"></paper-input>
                         </div>
                         <div class="col-md-4">
-                            <!-- <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{amphoeList}}' value="{{history.degree}}"
+                            <!-- <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{amphoeList}}' value="{{working.degree}}"
                                 item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
                             </vaadin-combo-box> -->
-                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{workpos1List}}' value="{{data.history_2_id}}"
+                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{workpos1List}}' value="{{data.working_2_id}}"
                                 item-label-path="workpos1_name_th" item-value-path="id" on-selected-item-changed="getObject"
-                                object-name="data.history_2" class="required" required auto-validate>
+                                object-name="data.working_2" auto-validate>
                                 <template>
                                     [[item.workpos1_name_th]]
                                 </template>
@@ -172,25 +183,13 @@
     </template>
 
     <script>
-        /**
-         * `page-05` Description
-         *
-         * @summary ShortDescription.
-         * @customElement
-         * @polymer
-         * @extends {Polymer.Element}
-         */
         class Page05 extends CommonMixin(ReduxMixin(Polymer.Element)) {
-            /**
-             * String providing the tag name to profile the element under.
-             */
+
             static get is() {
                 return 'page-05';
             }
 
-            /**
-             * Object describing property-related metadata used by Polymer features
-             */
+
             static get properties() {
                 return {
                     i18n: {
@@ -207,63 +206,127 @@
                         type: Object,
                         statePath: 'profile.info'
                     },
-                    history: {
-                        type: Object,
-                        statePath: 'profile.info.history',
-                        value: {}
+                    working: {
+                        type: Array,
+                        statePath: 'profile.info.working'
                     },
                     data: {
                         type: Object,
                         value: {
-                            history_1: {},
-                            history_2: {}
+                            working_1: {},
+                            working_2: {}
                         }
                     },
                 };
             }
 
-            /**
-             * Instance of the element is created/upgraded. Use: initializing state,
-             * set up event listeners, create shadow dom.
-             * @constructor
-             */
-            constructor() {
-                super();
-            }
 
-            /**
-             * Use for one-time configuration of your component after local DOM is initialized. 
-             */
+
             ready() {
+                // console.log()
                 super.ready();
                 Polymer.RenderStatus.afterNextRender(this, function () {
                     Nylon.dispatch('PROFILE_04_GET_SALU')
                     Nylon.dispatch('PROFILE_04_GET_WORKPOS1')
                 });
             }
-            openPanelRight() {
-                this.$.right.open()
+            // openPanelRight() {
+            //     this.$.right.open()
+            // }
+
+            _openPanelRight(e) {
+                if (e.currentTarget.getAttribute('action') == 'edit') {
+                    this.set('data', e.model.item)
+                    this.set('_index', e.model.index)
+                } else {
+                    this.set('data', {})
+                    this.set('_index', undefined)
+                }
+                this.$.right.open();
             }
             _closePanelRight() {
                 this.$.right.close()
             }
+
             _save() {
-                console.log(this.data);
+                console.log(this.data)
                 if (this.validateForm('.required')) {
-                    Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'history', this.data,
-                        () => {
-                            this._closePanelRight();
-                        }
-                    );
-                    Nylon.toast({
-                        msg: 'บันทึกเรียบร้อย'
-                    })
-                } else {
-                    Nylon.toast({
-                        msg: 'กรุณากรอกข้อมูลให้ครบ'
-                    })
+                    this.set('data.work_start_date', new Date(this.data.work_start_date).toISOString());
+                    this.set('data.work_end_date', new Date(this.data.work_end_date).toISOString());
+                    if (typeof this._index === 'undefined') {
+                        var newData = Object.assign(this.data, {
+                            date_created: new Date().toISOString(),
+                            date_updated: new Date().toISOString(),
+                            creater: this.info.taxno,
+                            updater: this.info.taxno
+                        });
+                        Nylon.dispatch('PROFILE_PUSH_ARRAY', this.info.id, 'working', newData
+                            , () => {
+                                this._closePanelRight();
+                                this.set('data', {});
+                                Nylon.toast({
+                                    icon: 'check',
+                                    msg: 'บันทึกเรียบร้อย'
+                                })
+                            });
+                    } else {
+                        var newData = Object.assign(this.data, {
+                            date_updated: new Date(),
+                            updater: this.info.taxno
+                        });
+                        Nylon.dispatch('PROFILE_UPDATE_ARRAY', this.info.id, 'working', this._index, newData
+                            , () => {
+                                this._closePanelRight();
+                                this.set('data', {});
+                                Nylon.toast({
+                                    icon: 'check',
+                                    msg: 'บันทึกเรียบร้อย'
+                                })
+                            });
+                    }
                 }
 
+            }
+
+            _confirmDel(e) {
+                // Nylon.confirm({
+                //     title: this.i18n.confirm.delete.title,
+                //     msg: this.i18n.confirm.delete.msg
+                // });
+                Nylon.confirm({
+                    status: 'waring',
+                    title: 'ยืนยันการลบ',
+                    msg: 'หากต้องการลบให้กดปุ่ม ok',
+                    icon: 'delete',
+                    btn: [
+                        {
+                            label: 'ปิด',
+                            icon: 'close',
+                            type: 'close',
+                            class: 'btn-default',
+                            'dialog-dismiss': true
+                        },
+                        {
+                            label: 'ลบ',
+                            icon: 'delete',
+                            type: 'ok',
+                            class: 'btn-default',
+                            'dialog-confirm': true,
+                            'autofocus': true,
+                            action: () => {
+                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'working', e.model.index
+                                    , () => {
+                                        this._closePanelRight()
+                                        this.set('data', {})
+                                        Nylon.toast({
+                                            icon: 'delete',
+                                            msg: 'ลบเรียบร้อย'
+                                        })
+                                    });
+                            }
+                        }
+                    ]
+                })
             }
         }
 
