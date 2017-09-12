@@ -133,44 +133,49 @@
                 this.set('data.taxno', '');
             }
             _register(e) {
-                Nylon.dispatch('REGISTER_READER_CARD', () => {
-                    if (this.isCard) {
-                        let data = this.info;
-                        let hbd = [Number(data.cardBOD.substring(0, 4)) - 543, data.cardBOD.substring(4, 6), data.cardBOD.substring(6, 8)].join('-');
-                        let exp = [Number(data.cardExpDate.substring(0, 4)) - 543, data.cardExpDate.substring(4, 6), data.cardExpDate.substring(6, 8)].join('-');
-                        let issue = [Number(data.cardIssueDate.substring(0, 4)) - 543, data.cardIssueDate.substring(4, 6), data.cardIssueDate.substring(6, 8)].join('-');
-                        this.set('data', {
-                            taxno: data.cardId,
-                            basic: {
-                                prefix_th: data.cardNameTh.split(' ')[0],
-                                firstname_th: data.cardNameTh.split(' ')[1].split('  ')[0],
-                                lastname_th: data.cardNameTh.split('  ')[1],
-                                prefix_en: data.cardName.split(' ')[0],
-                                firstname_en: data.cardName.split(' ')[1].split('  ')[0],
-                                lastname_en: data.cardName.split('  ')[1],
-                                birth_date: new Date(hbd + 'T00:00:00+07:00').toISOString(),
-                                issue_date: new Date(issue + 'T00:00:00+07:00').toISOString(),
-                                expire_date: new Date(exp + 'T00:00:00+07:00').toISOString(),
-                                gender_id: (data.cardSex == "ชาย" ? 1 : 2)
-                            },
-                            type_assessor_id: this.data.type_assessor_id
-                        });
-                    }
-                    if (this.validateForm('.required')) {
-                        if (!this.data.hasOwnProperty('basic')) {
-                            this.data.basic = {};
+                if (this.data.taxno == '') {
+                    Nylon.dispatch('REGISTER_READER_CARD', () => {
+                        if (this.isCard) {
+                            let data = this.info;
+                            let hbd = [Number(data.cardBOD.substring(0, 4)) - 543, data.cardBOD.substring(4, 6), data.cardBOD.substring(6, 8)].join('-');
+                            let exp = [Number(data.cardExpDate.substring(0, 4)) - 543, data.cardExpDate.substring(4, 6), data.cardExpDate.substring(6, 8)].join('-');
+                            let issue = [Number(data.cardIssueDate.substring(0, 4)) - 543, data.cardIssueDate.substring(4, 6), data.cardIssueDate.substring(6, 8)].join('-');
+                            this.set('data', {
+                                taxno: data.cardId,
+                                basic: {
+                                    prefix_th: data.cardNameTh.split(' ')[0],
+                                    firstname_th: data.cardNameTh.split(' ')[1].split('  ')[0],
+                                    lastname_th: data.cardNameTh.split('  ')[1],
+                                    prefix_en: data.cardName.split(' ')[0],
+                                    firstname_en: data.cardName.split(' ')[1].split('  ')[0],
+                                    lastname_en: data.cardName.split('  ')[1],
+                                    birth_date: new Date(hbd + 'T00:00:00+07:00').toISOString(),
+                                    issue_date: new Date(issue + 'T00:00:00+07:00').toISOString(),
+                                    expire_date: new Date(exp + 'T00:00:00+07:00').toISOString(),
+                                    gender_id: (data.cardSex == "ชาย" ? 1 : 2)
+                                },
+                                type_assessor_id: this.data.type_assessor_id
+                            });
                         }
-                        // if (this.checkPersonID(this.data.taxno)) {
-                        Nylon.dispatch('REGISTER_POST', this.data)
-                        // } else {
-                        //     Nylon.toast('error')
-                        // }
-
+                        if (this.validateForm('.required')) {
+                            Nylon.dispatch('REGISTER_POST', this.data)
+                        } else {
+                            Nylon.toast('required')
+                        }
+                    });
+                } else {
+                    if (this.validateForm('.required')) {
+                        this.set('data.basic', {})
+                        if (this.checkPersonID(this.data.taxno)) {
+                            Nylon.dispatch('REGISTER_POST', this.data)
+                        } else {
+                            Nylon.toast('error')
+                        }
                     } else {
                         Nylon.toast('required')
-
                     }
-                });
+                }
+
             }
 
             checkPersonID(id) {
