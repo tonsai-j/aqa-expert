@@ -7,7 +7,7 @@ exports.post = function (req, res) {
                 r.expr(req.body)
                     .merge({
                         type_assessor: r.table('type_assessor').get(req.body.type_assessor_id),
-                        basic: {},
+                        // basic: {},
                         address: {
                             address1: {},
                             address2: {},

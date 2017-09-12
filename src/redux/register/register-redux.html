@@ -1,13 +1,19 @@
 <script>
     Nylon.addReducer('register', function (state, action) {
         state = state || {
-            typeAssessor: []
+            typeAssessor: [],
+            isCard: false,
+            info: {}
         }
 
         switch (action.type) {
             case 'REGISTER_GET_TYPE_ASSESSOR':
                 state.typeAssessor = action.payload
                 return state
+            case 'REGISTER_INFO':
+                state.isCard = action.isCard;
+                state.info = action.info;
+                return state;
             default:
                 return state
         }
@@ -17,9 +23,6 @@
 
     Nylon.addAction({
         REGISTER_GET_TYPE_ASSESSOR: function () {
-            // console.log(Nylon.$);
-            //  var progress = Nylon.$['page-register'].$.panelCard.progress({ position: 'top' })
-            //  progress()
             return dispatch =>
                 axios.get('/type/assessor').then(
                     res => {
@@ -37,6 +40,23 @@
                         })
                     }
                 )
+        },
+        REGISTER_READER_CARD: function (callback) {
+            return dispatch =>
+                axios.get('http://127.0.0.1:1119/info?p=0').then(
+                    res => {
+                        if (res.data.Data.cardInfo.cardId) {
+                            dispatch({ type: 'REGISTER_INFO', isCard: true, info: res.data.Data.cardInfo })
+                            callback();
+                        } else {
+                            dispatch({ type: 'REGISTER_INFO', isCard: false, info: {} })
+                            callback();
+                        }
+                    }
+                ).catch(err => {
+                    dispatch({ type: 'REGISTER_INFO', isCard: false, info: {} })
+                    callback();
+                })
         }
     })
 
