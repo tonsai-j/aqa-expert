@@ -42,7 +42,7 @@
                     <div class="row end-md middle-md">
                         <div class="label col-md-3">
                             <paper-button raised class="btn-primary" on-tap=openPanelRight>
-                                    <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]</paper-button>
+                                <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]</paper-button>
                         </div>
                     </div>
                     <br>
@@ -83,7 +83,8 @@
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
                             <vaadin-combo-box class="required" required always-float-label label="[[i18n.page08.type]]" items='{{research_type}}' item-label-path='research_type_th'
-                                item-value-path='id' value="{{data.research_type_id}}" on-selected-item-changed='getObjectCombobox' object-name='research_type'>
+                                item-value-path='id' value="{{data.research_type_id}}" on-selected-item-changed='getObjectCombobox'
+                                object-name='research_type'>
                                 <template>
                                     [[item.research_type_th]]
                                 </template>
@@ -103,10 +104,10 @@
                 <app-toolbar slot="footer">
                     <div main-title></div>
                     <paper-button raised on-click="closePanelRight">
-                        <iron-icon icon="clear"></iron-icon>[[i18n.button.close]]
+                        <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>[[i18n.button.close.label]]
                     </paper-button>
                     <paper-button raised class="btn-success" on-click="_save">
-                        <iron-icon icon="check"></iron-icon>[[i18n.button.save]]
+                        <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>[[i18n.button.save.label]]
                     </paper-button>
                 </app-toolbar>
             </nylon-panel-card>
