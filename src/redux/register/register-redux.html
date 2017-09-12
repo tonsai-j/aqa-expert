@@ -64,15 +64,15 @@
                                 card_id: data.cardId
                             };
                             dispatch({ type: 'REGISTER_INFO', isCard: true, info: info })
-                            callback();
+                            callback(info);
                         } else {
                             dispatch({ type: 'REGISTER_INFO', isCard: false, info: {} })
-                            callback();
+                            callback(false);
                         }
                     }
                 ).catch(err => {
                     dispatch({ type: 'REGISTER_INFO', isCard: false, info: {} })
-                    callback();
+                    callback(false);
                 })
         }
     })
