@@ -142,9 +142,9 @@
                         this.set('data', {
                             taxno: data.cardId,
                             basic: {
-                                prefix: data.cardNameTh.split(' ')[0],
-                                firstname: data.cardNameTh.split(' ')[1].split('  ')[0],
-                                lastname: data.cardNameTh.split('  ')[1],
+                                prefix_th: data.cardNameTh.split(' ')[0],
+                                firstname_th: data.cardNameTh.split(' ')[1].split('  ')[0],
+                                lastname_th: data.cardNameTh.split('  ')[1],
                                 prefix_en: data.cardName.split(' ')[0],
                                 firstname_en: data.cardName.split(' ')[1].split('  ')[0],
                                 lastname_en: data.cardName.split('  ')[1],
@@ -158,9 +158,7 @@
                     }
                     if (this.validateForm('.required')) {
                         if (!this.data.hasOwnProperty('basic')) {
-                            var data = this.data.slice(0);
-                            data.basic = {};
-                            this.set('data', data);
+                            this.data.basic = {};
                         }
                         // if (this.checkPersonID(this.data.taxno)) {
                         Nylon.dispatch('REGISTER_POST', this.data)
