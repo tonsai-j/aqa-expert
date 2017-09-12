@@ -117,10 +117,11 @@
                             <paper-input label="[[i18n.page05.s_date]]" class="required" required always-float-label type="date" value="{{data.work_start_date}}"></paper-input>
                         </div>
                         <div class="col-md-4">
-                            <paper-input label="[[i18n.page05.to]]" class="required" required always-float-label type="date" value="{{data.work_end_date}}"></paper-input>
+                            <paper-input label="[[i18n.page05.to]]" class="required" required always-float-label type="date" value="{{data.work_end_date}}"
+                                disabled={{workenddate}}></paper-input>
                         </div>
                         <div class="col-md-2">
-                            <paper-checkbox>[[i18n.page05.present]] </paper-checkbox>
+                            <paper-checkbox on-tap="_disabledEndDate">[[i18n.page05.present]] </paper-checkbox>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
@@ -217,13 +218,17 @@
                             working_2: {}
                         }
                     },
+                    workenddate: {
+                        type: Boolean,
+                        value: false
+                    }
                 };
             }
 
 
 
             ready() {
-                // console.log()
+                // console.log(55555555555)
                 super.ready();
                 Polymer.RenderStatus.afterNextRender(this, function () {
                     Nylon.dispatch('PROFILE_04_GET_SALU')
@@ -233,7 +238,19 @@
             // openPanelRight() {
             //     this.$.right.open()
             // }
+            _disabledEndDate(e) {
+                console.log(e.currentTarget.getAttribute('aria-checked'))
+                if (e.currentTarget.getAttribute('aria-checked') !== 'true') {
+                    this.set('workenddate', true)
+                    this.set('data.work_end_date', '9999-12-31')
+                } else {
+                    this.set('workenddate', false)
+                    this.set('data.work_end_date', '')
+                }
 
+
+                // console.log(this.workenddate)
+            }
             _openPanelRight(e) {
                 if (e.currentTarget.getAttribute('action') == 'edit') {
                     this.set('data', e.model.item)

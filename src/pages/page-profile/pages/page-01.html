@@ -48,11 +48,11 @@
                         </div>
                         <div class="col-md-2 col-md-3">
                             <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.status]]:" items='{{statusList}}'
-                                value="{{basic.status}}" item-label-path="label" item-value-path="value" auto-validate></vaadin-combo-box>
+                                value="{{basic.status}}" item-label-path="label" item-value-path="value"></vaadin-combo-box>
                         </div>
                         <div class="col-md-2 col-md-3">
                             <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.academic]]:" items='{{academicList}}'
-                                value="{{basic.academic}}" item-label-path="label" item-value-path="value" auto-validate>
+                                value="{{basic.academic}}" item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -61,31 +61,30 @@
                     </div>
                     <div class="row middle-md col-md-offset-1">
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.prefix]]:" value="{{basic.prefix}}" auto-validate></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.prefix]]:" value="{{basic.prefix}}"></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.name]]*:" value="{{basic.firstname}}" auto-validate></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.name]]*:" value="{{basic.firstname}}"></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.lastname]]*:" value="{{basic.lastname}}" auto-validate></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.lastname]]*:" value="{{basic.lastname}}"></paper-input>
                         </div>
                     </div>
                     <div class="row middle-md col-md-offset-1">
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.title_eng]]:" value="{{basic.title_en}}" auto-validate></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.title_eng]]:" value="{{basic.title_en}}"></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.name_eng]]:" value="{{basic.firstname_en}}" auto-validate></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.name_eng]]:" value="{{basic.firstname_en}}"></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.lastname_eng]]:" value="{{basic.lastname_en}}"
-                                auto-validate></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.lastname_eng]]:" value="{{basic.lastname_en}}"></paper-input>
                         </div>
                     </div>
                     <div class="row middle-md col-md-offset-1">
                         <div class="col-md-2 col-md-3">
                             <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.gender]]:" items='{{genderList}}'
-                                value="{{basic.gender}}" item-label-path="label" item-value-path="value" auto-validate>
+                                value="{{basic.gender}}" item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -93,7 +92,7 @@
                         </div>
                         <div class="col-md-2 col-md-3">
                             <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.ethnicity]]:" items='{{raceList}}'
-                                value="{{basic.ethnicity}}" auto-validate>
+                                value="{{basic.ethnicity}}">
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -101,7 +100,7 @@
                         </div>
                         <div class="col-md-2 col-md-3">
                             <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.religion]]:" items='{{religionList}}'
-                                value="{{basic.religion}}" item-label-path="label" item-value-path="value" auto-validate>
+                                value="{{basic.religion}}" item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -111,16 +110,16 @@
                     <div class="row middle-md col-md-offset-1">
                         <div class="col-md-2 col-md-3">
                             <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.nationality]]:" items='{{nationalityList}}'
-                                value="{{basic.nationality}}" item-label-path="label" item-value-path="value" auto-validate>
+                                value="{{basic.nationality}}" item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <!-- <paper-input always-float-label label="Name:"></paper-input> -->
+                            <!-- <paper-input always-float-label label="Name:"></paper-input> -->{{basic.birth_date}}
                             <paper-input class="required" required always-float-label label="[[i18n.page01.birth]]:" type="date" value="{{basic.birth_date}}"
-                                on-change="_calcAge" auto-validate></paper-input>
+                                on-change="_calcAge"></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
                             <paper-input always-float-label label="[[i18n.page01.age]]:" value="[[age]]" disabled></paper-input>
@@ -130,13 +129,11 @@
                         <div class="col-md-2 col-md-3">
                             <paper-input always-float-label label="[[i18n.page01.id_card]]:" value="[[info.taxno]]" disabled></paper-input>
                         </div>
-                        <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.date_of_issue]]:" type="date" value="{{basic.issue_date}}"
-                                auto-validate></paper-input>
+                        <div class="col-md-2 col-md-3">{{basic.issue_date}}
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.date_of_issue]]:" type="date" value="{{basic.issue_date}}"></paper-input>
                         </div>
-                        <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.expiration_date]]:" type="date" value="{{basic.expire_date}}"
-                                auto-validate></paper-input>
+                        <div class="col-md-2 col-md-3">{{basic.expire_date}}
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.expiration_date]]:" type="date" value="{{basic.expire_date}}"></paper-input>
                         </div>
                     </div>
                     <div class="row middle-md col-md-offset-1">
@@ -208,15 +205,13 @@
                     basic: {
                         type: Object,
                         statePath: 'profile.info.basic',
-                        value: {}
+                        value: {},
+                        observer: 'cutdate'
+
                     },
                     age: {
                         type: Number,
                         value: 0
-                    },
-                    data: {
-                        type: Object,
-                        value: {}
                     },
                 };
             }
@@ -237,6 +232,25 @@
                     // console.log(111);
                 });
             }
+            cutdate(date) {
+                if (this.info !== undefined) {
+                    if (this.info.hasOwnProperty('id')) {
+                        date.birth_date = date.birth_date.split('T')[0]
+                        date.issue_date = date.issue_date.split('T')[0]
+                        date.expire_date = date.expire_date.split('T')[0]
+                        this.set('basic.birth_date',date.birth_date)
+                        this.set('basic.issue_date',date.issue_date)
+                        this.set('basic.expire_date',date.expire_date)
+                        // console.log(date.birth_date.split('T')[0])
+                        // console.log(date.birth_date)
+                        // console.log(date.issue_date)
+                        // console.log(date.expire_date)
+                        console.log(date)
+                        // return date
+                    }
+                }
+
+            }
             preview_image(e) {
                 var reader = new FileReader();
                 reader.onload = () => {
@@ -246,15 +260,17 @@
                 reader.readAsDataURL(event.target.files[0]);
             }
             _save() {
-                // console.log(this.validateForm('.required'));
+                console.log(this.validateForm('.required'));
                 if (this.validateForm('.required')) {
-                    this.set('data.issue_date', new Date(this.data.issue_date).toISOString());
-                    this.set('data.expire_date', new Date(this.data.expire_date).toISOString());
+                    this.set('basic.birth_date', new Date(this.basic.birth_date).toISOString());
+                    this.set('basic.issue_date', new Date(this.basic.issue_date).toISOString());
+                    this.set('basic.expire_date', new Date(this.basic.expire_date).toISOString());
                     Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'basic', this.basic,
                         () => {
                             Nylon.toast('update')
                         }
                     );
+                    console.log(this.basic)
 
                 } else {
                     Nylon.toast('required')
