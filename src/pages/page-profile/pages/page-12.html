@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <br>
-                    <vaadin-grid id='material' items='{{person}}'>
+                    <vaadin-grid id='material' items='{{references}}'>
                         <vaadin-grid-column>
                             <template class="header">[[i18n.page12.name]]</template>
                             <template>[[item.firstname]]</template>
@@ -137,23 +137,23 @@
                     <legend>[[i18n.page12.references]] (คนที่ 1)</legend>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.name]]" class="required" required always-float-label value="{{person.name}}"></paper-input>
+                            <paper-input label="[[i18n.page12.name]]" class="required" required always-float-label value="{{references.name}}"></paper-input>
                         </div>
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.lastname]]" class="required" required always-float-label value="{{person.lastname}}"></paper-input>
+                            <paper-input label="[[i18n.page12.lastname]]" class="required" required always-float-label value="{{references.lastname}}"></paper-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.phone]]" class="required" required always-float-label value="{{person.phone}}"></paper-input>
+                            <paper-input label="[[i18n.page12.phone]]" class="required" required always-float-label value="{{references.phone}}"></paper-input>
                         </div>
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.cell_phone]]" class="required" required always-float-label value="{{person.cell_phone}}"></paper-input>
+                            <paper-input label="[[i18n.page12.cell_phone]]" class="required" required always-float-label value="{{references.cell_phone}}"></paper-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-8">
-                            <paper-input label="[[i18n.page12.email]]" class="required" required always-float-label value="{{person.email}}"></paper-input>
+                            <paper-input label="[[i18n.page12.email]]" class="required" required always-float-label value="{{references.email}}"></paper-input>
                         </div>
                     </div>
                 </fieldset>
@@ -163,23 +163,23 @@
                     <legend>[[i18n.page12.references]] (คนที่ 2)</legend>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.name]]" class="required" required always-float-label value="{{person.name}}"></paper-input>
+                            <paper-input label="[[i18n.page12.name]]" class="required" required always-float-label value="{{references.name}}"></paper-input>
                         </div>
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.lastname]]" class="required" required always-float-label value="{{person.lastname}}"></paper-input>
+                            <paper-input label="[[i18n.page12.lastname]]" class="required" required always-float-label value="{{references.lastname}}"></paper-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.phone]]" class="required" required always-float-label value="{{person.phone}}"></paper-input>
+                            <paper-input label="[[i18n.page12.phone]]" class="required" required always-float-label value="{{references.phone}}"></paper-input>
                         </div>
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.cell_phone]]" class="required" required always-float-label value="{{person.cell_phone}}"></paper-input>
+                            <paper-input label="[[i18n.page12.cell_phone]]" class="required" required always-float-label value="{{references.cell_phone}}"></paper-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-8">
-                            <paper-input label="[[i18n.page12.email]]" class="required" required always-float-label value="{{person.email}}"></paper-input>
+                            <paper-input label="[[i18n.page12.email]]" class="required" required always-float-label value="{{references.email}}"></paper-input>
                         </div>
                     </div>
                 </fieldset>
@@ -219,9 +219,9 @@
                         type: Object,
                         statePath: 'profile.info'
                     },
-                    person: {
+                    references: {
                         type: Array,
-                        statePath: 'profile.info.person'
+                        statePath: 'profile.info.references'
                     },
                 };
             }
@@ -255,7 +255,7 @@
             // _save() {
             //     console.log(this.validateForm('.required'));
             //     if (this.validateForm('.required')) {
-            //         Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'person', this.person,
+            //         Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'references', this.references,
             //             () => {
             //                 Nylon.toast('update')
             //             }
@@ -274,7 +274,7 @@
                             creater: this.info.taxno,
                             updater: this.info.taxno
                         });
-                        Nylon.dispatch('PROFILE_PUSH_ARRAY', this.info.id, 'person', newData
+                        Nylon.dispatch('PROFILE_PUSH_ARRAY', this.info.id, 'references', newData
                             , () => {
                                 this._closePanelRight();
                                 this.set('data', {});
@@ -285,7 +285,7 @@
                             date_updated: new Date(),
                             updater: this.info.taxno
                         });
-                        Nylon.dispatch('PROFILE_UPDATE_ARRAY', this.info.id, 'person', this._index, newData
+                        Nylon.dispatch('PROFILE_UPDATE_ARRAY', this.info.id, 'references', this._index, newData
                             , () => {
                                 this._closePanelRight();
                                 this.set('data', {});
@@ -318,7 +318,7 @@
                             'dialog-confirm': true,
                             'autofocus': true,
                             action: () => {
-                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'person', e.model.index
+                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'references', e.model.index
                                     , () => {
                                         this._closePanelRight()
                                         this.set('data', {})
