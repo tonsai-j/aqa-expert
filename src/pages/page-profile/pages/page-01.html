@@ -68,29 +68,30 @@
                     </div>
                     <div class="row middle-md col-md-offset-1">
                         <div class="col-md-3">
-                            <vaadin-combo-box always-float-label label="[[i18n.page01.gender]]" items='{{genderList}}' value="{{data.gender_id}}" item-label-path="gender_name"
+                            <!-- {{data.gender_id}}// -->
+                            <vaadin-combo-box always-float-label label="[[i18n.page01.gender]]" items='{{genderList}}' value="{{data.gender_id}}" item-label-path="gender_name_th"
                                 item-value-path="id" on-selected-item-changed="getObject" object-name="data.gender" class="required"
                                 required>
                                 <template>
-                                    [[item.gender_name]]
+                                    [[item.gender_name_th]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
                         <div class="col-md-3">
-                            <vaadin-combo-box always-float-label label="[[i18n.page01.ethnicity]]" items='{{raceList}}' value="{{data.race_id}}" item-label-path="race_name"
-                                item-value-path="id" on-selected-item-changed="getObject" object-name="data.race" class="required"
-                                required>
+                            <vaadin-combo-box always-float-label label="[[i18n.page01.ethnicity]]" items='{{nationalityList}}' value="{{data.race_id}}"
+                                item-label-path="nationality_name_th" item-value-path="id" on-selected-item-changed="getObject"
+                                object-name="data.race" class="required" required>
                                 <template>
-                                    [[item.race_name]]
+                                    [[item.nationality_name_th]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
                         <div class="col-md-3">
                             <vaadin-combo-box always-float-label label="[[i18n.page01.religion]]" items='{{religionList}}' value="{{data.religion_id}}"
-                                item-label-path="religion_name" item-value-path="id" on-selected-item-changed="getObject" object-name="data.religion"
-                                class="required" required>
+                                item-label-path="religion_name_th" item-value-path="id" on-selected-item-changed="getObject"
+                                object-name="data.religion" class="required" required>
                                 <template>
-                                    [[item.religion_name]]
+                                    [[item.religion_name_th]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
@@ -98,28 +99,28 @@
                     <div class="row middle-md col-md-offset-1">
                         <div class="col-md-3">
                             <vaadin-combo-box always-float-label label="[[i18n.page01.nationality]]" items='{{nationalityList}}' value="{{data.nationality_id}}"
-                                item-label-path="nationality_name" item-value-path="id" on-selected-item-changed="getObject"
+                                item-label-path="nationality_name_th" item-value-path="id" on-selected-item-changed="getObject"
                                 object-name="data.nationality" class="required" required>
                                 <template>
-                                    [[item.nationality_name]]
+                                    [[item.nationality_name_th]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
                         <div class="col-md-3">
-                            <vaadin-combo-box always-float-label label="[[i18n.page01.status]]" items='{{statusList}}' value="{{data.status_id}}" item-label-path="status_name"
+                            <vaadin-combo-box always-float-label label="[[i18n.page01.status]]" items='{{statusList}}' value="{{data.status_id}}" item-label-path="work_status_name_th"
                                 item-value-path="id" on-selected-item-changed="getObject" object-name="data.status" class="required"
                                 required>
                                 <template>
-                                    [[item.status_name]]
+                                    [[item.work_status_name_th]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
                         <div class="col-md-3">
                             <vaadin-combo-box always-float-label label="[[i18n.page01.academic]]" items='{{academicList}}' value="{{data.type_academic_id}}"
-                                item-label-path="type_academic_name" item-value-path="id" on-selected-item-changed="getObject"
+                                item-label-path="academic_position_name_th" item-value-path="id" on-selected-item-changed="getObject"
                                 object-name="data.type_academic" class="required" required>
                                 <template>
-                                    [[item.type_academic_name]]
+                                    [[item.academic_position_name_th]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
@@ -153,7 +154,6 @@
                             <input id="ifile" type=file accept="image/*" on-change="preview_image">
                         </div>
                     </div>
-                    [[checkReadIdCard]]///
                 </fieldset>
             </div>
             <app-toolbar slot="footer">
@@ -190,12 +190,12 @@
                         type: String,
                     },
                     academicList: {
-                        statePath: 'profile_page01.academic'
+                        statePath: 'profile_page01.academicPosition'
                     },
                     genderList: {
                         statePath: 'profile_page01.gender'
                     },
-                    raceList: {
+                    nationalityList: {
                         statePath: 'profile_page01.race'
                     },
                     religionList: {
@@ -205,7 +205,7 @@
                         statePath: 'profile_page01.nationality'
                     },
                     statusList: {
-                        statePath: 'profile_page01.status'
+                        statePath: 'profile_page01.workStatus'
                     },
                     info: {
                         type: Object,
@@ -223,26 +223,20 @@
                     age: {
                         type: Number,
                         value: 0
-                    },
-                    checkReadIdCard: {
-                        type: Boolean,
-                        statePath: 'register.isCard',
-                        observer: '_checkReadIdCard'
                     }
                 };
             }
-
-
-
-
+            constructor() {
+                super();
+                Nylon.dispatch('PROFILE_01_GET_LIST_ACADAMIC_POSITION')
+                Nylon.dispatch('PROFILE_01_GET_LIST_GENDER')
+                Nylon.dispatch('PROFILE_01_GET_LIST_NATIONALITY')
+                Nylon.dispatch('PROFILE_01_GET_LIST_RELIGION')
+                Nylon.dispatch('PROFILE_01_GET_LIST_WORK_STATUS')
+            }
             ready() {
                 super.ready();
-                Nylon.dispatch('PROFILE_GET_LIST_ACADAMIC')
-                Nylon.dispatch('PROFILE_GET_LIST_GENDER')
-                Nylon.dispatch('PROFILE_GET_LIST_RACE')
-                Nylon.dispatch('PROFILE_GET_LIST_RELIGION')
-                Nylon.dispatch('PROFILE_GET_LIST_NATIONALITY')
-                Nylon.dispatch('PROFILE_GET_LIST_STATUS')
+
             }
             cutdate(date) {
                 if (this.info !== undefined) {
@@ -277,11 +271,12 @@
                     newDataSave.birth_date = new Date(newDataSave.birth_date).toISOString()
                     newDataSave.issue_date = new Date(newDataSave.issue_date).toISOString()
                     newDataSave.expire_date = new Date(newDataSave.expire_date).toISOString()
-                    Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'basic', newDataSave,
-                        () => {
-                            Nylon.toast('update')
-                        }
-                    )
+                    console.log(newDataSave);
+                    // Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'basic', newDataSave,
+                    //     () => {
+                    //         Nylon.toast('update')
+                    //     }
+                    // )
 
                 } else {
                     Nylon.toast('required')
@@ -315,13 +310,9 @@
                         this.set('data', isReadCard)
                         Nylon.toast('insert')
                     } else {
-                        Nylon.toast('error') 
+                        Nylon.toast('error')
                     }
                 })
-            }
-
-            _checkReadIdCard(Check) {
-                // console.log(Check);
             }
         }
 

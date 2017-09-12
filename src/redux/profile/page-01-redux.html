@@ -2,33 +2,29 @@
     Nylon.addReducer('profile_page01', function (state, action) {
         state = state || {
             data: {},
-            academic: [],
+            academicPosition: [],
             gender: [],
-            race: [],
             religion: [],
             nationality: [],
-            status: [],
+            workStatus: [],
 
         }
 
         switch (action.type) {
-            case 'PROFILE_GET_LIST_ACADAMIC':
-                state.academic = action.payload
+            case 'PROFILE_01_GET_LIST_ACADAMIC_POSITION':
+                state.academicPosition = action.payload
                 return state
-            case 'PROFILE_GET_LIST_GENDER':
+            case 'PROFILE_01_GET_LIST_GENDER':
                 state.gender = action.payload
                 return state
-            case 'PROFILE_GET_LIST_RACE':
-                state.race = action.payload
-                return state
-            case 'PROFILE_GET_LIST_RELIGION':
-                state.religion = action.payload
-                return state
-            case 'PROFILE_GET_LIST_NATIONALITY':
+            case 'PROFILE_01_GET_LIST_NATIONALITY':
                 state.nationality = action.payload
                 return state
-            case 'PROFILE_GET_LIST_STATUS':
-                state.status = action.payload
+            case 'PROFILE_01_GET_LIST_RELIGION':
+                state.religion = action.payload
+                return state
+            case 'PROFILE_01_GET_LIST_WORK_STATUS':
+                state.workStatus = action.payload
                 return state
             default:
                 return state
@@ -37,160 +33,63 @@
     })
 
     Nylon.addAction({
-        PROFILE_GET_LIST_ACADAMIC: function () {
+        PROFILE_01_GET_LIST_ACADAMIC_POSITION: function () {
             return dispatch => {
-                let res = {
-                    data: [
-                        {
-                            id: 1,
-                            type_academic_name: 'ศาสตราจารย์'
-                        },
-                        {
-                            id: 2,
-                            type_academic_name: 'รองศาสตราจารย์'
-                        },
-                        {
-                            id: 3,
-                            type_academic_name: 'ผู้ช่วยศาสตราจารย์'
-                        },
-                        {
-                            id: 4,
-                            type_academic_name: ''
-                        },
+                axios.get('/academic/position')
+                    .then(res => {
+                        dispatch({ type: 'PROFILE_01_GET_LIST_ACADAMIC_POSITION', payload: res.data })
+                    }
+                    ).catch(err => {
+                        console.log({ err })
+                    })
 
-                    ]
-                }
+            }
+        },
+        PROFILE_01_GET_LIST_GENDER: function () {
+            return dispatch => {
+                axios.get('/gender')
+                    .then(res => {
+                        dispatch({ type: 'PROFILE_01_GET_LIST_GENDER', payload: res.data })
+                    }
+                    ).catch(err => {
+                        console.log({ err })
+                    })
 
-                dispatch({ type: 'PROFILE_GET_LIST_ACADAMIC', payload: res.data })
             }
         },
-        PROFILE_GET_LIST_GENDER: function () {
+        PROFILE_01_GET_LIST_NATIONALITY: function () {
             return dispatch => {
-                let res = {
-                    data: [
-                        {
-                            id: 1,
-                            gender_name: 'ชาย'
-                        },
-                        {
-                            id: 2,
-                            gender_name: 'หญิง'
-                        },
-                    ]
-                }
-                dispatch({ type: 'PROFILE_GET_LIST_GENDER', payload: res.data })
+                axios.get('/nationality')
+                    .then(res => {
+                        dispatch({ type: 'PROFILE_01_GET_LIST_NATIONALITY', payload: res.data })
+                    }
+                    ).catch(err => {
+                        console.log({ err })
+                    })
+
             }
         },
-        PROFILE_GET_LIST_RACE: function () {
+        PROFILE_01_GET_LIST_RELIGION: function () {
             return dispatch => {
-                let res = {
-                    data: [
-                        {
-                            id: 1,
-                            race_name: 'ไทย'
-                        },
-                        {
-                            id: 2,
-                            race_name: 'ลาว'
-                        },
-                        {
-                            id: 3,
-                            race_name: 'จีน'
-                        },
-                        {
-                            id: 4,
-                            race_name: 'ชิลี'
-                        },
-                        {
-                            id: 5,
-                            race_name: 'บราซิล'
-                        },
-                    ]
-                }
-                dispatch({ type: 'PROFILE_GET_LIST_RACE', payload: res.data })
+                axios.get('/religion')
+                    .then(res => {
+                        dispatch({ type: 'PROFILE_01_GET_LIST_RELIGION', payload: res.data })
+                    }
+                    ).catch(err => {
+                        console.log({ err })
+                    })
+
             }
         },
-        PROFILE_GET_LIST_RELIGION: function () {
+        PROFILE_01_GET_LIST_WORK_STATUS: function () {
             return dispatch => {
-                let res = {
-                    data: [
-                        {
-                            id: 1,
-                            religion_name: 'พุทธ'
-                        },
-                        {
-                            id: 2,
-                            religion_name: 'คริสต์'
-                        },
-                        {
-                            id: 3,
-                            religion_name: 'อิสลาม'
-                        },
-                        {
-                            id: 4,
-                            religion_name: 'ฮินดู'
-                        },
-                        {
-                            id: 5,
-                            religion_name: 'นิวเอจ'
-                        },
-                    ]
-                }
-                dispatch({ type: 'PROFILE_GET_LIST_RELIGION', payload: res.data })
-            }
-        },
-        PROFILE_GET_LIST_NATIONALITY: function () {
-            return dispatch => {
-                let res = {
-                    data: [
-                        {
-                            id: 1,
-                            nationality_name: 'ไทย'
-                        },
-                        {
-                            id: 2,
-                            nationality_name: 'ลาว'
-                        },
-                        {
-                            id: 3,
-                            nationality_name: 'จีน'
-                        },
-                        {
-                            id: 4,
-                            nationality_name: 'ชิลี'
-                        },
-                        {
-                            id: 5,
-                            nationality_name: 'บราซิล'
-                        },
-                    ]
-                }
-                dispatch({ type: 'PROFILE_GET_LIST_NATIONALITY', payload: res.data })
-            }
-        },
-        PROFILE_GET_LIST_STATUS: function () {
-            return dispatch => {
-                let res = {
-                    data: [
-                        {
-                            id: 1,
-                            status_name: 'เกษียณราชการ'
-                        },
-                        {
-                            id: 2,
-                            status_name: 'ประกอบธุรกิจส่วนตัว'
-                        },
-                        {
-                            id: 3,
-                            status_name: 'พนักงานของรัฐ'
-                        },
-                        {
-                            id: 4,
-                            status_name: 'พนักงานของเอกชน'
-                        },
-                    ]
-                }
-                dispatch({ type: 'PROFILE_GET_LIST_STATUS', payload: res.data })
+                axios.get('/workstatus')
+                    .then(res => {
+                        dispatch({ type: 'PROFILE_01_GET_LIST_WORK_STATUS', payload: res.data })
+                    }
+                    ).catch(err => {
+                        console.log({ err })
+                    })
             }
         },
 
