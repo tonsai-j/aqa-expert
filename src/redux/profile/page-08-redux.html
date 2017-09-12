@@ -1,17 +1,13 @@
 <script>
-    const pushSeleteToFirst = (data, object) => {
-        data.splice(0, 0, object)
-        return data
-    }
-    Nylon.addReducer('profile_page08', function (state, action) {
+    Nylon.addReducer('profile08', function (state, action) {
         state = state || {
-            research_type: [],
+            typeResearch: [],
 
         }
 
         switch (action.type) {
-            case 'PROFILE_GET_LIST_RESEARCH_TYPE':
-                state.research_type = action.payload
+            case 'PROFILE_GET_LIST_TYPE_RESEARCH':
+                state.typeResearch = action.payload
                 return state
             default:
                 return state
@@ -20,27 +16,15 @@
     })
 
     Nylon.addAction({
-        PROFILE_GET_LIST_RESEARCH_TYPE: function () {
+        PROFILE_GET_LIST_TYPE_RESEARCH: function () {
             return dispatch => {
-                axios.get('/type/research').then(
-                    res => {
-                        res.data = pushSeleteToFirst(res.data, { id: '0', research_type_th: '-------- เลือกข้อมูล --------' })
-                        dispatch({ type: 'PROFILE_GET_LIST_RESEARCH_TYPE', payload: res.data })
-                        // })
-                    }
-                )
-                    .catch(
-                    err => {
-                        // progress(() => {
+                axios.get('/type/research')
+                    .then(res => {
+                        dispatch({ type: 'PROFILE_GET_LIST_TYPE_RESEARCH', payload: res.data })
+                    })
+                    .catch(err => {
                         console.log({ err })
-                        //     Nylon.$['page-view2'].$.list.$.pc1.notify({
-                        //         status: 'error',
-                        //         msg: err.response.data.msg,
-                        //         position: 'top'
-                        //     })
-                        // })
-                    }
-                    )
+                    })
             }
         },
 

@@ -1,6 +1,6 @@
 exports.list = function (req, res) {
-    r.table('research_type')
-        .orderBy('research_type_th')
+    r.table('type_research')
+        .orderBy('type_research_name')
         .run()
         .then(function (data) {
             res.json(data)
