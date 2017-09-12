@@ -60,7 +60,8 @@
                                 birth_date: new Date(hbd + 'T00:00:00+07:00').toISOString(),
                                 issue_date: new Date(issue + 'T00:00:00+07:00').toISOString(),
                                 expire_date: new Date(exp + 'T00:00:00+07:00').toISOString(),
-                                gender_id: (data.cardSex == "ชาย" ? 1 : 2)
+                                gender_id: (data.cardSex == "ชาย" ? 1 : 2),
+                                card_id: data.cardId
                             };
                             dispatch({ type: 'REGISTER_INFO', isCard: true, info: info })
                             callback();

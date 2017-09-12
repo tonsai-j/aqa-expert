@@ -134,10 +134,11 @@
             }
             _register(e) {
                 if (this.data.taxno == '') {
+
                     Nylon.dispatch('REGISTER_READER_CARD', () => {
                         if (this.isCard) {
                             this.set('data', {
-                                taxno: data.cardId,
+                                taxno: this.info.card_id,
                                 basic: this.info,
                                 type_assessor_id: this.data.type_assessor_id
                             });
