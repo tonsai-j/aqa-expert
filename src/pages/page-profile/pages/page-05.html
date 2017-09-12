@@ -363,7 +363,7 @@
                             'dialog-confirm': true,
                             'autofocus': true,
                             action: () => {
-                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'education', e.model.index
+                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'working', e.model.index
                                     , () => {
                                         this._closePanelRight()
                                         this.set('data', {})
