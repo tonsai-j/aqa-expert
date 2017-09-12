@@ -46,7 +46,7 @@
                     <div class="row end-md middle-md">
                         <div class="label col-md-3">
                             <paper-button raised class="btn-primary" on-tap=openPanelRight>
-                                    <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]</paper-button>
+                                <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]</paper-button>
                         </div>
                     </div>
                     <br>
@@ -57,10 +57,17 @@
                                     <template class="header">#</template>
                                     <template>[[item.name]]</template>
                                 </vaadin-grid-column>
-                                <vaadin-grid-column>
+                                <!-- <vaadin-grid-column>
                                     <template class="header">[[i18n.page11.region]]</template>
                                     <template>[[item.surname]]</template>
-                                </vaadin-grid-column>
+                                </vaadin-grid-column> -->
+                                <vaadin-combo-box class="required" required always-float-label label="[[i18n.page11.region]]" items='{{regionList}}' value="{{data.region_id}}"
+                                    item-label-path="region_th" item-value-path="id" on-selected-item-changed="getObject" object-name="region"
+                                    class="required" required auto-validate>
+                                    <template>
+                                        [[item.region_th]]
+                                    </template>
+                                </vaadin-combo-box>
                                 <vaadin-grid-column>
                                     <template class="header">[[i18n.page11.province]]</template>
                                     <template>[[item.role]]</template>
@@ -82,7 +89,7 @@
                                     [[item.label]]
                                 </template>
                             </vaadin-combo-box> -->
-                            <paper-input  always-float-label label="[[i18n.page11.rating]]" ></paper-input>
+                            <paper-input always-float-label label="[[i18n.page11.rating]]"></paper-input>
                         </div>
                         <div class="col-md-6">
                             <vaadin-combo-box always-float-label label="[[i18n.page11.region]]" items='{{amphoeList}}'>
@@ -119,11 +126,11 @@
                 <app-toolbar slot="footer">
                     <div main-title></div>
                     <paper-button raised on-click="closePanelRight">
-                            <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>[[i18n.button.close.label]]
-                        </paper-button>
-                        <paper-button raised class="btn-success" on-click="_save">
-                            <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>[[i18n.button.save.label]]
-                        </paper-button>
+                        <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>[[i18n.button.close.label]]
+                    </paper-button>
+                    <paper-button raised class="btn-success" on-click="_save">
+                        <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>[[i18n.button.save.label]]
+                    </paper-button>
                 </app-toolbar>
             </nylon-panel-card>
         </nylon-panel-right>
@@ -132,51 +139,41 @@
     </template>
 
     <script>
-        /**
-         * `page-11` Description
-         *
-         * @summary ShortDescription.
-         * @customElement
-         * @polymer
-         * @extends {Polymer.Element}
-         */
         class Page11 extends ReduxMixin(Polymer.Element) {
-            /**
-             * String providing the tag name to profile the element under.
-             */
+
             static get is() {
                 return 'page-11';
             }
 
-            /**
-             * Object describing property-related metadata used by Polymer features
-             */
+
             static get properties() {
                 return {
                     i18n: {
                         type: Object,
                         statePath: 'i18n',
                     },
+                    regionList: {
+                        statePath: 'profile_page11.region'
+                    },
+                    info: {
+                        type: Object,
+                        statePath: 'profile.info'
+                    },
+                    zone: {
+                        type: Object,
+                        statePath: 'profile.info.zone',
+                        value: {}
+                    },
                 };
             }
 
-            /**
-             * Instance of the element is created/upgraded. Use: initializing state,
-             * set up event listeners, create shadow dom.
-             * @constructor
-             */
-            constructor() {
-                super();
-            }
 
-            /**
-             * Use for one-time configuration of your component after local DOM is initialized. 
-             */
+
+
             ready() {
                 super.ready();
-
                 Polymer.RenderStatus.afterNextRender(this, function () {
-
+                    Nylon.dispatch('GET_LIST_REGION')
                 });
             }
             openPanelRight() {

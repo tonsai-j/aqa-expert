@@ -21,7 +21,7 @@
             case 'PROFILE_GET_LIST_RACE':
                 state.race = action.payload
                 return state
-            case 'PROFILE_GET_LIST_RELIGIONC':
+            case 'PROFILE_GET_LIST_RELIGION':
                 state.religion = action.payload
                 return state
             case 'PROFILE_GET_LIST_NATIONALITY':
@@ -42,20 +42,20 @@
                 let res = {
                     data: [
                         {
-                            value: 1,
-                            label: 'ศาสตราจารย์'
+                            id: 1,
+                            type_academic_name: 'ศาสตราจารย์'
                         },
                         {
-                            value: 2,
-                            label: 'รองศาสตราจารย์'
+                            id: 2,
+                            type_academic_name: 'รองศาสตราจารย์'
                         },
                         {
-                            value: 3,
-                            label: 'ผู้ช่วยศาสตราจารย์'
+                            id: 3,
+                            type_academic_name: 'ผู้ช่วยศาสตราจารย์'
                         },
                         {
-                            value: 4,
-                            label: ''
+                            id: 4,
+                            type_academic_name: ''
                         },
 
                     ]
@@ -69,12 +69,12 @@
                 let res = {
                     data: [
                         {
-                            value: 1,
-                            label: 'ชาย'
+                            id: 1,
+                            gender_name: 'ชาย'
                         },
                         {
-                            value: 2,
-                            label: 'หญิง'
+                            id: 2,
+                            gender_name: 'หญิง'
                         },
                     ]
                 }
@@ -86,57 +86,57 @@
                 let res = {
                     data: [
                         {
-                            value: 1,
-                            label: 'ไทย'
+                            id: 1,
+                            race_name: 'ไทย'
                         },
                         {
-                            value: 2,
-                            label: 'ลาว'
+                            id: 2,
+                            race_name: 'ลาว'
                         },
                         {
-                            value: 3,
-                            label: 'จีน'
+                            id: 3,
+                            race_name: 'จีน'
                         },
                         {
-                            value: 4,
-                            label: 'ชิลี'
+                            id: 4,
+                            race_name: 'ชิลี'
                         },
                         {
-                            value: 5,
-                            label: 'บราซิล'
+                            id: 5,
+                            race_name: 'บราซิล'
                         },
                     ]
                 }
                 dispatch({ type: 'PROFILE_GET_LIST_RACE', payload: res.data })
             }
         },
-        PROFILE_GET_LIST_RELIGIONC: function () {
+        PROFILE_GET_LIST_RELIGION: function () {
             return dispatch => {
                 let res = {
                     data: [
                         {
-                            value: 1,
-                            label: 'พุทธ'
+                            id: 1,
+                            religion_name: 'พุทธ'
                         },
                         {
-                            value: 2,
-                            label: 'คริสต์'
+                            id: 2,
+                            religion_name: 'คริสต์'
                         },
                         {
-                            value: 3,
-                            label: 'อิสลาม'
+                            id: 3,
+                            religion_name: 'อิสลาม'
                         },
                         {
-                            value: 4,
-                            label: 'ฮินดู'
+                            id: 4,
+                            religion_name: 'ฮินดู'
                         },
                         {
-                            value: 5,
-                            label: 'นิวเอจ'
+                            id: 5,
+                            religion_name: 'นิวเอจ'
                         },
                     ]
                 }
-                dispatch({ type: 'PROFILE_GET_LIST_RELIGIONC', payload: res.data })
+                dispatch({ type: 'PROFILE_GET_LIST_RELIGION', payload: res.data })
             }
         },
         PROFILE_GET_LIST_NATIONALITY: function () {
@@ -144,24 +144,24 @@
                 let res = {
                     data: [
                         {
-                            value: 1,
-                            label: 'ไทย'
+                            id: 1,
+                            nationality_name: 'ไทย'
                         },
                         {
-                            value: 2,
-                            label: 'ลาว'
+                            id: 2,
+                            nationality_name: 'ลาว'
                         },
                         {
-                            value: 3,
-                            label: 'จีน'
+                            id: 3,
+                            nationality_name: 'จีน'
                         },
                         {
-                            value: 4,
-                            label: 'ชิลี'
+                            id: 4,
+                            nationality_name: 'ชิลี'
                         },
                         {
-                            value: 5,
-                            label: 'บราซิล'
+                            id: 5,
+                            nationality_name: 'บราซิล'
                         },
                     ]
                 }
@@ -173,20 +173,20 @@
                 let res = {
                     data: [
                         {
-                            value: 1,
-                            label: 'เกษียณราชการ'
+                            id: 1,
+                            status_name: 'เกษียณราชการ'
                         },
                         {
-                            value: 2,
-                            label: 'ประกอบธุรกิจส่วนตัว'
+                            id: 2,
+                            status_name: 'ประกอบธุรกิจส่วนตัว'
                         },
                         {
-                            value: 3,
-                            label: 'พนักงานของรัฐ'
+                            id: 3,
+                            status_name: 'พนักงานของรัฐ'
                         },
                         {
-                            value: 4,
-                            label: 'พนักงานของเอกชน'
+                            id: 4,
+                            status_name: 'พนักงานของเอกชน'
                         },
                     ]
                 }

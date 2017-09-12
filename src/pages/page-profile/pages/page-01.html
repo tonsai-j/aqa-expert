@@ -47,72 +47,114 @@
                             <paper-input always-float-label label="[[i18n.page01.register]]:" value="[[info.id]]" disabled></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.status]]:" items='{{statusList}}'
-                                value="{{data.status}}" item-label-path="label" item-value-path="value"></vaadin-combo-box>
+                            <!-- <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.status]]:" items='{{statusList}}'
+                                value="{{data.status}}" item-label-path="label" item-value-path="value"></vaadin-combo-box> -->
+                            <vaadin-combo-box always-float-label label="[[i18n.page01.status]]" items='{{statusList}}' value="{{data.status_id}}" item-label-path="status_name"
+                                item-value-path="id" on-selected-item-changed="getObject" object-name="data.status" class="required"
+                                required>
+                                <template>
+                                    [[item.status_name]]
+                                </template>
+                            </vaadin-combo-box>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.academic]]:" items='{{academicList}}'
+                            <!-- <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.academic]]:" items='{{academicList}}'
                                 value="{{data.academic}}" item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
+                            </vaadin-combo-box> -->
+                            <vaadin-combo-box always-float-label label="[[i18n.page01.academic]]" items='{{academicList}}' value="{{data.type_academic_id}}"
+                                item-label-path="type_academic_name" item-value-path="id" on-selected-item-changed="getObject"
+                                object-name="data.type_academic" class="required" required>
+                                <template>
+                                    [[item.type_academic_name]]
+                                </template>
                             </vaadin-combo-box>
                         </div>
                     </div>
                     <div class="row middle-md col-md-offset-1">
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.prefix]]:" value="{{data.prefix}}"></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.prefix_th]]:" value="{{data.prefix_th}}"></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.name]]*:" value="{{data.firstname}}"></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.firstname_th]]*:" value="{{data.firstname_th}}"></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.lastname]]*:" value="{{data.lastname}}"></paper-input>
-                        </div>
-                    </div>
-                    <div class="row middle-md col-md-offset-1">
-                        <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.title_eng]]:" value="{{data.title_en}}"></paper-input>
-                        </div>
-                        <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.name_eng]]:" value="{{data.firstname_en}}"></paper-input>
-                        </div>
-                        <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.lastname_eng]]:" value="{{data.lastname_en}}"></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.lastname_th]]*:" value="{{data.lastname_th}}"></paper-input>
                         </div>
                     </div>
                     <div class="row middle-md col-md-offset-1">
                         <div class="col-md-2 col-md-3">
-                            <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.gender]]:" items='{{genderList}}'
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.prefix_en]]:" value="{{data.prefix_en}}"></paper-input>
+                        </div>
+                        <div class="col-md-2 col-md-3">
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.firstname_en]]:" value="{{data.firstname_en}}"></paper-input>
+                        </div>
+                        <div class="col-md-2 col-md-3">
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.lastname_en]]:" value="{{data.lastname_en}}"></paper-input>
+                        </div>
+                    </div>
+                    <div class="row middle-md col-md-offset-1">
+                        <div class="col-md-2 col-md-3">
+                            <!-- <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.gender]]:" items='{{genderList}}'
                                 value="{{data.gender}}" item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
-                            </vaadin-combo-box>
-                        </div>
-                        <div class="col-md-2 col-md-3">
-                            <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.ethnicity]]:" items='{{raceList}}'
-                                value="{{data.ethnicity}}">
+                            </vaadin-combo-box> -->
+                            <vaadin-combo-box always-float-label label="[[i18n.page01.gender]]" items='{{genderList}}' value="{{data.gender_id}}" item-label-path="gender_name"
+                                item-value-path="id" on-selected-item-changed="getObject" object-name="data.gender" class="required"
+                                required>
                                 <template>
-                                    [[item.label]]
+                                    [[item.gender_name]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.religion]]:" items='{{religionList}}'
+                            <!-- <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.ethnicity]]:" items='{{raceList}}'
+                                value="{{data.ethnicity}}">
+                                <template>
+                                    [[item.label]]
+                                </template>
+                            </vaadin-combo-box> -->
+                            <vaadin-combo-box always-float-label label="[[i18n.page01.ethnicity]]" items='{{raceList}}' value="{{data.race_id}}" item-label-path="race_name"
+                                item-value-path="id" on-selected-item-changed="getObject" object-name="data.race" class="required"
+                                required>
+                                <template>
+                                    [[item.race_name]]
+                                </template>
+                            </vaadin-combo-box>
+                        </div>
+                        <div class="col-md-2 col-md-3">
+                            <!-- <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.religion]]:" items='{{religionList}}'
                                 value="{{data.religion}}" item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
+                                </template>
+                            </vaadin-combo-box> -->
+                            <vaadin-combo-box always-float-label label="[[i18n.page01.religion]]" items='{{religionList}}' value="{{data.religion_id}}"
+                                item-label-path="religion_name" item-value-path="id" on-selected-item-changed="getObject" object-name="data.religion"
+                                class="required" required>
+                                <template>
+                                    [[item.religion_name]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
                     </div>
                     <div class="row middle-md col-md-offset-1">
                         <div class="col-md-2 col-md-3">
-                            <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.nationality]]:" items='{{nationalityList}}'
+                            <!-- <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.nationality]]:" items='{{nationalityList}}'
                                 value="{{data.nationality}}" item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
+                                </template>
+                            </vaadin-combo-box> -->
+                            <vaadin-combo-box always-float-label label="[[i18n.page01.nationality]]" items='{{nationalityList}}' value="{{data.nationality_id}}"
+                                item-label-path="nationality_name" item-value-path="id" on-selected-item-changed="getObject" object-name="data.nationality"
+                                class="required" required>
+                                <template>
+                                    [[item.nationality_name]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
@@ -225,7 +267,7 @@
                 Nylon.dispatch('PROFILE_GET_LIST_ACADAMIC')
                 Nylon.dispatch('PROFILE_GET_LIST_GENDER')
                 Nylon.dispatch('PROFILE_GET_LIST_RACE')
-                Nylon.dispatch('PROFILE_GET_LIST_RELIGIONC')
+                Nylon.dispatch('PROFILE_GET_LIST_RELIGION')
                 Nylon.dispatch('PROFILE_GET_LIST_NATIONALITY')
                 Nylon.dispatch('PROFILE_GET_LIST_STATUS')
             }
