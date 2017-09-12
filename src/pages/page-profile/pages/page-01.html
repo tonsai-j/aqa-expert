@@ -7,6 +7,7 @@
 <link rel="import" href="../../../layout/shared-styles.html">
 <link rel="import" href="../../../layout/flexbox-grid.html">
 <link rel="import" href="../../../redux/profile/page-01-redux.html">
+<link rel="import" href="../../../redux/register/register-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
 <link rel="import" href="../../../i18n/profile/page-01-i18n.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
@@ -40,30 +41,7 @@
                             <paper-input always-float-label label="[[i18n.page01.register]]:" value="[[info.id]]" disabled></paper-input>
                         </div>
                         <div class="col-md-3">
-                            <!-- <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.status]]:" items='{{statusList}}'
-                                value="{{data.status}}" item-label-path="label" item-value-path="value"></vaadin-combo-box> -->
-                            <vaadin-combo-box always-float-label label="[[i18n.page01.status]]" items='{{statusList}}' value="{{data.status_id}}" item-label-path="status_name"
-                                item-value-path="id" on-selected-item-changed="getObject" object-name="data.status" class="required"
-                                required>
-                                <template>
-                                    [[item.status_name]]
-                                </template>
-                            </vaadin-combo-box>
-                        </div>
-                        <div class="col-md-3">
-                            <!-- <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.academic]]:" items='{{academicList}}'
-                                value="{{data.academic}}" item-label-path="label" item-value-path="value">
-                                <template>
-                                    [[item.label]]
-                                </template>
-                            </vaadin-combo-box> -->
-                            <vaadin-combo-box always-float-label label="[[i18n.page01.academic]]" items='{{academicList}}' value="{{data.type_academic_id}}"
-                                item-label-path="type_academic_name" item-value-path="id" on-selected-item-changed="getObject"
-                                object-name="data.type_academic" class="required" required>
-                                <template>
-                                    [[item.type_academic_name]]
-                                </template>
-                            </vaadin-combo-box>
+                            <paper-input always-float-label label="[[i18n.page01.id_card]]:" value="[[info.taxno]]" disabled></paper-input>
                         </div>
                     </div>
                     <div class="row middle-md col-md-offset-1">
@@ -90,12 +68,6 @@
                     </div>
                     <div class="row middle-md col-md-offset-1">
                         <div class="col-md-3">
-                            <!-- <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.gender]]:" items='{{genderList}}'
-                                value="{{data.gender}}" item-label-path="label" item-value-path="value">
-                                <template>
-                                    [[item.label]]
-                                </template>
-                            </vaadin-combo-box> -->
                             <vaadin-combo-box always-float-label label="[[i18n.page01.gender]]" items='{{genderList}}' value="{{data.gender_id}}" item-label-path="gender_name"
                                 item-value-path="id" on-selected-item-changed="getObject" object-name="data.gender" class="required"
                                 required>
@@ -105,12 +77,6 @@
                             </vaadin-combo-box>
                         </div>
                         <div class="col-md-3">
-                            <!-- <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.ethnicity]]:" items='{{raceList}}'
-                                value="{{data.ethnicity}}">
-                                <template>
-                                    [[item.label]]
-                                </template>
-                            </vaadin-combo-box> -->
                             <vaadin-combo-box always-float-label label="[[i18n.page01.ethnicity]]" items='{{raceList}}' value="{{data.race_id}}" item-label-path="race_name"
                                 item-value-path="id" on-selected-item-changed="getObject" object-name="data.race" class="required"
                                 required>
@@ -120,12 +86,6 @@
                             </vaadin-combo-box>
                         </div>
                         <div class="col-md-3">
-                            <!-- <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.religion]]:" items='{{religionList}}'
-                                value="{{data.religion}}" item-label-path="label" item-value-path="value">
-                                <template>
-                                    [[item.label]]
-                                </template>
-                            </vaadin-combo-box> -->
                             <vaadin-combo-box always-float-label label="[[i18n.page01.religion]]" items='{{religionList}}' value="{{data.religion_id}}"
                                 item-label-path="religion_name" item-value-path="id" on-selected-item-changed="getObject" object-name="data.religion"
                                 class="required" required>
@@ -137,12 +97,6 @@
                     </div>
                     <div class="row middle-md col-md-offset-1">
                         <div class="col-md-3">
-                            <!-- <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.nationality]]:" items='{{nationalityList}}'
-                                value="{{data.nationality}}" item-label-path="label" item-value-path="value">
-                                <template>
-                                    [[item.label]]
-                                </template>
-                            </vaadin-combo-box> -->
                             <vaadin-combo-box always-float-label label="[[i18n.page01.nationality]]" items='{{nationalityList}}' value="{{data.nationality_id}}"
                                 item-label-path="nationality_name" item-value-path="id" on-selected-item-changed="getObject"
                                 object-name="data.nationality" class="required" required>
@@ -151,6 +105,27 @@
                                 </template>
                             </vaadin-combo-box>
                         </div>
+                        <div class="col-md-3">
+                            <vaadin-combo-box always-float-label label="[[i18n.page01.status]]" items='{{statusList}}' value="{{data.status_id}}" item-label-path="status_name"
+                                item-value-path="id" on-selected-item-changed="getObject" object-name="data.status" class="required"
+                                required>
+                                <template>
+                                    [[item.status_name]]
+                                </template>
+                            </vaadin-combo-box>
+                        </div>
+                        <div class="col-md-3">
+                            <vaadin-combo-box always-float-label label="[[i18n.page01.academic]]" items='{{academicList}}' value="{{data.type_academic_id}}"
+                                item-label-path="type_academic_name" item-value-path="id" on-selected-item-changed="getObject"
+                                object-name="data.type_academic" class="required" required>
+                                <template>
+                                    [[item.type_academic_name]]
+                                </template>
+                            </vaadin-combo-box>
+                        </div>
+                    </div>
+                    <div class="row middle-md col-md-offset-1">
+
                         <div class="col-md-3">{{_calcAge(data.birth_date)}}
                             <!-- <paper-input always-float-label label="Name:"></paper-input> -->
                             <paper-input class="required" required always-float-label label="[[i18n.page01.birth]]:" type="date" value="{{data.birth_date}}"></paper-input>
@@ -160,9 +135,7 @@
                         </div>
                     </div>
                     <div class="row middle-md col-md-offset-1">
-                        <div class="col-md-3">
-                            <paper-input always-float-label label="[[i18n.page01.id_card]]:" value="[[info.taxno]]" disabled></paper-input>
-                        </div>
+
                         <div class="col-md-3">
                             <paper-input class="required" required always-float-label label="[[i18n.page01.date_of_issue]]:" type="date" value="{{data.issue_date}}"></paper-input>
                         </div>
@@ -191,7 +164,7 @@
                 <paper-button raised class="btn-success" on-click="_save">
                     <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
                 </paper-button>
-                
+
             </app-toolbar>
 
 
@@ -251,10 +224,10 @@
                         type: Number,
                         value: 0
                     },
-                    checkReadIdCard:{
-                        type:Boolean,
+                    checkReadIdCard: {
+                        type: Boolean,
                         statePath: 'register.isCard',
-                        observer:'_checkReadIdCard'
+                        observer: '_checkReadIdCard'
                     }
                 };
             }
@@ -274,12 +247,16 @@
             cutdate(date) {
                 if (this.info !== undefined) {
                     if (this.info.hasOwnProperty('id')) {
+                        Date.prototype.addHours = function (h) {
+                            this.setTime(this.getTime() + (h * 60 * 60 * 1000));
+                            return this;
+                        }
                         if (date.birth_date !== undefined)
-                            date.birth_date = date.birth_date.split('T')[0]
+                            date.birth_date = new Date(date.birth_date).addHours(7).toISOString().split('T')[0]
                         if (date.issue_date !== undefined)
-                            date.issue_date = date.issue_date.split('T')[0]
+                            date.issue_date = new Date(date.issue_date).addHours(7).toISOString().split('T')[0]
                         if (date.expire_date !== undefined)
-                            date.expire_date = date.expire_date.split('T')[0]
+                            date.expire_date = new Date(date.expire_date).addHours(7).toISOString().split('T')[0]
                         this.set('data', date)
                     }
                 }
@@ -318,20 +295,33 @@
                     this.set('age', age);
                 }
             }
-
-            _readIDCard(){
-                Nylon.dispatch('REGISTER_READER_CARD',(isReadCard)=>{
-                    console.log(isReadCard);
-                   if (isReadCard) {
-                    Nylon.toast('success') 
-                   }else {
-                    Nylon.toast('error') 
-                   }
+            _setDate() {
+                Date.prototype.addHours = (h) => {
+                    this.setHours(this.getHours() + h);
+                    return this;
+                }
+            }
+            _readIDCard() {
+                Nylon.dispatch('REGISTER_READER_CARD', (isReadCard) => {
+                    Date.prototype.addHours = function (h) {
+                        this.setTime(this.getTime() + (h * 60 * 60 * 1000));
+                        return this;
+                    }
+                    if (isReadCard.hasOwnProperty('card_id')) {
+                        // console.log(1);
+                        isReadCard.birth_date = new Date(isReadCard.birth_date).addHours(7).toISOString().split('T')[0]
+                        isReadCard.issue_date = new Date(isReadCard.issue_date).addHours(7).toISOString().split('T')[0]
+                        isReadCard.expire_date = new Date(isReadCard.expire_date).addHours(7).toISOString().split('T')[0]
+                        this.set('data', isReadCard)
+                        Nylon.toast('insert')
+                    } else {
+                        Nylon.toast('error') 
+                    }
                 })
             }
 
-            _checkReadIdCard(Check){
-                console.log(Check);
+            _checkReadIdCard(Check) {
+                // console.log(Check);
             }
         }
 
