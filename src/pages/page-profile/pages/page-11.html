@@ -81,9 +81,9 @@
                         <!-- <div class="col-md-2">
                             <paper-input always-float-label label="[[i18n.page11.rating]]"></paper-input>
                         </div> -->
-                        <div class="col-md-6">
-                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page11.region]]" items='{{regionList}}' 
-                            value="{{data.region_id}}" item-label-path="region_th" item-value-path="id" on-value-changed="getProvince" on-selected-item-changed="getObject" object-name="region" auto-validate>
+                        <div class="col-md-4">{{getProvince(data.region_id)}}
+                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page11.region]]" items='{{regionList}}' value="{{data.region_id}}"
+                                item-label-path="region_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.region">
                                 <template>
                                     [[item.region_th]]
                                 </template>
@@ -93,7 +93,7 @@
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-9">
                             <vaadin-grid id='material' items='{{zone}}'>
-                                <vaadin-grid-selection-column width="66px" flex="0" select-all="{{selectAll}}">
+                                <vaadin-grid-selection-column width="66px" flex="0" select-all="{{provinceList}}">
                                     <template class="header">
                                         <paper-checkbox checked="{{selectAll}}"></paper-checkbox>
                                     </template>
@@ -103,11 +103,11 @@
                                 </vaadin-grid-selection-column>
                                 <vaadin-grid-column>
                                     <template class="header">[[i18n.page11.rating]]</template>
-                                    <template>[[item.name]]</template>
+                                    <template>[[item.province_th]]</template>
                                 </vaadin-grid-column>
                                 <vaadin-grid-column>
                                     <template class="header">[[i18n.page11.region]]</template>
-                                    <template>[[item.surname]]</template>
+                                    <template>[[item.region_old_id]]</template>
                                 </vaadin-grid-column>
                             </vaadin-grid>
                         </div>
@@ -146,6 +146,9 @@
                     regionList: {
                         statePath: 'profile_page11.region'
                     },
+                    provinceList: {
+                        statePath: 'profile_page11.province'
+                    },
                     info: {
                         type: Object,
                         statePath: 'profile.info'
@@ -168,8 +171,20 @@
                 super.ready();
                 Nylon.dispatch('GET_LIST_REGION')
             }
-            getProvince(value){
-                console.log(value);
+            getProvince(value) {
+                if (this.data !== undefined) {
+                    this._debouncer = Polymer.Debouncer.debounce(
+                        this._debouncer, // initially undefined
+                        Polymer.Async.timeOut.after(100),
+                        () => {
+                            Nylon.dispatch('GET_LIST_PROVINCE', this.data.region.old_id)
+                            // console.log(this.data);
+                        })
+                }
+
+            }
+            _save() {
+                console.log(this.data);
             }
             openPanelRight() {
                 this.$.right.open()
