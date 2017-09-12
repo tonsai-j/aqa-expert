@@ -37,7 +37,7 @@
                 <fieldset>
                     <legend>[[i18n.page10.bank_account]]:</legend>
                     <div class="row middle-md col-md-offset-1">
-                        <div class="input col-md-4">
+                        <div class="input col-md-4">{{bank.bank_id}}//
                             <vaadin-combo-box class="required" required always-float-label label="[[i18n.page10.bank]]*" items='{{bankList}}' value="{{bank.bank_id}}"
                                 item-label-path="bank_name_th" item-value-path="id" on-selected-item-changed="getObject" object-name="bank.bank">
                                 <template>
@@ -45,7 +45,7 @@
                                 </template>
                             </vaadin-combo-box>
                         </div>
-                        <div class="input col-md-4">
+                        <div class="input col-md-4">{{bank.type_account_id}}//
                             <vaadin-combo-box class="required" required always-float-label label="[[i18n.page10.account_Types]]*" items='{{typeList}}'
                                 value="{{bank.type_account_id}}" item-label-path="type_account_name_th" item-value-path="id"
                                 on-selected-item-changed="getObject" object-name="bank.type_account">
@@ -85,7 +85,7 @@
                             <img id="output_image" src$="[[rootPath]]images/I20170901111610.jpg" />
                         </div>
                         <div class=" col-md-3">
-                            <input id="ifile" type=file accept="image/*" onchange="preview_image">
+                            <input id="ifile" type=file accept="image/*" on-change="preview_image">
                         </div>
                     </div>
                 </fieldset>
@@ -146,23 +146,23 @@
                 Nylon.dispatch('PROFILE_GET_LIST_BANK')
                 Nylon.dispatch('PROFILE_GET_LIST_ACCOUNT_TYPE')
             }
+
             preview_image(e) {
-                var reader = new FileReader();
+                var reader = new FileReader()
                 reader.onload = () => {
-                    var output = this.$.output_image;
-                    output.src = reader.result;
+                    var output = this.$.output_image
+                    output.src = reader.result
                 }
-                reader.readAsDataURL(event.target.files[0]);
+                reader.readAsDataURL(event.target.files[0])
             }
             _save() {
-                // console.log(this.bank);
+                console.log(this.bank);
                 if (this.validateForm('.required')) {
                     Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'bank', this.bank,
                         () => {
                             Nylon.toast('update')
                         }
                     )
-
                 } else {
                     Nylon.toast('required')
                 }
