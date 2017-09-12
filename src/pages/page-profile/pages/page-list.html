@@ -92,19 +92,16 @@
                     return
                 this.set('setShow', false)
 
-                // this._debounceJob = Polymer.Debouncer.debounce(this._debounceJob, Polymer.Async.timeOut.after(300), () => {
-                //     this.dispatchEvent(new CustomEvent('import-loaded', results));
-                //     this.set('setShow', true)
-                // })
-                this._debouncer = Polymer.Debouncer.debounce(
-                    this._debouncer, // initially undefined
-                    Polymer.Async.timeOut.after(300),
-                    () => {
-                        this.importLazyGroup(el.localName).then(results => {
-                            this.dispatchEvent(new CustomEvent('import-loaded', results));
-                            this.set('setShow', true)
-                        })
-                    })
+                // this._debouncer = Polymer.Debouncer.debounce(
+                //     this._debouncer, // initially undefined
+                //     Polymer.Async.timeOut.after(300),
+                //     () => {
+                this.importLazyGroup(el.localName).then(results => {
+                    console.log(results);
+                    this.dispatchEvent(new CustomEvent('import-loaded', results));
+                    this.set('setShow', true)
+                    //         })
+                })
             }
             constructor() {
                 super();
