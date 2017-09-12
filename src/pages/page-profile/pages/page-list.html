@@ -97,7 +97,7 @@
                 //     Polymer.Async.timeOut.after(300),
                 //     () => {
                 this.importLazyGroup(el.localName).then(results => {
-                    console.log(results);
+                    // console.log(results);
                     this.dispatchEvent(new CustomEvent('import-loaded', results));
                     this.set('setShow', true)
                     //         })
