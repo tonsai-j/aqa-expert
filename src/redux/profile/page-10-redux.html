@@ -24,67 +24,26 @@
         Nylon.addAction({
             PROFILE_GET_LIST_BANK: function () {
                 return dispatch => {
-                    let res = {
-                        data: [
-                            {
-                                value: 1,
-                                label: 'ธ. กรุงเทพ จำกัด (มหาชน)'
-                            },
-                            {
-                                value: 2,
-                                label: 'ธ. กรุงไทย จำกัด (มหาชน)'
-                            },
-                            {
-                                value: 3,
-                                label: 'ธ. กรุงศรีอยุธยา จำกัด (มหาชน)'
-                            },
-                            {
-                                value: 4,
-                                label: 'ธ. กสิกรไทย จำกัด (มหาชน)'
-                            },
-                            {
-                                value: 5,
-                                label: 'ธ. ซีไอเอ็มบี ไทย จำกัด (มหาชน)'
-                            },
-                            {
-                                value: 6,
-                                label: 'ธ. ไทยพาณิชย์ จำกัด (มหาชน)'
-                            },
-                            {
-                                value: 7,
-                                label: 'ธ. ธนชาต จำกัด (มหาชน)'
-                            },
-                            {
-                                value: 8,
-                                label: 'ธ. ยูโอบี จำกัด (มหาชน)'
-                            },
-    
-                        ]
-                    }
+                    axios.get('/bank')
+                    .then(res => {
+                        dispatch({ type: 'PROFILE_GET_LIST_BANK', payload: res.data })
+                    })
+                    .catch(err => {
+                        console.log({ err })
+                    })
                     
-                    dispatch({ type: 'PROFILE_GET_LIST_BANK', payload: res.data })
                 }
             },
             PROFILE_GET_LIST_ACCOUNT_TYPE: function () {
                 return dispatch => {
-                    let res = {
-                        data: [
-                            {
-                                value: 1,
-                                label: 'บัญชีเงินฝากออมทรัพย์ '
-                            },
-                            {
-                                value: 2,
-                                label: 'บัญชีเงินฝากประจำ'
-                            },
-                            {
-                                value: 3,
-                                label: 'บัญชีเงินฝากกระแสรายวัน '
-                            },
-                            
-                        ]
-                    }
-                    dispatch({ type: 'PROFILE_GET_LIST_ACCOUNT_TYPE', payload: res.data })
+                    axios.get('/type/account')
+                    .then(res => {
+                        dispatch({ type: 'PROFILE_GET_LIST_ACCOUNT_TYPE', payload: res.data })
+                    })
+                    .catch(err => {
+                        console.log({ err })
+                    })
+                    
                 }
             },
             

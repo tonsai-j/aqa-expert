@@ -1,7 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
 <script>
-    ValidateFormMixin = Parent => class TestMixin extends Parent {
+    ValidateFormMixin = Parent => class TestMixin extends polymerElementPlusMixin {
         queryFrom(required) {
             return this.shadowRoot.querySelectorAll(required)
         }

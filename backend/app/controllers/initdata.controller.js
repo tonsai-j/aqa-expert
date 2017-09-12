@@ -1,6 +1,6 @@
 var XLSX = require('xlsx');
 exports.init = function (req, res) {
-    var workbook = XLSX.readFile('../data/education.xlsx');
+    var workbook = XLSX.readFile('../data/bank.xlsx');
     var file = workbook.Sheets;
     var data = [];
     for (var sheet in file) {
