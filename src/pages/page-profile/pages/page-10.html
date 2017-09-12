@@ -156,7 +156,7 @@
                 reader.readAsDataURL(event.target.files[0])
             }
             _save() {
-                console.log(this.bank);
+                // console.log(this.bank);
                 if (this.validateForm('.required')) {
                     Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'bank', this.bank,
                         () => {
