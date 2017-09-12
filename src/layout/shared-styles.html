@@ -9,21 +9,29 @@
 
 
         --font-size-default: .8em;
-        --font-size-large: calc(var(--font-size-default) * 1.25);        /*// ~20px*/
-        --font-size-small: calc(var(--font-size-default) * 0.85);        /*// ~14px*/
-        --font-size-h1: calc(var(--font-size-default) * 2.6);        /*// ~42px*/
-        --font-size-h2: calc(var(--font-size-default) * 2.15);        /*// ~34px*/
-        --font-size-h3: calc(var(--font-size-default) * 1.7);        /*// ~27px*/
-        --font-size-h4: calc(var(--font-size-default) * 1.25);        /*// ~20px*/
-        --font-size-h5: var(--font-size-default);        /*// ~16px*/
-        --font-size-h6: var(--font-size-small);        /*// ~14px*/
+        --font-size-large: calc(var(--font-size-default) * 1.25);
+        /*// ~20px*/
+        --font-size-small: calc(var(--font-size-default) * 0.85);
+        /*// ~14px*/
+        --font-size-h1: calc(var(--font-size-default) * 2.6);
+        /*// ~42px*/
+        --font-size-h2: calc(var(--font-size-default) * 2.15);
+        /*// ~34px*/
+        --font-size-h3: calc(var(--font-size-default) * 1.7);
+        /*// ~27px*/
+        --font-size-h4: calc(var(--font-size-default) * 1.25);
+        /*// ~20px*/
+        --font-size-h5: var(--font-size-default);
+        /*// ~16px*/
+        --font-size-h6: var(--font-size-small);
+        /*// ~14px*/
         --nylon-font-family: {
           font-family: 'CSChatThaiUI', 'tahoma', sans-serif;
           -webkit-font-smoothing: antialiased;
         }
-        --nylon-font-family-bone:{
+        --nylon-font-family-bone: {
           font-family: 'CSChatThaiUI', 'tahoma', sans-serif;
-          font-weight:bold;
+          font-weight: bold;
           -webkit-font-smoothing: antialiased;
         }
         --nylon-margin: {
@@ -147,12 +155,23 @@
 
 
       paper-button {
-
         height: 36px;
       }
+      /* --gl-danger-color: #d9534f;
+        --gl-disabled-color: #D5D8DC;  */
 
       paper-button.btn-primary {
         background-color: #0388CA;
+        color: #FFF;
+      }
+
+      paper-button.btn-warning {
+        background-color: #f0ad4e;
+        color: #FFF;
+      }
+
+      paper-button.btn-danger {
+        background-color: #d9534f;
         color: #FFF;
       }
 
@@ -166,6 +185,14 @@
         color: #707070;
       }
 
+      paper-button.btn-primary[disabled],
+      paper-button.btn-danger[disabled],
+      paper-button.btn-warning[disabled],
+      paper-button.btn-default[disabled],
+      paper-button.btn-success[disabled] {
+        background-color: #eaeaea;
+        color: #a8a8a8;
+      }
 
       vaadin-grid#material {
         font-family: 'CSChatThaiUI', sans-serif;
