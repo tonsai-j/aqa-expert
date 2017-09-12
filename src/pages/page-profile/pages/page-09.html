@@ -42,19 +42,23 @@
             <div slot="content">
                 <fieldset>
                     <legend>[[i18n.page09.title]]</legend>
-                    <div class="row end-md middle-md">
+                    <!-- <div class="row end-md middle-md">
                         <div class="label col-md-3">
                             <paper-button raised class="btn-primary" on-tap=openPanelRight>
-                                    <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]</paper-button>
+                                <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]</paper-button>
                         </div>
                     </div>
-                    <br>
+                    <br> -->
                     <div class="row  middle-md">
                         <div class="col-md-12">
                             <vaadin-grid id='material' items='[{"name": "John", "surname": "Lennon", "role": "singer"}, {"name": "Ringo", "surname": "Starr", "role": "drums"}]'>
-                                <vaadin-grid-column>
-                                    <template class="header">#</template>
-                                    <template>[[item.name]]</template>
+                                <vaadin-grid-column width="50px" flex-grow="0">
+                                    <template class="header">
+                                        <div style="text-align: center">#</div>
+                                    </template>
+                                    <template>
+                                        <div style="text-align: center">[[item.autoIndex(index)]]</div>
+                                    </template>
                                 </vaadin-grid-column>
                                 <vaadin-grid-column>
                                     <template class="header">[[i18n.page09.project]]</template>
@@ -72,23 +76,22 @@
                                     <template class="header">[[i18n.page09.hours]]</template>
                                     <template>[[item.role]]</template>
                                 </vaadin-grid-column>
-                                <vaadin-grid-column>
+                                <!-- <vaadin-grid-column>
                                     <template class="header">[[i18n.page09.file]]</template>
                                     <template>[[item.role]]</template>
-                                </vaadin-grid-column>
+                                </vaadin-grid-column> -->
                                 <vaadin-grid-column>
                                     <template class="header">[[i18n.page09.date]]</template>
                                     <template>[[item.role]]</template>
                                 </vaadin-grid-column>
                             </vaadin-grid>
-                            จำนวนรายการทั้งหมด 0 รายการ
                         </div>
                     </div>
                 </fieldset>
                 </fieldset>
             </div>
         </nylon-panel-card>
-        <nylon-panel-right id="right" title="[[i18n.page09.history]]" width="80%">
+        <!-- <nylon-panel-right id="right" title="[[i18n.page09.history]]" width="80%">
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
@@ -144,14 +147,14 @@
                 <app-toolbar slot="footer">
                     <div main-title></div>
                     <paper-button raised on-click="closePanelRight">
-                            <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>[[i18n.button.close.label]]
-                        </paper-button>
-                        <paper-button raised class="btn-success" on-click="_save">
-                            <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>[[i18n.button.save.label]]
-                        </paper-button>
+                        <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>[[i18n.button.close.label]]
+                    </paper-button>
+                    <paper-button raised class="btn-success" on-click="_save">
+                        <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>[[i18n.button.save.label]]
+                    </paper-button>
                 </app-toolbar>
             </nylon-panel-card>
-        </nylon-panel-right>
+        </nylon-panel-right> -->
 
 
     </template>
@@ -186,44 +189,18 @@
                         type: Object,
                         statePath: 'profile.info'
                     },
-                    quality: {
-                        type: Object,
-                        // statePath: 'profile.info.quality',
-                        value: {}
-                    },
+                    datas: {
+                        type: Array,
+                        statePath: 'profile09.meeting',
+                    }
                 };
             }
 
-
-
             ready() {
                 super.ready();
-
-            }
-            openPanelRight() {
-                this.$.right.open()
-            }
-            closePanelRight() {
-                this.$.right.close()
-            }
-            _addHeader(e) {
-                console.log(11111)
-                event.detail.xhr.setRequestHeader('draft-status', '1')
-                event.detail.xhr.setRequestHeader('company-taxno', '2')
-                event.detail.xhr.setRequestHeader('draft-id', '3')
-            }
-            _save() {
-                console.log(this.validateForm('.required'));
-                if (this.validateForm('.required')) {
-                    Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'quality', this.quality,
-                        () => {
-                            Nylon.toast('update')
-                        }
-                    );
-                } else {
-                    Nylon.toast('required')
-                }
-
+                Polymer.RenderStatus.afterNextRender(this, function () {
+                    Nylon.dispatch('PROFILE_09_GET_MEETING')
+                });
             }
         }
 

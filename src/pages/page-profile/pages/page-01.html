@@ -228,15 +228,17 @@
             }
             constructor() {
                 super();
-                Nylon.dispatch('PROFILE_01_GET_LIST_ACADAMIC_POSITION')
-                Nylon.dispatch('PROFILE_01_GET_LIST_GENDER')
-                Nylon.dispatch('PROFILE_01_GET_LIST_NATIONALITY')
-                Nylon.dispatch('PROFILE_01_GET_LIST_RELIGION')
-                Nylon.dispatch('PROFILE_01_GET_LIST_WORK_STATUS')
+
             }
             ready() {
                 super.ready();
-
+                Polymer.RenderStatus.afterNextRender(this, function () {
+                    Nylon.dispatch('PROFILE_01_GET_LIST_ACADAMIC_POSITION')
+                    Nylon.dispatch('PROFILE_01_GET_LIST_GENDER')
+                    Nylon.dispatch('PROFILE_01_GET_LIST_NATIONALITY')
+                    Nylon.dispatch('PROFILE_01_GET_LIST_RELIGION')
+                    Nylon.dispatch('PROFILE_01_GET_LIST_WORK_STATUS')
+                });
             }
             cutdate(date) {
                 if (this.info !== undefined) {
@@ -272,11 +274,11 @@
                     newDataSave.issue_date = new Date(newDataSave.issue_date).toISOString()
                     newDataSave.expire_date = new Date(newDataSave.expire_date).toISOString()
                     console.log(newDataSave);
-                    // Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'basic', newDataSave,
-                    //     () => {
-                    //         Nylon.toast('update')
-                    //     }
-                    // )
+                    Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'basic', newDataSave,
+                        () => {
+                            Nylon.toast('update')
+                        }
+                    )
 
                 } else {
                     Nylon.toast('required')
