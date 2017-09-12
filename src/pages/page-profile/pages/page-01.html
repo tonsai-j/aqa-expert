@@ -48,11 +48,11 @@
                         </div>
                         <div class="col-md-2 col-md-3">
                             <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.status]]:" items='{{statusList}}'
-                                value="{{basic.status}}" item-label-path="label" item-value-path="value"></vaadin-combo-box>
+                                value="{{data.status}}" item-label-path="label" item-value-path="value"></vaadin-combo-box>
                         </div>
                         <div class="col-md-2 col-md-3">
                             <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.academic]]:" items='{{academicList}}'
-                                value="{{basic.academic}}" item-label-path="label" item-value-path="value">
+                                value="{{data.academic}}" item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -61,30 +61,30 @@
                     </div>
                     <div class="row middle-md col-md-offset-1">
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.prefix]]:" value="{{basic.prefix}}"></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.prefix]]:" value="{{data.prefix}}"></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.name]]*:" value="{{basic.firstname}}"></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.name]]*:" value="{{data.firstname}}"></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.lastname]]*:" value="{{basic.lastname}}"></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.lastname]]*:" value="{{data.lastname}}"></paper-input>
                         </div>
                     </div>
                     <div class="row middle-md col-md-offset-1">
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.title_eng]]:" value="{{basic.title_en}}"></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.title_eng]]:" value="{{data.title_en}}"></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.name_eng]]:" value="{{basic.firstname_en}}"></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.name_eng]]:" value="{{data.firstname_en}}"></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.lastname_eng]]:" value="{{basic.lastname_en}}"></paper-input>
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.lastname_eng]]:" value="{{data.lastname_en}}"></paper-input>
                         </div>
                     </div>
                     <div class="row middle-md col-md-offset-1">
                         <div class="col-md-2 col-md-3">
                             <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.gender]]:" items='{{genderList}}'
-                                value="{{basic.gender}}" item-label-path="label" item-value-path="value">
+                                value="{{data.gender}}" item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -92,7 +92,7 @@
                         </div>
                         <div class="col-md-2 col-md-3">
                             <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.ethnicity]]:" items='{{raceList}}'
-                                value="{{basic.ethnicity}}">
+                                value="{{data.ethnicity}}">
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -100,7 +100,7 @@
                         </div>
                         <div class="col-md-2 col-md-3">
                             <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.religion]]:" items='{{religionList}}'
-                                value="{{basic.religion}}" item-label-path="label" item-value-path="value">
+                                value="{{data.religion}}" item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -110,16 +110,15 @@
                     <div class="row middle-md col-md-offset-1">
                         <div class="col-md-2 col-md-3">
                             <vaadin-combo-box class="required" required.default always-float-label label="[[i18n.page01.nationality]]:" items='{{nationalityList}}'
-                                value="{{basic.nationality}}" item-label-path="label" item-value-path="value">
+                                value="{{data.nationality}}" item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
-                        <div class="col-md-2 col-md-3">
-                            <!-- <paper-input always-float-label label="Name:"></paper-input> -->{{basic.birth_date}}
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.birth]]:" type="date" value="{{basic.birth_date}}"
-                                on-change="_calcAge"></paper-input>
+                        <div class="col-md-2 col-md-3">{{_calcAge(data.birth_date)}}
+                            <!-- <paper-input always-float-label label="Name:"></paper-input> -->
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.birth]]:" type="date" value="{{data.birth_date}}"></paper-input>
                         </div>
                         <div class="col-md-2 col-md-3">
                             <paper-input always-float-label label="[[i18n.page01.age]]:" value="[[age]]" disabled></paper-input>
@@ -129,11 +128,11 @@
                         <div class="col-md-2 col-md-3">
                             <paper-input always-float-label label="[[i18n.page01.id_card]]:" value="[[info.taxno]]" disabled></paper-input>
                         </div>
-                        <div class="col-md-2 col-md-3">{{basic.issue_date}}
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.date_of_issue]]:" type="date" value="{{basic.issue_date}}"></paper-input>
+                        <div class="col-md-2 col-md-3">
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.date_of_issue]]:" type="date" value="{{data.issue_date}}"></paper-input>
                         </div>
-                        <div class="col-md-2 col-md-3">{{basic.expire_date}}
-                            <paper-input class="required" required always-float-label label="[[i18n.page01.expiration_date]]:" type="date" value="{{basic.expire_date}}"></paper-input>
+                        <div class="col-md-2 col-md-3">
+                            <paper-input class="required" required always-float-label label="[[i18n.page01.expiration_date]]:" type="date" value="{{data.expire_date}}"></paper-input>
                         </div>
                     </div>
                     <div class="row middle-md col-md-offset-1">
@@ -205,9 +204,11 @@
                     basic: {
                         type: Object,
                         statePath: 'profile.info.basic',
-                        value: {},
                         observer: 'cutdate'
-
+                    },
+                    data: {
+                        type: Object,
+                        value: {}
                     },
                     age: {
                         type: Number,
@@ -221,16 +222,12 @@
 
             ready() {
                 super.ready();
-                // console.log(this.basic)
-                Polymer.RenderStatus.afterNextRender(this, function () {
-                    Nylon.dispatch('PROFILE_GET_LIST_ACADAMIC')
-                    Nylon.dispatch('PROFILE_GET_LIST_GENDER')
-                    Nylon.dispatch('PROFILE_GET_LIST_RACE')
-                    Nylon.dispatch('PROFILE_GET_LIST_RELIGIONC')
-                    Nylon.dispatch('PROFILE_GET_LIST_NATIONALITY')
-                    Nylon.dispatch('PROFILE_GET_LIST_STATUS')
-                    // console.log(111);
-                });
+                Nylon.dispatch('PROFILE_GET_LIST_ACADAMIC')
+                Nylon.dispatch('PROFILE_GET_LIST_GENDER')
+                Nylon.dispatch('PROFILE_GET_LIST_RACE')
+                Nylon.dispatch('PROFILE_GET_LIST_RELIGIONC')
+                Nylon.dispatch('PROFILE_GET_LIST_NATIONALITY')
+                Nylon.dispatch('PROFILE_GET_LIST_STATUS')
             }
             cutdate(date) {
                 if (this.info !== undefined) {
@@ -238,15 +235,7 @@
                         date.birth_date = date.birth_date.split('T')[0]
                         date.issue_date = date.issue_date.split('T')[0]
                         date.expire_date = date.expire_date.split('T')[0]
-                        this.set('basic.birth_date',date.birth_date)
-                        this.set('basic.issue_date',date.issue_date)
-                        this.set('basic.expire_date',date.expire_date)
-                        // console.log(date.birth_date.split('T')[0])
-                        // console.log(date.birth_date)
-                        // console.log(date.issue_date)
-                        // console.log(date.expire_date)
-                        console.log(date)
-                        // return date
+                        this.set('data', date)
                     }
                 }
 
@@ -260,27 +249,30 @@
                 reader.readAsDataURL(event.target.files[0]);
             }
             _save() {
-                console.log(this.validateForm('.required'));
+                // console.log(this.validateForm('.required'));
                 if (this.validateForm('.required')) {
-                    this.set('basic.birth_date', new Date(this.basic.birth_date).toISOString());
-                    this.set('basic.issue_date', new Date(this.basic.issue_date).toISOString());
-                    this.set('basic.expire_date', new Date(this.basic.expire_date).toISOString());
-                    Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'basic', this.basic,
+                    let newDataSave = JSON.parse(JSON.stringify(this.data));
+                    newDataSave.birth_date = new Date(newDataSave.birth_date).toISOString()
+                    newDataSave.issue_date = new Date(newDataSave.issue_date).toISOString()
+                    newDataSave.expire_date = new Date(newDataSave.expire_date).toISOString()
+                    Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'basic', newDataSave,
                         () => {
                             Nylon.toast('update')
                         }
-                    );
-                    console.log(this.basic)
+                    )
 
                 } else {
                     Nylon.toast('required')
                 }
 
             }
-            _calcAge(e) {
-                var age = new Date(new Date - new Date(e.target.value)).getFullYear() - 1970;
-                if (age < 0) age = 0;
-                this.set('age', age);
+            _calcAge(date) {
+                if (date !== undefined) {
+                    var age = new Date(new Date - new Date(date)).getFullYear() - 1970;
+                    if (age < 0) age = 0;
+                    this.set('age', age);
+                }
+
             }
 
         }

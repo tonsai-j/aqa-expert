@@ -33,9 +33,9 @@
             if ((e.detail.queueProperty === true)
                 && (e.detail.value !== null)
                 && (e.detail.value.id !== '0')) {
-                console.log(e.detail.value)
+                // console.log(e.detail.value)
                 this.set(`data.${e.currentTarget.getAttribute('object-name')}`, e.detail.value)
-                console.log(this.data)
+                // console.log(this.data)
             } else {
                 delete this.data[e.currentTarget.getAttribute('object-name')]
             }
