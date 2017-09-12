@@ -155,18 +155,18 @@
                 reader.readAsDataURL(event.target.files[0]);
             }
             _save() {
-                console.log(this.bank);
-                // if (this.validateForm('.required')) {
-                //     Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'bank', this.bank,
-                //         () => {
-                //             console.log(11111);
-                //             Nylon.toast('update')
-                //         }
-                //     )
+                // console.log(this.bank);
+                if (this.validateForm('.required')) {
+                    Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'bank', this.bank,
+                        () => {
+                            console.log(11111);
+                            Nylon.toast('update')
+                        }
+                    )
 
-                // } else {
-                //     Nylon.toast('required')
-                // }
+                } else {
+                    Nylon.toast('required')
+                }
             }
         }
 
