@@ -36,6 +36,16 @@
                     <br>
                     <vaadin-grid id='material' items='{{specialist}}'>
                         <vaadin-grid-column>
+                            <template class="header" width="50px" flex-grow="0">
+                                <div class="text-center">
+                                    #
+                                </div>
+                            </template>
+                            <template>
+                                <div class="text-center">[[autoIndex(index)]]</div>
+                            </template>
+                        </vaadin-grid-column>
+                        <vaadin-grid-column>
                             <template class="header">[[i18n.page04.group]]</template>
                             <template>[[item.group_specialist.group_specialist_name]]</template>
                         </vaadin-grid-column>

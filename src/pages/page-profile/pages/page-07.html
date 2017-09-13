@@ -49,6 +49,7 @@
                     <div class="row  middle-md">
                         <div class="col-md-12">
                             <vaadin-grid id='material' items='{{datas}}'>
+                                
                                 <vaadin-grid-column width="50px" flex-grow="0">
                                     <template class="header">
                                         <div style="text-align: center">#</div>
@@ -57,14 +58,17 @@
                                         <div style="text-align: center">[[autoIndex(index)]]</div>
                                     </template>
                                 </vaadin-grid-column>
+
                                 <vaadin-grid-column>
                                     <template class="header">[[i18n.page07.type]]</template>
                                     <template>[[item.type_academy.type_academy_name]]</template>
                                 </vaadin-grid-column>
+
                                 <vaadin-grid-column>
                                     <template class="header">[[i18n.page07.name]]</template>
                                     <template>[[item.academy.academy_name]]</template>
                                 </vaadin-grid-column>
+
                                 <vaadin-grid-column width="50px" style="text-align: right">
                                     <template class="header">
                                         <div style="text-align: center">
