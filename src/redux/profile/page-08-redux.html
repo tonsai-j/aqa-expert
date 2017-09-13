@@ -6,7 +6,7 @@
         }
 
         switch (action.type) {
-            case 'PROFILE_GET_LIST_TYPE_RESEARCH':
+            case 'PROFILE_08_GET_LIST_TYPE_RESEARCH':
                 state.typeResearch = action.payload
                 return state
             default:
@@ -16,11 +16,11 @@
     })
 
     Nylon.addAction({
-        PROFILE_GET_LIST_TYPE_RESEARCH: function () {
+        PROFILE_08_GET_LIST_TYPE_RESEARCH: function () {
             return dispatch => {
                 axios.get('/type/research')
                     .then(res => {
-                        dispatch({ type: 'PROFILE_GET_LIST_TYPE_RESEARCH', payload: res.data })
+                        dispatch({ type: 'PROFILE_08_GET_LIST_TYPE_RESEARCH', payload: res.data })
                     })
                     .catch(err => {
                         console.log({ err })
