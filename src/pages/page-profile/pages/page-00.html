@@ -1,0 +1,217 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../../bower_components/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../../../bower_components/iron-selector/iron-selector.html">
+
+<link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
+
+<link rel="import" href="../../../../bower_components/paper-styles/color.html">
+
+<link rel="import" href="../../../../bower_components/paper-icon-button/paper-icon-button.html">
+
+<link rel="import" href="../../../my-icons.html">
+<link rel="import" href="../../../layout/flexbox-grid.html">
+<link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../redux/profile/profile-redux.html">
+<dom-module id="page-00">
+    <template>
+        <style include="flexbox-grid flexbox-grid-remove-padding">
+            iron-selector>* {
+                padding-left: 15px;
+                padding-top: 3px;
+                cursor: pointer;
+            }
+
+            .menu {
+                font-size: .8em;
+            }
+
+            .menu:hover {
+                background-color: var(--paper-indigo-500);
+                font-weight: bold;
+                color: #fff;
+            }
+
+            .iron-selected {
+                /* padding-left: 15px; */
+                background-color: var(--paper-blue-500);
+                font-weight: bold;
+                color: #fff;
+                /* border-left: 4px solid #dd4b39; */
+            }
+
+            .border {
+                border: 1px solid black;
+            }
+
+            .pointer {
+                cursor: pointer;
+            }
+
+            .pointer:hover {
+                font-weight: bold;
+                text-decoration: underline;
+                text-decoration-color: blue;
+            }
+        </style>
+
+        <div class="row around-md">
+            <div class="col-md-3">
+                <nylon-panel-card>
+                    <app-toolbar slot="header">
+                        <div main-title>
+                            <paper-icon-button icon="chevron-right"></paper-icon-button>
+                            ข้อมูลทั่วไป & ข้อมูลอื่นๆ</div>
+                        <paper-icon-button icon="chevron-right"></paper-icon-button>
+                    </app-toolbar>
+                    <div slot="content">
+                        <div class="col-md-12">
+                            ข้อมูลทั่วไป
+                        </div>
+                        <div class="col-md-offset-1 ">
+                            <div class="col-md-12 pointer" page='ข้อมูลพื้นฐาน' on-tap="openPage">
+                                ข้อมูลพื้นฐาน
+                            </div>
+                            <div class="col-md-12 pointer" page='ที่อยู่ในการติดต่อ' on-tap="openPage">
+                                ที่อยู่ในการติดต่อ
+                            </div>
+                            <div class="col-md-12 pointer" page='บัญชีธนาคาร' on-tap="openPage">
+                                บัญชีธนาคาร
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            ข้อมูลอื่นๆ
+                        </div>
+                        <div class="col-md-offset-1 ">
+                            <div class="col-md-12 pointer" page='ความสามารถอื่นๆ' on-tap="openPage">
+                                ความสามารถอื่นๆ
+                            </div>
+                            <div class="col-md-12 pointer" page='ภาคที่สะดวกในการประเมิน' on-tap="openPage">
+                                ภาคที่สะดวกในการประเมิน
+                            </div>
+                            <div class="col-md-12 pointer" page='บุคคลอ้างอิง' on-tap="openPage">
+                                บุคคลอ้างอิง
+                            </div>
+                            <div class="col-md-12 pointer" page='ไฟล์เอกสาร' on-tap="openPage">
+                                ไฟล์เอกสาร
+                            </div>
+                        </div>
+                    </div>
+                </nylon-panel-card>
+            </div>
+            <div class="col-md-3">
+                <nylon-panel-card>
+                    <app-toolbar slot="header">
+                        <div main-title>
+                            <paper-icon-button icon="chevron-right"></paper-icon-button>การศึกษา</div>
+                        <paper-icon-button icon="chevron-right"></paper-icon-button>
+                    </app-toolbar>
+                    <div slot="content">
+                        <div class="col-md-12">
+                            การศึกษา
+                        </div>
+                        <div class="col-md-offset-1 ">
+                            <div class="col-md-12 pointer" page='วุฒิการศึกษา' on-tap="openPage">
+                                วุฒิการศึกษา
+                            </div>
+                            <div class="col-md-12 pointer" page='ผลงานทางวิชาการ' on-tap="openPage">
+                                ผลงานทางวิชาการ
+                            </div>
+                            <div class="col-md-12 pointer" page='สาขาเชี่ยวชาญ' on-tap="openPage">
+                                สาขาเชี่ยวชาญ
+                            </div>
+                        </div>
+                    </div>
+                </nylon-panel-card>
+            </div>
+            <div class="col-md-3">
+                <nylon-panel-card>
+                    <app-toolbar slot="header">
+                        <div main-title>
+                            <paper-icon-button icon="chevron-right"></paper-icon-button>ประวัติ</div>
+                        <paper-icon-button icon="chevron-right"></paper-icon-button>
+                    </app-toolbar>
+                    <div slot="content">
+                        <div class="col-md-12">
+                            ประวัติ
+                        </div>
+                        <div class="col-md-offset-1 ">
+                            <div class="col-md-12 pointer" page='ประวัติการทำงาน' on-tap="openPage">
+                                ประวัติการทำงาน
+                            </div>
+                            <div class="col-md-12 pointer" page='ประวัติการประเมิน' on-tap="openPage">
+                                ประวัติการประเมิน
+                            </div>
+                            <div class="col-md-12 pointer" page='ประวัติการอบรมประกันคุณภาพภายใน' on-tap="openPage">
+                                ประวัติการอบรมประกันคุณภาพภายใน
+                            </div>
+                        </div>
+                    </div>
+                </nylon-panel-card>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        class Page00 extends ReduxMixin(Polymer.Element) {
+            static get is() {
+                return 'page-00';
+            }
+            static get properties() {
+                return {
+                    _params: {
+                        type: Object,
+                        observer: 'setMenu'
+                    },
+                    menu: {
+                        type: Object,
+                        statePath: 'profile.menu'
+                    },
+                    info: {
+                        type: Object,
+                        statePath: 'profile.info'
+                    },
+                    currentPage: {
+                        type: String,
+                        value: ''
+                    },
+                    basic: {
+                        type: Object,
+                        statePath: 'profile.info.basic',
+                        value: {}
+                    },
+                };
+            }
+            constructor() {
+                super();
+            }
+
+            /**
+             * Use for one-time configuration of your component after local DOM is initialized. 
+             */
+            ready() {
+                super.ready();
+                // Nylon.dispatch('PROFILE_GET');
+                // console.log(this._params)
+            }
+            // setMenu(e) {
+            //     this.set('currentPage', e.name)
+            // }
+            // _changePage(e) {
+            //     if (typeof this.info.id === 'undefined') {
+            //         Nylon.redirect('/register');
+            //     } else {
+            //         Nylon.redirect('/profile/' + e.model.item.name);
+            //     }
+
+            // }
+            openPage(e) {
+                let page = e.currentTarget.getAttribute('page')
+                // Nylon.redirect('/profile/' + page);
+                // console.log(page);
+            }
+        }
+
+        window.customElements.define(Page00.is, Page00);
+    </script>
+</dom-module>

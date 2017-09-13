@@ -9,6 +9,9 @@
 <link rel="import" href="../../layout/flexbox-grid.html">
 <link rel="import" href="../../redux-mixin.html">
 <link rel="import" href="../../redux/profile/profile-redux.html">
+
+<link rel="import" href="./pages/page-00.html">
+
 <dom-module id="page-profile">
     <template>
         <style include="flexbox-grid flexbox-grid-remove-padding">
@@ -44,23 +47,34 @@
             <div class="col-md-12 ">
                 <div class="row" style="padding-left: 20px">
                     <app-toolbar slot="header">
-                        <!-- <div main-title>[[info.type_assessor.type_assessor_name]] : [[info.taxno]]</div> -->
                         <div main-title>[[info.type_assessor.type_assessor_name]] : [[basic.firstname_th]] [[basic.lastname_th]]</div>
                     </app-toolbar>
                 </div>
             </div>
         </div>
+
         <div class="row">
-            <div class="col-md-2 ">
-                <iron-selector selected="{{currentPage}}" attr-for-selected="name">
-                    <template is="dom-repeat" items="{{menu}}">
-                        <div class="menu" name="[[item.name]]" on-click="_changePage">[[item.name]]</div>
-                    </template>
-                </iron-selector>
-            </div>
-            <div class="col-md-10 ">
-                <page-list selected="[[_params.name]]"></page-list>
-            </div>
+
+
+            <template is="dom-if" if={{isDashboard}}>
+                <div class="col-md-12 ">
+                    <page-00></page-00>
+                </div>
+            </template>
+
+            <template is="dom-if" if={{!isDashboard}}>
+                <div class="col-md-2 ">
+                    <iron-selector selected="{{currentPage}}" attr-for-selected="name">
+                        <template is="dom-repeat" items="{{menu}}">
+                            <div class="menu" name="[[item.name]]" on-click="_changePage">[[item.name]]</div>
+                        </template>
+                    </iron-selector>
+                </div>
+                <div class="col-md-10 ">
+                    <page-list selected="[[_params.name]]"></page-list>
+                </div>
+            </template>
+
         </div>
     </template>
 
@@ -92,6 +106,10 @@
                         statePath: 'profile.info.basic',
                         value: {}
                     },
+                    isDashboard: {
+                        type: Boolean,
+                        value: true
+                    }
                 };
             }
             constructor() {
@@ -108,6 +126,9 @@
             }
             setMenu(e) {
                 this.set('currentPage', e.name)
+                this.set('isDashboard', this.currentPage === 'ข้อมูลทั่วไป')
+
+                console.log(this.currentPage === 'ข้อมูลทั่วไป');
             }
             _changePage(e) {
                 if (typeof this.info.id === 'undefined') {
