@@ -47,6 +47,7 @@
                 this.set(`${e.currentTarget.getAttribute('object-name')}`, e.detail.value)
             } else {
                 delete this[e.currentTarget.getAttribute('object-name')]
+                console.log(this[e.currentTarget.getAttribute('object-name')]);
             }
         }
         changeDate(date) {
@@ -56,6 +57,21 @@
             if (date.split('-')[0] !== '9999')
                 return `${Number(date.split('-')[0]) + 543}-${date.split('-')[1]}-${date.split('-')[2]}`
             return date
+        }
+        genUrl(url) {
+            let data = new String()
+            let url_length = Object.getOwnPropertyNames(url).length
+            let count = new Number()
+            // //console.log(url);
+            for (var variable in url) {
+                if (url[variable] != '') {
+                    data = data + variable + "=" + url[variable];
+                    (count < url_length - 1) ? data += '&' : '';
+                }
+                count++
+            }
+            // //console.log(data);
+            return data
         }
         // formatNumber(number) {
         //     //    console.log(number);
