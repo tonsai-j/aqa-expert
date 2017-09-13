@@ -1,6 +1,6 @@
 exports.list = function (req, res) {
     r.table('nationality')
-        .orderBy('nationality_name_th')
+        .orderBy('old_id')
         .run()
         .then(function (data) {
             res.json(data)
