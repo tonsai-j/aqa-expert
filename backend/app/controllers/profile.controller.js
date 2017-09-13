@@ -26,7 +26,7 @@ exports.update = function (req, res) {
 }
 exports.meeting = function (req, res) {
     r.db('aqa_meeting').table('participant')
-        .getAll([req.query.taxno, req.query.group_work_id, true], { index: 'taxnoGroupWorkIdConfirm' })
+        .getAll([req.query.taxno, true], { index: 'taxnoConfirm' })
         .run()
         .then(function (data) {
             res.json(data)
