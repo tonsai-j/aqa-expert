@@ -1,9 +1,11 @@
 <link rel="import" href="../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../layout/flexbox-grid.html">
 <link rel="import" href="../../components/nylon-panel-card/nylon-panel-card.html">
+<link rel="import" href="../../components/nylon-panel-right/nylon-panel-right.html">
 <link rel="import" href="../../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
+<link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
 <link rel="import" href="../../../bower_components/iron-icons/social-icons.html">
 
 <link rel="import" href="../../mixins/common-mixin.html">
@@ -15,22 +17,98 @@
 <dom-module id="page-issue">
     <template>
         <style include="shared-styles flexbox-grid"></style>
-        <div>Issue</div>
+        <nylon-panel-card>
+            <div slot="content">
+                <fieldset>
+                    <legend>[[i18n.issue.issue]]</legend>
+                    <br>
+                    <vaadin-grid id='material' items='{{data}}'>
+                        <vaadin-grid-column>
+                            <template class="header">[[i18n.issue.tax_no]]</template>
+                            <template>[[item.name]]</template>
+                        </vaadin-grid-column>
+                        <vaadin-grid-column>
+                            <template class="header">[[i18n.issue.type_assessor]]</template>
+                            <template>[[item.name1]]</template>
+                        </vaadin-grid-column>
+                        <vaadin-grid-column>
+                            <template class="header">[[i18n.issue.level]]</template>
+                            <template>[[item.name2]]</template>
+                        </vaadin-grid-column>
+                        <vaadin-grid-column>
+                            <template class="header">[[i18n.issue.property]]</template>
+                            <template>[[item.name3]]</template>
+                        </vaadin-grid-column>
+                        <vaadin-grid-column>
+                            <template class="header">[[i18n.issue.exam_status]]</template>
+                            <template>[[item.name4]]</template>
+                        </vaadin-grid-column>
+                        <vaadin-grid-column>
+                            <template class="header">
+                                <div style="text-align: center">[[i18n.issue.issue]]</div>
+                            </template>
+                            <template>
+                                <span style="text-align: center">
+                                <paper-button raised class="btn-success" on-tap=openPanelRight>
+                                    <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.issue.issue]]</paper-button>
+                                </span>
+                            </template>
+                        </vaadin-grid-column>
+                        <vaadin-grid-column>
+                            <template class="header">
+                                <div style="text-align: center">[[i18n.issue.detail]]</div>
+                            </template>
+                            <template>
+                                <span style="text-align: center">
+                                <paper-button raised class="btn-primary" on-tap=_openPanelRight>
+                                    <iron-icon icon="[[i18n.button.icon]]"></iron-icon>[[i18n.issue.detail]]</paper-button>
+                                </span>
+                            </template>
+                        </vaadin-grid-column>
+                    </vaadin-grid>
+                </fieldset>
+            </div>
+        </nylon-panel-card>
+        <nylon-panel-right id="right" title="[[i18n.issue.training_details]]" width="80%">
+            <nylon-panel-card slot="content">
+                <div slot="content">
+                    <fieldset>
+                        <legend>[[i18n.issue.training_details]]</legend>
+                        <br>
+                        <vaadin-grid id='material' items='{{working}}'>
+                            <vaadin-grid-column>
+                                <template class="header">[[i18n.issue.no]]</template>
+                                <template>[[item.agency_name]]</template>
+                            </vaadin-grid-column>
+                            <vaadin-grid-column>
+                                <template class="header">[[i18n.issue.training]]</template>
+                                <template>[[item.work_start_date]]</template>
+                            </vaadin-grid-column>
+                            <vaadin-grid-column>
+                                <template class="header">[[i18n.issue.date]]</template>
+                                <template>[[item.work_end_date]]</template>
+                            </vaadin-grid-column>
+
+
+
+                        </vaadin-grid>
+                    </fieldset>
+                </div>
+                <app-toolbar slot="footer">
+                    <div main-title></div>
+                    <paper-button raised on-click="_closePanelRight">
+                        <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>[[i18n.button.close.label]]
+                    </paper-button>
+                </app-toolbar>
+            </nylon-panel-card>
+        </nylon-panel-right>
+
+
     </template>
 
     <script>
-        /**
-         * `page-issue` Description
-         *
-         * @summary ShortDescription.
-         * @customElement
-         * @polymer
-         * @extends {Polymer.Element}
-         */
         class PageIssue extends CommonMixin(ReduxMixin(Polymer.Element)) {
-            /**
-             * String providing the tag name to issue the element under.
-             */
+
             static get is() {
                 return 'page-issue';
             }
@@ -40,6 +118,20 @@
                     i18n: {
                         type: Object,
                         statePath: 'i18n'
+                    },
+                    data: {
+                        type: Array,
+                        value: [
+                            {
+                                id: 1,
+                                name: '1234567891236',
+                                name1: 'ผู้ประเมินภายนอก',
+                                name2: 'ระดับประฐมวัย',
+                                name3: 'ผ่าน',
+                                name4: 'ผ่าน'
+                            },
+
+                        ]
                     }
                 };
             }
@@ -47,7 +139,12 @@
                 super.ready();
 
             }
-
+            _openPanelRight() {
+                this.$.right.open()
+            }
+            _closePanelRight() {
+                this.$.right.close()
+            }
 
         }
 

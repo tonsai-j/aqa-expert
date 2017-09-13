@@ -37,8 +37,14 @@
                     <br>
                     <vaadin-grid id='material' items='{{working}}'>
                         <vaadin-grid-column>
-                            <template class="header">#</template>
-                            <template>[[autoIndex(index)]]</template>
+                            <template class="header" width="50px" flex-grow="0">
+                                <div class="text-center">
+                                    #
+                                </div>
+                            </template>
+                            <template>
+                                <div class="text-center">[[autoIndex(index)]]</div>
+                            </template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
                             <template class="header">[[i18n.page05.department]]</template>
@@ -46,11 +52,11 @@
                         </vaadin-grid-column>
                         <vaadin-grid-column>
                             <template class="header">[[i18n.page05.s_date]]</template>
-                            <template>[[item.work_start_date]]</template>
+                            <template>[[changeDate(item.work_start_date)]]</template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
                             <template class="header">[[i18n.page05.e_date]]</template>
-                            <template>[[item.work_end_date]]</template>
+                            <template>[[changeDate(item.work_end_date)]]</template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
                             <template class="header">[[i18n.page05.first_position]]</template>
@@ -62,7 +68,11 @@
                         </vaadin-grid-column>
                         <vaadin-grid-column>
                             <template class="header">[[i18n.page05.date]]</template>
-                            <template>[[item.updater]] [[item.date_updated]]</template>
+                            <template>
+                                <div class="text-center">
+                                    [[item.updater]] / [[changeDate(item.date_updated)]]
+                                </div>
+                            </template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
                             <template class="header">
@@ -102,7 +112,7 @@
                             </vaadin-combo-box>
                             <!-- <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.agency_type]]" items='{{saluList}}' value="{{data.salu_id}}"
                                 item-label-path="salu_name_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.salu"
-                                class="required" required auto-validate>
+                                class="required" required >
                                 <template>
                                     [[item.salu_name_th]]
                                 </template>
@@ -137,7 +147,7 @@
                             </vaadin-combo-box> -->
                             <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{workpos1List}}' value="{{data.working_1_id}}"
                                 item-label-path="workpos1_name_th" item-value-path="id" on-selected-item-changed="getObject"
-                                object-name="data.working_1" auto-validate>
+                                object-name="data.working_1">
                                 <template>
                                     [[item.workpos1_name_th]]
                                 </template>
@@ -157,7 +167,7 @@
                             </vaadin-combo-box> -->
                             <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{workpos1List}}' value="{{data.working_2_id}}"
                                 item-label-path="workpos1_name_th" item-value-path="id" on-selected-item-changed="getObject"
-                                object-name="data.working_2" auto-validate>
+                                object-name="data.working_2">
                                 <template>
                                     [[item.workpos1_name_th]]
                                 </template>
