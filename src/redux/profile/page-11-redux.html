@@ -3,15 +3,15 @@
         state = state || {
             data: {},
             region: [],
-            province: []
+            provinceContract: []
         }
 
         switch (action.type) {
-            case 'GET_LIST_REGION':
+            case 'PROFILE_11_GET_LIST_REGION':
                 state.region = action.payload
                 return state
-            case 'GET_LIST_PROVINCE':
-                state.province = action.payload
+            case 'PROFILE_11_GET_LIST_PROVINCE':
+                state.provinceContract = action.payload
                 return state
             default:
                 return state
@@ -21,22 +21,22 @@
 
 
     Nylon.addAction({
-        GET_LIST_REGION: function () {
+        PROFILE_11_GET_LIST_REGION: function () {
             return dispatch => {
                 axios.get('/region')
                     .then(res => {
-                        dispatch({ type: 'GET_LIST_REGION', payload: res.data })
+                        dispatch({ type: 'PROFILE_11_GET_LIST_REGION', payload: res.data })
                     }
                     ).catch(err => {
                         console.log({ err })
                     })
             }
         },
-        GET_LIST_PROVINCE: function (region_id) {
+        PROFILE_11_GET_LIST_PROVINCE: function (region_id) {
             return dispatch => {
                 axios.get('/province?region_id='+ region_id)
                     .then(res => {
-                        dispatch({ type: 'GET_LIST_PROVINCE', payload: res.data })
+                        dispatch({ type: 'PROFILE_11_GET_LIST_PROVINCE', payload: res.data })
                     }
                     ).catch(err => {
                         console.log({ err })

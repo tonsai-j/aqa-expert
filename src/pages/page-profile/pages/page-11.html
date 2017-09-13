@@ -4,7 +4,6 @@
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid-selection-column.html">
 <link rel="import" href="../../../../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../../../../bower_components/paper-checkbox/paper-checkbox.html">
 
 <link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
 
@@ -18,6 +17,9 @@
 <link rel="import" href="../../../nylon-i18n.html">
 <link rel="import" href="../../../i18n/profile/page-11-i18n.html">
 <link rel="import" href="../../../redux/profile/page-02-redux.html">
+
+<!-- <link rel="import" href="../../../redux/profile/page-02-redux.html"> -->
+
 <link rel="import" href="../../../redux/profile/page-11-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
@@ -47,7 +49,7 @@
                     <legend>[[i18n.page11.title]]</legend>
                     <div class="row end-md middle-md">
                         <div class="label col-md-3">
-                            <paper-button raised class="btn-primary" on-tap=openPanelRight>
+                            <paper-button raised class="btn-primary" on-tap=_openPanelRight>
                                 <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]</paper-button>
                         </div>
                     </div>
@@ -55,20 +57,46 @@
                     <div class="row  middle-md">
                         <div class="col-md-12">
                             <vaadin-grid id='material' items='{{zone}}'>
-                                <vaadin-grid-column>
-                                    <template class="header">#</template>
-                                    <template>[[item.name]]</template>
+                                <vaadin-grid-column width="50px" flex-grow="0">
+                                    <template class="header">
+                                        <div class="text-center">#</div>
+                                    </template>
+                                    <template>
+                                        <div class="text-center">[[autoIndex(index)]]</div>
+                                    </template>
                                 </vaadin-grid-column>
                                 <vaadin-grid-column>
                                     <template class="header">[[i18n.page11.region]]</template>
-                                    <template>[[item.surname]]</template>
+                                    <template>[[item.region.region_th]]</template>
                                 </vaadin-grid-column>
                                 <vaadin-grid-column>
                                     <template class="header">[[i18n.page11.province]]</template>
-                                    <template>[[item.role]]</template>
+                                    <template>
+                                        <div class="row ">
+                                            <template is="dom-repeat" items={{item.province}}>
+
+                                                <span class="col-md-3">[[item.province_th]],</span>
+
+                                                <!-- <span style="word-wrap:break-word;">[[item.province_th]],</span> -->
+                                            </template>
+                                        </div>
+                                    </template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column width="50px" style="text-align: right">
+                                    <template class="header">
+                                        <div style="text-align: center">
+                                            [[i18n.common.tools]]
+                                        </div>
+                                    </template>
+                                    <template>
+                                        <span style="text-align: center">
+                                                <paper-icon-button icon="[[i18n.button.edit.icon]]" action="edit" on-click="_openPanelRight"></paper-icon-button>
+                                                <paper-icon-button icon="[[i18n.button.delete.icon]]" on-click="_confirmDel"></paper-icon-button>
+                                            </span>
+                                    </template>
                                 </vaadin-grid-column>
                             </vaadin-grid>
-                            จำนวนรายการทั้งหมด 0 รายการ
+                            [[i18n.common.total_items]] {{zone.length}} [[i18n.common.list]]
                         </div>
                     </div>
                 </fieldset>
@@ -77,41 +105,48 @@
         <nylon-panel-right id="right" title="[[i18n.page11.title]]" width="80%">
             <nylon-panel-card slot="content">
                 <div slot="content">
+                    {{_index}}
                     <div class="row col-md-offset-1 middle-md">
-                        <!-- <div class="col-md-2">
-                            <paper-input always-float-label label="[[i18n.page11.rating]]"></paper-input>
-                        </div> -->
                         <div class="col-md-4">{{getProvince(data.region_id)}}
-                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page11.region]]" items='{{regionList}}' value="{{data.region_id}}"
-                                item-label-path="region_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.region">
+                            <!-- items='{{regionList}}' -->
+                            <vaadin-combo-box class="required" disabled={{regionDisabled}} required always-float-label label="[[i18n.page11.region]]"
+                                items='{{_filterChanged(regionList)}}' value="{{data.region_id}}" item-label-path="region_th"
+                                item-value-path="id" on-selected-item-changed="getObject" object-name="data.region">
                                 <template>
                                     [[item.region_th]]
                                 </template>
                             </vaadin-combo-box>
                         </div>
                     </div>
+
                     <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-9">
-                            <vaadin-grid id='material' items='{{zone}}'>
-                                <vaadin-grid-selection-column width="66px" flex="0" select-all="{{provinceList}}">
-                                    <template class="header">
-                                        <paper-checkbox checked="{{selectAll}}"></paper-checkbox>
-                                    </template>
-                                    <template>
-                                        <paper-checkbox checked="{{selected}}"></paper-checkbox>
-                                    </template>
-                                </vaadin-grid-selection-column>
-                                <vaadin-grid-column>
-                                    <template class="header">[[i18n.page11.rating]]</template>
-                                    <template>[[item.province_th]]</template>
-                                </vaadin-grid-column>
-                                <vaadin-grid-column>
-                                    <template class="header">[[i18n.page11.region]]</template>
-                                    <template>[[item.region_old_id]]</template>
-                                </vaadin-grid-column>
-                            </vaadin-grid>
+                        <div class="col-md-5">
+                            <paper-checkbox checked="{{masterCheck}}" disabled="{{masterCheckDisable}}" on-tap='seletedCheckAll'>[[i18n.page11.province_all]]</paper-checkbox>
                         </div>
                     </div>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-4">
+                            [[i18n.page11.province_list]]
+                        </div>
+                    </div>
+
+                    <template is="dom-if" if={{masterCheckDisable}}>
+                        <div class="row col-md-offset-1 middle-md">
+                            -
+                        </div>
+                    </template>
+
+                    <template is="dom-if" if={{!masterCheckDisable}}>
+                        <div class="row col-md-offset-1 middle-md">
+                            <div class="row col-md-9">
+                                <template is="dom-repeat" items={{provinceList}}>
+                                    <span class="col-md-4">
+                                                 <paper-checkbox checked="{{item.checked}}">[[item.province_th]]</paper-checkbox>  
+                                            </span>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
 
                 </div>
                 <app-toolbar slot="footer">
@@ -136,7 +171,6 @@
                 return 'page-11';
             }
 
-
             static get properties() {
                 return {
                     i18n: {
@@ -147,7 +181,8 @@
                         statePath: 'profile_page11.region'
                     },
                     provinceList: {
-                        statePath: 'profile_page11.province'
+                        statePath: 'profile_page11.provinceContract',
+                        observer: 'setChecked'
                     },
                     info: {
                         type: Object,
@@ -161,35 +196,187 @@
                         type: Object,
                         value: {}
                     },
+                    _index: {
+                        type: Number
+                    },
+                    masterCheck: {
+                        type: Boolean,
+                        value: false
+                    },
+                    masterCheckDisable: {
+                        type: Boolean,
+                        value: true
+                    },
+                    regionDisabled: {
+                        type: Boolean,
+                        value: false
+                    }
                 };
             }
 
-
-
-
             ready() {
                 super.ready();
-                Nylon.dispatch('GET_LIST_REGION')
+                // Nylon.dispatch('PROFILE_02_GET_LIST_REGION')
+            }
+            setChecked(province) {
+                province.map((item, index) => {
+                    if (!item.hasOwnProperty('checked')) {
+                        // console.log(this.data.province);
+                        if (this.data.province !== undefined) {
+                            if (this.data.province.find(el => el.id === item.id) !== undefined) {
+                                item.checked = true
+                            } else {
+                                item.checked = false
+                            }
+                        }
+
+                    } else {
+                        item.checked = false
+                    }
+                    return item
+                })
+                let checkManster = province.map(prv => prv.checked).every(elem => elem == true)
+                if (province.length === 0) {
+                    checkManster = !checkManster
+                }
+                this.set('masterCheck', checkManster)
+            }
+            _filterChanged(regions) {
+                if (this.zone !== undefined) {
+                    regions.map(region => {
+                        region.hidden = false
+                        // this.data
+                        let isRegion = this.zone.find(el => el.region_id === region.id)
+                        if (isRegion !== undefined) {
+                            region.hidden = true 
+                        }
+                        return region
+                    })
+                    // console.log(regions);
+                    return regions
+                }
             }
             getProvince(value) {
-                if (this.data !== undefined) {
-                    this._debouncer = Polymer.Debouncer.debounce(
-                        this._debouncer, // initially undefined
-                        Polymer.Async.timeOut.after(100),
-                        () => {
-                            Nylon.dispatch('GET_LIST_PROVINCE', this.data.region.old_id)
-                            // console.log(this.data);
-                        })
-                }
-
+                this.set('masterCheckDisable', true)
+                this._debouncer = Polymer.Debouncer.debounce(
+                    this._debouncer, // initially undefined
+                    Polymer.Async.timeOut.after(100),
+                    () => {
+                        if (this.data !== undefined && value !== undefined) {
+                            if (this.data.region_id !== '' &&
+                                this.data.region_id !== undefined &&
+                                this.data.region !== undefined &&
+                                this.data.region.old_id !== undefined) {
+                                this.set('masterCheckDisable', false)
+                                Nylon.dispatch('PROFILE_11_GET_LIST_PROVINCE', this.data.region.old_id, 'contract')
+                                // this.set('masterCheckDisable',!this.masterCheckDisable)
+                            } else {
+                                this.set('provinceList', [])
+                            }
+                        }
+                    })
+            }
+            seletedCheckAll(e) {
+                let inputChecked = e.currentTarget.checked
+                this.provinceList.map((province, index) => {
+                    this.set(`provinceList.${index}.checked`, !inputChecked)
+                })
             }
             _save() {
-                console.log(this.data);
+
+                if (this.validateForm('.required')) {
+                    let newProvince = this.provinceList.filter(province => province.checked === true).map(item => {
+                        delete item.checked
+                        return item
+                    })
+                    if (typeof this._index === 'undefined') {
+                        // let newDataSave = JSON.parse(JSON.stringify(this.data))
+                        let newDataSave = Object.assign(this.data, {
+                            province: newProvince,
+                            date_created: new Date().toISOString(),
+                            date_updated: new Date().toISOString(),
+                            creater: this.info.taxno,
+                            updater: this.info.taxno
+                        });
+                        Nylon.dispatch('PROFILE_PUSH_ARRAY', this.info.id, 'zone', newDataSave,
+                            () => {
+                                this._closePanelRight();
+                                this.set('data', {});
+                                Nylon.toast('insert')
+                            }
+                        );
+                    } else {
+                        // let newDataSave = JSON.parse(JSON.stringify(this.data))
+
+                        let newDataSave = Object.assign(this.data, {
+                            province: newProvince,
+                            date_updated: new Date().toISOString(),
+                            updater: this.info.taxno
+                        });
+                        Nylon.dispatch('PROFILE_UPDATE_ARRAY', this.info.id, 'zone', this._index, newDataSave
+                            , () => {
+                                this._closePanelRight();
+                                this.set('data', {});
+                                Nylon.toast('update')
+                            });
+                    }
+                } else {
+                    Nylon.toast('required')
+                }
             }
-            openPanelRight() {
+
+            _confirmDel(e) {
+                // Nylon.confirm({
+                //     title: this.i18n.confirm.delete.title,
+                //     msg: this.i18n.confirm.delete.msg
+                // });
+                Nylon.confirm({
+                    title: this.i18n.confirm.delete.title,
+                    msg: this.i18n.confirm.delete.msg,
+                    icon: this.i18n.confirm.delete.icon,
+                    btn: [
+                        {
+                            label: this.i18n.button.close.label,
+                            icon: this.i18n.button.close.icon,
+                            class: 'btn-default',
+                            'dialog-dismiss': true
+                        },
+                        {
+                            label: this.i18n.button.delete.label,
+                            icon: this.i18n.button.delete.icon,
+                            class: 'btn-danger',
+                            'dialog-confirm': true,
+                            'autofocus': true,
+                            action: () => {
+                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'zone', e.model.index
+                                    , () => {
+                                        this._closePanelRight()
+                                        this.set('data', {})
+                                        this.set('provinceList', [])
+                                        Nylon.toast('delete')
+                                    });
+                            }
+                        }
+                    ]
+                })
+            }
+
+            _openPanelRight(e) {
+                if (e.currentTarget.getAttribute('action') == 'edit') {
+                    this.set('data', e.model.item)
+                    this.set('_index', e.model.index)
+                    this.set('regionDisabled', true)
+                } else {
+                    this.set('data', {})
+                    this.set('provinceList', [])
+                    this.set('masterCheck', false)
+                    this.set('_index', undefined)
+                    this.set('regionDisabled', false)
+                }
+                Nylon.dispatch('PROFILE_11_GET_LIST_REGION')
                 this.$.right.open()
             }
-            closePanelRight() {
+            _closePanelRight() {
                 this.$.right.close()
             }
         }
