@@ -144,7 +144,8 @@
                             });
                         }
                         if (this.validateForm('.required')) {
-                            Nylon.dispatch('REGISTER_CHECK_TAXNO', this.info.card_id);
+                            this.checkRegister(this.info.card_id)
+                            // Nylon.dispatch('REGISTER_CHECK_TAXNO', this.info.card_id);
                             // Nylon.dispatch('REGISTER_POST', this.data)
                         } else {
                             Nylon.toast('required')
@@ -154,34 +155,7 @@
                     if (this.validateForm('.required')) {
                         this.set('data.basic', {})
                         if (this.checkPersonID(this.data.taxno)) {
-                            Nylon.dispatch('REGISTER_CHECK_TAXNO', this.data.taxno, (data) => {
-                                if (data.length > 0) {
-                                    if (this.data.type_assessor_id != data[0].type_assessor_id) {
-                                        Nylon.confirm({
-                                            title: this.i18n.register.title,
-                                            msg: this.i18n.register.warning1 + ' ' + data[0].type_assessor.type_assessor_name + ' ' + this.i18n.register.warning2,
-                                            icon: 'warning',
-                                            btn: [
-                                                {
-                                                    label: this.i18n.button.close.label,
-                                                    icon: this.i18n.button.close.icon,
-                                                    class: 'btn-default',
-                                                    'dialog-dismiss': true,
-                                                    action: () => {
-                                                        this.$.comboTypeAss.value = data[0].type_assessor_id;
-                                                        // this.$.comboTypeAss.disabled = true;
-                                                        Nylon.dispatch('REGISTER_POST', this.data)
-                                                    }
-                                                }
-                                            ]
-                                        })
-                                    } else {
-                                        Nylon.dispatch('REGISTER_POST', this.data)
-                                    }
-                                } else {
-                                    Nylon.dispatch('REGISTER_POST', this.data)
-                                }
-                            });
+                            this.checkRegister(this.data.taxno)
                         } else {
                             Nylon.toast('error')
                         }
@@ -191,6 +165,39 @@
                 }
 
             }
+
+            checkRegister(taxno) {
+                Nylon.dispatch('REGISTER_CHECK_TAXNO', taxno, (data) => {
+                    if (data.length > 0) {
+                        if (this.data.type_assessor_id != data[0].type_assessor_id) {
+                            Nylon.confirm({
+                                title: this.i18n.register.title,
+                                msg: this.i18n.register.warning1 + ' ' + data[0].type_assessor.type_assessor_name + ' ' + this.i18n.register.warning2,
+                                icon: 'warning',
+                                btn: [
+                                    {
+                                        label: this.i18n.button.close.label,
+                                        icon: this.i18n.button.close.icon,
+                                        class: 'btn-default',
+                                        'dialog-dismiss': true,
+                                        action: () => {
+                                            this.$.comboTypeAss.value = data[0].type_assessor_id;
+                                            // this.$.comboTypeAss.disabled = true;
+                                            Nylon.dispatch('REGISTER_POST', this.data)
+                                        }
+                                    }
+                                ]
+                            })
+                        } else {
+                            Nylon.dispatch('REGISTER_POST', this.data)
+                        }
+                    } else {
+                        Nylon.dispatch('REGISTER_POST', this.data)
+                    }
+                });
+            }
+
+
 
             checkPersonID(id) {
                 var check
