@@ -23,5 +23,12 @@ exports.update = function (req, res) {
         }
         return data;
     }
-
+}
+exports.meeting = function (req, res) {
+    r.db('aqa_meeting').table('participant')
+        .getAll([req.query.taxno, req.query.group_work_id, true], { index: 'taxnoGroupWorkIdConfirm' })
+        .run()
+        .then(function (data) {
+            res.json(data)
+        })
 }

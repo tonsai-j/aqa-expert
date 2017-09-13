@@ -2,6 +2,7 @@
 <link rel="import" href="../../../layout/flexbox-grid.html">
 <link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
 <link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
@@ -14,7 +15,7 @@
 <link rel="import" href="../../../layout/shared-styles.html">
 <link rel="import" href="../../../nylon-i18n.html">
 <link rel="import" href="../../../i18n/profile/page-09-i18n.html">
-<link rel="import" href="../../../redux/profile/page-02-redux.html">
+<link rel="import" href="../../../redux/profile/page-09-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
 
@@ -51,39 +52,45 @@
                     <br> -->
                     <div class="row  middle-md">
                         <div class="col-md-12">
-                            <vaadin-grid id='material' items='[{"name": "John", "surname": "Lennon", "role": "singer"}, {"name": "Ringo", "surname": "Starr", "role": "drums"}]'>
+                            <vaadin-grid id='material' items='[[datas]]'>
                                 <vaadin-grid-column width="50px" flex-grow="0">
                                     <template class="header">
                                         <div style="text-align: center">#</div>
                                     </template>
                                     <template>
-                                        <div style="text-align: center">[[item.autoIndex(index)]]</div>
+                                        <div style="text-align: center">[[autoIndex(index)]]</div>
+                                    </template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column width="250px">
+                                    <template class="header">[[i18n.page09.project]]</template>
+                                    <template>[[item.meeting.meeting_name]] / [[item.module.module_name]]</template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column>
+                                    <template class="header">[[i18n.page09.date]]</template>
+                                    <template>[[_date(item.module.date_start_module)]] [[i18n.page09.to]] [[_date(item.module.date_end_module)]]</template>
+                                </vaadin-grid-column>
+                                <vaadin-grid-column>
+                                    <template class="header">
+                                        <div style="text-align: center">[[i18n.page09.hours]]</div>
+                                    </template>
+                                    <template>
+                                        <div style="text-align: center">[[item.module.module_hours]]</div>
                                     </template>
                                 </vaadin-grid-column>
                                 <vaadin-grid-column>
-                                    <template class="header">[[i18n.page09.project]]</template>
-                                    <template>[[item.surname]]</template>
+                                    <template class="header">[[i18n.page09.place]]</template>
+                                    <template>[[item.module.module_place]]</template>
                                 </vaadin-grid-column>
                                 <vaadin-grid-column>
-                                    <template class="header">[[i18n.page09.training]]</template>
-                                    <template>[[item.role]]</template>
-                                </vaadin-grid-column>
-                                <vaadin-grid-column>
-                                    <template class="header">[[i18n.page09.end]]</template>
-                                    <template>[[item.role]]</template>
-                                </vaadin-grid-column>
-                                <vaadin-grid-column>
-                                    <template class="header">[[i18n.page09.hours]]</template>
-                                    <template>[[item.role]]</template>
+                                    <template class="header">[[i18n.page09.file]]</template>
+                                    <template>
+                                        <paper-icon-button icon="[[i18n.button.download.icon]]"></paper-icon-button>
+                                    </template>
                                 </vaadin-grid-column>
                                 <!-- <vaadin-grid-column>
-                                    <template class="header">[[i18n.page09.file]]</template>
-                                    <template>[[item.role]]</template>
-                                </vaadin-grid-column> -->
-                                <vaadin-grid-column>
                                     <template class="header">[[i18n.page09.date]]</template>
                                     <template>[[item.role]]</template>
-                                </vaadin-grid-column>
+                                </vaadin-grid-column> -->
                             </vaadin-grid>
                         </div>
                     </div>
@@ -187,7 +194,8 @@
                     },
                     info: {
                         type: Object,
-                        statePath: 'profile.info'
+                        statePath: 'profile.info',
+                        observer: '_getMeeting'
                     },
                     datas: {
                         type: Array,
@@ -198,10 +206,17 @@
 
             ready() {
                 super.ready();
-                Polymer.RenderStatus.afterNextRender(this, function () {
-                    Nylon.dispatch('PROFILE_09_GET_MEETING')
-                });
+
             }
+            _getMeeting() {
+                if (this.info.hasOwnProperty('type_assessor')) {
+                    Nylon.dispatch('PROFILE_09_GET_MEETING', `group_work_id=${this.info.type_assessor.group_work_id}&taxno=${this.info.taxno}`)
+                }
+            }
+            _date(d) {
+                return new Date(d).toLocaleString().split(',')[0]
+            }
+
         }
 
         window.customElements.define(Page09.is, Page09);

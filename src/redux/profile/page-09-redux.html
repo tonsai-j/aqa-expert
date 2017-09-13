@@ -16,9 +16,9 @@
     })
 
     Nylon.addAction({
-        PROFILE_09_GET_MEETING: function (taxNo, groupWorkId) {
+        PROFILE_09_GET_MEETING: function (data) {
             return dispatch => {
-                axios.get('/type/research')
+                axios.get('/profile/meeting?' + data)
                     .then(res => {
                         dispatch({ type: 'PROFILE_09_GET_MEETING', data: res.data })
                     })
