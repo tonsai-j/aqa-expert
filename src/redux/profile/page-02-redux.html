@@ -20,10 +20,10 @@
                     state.provinceWork = action.payload
                 }
                 return state
-            case 'GET_LIST_AMPHOE':
+            case 'PROFILE_02_GET_LIST_AMPHOE':
                 state.amphoe = action.payload
                 return state
-            case 'GET_LIST_DISTRICT':
+            case 'PROFILE_02_GET_LIST_DISTRICT':
                 state.district = action.payload
                 return state
             default:
@@ -58,7 +58,7 @@
             }
         },
 
-        GET_LIST_AMPHOE: function () {
+        PROFILE_02_GET_LIST_AMPHOE: function () {
             return dispatch => {
                 let res = {
                     data: [
@@ -88,7 +88,7 @@
                         }
                     ]
                 }
-                dispatch({ type: 'GET_LIST_AMPHOE', payload: res.data })
+                dispatch({ type: 'PROFILE_02_GET_LIST_AMPHOE', payload: res.data })
                 // axios.get('/todolist').then(
                 //     res => {
                 //         progress(() => {
@@ -110,7 +110,7 @@
                 //     )
             }
         },
-        GET_LIST_DISTRICT: function () {
+        PROFILE_02_GET_LIST_DISTRICT: function () {
             return dispatch => {
                 let res = {
                     data: [
@@ -139,7 +139,7 @@
                             label: 'เทศบาลตำบลเกาะลันตาใหญ่'
                         }]
                 }
-                dispatch({ type: 'GET_LIST_DISTRICT', payload: res.data })
+                dispatch({ type: 'PROFILE_02_GET_LIST_DISTRICT', payload: res.data })
                 // axios.get('/todolist').then(
                 //     res => {
                 //         progress(() => {
