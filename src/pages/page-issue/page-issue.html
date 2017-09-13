@@ -28,7 +28,7 @@
                             <template>[[item.name]]</template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
-                            <template class="header">ประเภท</template>
+                            <template class="header">[[i18n.issue.type_assessor]]</template>
                             <template>[[item.name1]]</template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
@@ -36,32 +36,32 @@
                             <template>[[item.name2]]</template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
-                            <template class="header">คุณสมบัติ</template>
+                            <template class="header">[[i18n.issue.property]]</template>
                             <template>[[item.name3]]</template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
-                            <template class="header">สถานะการสอบ</template>
+                            <template class="header">[[i18n.issue.exam_status]]</template>
                             <template>[[item.name4]]</template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
                             <template class="header">
-                                <div style="text-align: center">ออกบัตรผู้ประเมิน</div>
+                                <div style="text-align: center">[[i18n.issue.issue]]</div>
                             </template>
                             <template>
                                 <span style="text-align: center">
                                 <paper-button raised class="btn-success" on-tap=openPanelRight>
-                                    <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>ออกบัตร</paper-button>
+                                    <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.issue.issue]]</paper-button>
                                 </span>
                             </template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
                             <template class="header">
-                                <div style="text-align: center">รายละเอียด</div>
+                                <div style="text-align: center">[[i18n.issue.detail]]</div>
                             </template>
                             <template>
                                 <span style="text-align: center">
                                 <paper-button raised class="btn-primary" on-tap=_openPanelRight>
-                                    <iron-icon icon="[[i18n.button.icon]]"></iron-icon>รายละเอียด</paper-button>
+                                    <iron-icon icon="[[i18n.button.icon]]"></iron-icon>[[i18n.issue.detail]]</paper-button>
                                 </span>
                             </template>
                         </vaadin-grid-column>
@@ -69,23 +69,23 @@
                 </fieldset>
             </div>
         </nylon-panel-card>
-        <nylon-panel-right id="right" title="รายละเอียดการเข้าอบรม" width="80%">
+        <nylon-panel-right id="right" title="[[i18n.issue.training_details]]" width="80%">
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <fieldset>
-                        <legend>รายละเอียดการเข้าอบรม</legend>
+                        <legend>[[i18n.issue.training_details]]</legend>
                         <br>
                         <vaadin-grid id='material' items='{{working}}'>
                             <vaadin-grid-column>
-                                <template class="header">ลำดับ</template>
+                                <template class="header">[[i18n.issue.no]]</template>
                                 <template>[[item.agency_name]]</template>
                             </vaadin-grid-column>
                             <vaadin-grid-column>
-                                <template class="header">โครงการการอบรม</template>
+                                <template class="header">[[i18n.issue.training]]</template>
                                 <template>[[item.work_start_date]]</template>
                             </vaadin-grid-column>
                             <vaadin-grid-column>
-                                <template class="header">วันที่เข้าอบรม</template>
+                                <template class="header">[[i18n.issue.date]]</template>
                                 <template>[[item.work_end_date]]</template>
                             </vaadin-grid-column>
 
