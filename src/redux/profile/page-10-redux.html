@@ -6,10 +6,10 @@
             }
     
             switch (action.type) {
-                case 'PROFILE_GET_LIST_BANK':
+                case 'PROFILE_10_GET_LIST_BANK':
                     state.bank = action.payload
                     return state
-                case 'PROFILE_GET_LIST_ACCOUNT_TYPE':
+                case 'PROFILE_10_GET_LIST_ACCOUNT_TYPE':
                     state.account_Types = action.payload
                     return state
                 
@@ -20,11 +20,11 @@
         })
     
         Nylon.addAction({
-            PROFILE_GET_LIST_BANK: function () {
+            PROFILE_10_GET_LIST_BANK: function () {
                 return dispatch => {
                     axios.get('/bank')
                     .then(res => {
-                        dispatch({ type: 'PROFILE_GET_LIST_BANK', payload: res.data })
+                        dispatch({ type: 'PROFILE_10_GET_LIST_BANK', payload: res.data })
                     })
                     .catch(err => {
                         console.log({ err })
@@ -32,11 +32,11 @@
                     
                 }
             },
-            PROFILE_GET_LIST_ACCOUNT_TYPE: function () {
+            PROFILE_10_GET_LIST_ACCOUNT_TYPE: function () {
                 return dispatch => {
                     axios.get('/type/account')
                     .then(res => {
-                        dispatch({ type: 'PROFILE_GET_LIST_ACCOUNT_TYPE', payload: res.data })
+                        dispatch({ type: 'PROFILE_10_GET_LIST_ACCOUNT_TYPE', payload: res.data })
                     })
                     .catch(err => {
                         console.log({ err })
