@@ -76,7 +76,7 @@
                             </template>
                         </vaadin-grid-column>
                     </vaadin-grid>
-                    จำนวนรายการทั้งหมด 0 รายการ
+                    [[i18n.common.total_items]] {{working.length}} [[i18n.common.list]]
                 </fieldset>
             </div>
             <app-toolbar slot="footer">
@@ -266,7 +266,7 @@
             }
 
             _save() {
-                console.log(this.data)
+                // console.log(this.data)
                 if (this.validateForm('.required')) {
                     this.set('data.work_start_date', new Date(this.data.work_start_date).toISOString());
                     this.set('data.work_end_date', new Date(this.data.work_end_date).toISOString());
