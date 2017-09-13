@@ -6,10 +6,10 @@
         }
 
         switch (action.type) {
-            case 'PROFILE_04_GET_SALU':
+            case 'PROFILE_05_GET_SALU':
                 state.salu = action.payload
                 return state
-            case 'PROFILE_04_GET_WORKPOS1':
+            case 'PROFILE_05_GET_WORKPOS1':
                 state.workpos1 = action.payload
                 return state
             default:
@@ -20,20 +20,20 @@
 
 
     Nylon.addAction({
-        PROFILE_04_GET_SALU: function () {
+        PROFILE_05_GET_SALU: function () {
             return dispatch => {
                 axios.get('/salu').then(
                     res => {
-                        dispatch({ type: 'PROFILE_04_GET_SALU', payload: res.data })
+                        dispatch({ type: 'PROFILE_05_GET_SALU', payload: res.data })
                     }
                 )
             }
         },
-        PROFILE_04_GET_WORKPOS1: function () {
+        PROFILE_05_GET_WORKPOS1: function () {
             return dispatch => {
                 axios.get('/workpos1').then(
                     res => {
-                        dispatch({ type: 'PROFILE_04_GET_WORKPOS1', payload: res.data })
+                        dispatch({ type: 'PROFILE_05_GET_WORKPOS1', payload: res.data })
                     }
                 )
             }
