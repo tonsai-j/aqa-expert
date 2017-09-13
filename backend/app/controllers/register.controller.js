@@ -15,6 +15,8 @@ exports.post = function (req, res) {
                                     issue_date: r.ISO8601(m2('issue_date')).inTimezone('+07')
                                 }, {})
                             }),
+                            properties: false,
+                            exam: false,
                             address: {
                                 address1: {},
                                 address2: {},
@@ -42,6 +44,13 @@ exports.post = function (req, res) {
         ),
         p(0)
     )
+        .run()
+        .then(function (data) {
+            res.json(data)
+        })
+}
+exports.check = function (req, res) {
+    r.table('profile').getAll(req.query.taxno, { index: 'taxno' }).pluck('taxno', 'type_assessor_id','type_assessor')
         .run()
         .then(function (data) {
             res.json(data)
