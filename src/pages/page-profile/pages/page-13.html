@@ -14,6 +14,8 @@
 <link rel="import" href="../../../redux/profile/page-02-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
 
+<link rel="import" href="../../../mixins/common-mixin.html">
+
 <dom-module id="page-13">
     <template>
         <style include="shared-styles flexbox-grid">
@@ -29,10 +31,12 @@
                         <div class="col-md-12">
                             <vaadin-grid id='material' items='{{documentFile}}'>
 
-                                <vaadin-grid-column width=5%>
-                                    <template class="header text-center">#</template>
+                                <vaadin-grid-column width="50px" flex-grow="0">
+                                    <template class="header text-center">
+                                        <div class="text-center">#</div>
+                                    </template>
                                     <template>
-                                        <div class="text-center">[[index]]</div>
+                                        <div class="text-center">[[autoIndex(index)]]</div>
                                     </template>
                                 </vaadin-grid-column>
 
@@ -57,7 +61,7 @@
                                     </template>
                                 </vaadin-grid-column>
                             </vaadin-grid>
-                            จำนวนรายการทั้งหมด {{documentFile.length}} รายการ
+                            [[i18n.common.total_items]] {{documentFile.length}} [[i18n.common.list]]
                         </div>
                     </div>
                 </fieldset>
@@ -76,7 +80,7 @@
          * @polymer
          * @extends {Polymer.Element}
          */
-        class Page13 extends ReduxMixin(Polymer.Element) {
+        class Page13 extends CommonMixin(ReduxMixin(Polymer.Element)) {
             /**
              * String providing the tag name to profile the element under.
              */
