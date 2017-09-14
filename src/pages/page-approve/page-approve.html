@@ -14,6 +14,8 @@
 <link rel="import" href="../../redux-mixin.html">
 <link rel="import" href="../../redux/approve/approve-redux.html">
 <link rel="import" href="../../i18n/approve/main-i18n.html">
+<link rel="import" href="../../redux/profile/profile-redux.html">
+
 <dom-module id="page-approve">
     <template>
         <style include="shared-styles flexbox-grid"></style>
@@ -23,7 +25,7 @@
                     <legend>[[i18n.approve.title]]</legend>
                     <br>
                     <vaadin-grid id='material' items='{{datas}}'>
-                        <vaadin-grid-column width="30px" flex-grow="0">
+                        <vaadin-grid-column width="5%" flex-grow="0">
                             <template class="header">
                                 <div class="text-center">#</div>
                             </template>
@@ -31,23 +33,23 @@
                                 <div class="text-center">[[autoIndex(index)]]</div>
                             </template>
                         </vaadin-grid-column>
-                        <vaadin-grid-column width="120px" flex-grow="0">
+                        <vaadin-grid-column width="10%" flex-grow="0">
                             <template class="header">[[i18n.approve.taxno]]</template>
                             <template>[[item.taxno]]</template>
                         </vaadin-grid-column>
-                        <vaadin-grid-column width="150px" flex-grow="0">
+                        <vaadin-grid-column width="15%" flex-grow="0">
                             <template class="header">[[i18n.approve.fullname]]</template>
                             <template>[[item.basic.prefix_th]] [[item.basic.firstname_th]] [[item.basic.lastname_th]]</template>
                         </vaadin-grid-column>
-                        <vaadin-grid-column width="300px" flex-grow="0">
+                        <vaadin-grid-column width="20%" flex-grow="0">
                             <template class="header">[[i18n.approve.type_assessor]]</template>
                             <template>[[item.type_assessor.type_assessor_name]]</template>
                         </vaadin-grid-column>
-                        <vaadin-grid-column width="150px" flex-grow="0">
+                        <vaadin-grid-column width="10%" flex-grow="0">
                             <template class="header">[[i18n.approve.level]]</template>
                             <template>[[item.type_assessor.group_work.group_work_name]]</template>
                         </vaadin-grid-column>
-                        <vaadin-grid-column width="100px" flex-grow="0">
+                        <vaadin-grid-column width="10%" flex-grow="0">
                             <template class="header">
                                 <div class="text-center">[[i18n.approve.property]]</div>
                             </template>
@@ -55,7 +57,15 @@
                                 <div class="text-center">[[item.properties]]</div>
                             </template>
                         </vaadin-grid-column>
-                        <vaadin-grid-column width="100px" flex-grow="0">
+                        <!-- <vaadin-grid-column width="10%" flex-grow="0">
+                            <template class="header">
+                                <div class="text-center">ประวัติการอบรม</div>
+                            </template>
+                            <template>
+                                <div class="text-center">[[item.properties]]</div>
+                            </template>
+                        </vaadin-grid-column> -->
+                        <vaadin-grid-column width="10%" flex-grow="0">
                             <template class="header">
                                 <div class="text-center">[[i18n.approve.exam_status]]</div>
                             </template>
@@ -63,12 +73,15 @@
                                 <div class="text-center">[[item.exam]]</div>
                             </template>
                         </vaadin-grid-column>
-                        <vaadin-grid-column>
+                        <vaadin-grid-column width="20%" flex-grow="0">
                             <template class="header">
                                 <div class="text-center">[[i18n.approve.history]]</div>
                             </template>
                             <template>
                                 <span class="text-center">
+                                    <paper-button raised class="btn-primary" page='{{i18n.page00.basic}}' on-tap="openPage">
+                                        <iron-icon icon="[[i18n.button.list.icon]]"></iron-icon>[[i18n.approve.property]]
+                                    </paper-button>
                                     <paper-button raised class="btn-primary" on-tap=_openPanelRight>
                                         <iron-icon icon="[[i18n.button.list.icon]]"></iron-icon>[[i18n.approve.meeting]]
                                     </paper-button>
@@ -182,7 +195,16 @@
                     datas1: {
                         type: Array,
                         statePath: 'approve.meeting',
-                    }
+                    },
+                    basic: {
+                        type: Object,
+                        statePath: 'profile.info.basic',
+                        value: {}
+                    },
+                    info: {
+                        type: Object,
+                        statePath: 'profile.info'
+                    },
                 };
             }
             ready() {
@@ -199,6 +221,12 @@
             }
             _date(d) {
                 return new Date(d).toLocaleString().split(',')[0]
+            }
+            openPage(e) {
+                // console.log(e.model.item.id)
+                let page = e.currentTarget.page
+                // Nylon.redirect('/profile/' + page);
+                Nylon.dispatch('APPROVE_GET_PROPERTY', e.model.item.id)
             }
         }
 

@@ -211,7 +211,7 @@
             }
             _getMeeting() {
                 if (this.info.hasOwnProperty('type_assessor')) {
-                    Nylon.dispatch('PROFILE_09_GET_MEETING', `group_work_id=${this.info.type_assessor.group_work_id}&taxno=${this.info.taxno}`)
+                    Nylon.dispatch('PROFILE_09_GET_MEETING', `taxno=${this.info.taxno}`)
                 }
             }
             _date(d) {
