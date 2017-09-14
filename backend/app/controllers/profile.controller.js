@@ -32,3 +32,13 @@ exports.meeting = function (req, res) {
             res.json(data)
         })
 }
+exports.approve = function (req, res) {
+    var approve = true;
+    if (typeof req.query.approve !== 'undefined' && req.query.approve == 'false') approve = false;
+    r.table('profile').getAll(approve, { index: 'approve' })
+        .pluck('id', 'taxno', 'basic', 'properties', 'exam', 'type_assessor')
+        .run()
+        .then(function (data) {
+            res.json(data)
+        })
+}

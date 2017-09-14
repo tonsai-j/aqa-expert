@@ -33,34 +33,26 @@
                         </vaadin-grid-column>
                         <vaadin-grid-column width="120px" flex-grow="0">
                             <template class="header">[[i18n.approve.taxno]]</template>
-                            <template>[[item.name]]</template>
-                        </vaadin-grid-column>
-                        <vaadin-grid-column>
-                            <template class="header">[[i18n.approve.fullname]]</template>
-                            <template>[[item.name1]]</template>
-                        </vaadin-grid-column>
-                        <vaadin-grid-column width="200px" flex-grow="0">
-                            <template class="header">
-                                <div class="text-center">[[i18n.approve.type_assessor]]</div>
-                            </template>
-                            <template>
-                                <div class="text-center">[[item.name1]]</div>
-                            </template>
+                            <template>[[item.taxno]]</template>
                         </vaadin-grid-column>
                         <vaadin-grid-column width="150px" flex-grow="0">
-                            <template class="header">
-                                <div class="text-center">[[i18n.approve.level]]</div>
-                            </template>
-                            <template>
-                                <div class="text-center">[[item.name2]]</div>
-                            </template>
+                            <template class="header">[[i18n.approve.fullname]]</template>
+                            <template>[[item.basic.prefix_th]] [[item.basic.firstname_th]] [[item.basic.lastname_th]]</template>
+                        </vaadin-grid-column>
+                        <vaadin-grid-column width="300px" flex-grow="0">
+                            <template class="header">[[i18n.approve.type_assessor]]</template>
+                            <template>[[item.type_assessor.type_assessor_name]]</template>
+                        </vaadin-grid-column>
+                        <vaadin-grid-column width="150px" flex-grow="0">
+                            <template class="header">[[i18n.approve.level]]</template>
+                            <template>[[item.type_assessor.group_work.group_work_name]]</template>
                         </vaadin-grid-column>
                         <vaadin-grid-column width="100px" flex-grow="0">
                             <template class="header">
                                 <div class="text-center">[[i18n.approve.property]]</div>
                             </template>
                             <template>
-                                <div class="text-center">[[item.name3]]</div>
+                                <div class="text-center">[[item.properties]]</div>
                             </template>
                         </vaadin-grid-column>
                         <vaadin-grid-column width="100px" flex-grow="0">
@@ -68,7 +60,7 @@
                                 <div class="text-center">[[i18n.approve.exam_status]]</div>
                             </template>
                             <template>
-                                <div class="text-center">[[item.name4]]</div>
+                                <div class="text-center">[[item.exam]]</div>
                             </template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
@@ -121,9 +113,6 @@
                                 <template class="header">[[i18n.approve.date]]</template>
                                 <template>[[item.work_end_date]]</template>
                             </vaadin-grid-column>
-
-
-
                         </vaadin-grid>
                     </fieldset>
                 </div>
@@ -154,23 +143,13 @@
                     },
                     datas: {
                         type: Array,
-                        value: [
-                            {
-                                id: 1,
-                                name: '1234567891236',
-                                name1: 'ผู้ประเมินภายนอก',
-                                name2: 'ระดับประฐมวัย',
-                                name3: 'ผ่าน',
-                                name4: 'ผ่าน'
-                            },
-
-                        ]
+                        statePath: 'approve.assessor'
                     }
                 };
             }
             ready() {
                 super.ready();
-
+                Nylon.dispatch('APPROVE_GET_LISTS')
             }
             _openPanelRight() {
                 this.$.right.open()
