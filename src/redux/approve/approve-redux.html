@@ -1,12 +1,16 @@
 <script>
     Nylon.addReducer('approve', function (state, action) {
         state = state || {
-            assessor: []
+            assessor: [],
+            meeting: [],
         }
 
         switch (action.type) {
             case 'APPROVE_GET_LISTS':
                 state.assessor = action.data
+                return state
+            case 'APPROVE_GET_MEETING':
+                state.meeting = action.data
                 return state
             default:
                 return state
@@ -23,7 +27,19 @@
                         dispatch({ type: 'APPROVE_GET_LISTS', data: res.data })
                     }
                 )
-        }
+        },
+        APPROVE_GET_MEETING: function (data) {
+            return dispatch => {
+                axios.get('/profile/meeting?' + data)
+                    .then(res => {
+                        // console.log(res.data)
+                        dispatch({ type: 'APPROVE_GET_MEETING', data: res.data })
+                    })
+                    .catch(err => {
+                        console.log({ err })
+                    })
+            }
+        },
     })
 
 </script>

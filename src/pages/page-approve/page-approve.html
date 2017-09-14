@@ -100,8 +100,8 @@
                     <fieldset>
                         <legend>[[i18n.approve.training_details]]</legend>
                         <br>
-                        <vaadin-grid id='material' items='{{working}}'>
-                            <vaadin-grid-column>
+                        <vaadin-grid id='material' items='{{datas1}}'>
+                            <!-- <vaadin-grid-column>
                                 <template class="header">[[i18n.approve.no]]</template>
                                 <template>[[item.agency_name]]</template>
                             </vaadin-grid-column>
@@ -112,6 +112,40 @@
                             <vaadin-grid-column>
                                 <template class="header">[[i18n.approve.date]]</template>
                                 <template>[[item.work_end_date]]</template>
+                            </vaadin-grid-column> -->
+                            <vaadin-grid-column width="50px" flex-grow="0">
+                                <template class="header">
+                                    <div style="text-align: center">#</div>
+                                </template>
+                                <template>
+                                    <div style="text-align: center">[[autoIndex(index)]]</div>
+                                </template>
+                            </vaadin-grid-column>
+                            <vaadin-grid-column width="250px">
+                                <template class="header">[[i18n.approve.project]]</template>
+                                <template>[[item.meeting.meeting_name]] / [[item.module.module_name]]</template>
+                            </vaadin-grid-column>
+                            <vaadin-grid-column>
+                                <template class="header">[[i18n.approve.date]]</template>
+                                <template>[[_date(item.module.date_start_module)]] [[i18n.page09.to]] [[_date(item.module.date_end_module)]]</template>
+                            </vaadin-grid-column>
+                            <vaadin-grid-column>
+                                <template class="header">
+                                    <div style="text-align: center">[[i18n.approve.hours]]</div>
+                                </template>
+                                <template>
+                                    <div style="text-align: center">[[item.module.module_hours]]</div>
+                                </template>
+                            </vaadin-grid-column>
+                            <vaadin-grid-column>
+                                <template class="header">[[i18n.approve.place]]</template>
+                                <template>[[item.module.module_place]]</template>
+                            </vaadin-grid-column>
+                            <vaadin-grid-column>
+                                <template class="header">[[i18n.approve.file]]</template>
+                                <template>
+                                    <paper-icon-button icon="[[i18n.button.download.icon]]"></paper-icon-button>
+                                </template>
                             </vaadin-grid-column>
                         </vaadin-grid>
                     </fieldset>
@@ -141,9 +175,18 @@
                         type: Object,
                         statePath: 'i18n'
                     },
+                    info: {
+                        type: Object,
+                        statePath: 'profile.info',
+                        observer: '_getMeeting'
+                    },
                     datas: {
                         type: Array,
                         statePath: 'approve.assessor'
+                    },
+                    datas1: {
+                        type: Array,
+                        statePath: 'approve.meeting',
                     }
                 };
             }
@@ -151,13 +194,24 @@
                 super.ready();
                 Nylon.dispatch('APPROVE_GET_LISTS')
             }
-            _openPanelRight() {
+            _openPanelRight(e) {
+                // console.log(e.model.item.taxno)
+                Nylon.dispatch('APPROVE_GET_MEETING', `taxno=${e.model.item.taxno}`)
                 this.$.right.open()
             }
             _closePanelRight() {
                 this.$.right.close()
             }
-
+            _getMeeting() {
+                // console.log(`taxno=${this.info.type_assessor}`);
+                // Nylon.dispatch('APPROVE_GET_MEETING', `taxno=${this.info.taxno}`)
+                // if (this.info.hasOwnProperty('type_assessor')) {
+                //     Nylon.dispatch('APPROVE_GET_MEETING', `group_work_id=${this.info.type_assessor.group_work_id}&taxno=${this.info.taxno}`)
+                // }
+            }
+            _date(d) {
+                return new Date(d).toLocaleString().split(',')[0]
+            }
         }
 
         window.customElements.define(PageApprove.is, PageApprove);
