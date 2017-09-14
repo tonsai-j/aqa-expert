@@ -12,80 +12,113 @@
 
 <link rel="import" href="../../layout/shared-styles.html">
 <link rel="import" href="../../redux-mixin.html">
-<link rel="import" href="../../redux/issue/issue-redux.html">
-<link rel="import" href="../../i18n/issue/main-i18n.html">
-<dom-module id="page-issue">
+<link rel="import" href="../../redux/approve/approve-redux.html">
+<link rel="import" href="../../i18n/approve/main-i18n.html">
+<dom-module id="page-approve">
     <template>
         <style include="shared-styles flexbox-grid"></style>
         <nylon-panel-card>
             <div slot="content">
                 <fieldset>
-                    <legend>[[i18n.issue.issue]]</legend>
+                    <legend>[[i18n.approve.title]]</legend>
                     <br>
-                    <vaadin-grid id='material' items='{{data}}'>
-                        <vaadin-grid-column>
-                            <template class="header">[[i18n.issue.tax_no]]</template>
+                    <vaadin-grid id='material' items='{{datas}}'>
+                        <vaadin-grid-column width="30px" flex-grow="0">
+                            <template class="header">
+                                <div class="text-center">#</div>
+                            </template>
+                            <template>
+                                <div class="text-center">[[autoIndex(index)]]</div>
+                            </template>
+                        </vaadin-grid-column>
+                        <vaadin-grid-column width="120px" flex-grow="0">
+                            <template class="header">[[i18n.approve.taxno]]</template>
                             <template>[[item.name]]</template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
-                            <template class="header">[[i18n.issue.type_assessor]]</template>
+                            <template class="header">[[i18n.approve.fullname]]</template>
                             <template>[[item.name1]]</template>
                         </vaadin-grid-column>
-                        <vaadin-grid-column>
-                            <template class="header">[[i18n.issue.level]]</template>
-                            <template>[[item.name2]]</template>
+                        <vaadin-grid-column width="200px" flex-grow="0">
+                            <template class="header">
+                                <div class="text-center">[[i18n.approve.type_assessor]]</div>
+                            </template>
+                            <template>
+                                <div class="text-center">[[item.name1]]</div>
+                            </template>
                         </vaadin-grid-column>
-                        <vaadin-grid-column>
-                            <template class="header">[[i18n.issue.property]]</template>
-                            <template>[[item.name3]]</template>
+                        <vaadin-grid-column width="150px" flex-grow="0">
+                            <template class="header">
+                                <div class="text-center">[[i18n.approve.level]]</div>
+                            </template>
+                            <template>
+                                <div class="text-center">[[item.name2]]</div>
+                            </template>
                         </vaadin-grid-column>
-                        <vaadin-grid-column>
-                            <template class="header">[[i18n.issue.exam_status]]</template>
-                            <template>[[item.name4]]</template>
+                        <vaadin-grid-column width="100px" flex-grow="0">
+                            <template class="header">
+                                <div class="text-center">[[i18n.approve.property]]</div>
+                            </template>
+                            <template>
+                                <div class="text-center">[[item.name3]]</div>
+                            </template>
+                        </vaadin-grid-column>
+                        <vaadin-grid-column width="100px" flex-grow="0">
+                            <template class="header">
+                                <div class="text-center">[[i18n.approve.exam_status]]</div>
+                            </template>
+                            <template>
+                                <div class="text-center">[[item.name4]]</div>
+                            </template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
                             <template class="header">
-                                <div style="text-align: center">[[i18n.issue.issue]]</div>
+                                <div class="text-center">[[i18n.approve.history]]</div>
+                            </template>
+                            <template>
+                                <span class="text-center">
+                                    <paper-button raised class="btn-primary" on-tap=_openPanelRight>
+                                        <iron-icon icon="[[i18n.button.list.icon]]"></iron-icon>[[i18n.approve.meeting]]
+                                    </paper-button>
+                                    <paper-button raised class="btn-primary" on-tap=_openPanelRight>
+                                            <iron-icon icon="[[i18n.button.list.icon]]"></iron-icon>[[i18n.approve.exam]]
+                                    </paper-button>
+                                </span>
+                            </template>
+                        </vaadin-grid-column>
+                        <!-- <vaadin-grid-column>
+                            <template class="header">
+                                <div style="text-align: center">[[i18n.approve.issue]]</div>
                             </template>
                             <template>
                                 <span style="text-align: center">
                                 <paper-button raised class="btn-success" on-tap=openPanelRight>
-                                    <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.issue.issue]]</paper-button>
+                                    <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.approve.issue]]</paper-button>
                                 </span>
                             </template>
-                        </vaadin-grid-column>
-                        <vaadin-grid-column>
-                            <template class="header">
-                                <div style="text-align: center">[[i18n.issue.detail]]</div>
-                            </template>
-                            <template>
-                                <span style="text-align: center">
-                                <paper-button raised class="btn-primary" on-tap=_openPanelRight>
-                                    <iron-icon icon="[[i18n.button.icon]]"></iron-icon>[[i18n.issue.detail]]</paper-button>
-                                </span>
-                            </template>
-                        </vaadin-grid-column>
+                        </vaadin-grid-column> -->
+
                     </vaadin-grid>
                 </fieldset>
             </div>
         </nylon-panel-card>
-        <nylon-panel-right id="right" title="[[i18n.issue.training_details]]" width="80%">
+        <nylon-panel-right id="right" title="[[i18n.approve.training_details]]" width="80%">
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <fieldset>
-                        <legend>[[i18n.issue.training_details]]</legend>
+                        <legend>[[i18n.approve.training_details]]</legend>
                         <br>
                         <vaadin-grid id='material' items='{{working}}'>
                             <vaadin-grid-column>
-                                <template class="header">[[i18n.issue.no]]</template>
+                                <template class="header">[[i18n.approve.no]]</template>
                                 <template>[[item.agency_name]]</template>
                             </vaadin-grid-column>
                             <vaadin-grid-column>
-                                <template class="header">[[i18n.issue.training]]</template>
+                                <template class="header">[[i18n.approve.training]]</template>
                                 <template>[[item.work_start_date]]</template>
                             </vaadin-grid-column>
                             <vaadin-grid-column>
-                                <template class="header">[[i18n.issue.date]]</template>
+                                <template class="header">[[i18n.approve.date]]</template>
                                 <template>[[item.work_end_date]]</template>
                             </vaadin-grid-column>
 
@@ -107,10 +140,10 @@
     </template>
 
     <script>
-        class PageIssue extends CommonMixin(ReduxMixin(Polymer.Element)) {
+        class PageApprove extends CommonMixin(ReduxMixin(Polymer.Element)) {
 
             static get is() {
-                return 'page-issue';
+                return 'page-approve';
             }
 
             static get properties() {
@@ -119,7 +152,7 @@
                         type: Object,
                         statePath: 'i18n'
                     },
-                    data: {
+                    datas: {
                         type: Array,
                         value: [
                             {
@@ -148,6 +181,6 @@
 
         }
 
-        window.customElements.define(PageIssue.is, PageIssue);
+        window.customElements.define(PageApprove.is, PageApprove);
     </script>
 </dom-module>
