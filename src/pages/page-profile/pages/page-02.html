@@ -494,10 +494,6 @@
                     address_work: this.address.address_contract
                 });
                 this.notifyPath('address.address_work')
-                // console.log(data);
-                // console.log(this.address);
-                //                 address_contract
-                // address_work
             }
             getProvinceAddressContract(region_id) {
                 if (this.address !== undefined && region_id !== undefined && region_id !== '') {
@@ -530,8 +526,7 @@
                         () => {
                             Nylon.toast('update')
                         }
-                    );
-
+                    )
                 } else {
                     Nylon.toast('required')
                 }
