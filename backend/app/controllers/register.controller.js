@@ -1,5 +1,5 @@
 exports.post = function (req, res) {
-    var p = r.table('profile').getAll([req.body.taxno, req.body.type_assessor_id], { index: 'taxNoTypeAssessor' });
+    var p = r.table('profile').getAll(req.body.taxno, { index: 'taxno' });
     r.branch(
         p.count().eq(0),
         r.table('profile').get(
@@ -52,6 +52,13 @@ exports.post = function (req, res) {
 }
 exports.check = function (req, res) {
     r.table('profile').getAll(req.query.taxno, { index: 'taxno' }).pluck('taxno', 'type_assessor_id', 'type_assessor')
+        .run()
+        .then(function (data) {
+            res.json(data)
+        })
+}
+exports.getById = function (req, res) {
+    r.tabble('profile').get(req.query.id)
         .run()
         .then(function (data) {
             res.json(data)
