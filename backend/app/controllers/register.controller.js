@@ -57,10 +57,3 @@ exports.check = function (req, res) {
             res.json(data)
         })
 }
-exports.getById = function (req, res) {
-    r.table('profile').get(req.query.id)
-        .run()
-        .then(function (data) {
-            res.json(data)
-        })
-}
