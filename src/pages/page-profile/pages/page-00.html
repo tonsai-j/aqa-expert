@@ -52,7 +52,9 @@
             .border {
                 border: 1px solid black;
             }
-
+            .panel-form {
+                margin-right:2em;
+            }
             .pointer {
                 cursor: pointer;
                 color: #4285f4;
@@ -65,16 +67,16 @@
             }
         </style>
 
-        <div class="row around-md">
-            <!-- <div class="col-md-offset-1 ">
-            </div> -->
-            <div class="col-md-3">
+        <div class="row ">
+            <div class="col-md-offset-1 ">
+            </div>
+            <div class="col-md-3 panel-form">
                 <nylon-panel-card>
                     <app-toolbar slot="header">
                         <div main-title>
                             <paper-icon-button src="[[rootPath]]images/persona_identity.svg"></paper-icon-button>
                             [[i18n.page00.general_information]] & [[i18n.page00.other_information]] </div>
-                        <paper-icon-button icon="chevron-right"></paper-icon-button>
+                        <!-- <paper-icon-button icon="chevron-right"></paper-icon-button> -->
                     </app-toolbar>
                     <div slot="content">
                         <div class="col-md-12 title">
@@ -111,12 +113,12 @@
                     </div>
                 </nylon-panel-card>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 panel-form">
                 <nylon-panel-card>
                     <app-toolbar slot="header">
                         <div main-title>
                             <paper-icon-button src="[[rootPath]]images/education.svg"></paper-icon-button>[[i18n.page00.education_topic]]</div>
-                        <paper-icon-button icon="chevron-right"></paper-icon-button>
+                        <!-- <paper-icon-button icon="chevron-right"></paper-icon-button> -->
                     </app-toolbar>
                     <div slot="content">
                         <div class="col-md-12 title">
@@ -141,7 +143,7 @@
                     <app-toolbar slot="header">
                         <div main-title>
                             <paper-icon-button src="[[rootPath]]images/portfolio.svg"></paper-icon-button>[[i18n.page00.history]]</div>
-                        <paper-icon-button icon="chevron-right"></paper-icon-button>
+                        <!-- <paper-icon-button icon="chevron-right"></paper-icon-button> -->
                     </app-toolbar>
                     <div slot="content">
                         <div class="col-md-12 title">
@@ -160,7 +162,7 @@
                         </div>
                     </div>
                 </nylon-panel-card>
-            </div>
+            </div> 
 
 
         </div>
@@ -176,10 +178,6 @@
                     i18n: {
                         type: Object,
                         statePath: 'i18n'
-                    },
-                    _params: {
-                        type: Object,
-                        observer: 'setMenu'
                     },
                     menu: {
                         type: Object,
@@ -213,8 +211,6 @@
              */
             ready() {
                 super.ready();
-                // Nylon.dispatch('PROFILE_GET');
-                // console.log(this._params)
             }
             // setMenu(e) {
             //     this.set('currentPage', e.name)

@@ -10,13 +10,15 @@
 <link rel="import" href="../../redux-mixin.html">
 <link rel="import" href="../../redux/profile/profile-redux.html">
 
+<link rel="import" href="../../layout/shared-styles.html">
+
 <link rel="import" href="../../i18n/profile/page-00-i18n.html">
 
 <link rel="import" href="./pages/page-00.html">
 
 <dom-module id="page-profile">
     <template>
-        <style include="flexbox-grid flexbox-grid-remove-padding">
+        <style include="shared-styles flexbox-grid-remove-padding">
             iron-selector>* {
                 padding-left: 15px;
                 padding-top: 3px;
@@ -49,14 +51,24 @@
             .border {
                 border: 1px solid black;
             }
+            /* .header{
+                margin-bottom: 2em;
+            } */
         </style>
-        <div class="row">
+        <div class="row header">
             <div class="col-md-12 ">
                 <div class="row" style="padding-left: 20px">
                     <app-toolbar slot="header">
-                        <div main-title>[[info.type_assessor.type_assessor_name]] : [[basic.firstname_th]] [[basic.lastname_th]]</div>
+                        <div>[[info.type_assessor.type_assessor_name]] : [[basic.firstname_th]] [[basic.lastname_th]]</div>
+
                     </app-toolbar>
                 </div>
+                <!-- <template is="dom-if" if={{!isDashboard}}>
+                    <div class="row end-md">
+                        <paper-button raised class="btn-default"> กลับหน้าหลัก</paper-button>
+                        <div class="col-md-offset-1"></div>
+                    </div>
+                </template> -->
             </div>
         </div>
 
