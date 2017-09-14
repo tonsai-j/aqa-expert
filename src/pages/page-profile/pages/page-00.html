@@ -66,101 +66,102 @@
         </style>
 
         <div class="row around-md">
-            <div class="col-md-offset-1 row">
-                <div class="col-md-3">
-                    <nylon-panel-card>
-                        <app-toolbar slot="header">
-                            <div main-title>
-                                <paper-icon-button src="[[rootPath]]images/persona_identity.svg"></paper-icon-button>
-                                [[i18n.page00.general_information]] & [[i18n.page00.other_information]] </div>
-                            <paper-icon-button icon="chevron-right"></paper-icon-button>
-                        </app-toolbar>
-                        <div slot="content">
-                            <div class="col-md-12 title">
-                                [[i18n.page00.general_information]]
+            <!-- <div class="col-md-offset-1 ">
+            </div> -->
+            <div class="col-md-3">
+                <nylon-panel-card>
+                    <app-toolbar slot="header">
+                        <div main-title>
+                            <paper-icon-button src="[[rootPath]]images/persona_identity.svg"></paper-icon-button>
+                            [[i18n.page00.general_information]] & [[i18n.page00.other_information]] </div>
+                        <paper-icon-button icon="chevron-right"></paper-icon-button>
+                    </app-toolbar>
+                    <div slot="content">
+                        <div class="col-md-12 title">
+                            [[i18n.page00.general_information]]
+                        </div>
+                        <div class="col-md-offset-1 ">
+                            <div class="col-md-12 pointer" page='{{i18n.page00.basic}}' on-tap="openPage">
+                                [[i18n.page00.basic]]
                             </div>
-                            <div class="col-md-offset-1 ">
-                                <div class="col-md-12 pointer" page='{{i18n.page00.basic}}' on-tap="openPage">
-                                    [[i18n.page00.basic]]
-                                </div>
-                                <div class="col-md-12 pointer" page='[[i18n.page00.address]]' on-tap="openPage">
-                                    [[i18n.page00.address]]
-                                </div>
-                                <div class="col-md-12 pointer" page='[[i18n.page00.bank]]' on-tap="openPage">
-                                    [[i18n.page00.bank]]
-                                </div>
+                            <div class="col-md-12 pointer" page='[[i18n.page00.address]]' on-tap="openPage">
+                                [[i18n.page00.address]]
                             </div>
-                            <div class="col-md-12 title">
-                                [[i18n.page00.other_information]]
-                            </div>
-                            <div class="col-md-offset-1 ">
-                                <div class="col-md-12 pointer" page='[[i18n.page00.skills]]' on-tap="openPage">
-                                    [[i18n.page00.skills]]
-                                </div>
-                                <div class="col-md-12 pointer" page='[[i18n.page00.zone]]' on-tap="openPage">
-                                    [[i18n.page00.zone]]
-                                </div>
-                                <div class="col-md-12 pointer" page='[[i18n.page00.references]]' on-tap="openPage">
-                                    [[i18n.page00.references]]
-                                </div>
-                                <div class="col-md-12 pointer" page='[[i18n.page00.documents]]' on-tap="openPage">
-                                    [[i18n.page00.documents]]
-                                </div>
+                            <div class="col-md-12 pointer" page='[[i18n.page00.bank]]' on-tap="openPage">
+                                [[i18n.page00.bank]]
                             </div>
                         </div>
-                    </nylon-panel-card>
-                </div>
-                <div class="col-md-3">
-                    <nylon-panel-card>
-                        <app-toolbar slot="header">
-                            <div main-title>
-                                <paper-icon-button src="[[rootPath]]images/education.svg"></paper-icon-button>[[i18n.page00.education_topic]]</div>
-                            <paper-icon-button icon="chevron-right"></paper-icon-button>
-                        </app-toolbar>
-                        <div slot="content">
-                            <div class="col-md-12 title">
-                                [[i18n.page00.education_topic]]
+                        <div class="col-md-12 title">
+                            [[i18n.page00.other_information]]
+                        </div>
+                        <div class="col-md-offset-1 ">
+                            <div class="col-md-12 pointer" page='[[i18n.page00.skills]]' on-tap="openPage">
+                                [[i18n.page00.skills]]
                             </div>
-                            <div class="col-md-offset-1 ">
-                                <div class="col-md-12 pointer" page='[[i18n.page00.education]]' on-tap="openPage">
-                                    [[i18n.page00.education]]
-                                </div>
-                                <div class="col-md-12 pointer" page='[[i18n.page00.research]]' on-tap="openPage">
-                                    [[i18n.page00.research]]
-                                </div>
-                                <div class="col-md-12 pointer" page='[[i18n.page00.specialist]]' on-tap="openPage">
-                                    [[i18n.page00.specialist]]
-                                </div>
+                            <div class="col-md-12 pointer" page='[[i18n.page00.zone]]' on-tap="openPage">
+                                [[i18n.page00.zone]]
+                            </div>
+                            <div class="col-md-12 pointer" page='[[i18n.page00.references]]' on-tap="openPage">
+                                [[i18n.page00.references]]
+                            </div>
+                            <div class="col-md-12 pointer" page='[[i18n.page00.documents]]' on-tap="openPage">
+                                [[i18n.page00.documents]]
                             </div>
                         </div>
-                    </nylon-panel-card>
-                </div>
-                <div class="col-md-3">
-                    <nylon-panel-card>
-                        <app-toolbar slot="header">
-                            <div main-title>
-                                <paper-icon-button src="[[rootPath]]images/portfolio.svg"></paper-icon-button>[[i18n.page00.history]]</div>
-                            <paper-icon-button icon="chevron-right"></paper-icon-button>
-                        </app-toolbar>
-                        <div slot="content">
-                            <div class="col-md-12 title">
-                                [[i18n.page00.history]]
-                            </div>
-                            <div class="col-md-offset-1 ">
-                                <div class="col-md-12 pointer" page='[[i18n.page00.working]]' on-tap="openPage">
-                                    [[i18n.page00.working]]
-                                </div>
-                                <div class="col-md-12 pointer" page='[[i18n.page00.assessment]]' on-tap="openPage">
-                                    [[i18n.page00.assessment]]
-                                </div>
-                                <div class="col-md-12 pointer" page='[[i18n.page00.meeting]]' on-tap="openPage">
-                                    [[i18n.page00.meeting]]
-                                </div>
-                            </div>
-                        </div>
-                    </nylon-panel-card>
-                </div>
+                    </div>
+                </nylon-panel-card>
             </div>
+            <div class="col-md-3">
+                <nylon-panel-card>
+                    <app-toolbar slot="header">
+                        <div main-title>
+                            <paper-icon-button src="[[rootPath]]images/education.svg"></paper-icon-button>[[i18n.page00.education_topic]]</div>
+                        <paper-icon-button icon="chevron-right"></paper-icon-button>
+                    </app-toolbar>
+                    <div slot="content">
+                        <div class="col-md-12 title">
+                            [[i18n.page00.education_topic]]
+                        </div>
+                        <div class="col-md-offset-1 ">
+                            <div class="col-md-12 pointer" page='[[i18n.page00.education]]' on-tap="openPage">
+                                [[i18n.page00.education]]
+                            </div>
+                            <div class="col-md-12 pointer" page='[[i18n.page00.research]]' on-tap="openPage">
+                                [[i18n.page00.research]]
+                            </div>
+                            <div class="col-md-12 pointer" page='[[i18n.page00.specialist]]' on-tap="openPage">
+                                [[i18n.page00.specialist]]
+                            </div>
+                        </div>
+                    </div>
+                </nylon-panel-card>
+            </div>
+            <div class="col-md-3">
+                <nylon-panel-card>
+                    <app-toolbar slot="header">
+                        <div main-title>
+                            <paper-icon-button src="[[rootPath]]images/portfolio.svg"></paper-icon-button>[[i18n.page00.history]]</div>
+                        <paper-icon-button icon="chevron-right"></paper-icon-button>
+                    </app-toolbar>
+                    <div slot="content">
+                        <div class="col-md-12 title">
+                            [[i18n.page00.history]]
+                        </div>
+                        <div class="col-md-offset-1 ">
+                            <div class="col-md-12 pointer" page='[[i18n.page00.working]]' on-tap="openPage">
+                                [[i18n.page00.working]]
+                            </div>
+                            <div class="col-md-12 pointer" page='[[i18n.page00.assessment]]' on-tap="openPage">
+                                [[i18n.page00.assessment]]
+                            </div>
+                            <div class="col-md-12 pointer" page='[[i18n.page00.meeting]]' on-tap="openPage">
+                                [[i18n.page00.meeting]]
+                            </div>
+                        </div>
+                    </div>
+                </nylon-panel-card>
+            </div>
+
 
         </div>
     </template>

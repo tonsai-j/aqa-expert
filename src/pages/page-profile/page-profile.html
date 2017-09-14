@@ -10,6 +10,8 @@
 <link rel="import" href="../../redux-mixin.html">
 <link rel="import" href="../../redux/profile/profile-redux.html">
 
+<link rel="import" href="../../i18n/profile/page-00-i18n.html">
+
 <link rel="import" href="./pages/page-00.html">
 
 <dom-module id="page-profile">
@@ -21,8 +23,13 @@
                 cursor: pointer;
             }
 
+            .topic {
+                font-size: 1em;
+            }
+
             .menu {
                 font-size: .8em;
+                padding-left: 30px;
             }
 
             .menu:hover {
@@ -65,9 +72,28 @@
             <template is="dom-if" if={{!isDashboard}}>
                 <div class="col-md-2 ">
                     <iron-selector selected="{{currentPage}}" attr-for-selected="name">
-                        <template is="dom-repeat" items="{{menu}}">
-                            <div class="menu" name="[[item.name]]" on-click="_changePage">[[item.name]]</div>
-                        </template>
+                        <!-- <template is="dom-repeat" items="{{menu}}"> -->
+                        <div class="topic">[[i18n.page00.general_information]]</div>
+                        <div class="menu" name="[[i18n.page00.basic]]" on-click="_changePage">[[i18n.page00.basic]]</div>
+                        <div class="menu" name="[[i18n.page00.address]]" on-click="_changePage">[[i18n.page00.address]]</div>
+                        <div class="menu" name="[[i18n.page00.bank]]" on-click="_changePage">[[i18n.page00.bank]]</div>
+                        <div class="menu" name="[[i18n.page00.skills]]" on-click="_changePage">[[i18n.page00.skills]]</div>
+
+                        <div class="topic">[[i18n.page00.other_information]]</div>
+                        <div class="menu" name="[[i18n.page00.zone]]" on-click="_changePage">[[i18n.page00.zone]]</div>
+                        <div class="menu" name="[[i18n.page00.references]]" on-click="_changePage">[[i18n.page00.references]]</div>
+                        <div class="menu" name="[[i18n.page00.documents]]" on-click="_changePage">[[i18n.page00.documents]]</div>
+
+                        <div class="topic">[[i18n.page00.education_topic]]</div>
+                        <div class="menu" name="[[i18n.page00.education]]" on-click="_changePage">[[i18n.page00.education]]</div>
+                        <div class="menu" name="[[i18n.page00.research]]" on-click="_changePage">[[i18n.page00.research]]</div>
+                        <div class="menu" name="[[i18n.page00.specialist]]" on-click="_changePage">[[i18n.page00.specialist]]</div>
+
+                        <div class="topic">[[i18n.page00.history]]</div>
+                        <div class="menu" name="[[i18n.page00.working]]" on-click="_changePage">[[i18n.page00.working]]</div>
+                        <div class="menu" name="[[i18n.page00.assessment]]" on-click="_changePage">[[i18n.page00.assessment]]</div>
+                        <div class="menu" name="[[i18n.page00.meeting]]" on-click="_changePage">[[i18n.page00.meeting]]</div>
+                        <!-- </template> -->
                     </iron-selector>
                 </div>
                 <div class="col-md-10 ">
@@ -85,6 +111,10 @@
             }
             static get properties() {
                 return {
+                    i18n: {
+                        type: Object,
+                        statePath: 'i18n'
+                    },
                     _params: {
                         type: Object,
                         observer: 'setMenu'
@@ -134,7 +164,7 @@
                 if (typeof this.info.id === 'undefined') {
                     Nylon.redirect('/register');
                 } else {
-                    Nylon.redirect('/profile/' + e.model.item.name);
+                    Nylon.redirect('/profile/' + e.currentTarget.name);
                 }
 
             }
