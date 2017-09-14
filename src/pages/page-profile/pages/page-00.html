@@ -2,12 +2,13 @@
 <link rel="import" href="../../../../bower_components/polymer/lib/elements/dom-repeat.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/iron-selector/iron-selector.html">
-
 <link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
-
 <link rel="import" href="../../../../bower_components/paper-styles/color.html">
-
 <link rel="import" href="../../../../bower_components/paper-icon-button/paper-icon-button.html">
+
+<link rel="import" href="../../../nylon-i18n.html">
+
+<link rel="import" href="../../../i18n/profile/page-00-i18n.html">
 
 <link rel="import" href="../../../my-icons.html">
 <link rel="import" href="../../../layout/flexbox-grid.html">
@@ -16,6 +17,12 @@
 <dom-module id="page-00">
     <template>
         <style include="flexbox-grid flexbox-grid-remove-padding">
+            *{
+                font-size: 18px;
+            }
+            .title{
+                font-weight: bold;
+            }
             iron-selector>* {
                 padding-left: 15px;
                 padding-top: 3px;
@@ -46,12 +53,13 @@
 
             .pointer {
                 cursor: pointer;
+                color: #4285f4;
+                font-size: 1em;
             }
 
             .pointer:hover {
                 font-weight: bold;
-                text-decoration: underline;
-                text-decoration-color: blue;
+                text-decoration: none;
             }
         </style>
 
@@ -60,40 +68,40 @@
                 <nylon-panel-card>
                     <app-toolbar slot="header">
                         <div main-title>
-                            <paper-icon-button icon="chevron-right"></paper-icon-button>
-                            ข้อมูลทั่วไป & ข้อมูลอื่นๆ</div>
+                            <paper-icon-button src="[[rootPath]]images/persona_identity.svg"></paper-icon-button>
+                            [[i18n.page00.general_information]] & [[i18n.page00.other_information]]  </div>
                         <paper-icon-button icon="chevron-right"></paper-icon-button>
                     </app-toolbar>
                     <div slot="content">
-                        <div class="col-md-12">
-                            ข้อมูลทั่วไป
+                        <div class="col-md-12 title">
+                            [[i18n.page00.general_information]] 
                         </div>
                         <div class="col-md-offset-1 ">
-                            <div class="col-md-12 pointer" page='ข้อมูลพื้นฐาน' on-tap="openPage">
-                                ข้อมูลพื้นฐาน
+                            <div class="col-md-12 pointer" page='{{i18n.page00.basic}}' on-tap="openPage">
+                                [[i18n.page00.basic]]
                             </div>
-                            <div class="col-md-12 pointer" page='ที่อยู่ในการติดต่อ' on-tap="openPage">
-                                ที่อยู่ในการติดต่อ
+                            <div class="col-md-12 pointer" page='[[i18n.page00.address]]' on-tap="openPage">
+                                [[i18n.page00.address]]
                             </div>
-                            <div class="col-md-12 pointer" page='บัญชีธนาคาร' on-tap="openPage">
-                                บัญชีธนาคาร
+                            <div class="col-md-12 pointer" page='[[i18n.page00.bank]]' on-tap="openPage">
+                                [[i18n.page00.bank]]
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            ข้อมูลอื่นๆ
+                        <div class="col-md-12 title">
+                            [[i18n.page00.other_information]] 
                         </div>
                         <div class="col-md-offset-1 ">
-                            <div class="col-md-12 pointer" page='ความสามารถอื่นๆ' on-tap="openPage">
-                                ความสามารถอื่นๆ
+                            <div class="col-md-12 pointer" page='[[i18n.page00.skills]]' on-tap="openPage">
+                                [[i18n.page00.skills]]
                             </div>
-                            <div class="col-md-12 pointer" page='ภาคที่สะดวกในการประเมิน' on-tap="openPage">
-                                ภาคที่สะดวกในการประเมิน
+                            <div class="col-md-12 pointer" page='[[i18n.page00.zone]]' on-tap="openPage">
+                                [[i18n.page00.zone]]
                             </div>
-                            <div class="col-md-12 pointer" page='บุคคลอ้างอิง' on-tap="openPage">
-                                บุคคลอ้างอิง
+                            <div class="col-md-12 pointer" page='[[i18n.page00.references]]' on-tap="openPage">
+                                [[i18n.page00.references]]
                             </div>
-                            <div class="col-md-12 pointer" page='ไฟล์เอกสาร' on-tap="openPage">
-                                ไฟล์เอกสาร
+                            <div class="col-md-12 pointer" page='[[i18n.page00.documents]]' on-tap="openPage">
+                                [[i18n.page00.documents]]
                             </div>
                         </div>
                     </div>
@@ -103,22 +111,22 @@
                 <nylon-panel-card>
                     <app-toolbar slot="header">
                         <div main-title>
-                            <paper-icon-button icon="chevron-right"></paper-icon-button>การศึกษา</div>
+                            <paper-icon-button src="[[rootPath]]images/education.svg"></paper-icon-button>[[i18n.page00.education_topic]]</div>
                         <paper-icon-button icon="chevron-right"></paper-icon-button>
                     </app-toolbar>
                     <div slot="content">
-                        <div class="col-md-12">
-                            การศึกษา
+                        <div class="col-md-12 title">
+                            [[i18n.page00.education_topic]]
                         </div>
                         <div class="col-md-offset-1 ">
-                            <div class="col-md-12 pointer" page='วุฒิการศึกษา' on-tap="openPage">
-                                วุฒิการศึกษา
+                            <div class="col-md-12 pointer" page='[[i18n.page00.education]]' on-tap="openPage">
+                                [[i18n.page00.education]]
                             </div>
-                            <div class="col-md-12 pointer" page='ผลงานทางวิชาการ' on-tap="openPage">
-                                ผลงานทางวิชาการ
+                            <div class="col-md-12 pointer" page='[[i18n.page00.research]]' on-tap="openPage">
+                                [[i18n.page00.research]]
                             </div>
-                            <div class="col-md-12 pointer" page='สาขาเชี่ยวชาญ' on-tap="openPage">
-                                สาขาเชี่ยวชาญ
+                            <div class="col-md-12 pointer" page='[[i18n.page00.specialist]]' on-tap="openPage">
+                                [[i18n.page00.specialist]]
                             </div>
                         </div>
                     </div>
@@ -128,22 +136,22 @@
                 <nylon-panel-card>
                     <app-toolbar slot="header">
                         <div main-title>
-                            <paper-icon-button icon="chevron-right"></paper-icon-button>ประวัติ</div>
+                            <paper-icon-button src="[[rootPath]]images/portfolio.svg"></paper-icon-button>[[i18n.page00.history]]</div>
                         <paper-icon-button icon="chevron-right"></paper-icon-button>
                     </app-toolbar>
                     <div slot="content">
-                        <div class="col-md-12">
-                            ประวัติ
+                        <div class="col-md-12 title">
+                            [[i18n.page00.history]]
                         </div>
                         <div class="col-md-offset-1 ">
-                            <div class="col-md-12 pointer" page='ประวัติการทำงาน' on-tap="openPage">
-                                ประวัติการทำงาน
+                            <div class="col-md-12 pointer" page='[[i18n.page00.working]]' on-tap="openPage">
+                                [[i18n.page00.working]]
                             </div>
-                            <div class="col-md-12 pointer" page='ประวัติการประเมิน' on-tap="openPage">
-                                ประวัติการประเมิน
+                            <div class="col-md-12 pointer" page='[[i18n.page00.assessment]]' on-tap="openPage">
+                                [[i18n.page00.assessment]]
                             </div>
-                            <div class="col-md-12 pointer" page='ประวัติการอบรมประกันคุณภาพภายใน' on-tap="openPage">
-                                ประวัติการอบรมประกันคุณภาพภายใน
+                            <div class="col-md-12 pointer" page='[[i18n.page00.meeting]]' on-tap="openPage">
+                                [[i18n.page00.meeting]]
                             </div>
                         </div>
                     </div>
@@ -159,6 +167,10 @@
             }
             static get properties() {
                 return {
+                    i18n: {
+                        type: Object,
+                        statePath: 'i18n'
+                    },
                     _params: {
                         type: Object,
                         observer: 'setMenu'
@@ -174,6 +186,10 @@
                     currentPage: {
                         type: String,
                         value: ''
+                    },
+                    rootPath:{
+                        type: String,
+                        value: '' 
                     },
                     basic: {
                         type: Object,
@@ -206,7 +222,7 @@
 
             // }
             openPage(e) {
-                let page = e.currentTarget.getAttribute('page')
+                let page = e.currentTarget.page
                 Nylon.redirect('/profile/' + page);
                 // console.log(page);
             }
