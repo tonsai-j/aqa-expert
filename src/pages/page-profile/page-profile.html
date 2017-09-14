@@ -22,7 +22,6 @@
             iron-selector>* {
                 padding-left: 15px;
                 padding-top: 3px;
-                cursor: pointer;
             }
 
             .topic {
@@ -38,6 +37,7 @@
                 background-color: var(--paper-indigo-500);
                 font-weight: bold;
                 color: #fff;
+                cursor: pointer;
             }
 
             .iron-selected {
@@ -55,6 +55,7 @@
                 margin-bottom: 2em;
             } */
         </style>
+        {{isDashboard}}
         <div class="row header">
             <div class="col-md-12 ">
                 <div class="row" style="padding-left: 20px">
@@ -84,7 +85,7 @@
             <template is="dom-if" if={{!isDashboard}}>
                 <div class="col-md-2 ">
                     <iron-selector selected="{{currentPage}}" attr-for-selected="name">
-                        <!-- <template is="dom-repeat" items="{{menu}}"> -->
+                        <div class="topic" name="[[i18n.page00.mainPage]]" on-click="_changePage" style="cursor: pointer;">[[i18n.page00.mainPage]]</div>
                         <div class="topic">[[i18n.page00.general_information]]</div>
                         <div class="menu" name="[[i18n.page00.basic]]" on-click="_changePage">[[i18n.page00.basic]]</div>
                         <div class="menu" name="[[i18n.page00.address]]" on-click="_changePage">[[i18n.page00.address]]</div>
@@ -168,15 +169,15 @@
             }
             setMenu(e) {
                 this.set('currentPage', e.name)
-                this.set('isDashboard', this.currentPage === 'ข้อมูลทั่วไป')
-
-                // console.log(this.currentPage === 'ข้อมูลทั่วไป');
+                this.set('isDashboard', this.currentPage === 'หน้าหลัก')
             }
             _changePage(e) {
                 if (typeof this.info.id === 'undefined') {
                     Nylon.redirect('/register');
                 } else {
-                    Nylon.redirect('/profile/' + e.currentTarget.name);
+                    let page = e.currentTarget.name
+                    this.set('isDashboard', page === this.i18n.page00.mainPage)
+                    Nylon.redirect('/profile/' + page);
                 }
 
             }

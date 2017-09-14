@@ -54,7 +54,7 @@
         PROFILE_LOGIN: function (data) {
             return dispatch => {
                 dispatch({ type: 'PROFILE_LOGIN', data: data })
-                Nylon.redirect('/profile/ข้อมูลทั่วไป');
+                Nylon.redirect('/profile/หน้าหลัก');
             }
         },
         PROFILE_UPDATE: function (id, field, data, callback) {
