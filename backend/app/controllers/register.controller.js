@@ -16,6 +16,7 @@ exports.post = function (req, res) {
                                 }, {})
                             }),
                             properties: false,
+                            meeting: false,
                             exam: false,
                             address: {
                                 address1: {},
@@ -50,7 +51,7 @@ exports.post = function (req, res) {
         })
 }
 exports.check = function (req, res) {
-    r.table('profile').getAll(req.query.taxno, { index: 'taxno' }).pluck('taxno', 'type_assessor_id','type_assessor')
+    r.table('profile').getAll(req.query.taxno, { index: 'taxno' }).pluck('taxno', 'type_assessor_id', 'type_assessor')
         .run()
         .then(function (data) {
             res.json(data)
