@@ -20,7 +20,7 @@
         <nylon-panel-card>
             <div slot="content">
                 <fieldset>
-                    <legend>[[i18n.approve.approve]]</legend>
+                    <legend>[[i18n.approve.title]]</legend>
                     <br>
                     <vaadin-grid id='material' items='{{datas}}'>
                         <vaadin-grid-column width="30px" flex-grow="0">
@@ -31,27 +31,62 @@
                                 <div class="text-center">[[autoIndex(index)]]</div>
                             </template>
                         </vaadin-grid-column>
-                        <vaadin-grid-column>
-                            <template class="header">[[i18n.approve.tax_no]]</template>
+                        <vaadin-grid-column width="120px" flex-grow="0">
+                            <template class="header">[[i18n.approve.taxno]]</template>
                             <template>[[item.name]]</template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
-                            <template class="header">[[i18n.approve.type_assessor]]</template>
+                            <template class="header">[[i18n.approve.fullname]]</template>
                             <template>[[item.name1]]</template>
                         </vaadin-grid-column>
-                        <vaadin-grid-column>
-                            <template class="header">[[i18n.approve.level]]</template>
-                            <template>[[item.name2]]</template>
+                        <vaadin-grid-column width="200px" flex-grow="0">
+                            <template class="header">
+                                <div class="text-center">[[i18n.approve.type_assessor]]</div>
+                            </template>
+                            <template>
+                                <div class="text-center">[[item.name1]]</div>
+                            </template>
+                        </vaadin-grid-column>
+                        <vaadin-grid-column width="150px" flex-grow="0">
+                            <template class="header">
+                                <div class="text-center">[[i18n.approve.level]]</div>
+                            </template>
+                            <template>
+                                <div class="text-center">[[item.name2]]</div>
+                            </template>
+                        </vaadin-grid-column>
+                        <vaadin-grid-column width="100px" flex-grow="0">
+                            <template class="header">
+                                <div class="text-center">[[i18n.approve.property]]</div>
+                            </template>
+                            <template>
+                                <div class="text-center">[[item.name3]]</div>
+                            </template>
+                        </vaadin-grid-column>
+                        <vaadin-grid-column width="100px" flex-grow="0">
+                            <template class="header">
+                                <div class="text-center">[[i18n.approve.exam_status]]</div>
+                            </template>
+                            <template>
+                                <div class="text-center">[[item.name4]]</div>
+                            </template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
-                            <template class="header">[[i18n.approve.property]]</template>
-                            <template>[[item.name3]]</template>
+                            <template class="header">
+                                <div class="text-center">[[i18n.approve.history]]</div>
+                            </template>
+                            <template>
+                                <span class="text-center">
+                                    <paper-button raised class="btn-primary" on-tap=_openPanelRight>
+                                        <iron-icon icon="[[i18n.button.list.icon]]"></iron-icon>[[i18n.approve.meeting]]
+                                    </paper-button>
+                                    <paper-button raised class="btn-primary" on-tap=_openPanelRight>
+                                            <iron-icon icon="[[i18n.button.list.icon]]"></iron-icon>[[i18n.approve.exam]]
+                                    </paper-button>
+                                </span>
+                            </template>
                         </vaadin-grid-column>
-                        <vaadin-grid-column>
-                            <template class="header">[[i18n.approve.exam_status]]</template>
-                            <template>[[item.name4]]</template>
-                        </vaadin-grid-column>
-                        <vaadin-grid-column>
+                        <!-- <vaadin-grid-column>
                             <template class="header">
                                 <div style="text-align: center">[[i18n.approve.issue]]</div>
                             </template>
@@ -61,18 +96,8 @@
                                     <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.approve.issue]]</paper-button>
                                 </span>
                             </template>
-                        </vaadin-grid-column>
-                        <vaadin-grid-column>
-                            <template class="header">
-                                <div style="text-align: center">[[i18n.approve.detail]]</div>
-                            </template>
-                            <template>
-                                <span style="text-align: center">
-                                <paper-button raised class="btn-primary" on-tap=_openPanelRight>
-                                    <iron-icon icon="[[i18n.button.list.icon]]"></iron-icon>[[i18n.button.list.label]]</paper-button>
-                                </span>
-                            </template>
-                        </vaadin-grid-column>
+                        </vaadin-grid-column> -->
+
                     </vaadin-grid>
                 </fieldset>
             </div>
