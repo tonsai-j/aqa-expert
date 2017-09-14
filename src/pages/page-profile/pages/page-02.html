@@ -139,7 +139,7 @@
                                 <!-- อำเภอ/เขต* : -->
                             </div>
                             <div class="input col-md-3">
-                                    <paper-input class="required" required always-float-label label="[[i18n.page02.amphoe]]*" value="{{address.address_contract.amphoe}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.amphoe]]*" value="{{address.address_contract.amphoe}}"></paper-input>
                                 <!-- <vaadin-combo-box class="required" required always-float-label label="[[i18n.page02.amphoe]]*" items='{{amphoeList}}' value="{{address.address_contract.amphoe}}"
                                     item-label-path="label" item-value-path="value">
                                     <template>
@@ -153,7 +153,7 @@
                                 <!-- ตำบล/แขวง : -->
                             </div>
                             <div class="input col-md-3">
-                                    <paper-input class="required" required always-float-label label="[[i18n.page02.district]]*" value="{{address.address_contract.district}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.district]]*" value="{{address.address_contract.district}}"></paper-input>
                                 <!-- <vaadin-combo-box class="required" required always-float-label label="[[i18n.page02.district]]" items='{{districtList}}'
                                     value="{{address.address_contract.district}}" item-label-path="label" item-value-path="value">
                                     <template>
@@ -231,7 +231,7 @@
                     <fieldset>
                         <legend>
                             <div class="row middle-md">&nbsp;&nbsp;[[i18n.page02.address_work]]
-                                <paper-button raised class="btn-default">([[i18n.page02.copy_address]])</paper-button>&nbsp;&nbsp;
+                                <paper-button raised class="btn-default" on-tap='copyDataAddress'>([[i18n.page02.copy_address]])</paper-button>&nbsp;&nbsp;
                             </div>
                         </legend>
                         <div class="row middle-md">
@@ -314,7 +314,7 @@
                                 </vaadin-combo-box> -->
                                 <vaadin-combo-box class="required" required always-float-label label="[[i18n.page02.province]]" items='{{provinceWorkList}}'
                                     value="{{address.address_work.provinc_id}}" item-label-path="province_th" item-value-path="id"
-                                    on-selected-item-changed="getObject" object-name="address.address_work.province" >
+                                    on-selected-item-changed="getObject" object-name="address.address_work.province">
                                     <template>
                                         [[item.province_th]]
                                     </template>
@@ -324,7 +324,7 @@
                                 <!-- อำเภอ/เขต* : -->
                             </div>
                             <div class="input col-md-3">
-                                    <paper-input class="required" required always-float-label label="[[i18n.page02.amphoe]]*" value="{{address.address_work.amphoe}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.amphoe]]*" value="{{address.address_work.amphoe}}"></paper-input>
                                 <!-- <vaadin-combo-box class="required" required always-float-label label="[[i18n.page02.amphoe]]*" items='{{amphoeList}}' value="{{address.address_work.amphoe}}"
                                     item-label-path="label" item-value-path="value">
                                     <template>
@@ -338,7 +338,7 @@
                                 <!-- ตำบล/แขวง : -->
                             </div>
                             <div class="input col-md-3">
-                                    <paper-input class="required" required always-float-label label="[[i18n.page02.district]]*" value="{{address.address_work.district}}"></paper-input>
+                                <paper-input class="required" required always-float-label label="[[i18n.page02.district]]*" value="{{address.address_work.district}}"></paper-input>
                                 <!-- <vaadin-combo-box class="required" required always-float-label label="[[i18n.page02.district]]" items='{{districtList}}'
                                     value="{{address.address_work.district}}" item-label-path="label" item-value-path="value">
                                     <template>
@@ -372,26 +372,6 @@
                             <div class="input col-md-3">
                                 <paper-input class="required" required always-float-label label="[[i18n.page02.mobile_phone]]*" value="{{address.address_work.mobile_phone}}"></paper-input>
                             </div>
-                        </div>
-                        <div class="row middle-md">
-                            <div class="label col-md-1">
-                                <!-- อีเมล* : -->
-                            </div>
-                            <div class="input col-md-3">
-                                <paper-input class="required" required always-float-label label="[[i18n.page02.email]]*" value="{{address.address_work.email}}"></paper-input>
-                            </div>
-                            <div class="label col-md-1">
-                                <!-- Line ID : -->
-                            </div>
-                            <div class="input col-md-3">
-                                <paper-input class="required" required always-float-label label="[[i18n.page02.line_id]]" value="{{address.address_work.line_id}}"></paper-input>
-                            </div>
-                            <!-- <div class="label col-md-2">
-                                :
-                            </div>
-                            <div class="input col-md-2">
-                                <paper-input always-float-label label=""></paper-input>
-                            </div> -->
                         </div>
                         <div class="row middle-md">
                             <div class="label col-md-2">
@@ -450,7 +430,6 @@
                     i18n: {
                         type: Object,
                         statePath: 'i18n',
-                        observer: 'getdata'
                     },
                     // data: {
                     //     statePath: 'profile_page02.data'
@@ -510,8 +489,15 @@
                     // Nylon.dispatch('PROFILE_02_GET_LIST_DISTRICT')
                 });
             }
-            getdata(data) {
+            copyDataAddress(data) {
+                this.address = Object.assign(this.address, {
+                    address_work: this.address.address_contract
+                });
+                this.notifyPath('address.address_work')
                 // console.log(data);
+                // console.log(this.address);
+                //                 address_contract
+                // address_work
             }
             getProvinceAddressContract(region_id) {
                 if (this.address !== undefined && region_id !== undefined && region_id !== '') {
