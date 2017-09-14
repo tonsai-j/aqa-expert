@@ -175,11 +175,6 @@
                         type: Object,
                         statePath: 'i18n'
                     },
-                    info: {
-                        type: Object,
-                        statePath: 'profile.info',
-                        observer: '_getMeeting'
-                    },
                     datas: {
                         type: Array,
                         statePath: 'approve.assessor'
@@ -201,13 +196,6 @@
             }
             _closePanelRight() {
                 this.$.right.close()
-            }
-            _getMeeting() {
-                // console.log(`taxno=${this.info.type_assessor}`);
-                // Nylon.dispatch('APPROVE_GET_MEETING', `taxno=${this.info.taxno}`)
-                // if (this.info.hasOwnProperty('type_assessor')) {
-                //     Nylon.dispatch('APPROVE_GET_MEETING', `group_work_id=${this.info.type_assessor.group_work_id}&taxno=${this.info.taxno}`)
-                // }
             }
             _date(d) {
                 return new Date(d).toLocaleString().split(',')[0]
