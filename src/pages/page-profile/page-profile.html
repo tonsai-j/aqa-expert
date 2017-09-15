@@ -63,9 +63,10 @@
 
                 </div>
             </div>
+            
             <div class="col-md-6">
                 <div class="end-xs">
-                    <paper-button raised class="btn-primary" id="btnApprove" on-click="_confirmApprove">
+                    <paper-button raised class="btn-primary" id="btnApprove" on-click="_confirmApprove" disabled="{{props}}">
                         <iron-icon icon="offline-pin"></iron-icon>[[i18n.profile.approve]]
                     </paper-button>
                 </div>
@@ -166,10 +167,6 @@
                         type: Boolean,
                         value: true
                     },
-                    buttonApprove: {
-                        type: Boolean,
-                        value: true
-                    },
 
                 };
             }
@@ -177,9 +174,6 @@
                 super();
             }
 
-            /**
-             * Use for one-time configuration of your component after local DOM is initialized. 
-             */
             ready() {
                 super.ready();
                 // Nylon.dispatch('PROFILE_GET');
@@ -198,13 +192,14 @@
                     Nylon.redirect('/profile/' + page);
                 }
             }
-            _disabled() {
-                if (this.props == true) {
-                    this.$.btnApprove.disabled = true
-                } else {
-                    this.$.btnApprove.disabled = false
-                }
-            }
+            // _disabled() {
+            //     console.log(this.props);
+            //     if (this.props == true) {
+            //         this.$.btnApprove.disabled = true
+            //     } else {
+            //         this.$.btnApprove.disabled = false
+            //     }
+            // }
             _confirmApprove(e) {
                 Nylon.confirm({
                     title: this.i18n.confirm.approve.title,
@@ -228,7 +223,7 @@
                                     () => {
                                         Nylon.toast('update')
                                         Nylon.dispatch('APPROVE_GET_LISTS')
-                                        this._disabled()
+                                        // this._disabled()
                                     }
                                 );
                             }
