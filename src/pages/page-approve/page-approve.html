@@ -199,15 +199,6 @@
                         type: Array,
                         statePath: 'approve.meeting',
                     },
-                    basic: {
-                        type: Object,
-                        statePath: 'profile.info.basic',
-                        value: {}
-                    },
-                    info: {
-                        type: Object,
-                        statePath: 'profile.info'
-                    },
                     exams: {
                         type: Boolean,
                         value: false
@@ -250,7 +241,7 @@
 
             // }
             _disabled() {
-                // console.log(e.model.item.exam)
+                console.log(this.exams)
                 if (this.exams == true) {
                     this.$.btnExam.hidden = true
                 } else {
