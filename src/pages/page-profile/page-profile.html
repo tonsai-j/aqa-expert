@@ -2,9 +2,8 @@
 <link rel="import" href="../../../bower_components/polymer/lib/elements/dom-repeat.html">
 <link rel="import" href="../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../bower_components/iron-selector/iron-selector.html">
-
 <link rel="import" href="../../../bower_components/paper-styles/color.html">
-
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="./pages/page-list.html">
 <link rel="import" href="../../layout/flexbox-grid.html">
 <link rel="import" href="../../redux-mixin.html">
@@ -13,7 +12,7 @@
 <link rel="import" href="../../layout/shared-styles.html">
 
 <link rel="import" href="../../i18n/profile/page-00-i18n.html">
-
+<link rel="import" href="../../i18n/profile/main-i18n.html">
 <link rel="import" href="./pages/page-00.html">
 
 <dom-module id="page-profile">
@@ -55,21 +54,32 @@
                 margin-bottom: 2em;
             } */
         </style>
-        <div class="row header">
-            <div class="col-md-12 ">
-                <div class="row" style="padding-left: 20px">
-                    <app-toolbar slot="header">
-                        <div>[[info.type_assessor.type_assessor_name]] : [[basic.firstname_th]] [[basic.lastname_th]]</div>
+        <div class="row header" style="padding: 20px">
+            <!-- <div class="row" style="padding-left: 20px"> -->
+            <!-- <app-toolbar slot="header"> -->
+            <div class="col-md-6">
+                <div class="start-xs">
+                    [[info.type_assessor.type_assessor_name]] : [[basic.firstname_th]] [[basic.lastname_th]]
 
-                    </app-toolbar>
                 </div>
-                <!-- <template is="dom-if" if={{!isDashboard}}>
+            </div>
+            <div class="col-md-6">
+                <div class="end-xs">
+                    <paper-button raised class="btn-primary" id="btnApprove" on-click="_confirmApprove">
+                        <iron-icon icon="offline-pin"></iron-icon>[[i18n.profile.approve]]
+                    </paper-button>
+                </div>
+            </div>
+            <!-- </app-toolbar> -->
+
+            <!-- </div> -->
+            <!-- <template is="dom-if" if={{!isDashboard}}>
                     <div class="row end-md">
                         <paper-button raised class="btn-default"> กลับหน้าหลัก</paper-button>
                         <div class="col-md-offset-1"></div>
                     </div>
                 </template> -->
-            </div>
+
         </div>
 
         <div class="row">
@@ -139,6 +149,10 @@
                         type: Object,
                         statePath: 'profile.info'
                     },
+                    props: {
+                        type: Boolean,
+                        statePath: 'profile.info.properties'
+                    },
                     currentPage: {
                         type: String,
                         value: ''
@@ -151,7 +165,12 @@
                     isDashboard: {
                         type: Boolean,
                         value: true
-                    }
+                    },
+                    buttonApprove: {
+                        type: Boolean,
+                        value: true
+                    },
+
                 };
             }
             constructor() {
@@ -178,7 +197,44 @@
                     this.set('isDashboard', page === this.i18n.page00.mainPage)
                     Nylon.redirect('/profile/' + page);
                 }
-
+            }
+            _disabled() {
+                if (this.props == true) {
+                    this.$.btnApprove.disabled = true
+                } else {
+                    this.$.btnApprove.disabled = false
+                }
+            }
+            _confirmApprove(e) {
+                Nylon.confirm({
+                    title: this.i18n.confirm.approve.title,
+                    msg: this.i18n.confirm.approve.msg,
+                    icon: this.i18n.confirm.approve.icon,
+                    btn: [
+                        {
+                            label: this.i18n.button.close.label,
+                            icon: this.i18n.button.close.icon,
+                            class: 'btn-default',
+                            'dialog-dismiss': true
+                        },
+                        {
+                            label: this.i18n.button.confirm.label,
+                            icon: this.i18n.button.confirm.icon,
+                            class: 'btn-success',
+                            'dialog-confirm': true,
+                            'autofocus': true,
+                            action: () => {
+                                Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'properties', true,
+                                    () => {
+                                        Nylon.toast('update')
+                                        Nylon.dispatch('APPROVE_GET_LISTS')
+                                        this._disabled()
+                                    }
+                                );
+                            }
+                        }
+                    ]
+                })
             }
         }
 
