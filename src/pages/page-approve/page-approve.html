@@ -18,13 +18,19 @@
 
 <dom-module id="page-approve">
     <template>
-        <style include="shared-styles flexbox-grid"></style>
+        <style include="shared-styles flexbox-grid">
+            vaadin-grid {
+                --vaadin-grid-body-row-hover-cell: {
+                    cursor: pointer;
+                }
+            }
+        </style>
         <nylon-panel-card>
             <div slot="content">
                 <fieldset>
                     <legend>[[i18n.approve.title]]</legend>
                     <br>
-                    <vaadin-grid id='material' items='{{datas}}'>
+                    <vaadin-grid on-active-item-changed="_onActiveItemChanged" id='material' items='{{datas}}'>
                         <vaadin-grid-column width="5%" flex-grow="0">
                             <template class="header">
                                 <div class="text-center">#</div>
@@ -35,13 +41,14 @@
                         </vaadin-grid-column>
                         <vaadin-grid-column width="10%" flex-grow="0">
                             <template class="header">[[i18n.approve.taxno]]</template>
-                            <template>[[item.taxno]]</template>
+                            <template>[[item.taxno]]
+                            </template>
                         </vaadin-grid-column>
-                        <vaadin-grid-column width="15%" flex-grow="0">
+                        <vaadin-grid-column width="15%" flex-grow="0" resizable>
                             <template class="header">[[i18n.approve.fullname]]</template>
                             <template>[[item.basic.prefix_th]] [[item.basic.firstname_th]] [[item.basic.lastname_th]]</template>
                         </vaadin-grid-column>
-                        <vaadin-grid-column width="20%" flex-grow="0">
+                        <vaadin-grid-column width="20%" flex-grow="0" resizable>
                             <template class="header">[[i18n.approve.type_assessor]]</template>
                             <template>[[item.type_assessor.type_assessor_name]]</template>
                         </vaadin-grid-column>
@@ -54,23 +61,19 @@
                                 <div class="text-center">[[i18n.approve.property]]</div>
                             </template>
                             <template>
-                                <div class="text-center">[[item.properties]]</div>
+                                <div class="text-center">
+                                    <iron-icon icon="[[_icon(item.properties)]]"></iron-icon>
+                                </div>
                             </template>
                         </vaadin-grid-column>
-                        <!-- <vaadin-grid-column width="10%" flex-grow="0">
-                            <template class="header">
-                                <div class="text-center">ประวัติการอบรม</div>
-                            </template>
-                            <template>
-                                <div class="text-center">[[item.properties]]</div>
-                            </template>
-                        </vaadin-grid-column> -->
                         <vaadin-grid-column width="10%" flex-grow="0">
                             <template class="header">
                                 <div class="text-center">[[i18n.approve.exam_status]]</div>
                             </template>
                             <template>
-                                <div class="text-center">[[item.exam]]</div>
+                                <div class="text-center">
+                                    <iron-icon icon="[[_icon(item.exam)]]"></iron-icon>
+                                </div>
                             </template>
                         </vaadin-grid-column>
                         <vaadin-grid-column width="20%" flex-grow="0">
@@ -79,29 +82,18 @@
                             </template>
                             <template>
                                 <span class="text-center">
-                                    <paper-button raised class="btn-primary" page='{{i18n.page00.basic}}' action="page" on-tap="_openPanelRight">
+                                    <!-- <paper-button raised class="btn-primary" page='{{i18n.page00.basic}}' action="page" on-tap="_openPanelRight">
                                         <iron-icon icon="[[i18n.button.list.icon]]"></iron-icon>[[i18n.approve.property]]
-                                    </paper-button>
+                                    </paper-button> -->
                                     <paper-button raised class="btn-primary" on-tap=_openPanelRight>
                                         <iron-icon icon="[[i18n.button.list.icon]]"></iron-icon>[[i18n.approve.meeting]]
                                     </paper-button>
                                     <paper-button raised class="btn-primary" action="panel" on-tap=_openPanelRight>
-                                            <iron-icon icon="[[i18n.button.list.icon]]"></iron-icon>[[i18n.approve.exam]]
+                                        <iron-icon icon="[[i18n.button.list.icon]]"></iron-icon>[[i18n.approve.exam]]
                                     </paper-button>
                                 </span>
                             </template>
                         </vaadin-grid-column>
-                        <!-- <vaadin-grid-column>
-                            <template class="header">
-                                <div style="text-align: center">[[i18n.approve.issue]]</div>
-                            </template>
-                            <template>
-                                <span style="text-align: center">
-                                <paper-button raised class="btn-success" on-tap=openPanelRight>
-                                    <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.approve.issue]]</paper-button>
-                                </span>
-                            </template>
-                        </vaadin-grid-column> -->
 
                     </vaadin-grid>
                 </fieldset>
@@ -114,18 +106,6 @@
                         <legend>[[i18n.approve.training_details]]</legend>
                         <br>
                         <vaadin-grid id='material' items='{{datas1}}'>
-                            <!-- <vaadin-grid-column>
-                                <template class="header">[[i18n.approve.no]]</template>
-                                <template>[[item.agency_name]]</template>
-                            </vaadin-grid-column>
-                            <vaadin-grid-column>
-                                <template class="header">[[i18n.approve.training]]</template>
-                                <template>[[item.work_start_date]]</template>
-                            </vaadin-grid-column>
-                            <vaadin-grid-column>
-                                <template class="header">[[i18n.approve.date]]</template>
-                                <template>[[item.work_end_date]]</template>
-                            </vaadin-grid-column> -->
                             <vaadin-grid-column width="50px" flex-grow="0">
                                 <template class="header">
                                     <div style="text-align: center">#</div>
@@ -168,7 +148,7 @@
                     <paper-button raised on-click="_closePanelRight">
                         <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>[[i18n.button.close.label]]
                     </paper-button>
-                    <paper-button raised class="btn-success" id="btnExam" on-click="_confirmApprove">
+                    <paper-button raised class="btn-success" id="btnExam" hidden="[[exams]]" on-click="_confirmApprove">
                         <iron-icon icon="offline-pin"></iron-icon>[[i18n.approve.pass_the_exam]]
                     </paper-button>
                 </app-toolbar>
@@ -214,13 +194,10 @@
                 Nylon.dispatch('APPROVE_GET_LISTS')
             }
             _openPanelRight(e) {
-                // console.log(e.model.item.exam)
                 this.set('exams', e.model.item.exam);
                 if (e.currentTarget.getAttribute('action') == 'page') {
-                    Nylon.dispatch('APPROVE_GET_PROPERTY', e.model.item.id)
+
                 } else {
-                    // console.log(e.model.item.taxno)
-                    this._disabled();
                     Nylon.dispatch('APPROVE_GET_MEETING', `taxno=${e.model.item.taxno}`)
                     this.set('id', e.model.item.id);
                     this.$.right.open()
@@ -233,20 +210,12 @@
             _date(d) {
                 return new Date(d).toLocaleString().split(',')[0]
             }
-            // openPage(e) {
-            //     // console.log(e.model.item.id)
-            //     let page = e.currentTarget.page
-            //     // Nylon.redirect('/profile/' + page);
-            //     Nylon.dispatch('APPROVE_GET_PROPERTY', e.model.item.id)
-
-            // }
-            _disabled() {
-                console.log(this.exams)
-                if (this.exams == true) {
-                    this.$.btnExam.hidden = true
-                } else {
-                    this.$.btnExam.hidden = false
-                }
+            _icon(i) {
+                return (i ? 'check' : 'clear')
+            }
+            _onActiveItemChanged(e) {
+                if (e.detail.value != null)
+                    Nylon.dispatch('APPROVE_GET_PROPERTY', e.detail.value.id)
             }
             _confirmApprove() {
                 if (this.id != '') {
