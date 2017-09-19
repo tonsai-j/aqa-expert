@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" language="groovy" pageWidth="243" pageHeight="153" orientation="Landscape" columnWidth="233" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" uuid="df703ad8-e330-4c7a-b5ba-cab689509271">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="27"/>
+	<field name="card_id" class="java.lang.String"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="type_assessor_name" class="java.lang.String"/>
+	<field name="address" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="143">
+			<textField>
+				<reportElement x="0" y="4" width="233" height="15" uuid="8afc4ffb-02a4-425d-b6bc-140263990380"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="TH SarabunPSK" size="12" isBold="true" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["บัตรประจำตัว"+$F{type_assessor_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="60" width="223" height="65" uuid="9b162b26-f41c-44e7-b7f3-8bb75ff95f1d"/>
+				<textElement markup="none">
+					<font fontName="TH SarabunPSK" size="10" isBold="false" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[1.  ให้ผู้ประเมินภายนอกแสดงบัตรประจำตัวในการปฏิบัติหน้าที่
+2.  บัตรนี้เป็นทรัพย์สินของสำนักงานฯ หากผู้ใดเก็บบัตรนี้ได้ โปรดส่งคืน
+      สำนักงานรับรองมาตรฐานและประเมินคุณภาพการศึกษา (องค์การมหาชน)
+      ชั้น 24 อาคารพญาไทพลาซ่า 128 ถนนพญาไท แขวงทุ่งพญาไท
+      เขตราชเทวี กรุงเทพฯ 10400]]></text>
+			</staticText>
+			<image>
+				<reportElement x="96" y="20" width="40" height="40" uuid="bd162638-2d5e-42c9-bc26-ea36a9b69301"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="10" y="131" width="42" height="12" uuid="593d6c13-9dcc-4626-8b4f-63ba8b9d926f"/>
+				<textElement markup="none">
+					<font fontName="TH SarabunPSK" size="10" isBold="true" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["วันที่ออกบัตร"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="131" width="42" height="12" uuid="cd1e6e1f-18db-4674-bb00-434224ee2418"/>
+				<textElement markup="none">
+					<font fontName="TH SarabunPSK" size="10" isBold="true" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["วันหมดอายุ"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+</jasperReport>

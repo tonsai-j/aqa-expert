@@ -85,6 +85,9 @@
                                     <!-- <paper-button raised class="btn-primary" page='{{i18n.page00.basic}}' action="page" on-tap="_openPanelRight">
                                         <iron-icon icon="[[i18n.button.list.icon]]"></iron-icon>[[i18n.approve.property]]
                                     </paper-button> -->
+                                    <paper-button raised class="btn-primary" on-tap=_card>
+                                        <iron-icon icon="[[i18n.button.list.icon]]"></iron-icon>ออกบัตร
+                                    </paper-button>
                                     <paper-button raised class="btn-primary" on-tap=_openPanelRight>
                                         <iron-icon icon="[[i18n.button.list.icon]]"></iron-icon>[[i18n.approve.meeting]]
                                     </paper-button>
@@ -202,6 +205,11 @@
                     this.set('id', e.model.item.id);
                     this.$.right.open()
                 }
+            }
+            _card(e){
+                console.log(e.model.item.id);
+                window.open('https://localhost:3000/api/report/assessor/cardId?id='+ e.model.item.id)
+                // Nylon.dispatch('APPROVE_GET_CARD', e.model.item.id)
             }
             _closePanelRight() {
                 this.$.right.close()

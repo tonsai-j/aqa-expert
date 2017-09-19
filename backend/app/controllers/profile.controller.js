@@ -49,3 +49,4 @@ exports.getById = function (req, res) {
             res.json(data)
         })
 }
+

@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report3" language="groovy" pageWidth="243" pageHeight="153" orientation="Landscape" columnWidth="227" leftMargin="8" rightMargin="8" topMargin="8" bottomMargin="0" uuid="1d691749-00d4-441b-8f68-b490a842b7e4">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="492"/>
+	<property name="ireport.background.image.properties" value="true,true,1.0,58,64,0,139,120,120"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="taxno" class="java.lang.String"/>
+	<field name="type_assessor_name" class="java.lang.String"/>
+	<field name="address" class="java.lang.String"/>
+	<background>
+		<band height="145" splitType="Stretch">
+			<image>
+				<reportElement x="-7" y="-4" width="20" height="20" uuid="2535ca94-7d42-4ac5-b011-a4e70721922b"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="13" y="14" width="20" height="20" uuid="0977385a-600c-4c98-a72a-2feee3930ab2"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="34" y="-4" width="20" height="20" uuid="1ba3f242-743e-43bf-9162-f0d46ad09303"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="54" y="14" width="20" height="20" uuid="ee61e998-d13e-4a39-8316-a228c1736af9"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="74" y="-4" width="20" height="20" uuid="4185cc9b-051f-476b-856d-1d4d9f47da9e"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="94" y="14" width="20" height="20" uuid="f6ebcb06-164a-4fd1-9697-38d52f7d1bce"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="114" y="-4" width="20" height="20" uuid="f8de4798-4eb8-4978-906a-6ccf50755e68"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="134" y="14" width="20" height="20" uuid="51e7956f-2ea9-4e62-ad66-af63ab86ced5"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="154" y="-4" width="20" height="20" uuid="ff2eccb0-01cd-42d6-b38d-2230ce1d991e"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="174" y="14" width="20" height="20" uuid="56e3f208-a151-4564-a8a6-eb15731b56a8"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="194" y="-4" width="20" height="20" uuid="203a8b4a-ca7c-4f07-bfd6-c404df90581a"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="-7" y="31" width="20" height="20" uuid="08883bef-8c75-4965-8d72-8155ed797f59"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="154" y="31" width="20" height="20" uuid="40fd2877-6d40-493b-9bc4-25d5e8fa056b"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="74" y="31" width="20" height="20" uuid="ca9f0537-32e6-4ba3-9266-24388aea35d0"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="194" y="31" width="20" height="20" uuid="e2509c58-b458-4d2b-a072-ce59c3a06a8d"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="13" y="49" width="20" height="20" uuid="5d9765b1-4aff-494a-8468-3783225916f1"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="54" y="49" width="20" height="20" uuid="3b797452-7cb9-4209-a070-f32970ef0dd2"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="114" y="31" width="20" height="20" uuid="e2646b5b-2e51-4e4c-bdf8-54f3887cbaf3"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="34" y="31" width="20" height="20" uuid="c7089da2-74aa-4002-8b79-42c25a1ff48a"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="174" y="49" width="20" height="20" uuid="e81b2feb-7d37-42e0-9077-6eb858d168b5"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement mode="Transparent" x="134" y="49" width="20" height="20" uuid="17ee6055-1e47-46be-a8d8-d7ce3b1f6379"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="94" y="49" width="20" height="20" uuid="318c5c53-860a-42d5-b66c-737bd283408f"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="-7" y="67" width="20" height="20" uuid="c7ed119c-0d43-4294-9185-efc5048ed70a"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="154" y="67" width="20" height="20" uuid="19ca9081-2551-4500-b567-7e847bf476be"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="74" y="67" width="20" height="20" uuid="9dd8429e-88ed-4f9e-95d4-7bf273b754a2"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="194" y="67" width="20" height="20" uuid="e8283951-b022-46ce-9f66-a967fbad5e8f"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="13" y="85" width="20" height="20" uuid="d4d5f139-e3db-4269-a46d-da0fe4e13fd2"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="54" y="85" width="20" height="20" uuid="7c904a22-56fb-43b0-9b35-6494885fa7ad"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="114" y="67" width="20" height="20" uuid="17f4aa23-365f-4f2f-9186-f9e7cd0ee62a"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="34" y="67" width="20" height="20" uuid="15d0153e-8d08-48ca-ad88-1c774312277e"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="174" y="85" width="20" height="20" uuid="515eee39-862f-465f-a018-5ad9c609fdc5"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="134" y="85" width="20" height="20" uuid="130cbe8b-b821-4c2b-ae86-5ec3e8be27b7"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="94" y="85" width="20" height="20" uuid="cc1e594c-aa0f-466f-8ede-8a5f27d29264"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="34" y="103" width="20" height="20" uuid="3b6d0cfb-6f76-4c41-b4d6-a9523f7d5ec7"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="114" y="103" width="20" height="20" uuid="bbdb0650-65f1-49ea-ad1e-5e8d4e215981"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="74" y="103" width="20" height="20" uuid="b3e7a66c-3d4e-4cb7-9f04-8addac868696"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="154" y="103" width="20" height="20" uuid="ae460f23-ea72-4842-8cee-ba21e4f16d83"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="194" y="103" width="20" height="20" uuid="b0f417de-6ebb-4a58-8e4c-9b551a218e3e"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="-7" y="103" width="20" height="20" uuid="c2fc9dec-6dd9-4b86-b02a-f91464e215c1"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="214" y="14" width="20" height="20" uuid="9a88a712-3109-42e8-a49e-ce7dec22731a"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="214" y="49" width="20" height="20" uuid="95966659-fa34-4b6a-ae79-56ca17e1fb00"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="214" y="85" width="20" height="20" uuid="d90f0371-e576-4801-b49c-c3109ec6309c"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="14" y="121" width="20" height="20" uuid="d31bcbbc-37e1-47b1-8d88-b217b1c23393"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="53" y="121" width="20" height="20" uuid="910adeb5-759f-4810-9988-2af843a41471"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="94" y="121" width="20" height="20" uuid="6b790425-5c04-464b-be88-e5e50d98ad70"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="134" y="121" width="20" height="20" uuid="be973754-2a7e-4967-8e53-ff9b1696faf0"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="174" y="121" width="20" height="20" uuid="4aabb0fb-1b38-4a21-bc97-c6cb58904dd4"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="214" y="121" width="20" height="20" uuid="52b28257-9a08-4b1e-ba1e-3bf068441ce1"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\logo.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="137" splitType="Stretch">
+			<textField>
+				<reportElement x="73" y="72" width="154" height="10" uuid="3fcbc32a-f849-43b6-ad74-e3bba1937ea1"/>
+				<textElement markup="none">
+					<font fontName="TH SarabunPSK" size="8" isBold="true" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["เลขประจำตัวประชาชน  "+$F{taxno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="73" y="26" width="154" height="10" uuid="5db74013-d709-4732-824e-d9ffff2fe423"/>
+				<textElement markup="none">
+					<font fontName="TH SarabunPSK" size="8" isBold="true" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ชื่อ  "+$F{name}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="121" width="55" height="1" uuid="d96ede8a-b94b-4655-9b06-c5569064f7a2"/>
+			</line>
+			<textField>
+				<reportElement x="1" y="127" width="55" height="10" uuid="7def893b-5835-459a-847e-d678c3dd0411"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="TH SarabunPSK" size="8" isBold="true" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ลายมือชื่อ"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="127" width="102" height="10" uuid="581c7327-53fb-40d6-8291-d674cf46574f"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="TH SarabunPSK" size="6" isBold="true" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["คุณภาพการศึกษา (องค์การมหาชน)"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="73" y="87" width="154" height="10" uuid="342774a1-c57a-4130-b467-144d469b693a"/>
+				<textElement markup="none">
+					<font fontName="TH SarabunPSK" size="8" isBold="true" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["สังกัด"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="73" y="41" width="126" height="10" uuid="157b29fb-18ed-4e82-9212-8389bbc2d544"/>
+				<textElement markup="none">
+					<font fontName="TH SarabunPSK" size="8" isBold="true" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ที่อยู่  "+$F{address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="24" y="1" width="203" height="12" uuid="215a0442-0042-4d74-a570-4942745a1b5c"/>
+				<textElement markup="none">
+					<font fontName="TH SarabunPSK" size="8" isBold="true" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["บัตรประจำตัว"+$F{type_assessor_name}+" เลขที่"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="117" width="102" height="10" uuid="2c1f6ed6-0286-4ec5-a081-2559f75b493a"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="TH SarabunPSK" size="6" isBold="true" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ผู้อำนวยการสำนักงานรับรองมาตรฐานและประเมิน"]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="2" y="26" width="60" height="80" uuid="ff60c874-e372-460d-86b1-9ec9277356c0"/>
+				<imageExpression><![CDATA["C:\\Users\\nx-cyber6\\Downloads\\thongpas.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+</jasperReport>
