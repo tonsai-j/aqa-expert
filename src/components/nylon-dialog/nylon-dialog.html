@@ -100,32 +100,32 @@
                 // })
             }
 
-            openToast(op = 'insert', titie) {
+            openToast(op = 'insert', obj = { icon: '', msg: '' }) {
                 let title = { icon: '', msg: '' }
                 switch (op) {
                     case 'insert':
-                        title.icon = this.i18n.toast.insert.icon
-                        title.msg = this.i18n.toast.insert.msg
+                        title.icon = obj.icon || this.i18n.toast.insert.icon
+                        title.msg = obj.msg || this.i18n.toast.insert.msg
                         break;
                     case 'required':
-                        title.icon = this.i18n.toast.required.icon
-                        title.msg = this.i18n.toast.required.msg
+                        title.icon = obj.icon || this.i18n.toast.required.icon
+                        title.msg = obj.msg || this.i18n.toast.required.msg
                         break;
                     case 'update':
-                        title.icon = this.i18n.toast.update.icon
-                        title.msg = this.i18n.toast.update.msg
+                        title.icon = obj.icon || this.i18n.toast.update.icon
+                        title.msg = obj.msg || this.i18n.toast.update.msg
                         break;
                     case 'delete':
-                        title.icon = this.i18n.toast.delete.icon
-                        title.msg = this.i18n.toast.delete.msg
+                        title.icon = obj.icon || this.i18n.toast.delete.icon
+                        title.msg = obj.msg || this.i18n.toast.delete.msg
                         break;
                     case 'error':
-                        title.icon = this.i18n.toast.error.icon
-                        title.msg = this.i18n.toast.error.msg
+                        title.icon = obj.icon || this.i18n.toast.error.icon
+                        title.msg = obj.msg || this.i18n.toast.error.msg
                         break;
                     default:
-                        title.icon = titie.icon || 'speaker-notes'
-                        title.msg = titie.msg || ''
+                        title.icon =  obj.icon || 'speaker-notes'
+                        title.msg = obj.msg  || ''
                         break;
                 }
                 this.icon = title.icon

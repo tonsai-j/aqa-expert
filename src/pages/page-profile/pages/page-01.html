@@ -151,7 +151,11 @@
                             [[rootPath]] -->
                         </div>
                         <div class="col-md-3">
-                            <input id="ifile" type=file accept="image/*" on-change="preview_image">
+                            <!-- <input type="file" id="myFile" style="width:300px;"> -->
+                            <input id="ifile" type=file accept="image/*" >
+                            <!-- on-change="preview_image" -->
+                            <paper-button raised on-tap="preview_image"> อัพ</paper-button>
+
                         </div>
                     </div>
                 </fieldset>
@@ -260,11 +264,23 @@
             }
             preview_image(e) {
                 var reader = new FileReader();
-                reader.onload = () => {
-                    var output = this.$.output_image
-                    output.src = reader.result;
-                }
-                reader.readAsDataURL(event.target.files[0]);
+                // console.log(reader);
+                // reader.onload = () => {
+                //     var output = this.$.output_image
+                //     // console.log(reader.result);
+                //     output.src = reader.result;
+                //     let dataPic = {}
+                //     dataPic.picture = reader.result
+                //     // Nylon.dispatch('PROFILE_01_POST_PICTURE',dataPic)
+                // }
+                // reader.onloadend = () => {
+                var file = this.$.ifile.files
+                let profile = {}
+                profile.pic_type = 'profile'
+                profile.user_id = 'xxxd'
+                Nylon.dispatch('PROFILE_01_POST_PICTURE', file,profile)
+                // }
+                // reader.readAsDataURL(event.target.files[0]);
             }
             _save() {
                 // console.log(this.validateForm('.required'));
@@ -312,7 +328,7 @@
                         this.set('data', isReadCard)
                         Nylon.toast('insert')
                     } else {
-                        Nylon.toast('error',this.i18n.page01.error)
+                        Nylon.toast('error', this.i18n.page01.error)
                     }
                 })
             }

@@ -91,6 +91,28 @@
                     })
             }
         },
+        // POST
+        PROFILE_01_POST_PICTURE: function (dataPic,profile) {
+            // console.log(dataPic);
+            var data = new FormData()
+            data.append('file', dataPic[0])
+            
+            // console.log(data);
+            return dispatch => {
+                axios.defaults.headers.common['pic_type'] = profile.pic_type
+                axios.defaults.headers.common['user_id'] = profile.user_id
+                axios.post('/upload/uploadpic',data)
+                    .then(res => {
+                        if (res.status === 200) {
+                            Nylon.toast('update')
+                        }
+                        // dispatch({ type: 'PROFILE_01_GET_LIST_WORK_STATUS', payload: res.data })
+                    }
+                    ).catch(err => {
+                        console.log({ err })
+                    })
+            }
+        },
 
     })
 
