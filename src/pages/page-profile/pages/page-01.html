@@ -274,11 +274,13 @@
                 //     // Nylon.dispatch('PROFILE_01_POST_PICTURE',dataPic)
                 // }
                 // reader.onloadend = () => {
+                // console.log(this.info.id);
                 var file = this.$.ifile.files
                 let profile = {}
                 profile.pic_type = 'profile'
-                profile.user_id = 'xxxd'
+                profile.user_id = this.info.id
                 Nylon.dispatch('PROFILE_01_POST_PICTURE', file,profile)
+
                 // }
                 // reader.readAsDataURL(event.target.files[0]);
             }
