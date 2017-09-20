@@ -19,7 +19,7 @@ exports.cardId = function (req, res) {
         .run()
         .then(function (data) {
             // res.json(data)
-            res.ireport("reports/report3.jasper", req.query.export || "pdf", data)
+            res.ireport("reports/expert_card.jasper", req.query.export || "pdf", data)
         })
     // res.json('card id')
 }
