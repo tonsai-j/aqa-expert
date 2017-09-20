@@ -39,48 +39,48 @@ exports.uploadPic = function (req, res) {
                         file_path: pathUrl,
                         data_uploaded: r.now().inTimezone('+07'),
                     }
-                    table
-                        .getAll([user_id, pic_type], { index: "user_idPic_type" })
-                        // .delete()
-                        .run()
+                    // table
+                    //     .getAll([user_id, pic_type], { index: "user_idPic_type" })
+                    //     // .delete()
+                    //     .run()
+                    //     .then((result) => {
+                    //         for (var index = 0; index < result.length; index++) {
+                    //             // ../ คือออกไปข้างนอกหนึ่งขั้น
+                    //             let pathPic = path.resolve('../', result[index].file_path, result[index].file_name)
+                    //             console.log(pathPic);
+                    //             // fs.unlinkSync(pathPic);
+                    //             fs.stat(pathPic, (err, stats) => {
+                    //                 console.log(1111);
+                    //                 console.log(stats);//here we got all information of file in stats variable
+
+                    //                 if (err) {
+                    //                     return console.error(err);
+                    //                 }
+
+                    //                 fs.unlink(pathPic, (err) => {
+                    //                     if (err) return console.log(err);
+                    //                     console.log('file deleted successfully');
+                    //                 });
+                    //             });
+                    //             // fs.unlink('./server/upload/my.csv', function (err) {
+                    //             //     if (err) return console.log(err);
+                    //             //     console.log('file deleted successfully');
+                    //             // });
+                    //         }
+                    //         res.json(result);
+                    //         // table
+                    //         //     .getAll([user_id, pic_type], { index: "user_idPic_type" })
+                    //         //     .delete()
+                    //         //     .run()
+                    //     })
+                        // .then((result) => {
+                            table
+                                .insert(data)
+                                .run()
+                        // })
                         .then((result) => {
-                            for (var index = 0; index < result.length; index++) {
-                                // ../ คือออกไปข้างนอกหนึ่งขั้น
-                                let pathPic = path.resolve('../', result[index].file_path, result[index].file_name)
-                                console.log(pathPic);
-                                // fs.unlinkSync(pathPic);
-                                fs.stat(pathPic, (err, stats) => {
-                                    console.log(1111);
-                                    console.log(stats);//here we got all information of file in stats variable
-
-                                    if (err) {
-                                        return console.error(err);
-                                    }
-
-                                    fs.unlink(pathPic, (err) => {
-                                        if (err) return console.log(err);
-                                        console.log('file deleted successfully');
-                                    });
-                                });
-                                // fs.unlink('./server/upload/my.csv', function (err) {
-                                //     if (err) return console.log(err);
-                                //     console.log('file deleted successfully');
-                                // });
-                            }
                             res.json(result);
-                            // table
-                            //     .getAll([user_id, pic_type], { index: "user_idPic_type" })
-                            //     .delete()
-                            //     .run()
                         })
-                        // .then((result) => {
-                        //     table
-                        //         .insert(data)
-                        //         .run()
-                        // })
-                        // .then((result) => {
-                        //     res.json(result);
-                        // })
                         .catch((err) => {
                             res.json(err);
                         })
