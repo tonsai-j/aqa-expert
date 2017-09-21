@@ -151,7 +151,7 @@
                 </div>
                 <app-toolbar slot="footer">
                     <div main-title></div>
-                    <paper-button raised on-click="closePanelRight">
+                    <paper-button raised on-click="_closePanelRight">
                         <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>[[i18n.button.close.label]]
                     </paper-button>
                     <paper-button raised class="btn-success" on-click="_save">
@@ -248,7 +248,7 @@
                         // this.data
                         let isRegion = this.zone.find(el => el.region_id === region.id)
                         if (isRegion !== undefined) {
-                            region.hidden = true 
+                            region.hidden = true
                         }
                         return region
                     })
