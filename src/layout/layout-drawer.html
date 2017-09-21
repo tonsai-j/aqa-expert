@@ -1,22 +1,32 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
+<!-- <link rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html"> -->
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../bower_components/paper-item/paper-icon-item.html">
+
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+
+<link rel="import" href="./flexbox-grid.html">
+
+<link rel="import" href="./nylon-trirong-font.html">
 <link rel="import" href="./nylon-cschatthai-font.html">
+<link rel="import" href="./nylon-mitr-font.html">
+
+
 <link rel="import" href="../redux-mixin.html">
 <link rel="import" href="../i18n/menu-i18n.html">
 <link rel="import" href="../my-icons.html">
 
 <dom-module id="layout-drawer">
     <template>
+        <style include="flexbox-grid flexbox-grid-remove-padding"></style>
         <style>
-            /* *{
-                font-family: CSChatThaiUI, sans-serif;
+            * {
+                font-family: mitr-light, sans-serif;
                 -webkit-font-smoothing: antialiased;
-            } */
+            }
 
              :host {
                 display: block;
@@ -46,22 +56,37 @@
 
             iron-selector>paper-icon-item {
                 cursor: pointer;
-                font-family: CSChatThaiUI, sans-serif;
+                font-family: mitr-light, sans-serif;
                 -webkit-font-smoothing: antialiased;
+                background-color: #263238;
+                color: #727f8a;
+            }
+
+            iron-selector>paper-icon-item:hover {
+                background-color: #232C33;
+            }
+
+            iron-selector>paper-icon-item.iron-selected {
+                color: #ffffff;
+                background-color: #232C33;
+            }
+
+            .title-menu {
+                height: 3em;
+                padding-left: 1em;
+                line-height: 3em;
+                background-color: #3583CB;
+                color: #BBBFD3;
             }
         </style>
 
-        <app-drawer id="drawer" no-focus-trap="false">
-            <br>
-            <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-                <!-- <paper-icon-item name="page-view" href="/" on-click="_redirect">
-                    <iron-icon icon="bookmark-border" slot="item-icon"></iron-icon>
-                    View One
-                </paper-icon-item> -->
-                <paper-icon-item  name="page-view2" href="/view2/test" on-click="_redirect">
-                    <iron-icon icon="bookmark-border" slot="item-icon"></iron-icon>
-                    View Two
-                </paper-icon-item>
+
+        <template is="dom-repeat" items={{menu}}>
+            <div class="title-menu">
+                [[i18n.page00.general_information]]
+            </div>
+            <iron-selector selected="[[page]]" attr-for-selected="name" role="navigation">
+
                 <paper-icon-item name="page-register" href="/register" on-click="_redirect">
                     <iron-icon icon="[[i18n.menu.register.icon]]" slot="item-icon"></iron-icon>
                     [[i18n.menu.register.label]]
@@ -75,7 +100,9 @@
                     [[i18n.menu.approve.label]]
                 </paper-icon-item>
             </iron-selector>
-        </app-drawer>
+
+        </template>
+
 
     </template>
 
@@ -89,6 +116,29 @@
                     page: String,
                     i18n: {
                         statePath: 'i18n'
+                    },
+                    menu: {
+                        type: Array,
+                        value: [
+                            {
+                                x: 1,
+                            },
+                            {
+                                x: 2
+                            },
+                            // {
+                            //     x: 1,
+                            // },
+                            // {
+                            //     x: 2
+                            // },
+                            // {
+                            //     x: 1,
+                            // },
+                            // {
+                            //     x: 2
+                            // },
+                        ]
                     }
                 }
             }

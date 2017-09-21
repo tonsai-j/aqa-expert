@@ -12,8 +12,13 @@
 
 <link rel="import" href="../../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
 
+<link rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
+
 <link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
 
+<link rel="import" href="../../bower_components/iron-icons/social-icons.html">
+
+<link rel="import" href="./flexbox-grid.html">
 
 <link rel="import" href="./layout-drawer.html">
 <link rel="import" href="../redux-mixin.html">
@@ -21,11 +26,12 @@
 
 <dom-module id="layout-main">
     <template>
+        <style include="flexbox-grid flexbox-grid-remove-padding"></style>
         <style>
              :host {
                 --app-primary-color: #0288D1;
                 --app-secondary-color: black;
-
+                /* --app-drawer-width: 300px; */
                 display: block;
             }
 
@@ -57,52 +63,150 @@
                 height: 2px;
                 --paper-progress-active-color: #FFFF8D;
             }
+
+            #profile_image_mini {
+                width: 1.5em;
+                height: 1.5em;
+                border-radius: 50%;
+            }
+
+            .short_menu {
+                cursor: pointer;
+            }
+
+            .border {
+                border: 1px solid black;
+            }
+
+            .full-height {
+                height: 100%;
+            }
+
+            .mini-menu {
+                padding-left: 7px;
+                padding-right: 7px;
+            }
+
+            .mini-menu:hover {
+                background-color: rgba(243, 247, 249, .6);
+                cursor: pointer;
+            }
+
+            .profile-icon-menu {
+                color: #76838f
+            }
+
+            iron-icon.icon-menu {
+                /* --iron-icon-stroke-color: #FFF; */
+                color: #fff;
+                /* fill: red; */
+            }
+
+            .home-icon {
+                height: 55px;
+                /* color: #fff;
+                background-color: #0288D1; */
+                --iron-icon-height: 45px;
+                --iron-icon-width: 45px;
+            }
+
+            .header-left-menu {
+                background-color: #4e97d9;
+            }
+
+            #style-4::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                background-color: #F5F5F5;
+            }
+
+            #style-4::-webkit-scrollbar {
+                width: 10px;
+                background-color: #F5F5F5;
+            }
+
+            #style-4::-webkit-scrollbar-thumb {
+                background-color: #000000;
+                border: 2px solid #555555;
+            }
+            /* .drawer-footer{
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                left: 0;
+            } */
+
+            .page {
+                background-color: #263238;
+                height: 100vh;
+                /* position:relative; */
+            }
         </style>
 
-
-
-        <!-- <layout-drawer id="layoutDrawer"></layout-drawer>
-
-        <app-header slot="header" fixed condenses effects="waterfall">
-            <app-toolbar class="header">
-                <paper-icon-button icon="my-icons:menu" drawer-toggle on-click="toogleMenu"></paper-icon-button>
-                <div main-title>[[i18n.common.myApp]]</div>
-                <paper-button toggles on-click="changeLanguage">[[i18n.language]]</paper-button>
-            </app-toolbar>
-            <template is="dom-if" if="[[progressEnable]]">
-                <paper-progress id="progress" value="[[progressValue]]" indeterminate="[[progressIndeterminate]]"></paper-progress>
-            </template>
-        </app-header>
-        
-        <br><br>
-        <slot></slot> -->
-        1111
         <app-drawer-layout>
-            <!-- <div slot="drawer">
-                <layout-drawer id="layoutDrawer"></layout-drawer>
-            </div> -->
-
-            <app-drawer slot="drawer">
-                <layout-drawer id="layoutDrawer"></layout-drawer>
+            <!-- -->
+            <app-drawer class="page" slot="drawer">
+                <div class="page">
+                    <div class="row center-md middle-md home-icon header-left-menu">
+                        <iron-icon icon="svg-sample-icons:youtube" class="icon-menu"></iron-icon>
+                    </div>
+                    <div>
+                        <div id="style-4" style="height: 100%; overflow: auto; display:block">
+                            <layout-drawer id="layoutDrawer"></layout-drawer>
+                        </div>
+                    </div>
+                    <!-- <div class="drawer-footer" style="height:3em;bottom: 0;background-color: #21292e;"></div> -->
+                    <div style="height:100%; background-color: #FFF; position:relative;">
+                        <div style="bottom:0px;right:0px;">1ๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅ</div>
+                    </div>
+                </div>
             </app-drawer>
             <app-header-layout>
 
                 <app-header slot="header" fixed condenses effects="waterfall">
+
                     <app-toolbar class="header">
-                        <paper-icon-button icon="my-icons:menu" drawer-toggle on-click="toogleMenu"></paper-icon-button>
-                        <div main-title>[[i18n.common.myApp]]</div>
-                        <paper-button toggles on-click="changeLanguage">[[i18n.language]]</paper-button>
+                        <div style="width:65%;" class="full-height ">
+                            <div class="row middle-md full-height">
+                                <div class="col-md-2 ">
+                                    <paper-button toggles on-click="changeLanguage">[[i18n.language]]</paper-button>
+                                </div>
+                                <div class="col-md-10 ">
+                                    <div>[[i18n.common.myApp]]</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width:30% ;" class="full-height ">
+                            <div class="full-height row middle-md">
+                                <div class="full-height row middle-md col-md-1 mini-menu">
+                                    <img id="profile_image_mini" src$="[[rootPath]]images/I20170901111610.jpg" />
+                                </div>
+                                <div class="full-height row middle-md col-md-1 mini-menu">
+                                    <iron-icon class="profile-icon-menu" icon="social:notifications"></iron-icon>
+                                </div>
+                                <div class="full-height row middle-md col-md-1 mini-menu">
+                                    <iron-icon class="profile-icon-menu" icon="mail"></iron-icon>
+                                </div>
+                                <div class="full-height row middle-md col-md-1 mini-menu">
+                                    <iron-icon class="profile-icon-menu" icon="settings"></iron-icon>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </app-toolbar>
                     <template is="dom-if" if="[[progressEnable]]">
                         <paper-progress id="progress" value="[[progressValue]]" indeterminate="[[progressIndeterminate]]"></paper-progress>
                     </template>
                 </app-header>
+                <div style="margin:8px;">
+                    <slot></slot>
+                </div>
 
-                <br><br>
-                <slot></slot>
 
             </app-header-layout>
         </app-drawer-layout>
+
+
     </template>
 
     <script>
