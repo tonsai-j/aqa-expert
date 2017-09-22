@@ -103,7 +103,6 @@
             }
 
             .home-icon {
-                height: 55px;
                 /* color: #fff;
                 background-color: #0288D1; */
                 --iron-icon-height: 45px;
@@ -112,6 +111,7 @@
 
             .header-left-menu {
                 background-color: #4e97d9;
+                height: 55px;
             }
 
             #style-4::-webkit-scrollbar-track {
@@ -149,14 +149,15 @@
                     <div class="row center-md middle-md home-icon header-left-menu">
                         <iron-icon icon="svg-sample-icons:youtube" class="icon-menu"></iron-icon>
                     </div>
-                    <div>
+                    <div style="height:80vh;">
                         <div id="style-4" style="height: 100%; overflow: auto; display:block">
                             <layout-drawer id="layoutDrawer"></layout-drawer>
                         </div>
                     </div>
+                    <!-- bottom:0px;right:0px; -->
                     <!-- <div class="drawer-footer" style="height:3em;bottom: 0;background-color: #21292e;"></div> -->
-                    <div style="height:100%; background-color: #FFF; position:relative;">
-                        <div style="bottom:0px;right:0px;">1ๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅ</div>
+                    <div style="height:100%;background-color: #21292e;">
+                        <!-- <div style="height:3em;background-color: #21292e;margin-top:50px;">1ๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅ</div> -->
                     </div>
                 </div>
             </app-drawer>
@@ -167,9 +168,9 @@
                     <app-toolbar class="header">
                         <div style="width:65%;" class="full-height ">
                             <div class="row middle-md full-height">
-                                <div class="col-md-2 ">
+                                <!-- <div class="col-md-2 ">
                                     <paper-button toggles on-click="changeLanguage">[[i18n.language]]</paper-button>
-                                </div>
+                                </div> -->
                                 <div class="col-md-10 ">
                                     <div>[[i18n.common.myApp]]</div>
                                 </div>
@@ -229,6 +230,7 @@
 
             ready() {
                 super.ready()
+                Nylon.changeLanguage('th')
             }
 
             changeLanguage() {
