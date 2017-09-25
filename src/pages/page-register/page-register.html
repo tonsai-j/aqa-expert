@@ -12,6 +12,10 @@
 <link rel="import" href="../../redux-mixin.html">
 <link rel="import" href="../../redux/register/register-redux.html">
 <link rel="import" href="../../i18n/register/main-i18n.html">
+
+<link rel="import" href="../../components/nylon-input/nylon-input.html">
+
+
 <dom-module id="page-register">
     <template>
         <style include="shared-styles flexbox-grid flexbox-grid-remove-padding ">
@@ -30,9 +34,14 @@
                 margin-top: 5%;
             }
 
+            .intut-title {
+                text-align: left;
+            }
+
             .input {
                 text-align: left;
             }
+            
         </style>
         <div class="container row center-md center-lg center-sm">
             <div class="col-lg-5 col-md-8  col-sm-10  col-xs-12">
@@ -44,8 +53,17 @@
                     </div>
                     <div slot="content" class="middle-md">
                         <div class="col-xs-12">
-                            <paper-input id="inputTaxNo" class="required input" required label="[[i18n.register.taxno]]" value="{{data.taxno}}" allowed-pattern="[0-9]"
-                                maxlength="13" required on-keyup="_enter"></paper-input>
+                                <nylon-input id="inputTaxNo" 
+                                class="required input"
+                                required
+                                label="[[i18n.register.taxno]]"
+                                value="{{data.taxno}}"
+                                allowed-pattern="[0-9]"
+                                maxlength="13"
+                                on-keyup="_enter"
+                                ></nylon-input>
+                            <!-- <paper-input id="inputTaxNo" class="required input" required label="[[i18n.register.taxno]]" value="{{data.taxno}}" allowed-pattern="[0-9]"
+                                maxlength="13" required on-keyup="_enter"></paper-input> -->
                         </div>
                         <div class="col-xs-12">
                             <vaadin-combo-box id="comboTypeAss" class="required input" required label="[[i18n.register.level]]" items='{{typeAssessor}}'
