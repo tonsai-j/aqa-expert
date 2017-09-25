@@ -6,6 +6,8 @@
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../bower_components/paper-item/paper-icon-item.html">
 
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 
 <link rel="import" href="./flexbox-grid.html">
@@ -32,8 +34,7 @@
                 display: block;
                 z-index: 1;
             }
-
-            .drawer-list {
+            /* .drawer-list {
                 margin: 0 20px;
             }
 
@@ -48,7 +49,7 @@
             .drawer-list a.iron-selected {
                 color: black;
                 font-weight: bold;
-            }
+            } */
 
             #drawer {
                 z-index: 1
@@ -78,31 +79,98 @@
                 background-color: #3583CB;
                 color: #BBBFD3;
             }
+
+            iron-icon.icon-menu {
+                /* --iron-icon-stroke-color: #FFF; */
+                color: #fff;
+                /* fill: red; */
+            }
+
+            .home-icon {
+                /* color: #fff;
+                background-color: #0288D1; */
+                --iron-icon-height: 45px;
+                --iron-icon-width: 45px;
+            }
+
+            .header-left-menu {
+                background-color: #4e97d9;
+                height: 55px;
+            }
+
+            #style-4::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                background-color: #F5F5F5;
+            }
+
+            #style-4::-webkit-scrollbar {
+                width: 10px;
+                background-color: #F5F5F5;
+            }
+
+            #style-4::-webkit-scrollbar-thumb {
+                background-color: #000000;
+                border: 2px solid #555555;
+            }
+
+            .page {
+                background-color: #263238;
+                height: 100vh;
+                /* position:relative; */
+            }
+
+            .borderz {
+                border: 1px solid red;
+            }
+
+            .icon-page {
+                height: 128px;
+            }
+
+            .icon-page>iron-icon {
+                height: 80%;
+                width: 80%;
+            }
         </style>
-
-
-        <template is="dom-repeat" items={{menu}}>
-            <div class="title-menu">
-                [[i18n.page00.general_information]]
+        <div class="page">
+            <div class="row center-md middle-md home-icon header-left-menu">
+                <iron-icon icon="svg-sample-icons:youtube" class="icon-menu" on-tap="changeMenu"></iron-icon>
             </div>
-            <iron-selector selected="[[page]]" attr-for-selected="name" role="navigation">
+            <div style="height:80vh;">
+                <div id="style-4" style="height: 100%; overflow: auto; display:block">
+                    <iron-pages selected="{{menuPage}}" attr-for-selected="name">
+                        <div name="main">
+                            <div class="row">
+                                <template is="dom-repeat" items={{menu}}>
+                                    <div class="col-md-6 borderz icon-page row middle-md center-md" name="{{item.page}}" on-tap="changeToMenu">
+                                        <iron-icon icon="{{item.icon}}" class="icon-menu"></iron-icon>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                        <div name="menu">
+                            <template is="dom-repeat" items={{menuIsUse}}>
+                                <div class="title-menu">
+                                    [[_changeTotext(item.page_name)]]
+                                </div>
+                                <iron-selector selected="[[page]]" attr-for-selected="name" role="navigation">
 
-                <paper-icon-item name="page-register" href="/register" on-click="_redirect">
-                    <iron-icon icon="[[i18n.menu.register.icon]]" slot="item-icon"></iron-icon>
-                    [[i18n.menu.register.label]]
-                </paper-icon-item>
-                <paper-icon-item name="page-profile" href="/profile/ข้อมูลพื้นฐาน" on-click="_redirect">
-                    <iron-icon icon="[[i18n.menu.profile.icon]]" slot="item-icon"></iron-icon>
-                    [[i18n.menu.profile.label]]
-                </paper-icon-item>
-                <paper-icon-item name="page-profile" href="/approve" on-click="_redirect">
-                    <iron-icon icon="[[i18n.menu.approve.icon]]" slot="item-icon"></iron-icon>
-                    [[i18n.menu.approve.label]]
-                </paper-icon-item>
-            </iron-selector>
+                                    <template is="dom-repeat" items={{item.sub_menu}}>
+                                        <paper-icon-item name="[[item.page_name]]" href="[[item.href]]" on-click="_redirect">
+                                            <iron-icon icon="[[_changeTotext(item.icon)]]" slot="item-icon"></iron-icon>
+                                             [[_changeTotext(item.label)]]
+                                        </paper-icon-item>
+                                    </template>
+                                </iron-selector>
+                            </template>
+                        </div>
+                    </iron-pages>
 
-        </template>
-
+                </div>
+            </div>
+            <div style="height:100%;background-color: #21292e;">
+            </div>
+        </div>
 
     </template>
 
@@ -117,29 +185,93 @@
                     i18n: {
                         statePath: 'i18n'
                     },
+                    menuPage: {
+                        type: String,
+                        value: 'main'
+                    },
                     menu: {
                         type: Array,
                         value: [
                             {
-                                x: 1,
+                                icon: 'svg-sample-icons:youtube',
+                                page: 'register',
+                                sub_title_menu: [
+                                    {
+                                        page_name: 'i18n.menu.register.label',
+                                        sub_menu: [
+                                            {
+                                                page_name: 'page-register',
+                                                icon: 'i18n.menu.register.icon',
+                                                label: 'i18n.menu.register.label',
+                                                href: '/register'
+                                            }
+                                        ]
+                                    }
+                                ]
                             },
                             {
-                                x: 2
+                                icon: 'svg-sample-icons:youtube',
+                                page: 'profile',
+                                sub_title_menu: [
+                                    {
+                                        page_name: 'i18n.page00.general_information',
+                                        sub_menu: [
+                                            {
+                                                page_name: 'page-profile',
+                                                icon: 'i18n.menu.profile.icon',
+                                                label: 'i18n.menu.profile.label',
+                                                href: '/profile/ข้อมูลพื้นฐาน'
+                                            }
+                                        ]
+                                    }
+                                ]
                             },
                             {
-                                x: 1,
-                            },
-                            {
-                                x: 2
-                            },
-                            {
-                                x: 1,
-                            },
-                            {
-                                x: 2
-                            },
+                                icon: 'svg-sample-icons:youtube',
+                                page: 'approve',
+                                sub_title_menu: [
+                                    {
+                                        page_name: 'i18n.menu.approve.label',
+                                        sub_menu: [
+                                            {
+                                                page_name: 'page-profile',
+                                                icon: 'i18n.menu.approve.icon',
+                                                label: 'i18n.menu.approve.label',
+                                                href: 'approve'
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
                         ]
+                    },
+                    menuIsUse: {
+                        type: Array,
+                        value: []
                     }
+                    // menu: {
+                    //     type: Array,
+                    //     value: [
+                    //         {
+                    //             x: 1,
+                    //         },
+                    //         {
+                    //             x: 2
+                    //         },
+                    //         {
+                    //             x: 1,
+                    //         },
+                    //         {
+                    //             x: 2
+                    //         },
+                    //         {
+                    //             x: 1,
+                    //         },
+                    //         {
+                    //             x: 2
+                    //         },
+                    //     ]
+                    // }
                 }
             }
 
@@ -152,10 +284,52 @@
             }
 
             _redirect(e) {
-                Nylon.redirect(e.currentTarget.getAttribute('href'))
+                let link = e.currentTarget.href
+                Nylon.redirect(link)
                 setTimeout(() => {
-                    this.$.drawer.close()
+                    // this.$.drawer.close()
                 }, 500)
+                // Nylon.redirect(e.currentTarget.getAttribute('href'))
+                // setTimeout(() => {
+                //     this.$.drawer.close()
+                // }, 500)
+            }
+
+            changeMenu(e) {
+                let page = (this.menuPage === 'main' ? 'menu' : 'main')
+                this.set('menuPage', page)
+                // console.log(page);
+            }
+            changeToMenu(e) {
+                // console.log(e.currentTarget.name);
+                let item = e.model.__data.item.sub_title_menu
+                this.set('menuIsUse', item)
+                // console.log(e.model.__data.item.sub_title_menu);
+                this.changeMenu()
+            }
+            _changeTotext(text) {
+                if (text !== undefined) {
+                    let texts = text.split('.')
+                    // return this[text]
+                    switch (texts.length) {
+                        case 2:
+                            return this[texts[0]][texts[1]]
+                            break;
+                        case 3:
+                            return this[texts[0]][texts[1]][texts[2]]
+                            break;
+                        case 4:
+                            return this[texts[0]][texts[1]][texts[2]][texts[3]]
+                            break;
+                        case 5:
+                            return this[texts[0]][texts[1]][texts[2]][texts[3]][texts[4]]
+                            break;
+                        default:
+                            console.log('Error Not Have');
+                            break;
+                    }
+                }
+
             }
 
         }
