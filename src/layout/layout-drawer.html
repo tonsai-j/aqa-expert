@@ -149,16 +149,16 @@
                             </div>
                         </div>
                         <div name="menu">
-                            <template is="dom-repeat" items={{menuIsUse}}>
+                            <template is="dom-repeat" items={{menuIsUse}} as="sub_title" index-as="main_index">
                                 <div class="title-menu">
-                                    [[_changeTotext(item.page_name)]]
+                                    [[_changeTotext(sub_title.page_name)]]
                                 </div>
-                                <iron-selector selected="[[page]]" attr-for-selected="name" role="navigation">
-
-                                    <template is="dom-repeat" items={{item.sub_menu}}>
-                                        <paper-icon-item name="[[item.page_name]]" href="[[item.href]]" on-click="_redirect">
+                                <iron-selector class="testsssss" selected="[[page]]" attr-for-selected="name" role="navigation">
+                                    <template is="dom-repeat" items={{sub_title.sub_menu}}>
+                                        <paper-icon-item indexmain="[[main_index]],[[index]]" name="[[item.page_name]][[_changeTotext(item.label)]] " href="[[item.href]]"
+                                            on-click="_redirect">
                                             <iron-icon icon="[[_changeTotext(item.icon)]]" slot="item-icon"></iron-icon>
-                                             [[_changeTotext(item.label)]]
+                                            [[_changeTotext(item.label)]]
                                         </paper-icon-item>
                                     </template>
                                 </iron-selector>
@@ -200,7 +200,7 @@
                                         page_name: 'i18n.menu.register.label',
                                         sub_menu: [
                                             {
-                                                page_name: 'page-register',
+                                                page_name: 'page-register/register',
                                                 icon: 'i18n.menu.register.icon',
                                                 label: 'i18n.menu.register.label',
                                                 href: '/register'
@@ -217,19 +217,19 @@
                                         page_name: 'i18n.page00.general_information',
                                         sub_menu: [
                                             {
-                                                page_name: 'page-profile',
+                                                page_name: 'page-profile/ข้อมูลพื้นฐาน',
                                                 icon: 'i18n.menu.profile.icon',
                                                 label: 'i18n.page00.basic',
                                                 href: '/profile/ข้อมูลพื้นฐาน'
                                             },
                                             {
-                                                page_name: 'page-profile',
+                                                page_name: 'page-profile/ที่อยู่ในการติดต่อ',
                                                 icon: 'i18n.menu.profile.icon',
                                                 label: 'i18n.page00.address',
                                                 href: '/profile/ที่อยู่ในการติดต่อ'
                                             },
                                             {
-                                                page_name: 'page-profile',
+                                                page_name: 'page-profile/บัญชีธนาคาร',
                                                 icon: 'i18n.menu.profile.icon',
                                                 label: 'i18n.page00.bank',
                                                 href: '/profile/บัญชีธนาคาร'
@@ -240,19 +240,19 @@
                                         page_name: 'i18n.page00.education_topic',
                                         sub_menu: [
                                             {
-                                                page_name: 'page-profile',
+                                                page_name: 'page-profile/วุฒิการศึกษา',
                                                 icon: 'i18n.menu.profile.icon',
                                                 label: 'i18n.page00.education',
                                                 href: '/profile/วุฒิการศึกษา'
                                             },
                                             {
-                                                page_name: 'page-profile',
+                                                page_name: 'page-profile/ผลงานทางวิชาการ',
                                                 icon: 'i18n.menu.profile.icon',
                                                 label: 'i18n.page00.research',
                                                 href: '/profile/ผลงานทางวิชาการ'
                                             },
                                             {
-                                                page_name: 'page-profile',
+                                                page_name: 'page-profile/สาขาเชี่ยวชาญ',
                                                 icon: 'i18n.menu.profile.icon',
                                                 label: 'i18n.page00.specialist',
                                                 href: '/profile/สาขาเชี่ยวชาญ'
@@ -263,19 +263,19 @@
                                         page_name: 'i18n.page00.history',
                                         sub_menu: [
                                             {
-                                                page_name: 'page-profile',
+                                                page_name: 'page-profile/ประวัติการทำงาน',
                                                 icon: 'i18n.menu.profile.icon',
                                                 label: 'i18n.page00.working',
                                                 href: '/profile/ประวัติการทำงาน'
                                             },
                                             {
-                                                page_name: 'page-profile',
+                                                page_name: 'page-profile/ประวัติการประเมิน',
                                                 icon: 'i18n.menu.profile.icon',
                                                 label: 'i18n.page00.assessment',
                                                 href: '/profile/ประวัติการประเมิน'
                                             },
                                             {
-                                                page_name: 'page-profile',
+                                                page_name: 'page-profile/สาขาเชี่ยวชาญ',
                                                 icon: 'i18n.menu.profile.icon',
                                                 label: 'i18n.page00.meeting',
                                                 href: '/profile/สาขาเชี่ยวชาญ'
@@ -286,25 +286,25 @@
                                         page_name: 'i18n.page00.other_information',
                                         sub_menu: [
                                             {
-                                                page_name: 'page-profile',
+                                                page_name: 'page-profile/ความสามารถอื่นๆ',
                                                 icon: 'i18n.menu.profile.icon',
                                                 label: 'i18n.page00.skills',
                                                 href: '/profile/ความสามารถอื่นๆ'
                                             },
                                             {
-                                                page_name: 'page-profile',
+                                                page_name: 'page-profile/ภาคที่สะดวกในการประเมิน',
                                                 icon: 'i18n.menu.profile.icon',
                                                 label: 'i18n.page00.zone',
                                                 href: '/profile/ภาคที่สะดวกในการประเมิน'
                                             },
                                             {
-                                                page_name: 'page-profile',
+                                                page_name: 'page-profile/บุคคลอ้างอิง',
                                                 icon: 'i18n.menu.profile.icon',
                                                 label: 'i18n.page00.references',
                                                 href: '/profile/บุคคลอ้างอิง'
                                             },
                                             {
-                                                page_name: 'page-profile',
+                                                page_name: 'page-profile/ไฟล์เอกสาร',
                                                 icon: 'i18n.menu.profile.icon',
                                                 label: 'i18n.page00.documents',
                                                 href: '/profile/ไฟล์เอกสาร'
@@ -348,6 +348,17 @@
             }
 
             _redirect(e) {
+                let iron = this.shadowRoot.querySelectorAll('.testsssss')
+                // console.log(iron);
+                let withOut = e.currentTarget.indexmain
+                let indexMain = withOut.split(',')[0]
+                // console.log(indexMain);
+                iron.forEach((element, index) => {
+                    if (Number(indexMain) !== index)
+                        element.selected = ''
+                    return element
+                    // 
+                }, this);
                 let link = e.currentTarget.href
                 Nylon.redirect(link)
                 setTimeout(() => {
@@ -358,7 +369,6 @@
                 //     this.$.drawer.close()
                 // }, 500)
             }
-
             changeMenu(e) {
                 let page = (this.menuPage === 'main' ? 'menu' : 'main')
                 this.set('menuPage', page)

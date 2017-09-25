@@ -93,33 +93,7 @@
             </template>
 
             <template is="dom-if" if={{!isDashboard}}>
-                <div class="col-md-2 ">
-                    <iron-selector selected="{{currentPage}}" attr-for-selected="name">
-                        <div class="topic" name="[[i18n.page00.mainPage]]" on-click="_changePage" style="cursor: pointer;">[[i18n.page00.mainPage]]</div>
-                        <div class="topic">[[i18n.page00.general_information]]</div>
-                        <div class="menu" name="[[i18n.page00.basic]]" on-click="_changePage">[[i18n.page00.basic]]</div>
-                        <div class="menu" name="[[i18n.page00.address]]" on-click="_changePage">[[i18n.page00.address]]</div>
-                        <div class="menu" name="[[i18n.page00.bank]]" on-click="_changePage">[[i18n.page00.bank]]</div>
-                        <div class="menu" name="[[i18n.page00.skills]]" on-click="_changePage">[[i18n.page00.skills]]</div>
-
-                        <div class="topic">[[i18n.page00.other_information]]</div>
-                        <div class="menu" name="[[i18n.page00.zone]]" on-click="_changePage">[[i18n.page00.zone]]</div>
-                        <div class="menu" name="[[i18n.page00.references]]" on-click="_changePage">[[i18n.page00.references]]</div>
-                        <div class="menu" name="[[i18n.page00.documents]]" on-click="_changePage">[[i18n.page00.documents]]</div>
-
-                        <div class="topic">[[i18n.page00.education_topic]]</div>
-                        <div class="menu" name="[[i18n.page00.education]]" on-click="_changePage">[[i18n.page00.education]]</div>
-                        <div class="menu" name="[[i18n.page00.research]]" on-click="_changePage">[[i18n.page00.research]]</div>
-                        <div class="menu" name="[[i18n.page00.specialist]]" on-click="_changePage">[[i18n.page00.specialist]]</div>
-
-                        <div class="topic">[[i18n.page00.history]]</div>
-                        <div class="menu" name="[[i18n.page00.working]]" on-click="_changePage">[[i18n.page00.working]]</div>
-                        <div class="menu" name="[[i18n.page00.assessment]]" on-click="_changePage">[[i18n.page00.assessment]]</div>
-                        <div class="menu" name="[[i18n.page00.meeting]]" on-click="_changePage">[[i18n.page00.meeting]]</div>
-                        <!-- </template> -->
-                    </iron-selector>
-                </div>
-                <div class="col-md-10 ">
+                <div class="col-md-12 ">
                     <page-list selected="[[_params.name]]"></page-list>
                 </div>
             </template>
