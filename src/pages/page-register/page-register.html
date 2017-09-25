@@ -53,17 +53,9 @@
                     </div>
                     <div slot="content" class="middle-md">
                         <div class="col-xs-12">
-                                <nylon-input id="inputTaxNo" 
-                                class="required input"
-                                required
-                                label="[[i18n.register.taxno]]"
-                                value="{{data.taxno}}"
-                                allowed-pattern="[0-9]"
-                                maxlength="13"
-                                on-keyup="_enter"
+                                <nylon-input id="inputTaxNo" class="required input" required label="[[i18n.register.taxno]]" value="{{data.taxno}}" allowed-pattern="[0-9]"
+                                maxlength="13" required on-keyup="_enter" always-float-label
                                 ></nylon-input>
-                            <!-- <paper-input id="inputTaxNo" class="required input" required label="[[i18n.register.taxno]]" value="{{data.taxno}}" allowed-pattern="[0-9]"
-                                maxlength="13" required on-keyup="_enter"></paper-input> -->
                         </div>
                         <div class="col-xs-12">
                             <vaadin-combo-box id="comboTypeAss" class="required input" required label="[[i18n.register.level]]" items='{{typeAssessor}}'
