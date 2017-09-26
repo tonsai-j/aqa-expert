@@ -95,15 +95,6 @@
                 </vaadin-grid>
                 [[i18n.common.total_items]] {{references.length}} [[i18n.common.list]]
             </div>
-            <app-toolbar slot="footer">
-                <div main-title></div>
-                <paper-button raised class="btn-default">
-                    <iron-icon icon="[[i18n.button.back.icon]]"></iron-icon>[[i18n.button.back.label]]</paper-button>
-                <paper-button raised class="btn-default">
-                    [[i18n.button.next.label]]
-                    <iron-icon icon="[[i18n.button.next.icon]]"></iron-icon>
-                </paper-button>
-            </app-toolbar>
         </nylon-panel-card>
         <nylon-panel-right id="right" title="[[i18n.page12.references]]" width="80%">
             <nylon-panel-card slot="content">
@@ -132,7 +123,18 @@
 
                     </div>
                 </div>
+                <app-toolbar slot="footer">
+                    <div main-title></div>
+                    <paper-button raised class="btn-success" on-click="_save">
+                        <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>[[i18n.button.save.label]]</paper-button>
+
+                    </paper-button>
+                    <paper-button raised on-click="_closePanelRight">
+                        <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>[[i18n.button.close.label]]
+                    </paper-button>
+                </app-toolbar>
             </nylon-panel-card>
+
         </nylon-panel-right>
 
         <!-- <nylon-panel-card>
