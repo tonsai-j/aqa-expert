@@ -164,9 +164,13 @@
             ready() {
                 // console.log(this.data)
                 super.ready();
-                Polymer.RenderStatus.afterNextRender(this, function () {
+                // console.log(1111);
                     Nylon.dispatch('PROFILE_04_GET_SPECIALISTGROUP')
                     Nylon.dispatch('PROFILE_04_GET_SPECIALISTTYPE')
+                Polymer.RenderStatus.afterNextRender(this, function () {
+                    // console.log(1111);
+                    // Nylon.dispatch('PROFILE_04_GET_SPECIALISTGROUP')
+                    // Nylon.dispatch('PROFILE_04_GET_SPECIALISTTYPE')
                 });
             }
 
