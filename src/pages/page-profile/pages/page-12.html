@@ -2,7 +2,10 @@
 <link rel="import" href="../../../layout/flexbox-grid.html">
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
-<link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
+<!-- <link rel="import" href="../../../../bower_components/paper-input/paper-input.html"> -->
+
+<link rel="import" href="../../../components/nylon-input/nylon-input.html">
+
 <link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
 <link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
@@ -36,60 +39,61 @@
                 display: inline-block
             }
         </style>
+        <!-- page-12 -->
+        <div class="header-title">
+            [[i18n.page12.references]]
+        </div>
         <nylon-panel-card>
             <div slot="content">
-                <fieldset>
-                    <legend>[[i18n.page12.references]]</legend>
-                    <div class="row end-md middle-md">
-                        <div class="label col-md-3">
-                            <paper-button raised class="btn-primary" action="add" on-tap=_openPanelRight>
-                                <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]</paper-button>
-                        </div>
+                <div class="row end-md middle-md">
+                    <div class="label col-md-3">
+                        <paper-button raised class="btn-primary" action="add" on-tap=_openPanelRight>
+                            <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]</paper-button>
                     </div>
-                    <br>
-                    <vaadin-grid id='material' items='{{references}}'>
-                        <vaadin-grid-column width="50px" flex-grow="0">
-                            <template class="header">
-                                <div style="text-align: center">#</div>
-                            </template>
-                            <template>
-                                <div style="text-align: center">[[autoIndex(index)]] </div>
-                            </template>
-                        </vaadin-grid-column>
-                        <vaadin-grid-column>
-                            <template class="header">[[i18n.page12.name]]</template>
-                            <template>[[item.firstname]]</template>
-                        </vaadin-grid-column>
-                        <vaadin-grid-column>
-                            <template class="header">[[i18n.page12.lastname]]</template>
-                            <template>[[item.lastname]]</template>
-                        </vaadin-grid-column>
-                        <vaadin-grid-column>
-                            <template class="header">[[i18n.page12.phone]]</template>
-                            <template>[[item.phone]] </template>
-                        </vaadin-grid-column>
-                        <vaadin-grid-column>
-                            <template class="header">[[i18n.page12.cell_phone]]</template>
-                            <template>[[item.cell_phone]] </template>
-                        </vaadin-grid-column>
-                        <vaadin-grid-column>
-                            <template class="header">[[i18n.page12.email]]</template>
-                            <template>[[item.email]] </template>
-                        </vaadin-grid-column>
-                        <vaadin-grid-column>
-                            <template class="header">
-                                <div style="text-align: center">[[i18n.common.tools]]</div>
-                            </template>
-                            <template>
-                                <span style="text-align: center">
+                </div>
+                <br>
+                <vaadin-grid id='material' items='{{references}}'>
+                    <vaadin-grid-column width="50px" flex-grow="0">
+                        <template class="header">
+                            <div style="text-align: center">#</div>
+                        </template>
+                        <template>
+                            <div style="text-align: center">[[autoIndex(index)]] </div>
+                        </template>
+                    </vaadin-grid-column>
+                    <vaadin-grid-column>
+                        <template class="header">[[i18n.page12.name]]</template>
+                        <template>[[item.firstname]]</template>
+                    </vaadin-grid-column>
+                    <vaadin-grid-column>
+                        <template class="header">[[i18n.page12.lastname]]</template>
+                        <template>[[item.lastname]]</template>
+                    </vaadin-grid-column>
+                    <vaadin-grid-column>
+                        <template class="header">[[i18n.page12.phone]]</template>
+                        <template>[[item.phone]] </template>
+                    </vaadin-grid-column>
+                    <vaadin-grid-column>
+                        <template class="header">[[i18n.page12.cell_phone]]</template>
+                        <template>[[item.cell_phone]] </template>
+                    </vaadin-grid-column>
+                    <vaadin-grid-column>
+                        <template class="header">[[i18n.page12.email]]</template>
+                        <template>[[item.email]] </template>
+                    </vaadin-grid-column>
+                    <vaadin-grid-column>
+                        <template class="header">
+                            <div style="text-align: center">[[i18n.common.tools]]</div>
+                        </template>
+                        <template>
+                            <span style="text-align: center">
                                 <paper-icon-button icon="[[i18n.button.edit.icon]]" action="edit" on-click="_openPanelRight"></paper-icon-button>
                                 <paper-icon-button icon="[[i18n.button.delete.icon]]" on-click="_confirmDel"></paper-icon-button>
                                 </span>
-                            </template>
-                        </vaadin-grid-column>
-                    </vaadin-grid>
-                    [[i18n.common.total_items]] {{references.length}} [[i18n.common.list]]
-                </fieldset>
+                        </template>
+                    </vaadin-grid-column>
+                </vaadin-grid>
+                [[i18n.common.total_items]] {{references.length}} [[i18n.common.list]]
             </div>
             <app-toolbar slot="footer">
                 <div main-title></div>
@@ -106,24 +110,24 @@
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <paper-input label="[[i18n.page12.name]]" class="required" required always-float-label value="{{data.firstname}}"></paper-input>
+                            <nylon-input label="[[i18n.page12.name]]" class="required" required always-float-label value="{{data.firstname}}"></nylon-input>
                         </div>
                         <div class="col-md-4">
-                            <paper-input label="[[i18n.page12.lastname]]" class="required" required always-float-label value="{{data.lastname}}"></paper-input>
+                            <nylon-input label="[[i18n.page12.lastname]]" class="required" required always-float-label value="{{data.lastname}}"></nylon-input>
                         </div>
 
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <paper-input label="[[i18n.page12.phone]]" class="required" required always-float-label value="{{data.phone}}"></paper-input>
+                            <nylon-input label="[[i18n.page12.phone]]" class="required" required always-float-label value="{{data.phone}}"></nylon-input>
                         </div>
                         <div class="col-md-4">
-                            <paper-input label="[[i18n.page12.cell_phone]]" class="required" required always-float-label value="{{data.cell_phone}}"></paper-input>
+                            <nylon-input label="[[i18n.page12.cell_phone]]" class="required" required always-float-label value="{{data.cell_phone}}"></nylon-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <paper-input label="[[i18n.page12.email]]" class="required" required always-float-label value="{{data.email}}"></paper-input>
+                            <nylon-input label="[[i18n.page12.email]]" class="required" required always-float-label value="{{data.email}}"></nylon-input>
                         </div>
 
                     </div>
@@ -137,23 +141,23 @@
                     <legend>[[i18n.page12.references]] (คนที่ 1)</legend>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.name]]" class="required" required always-float-label value="{{references.name}}"></paper-input>
+                            <nylon-input label="[[i18n.page12.name]]" class="required" required always-float-label value="{{references.name}}"></nylon-input>
                         </div>
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.lastname]]" class="required" required always-float-label value="{{references.lastname}}"></paper-input>
+                            <nylon-input label="[[i18n.page12.lastname]]" class="required" required always-float-label value="{{references.lastname}}"></nylon-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.phone]]" class="required" required always-float-label value="{{references.phone}}"></paper-input>
+                            <nylon-input label="[[i18n.page12.phone]]" class="required" required always-float-label value="{{references.phone}}"></nylon-input>
                         </div>
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.cell_phone]]" class="required" required always-float-label value="{{references.cell_phone}}"></paper-input>
+                            <nylon-input label="[[i18n.page12.cell_phone]]" class="required" required always-float-label value="{{references.cell_phone}}"></nylon-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-8">
-                            <paper-input label="[[i18n.page12.email]]" class="required" required always-float-label value="{{references.email}}"></paper-input>
+                            <nylon-input label="[[i18n.page12.email]]" class="required" required always-float-label value="{{references.email}}"></nylon-input>
                         </div>
                     </div>
                 </fieldset>
@@ -163,23 +167,23 @@
                     <legend>[[i18n.page12.references]] (คนที่ 2)</legend>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.name]]" class="required" required always-float-label value="{{references.name}}"></paper-input>
+                            <nylon-input label="[[i18n.page12.name]]" class="required" required always-float-label value="{{references.name}}"></nylon-input>
                         </div>
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.lastname]]" class="required" required always-float-label value="{{references.lastname}}"></paper-input>
+                            <nylon-input label="[[i18n.page12.lastname]]" class="required" required always-float-label value="{{references.lastname}}"></nylon-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.phone]]" class="required" required always-float-label value="{{references.phone}}"></paper-input>
+                            <nylon-input label="[[i18n.page12.phone]]" class="required" required always-float-label value="{{references.phone}}"></nylon-input>
                         </div>
                         <div class=" col-md-4">
-                            <paper-input label="[[i18n.page12.cell_phone]]" class="required" required always-float-label value="{{references.cell_phone}}"></paper-input>
+                            <nylon-input label="[[i18n.page12.cell_phone]]" class="required" required always-float-label value="{{references.cell_phone}}"></nylon-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class=" col-md-8">
-                            <paper-input label="[[i18n.page12.email]]" class="required" required always-float-label value="{{references.email}}"></paper-input>
+                            <nylon-input label="[[i18n.page12.email]]" class="required" required always-float-label value="{{references.email}}"></nylon-input>
                         </div>
                     </div>
                 </fieldset>
