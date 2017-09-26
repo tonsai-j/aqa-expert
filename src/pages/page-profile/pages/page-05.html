@@ -4,7 +4,10 @@
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
-<link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
+<!-- <link rel="import" href="../../../../bower_components/paper-input/paper-input.html"> -->
+
+<link rel="import" href="../../../components/nylon-input/nylon-input.html">
+
 <link rel="import" href="../../../../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
@@ -24,70 +27,71 @@
                 display: block
             }
         </style>
+        <div class="header-title">
+            [[i18n.page05.title]]
+        </div>
         <nylon-panel-card>
             <div slot="content">
-                <fieldset>
-                    <legend>[[i18n.page05.title]]</legend>
-                    <div class="row end-md middle-md">
-                        <div class="label col-md-3">
-                            <paper-button raised class="btn-primary" on-tap=_openPanelRight>
-                                <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]</paper-button>
-                        </div>
+                <div class="row end-md middle-md">
+                    <div class="label col-md-3">
+                        <paper-button raised class="btn-primary" on-tap=_openPanelRight>
+                            <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]</paper-button>
                     </div>
-                    <br>
-                    <vaadin-grid id='material' items='{{working}}'>
-                        <vaadin-grid-column>
-                            <template class="header" width="50px" flex-grow="0">
-                                <div class="text-center">
-                                    #
-                                </div>
-                            </template>
-                            <template>
-                                <div class="text-center">[[autoIndex(index)]]</div>
-                            </template>
-                        </vaadin-grid-column>
-                        <vaadin-grid-column>
-                            <template class="header">[[i18n.page05.department]]</template>
-                            <template>[[item.agency_name]]</template>
-                        </vaadin-grid-column>
-                        <vaadin-grid-column>
-                            <template class="header">[[i18n.page05.s_date]]</template>
-                            <template>[[changeDate(item.work_start_date)]]</template>
-                        </vaadin-grid-column>
-                        <vaadin-grid-column>
-                            <template class="header">[[i18n.page05.e_date]]</template>
-                            <template>[[changeDate(item.work_end_date)]]</template>
-                        </vaadin-grid-column>
-                        <vaadin-grid-column>
-                            <template class="header">[[i18n.page05.first_position]]</template>
-                            <template>[[item.first_position]]</template>
-                        </vaadin-grid-column>
-                        <vaadin-grid-column>
-                            <template class="header">[[i18n.page05.final_position]]</template>
-                            <template>[[item.final_position]]</template>
-                        </vaadin-grid-column>
-                        <vaadin-grid-column>
-                            <template class="header">[[i18n.page05.date]]</template>
-                            <template>
-                                <div class="text-center">
-                                    [[item.updater]] / [[changeDate(item.date_updated)]]
-                                </div>
-                            </template>
-                        </vaadin-grid-column>
-                        <vaadin-grid-column>
-                            <template class="header">
-                                <div style="text-align: center">[[i18n.common.tools]]</div>
-                            </template>
-                            <template>
-                                <span style="text-align: center">
+                </div>
+                <br>
+                <vaadin-grid id='material' items='{{working}}'>
+                    <vaadin-grid-column>
+                        <template class="header" width="50px" flex-grow="0">
+                            <div class="text-center">
+                                #
+                            </div>
+                        </template>
+                        <template>
+                            <div class="text-center">[[autoIndex(index)]]</div>
+                        </template>
+                    </vaadin-grid-column>
+                    <vaadin-grid-column>
+                        <template class="header">[[i18n.page05.department]]</template>
+                        <template>[[item.agency_name]]</template>
+                    </vaadin-grid-column>
+                    <vaadin-grid-column>
+                        <template class="header">[[i18n.page05.s_date]]</template>
+                        <template>[[changeDate(item.work_start_date)]]</template>
+                    </vaadin-grid-column>
+                    <vaadin-grid-column>
+                        <template class="header">[[i18n.page05.e_date]]</template>
+                        <template>[[changeDate(item.work_end_date)]]</template>
+                    </vaadin-grid-column>
+                    <vaadin-grid-column>
+                        <template class="header">[[i18n.page05.first_position]]</template>
+                        <template>[[item.first_position]]</template>
+                    </vaadin-grid-column>
+                    <vaadin-grid-column>
+                        <template class="header">[[i18n.page05.final_position]]</template>
+                        <template>[[item.final_position]]</template>
+                    </vaadin-grid-column>
+                    <vaadin-grid-column>
+                        <template class="header">[[i18n.page05.date]]</template>
+                        <template>
+                            <div class="text-center">
+                                [[item.updater]] / [[changeDate(item.date_updated)]]
+                            </div>
+                        </template>
+                    </vaadin-grid-column>
+                    <vaadin-grid-column>
+                        <template class="header">
+                            <div style="text-align: center">[[i18n.common.tools]]</div>
+                        </template>
+                        <template>
+                            <span style="text-align: center">
                                 <paper-icon-button icon="[[i18n.button.edit.icon]]" action="edit" on-click="_openPanelRight"></paper-icon-button>
                                 <paper-icon-button icon="[[i18n.button.delete.icon]]" on-click="_confirmDel"></paper-icon-button>
                                 </span>
-                            </template>
-                        </vaadin-grid-column>
-                    </vaadin-grid>
-                    [[i18n.common.total_items]] {{working.length}} [[i18n.common.list]]
-                </fieldset>
+                        </template>
+                    </vaadin-grid-column>
+                </vaadin-grid>
+                [[i18n.common.total_items]] {{working.length}} [[i18n.common.list]]
+
             </div>
         </nylon-panel-card>
         <nylon-panel-right id="right" title="[[i18n.page05.title]]" width="80%">
@@ -110,16 +114,16 @@
                             </vaadin-combo-box> -->
                         </div>
                         <div class="col-md-4">
-                            <paper-input label="[[i18n.page05.agency_name]]" class="required" required always-float-label value="{{data.agency_name}}"></paper-input>
+                            <nylon-input label="[[i18n.page05.agency_name]]" class="required" required always-float-label value="{{data.agency_name}}"></nylon-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <paper-input label="[[i18n.page05.s_date]]" class="required" required always-float-label type="date" value="{{data.work_start_date}}"></paper-input>
+                            <nylon-input label="[[i18n.page05.s_date]]" class="required" required always-float-label type="date" value="{{data.work_start_date}}"></nylon-input>
                         </div>
                         <div class="col-md-4">
-                            <paper-input label="[[i18n.page05.to]]" class="required" required always-float-label type="date" value="{{data.work_end_date}}"
-                                disabled={{workenddate}}></paper-input>
+                            <nylon-input label="[[i18n.page05.to]]" class="required" required always-float-label type="date" value="{{data.work_end_date}}"
+                                disabled={{workenddate}}></nylon-input>
                         </div>
                         <div class="col-md-2">
                             <paper-checkbox on-tap="_disabledEndDate">[[i18n.page05.present]] </paper-checkbox>
@@ -127,7 +131,7 @@
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <paper-input label="[[i18n.page05.first_position]]" class="required" required always-float-label value="{{data.first_position}}"></paper-input>
+                            <nylon-input label="[[i18n.page05.first_position]]" class="required" required always-float-label value="{{data.first_position}}"></nylon-input>
                         </div>
                         <div class="col-md-4">
                             <!-- <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{amphoeList}}' value="{{working.degree}}"
@@ -147,7 +151,7 @@
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <paper-input label="[[i18n.page05.final_position]]" class="required" required always-float-label value="{{data.final_position}}"></paper-input>
+                            <nylon-input label="[[i18n.page05.final_position]]" class="required" required always-float-label value="{{data.final_position}}"></nylon-input>
                         </div>
                         <div class="col-md-4">
                             <!-- <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{amphoeList}}' value="{{working.degree}}"
@@ -168,6 +172,15 @@
 
 
                 </div>
+                <app-toolbar slot="footer">
+                    <div main-title></div>
+                    <paper-button raised class="btn-success" on-click="_save">
+                        <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>[[i18n.button.save.label]]
+                    </paper-button>
+                    <paper-button raised on-click="_closePanelRight">
+                        <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>[[i18n.button.close.label]]
+                    </paper-button>
+                </app-toolbar>
             </nylon-panel-card>
         </nylon-panel-right>
 

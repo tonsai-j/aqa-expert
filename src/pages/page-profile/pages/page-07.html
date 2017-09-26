@@ -4,7 +4,10 @@
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
-<link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
+<!-- <link rel="import" href="../../../../bower_components/paper-input/paper-input.html"> -->
+
+<link rel="import" href="../../../components/nylon-input/nylon-input.html">
+
 <link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
 <link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
@@ -35,66 +38,66 @@
                 display: inline-block
             }
         </style>
+        <div class="header-title">
+            [[i18n.page07.title]]
+        </div>
         <nylon-panel-card>
             <div slot="content">
-                <fieldset>
-                    <legend>[[i18n.page07.title]]</legend>
-                    <div class="row end-md middle-md">
-                        <div class="label col-md-3">
-                            <paper-button raised class="btn-primary" action="add" on-click="_openPanelRight">
-                                <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]</paper-button>
-                        </div>
+                <div class="row end-md middle-md">
+                    <div class="label col-md-3">
+                        <paper-button raised class="btn-primary" action="add" on-click="_openPanelRight">
+                            <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]</paper-button>
                     </div>
-                    <br>
-                    <div class="row  middle-md">
-                        <div class="col-md-12">
-                            <vaadin-grid id='material' items='{{datas}}'>
-                                
-                                <vaadin-grid-column width="50px" flex-grow="0">
-                                    <template class="header">
-                                        <div style="text-align: center">#</div>
-                                    </template>
-                                    <template>
-                                        <div style="text-align: center">[[autoIndex(index)]]</div>
-                                    </template>
-                                </vaadin-grid-column>
+                </div>
+                <br>
+                <div class="row  middle-md">
+                    <div class="col-md-12">
+                        <vaadin-grid id='material' items='{{datas}}'>
 
-                                <vaadin-grid-column>
-                                    <template class="header">[[i18n.page07.type]]</template>
-                                    <template>[[item.type_academy.type_academy_name]]</template>
-                                </vaadin-grid-column>
+                            <vaadin-grid-column width="50px" flex-grow="0">
+                                <template class="header">
+                                    <div style="text-align: center">#</div>
+                                </template>
+                                <template>
+                                    <div style="text-align: center">[[autoIndex(index)]]</div>
+                                </template>
+                            </vaadin-grid-column>
 
-                                <vaadin-grid-column>
-                                    <template class="header">[[i18n.page07.name]]</template>
-                                    <template>[[item.academy.academy_name]]</template>
-                                </vaadin-grid-column>
+                            <vaadin-grid-column>
+                                <template class="header">[[i18n.page07.type]]</template>
+                                <template>[[item.type_academy.type_academy_name]]</template>
+                            </vaadin-grid-column>
 
-                                <vaadin-grid-column width="50px" style="text-align: right">
-                                    <template class="header">
-                                        <div style="text-align: center">
-                                            [[i18n.common.tools]]
-                                        </div>
-                                    </template>
-                                    <template>
-                                        <span style="text-align: center">
+                            <vaadin-grid-column>
+                                <template class="header">[[i18n.page07.name]]</template>
+                                <template>[[item.academy.academy_name]]</template>
+                            </vaadin-grid-column>
+
+                            <vaadin-grid-column width="50px" style="text-align: right">
+                                <template class="header">
+                                    <div style="text-align: center">
+                                        [[i18n.common.tools]]
+                                    </div>
+                                </template>
+                                <template>
+                                    <span style="text-align: center">
                                             <paper-icon-button icon="[[i18n.button.edit.icon]]" action="edit" on-click="_openPanelRight"></paper-icon-button>
                                             <paper-icon-button icon="[[i18n.button.delete.icon]]" on-click="_confirmDel"></paper-icon-button>
                                         </span>
-                                    </template>
-                                </vaadin-grid-column>
-                            </vaadin-grid>
-                            [[i18n.common.total_items]] {{datas.length}} [[i18n.common.list]]
-                        </div>
+                                </template>
+                            </vaadin-grid-column>
+                        </vaadin-grid>
+                        [[i18n.common.total_items]] {{datas.length}} [[i18n.common.list]]
                     </div>
-                </fieldset>
+                </div>
             </div>
         </nylon-panel-card>
         <nylon-panel-right id="right" title="[[i18n.page07.title]]" width="80%">
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="col-md-12">
-                        <paper-input label="[[i18n.page07.education]]" value="[[info.type_assessor.type_assessor_name]]" disabled>
-                        </paper-input>
+                        <nylon-input label="[[i18n.page07.education]]" value="[[info.type_assessor.type_assessor_name]]" disabled>
+                        </nylon-input>
                     </div>
                     <div class="col-md-12">
                         <vaadin-combo-box label="[[i18n.page07.type]]" items='{{typeAcademy}}' value="{{data.type_academy_id}}" item-label-path="type_academy_name"
@@ -117,12 +120,13 @@
                 </div>
                 <app-toolbar slot="footer">
                     <div main-title></div>
-                    <paper-button raised on-click="_closePanelRight">
-                        <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>[[i18n.button.close.label]]
-                    </paper-button>
                     <paper-button raised class="btn-success" on-click="_save">
                         <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>[[i18n.button.save.label]]
                     </paper-button>
+                    <paper-button raised on-click="_closePanelRight">
+                        <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>[[i18n.button.close.label]]
+                    </paper-button>
+
                 </app-toolbar>
             </nylon-panel-card>
         </nylon-panel-right>
