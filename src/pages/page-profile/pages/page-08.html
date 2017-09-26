@@ -4,7 +4,10 @@
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
-<link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
+<!-- <link rel="import" href="../../../../bower_components/paper-input/paper-input.html"> -->
+
+<link rel="import" href="../../../components/nylon-input/nylon-input.html">
+
 <link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
 <link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
@@ -35,10 +38,11 @@
                 display: inline-block
             }
         </style>
+        <div class="header-title">
+        [[i18n.page08.title]]
+        </div>
         <nylon-panel-card>
             <div slot="content">
-                <fieldset>
-                    <legend>[[i18n.page08.title]]</legend>
                     <div class="row end-md middle-md">
                         <div class="label col-md-3">
                             <paper-button raised class="btn-primary" action="add" on-tap="openPanelRight">
@@ -89,7 +93,7 @@
                         </div>
                     </div>
                     [[i18n.common.total_items]] {{datas.length}} [[i18n.common.list]]
-                </fieldset>
+     
             </div>
         </nylon-panel-card>
         <nylon-panel-right id="right" title="[[i18n.page08.history]]" width="80%">
@@ -104,21 +108,22 @@
                         </vaadin-combo-box>
                     </div>
                     <div class="col-md-offset-2 col-md-8">
-                        <paper-input class="required" required label="[[i18n.page08.name]]" always-float-label value="{{data.research_name}}"></paper-input>
+                        <nylon-input class="required" required label="[[i18n.page08.name]]" always-float-label value="{{data.research_name}}"></nylon-input>
                     </div>
                     <div class="col-md-offset-2 col-md-8">
-                        <paper-input class="required" required label="[[i18n.page08.year]]" always-float-label value="{{data.research_year}}" allow-pattern="[0-9]"
-                            maxlength="4" minlength="4"></paper-input>
+                        <nylon-input class="required" required label="[[i18n.page08.year]]" always-float-label value="{{data.research_year}}" allow-pattern="[0-9]"
+                            maxlength="4" minlength="4"></nylon-input>
                     </div>
                 </div>
                 <app-toolbar slot="footer">
                     <div main-title></div>
+                    <paper-button raised class="btn-success" on-click="_save">
+                            <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>[[i18n.button.save.label]]
+                        </paper-button>
                     <paper-button raised on-click="closePanelRight">
                         <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>[[i18n.button.close.label]]
                     </paper-button>
-                    <paper-button raised class="btn-success" on-click="_save">
-                        <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>[[i18n.button.save.label]]
-                    </paper-button>
+                    
                 </app-toolbar>
             </nylon-panel-card>
         </nylon-panel-right>
