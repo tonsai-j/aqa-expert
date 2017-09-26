@@ -83,6 +83,7 @@
             iron-icon.icon-menu {
                 /* --iron-icon-stroke-color: #FFF; */
                 color: #fff;
+                cursor: pointer;
                 /* fill: red; */
             }
 
@@ -119,9 +120,9 @@
                 /* position:relative; */
             }
 
-            .borderz {
+            /* .borderz {
                 border: 1px solid red;
-            }
+            } */
 
             .icon-page {
                 height: 128px;
@@ -134,7 +135,7 @@
         </style>
         <div class="page">
             <div class="row center-md middle-md home-icon header-left-menu">
-                <iron-icon icon="svg-sample-icons:youtube" class="icon-menu" on-tap="changeMenu"></iron-icon>
+                <iron-icon icon="home" class="icon-menu" on-tap="changeMenu"></iron-icon>
             </div>
             <div style="height:80vh;">
                 <div id="style-4" style="height: 100%; overflow: auto; display:block">
@@ -193,7 +194,7 @@
                         type: Array,
                         value: [
                             {
-                                icon: 'svg-sample-icons:youtube',
+                                icon: 'perm-identity',
                                 page: 'register',
                                 sub_title_menu: [
                                     {
@@ -210,7 +211,7 @@
                                 ]
                             },
                             {
-                                icon: 'svg-sample-icons:youtube',
+                                icon: 'assignment',
                                 page: 'profile',
                                 sub_title_menu: [
                                     {
@@ -314,7 +315,7 @@
                                 ]
                             },
                             {
-                                icon: 'svg-sample-icons:youtube',
+                                icon: 'account-box',
                                 page: 'approve',
                                 sub_title_menu: [
                                     {
@@ -371,12 +372,17 @@
             }
             changeMenu(e) {
                 let page = (this.menuPage === 'main' ? 'menu' : 'main')
+                // ถ้า this.menuIsUse ว่าง ให้เอาเมนูอันแรกไปใส่
+                if (this.menuIsUse.length < 1) {
+                    this.set('menuIsUse',this.menu[0].sub_title_menu)
+                }
                 this.set('menuPage', page)
                 // console.log(page);
             }
             changeToMenu(e) {
                 // console.log(e.currentTarget.name);
                 let item = e.model.__data.item.sub_title_menu
+                
                 this.set('menuIsUse', item)
                 // console.log(e.model.__data.item.sub_title_menu);
                 this.changeMenu()
