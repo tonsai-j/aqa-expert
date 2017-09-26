@@ -1,6 +1,7 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../layout/flexbox-grid.html">
-<link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
+<!-- <link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html"> -->
+<link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
@@ -99,19 +100,19 @@
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.agency_type]]" items='{{saluList}}' value="{{data.salu_name_id}}"
+                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page05.agency_type]]" items='{{saluList}}' value="{{data.salu_name_id}}"
                                 item-label-path="salu_name_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.salu">
                                 <template>
                                     [[item.salu_name_th]]
                                 </template>
-                            </vaadin-combo-box>
-                            <!-- <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.agency_type]]" items='{{saluList}}' value="{{data.salu_id}}"
+                            </nylon-combo-box>
+                            <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page05.agency_type]]" items='{{saluList}}' value="{{data.salu_id}}"
                                 item-label-path="salu_name_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.salu"
                                 class="required" required >
                                 <template>
                                     [[item.salu_name_th]]
                                 </template>
-                            </vaadin-combo-box> -->
+                            </nylon-combo-box> -->
                         </div>
                         <div class="col-md-4">
                             <nylon-input label="[[i18n.page05.agency_name]]" class="required" required always-float-label value="{{data.agency_name}}"></nylon-input>
@@ -134,19 +135,19 @@
                             <nylon-input label="[[i18n.page05.first_position]]" class="required" required always-float-label value="{{data.first_position}}"></nylon-input>
                         </div>
                         <div class="col-md-4">
-                            <!-- <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{amphoeList}}' value="{{working.degree}}"
+                            <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{amphoeList}}' value="{{working.degree}}"
                                 item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
-                            </vaadin-combo-box> -->
-                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{workpos1List}}' value="{{data.working_1_id}}"
+                            </nylon-combo-box> -->
+                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{workpos1List}}' value="{{data.working_1_id}}"
                                 item-label-path="workpos1_name_th" item-value-path="id" on-selected-item-changed="getObject"
                                 object-name="data.working_1">
                                 <template>
                                     [[item.workpos1_name_th]]
                                 </template>
-                            </vaadin-combo-box>
+                            </nylon-combo-box>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
@@ -154,19 +155,19 @@
                             <nylon-input label="[[i18n.page05.final_position]]" class="required" required always-float-label value="{{data.final_position}}"></nylon-input>
                         </div>
                         <div class="col-md-4">
-                            <!-- <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{amphoeList}}' value="{{working.degree}}"
+                            <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{amphoeList}}' value="{{working.degree}}"
                                 item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
-                            </vaadin-combo-box> -->
-                            <vaadin-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{workpos1List}}' value="{{data.working_2_id}}"
+                            </nylon-combo-box> -->
+                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{workpos1List}}' value="{{data.working_2_id}}"
                                 item-label-path="workpos1_name_th" item-value-path="id" on-selected-item-changed="getObject"
                                 object-name="data.working_2">
                                 <template>
                                     [[item.workpos1_name_th]]
                                 </template>
-                            </vaadin-combo-box>
+                            </nylon-combo-box>
                         </div>
                     </div>
 

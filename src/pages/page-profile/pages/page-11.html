@@ -1,11 +1,12 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../layout/flexbox-grid.html">
-<link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
+<!-- <link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html"> -->
+<link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid-selection-column.html">
 <link rel="import" href="../../../../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 
-<link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
+<!-- <link rel="import" href="../../../../bower_components/paper-input/paper-input.html"> -->
 
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
@@ -111,13 +112,13 @@
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">{{getProvince(data.region_id)}}
                             <!-- items='{{regionList}}' -->
-                            <vaadin-combo-box class="required" disabled={{regionDisabled}} required always-float-label label="[[i18n.page11.region]]"
+                            <nylon-combo-box class="required" disabled={{regionDisabled}} required always-float-label label="[[i18n.page11.region]]"
                                 items='{{_filterChanged(regionList)}}' value="{{data.region_id}}" item-label-path="region_th"
                                 item-value-path="id" on-selected-item-changed="getObject" object-name="data.region">
                                 <template>
                                     [[item.region_th]]
                                 </template>
-                            </vaadin-combo-box>
+                            </nylon-combo-box>
                         </div>
                     </div>
 

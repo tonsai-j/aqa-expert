@@ -2,7 +2,7 @@
 <link rel="import" href="../../../layout/flexbox-grid.html">
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
-<link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
+<!-- <link rel="import" href="../../../../bower_components/paper-input/paper-input.html"> -->
 <link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
@@ -23,48 +23,50 @@
                 display: block
             }
         </style>
+        <!-- page-13-->
+        <div class="header-title">
+            [[i18n.page13.title]]
+        </div>
+
         <nylon-panel-card>
             <div slot="content">
-                <fieldset>
-                    <legend>[[i18n.page13.title]]</legend>
-                    <div class="row  middle-md">
-                        <div class="col-md-12">
-                            <vaadin-grid id='material' items='{{documentFile}}'>
+                <div class="row  middle-md">
+                    <div class="col-md-12">
+                        <vaadin-grid id='material' items='{{documentFile}}'>
 
-                                <vaadin-grid-column width="50px" flex-grow="0">
-                                    <template class="header text-center">
-                                        <div class="text-center">#</div>
-                                    </template>
-                                    <template>
-                                        <div class="text-center">[[autoIndex(index)]]</div>
-                                    </template>
-                                </vaadin-grid-column>
+                            <vaadin-grid-column width="50px" flex-grow="0">
+                                <template class="header text-center">
+                                    <div class="text-center">#</div>
+                                </template>
+                                <template>
+                                    <div class="text-center">[[autoIndex(index)]]</div>
+                                </template>
+                            </vaadin-grid-column>
 
-                                <vaadin-grid-column width=45% flex-grow="0" resizable>
-                                    <template class="header ">[[i18n.page13.name]]</template>
-                                    <template>[[item.name]]</template>
-                                </vaadin-grid-column>
+                            <vaadin-grid-column width=45% flex-grow="0" resizable>
+                                <template class="header ">[[i18n.page13.name]]</template>
+                                <template>[[item.name]]</template>
+                            </vaadin-grid-column>
 
-                                <vaadin-grid-column width=35% flex-grow="0" resizable>
-                                    <template class="header">[[i18n.page13.file]]</template>
-                                    <template>[[item.file]]</template>
-                                </vaadin-grid-column>
+                            <vaadin-grid-column width=35% flex-grow="0" resizable>
+                                <template class="header">[[i18n.page13.file]]</template>
+                                <template>[[item.file]]</template>
+                            </vaadin-grid-column>
 
-                                <vaadin-grid-column width=20%>
-                                    <template class="header">
-                                        <div class="text-center">Attach</div>
-                                    </template>
-                                    <template>
-                                        <div class="text-center">
-                                            <input type="file" id="profile_pic" name="profile_pic" accept=".jpg, .jpeg, .pdf">
-                                        </div>
-                                    </template>
-                                </vaadin-grid-column>
-                            </vaadin-grid>
-                            [[i18n.common.total_items]] {{documentFile.length}} [[i18n.common.list]]
-                        </div>
+                            <vaadin-grid-column width=20%>
+                                <template class="header">
+                                    <div class="text-center">Attach</div>
+                                </template>
+                                <template>
+                                    <div class="text-center">
+                                        <input type="file" id="profile_pic" name="profile_pic" accept=".jpg, .jpeg, .pdf">
+                                    </div>
+                                </template>
+                            </vaadin-grid-column>
+                        </vaadin-grid>
+                        [[i18n.common.total_items]] {{documentFile.length}} [[i18n.common.list]]
                     </div>
-                </fieldset>
+                </div>
             </div>
         </nylon-panel-card>
 

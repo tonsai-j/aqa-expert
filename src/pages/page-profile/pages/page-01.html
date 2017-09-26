@@ -1,11 +1,17 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
-<link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
+<!-- <link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-boxห.html"> -->
+
+<link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
+
 <!-- <link rel="import" href="../../../../bower_components/paper-input/paper-input.html"> -->
+
 
 <link rel="import" href="../../../components/nylon-input/nylon-input.html">
 
+<link rel="import" href="../../../../bower_components/granite-bootstrap/granite-bootstrap.html">
+้
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../layout/shared-styles.html">
 <link rel="import" href="../../../layout/flexbox-grid.html">
@@ -19,20 +25,23 @@
 
 <dom-module id="page-01">
     <template>
+        <style include="granite-bootstrap"></style>
         <style include="flexbox-grid shared-styles">
              :host {
-                display: block
+                display: block --paper-input-container-underline: {
+                    display: none;
+                }
+                
             }
 
             #output_image {
                 border: 1px solid black;
                 width: 10em;
                 height: 10em;
+                
             }
-
-            
         </style>
- <!-- page-1 -->
+        <!-- page-1 -->
         <div class="header-title">
             [[i18n.page01.basic_data]]:
         </div>
@@ -90,60 +99,70 @@
                         <div class="row middle-md ">
                             <div class="col-md-3">
                                 <!-- {{data.gender_id}}// -->
-                                <vaadin-combo-box always-float-label label="[[i18n.page01.gender]]" items='{{genderList}}' value="{{data.gender_id}}" item-label-path="gender_name_th"
+                                <nylon-combo-box always-float-label label="[[i18n.page01.gender]]" items='{{genderList}}' value="{{data.gender_id}}" item-label-path="gender_name_th"
                                     item-value-path="id" on-selected-item-changed="getObject" object-name="data.gender" class="required"
                                     required>
                                     <template>
                                         [[item.gender_name_th]]
                                     </template>
-                                </vaadin-combo-box>
+                                </nylon-combo-box>
                             </div>
                             <div class="col-md-3 col-md-offset-1">
-                                <vaadin-combo-box always-float-label label="[[i18n.page01.ethnicity]]" items='{{nationalityList}}' value="{{data.race_id}}"
+                                <nylon-combo-box always-float-label label="[[i18n.page01.ethnicity]]" items='{{nationalityList}}' value="{{data.race_id}}"
                                     item-label-path="nationality_name_th" item-value-path="id" on-selected-item-changed="getObject"
                                     object-name="data.race" class="required" required>
                                     <template>
                                         [[item.nationality_name_th]]
                                     </template>
-                                </vaadin-combo-box>
+                                </nylon-combo-box>
+                                <!-- <nylon-combo-box-light id="demo3" attr-for-value="bind-value" always-float-label label="[[i18n.page01.ethnicity]]" items='{{nationalityList}}'
+                                    value="{{data.race_id}}" item-label-path="nationality_name_th" item-value-path="id" on-selected-item-changed="getObject"
+                                    object-name="data.race" class="required" required>
+                                    <iron-input>
+                                        <nylon-input>
+                                        </nylon-input>
+                                    </iron-input>
+                                </nylon-combo-box-light>
+                                <iron-icon icon="arrow-drop-down" slot="suffix" suffix style="position: absolute;
+                                top: 32px; right: 16px; cursor: pointer;" on-tap="_openDropDown"></iron-icon> -->
                             </div>
                             <div class="col-md-3 col-md-offset-1">
-                                <vaadin-combo-box always-float-label label="[[i18n.page01.religion]]" items='{{religionList}}' value="{{data.religion_id}}"
+                                <nylon-combo-box always-float-label label="[[i18n.page01.religion]]" items='{{religionList}}' value="{{data.religion_id}}"
                                     item-label-path="religion_name_th" item-value-path="id" on-selected-item-changed="getObject"
                                     object-name="data.religion" class="required" required>
                                     <template>
                                         [[item.religion_name_th]]
                                     </template>
-                                </vaadin-combo-box>
+                                </nylon-combo-box>
                             </div>
                         </div>
                         <div class="row middle-md ">
                             <div class="col-md-3">
-                                <vaadin-combo-box always-float-label label="[[i18n.page01.nationality]]" items='{{nationalityList}}' value="{{data.nationality_id}}"
+                                <nylon-combo-box always-float-label label="[[i18n.page01.nationality]]" items='{{nationalityList}}' value="{{data.nationality_id}}"
                                     item-label-path="nationality_name_th" item-value-path="id" on-selected-item-changed="getObject"
                                     object-name="data.nationality" class="required" required>
                                     <template>
                                         [[item.nationality_name_th]]
                                     </template>
-                                </vaadin-combo-box>
+                                </nylon-combo-box>
                             </div>
                             <div class="col-md-3 col-md-offset-1">
-                                <vaadin-combo-box always-float-label label="[[i18n.page01.status]]" items='{{statusList}}' value="{{data.status_id}}" item-label-path="work_status_name_th"
+                                <nylon-combo-box always-float-label label="[[i18n.page01.status]]" items='{{statusList}}' value="{{data.status_id}}" item-label-path="work_status_name_th"
                                     item-value-path="id" on-selected-item-changed="getObject" object-name="data.status" class="required"
                                     required>
                                     <template>
                                         [[item.work_status_name_th]]
                                     </template>
-                                </vaadin-combo-box>
+                                </nylon-combo-box>
                             </div>
                             <div class="col-md-3 col-md-offset-1">
-                                <vaadin-combo-box always-float-label label="[[i18n.page01.academic]]" items='{{academicList}}' value="{{data.type_academic_id}}"
+                                <nylon-combo-box always-float-label label="[[i18n.page01.academic]]" items='{{academicList}}' value="{{data.type_academic_id}}"
                                     item-label-path="academic_position_name_th" item-value-path="id" on-selected-item-changed="getObject"
                                     object-name="data.type_academic" class="required" required>
                                     <template>
                                         [[item.academic_position_name_th]]
                                     </template>
-                                </vaadin-combo-box>
+                                </nylon-combo-box>
                             </div>
                         </div>
                         <div class="row middle-md ">
@@ -250,6 +269,10 @@
                     Nylon.dispatch('PROFILE_01_GET_LIST_RELIGION')
                     Nylon.dispatch('PROFILE_01_GET_LIST_WORK_STATUS')
                 });
+            }
+            _openDropDown(e){
+                console.log(e.currentTarget.previousElementSibling.open());
+                console.log(111);
             }
             cutdate(date) {
                 if (this.info !== undefined) {

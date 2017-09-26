@@ -1,7 +1,8 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../layout/flexbox-grid.html">
 <link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
-<link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
+<!-- <link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html"> -->
+<link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
@@ -77,34 +78,34 @@
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="col-md-offset-1  col-md-4">
-                        <!-- <vaadin-combo-box class="required" required always-float-label label="[[i18n.page04.group]]" items='{{amphoeList}}' value="{{specialization.specialized_branches}}"
+                        <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page04.group]]" items='{{amphoeList}}' value="{{specialization.specialized_branches}}"
                             item-label-path="label" item-value-path="value">
                             <template>
                                 [[item.label]]
                             </template>
-                        </vaadin-combo-box> -->
-                        <vaadin-combo-box class="required" required always-float-label label="[[i18n.page04.group]]" items='{{specialistgroup}}'
+                        </nylon-combo-box> -->
+                        <nylon-combo-box class="required" required always-float-label label="[[i18n.page04.group]]" items='{{specialistgroup}}'
                             value="{{data.group_specialist_id}}" item-label-path="group_specialist_name" item-value-path="id"
                             on-selected-item-changed="getObject" object-name="data.group_specialist">
                             <template>
                                 [[item.group_specialist_name]]
                             </template>
-                        </vaadin-combo-box>
+                        </nylon-combo-box>
                     </div>
                     <div class="col-md-offset-1 col-md-8">
-                        <!-- <vaadin-combo-box class="required" required always-float-label label="[[i18n.page04.type]]" items='{{amphoeList}}' value="{{specialization.specialized_type}}"
+                        <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page04.type]]" items='{{amphoeList}}' value="{{specialization.specialized_type}}"
                             item-label-path="label" item-value-path="value">
                             <template>
                                 [[item.label]]
                             </template>
-                        </vaadin-combo-box> -->
-                        <vaadin-combo-box class="required" required always-float-label label="[[i18n.page04.type]]" items='{{specialisttype}}' value="{{data.type_specialist_id}}"
+                        </nylon-combo-box> -->
+                        <nylon-combo-box class="required" required always-float-label label="[[i18n.page04.type]]" items='{{specialisttype}}' value="{{data.type_specialist_id}}"
                             item-label-path="type_specialist_name" item-value-path="id" on-selected-item-changed="getObject"
                             object-name="data.type_specialist">
                             <template>
                                 [[item.type_specialist_name]]
                             </template>
-                        </vaadin-combo-box>
+                        </nylon-combo-box>
 
                     </div>
                 </div>

@@ -17,7 +17,8 @@
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
-<link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
+<!-- <link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html"> -->
+<link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
 <dom-module id="page-03">
     <template>
         <style include="flexbox-grid shared-styles"></style>
@@ -60,26 +61,6 @@
                                 <template>[[item.degree_full]]</template>
                             </vaadin-grid-column>
 
-                            <!-- <vaadin-grid-column flex-grow="0" resizable>
-                                    <template class="header">[[i18n.page03.faculty]]</template>
-                                    <template>[[item.faculty.faculty_name]]</template>
-                                </vaadin-grid-column> -->
-
-                            <!-- <vaadin-grid-column flex-grow="0" resizable>
-                                    <template class="header">[[i18n.page03.fieldStudy]]</template>
-                                    <template>[[item.field_study.field_study_name]]</template>
-                                </vaadin-grid-column> -->
-
-                            <!-- <vaadin-grid-column flex-grow="0" resizable>
-                                    <template class="header">[[i18n.page03.major]]</template>
-                                    <template>[[item.major]]</template>
-                                </vaadin-grid-column> -->
-
-                            <!-- <vaadin-grid-column flex-grow="0" resizable>
-                                    <template class="header">[[i18n.page03.minor]]</template>
-                                    <template>[[item.minor]]</template>
-                                </vaadin-grid-column> -->
-
                             <vaadin-grid-column width="100px" flex-grow="0" resizable>
                                 <template class="header">[[i18n.page03.year]]</template>
                                 <template>[[item.year]]</template>
@@ -111,57 +92,57 @@
                 <div slot="content">
                     <div class="row">
                         <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-4">
-                            <vaadin-combo-box label="[[i18n.page03.eduLevel]]" items='{{eduLevel}}' value="{{data.edu_level_id}}" item-label-path="edu_level_name"
+                            <nylon-combo-box label="[[i18n.page03.eduLevel]]"  always-float-label  items='{{eduLevel}}' value="{{data.edu_level_id}}" item-label-path="edu_level_name"
                                 item-value-path="id" on-selected-item-changed="getObject" object-name="data.edu_level" class="required"
                                 required>
                                 <template>
                                     [[item.edu_level_name]]
                                 </template>
-                            </vaadin-combo-box>
+                            </nylon-combo-box>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-4">
-                            <vaadin-combo-box label="[[i18n.page03.typeAcademy]]" items='{{typeAcademy}}' value="{{data.type_academy_id}}" item-label-path="type_academy_name"
+                            <nylon-combo-box label="[[i18n.page03.typeAcademy]]"  always-float-label  items='{{typeAcademy}}' value="{{data.type_academy_id}}" item-label-path="type_academy_name"
                                 item-value-path="id" on-change="_getAacademy" on-selected-item-changed="getObject" object-name="data.type_academy"
                                 class="required" required>
                                 <template>
                                     [[item.type_academy_name]]
                                 </template>
-                            </vaadin-combo-box>
+                            </nylon-combo-box>
                         </div>
                         <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
-                            <vaadin-combo-box label="[[i18n.page03.academy]]" items='{{academy}}' value="{{data.academy_id}}" item-label-path="academy_name"
+                            <nylon-combo-box label="[[i18n.page03.academy]]" always-float-label  items='{{academy}}' value="{{data.academy_id}}" item-label-path="academy_name"
                                 item-value-path="id" on-selected-item-changed="getObject" object-name="data.academy" class="required"
                                 required>
                                 <template>
                                     [[item.academy_name]]
                                 </template>
-                            </vaadin-combo-box>
+                            </nylon-combo-box>
                         </div>
                         <div class="col-md-offset-1  col-xs-12 col-sm-12 col-md-8">
-                            <vaadin-combo-box label="[[i18n.page03.faculty]]" items='{{faculty}}' value="{{data.faculty_id}}" item-label-path="faculty_name"
+                            <nylon-combo-box label="[[i18n.page03.faculty]]" always-float-label  items='{{faculty}}' value="{{data.faculty_id}}" item-label-path="faculty_name"
                                 item-value-path="id" on-selected-item-changed="getObject" object-name="data.faculty" class="required"
                                 required>
                                 <template>
                                     [[item.faculty_name]]
                                 </template>
-                            </vaadin-combo-box>
+                            </nylon-combo-box>
                         </div>
                         <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
-                            <vaadin-combo-box label="[[i18n.page03.groupFaculty]]" items='{{groupFaculty}}' value="{{data.group_faculty_id}}" item-label-path="group_faculty_name"
+                            <nylon-combo-box label="[[i18n.page03.groupFaculty]]" always-float-label  items='{{groupFaculty}}' value="{{data.group_faculty_id}}" item-label-path="group_faculty_name"
                                 item-value-path="id" on-selected-item-changed="getObject" object-name="data.group_faculty">
                                 <template>
                                     [[item.group_faculty_name]]
                                 </template>
-                            </vaadin-combo-box>
+                            </nylon-combo-box>
                         </div>
                         <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
-                            <vaadin-combo-box label="[[i18n.page03.fieldStudy]]" items='{{fieldStudy}}' value="{{data.field_study_id}}" item-label-path="field_study_name"
+                            <nylon-combo-box label="[[i18n.page03.fieldStudy]]" always-float-label  items='{{fieldStudy}}' value="{{data.field_study_id}}" item-label-path="field_study_name"
                                 item-value-path="id" on-selected-item-changed="getObject" object-name="data.field_study" class="required"
                                 required>
                                 <template>
                                     [[item.field_study_name]]
                                 </template>
-                            </vaadin-combo-box>
+                            </nylon-combo-box>
                         </div>
                         <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
                             <nylon-input always-float-label label="[[i18n.page03.degree]] ([[i18n.page03.full]])" value="{{data.degree_full}}" class="required" required></nylon-input>

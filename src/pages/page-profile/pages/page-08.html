@@ -1,6 +1,7 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../layout/flexbox-grid.html">
-<link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
+<!-- <link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html"> -->
+<link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
@@ -100,12 +101,12 @@
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="col-md-offset-2 col-md-8">
-                        <vaadin-combo-box class="required" required always-float-label label="[[i18n.page08.type]]" items='{{type_research}}' item-label-path='type_research_name'
+                        <nylon-combo-box class="required" required always-float-label label="[[i18n.page08.type]]" items='{{type_research}}' item-label-path='type_research_name'
                             item-value-path='id' value="{{data.type_research_id}}" on-selected-item-changed='getObject' object-name='data.type_research'>
                             <template>
                                 [[item.type_research_name]]
                             </template>
-                        </vaadin-combo-box>
+                        </nylon-combo-box>
                     </div>
                     <div class="col-md-offset-2 col-md-8">
                         <nylon-input class="required" required label="[[i18n.page08.name]]" always-float-label value="{{data.research_name}}"></nylon-input>

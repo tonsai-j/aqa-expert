@@ -1,6 +1,7 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../layout/flexbox-grid.html">
-<link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
+<!-- <link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html"> -->
+<link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
@@ -96,26 +97,26 @@
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="col-md-12">
-                        <nylon-input label="[[i18n.page07.education]]" value="[[info.type_assessor.type_assessor_name]]" disabled>
+                        <nylon-input label="[[i18n.page07.education]]" always-float-label  value="[[info.type_assessor.type_assessor_name]]" disabled>
                         </nylon-input>
                     </div>
                     <div class="col-md-12">
-                        <vaadin-combo-box label="[[i18n.page07.type]]" items='{{typeAcademy}}' value="{{data.type_academy_id}}" item-label-path="type_academy_name"
+                        <nylon-combo-box label="[[i18n.page07.type]]" always-float-label  items='{{typeAcademy}}' value="{{data.type_academy_id}}" item-label-path="type_academy_name"
                             item-value-path="id" on-change="_getAacademy" on-selected-item-changed="getObject" object-name="data.type_academy"
                             class="required" required>
                             <template>
                                 [[item.type_academy_name]]
                             </template>
-                        </vaadin-combo-box>
+                        </nylon-combo-box>
                     </div>
                     <div class="col-md-12">
-                        <vaadin-combo-box label="[[i18n.page07.name]]" items='{{academy}}' value="{{data.academy_id}}" item-label-path="academy_name"
+                        <nylon-combo-box label="[[i18n.page07.name]]" always-float-label  items='{{academy}}' value="{{data.academy_id}}" item-label-path="academy_name"
                             item-value-path="id" on-selected-item-changed="getObject" object-name="data.academy" class="required"
                             required>
                             <template>
                                 [[item.academy_name]]
                             </template>
-                        </vaadin-combo-box>
+                        </nylon-combo-box>
                     </div>
                 </div>
                 <app-toolbar slot="footer">
