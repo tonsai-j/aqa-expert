@@ -10,8 +10,7 @@
 
 <link rel="import" href="../../../components/nylon-input/nylon-input.html">
 
-<link rel="import" href="../../../../bower_components/granite-bootstrap/granite-bootstrap.html">
-้
+<link rel="import" href="../../../../bower_components/granite-bootstrap/granite-bootstrap.html"> ้
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../layout/shared-styles.html">
 <link rel="import" href="../../../layout/flexbox-grid.html">
@@ -31,14 +30,25 @@
                 display: block --paper-input-container-underline: {
                     display: none;
                 }
-                
             }
 
             #output_image {
                 border: 1px solid black;
                 width: 10em;
                 height: 10em;
-                
+            }
+
+            #ifile {
+                width: 0.1px;
+                height: 0.1px;
+                opacity: 0;
+                overflow: hidden;
+                position: absolute;
+                z-index: -1;
+            }
+
+            .upload_image {
+                margin-top: 5px;
             }
         </style>
         <!-- page-1 -->
@@ -51,18 +61,13 @@
                 <div><br>[[i18n.page01.field]]*</div><br>
                 <div class="row meddle-md ">
                     <div class="col-md-3">
-                        <div class="col-md-12">
+                        <div class="col-md-12 middle-md center-md">
                             <img id="output_image" src$="[[rootPath]]images/I20170901111610.jpg" />
                             <!-- [[importPath]]
                                     [[rootPath]] -->
                         </div>
-                        <div class="col-md-12">
-                            <input id="ifile" type=file accept="image/*">
-
-                            <!-- <nylon-input label="" id="ifile" type=file accept="image/*"></nylon-input> -->
-
-                            <!-- <paper-button raised on-tap="preview_image"> อัพ</paper-button> -->
-
+                        <div class="col-md-12 middle-md center-md">
+                            <paper-button raised on-tap="upload_img" class="upload_image btn-primary"> อัพ</paper-button>
                         </div>
                     </div>
                     <div class="col-md-9">
@@ -270,7 +275,10 @@
                     Nylon.dispatch('PROFILE_01_GET_LIST_WORK_STATUS')
                 });
             }
-            _openDropDown(e){
+            upload_img() {
+                this.$.ifile.click()
+            }
+            _openDropDown(e) {
                 console.log(e.currentTarget.previousElementSibling.open());
                 console.log(111);
             }
@@ -293,7 +301,12 @@
 
             }
             preview_image(e) {
-                var reader = new FileReader();
+                var reader = new FileReader()
+                reader.onload = () => {
+                    var output = this.$.output_image
+                    output.src = reader.result
+                }
+                reader.readAsDataURL(event.target.files[0])
                 // console.log(reader);
                 // reader.onload = () => {
                 //     var output = this.$.output_image
@@ -305,11 +318,11 @@
                 // }
                 // reader.onloadend = () => {
                 // console.log(this.info.id);
-                var file = this.$.ifile.files
-                let profile = {}
-                profile.pic_type = 'profile'
-                profile.user_id = this.info.id
-                Nylon.dispatch('PROFILE_01_POST_PICTURE', file, profile)
+                // var file = this.$.ifile.files
+                // let profile = {}
+                // profile.pic_type = 'profile'
+                // profile.user_id = this.info.id
+                // Nylon.dispatch('PROFILE_01_POST_PICTURE', file, profile)
 
                 // }
                 // reader.readAsDataURL(event.target.files[0]);
