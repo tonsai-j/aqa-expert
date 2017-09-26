@@ -29,11 +29,35 @@
           font-family: 'CSChatThaiUI', 'tahoma', sans-serif;
           -webkit-font-smoothing: antialiased;
         }
+
         --nylon-font-family-bone: {
           font-family: 'CSChatThaiUI', 'tahoma', sans-serif;
           font-weight: bold;
           -webkit-font-smoothing: antialiased;
         }
+
+        --nylon-font-trirong-family: {
+          font-family: 'trirong-medium', 'tahoma', sans-serif;
+          -webkit-font-smoothing: antialiased;
+        }
+
+        --nylon-font-trirong-family-bone: {
+          font-family: 'trirong-medium', 'tahoma', sans-serif;
+          font-weight: bold;
+          -webkit-font-smoothing: antialiased;
+        }
+
+        --nylon-font-mitr-family: {
+          font-family: 'mitr-light', 'tahoma', sans-serif;
+          -webkit-font-smoothing: antialiased;
+        }
+
+        --nylon-font-mitr-family-bone: {
+          font-family: 'mitr-light', 'tahoma', sans-serif;
+          font-weight: bold;
+          -webkit-font-smoothing: antialiased;
+        }
+
         --nylon-margin: {
           margin: 1px;
         }
@@ -159,7 +183,12 @@
         background-color: #039BE5;
         color: #FFF;
       }
-
+      /* หัวข้อใหญ่ของแต่ละหน้่า */
+      .header-title {
+        font-size: 20px;
+        margin: 1em;
+        @apply --nylon-font-mitr-family;
+      }
 
       paper-button {
         height: 36px;

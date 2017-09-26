@@ -19,7 +19,7 @@
 
 <dom-module id="page-01">
     <template>
-        <style include="flexbox-grid  shared-styles">
+        <style include="flexbox-grid shared-styles">
              :host {
                 display: block
             }
@@ -29,9 +29,13 @@
                 width: 10em;
                 height: 10em;
             }
+
+            
         </style>
 
-        [[i18n.page01.basic_data]]:
+        <div class="header-title">
+            [[i18n.page01.basic_data]]:
+        </div>
         <nylon-panel-card>
 
             <div slot="content" items="[[basic]]">
@@ -45,9 +49,9 @@
                         </div>
                         <div class="col-md-12">
                             <input id="ifile" type=file accept="image/*">
-                            
+
                             <!-- <nylon-input label="" id="ifile" type=file accept="image/*"></nylon-input> -->
-                            
+
                             <!-- <paper-button raised on-tap="preview_image"> อัพ</paper-button> -->
 
                         </div>
