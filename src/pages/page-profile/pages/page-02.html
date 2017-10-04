@@ -41,9 +41,9 @@
                 text-align: left;
             }
         </style>
-         <!-- page-2 -->
+        <!-- page-2 -->
         <div class="header-title">
-        [[i18n.page02.doc_send]]
+            [[i18n.page02.doc_send]]
         </div>
         <nylon-panel-card>
             <div slot="content">
@@ -269,7 +269,7 @@
                                     <div class="input col-md-2">
                                         <nylon-input always-float-label label=""></nylon-input>
                                     </div> -->
-                    <div class="col-md-12">
+                    <!-- <div class="col-md-12">
                         <div class="row middle-md">
                             <div class="input col-md-2 col-md-offset-1">
                                 [[i18n.page02.time_free]] :
@@ -282,22 +282,27 @@
                                 <nylon-input class="required" required type=time no-label-float value="{{address.address_work.time_end}}"></nylon-input>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
             </div>
             </div>
-            <app-toolbar slot="footer">
+            <!-- <app-toolbar slot="footer">
                 <div main-title></div>
-                <!-- <paper-button raised class="btn-default">
-                    <iron-icon icon="arrow-back"></iron-icon>[[i18n.button.previous]]</paper-button> -->
                 <paper-button raised class="btn-success" on-click="_save">
                     <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                    <!-- <paper-busn-icon icon="arrow-forward"></iron-icon> -->
+
                 </paper-button>
-            </app-toolbar>
+            </app-toolbar> -->
 
         </nylon-panel-card>
+        <div class="row end-md ">
+            <div class="button-action-bottom">
+                <paper-button raised class="btn-success" on-click="_save">
+                    <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                </paper-button>
+            </div>
+        </div>
     </template>
 
     <script>

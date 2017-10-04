@@ -67,6 +67,7 @@
                                     [[rootPath]] -->
                         </div>
                         <div class="col-md-12 middle-md center-md">
+                            <input id="ifile" type=file accept="image/*" on-change="preview_image">
                             <paper-button raised on-tap="upload_img" class="upload_image btn-primary"> อัพ</paper-button>
                         </div>
                     </div>
@@ -190,7 +191,7 @@
                     </div>
                 </div>
             </div>
-            <app-toolbar slot="footer">
+            <!-- <app-toolbar slot="footer">
                 <div main-title></div>
                 <paper-button raised class="btn-success" on-click="_save">
                     <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
@@ -198,13 +199,21 @@
                 <paper-button raised class="btn-default" on-click="_readIDCard">
                     <iron-icon icon="[[i18n.button.readCard.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.readCard.label]]
                 </paper-button>
-
-
-            </app-toolbar>
+            </app-toolbar> -->
 
 
         </nylon-panel-card>
 
+        <div class="row end-md ">
+            <div class="button-action-bottom">
+                <paper-button raised class="btn-success" on-click="_save">
+                    <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                </paper-button>
+                <!-- <paper-button raised class="btn-default" on-click="_readIDCard">
+                    <iron-icon icon="[[i18n.button.readCard.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.readCard.label]]
+                </paper-button> -->
+            </div>
+        </div>
     </template>
 
     <script>
@@ -279,8 +288,8 @@
                 this.$.ifile.click()
             }
             _openDropDown(e) {
-                console.log(e.currentTarget.previousElementSibling.open());
-                console.log(111);
+                e.currentTarget.previousElementSibling.open()
+                // console.log(111);
             }
             cutdate(date) {
                 if (this.info !== undefined) {
