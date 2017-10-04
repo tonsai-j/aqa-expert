@@ -119,7 +119,6 @@
                 height: 100vh;
                 /* position:relative; */
             }
-
             /* .borderz {
                 border: 1px solid red;
             } */
@@ -141,13 +140,19 @@
                 <div id="style-4" style="height: 100%; overflow: auto; display:block">
                     <iron-pages selected="{{menuPage}}" attr-for-selected="name">
                         <div name="main">
-                            <div class="row">
+                            <!-- <div class="row"> -->
+                            <iron-selector class="testsssss" selected="[[page]]" attr-for-selected="name" role="navigation">
                                 <template is="dom-repeat" items={{menu}}>
-                                    <div class="col-md-6 borderz icon-page row middle-md center-md" name="{{item.page}}" on-tap="changeToMenu">
+                                    <!-- <div class="col-md-6 borderz icon-page row middle-md center-md" name="{{item.page}}" on-tap="changeToMenu">
                                         <iron-icon icon="{{item.icon}}" class="icon-menu"></iron-icon>
-                                    </div>
+                                    </div> -->
+                                    <paper-icon-item name="{{item.page}}" on-tap="changeToMenu">
+                                        <iron-icon icon="{{item.icon}}" slot="item-icon"></iron-icon>
+                                        [[item.name]]
+                                    </paper-icon-item>
                                 </template>
-                            </div>
+                            </iron-selector>
+                            <!-- </div> -->
                         </div>
                         <div name="menu">
                             <template is="dom-repeat" items={{menuIsUse}} as="sub_title" index-as="main_index">
@@ -196,6 +201,7 @@
                             {
                                 icon: 'perm-identity',
                                 page: 'register',
+                                name: 'สมัคร',
                                 sub_title_menu: [
                                     {
                                         page_name: 'i18n.menu.register.label',
@@ -213,6 +219,7 @@
                             {
                                 icon: 'assignment',
                                 page: 'profile',
+                                name: 'ข้อมูลส่วนตัว',
                                 sub_title_menu: [
                                     {
                                         page_name: 'i18n.page00.general_information',
@@ -317,6 +324,7 @@
                             {
                                 icon: 'account-box',
                                 page: 'approve',
+                                name: 'อนุมัติผู้ประเมิน',
                                 sub_title_menu: [
                                     {
                                         page_name: 'i18n.menu.approve.label',
@@ -374,7 +382,7 @@
                 let page = (this.menuPage === 'main' ? 'menu' : 'main')
                 // ถ้า this.menuIsUse ว่าง ให้เอาเมนูอันแรกไปใส่
                 if (this.menuIsUse.length < 1) {
-                    this.set('menuIsUse',this.menu[0].sub_title_menu)
+                    this.set('menuIsUse', this.menu[0].sub_title_menu)
                 }
                 this.set('menuPage', page)
                 // console.log(page);
@@ -382,7 +390,7 @@
             changeToMenu(e) {
                 // console.log(e.currentTarget.name);
                 let item = e.model.__data.item.sub_title_menu
-                
+
                 this.set('menuIsUse', item)
                 // console.log(e.model.__data.item.sub_title_menu);
                 this.changeMenu()

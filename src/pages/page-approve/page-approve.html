@@ -5,7 +5,7 @@
 <link rel="import" href="../../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
-<link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
+<link rel="import" href="../../../bower_components/vaadin-grid/vaadin-grid.html">
 <link rel="import" href="../../../bower_components/iron-icons/social-icons.html">
 
 <link rel="import" href="../../mixins/common-mixin.html">
@@ -25,10 +25,13 @@
                 }
             }
         </style>
+        <div class="header-title">
+                [[i18n.approve.title]]
+            </div>
         <nylon-panel-card>
             <div slot="content">
-                <fieldset>
-                    <legend>[[i18n.approve.title]]</legend>
+                <!-- <fieldset>
+                    <legend>[[i18n.approve.title]]</legend> -->
                     <br>
                     <vaadin-grid on-active-item-changed="_onActiveItemChanged" id='material' items='{{datas}}'>
                         <vaadin-grid-column width="5%" flex-grow="0">
@@ -76,7 +79,7 @@
                                 </div>
                             </template>
                         </vaadin-grid-column>
-                        <vaadin-grid-column width="20%" flex-grow="0">
+                        <vaadin-grid-column width="300px" flex-grow="0">
                             <template class="header">
                                 <div class="text-center">[[i18n.approve.history]]</div>
                             </template>
@@ -99,7 +102,7 @@
                         </vaadin-grid-column>
 
                     </vaadin-grid>
-                </fieldset>
+                <!-- </fieldset> -->
             </div>
         </nylon-panel-card>
         <nylon-panel-right id="right" title="[[i18n.approve.training_details]]" width="80%">
