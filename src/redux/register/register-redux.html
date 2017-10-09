@@ -51,13 +51,16 @@
                     )
             },
         REGISTER_POST: function (data) {
-            var progress = Nylon.$['page-register'].$.panelCard.progress({ position: 'top' })
+            // console.log('yyyy');
+            // var progress = Nylon.$['page-register'].$.panelCard.progress({ position: 'top' })
             return dispatch =>
                 axios.post('/register', data).then(
                     res => {
-                        progress(() => {
-                            Nylon.dispatch('PROFILE_LOGIN', res.data)
-                        })
+                        // console.log('xxxxxxx');
+                        Nylon.dispatch('PROFILE_LOGIN', res.data)
+                        // progress(() => {
+                        //     Nylon.dispatch('PROFILE_LOGIN', res.data)
+                        // })
                     }
                 )
         },
