@@ -15,7 +15,7 @@
     "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.8",
     "polymer": "Polymer/polymer#^2.0.2",
     "app-layout": "PolymerElements/app-layout#^2.0.1",
-    "nylon-pages": "9lon/nylon-pages#^0.0.4",
+    "nylon-pages": "9lon/nylon-pages#^0.0.6",
     "polymer-redux": "tur-nr/polymer-redux#^1.0.2",
     "iron-flex-layout": "PolymerElements/iron-flex-layout#^2.0.0",
     "iron-iconset-svg": "PolymerElements/iron-iconset-svg#^2.0.1",
