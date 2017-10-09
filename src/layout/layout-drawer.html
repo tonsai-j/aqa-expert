@@ -351,6 +351,19 @@
                     },
                 }
             }
+            connectedCallback() {
+                super.connectedCallback()
+
+                //Set redirect page of nylon-pages to global
+                // Nylon.redirect = this.$.nylonInit.$.nylonPage.redirect
+                // upsate
+                //Listener change page
+                this.$.nylonInit.addEventListener(
+                    'nylon-pages-changed',
+                    e => this._pageChanged(e)
+                )
+            }
+            
             // static get observers() {
             //     return [
             //         // Observer method name, followed by a list of dependencies, in parenthesis
