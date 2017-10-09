@@ -1,0 +1,28 @@
+<script>
+    Nylon.addReducer('dashboard', function (state, action) {
+        state = state || {}
+
+        switch (action.type) {
+            case 'APPROVE_GET_LISTS':
+                state.assessor = action.data
+                return state
+            default:
+                return state
+        }
+        return state
+    })
+
+
+    Nylon.addAction({
+        APPROVE_GET_LISTS: function () {
+            return dispatch =>
+                axios.get('/profile/approve?approve=false').then(
+                    res => {
+                        dispatch({ type: 'APPROVE_GET_LISTS', data: res.data })
+                    }
+                )
+        },
+
+    })
+
+</script>

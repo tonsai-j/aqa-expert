@@ -1,0 +1,66 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../layout/flexbox-grid.html">
+<link rel="import" href="../../components/nylon-panel-card/nylon-panel-card.html">
+<link rel="import" href="../../components/nylon-panel-right/nylon-panel-right.html">
+<link rel="import" href="../../../bower_components/iron-pages/iron-pages.html">
+
+<link rel="import" href="./page-user.html">
+<link rel="import" href="./page-admin.html">
+
+<link rel="import" href="../../mixins/common-mixin.html">
+<link rel="import" href="../../redux-mixin.html">
+<link rel="import" href="../../i18n/dashboard/main-i18n.html">
+<link rel="import" href="../../redux/dashboard/dashboard-redux.html">
+<link rel="import" href="../../layout/shared-styles.html">
+
+<dom-module id="page-dashboard">
+    <template>
+        <style include="shared-styles flexbox-grid">
+            vaadin-grid {
+                --vaadin-grid-body-row-hover-cell: {
+                    cursor: pointer;
+                }
+            }
+        </style>
+        <div class="header-title">
+            Dashboard
+        </div>
+        <nylon-panel-card>
+            <div slot="content">
+                <iron-pages selected="[[selected]]" attr-for-selected="page-name" fallback-selection="fallback">
+                    <div page-name="user">User</div>
+                    <div page-name="admin">Admin</div>
+                </iron-pages>
+            </div>
+        </nylon-panel-card>
+    </template>
+
+    <script>
+        class pageDashboard extends CommonMixin(ReduxMixin(Polymer.Element)) {
+
+            static get is() {
+                return 'page-dashboard';
+            }
+
+            static get properties() {
+                return {
+                    i18n: {
+                        type: Object,
+                        statePath: 'i18n'
+                    },
+                    selected: {
+                        type: String,
+                        value: 'admin'
+                    }
+                };
+            }
+
+            ready() {
+                super.ready();
+            }
+
+        }
+
+        window.customElements.define(pageDashboard.is, pageDashboard);
+    </script>
+</dom-module>
