@@ -334,25 +334,6 @@
                 // }
 
             }
-            // _save() {
-            //     // console.log(this.validateForm('.required'));
-            //     if (this.validateForm('.required')) {
-            //         let newDataSave = JSON.parse(JSON.stringify(this.data))
-            //         newDataSave.birth_date = new Date(newDataSave.birth_date).toISOString()
-            //         newDataSave.issue_date = new Date(newDataSave.issue_date).toISOString()
-            //         newDataSave.expire_date = new Date(newDataSave.expire_date).toISOString()
-            //         // console.log(newDataSave);
-            //         Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'basic', newDataSave,
-            //             () => {
-            //                 Nylon.toast('update')
-            //             }
-            //         )
-
-            //     } else {
-            //         Nylon.toast('required')
-            //     }
-
-            // }
             checkRegister(taxno) {
                 Nylon.dispatch('REGISTER_CHECK_TAXNO', taxno, (data) => {
                     if (data.length > 0) {
@@ -384,8 +365,6 @@
                     }
                 });
             }
-
-
 
             checkPersonID(id) {
                 var check
