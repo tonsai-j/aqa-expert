@@ -4,7 +4,15 @@
     <template>
         <style>
             /****** Style Star Rating Widget *****/
-            
+            .resultRating{
+                display: flex; 
+                width: auto;
+                height: 50px;
+                color:black;
+            }
+            .resultRating>div{
+                margin: auto;
+            }
             .rating {
                 border: none;
                 float: left;
@@ -71,45 +79,46 @@
         </style>
 
         <fieldset class="rating">
-             <div>[[title]]</div>
+            <div class="resultRating"><div>[[title]]</div><div hidden="{{active}}">[[value]]</div></div>
+             
 
             <input type="radio" id="star5" name="rating" value="5" />
-            <label class="full" for="star5" on-mouseover="showText" title="Awesome - 5 stars">
+            <label class="full" for="star5" on-mouseover="showText" on-mouseout="clearText" on-click="setText" title="Awesome - 5 stars">
                 <div class="avartar">
                     <div>5</div>
                 </div>
             </label>
 
             <input type="radio" id="star4" name="rating" value="4" />
-            <label class="full" for="star4" on-mouseover="showText" title="Pretty good - 4 stars">
+            <label class="full" for="star4" on-mouseover="showText" on-mouseout="clearText" on-click="setText" title="Pretty good - 4 stars">
                  <div class="avartar">
                     <div>4</div>
                 </div>
             </label>
 
             <input type="radio" id="star3" name="rating" value="3" />
-            <label class="full" for="star3" on-mouseover="showText" title="Meh - 3 stars">
+            <label class="full" for="star3" on-mouseover="showText" on-mouseout="clearText" on-click="setText" title="Meh - 3 stars">
                 <div class="avartar">
                     <div>3</div>
                 </div>
             </label>
 
             <input type="radio" id="star2" name="rating" value="2" />
-            <label class="full" for="star2" on-mouseover="showText" title="Kinda bad - 2 stars">
+            <label class="full" for="star2" on-mouseover="showText" on-mouseout="clearText" on-click="setText" title="Kinda bad - 2 stars">
                 <div class="avartar">
                     <div>2</div>
                 </div>
             </label>
 
             <input type="radio" id="star1" name="rating" value="1" />
-            <label class="full" for="star1" on-mouseover="showText" title="Sucks big time - 1 star">
+            <label class="full" for="star1" on-mouseover="showText" on-mouseout="clearText" on-click="setText" title="Sucks big time - 1 star">
                 <div class="avartar">
                     <div>1</div>
                 </div>
             </label>
 
             <input type="radio" id="star0" name="rating" value="0" checked/>
-            <label class="full" for="star0" on-mouseover="showText" title="Noob!!">
+            <label class="full" for="star0" on-mouseover="showText" on-mouseout="clearText" on-click="setText" title="Noob!!">
                 <div class="avartar">
                     <div>0</div>
                 </div>
@@ -128,12 +137,28 @@
                     title:{
                         type:String,
                         value:''
+                    },
+                    value:{
+                        type:String,
+                        value:''
+                    },
+                    active:{
+                        type:Boolean,
+                        value: true
                     }
                 }
             }
             showText(e){
-                console.log(e.currentTarget.title)
+                this.active = true;
                 this.title = e.currentTarget.title
+            }
+            clearText(){
+                this.active = false;
+                this.title = '';
+            }
+            setText(e){
+                // this.active = false;
+                 this.value = e.currentTarget.title
             }
         }
 
