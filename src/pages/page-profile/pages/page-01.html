@@ -7,6 +7,8 @@
 
 <!-- <link rel="import" href="../../../../bower_components/paper-input/paper-input.html"> -->
 
+<link rel="import" href="../../../components/nylon-date-picker/nylon-date-picker.html">
+
 
 <link rel="import" href="../../../components/nylon-input/nylon-input.html">
 
@@ -174,7 +176,8 @@
                         <div class="row middle-md ">
                             <div class="col-md-3">{{_calcAge(data.birth_date)}}
                                 <!-- <nylon-input always-float-label label="Name:"></nylon-input> -->
-                                <nylon-input class="required" required always-float-label label="[[i18n.page01.birth]]:" type="date" value="{{data.birth_date}}"></nylon-input>
+                                <nylon-date-picker id="date" label="[[i18n.page01.birth]]:" class="required" required selected="{{data.birth_date}}" show-bc ></nylon-date-picker>
+                                <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.birth]]:" type="date" value="{{data.birth_date}}"></nylon-input> -->
                             </div>
                             <div class="col-md-3 col-md-offset-1">
                                 <nylon-input always-float-label label="[[i18n.page01.age]]:" value="[[age]]" disabled></nylon-input>

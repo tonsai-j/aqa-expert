@@ -41,6 +41,9 @@
     "paper-checkbox": "PolymerElements/paper-checkbox#^2.0.1",
     "vaadin-upload": "^2.0.0",
     "granite-bootstrap": "LostInBrittany/granite-bootstrap#^3.3.7-5",
-    "l2t-paper-rating": "Link2Twenty/l2t-paper-rating#^1.2.0"
+    "l2t-paper-rating": "Link2Twenty/l2t-paper-rating#^1.2.0",
+    "paper-menu-button": "PolymerElements/paper-menu-button#^2.0.0",
+    "iron-dropdown": "PolymerElements/iron-dropdown#^2.0.0",
+    "iron-validator-behavior": "PolymerElements/iron-validator-behavior#^2.0.0"
   }
 }

@@ -344,12 +344,25 @@
                     menuIsUse: {
                         type: Array,
                         value: []
-                    }
+                    },
+                    _params: {
+                        type: Object,
+                        observer: 'getUrl'
+                    },
                 }
             }
-
+            // static get observers() {
+            //     return [
+            //         // Observer method name, followed by a list of dependencies, in parenthesis
+            //         'getUrl(_params.*)'
+            //     ]
+            // }
+            getUrl(url) {
+                console.log(url);
+            }
             ready() {
                 super.ready()
+                // console.log(this._params)
             }
 
             toogleMenu() {

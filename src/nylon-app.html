@@ -15,13 +15,22 @@
 
 <dom-module id="nylon-app">
   <template>
-    <nylon-init id="nylonInit"></nylon-init>
+    <nylon-init id="nylonInit" path-name="[[pathName]]"></nylon-init>
   </template>
 
   <script>
     class NylonApp extends ReduxMixin(Polymer.Element) {
 
       static get is() { return 'nylon-app'; }
+
+      static get properties() { 
+        return {
+          pathName:{
+            type:String,
+            value:"/"
+          }
+        } 
+      }
 
       ready() {
         super.ready()
@@ -55,7 +64,12 @@
               Nylon.$[elementName] = e.detail.element
 
             //progress()
+            this.pathName = e.detail.ctx.pathname
+            console.log(this.pathName)
+            window.pathname = this.pathName
             e.detail.active()
+
+
           },
           () => {
             progress()

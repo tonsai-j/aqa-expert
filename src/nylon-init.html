@@ -40,6 +40,15 @@
 
       static get is() { return 'nylon-init' }
 
+      static get properties() { 
+        return {
+          pathName:{
+            type:String,
+            value:"/"
+          }
+        } 
+      }
+
     }
 
     window.customElements.define(NylonInit.is, NylonInit);
