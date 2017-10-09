@@ -277,6 +277,10 @@
                 super();
 
             }
+            // nylonPagesActive(){
+            //     console.log(1212121212)
+            //     Nylon.dispatch('REGISTER_CHECK_PERSON')
+            // }
             ready() {
                 super.ready();
                 Polymer.RenderStatus.afterNextRender(this, function () {
@@ -285,6 +289,7 @@
                     Nylon.dispatch('PROFILE_01_GET_LIST_NATIONALITY')
                     Nylon.dispatch('PROFILE_01_GET_LIST_RELIGION')
                     Nylon.dispatch('PROFILE_01_GET_LIST_WORK_STATUS')
+                    Nylon.dispatch('REGISTER_CHECK_PERSON',localStorage.getItem('taxno'))
                 });
             }
             upload_img() {

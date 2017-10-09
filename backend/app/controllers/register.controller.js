@@ -43,7 +43,12 @@ exports.post = function (req, res) {
                     })
             )('generated_keys')(0)
         ),
-        p(0)
+        r.table('profile').get(
+            p(0)('id')
+        ).update(r.expr(req.body))
+            .do(function (d) {
+                return r.table('profile').get(p(0)('id'))
+            })
     )
         .run()
         .then(function (data) {
@@ -51,7 +56,7 @@ exports.post = function (req, res) {
         })
 }
 exports.check = function (req, res) {
-    r.table('profile').getAll(req.query.taxno, { index: 'taxno' }).pluck('taxno', 'type_assessor_id', 'type_assessor', 'basic','address')
+    r.table('profile').getAll(req.query.taxno, { index: 'taxno' }).pluck('taxno', 'type_assessor_id', 'type_assessor', 'basic', 'address')
         .run()
         .then(function (data) {
             res.json(data)

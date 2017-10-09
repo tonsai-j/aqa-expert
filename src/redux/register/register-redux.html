@@ -40,16 +40,6 @@
 
                 )
         },
-        REGISTER_CHECK_PERSON: function (taxno, callback) {
-                return dispatch =>
-                    axios.get('/register/check?taxno=' + taxno).then(
-                        res => {
-                            callback(res.data);
-                            // console.log(res.data.length)
-                        }
-
-                    )
-            },
         REGISTER_POST: function (data) {
             // console.log('yyyy');
             // var progress = Nylon.$['page-register'].$.panelCard.progress({ position: 'top' })
