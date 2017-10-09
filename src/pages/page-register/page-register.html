@@ -44,13 +44,13 @@
 
             .input {
                 text-align: left;
-               
             }
+
             paper-tabs {
-                color:#fff;
-                border:1px solid #4E97D9;
-                --paper-tabs-selection-bar:{
-                    display:none;
+                color: #fff;
+                border: 1px solid #4E97D9;
+                --paper-tabs-selection-bar: {
+                    display: none;
                 }
                 /* border: 1 solid #4E97D9; */
                 /* --paper-tabs-selection-bar: {
@@ -67,7 +67,6 @@
                     color: #FFFFFF;
                     margin:0px;
                 } */
-                
                 /* --paper-tab-content-unselected: {
                     color: #4E97D9;
                     background-color: #FFFFFF;
@@ -77,7 +76,7 @@
             paper-tab {
                 --paper-tab-ink: #89BCEB;
                 --paper-tab-content-unselected: {
-                    color:#4E97D9;
+                    color: #4E97D9;
                 }
             }
 
@@ -181,7 +180,7 @@
                                     </nylon-combo-box>
                                 </div>
                                 <!-- <app-toolbar slot="footer"> -->
-                                    <!-- <div main-title></div> -->
+                                <!-- <div main-title></div> -->
                                 <div style="margin:10px"></div>
                                 <paper-button raised class="btn-success col-xs-12 row center-md" on-click="_register">
                                     <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp;[[i18n.button.register.label]]
@@ -269,17 +268,23 @@
 
             }
             _test() {
-                Nylon.dispatch('REGISTER_CHECK_PERSON', this.data.taxno, (data) => {
-                    if (data.length > 0) {
-                        var basic = data[0].basic
-                        var address = data[0].address
-                        this.set('data.firstname_th', basic.firstname_th)
-                        this.set('data.lastname_th', basic.lastname_th)
-                        this.set('data.email', address.address_contract.email)
-                        this.set('data.mobile_phone', address.address_contract.mobile_phone)
-                        // console.log(address.address_contract.email)
-                    }
-                })
+                this._debouncer = Polymer.Debouncer.debounce(
+                    this._debouncer, // initially undefined
+                    Polymer.Async.timeOut.after(900),
+                    () => {
+                        Nylon.dispatch('REGISTER_CHECK_PERSON', this.data.taxno, (data) => {
+                            if (data.length > 0) {
+                                var basic = data[0].basic
+                                var address = data[0].address
+                                this.set('data.firstname_th', basic.firstname_th)
+                                this.set('data.lastname_th', basic.lastname_th)
+                                this.set('data.email', address.address_contract.email)
+                                this.set('data.mobile_phone', address.address_contract.mobile_phone)
+                                // console.log(address.address_contract.email)
+                            }
+                        })
+                    });
+
 
             }
             nylonPagesActive() {
