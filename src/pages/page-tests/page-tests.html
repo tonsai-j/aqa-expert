@@ -1,0 +1,27 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../components/nylon-rating/nylon-rating.html">
+
+<dom-module id="page-tests">
+    <template>
+        <style>
+            :host {
+                display: block
+            }
+        </style>
+
+        <div>PageTests</div>
+        <nylon-rating></nylon-rating>
+
+    </template>
+
+    <script>
+        class PageTests extends Polymer.Element {
+
+            static get is() {
+                return 'page-tests';
+            }
+        }
+
+        window.customElements.define(PageTests.is, PageTests);
+    </script>
+</dom-module>
