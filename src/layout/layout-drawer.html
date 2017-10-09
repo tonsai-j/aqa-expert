@@ -157,11 +157,11 @@
                         <div name="menu">
                             <template is="dom-repeat" items={{menuIsUse}} as="sub_title" index-as="main_index">
                                 <div class="title-menu">
-                                    [[_changeTotext(sub_title.page_name)]] ///[[page]]//
+                                    [[_changeTotext(sub_title.page_name)]]
                                 </div>
                                 <iron-selector class="ironmenu" selected="[[page]]" attr-for-selected="name" role="navigation">
                                     <template is="dom-repeat" items={{sub_title.sub_menu}}>
-                                        <paper-icon-item indexmain="[[main_index]],[[index]]" name="[[item.page_name]][[_changeTotext(item.label)]]" href="[[item.href]]"
+                                        <paper-icon-item indexmain="[[main_index]],[[index]]" name="[[item.href]]" href="[[item.href]]"
                                             on-click="_redirect">
                                             <iron-icon icon="[[_changeTotext(item.icon)]]" slot="item-icon"></iron-icon>
                                             [[_changeTotext(item.label)]]
@@ -218,7 +218,7 @@
                             },
                             {
                                 icon: 'assignment',
-                                page: 'profile',
+                                page: 'profile/ข้อมูลพื้นฐาน',
                                 name: 'ข้อมูลส่วนตัว',
                                 sub_title_menu: [
                                     {
@@ -283,10 +283,10 @@
                                                 href: '/profile/ประวัติการประเมิน'
                                             },
                                             {
-                                                page_name: 'page-profile/สาขาเชี่ยวชาญ',
+                                                page_name: 'page-profile/ประวัติการอบรมประกันคุณภาพภายใน',
                                                 icon: 'i18n.menu.profile.icon',
                                                 label: 'i18n.page00.meeting',
-                                                href: '/profile/สาขาเชี่ยวชาญ'
+                                                href: '/profile/ประวัติการอบรมประกันคุณภาพภายใน'
                                             }
                                         ]
                                     },
@@ -344,7 +344,6 @@
                     menuIsUse: {
                         type: Array,
                         value: [],
-                        observer: 'setMenu'
                     },
                     pathName: {
                         type: String,
@@ -364,6 +363,7 @@
                                 // console.log(this.menu[index].sub_title_menu[j].sub_menu[k].href);
                                 if (href === url) {
                                     this.set('menuIsUse', this.menu[index].sub_title_menu)
+                                    this.set('page',this.pathName)
                                     // console.log(this.shadowRoot.querySelectorAll('.ironmenu'));
                                     //     console.log(index,j,k);
                                     //    console.log(href === url); 
@@ -376,21 +376,6 @@
                     }
                     //     console.log(this.menuPage);
                     // console.log(url); 
-                }
-            }
-            setMenu(e) {
-                if (this.pathName !== '/') {
-                    this._debouncer = Polymer.Debouncer.debounce(
-                        this._debouncer, // initially undefined
-                        Polymer.Async.timeOut.after(900),
-                        () => {
-                            let iron = this.shadowRoot.querySelectorAll('.ironmenu')
-                            iron.forEach((element, index) => {
-                                console.log(element);
-                            }, this);
-                            console.log(this.pathName);
-                            // console.log(e);
-                        });
                 }
             }
             ready() {
