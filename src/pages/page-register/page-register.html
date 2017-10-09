@@ -15,6 +15,8 @@
 <link rel="import" href="../../i18n/register/main-i18n.html">
 
 <link rel="import" href="../../components/nylon-input/nylon-input.html">
+<link rel="import" href="../../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../../bower_components/iron-pages/iron-pages.html">
 
 
 <dom-module id="page-register">
@@ -29,6 +31,7 @@
                 top: 50%;
                 text-align: center;
                 line-height: 3em;
+                color: #89BCEB
             }
 
             .container {
@@ -41,10 +44,49 @@
 
             .input {
                 text-align: left;
+               
             }
-            
+            paper-tabs {
+                color:#fff;
+                border:1px solid #4E97D9;
+                --paper-tabs-selection-bar:{
+                    display:none;
+                }
+                /* border: 1 solid #4E97D9; */
+                /* --paper-tabs-selection-bar: {
+                    color: #FFFFFF;
+                    background: #4E97D9;
+                }
+                --paper-tab-content: {
+                    color: #FFFFFF;
+                }
+                --paper-tabs-content:{
+                     border: 1px solid #4E97D9;
+                }
+                --paper-tabs-container: {
+                    color: #FFFFFF;
+                    margin:0px;
+                } */
+                
+                /* --paper-tab-content-unselected: {
+                    color: #4E97D9;
+                    background-color: #FFFFFF;
+                } */
+            }
+
+            paper-tab {
+                --paper-tab-ink: #89BCEB;
+                --paper-tab-content-unselected: {
+                    color:#4E97D9;
+                }
+            }
+
+            paper-tab.iron-selected {
+                color: white;
+                background-color: #4E97D9;
+            }
         </style>
-        <div class="container row center-md center-lg center-sm">
+        <!-- <div class="container row center-md center-lg center-sm">
             <div class="col-lg-5 col-md-8  col-sm-10  col-xs-12">
                 <nylon-panel-card id="panelCard">
                     <div slot="header">
@@ -76,6 +118,96 @@
                             <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp;[[i18n.button.register.label]]
                         </paper-button>
                     </app-toolbar>
+                </nylon-panel-card>
+            </div>
+        </div> -->
+        <div class="container row center-md center-lg center-sm">
+            <div class="col-lg-3 col-md-12  col-sm-3  col-xs-12">
+                <nylon-panel-card id="panelCard">
+                    <div slot="header">
+                        <div class="header">
+                            <h3>AUTOMATED QA</h3>
+                        </div>
+                    </div>
+
+                    <div slot="content" class="middle-md">
+                        <paper-tabs selected={{page}}>
+                            <paper-tab>เข้าสู่ระบบ</paper-tab>
+                            <paper-tab>สมัครผู้ประเมินภายนอก</paper-tab>
+                        </paper-tabs>
+                        <iron-pages selected={{page}}>
+                            <div>
+                                <div class="col-xs-12">
+                                    <nylon-input id="inputTaxNo" class=" input" label=[[i18n.register.user]] value="{{test.user}}" on-keyup="_enter" always-float-label></nylon-input>
+                                </div>
+                                <div class="col-xs-12">
+                                    <nylon-input id="inputTaxNo" class=" input" label=[[i18n.register.password]] value="{{test.password}}" allowed-pattern="[0-9]"
+                                        maxlength="13" on-keyup="_enter" always-float-label></nylon-input>
+                                </div>
+                                <app-toolbar slot="footer">
+                                    <div main-title></div>
+                                    <paper-button raised class="btn-success col-xs-12 row center-md" on-click="_dashboard">
+                                        <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp;[[i18n.button.login.label]]
+                                    </paper-button>
+                                </app-toolbar>
+                            </div>
+                            <div>
+                                <div class="col-xs-12">
+                                    <nylon-input id="inputTaxNo" class="required input" required label="[[i18n.register.taxno]]" value="{{data.taxno}}" allowed-pattern="[0-9]"
+                                        maxlength="13" required on-keyup="_test" always-float-label></nylon-input>
+                                </div>
+                                <div class="col-xs-12">
+                                    <nylon-input id="inputTaxNo" class="required input" required label=[[i18n.register.name]] value="{{data.firstname_th}}" required
+                                        on-keyup="_enter" always-float-label></nylon-input>
+                                </div>
+                                <div class="col-xs-12">
+                                    <nylon-input id="inputTaxNo" class="required input" required label=[[i18n.register.lname]] value="{{data.lastname_th}}" required
+                                        on-keyup="_enter" always-float-label></nylon-input>
+                                </div>
+                                <div class="col-xs-12">
+                                    <nylon-input id="inputTaxNo" class="required input" required label=[[i18n.register.phone]] value="{{data.phone}}" required
+                                        on-keyup="_enter" always-float-label></nylon-input>
+                                </div>
+                                <div class="col-xs-12">
+                                    <nylon-input id="inputTaxNo" class="required input" required label=[[i18n.register.email]] value="{{data.email}}" required
+                                        on-keyup="_enter" always-float-label></nylon-input>
+                                </div>
+                                <div class="col-xs-12">
+                                    <nylon-combo-box id="comboTypeAss" class="required input" required label="[[i18n.register.level]]" items='{{typeAssessor}}'
+                                        value="{{data.type_assessor_id}}" item-label-path="type_assessor_name" item-value-path="id">
+                                        <template>
+                                            [[item.type_assessor_name]]
+                                        </template>
+                                    </nylon-combo-box>
+                                </div>
+                                <!-- <app-toolbar slot="footer"> -->
+                                    <!-- <div main-title></div> -->
+                                <div style="margin:10px"></div>
+                                <paper-button raised class="btn-success col-xs-12 row center-md" on-click="_register">
+                                    <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp;[[i18n.button.register.label]]
+                                </paper-button>
+                                <!-- </app-toolbar> -->
+                            </div>
+                        </iron-pages>
+
+                        <!-- <div class="col-xs-12">
+                            <nylon-combo-box id="comboTypeAss" class="required input" required label="[[i18n.register.level]]" items='{{typeAssessor}}'
+                                value="{{data.type_assessor_id}}" item-label-path="type_assessor_name" item-value-path="id">
+                                <template>
+                                    [[item.type_assessor_name]]
+                                </template>
+                            </nylon-combo-box>
+                        </div> -->
+                    </div>
+                    <!-- <app-toolbar slot="footer">
+                        <div main-title></div>
+                        <paper-button raised class="btn-default" on-click="_clear">
+                            <iron-icon icon="[[i18n.button.reset.icon]]"></iron-icon>&nbsp;[[i18n.button.reset.label]]
+                        </paper-button>
+                        <paper-button raised class="btn-success" on-click="_register">
+                            <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp;[[i18n.button.register.label]]
+                        </paper-button>
+                    </app-toolbar> -->
                 </nylon-panel-card>
             </div>
         </div>
@@ -124,6 +256,11 @@
                     info: {
                         type: Object,
                         statePath: 'register.info'
+                    },
+                    page: {
+                        type: String,
+                        value: '0'
+
                     }
                 };
             }
@@ -131,7 +268,20 @@
                 super.ready();
 
             }
+            _test() {
+                Nylon.dispatch('REGISTER_CHECK_PERSON', this.data.taxno, (data) => {
+                    if (data.length > 0) {
+                        var basic = data[0].basic
+                        var address = data[0].address
+                        this.set('data.firstname_th', basic.firstname_th)
+                        this.set('data.lastname_th', basic.lastname_th)
+                        this.set('data.email', address.address_contract.email)
+                        this.set('data.mobile_phone', address.address_contract.mobile_phone)
+                        console.log(address.address_contract.email)
+                    }
+                })
 
+            }
             nylonPagesActive() {
                 Nylon.dispatch('REGISTER_GET_TYPE_ASSESSOR')
             }
@@ -180,28 +330,28 @@
             checkRegister(taxno) {
                 Nylon.dispatch('REGISTER_CHECK_TAXNO', taxno, (data) => {
                     if (data.length > 0) {
-                        if (this.data.type_assessor_id != data[0].type_assessor_id) {
-                            Nylon.confirm({
-                                title: this.i18n.register.title,
-                                msg: this.i18n.register.warning1 + ' ' + data[0].type_assessor.type_assessor_name + ' ' + this.i18n.register.warning2,
-                                icon: 'warning',
-                                btn: [
-                                    {
-                                        label: this.i18n.button.close.label,
-                                        icon: this.i18n.button.close.icon,
-                                        class: 'btn-default',
-                                        'dialog-dismiss': true,
-                                        action: () => {
-                                            this.$.comboTypeAss.value = data[0].type_assessor_id;
-                                            // this.$.comboTypeAss.disabled = true;
-                                            Nylon.dispatch('REGISTER_POST', this.data)
-                                        }
-                                    }
-                                ]
-                            })
-                        } else {
-                            Nylon.dispatch('REGISTER_POST', this.data)
-                        }
+                        // if (this.data.type_assessor_id != data[0].type_assessor_id) {
+                        //     Nylon.confirm({
+                        //         title: this.i18n.register.title,
+                        //         msg: this.i18n.register.warning1 + ' ' + data[0].type_assessor.type_assessor_name + ' ' + this.i18n.register.warning2,
+                        //         icon: 'warning',
+                        //         btn: [
+                        //             {
+                        //                 label: this.i18n.button.close.label,
+                        //                 icon: this.i18n.button.close.icon,
+                        //                 class: 'btn-default',
+                        //                 'dialog-dismiss': true,
+                        //                 action: () => {
+                        //                     this.$.comboTypeAss.value = data[0].type_assessor_id;
+                        //                     // this.$.comboTypeAss.disabled = true;
+                        //                     Nylon.dispatch('REGISTER_POST', this.data)
+                        //                 }
+                        //             }
+                        //         ]
+                        //     })
+                        // } else {
+                        //     Nylon.dispatch('REGISTER_POST', this.data)
+                        // }
                     } else {
                         Nylon.dispatch('REGISTER_POST', this.data)
                     }
