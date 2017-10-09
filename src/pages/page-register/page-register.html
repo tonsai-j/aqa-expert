@@ -121,7 +121,7 @@
             </div>
         </div> -->
         <div class="container row center-md center-lg center-sm">
-            <div class="col-lg-3 col-md-12  col-sm-3  col-xs-12">
+            <div class="col-lg-4 col-md-12  col-sm-3  col-xs-12">
                 <nylon-panel-card id="panelCard">
                     <div slot="header">
                         <div class="header">
@@ -131,8 +131,8 @@
 
                     <div slot="content" class="middle-md">
                         <paper-tabs selected={{page}}>
-                            <paper-tab>เข้าสู่ระบบ</paper-tab>
-                            <paper-tab>สมัครผู้ประเมินภายนอก</paper-tab>
+                            <paper-tab>[[i18n.register.login]]</paper-tab>
+                            <paper-tab>[[i18n.register.title]]</paper-tab>
                         </paper-tabs>
                         <iron-pages selected={{page}}>
                             <div>
@@ -143,12 +143,13 @@
                                     <nylon-input id="inputTaxNo" class=" input" label=[[i18n.register.password]] value="{{test.password}}" allowed-pattern="[0-9]"
                                         maxlength="13" on-keyup="_enter" always-float-label></nylon-input>
                                 </div>
-                                <app-toolbar slot="footer">
-                                    <div main-title></div>
+                                <!-- <app-toolbar slot="footer">
+                                    <div main-title></div> -->
+                                    <div style="margin:20px"></div>
                                     <paper-button raised class="btn-success col-xs-12 row center-md" on-click="_dashboard">
                                         <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp;[[i18n.button.login.label]]
                                     </paper-button>
-                                </app-toolbar>
+                                <!-- </app-toolbar> -->
                             </div>
                             <div>
                                 <div class="col-xs-12">
@@ -164,7 +165,7 @@
                                         on-keyup="_enter" always-float-label></nylon-input>
                                 </div>
                                 <div class="col-xs-12">
-                                    <nylon-input id="inputTaxNo" class="required input" required label=[[i18n.register.phone]] value="{{data.phone}}" required
+                                    <nylon-input id="inputTaxNo" class="required input" required label=[[i18n.register.phone]] value="{{data.mobile_phone}}" required
                                         on-keyup="_enter" always-float-label></nylon-input>
                                 </div>
                                 <div class="col-xs-12">
@@ -181,7 +182,7 @@
                                 </div>
                                 <!-- <app-toolbar slot="footer"> -->
                                 <!-- <div main-title></div> -->
-                                <div style="margin:10px"></div>
+                                <div style="margin:20px"></div>
                                 <paper-button raised class="btn-success col-xs-12 row center-md" on-click="_register">
                                     <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp;[[i18n.button.register.label]]
                                 </paper-button>
