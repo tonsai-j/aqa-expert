@@ -6,6 +6,8 @@
 <link rel="import" href="../../components/nylon-panel-card/nylon-panel-card.html">
 <link rel="import" href="../../components/nylon-c3/nylon-c3.html">
 
+<link rel="import" href="../../redux-mixin.html">
+<link rel="import" href="../../redux/dashboard/dashboard-redux.html">
 <link rel="import" href="../../layout/shared-styles.html">
 
 
@@ -13,7 +15,7 @@
 <dom-module id="page-dashboard">
   <template>
     <style include="shared-styles">
-       :host {
+      :host {
         display: block;
       }
 
@@ -27,8 +29,7 @@
     </style>
 
     <div class="container">
-      <div class="row">
-
+      <div class="row user">
         <div class="col-xs-4">
           <nylon-panel-card>
             <app-toolbar slot="header">
@@ -46,13 +47,13 @@
           </nylon-panel-card>
         </div>
         <div class="col-xs-3">
-            <nylon-panel-card>
-              <app-toolbar slot="header">
-                <div main-title>โครงการนวัตกรรม / สิ่งประดิษฐ์</div>
-              </app-toolbar>
-              <nylon-c3 slot="content" id="chart3"></nylon-c3>
-            </nylon-panel-card>
-          </div>
+          <nylon-panel-card>
+            <app-toolbar slot="header">
+              <div main-title>โครงการนวัตกรรม / สิ่งประดิษฐ์</div>
+            </app-toolbar>
+            <nylon-c3 slot="content" id="chart3"></nylon-c3>
+          </nylon-panel-card>
+        </div>
         <div class="col-xs-4">
           <nylon-panel-card>
             <app-toolbar slot="header">
@@ -63,109 +64,290 @@
         </div>
 
         <div class="col-xs-8">
-            <nylon-panel-card>
-              <app-toolbar slot="header">
-                <div main-title>ผู้เรียนที่ผ่านการประเมินสมรรถนะ ตามมาตราฐานวิชาชีพ</div>
-              </app-toolbar>
-              <vaadin-grid id="chart5" slot="content" sub-slot="grid">
-                  <vaadin-grid-column width="360px">
-                      <template class="header">&nbsp;</template>
-                      <template> [[item.name]] </template>
-                  </vaadin-grid-column>
-                  <vaadin-grid-column>
-                      <template class="header">ปวช.</template>
-                      <template> [[item.edu1]] </template>
-                  </vaadin-grid-column>
-                  <vaadin-grid-column>
-                      <template class="header">ปวส.</template>
-                      <template> [[item.edu2]] </template>
-                  </vaadin-grid-column>
-              </vaadin-grid>
-            </nylon-panel-card>
-          </div>
+          <nylon-panel-card>
+            <app-toolbar slot="header">
+              <div main-title>ผู้เรียนที่ผ่านการประเมินสมรรถนะ ตามมาตราฐานวิชาชีพ</div>
+            </app-toolbar>
+            <vaadin-grid id="chart5" slot="content" sub-slot="grid">
+              <vaadin-grid-column width="360px">
+                <template class="header">&nbsp;</template>
+                <template> [[item.name]] </template>
+              </vaadin-grid-column>
+              <vaadin-grid-column>
+                <template class="header">ปวช.</template>
+                <template> [[item.price]] </template>
+              </vaadin-grid-column>
+              <vaadin-grid-column>
+                <template class="header">ปวส.</template>
+                <template> [[item.edu2]] </template>
+              </vaadin-grid-column>
+            </vaadin-grid>
+          </nylon-panel-card>
+        </div>
       </div>
+    </div>
 
+    <div class="container">
+      <div class="row admin">
+        <div class="col-xs-4 ">
+          <nylon-panel-card>
+            <app-toolbar slot="header">
+              <div main-title>ค่าใช้จ่ายโดยรวม</div>
+            </app-toolbar>
+            <nylon-c3 slot="content" id="chart_1"></nylon-c3>
+          </nylon-panel-card>
+        </div>
+        <!--        <div class="col-xs-5 ">
+          <nylon-panel-card>
+            <app-toolbar slot="header">
+              <div main-title>จำนวนผู้เข้าอบรม</div>
+            </app-toolbar>
+            <nylon-c3 slot="content" id="chart2_1"></nylon-c3>
+          </nylon-panel-card>
+        </div>
+        <div class="col-xs-3">
+          <nylon-panel-card>
+            <app-toolbar slot="header">
+              <div main-title>โครงการนวัตกรรม / สิ่งประดิษฐ์</div>
+            </app-toolbar>
+            <nylon-c3 slot="content" id="chart3_1"></nylon-c3>
+          </nylon-panel-card>
+        </div>
+        <div class="col-xs-4">
+          <nylon-panel-card>
+            <app-toolbar slot="header">
+              <div main-title>ผลการประเมินตนเอง (SAR)</div>
+            </app-toolbar>
+            <nylon-c3 slot="content" id="chart4_1"></nylon-c3>
+          </nylon-panel-card>
+        </div>-->
+
+        <div class="col-xs-8">
+          <nylon-panel-card>
+            <app-toolbar slot="header">
+              <div main-title>ค่าใช้จ่ายโดยรวม</div>
+            </app-toolbar>
+            <vaadin-grid id="chart5_1" slot="content" sub-slot="grid">
+              <vaadin-grid-column width="360px">
+                <template class="header">&nbsp;</template>
+                <template> [[item.name]] </template>
+              </vaadin-grid-column>
+              <vaadin-grid-column>
+                <template class="header">จำนวนเงิน</template>
+                <template> [[item.price]] </template>
+              </vaadin-grid-column>
+              <vaadin-grid-column>
+                <template class="header">จำนวน</template>
+                <template> [[item.amount]] </template>
+              </vaadin-grid-column>
+            </vaadin-grid>
+          </nylon-panel-card>
+        </div>
+
+
+
+        <div class="col-xs-8">
+          <nylon-panel-card>
+            <app-toolbar slot="header">
+              <div main-title>การเข้าอบรม</div>
+            </app-toolbar>
+            <vaadin-grid id="chart3_1" slot="content" sub-slot="grid">
+              <vaadin-grid-column width="360px">
+                <template class="header">หัวข้อการเข้าอบรม</template>
+                <template> [[item.name]] </template>
+              </vaadin-grid-column>
+              <vaadin-grid-column>
+                <template class="header">โครงการ</template>
+                <template> [[item.price]] </template>
+              </vaadin-grid-column>
+              <vaadin-grid-column>
+                <template class="header">จำนวนผู้เข้าอบรม</template>
+                <template> [[item.amount]] </template>
+              </vaadin-grid-column>
+            </vaadin-grid>
+          </nylon-panel-card>
+        </div>
+      </div>
     </div>
   </template>
 
   <script>
-    class PageDashboard extends Polymer.Element {
+    class PageDashboard extends ReduxMixin(Polymer.Element) {
       static get is() { return 'page-dashboard' }
+      static get properties() {
+        return {
+          role: {
+            type: String,
+            value: 'admin'
+          },
+          expenses: {
+            type: Object,
+            statePath: 'dashboard.expenses',
+            observer: 'expenses_change'
+          }
+        }
+
+      }
       connectedCallback() {
         super.connectedCallback()
 
-        this.$.chart.generate({
-          data: {
-            columns: [
-              ['ได้ทำงานในสาขาวิชาที่เกี่ยวข้อง', 26],
-              ['ศึกษาในสาขาวิชาที่เกี่ยวข้อง', 53],
-              ['ประกอบอาชีพอิสระ', 15],
-              ['อื่นๆ', 6],
-            ],
-            type: 'pie'
-          },
-          size: {
-            height: 250
-          }
-        })
 
-        this.$.chart2.generate({
-          data: {
-            columns: [
-              ['ภาพรวม', 9],
-              ['อุตสาหกรรม', 17],
-              ['พาณิชยากรรม / บริหารธุรกิจ', 13],
-              ['ประมง', 4],
-              ['ศิลปะกรรม', 7],
-              ['คหกรรม', 10],
-              ['เกษตรกรรม', 8],
-              ['อุตสาหกรรมการท่องเที่ยว', 10],
-              ['อุตสาหกรรมสิ่งทอ', 6],
-              ['เทคโนโลยีสารสนเทศและการศึกษา', 12]
-            ],
-            type: 'bar'
-          },
-          size: {
-            height: 250
-          }
-        })
+        if (this.role == 'admin') {
+          console.log('admin')
+          Nylon.dispatch('DASHBOARD_GET_EXPENSES')
+          this.shadowRoot.querySelector('.user').style.display = 'none'
+          
+          
+          // this.$.chart2_1.generate({
+          //   data: {
+          //     columns: [
+          //       ['ภาพรวม', 9],
+          //       ['อุตสาหกรรม', 17],
+          //       ['พาณิชยากรรม / บริหารธุรกิจ', 13],
+          //       ['ประมง', 4],
+          //       ['ศิลปะกรรม', 7],
+          //       ['คหกรรม', 10],
+          //       ['เกษตรกรรม', 8],
+          //       ['อุตสาหกรรมการท่องเที่ยว', 10],
+          //       ['อุตสาหกรรมสิ่งทอ', 6],
+          //       ['เทคโนโลยีสารสนเทศและการศึกษา', 12]
+          //     ],
+          //     type: 'bar'
+          //   },
+          //   size: {
+          //     height: 250
+          //   }
+          // })
 
-        this.$.chart3.generate({
-          data: {
-            columns: [
-              ['ครู', 4],
-              ['ปวช', 11],
-              ['ปวส', 6],
-            ],
-            type: 'donut',
-            donut: {
-              title: "xxx"
+          // this.$.chart3_1.generate({
+          //   data: {
+          //     columns: [
+          //       ['ครู', 4],
+          //       ['ปวช', 11],
+          //       ['ปวส', 6],
+          //     ],
+          //     type: 'donut',
+          //     donut: {
+          //       title: "xxx"
+          //     }
+          //   },
+          //   size: {
+          //     height: 250
+          //   }
+          // })
+
+          // this.$.chart4_1.generate({
+          //   data: {
+          //     columns: [
+          //       ['ปีการศึกษา 2559', 3, 4, 3, 2],
+          //       ['ปีการศึกษา 2560', 3, 3, 5, 3],
+          //     ],
+          //     type: 'line'
+          //   },
+          //   size: {
+          //     height: 200
+          //   }
+          // })
+
+
+
+
+        } else if (this.role == 'user') {
+          Nylon.dispatch('DASHBOARD_GET_EXPENSES')
+          console.log('user')
+          this.shadowRoot.querySelector('.admin').style.display = 'none'
+
+          // this.$.chart2.generate({
+          //   data: {
+          //     columns: [
+          //       ['ภาพรวม', 9],
+          //       ['อุตสาหกรรม', 17],
+          //       ['พาณิชยากรรม / บริหารธุรกิจ', 13],
+          //       ['ประมง', 4],
+          //       ['ศิลปะกรรม', 7],
+          //       ['คหกรรม', 10],
+          //       ['เกษตรกรรม', 8],
+          //       ['อุตสาหกรรมการท่องเที่ยว', 10],
+          //       ['อุตสาหกรรมสิ่งทอ', 6],
+          //       ['เทคโนโลยีสารสนเทศและการศึกษา', 12]
+          //     ],
+          //     type: 'bar'
+          //   },
+          //   size: {
+          //     height: 250
+          //   }
+          // })
+
+          // this.$.chart3.generate({
+          //   data: {
+          //     columns: [
+          //       ['ครู', 4],
+          //       ['ปวช', 11],
+          //       ['ปวส', 6],
+          //     ],
+          //     type: 'donut',
+          //     donut: {
+          //       title: "xxx"
+          //     }
+          //   },
+          //   size: {
+          //     height: 250
+          //   }
+          // })
+
+          // this.$.chart4.generate({
+          //   data: {
+          //     columns: [
+          //       ['ปีการศึกษา 2559', 3, 4, 3, 2],
+          //       ['ปีการศึกษา 2560', 3, 3, 5, 3],
+          //     ],
+          //     type: 'line'
+          //   },
+          //   size: {
+          //     height: 200
+          //   }
+          // })
+
+          // this.$.chart5.items = [
+          //   { name: 'จำนวนนักเรียนทั้งหมดที่มีสิทธิ์สอบ', edu1: '234', edu2: '124' },
+          //   { name: 'จำนวนผู้เรียนที่เข้าสอบ', edu1: '208', edu2: '140' },
+          //   { name: 'จำนวนผู้เรียนที่สอบผ่านในครั้งแรก', edu1: '106', edu2: '61' },
+          //   { name: 'ร้อยละของผู้สอบผ่านในครั้งแรกต่อผู้เรียนทั้งหมดที่มีสิทธิ์สอบ', edu1: '45.30%', edu2: '42.96%' }
+          // ]
+        }
+      }
+
+      expenses_change(e) {
+        console.log(e)
+
+        var columns = []
+        var expenses_list = []
+
+        for (var i in e) {
+          if (e[i].amount != 0) {
+            columns.push([e[i].group_expenses_name, Number(e[i].percentage.toFixed(2))])
+
+          }
+          expenses_list.push({
+              name: e[i].group_expenses_name, 
+              percentage: Number(e[i].percentage.toFixed(2)),
+              price: e[i].price,
+              amount: e[i].amount
+              })
+        }
+        this.$.chart_1.generate({
+            data: {
+              columns,
+              type: 'pie'
+            },
+            size: {
+              height: 250
             }
-          },
-          size: {
-            height: 250
-          }
-        })
+          })
 
-        this.$.chart4.generate({
-          data: {
-            columns: [
-              ['ปีการศึกษา 2559', 3, 4, 3, 2],
-              ['ปีการศึกษา 2560', 3, 3, 5, 3],
-            ],
-            type: 'line'
-          },
-          size: {
-            height: 200
-          }
-        })
-
-        this.$.chart5.items = [
-          {name:'จำนวนนักเรียนทั้งหมดที่มีสิทธิ์สอบ',edu1:'234',edu2:'124'},
-          {name:'จำนวนผู้เรียนที่เข้าสอบ',edu1:'208',edu2:'140'},
-          {name:'จำนวนผู้เรียนที่สอบผ่านในครั้งแรก',edu1:'106',edu2:'61'},
-          {name:'ร้อยละของผู้สอบผ่านในครั้งแรกต่อผู้เรียนทั้งหมดที่มีสิทธิ์สอบ',edu1:'45.30%',edu2:'42.96%'}
-        ]
+          this.$.chart5_1.items = expenses_list
+          
+          console.log(expenses_list)
 
       }
     }
