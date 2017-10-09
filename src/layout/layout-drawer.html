@@ -16,7 +16,7 @@
 <link rel="import" href="./nylon-cschatthai-font.html">
 <link rel="import" href="./nylon-mitr-font.html">
 
-
+<link rel="import" href="../i18n/profile/page-00-i18n.html">
 <link rel="import" href="../redux-mixin.html">
 <link rel="import" href="../i18n/menu-i18n.html">
 <link rel="import" href="../my-icons.html">
@@ -141,7 +141,7 @@
                     <iron-pages selected="{{menuPage}}" attr-for-selected="name">
                         <div name="main">
                             <!-- <div class="row"> -->
-                            <iron-selector class="testsssss" selected="[[page]]" attr-for-selected="name" role="navigation">
+                            <iron-selector selected="[[page]]" attr-for-selected="name" role="navigation">
                                 <template is="dom-repeat" items={{menu}}>
                                     <!-- <div class="col-md-6 borderz icon-page row middle-md center-md" name="{{item.page}}" on-tap="changeToMenu">
                                         <iron-icon icon="{{item.icon}}" class="icon-menu"></iron-icon>
@@ -159,9 +159,9 @@
                                 <div class="title-menu">
                                     [[_changeTotext(sub_title.page_name)]]
                                 </div>
-                                <iron-selector class="testsssss" selected="[[page]]" attr-for-selected="name" role="navigation">
+                                <iron-selector class="ironmenu" selected="[[page]]" attr-for-selected="name" role="navigation">
                                     <template is="dom-repeat" items={{sub_title.sub_menu}}>
-                                        <paper-icon-item indexmain="[[main_index]],[[index]]" name="[[item.page_name]][[_changeTotext(item.label)]] " href="[[item.href]]"
+                                        <paper-icon-item indexmain="[[main_index]],[[index]]" name="[[item.href]]" href="[[item.href]]"
                                             on-click="_redirect">
                                             <iron-icon icon="[[_changeTotext(item.icon)]]" slot="item-icon"></iron-icon>
                                             [[_changeTotext(item.label)]]
@@ -218,7 +218,7 @@
                             },
                             {
                                 icon: 'assignment',
-                                page: 'profile',
+                                page: 'profile/ข้อมูลพื้นฐาน',
                                 name: 'ข้อมูลส่วนตัว',
                                 sub_title_menu: [
                                     {
@@ -283,10 +283,10 @@
                                                 href: '/profile/ประวัติการประเมิน'
                                             },
                                             {
-                                                page_name: 'page-profile/สาขาเชี่ยวชาญ',
+                                                page_name: 'page-profile/ประวัติการอบรมประกันคุณภาพภายใน',
                                                 icon: 'i18n.menu.profile.icon',
                                                 label: 'i18n.page00.meeting',
-                                                href: '/profile/สาขาเชี่ยวชาญ'
+                                                href: '/profile/ประวัติการอบรมประกันคุณภาพภายใน'
                                             }
                                         ]
                                     },
@@ -323,7 +323,7 @@
                             },
                             {
                                 icon: 'account-box',
-                                page: 'approve',
+                                page: '/approve',
                                 name: 'อนุมัติผู้ประเมิน',
                                 sub_title_menu: [
                                     {
@@ -333,7 +333,7 @@
                                                 page_name: 'page-profile',
                                                 icon: 'i18n.menu.approve.icon',
                                                 label: 'i18n.menu.approve.label',
-                                                href: 'approve'
+                                                href: '/approve'
                                             }
                                         ]
                                     }
@@ -343,31 +343,40 @@
                     },
                     menuIsUse: {
                         type: Array,
-                        value: []
+                        value: [],
                     },
                     pathName: {
                         type: String,
-                        value: "/",
                         observer: 'getUrl'
                     }
                 }
             }
 
             getUrl(url) {
-                // if (url !== '/') {
-                //     this.set('menuPage','menu')
-                    
-                //     for (var index = 0; index < this.menu.length; index++) {
-                //         for (var i = 0; i < sub_title_menu.length; i++) {
-                //             array[i]
-                //         }
-                //         console.log(this.menu[index]);
-                        
-                //     }
-                // //     console.log(this.menuPage);
-                // // console.log(url); 
-                // }
-               
+                // console.log(url);
+                if (url !== '/') {
+                    this.set('menuPage', 'menu')
+                    for (var index = 0; index < this.menu.length; index++) {
+                        for (var j = 0; j < this.menu[index].sub_title_menu.length; j++) {
+                            for (var k = 0; k < this.menu[index].sub_title_menu[j].sub_menu.length; k++) {
+                                let href = this.menu[index].sub_title_menu[j].sub_menu[k].href
+                                // console.log(this.menu[index].sub_title_menu[j].sub_menu[k].href);
+                                if (href === url) {
+                                    this.set('menuIsUse', this.menu[index].sub_title_menu)
+                                    this.set('page',this.pathName)
+                                    // console.log(this.shadowRoot.querySelectorAll('.ironmenu'));
+                                    //     console.log(index,j,k);
+                                    //    console.log(href === url); 
+                                }
+                                // console.log(href === url);
+                            }
+                        }
+                        // console.log(this.menu[index]);
+
+                    }
+                    //     console.log(this.menuPage);
+                    // console.log(url); 
+                }
             }
             ready() {
                 super.ready()
@@ -379,7 +388,7 @@
             }
 
             _redirect(e) {
-                let iron = this.shadowRoot.querySelectorAll('.testsssss')
+                let iron = this.shadowRoot.querySelectorAll('.ironmenu')
                 // console.log(iron);
                 let withOut = e.currentTarget.indexmain
                 let indexMain = withOut.split(',')[0]
@@ -420,7 +429,15 @@
             _changeTotext(text) {
                 if (text !== undefined) {
                     let texts = text.split('.')
-                    // return this[text]
+                    // let i18n = text.split('.').shift()
+                    // // console.log(texts.shift());
+                    // let textss = texts.join('.')
+                    // console.log(textss);
+                    // // console.log(this.i18n[textss]);
+                    // // console.log(texts.shift());
+                    // // return this[text]
+                    // console.log(texts);
+                    // console.log(this[texts[0]]);
                     switch (texts.length) {
                         case 2:
                             return this[texts[0]][texts[1]]
