@@ -20,10 +20,12 @@
     "build:dev": "polymer build"
   },
   "dependencies": {
+    "jsonwebtoken": "^8.0.1",
     "multiparty": "^4.1.3",
     "numeral": "^2.0.6",
     "redux": "^3.7.1",
     "redux-thunk": "^2.2.0",
+    "sha1": "^1.1.1",
     "xlsx": "^0.11.3"
   }
 }
