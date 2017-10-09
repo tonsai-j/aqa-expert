@@ -17,7 +17,7 @@
 <link rel="import" href="../../components/nylon-input/nylon-input.html">
 <link rel="import" href="../../../bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="../../../bower_components/iron-pages/iron-pages.html">
-
+<link rel="import" href="../../redux/profile/profile-redux.html">
 
 <dom-module id="page-register">
     <template>
@@ -330,28 +330,31 @@
             checkRegister(taxno) {
                 Nylon.dispatch('REGISTER_CHECK_TAXNO', taxno, (data) => {
                     if (data.length > 0) {
-                        // if (this.data.type_assessor_id != data[0].type_assessor_id) {
-                        //     Nylon.confirm({
-                        //         title: this.i18n.register.title,
-                        //         msg: this.i18n.register.warning1 + ' ' + data[0].type_assessor.type_assessor_name + ' ' + this.i18n.register.warning2,
-                        //         icon: 'warning',
-                        //         btn: [
-                        //             {
-                        //                 label: this.i18n.button.close.label,
-                        //                 icon: this.i18n.button.close.icon,
-                        //                 class: 'btn-default',
-                        //                 'dialog-dismiss': true,
-                        //                 action: () => {
-                        //                     this.$.comboTypeAss.value = data[0].type_assessor_id;
-                        //                     // this.$.comboTypeAss.disabled = true;
-                        //                     Nylon.dispatch('REGISTER_POST', this.data)
-                        //                 }
-                        //             }
-                        //         ]
-                        //     })
-                        // } else {
-                        //     Nylon.dispatch('REGISTER_POST', this.data)
-                        // }
+                        console.log(11111);
+                        if (this.data.type_assessor_id != data[0].type_assessor_id) {
+                            console.log(33333333);
+                            Nylon.confirm({
+                                title: this.i18n.register.title,
+                                msg: this.i18n.register.warning1 + ' ' + data[0].type_assessor.type_assessor_name + ' ' + this.i18n.register.warning2,
+                                icon: 'warning',
+                                btn: [
+                                    {
+                                        label: this.i18n.button.close.label,
+                                        icon: this.i18n.button.close.icon,
+                                        class: 'btn-default',
+                                        'dialog-dismiss': true,
+                                        action: () => {
+                                            this.$.comboTypeAss.value = data[0].type_assessor_id;
+                                            // this.$.comboTypeAss.disabled = true;
+                                            Nylon.dispatch('REGISTER_POST', this.data)
+                                        }
+                                    }
+                                ]
+                            })
+                        } else {
+                            console.log(2222);
+                            Nylon.dispatch('REGISTER_POST', this.data)
+                        }
                     } else {
                         Nylon.dispatch('REGISTER_POST', this.data)
                     }
