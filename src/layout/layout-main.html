@@ -101,7 +101,7 @@
         <app-drawer-layout>
             <!-- -->
             <app-drawer class="page" slot="drawer">
-                <layout-drawer id="layoutDrawer"></layout-drawer>
+                <layout-drawer id="layoutDrawer" path-name="[[pathName]]"></layout-drawer>
             </app-drawer>
             <app-header-layout>
 
@@ -166,6 +166,10 @@
                     progressEnable: Boolean,
                     progressIndeterminate: Boolean,
                     progressValue: Number,
+                    pathName: {
+                        type: String,
+                        value: "/"
+                    }
 
                 };
             }
