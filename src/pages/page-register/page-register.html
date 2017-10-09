@@ -44,13 +44,13 @@
 
             .input {
                 text-align: left;
-               
             }
+
             paper-tabs {
-                color:#fff;
-                border:1px solid #4E97D9;
-                --paper-tabs-selection-bar:{
-                    display:none;
+                color: #fff;
+                border: 1px solid #4E97D9;
+                --paper-tabs-selection-bar: {
+                    display: none;
                 }
                 /* border: 1 solid #4E97D9; */
                 /* --paper-tabs-selection-bar: {
@@ -67,7 +67,6 @@
                     color: #FFFFFF;
                     margin:0px;
                 } */
-                
                 /* --paper-tab-content-unselected: {
                     color: #4E97D9;
                     background-color: #FFFFFF;
@@ -77,7 +76,7 @@
             paper-tab {
                 --paper-tab-ink: #89BCEB;
                 --paper-tab-content-unselected: {
-                    color:#4E97D9;
+                    color: #4E97D9;
                 }
             }
 
@@ -122,7 +121,7 @@
             </div>
         </div> -->
         <div class="container row center-md center-lg center-sm">
-            <div class="col-lg-3 col-md-12  col-sm-3  col-xs-12">
+            <div class="col-lg-4 col-md-12  col-sm-3  col-xs-12">
                 <nylon-panel-card id="panelCard">
                     <div slot="header">
                         <div class="header">
@@ -132,45 +131,46 @@
 
                     <div slot="content" class="middle-md">
                         <paper-tabs selected={{page}}>
-                            <paper-tab>เข้าสู่ระบบ</paper-tab>
-                            <paper-tab>สมัครผู้ประเมินภายนอก</paper-tab>
+                            <paper-tab>[[i18n.register.login]]</paper-tab>
+                            <paper-tab>[[i18n.register.title]]</paper-tab>
                         </paper-tabs>
                         <iron-pages selected={{page}}>
                             <div>
                                 <div class="col-xs-12">
-                                    <nylon-input id="inputTaxNo" class=" input" label=[[i18n.register.user]] value="{{test.user}}" on-keyup="_enter" always-float-label></nylon-input>
+                                    <nylon-input class=" input" label=[[i18n.register.user]] value="{{test.user}}" on-keyup="_enter" always-float-label></nylon-input>
                                 </div>
                                 <div class="col-xs-12">
-                                    <nylon-input id="inputTaxNo" class=" input" label=[[i18n.register.password]] value="{{test.password}}" allowed-pattern="[0-9]"
-                                        maxlength="13" on-keyup="_enter" always-float-label></nylon-input>
+                                    <nylon-input class=" input" label=[[i18n.register.password]] value="{{test.password}}" allowed-pattern="[0-9]" maxlength="13"
+                                        on-keyup="_enter" always-float-label></nylon-input>
                                 </div>
-                                <app-toolbar slot="footer">
-                                    <div main-title></div>
-                                    <paper-button raised class="btn-success col-xs-12 row center-md" on-click="_dashboard">
-                                        <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp;[[i18n.button.login.label]]
-                                    </paper-button>
-                                </app-toolbar>
+                                <!-- <app-toolbar slot="footer">
+                                    <div main-title></div> -->
+                                <div style="margin:20px"></div>
+                                <paper-button raised class="btn-success col-xs-12 row center-md" on-click="_dashboard">
+                                    <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp;[[i18n.button.login.label]]
+                                </paper-button>
+                                <!-- </app-toolbar> -->
                             </div>
                             <div>
                                 <div class="col-xs-12">
-                                    <nylon-input id="inputTaxNo" class="required input" required label="[[i18n.register.taxno]]" value="{{data.taxno}}" allowed-pattern="[0-9]"
-                                        maxlength="13" required on-keyup="_test" always-float-label></nylon-input>
+                                    <nylon-input id="inputTaxNo" class="required input" required label="[[i18n.register.taxno]]" value="{{data.taxno}}" pattern="^(\d{13})?$"
+                                        required on-keyup="autoFill" always-float-label></nylon-input>
                                 </div>
                                 <div class="col-xs-12">
-                                    <nylon-input id="inputTaxNo" class="required input" required label=[[i18n.register.name]] value="{{data.firstname_th}}" required
-                                        on-keyup="_enter" always-float-label></nylon-input>
+                                    <nylon-input class="required input" required label=[[i18n.register.name]] value="{{data.basic.firstname_th}}" required on-keyup="_enter"
+                                        always-float-label></nylon-input>
                                 </div>
                                 <div class="col-xs-12">
-                                    <nylon-input id="inputTaxNo" class="required input" required label=[[i18n.register.lname]] value="{{data.lastname_th}}" required
-                                        on-keyup="_enter" always-float-label></nylon-input>
+                                    <nylon-input class="required input" required label=[[i18n.register.lname]] value="{{data.basic.lastname_th}}" required on-keyup="_enter"
+                                        always-float-label></nylon-input>
                                 </div>
                                 <div class="col-xs-12">
-                                    <nylon-input id="inputTaxNo" class="required input" required label=[[i18n.register.phone]] value="{{data.phone}}" required
-                                        on-keyup="_enter" always-float-label></nylon-input>
+                                    <nylon-input class="required input" required label=[[i18n.register.phone]] value="{{data.address.address_contract.mobile_phone}}"
+                                        required on-keyup="_enter" always-float-label></nylon-input>
                                 </div>
                                 <div class="col-xs-12">
-                                    <nylon-input id="inputTaxNo" class="required input" required label=[[i18n.register.email]] value="{{data.email}}" required
-                                        on-keyup="_enter" always-float-label></nylon-input>
+                                    <nylon-input class="required input" required label=[[i18n.register.email]] value="{{data.address.address_contract.email}}"
+                                        required on-keyup="_enter" always-float-label></nylon-input>
                                 </div>
                                 <div class="col-xs-12">
                                     <nylon-combo-box id="comboTypeAss" class="required input" required label="[[i18n.register.level]]" items='{{typeAssessor}}'
@@ -181,33 +181,15 @@
                                     </nylon-combo-box>
                                 </div>
                                 <!-- <app-toolbar slot="footer"> -->
-                                    <!-- <div main-title></div> -->
-                                <div style="margin:10px"></div>
+                                <!-- <div main-title></div> -->
+                                <div style="margin:20px"></div>
                                 <paper-button raised class="btn-success col-xs-12 row center-md" on-click="_register">
                                     <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp;[[i18n.button.register.label]]
                                 </paper-button>
                                 <!-- </app-toolbar> -->
                             </div>
                         </iron-pages>
-
-                        <!-- <div class="col-xs-12">
-                            <nylon-combo-box id="comboTypeAss" class="required input" required label="[[i18n.register.level]]" items='{{typeAssessor}}'
-                                value="{{data.type_assessor_id}}" item-label-path="type_assessor_name" item-value-path="id">
-                                <template>
-                                    [[item.type_assessor_name]]
-                                </template>
-                            </nylon-combo-box>
-                        </div> -->
                     </div>
-                    <!-- <app-toolbar slot="footer">
-                        <div main-title></div>
-                        <paper-button raised class="btn-default" on-click="_clear">
-                            <iron-icon icon="[[i18n.button.reset.icon]]"></iron-icon>&nbsp;[[i18n.button.reset.label]]
-                        </paper-button>
-                        <paper-button raised class="btn-success" on-click="_register">
-                            <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp;[[i18n.button.register.label]]
-                        </paper-button>
-                    </app-toolbar> -->
                 </nylon-panel-card>
             </div>
         </div>
@@ -247,7 +229,17 @@
                         type: Object,
                         value: {
                             taxno: '',
-                            type_assessor_id: 1
+                            type_assessor_id: 1,
+                            basic: {
+                                firstname_th: '',
+                                lastname_th: ''
+                            },
+                            address: {
+                                address_contract: {
+                                    email: '',
+                                    mobile_phone: ''
+                                }
+                            }
                         }
                     },
                     isCard: {
@@ -268,19 +260,32 @@
                 super.ready();
 
             }
-            _test() {
-                Nylon.dispatch('REGISTER_CHECK_PERSON', this.data.taxno, (data) => {
-                    if (data.length > 0) {
-                        var basic = data[0].basic
-                        var address = data[0].address
-                        this.set('data.firstname_th', basic.firstname_th)
-                        this.set('data.lastname_th', basic.lastname_th)
-                        this.set('data.email', address.address_contract.email)
-                        this.set('data.mobile_phone', address.address_contract.mobile_phone)
-                        // console.log(address.address_contract.email)
-                    }
-                })
-
+            autoFill() {
+                if (this.checkPersonID(this.data.taxno)) {
+                    this._debouncer = Polymer.Debouncer.debounce(
+                        this._debouncer, // initially undefined
+                        Polymer.Async.timeOut.after(900),
+                        () => {
+                            Nylon.dispatch('REGISTER_CHECK_TAXNO', this.data.taxno, (data) => {
+                                if (data.length > 0) {
+                                    this.$.inputTaxNo.validate(true);
+                                    var basic = data[0].basic
+                                    var address = data[0].address
+                                    this.set('data.basic.firstname_th', basic.firstname_th)
+                                    this.set('data.basic.lastname_th', basic.lastname_th)
+                                    this.set('data.address.address_contract.email', address.address_contract.email)
+                                    this.set('data.address.address_contract.mobile_phone', address.address_contract.mobile_phone)
+                                } else {
+                                    this.set('data.basic.firstname_th', '')
+                                    this.set('data.basic.lastname_th', '')
+                                    this.set('data.address.address_contract.email', '')
+                                    this.set('data.address.address_contract.mobile_phone', '')
+                                }
+                            })
+                        });
+                } else {
+                    this.$.inputTaxNo.validate(false);
+                }
             }
             nylonPagesActive() {
                 Nylon.dispatch('REGISTER_GET_TYPE_ASSESSOR')
@@ -295,44 +300,63 @@
                 this.$.comboTypeAss.disabled = false;
             }
             _register(e) {
-                if (this.data.taxno == '') {
-                    Nylon.dispatch('REGISTER_READER_CARD', () => {
-                        if (this.isCard) {
-                            this.set('data', {
-                                taxno: this.info.card_id,
-                                basic: this.info,
-                                type_assessor_id: this.data.type_assessor_id
-                            });
-                        }
-                        if (this.validateForm('.required')) {
-                            this.checkRegister(this.info.card_id)
-                            // Nylon.dispatch('REGISTER_CHECK_TAXNO', this.info.card_id);
-                            // Nylon.dispatch('REGISTER_POST', this.data)
-                        } else {
-                            Nylon.toast('required')
-                        }
-                    });
-                } else {
-                    if (this.validateForm('.required')) {
-                        this.set('data.basic', {})
-                        if (this.checkPersonID(this.data.taxno)) {
-                            this.checkRegister(this.data.taxno)
-                        } else {
-                            Nylon.toast('error')
-                        }
+                // console.log(this.data.taxno)
+                localStorage.setItem("taxno", this.data.taxno);
+                // if (this.data.taxno == '') {
+                //     Nylon.dispatch('REGISTER_READER_CARD', () => {
+                //         if (this.isCard) {
+                //             this.set('data', {
+                //                 taxno: this.info.card_id,
+                //                 basic: this.info,
+                //                 type_assessor_id: this.data.type_assessor_id
+                //             });
+                //         }
+                //         if (this.validateForm('.required')) {
+                //             this.checkRegister(this.info.card_id)
+                //             // Nylon.dispatch('REGISTER_CHECK_TAXNO', this.info.card_id);
+                //             // Nylon.dispatch('REGISTER_POST', this.data)
+                //         } else {
+                //             Nylon.toast('required')
+                //         }
+                //     });
+                // } else {
+                if (this.validateForm('.required')) {
+                    // this.set('data.basic', {})
+                    if (this.checkPersonID(this.data.taxno)) {
+                        // console.log(this.data)
+                        this.checkRegister(this.data.taxno)
                     } else {
-                        Nylon.toast('required')
+                        Nylon.toast('error')
                     }
+                } else {
+                    Nylon.toast('required')
                 }
+                // }
 
             }
+            // _save() {
+            //     // console.log(this.validateForm('.required'));
+            //     if (this.validateForm('.required')) {
+            //         let newDataSave = JSON.parse(JSON.stringify(this.data))
+            //         newDataSave.birth_date = new Date(newDataSave.birth_date).toISOString()
+            //         newDataSave.issue_date = new Date(newDataSave.issue_date).toISOString()
+            //         newDataSave.expire_date = new Date(newDataSave.expire_date).toISOString()
+            //         // console.log(newDataSave);
+            //         Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'basic', newDataSave,
+            //             () => {
+            //                 Nylon.toast('update')
+            //             }
+            //         )
 
+            //     } else {
+            //         Nylon.toast('required')
+            //     }
+
+            // }
             checkRegister(taxno) {
                 Nylon.dispatch('REGISTER_CHECK_TAXNO', taxno, (data) => {
                     if (data.length > 0) {
-                        console.log(11111);
                         if (this.data.type_assessor_id != data[0].type_assessor_id) {
-                            console.log(33333333);
                             Nylon.confirm({
                                 title: this.i18n.register.title,
                                 msg: this.i18n.register.warning1 + ' ' + data[0].type_assessor.type_assessor_name + ' ' + this.i18n.register.warning2,
@@ -352,7 +376,7 @@
                                 ]
                             })
                         } else {
-                            console.log(2222);
+                            // console.log(2222);
                             Nylon.dispatch('REGISTER_POST', this.data)
                         }
                     } else {
