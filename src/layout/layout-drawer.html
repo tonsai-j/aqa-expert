@@ -200,7 +200,7 @@
                         value: [
                             {
                                 icon: 'perm-identity',
-                                page: 'register',
+                                page: 'register/สมัครผู้ประเมินภายนอก',
                                 name: 'สมัคร',
                                 sub_title_menu: [
                                     {
@@ -210,7 +210,7 @@
                                                 page_name: 'page-register/register',
                                                 icon: 'i18n.menu.register.icon',
                                                 label: 'i18n.menu.register.label',
-                                                href: '/register'
+                                                href: '/register/สมัครผู้ประเมินภายนอก'
                                             }
                                         ]
                                     }
@@ -345,33 +345,26 @@
                         type: Array,
                         value: []
                     },
-                    _params: {
-                        type: Object,
+                    pathName: {
+                        type: String,
+                        value: "/",
                         observer: 'getUrl'
-                    },
+                    }
                 }
             }
-            connectedCallback() {
-                super.connectedCallback()
 
-                //Set redirect page of nylon-pages to global
-                // Nylon.redirect = this.$.nylonInit.$.nylonPage.redirect
-                // upsate
-                //Listener change page
-                this.$.nylonInit.addEventListener(
-                    'nylon-pages-changed',
-                    e => this._pageChanged(e)
-                )
-            }
-            
-            // static get observers() {
-            //     return [
-            //         // Observer method name, followed by a list of dependencies, in parenthesis
-            //         'getUrl(_params.*)'
-            //     ]
-            // }
             getUrl(url) {
-                console.log(url);
+                if (url !== '/') {
+                    this.set('menuPage','menu')
+                    
+                    for (var index = 0; index < menu.length; index++) {
+                        var element = array[index];
+                        
+                    }
+                    console.log(this.menuPage);
+                console.log(url); 
+                }
+               
             }
             ready() {
                 super.ready()
