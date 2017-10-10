@@ -66,13 +66,11 @@
             // console.log(localStorage.getItem('taxno'));
             if (localStorage.getItem('taxno') !== null) {
               Nylon.dispatch('REGISTER_CHECK_TAXNO', localStorage.getItem('taxno'), (data) => {
-                // console.log(this.pathName);
                 let pathUrl = this.pathName
-                // console.log(data);
                 Nylon.dispatch('REGISTER_POST', data[0],pathUrl)
               })
             } else {
-              Nylon.redirect('/profile/ข้อมูลพื้นฐาน');
+              Nylon.redirect('/')
             }
 
           });

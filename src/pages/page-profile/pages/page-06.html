@@ -46,6 +46,7 @@
                 --rating-ink-color: blue;
                 --rating-icon-color: #fdd835;
             }
+
             nylon-panel-card {
                 margin-bottom: 3%;
             }
@@ -92,6 +93,16 @@
                         </nylon-input>
                     </div>
                 </div>
+                <div class="row center-md meddle-md">
+                    <div class="button-action-bottom">
+                        <paper-button raised class="btn-success" on-click="_save">
+                            <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                        </paper-button>
+                        <!-- <paper-button raised class="btn-close" class="btn-default">
+                            <iron-icon icon="[[i18n.button.reset.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.reset.label]]
+                        </paper-button> -->
+                    </div>
+                </div>
             </div>
         </nylon-panel-card>
 
@@ -104,7 +115,7 @@
                     <div class="col-md-3">
                         <div class="label">[[i18n.page06.word]] :</div>
                     </div>
-                    <div class="col-md-6">{{data.computer.word}}
+                    <div class="col-md-6">
                         <!-- <l2t-paper-rating icon="favorite-border" rating="{{data.computer.word}}"></l2t-paper-rating>
                         <nylon-rating value="{{data.computer.word}}"></nylon-rating> -->
                         <paper-radio-group selected="{{data.computer.word}}" attr-for-selected="name" required class="required-radio">
@@ -171,14 +182,24 @@
                         </paper-radio-group>
                     </div>
                 </div>
+                <div class="row center-md meddle-md">
+                    <div class="button-action-bottom">
+                        <paper-button raised class="btn-success" on-click="_save">
+                            <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                        </paper-button>
+                        <!-- <paper-button raised class="btn-close" class="btn-default">
+                            <iron-icon icon="[[i18n.button.reset.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.reset.label]]
+                        </paper-button> -->
+                    </div>
+                </div>
             </div>
         </nylon-panel-card>
-        
+
         <nylon-panel-card>
             <div slot="content">
-                    <div class="header-title">
-                            [[i18n.page06.title_3]]
-                        </div>
+                <div class="header-title">
+                    [[i18n.page06.title_3]]
+                </div>
                 <div class="row col-md-offset-1 middle-md">
                     <div class="col-md-3">
                         <div class="label">[[i18n.page06.thai]] :</div>
@@ -207,15 +228,25 @@
                         </paper-radio-group>
                     </div>
                 </div>
-                </fieldset>
+                <!-- </fieldset> -->
+                <div class="row center-md meddle-md">
+                    <div class="button-action-bottom">
+                        <paper-button raised class="btn-success" on-click="_save">
+                            <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                        </paper-button>
+                        <!-- <paper-button raised class="btn-close" class="btn-default">
+                            <iron-icon icon="[[i18n.button.reset.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.reset.label]]
+                        </paper-button> -->
+                    </div>
+                </div>
             </div>
         </nylon-panel-card>
-        
+
         <nylon-panel-card>
             <div slot="content">
-                    <div class="header-title">
-                            [[i18n.page06.title_4]]
-                        </div>
+                <div class="header-title">
+                    [[i18n.page06.title_4]]
+                </div>
                 <div class="row col-md-offset-1 middle-md">
                     <div class="col-md-3">
                         <div class="label">[[i18n.page06.china]] :</div>
@@ -258,6 +289,16 @@
                         </paper-radio-group>
                     </div>
                 </div>
+                <div class="row center-md meddle-md">
+                    <div class="button-action-bottom">
+                        <paper-button raised class="btn-success" on-click="_save">
+                            <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                        </paper-button>
+                        <!-- <paper-button raised class="btn-close" class="btn-default">
+                            <iron-icon icon="[[i18n.button.reset.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.reset.label]]
+                        </paper-button> -->
+                    </div>
+                </div>
             </div>
             <!-- <app-toolbar slot="footer">
                 <div main-title></div>
@@ -270,16 +311,7 @@
             </app-toolbar> -->
         </nylon-panel-card>
 
-        <div class="row center-md meddle-md">
-            <div class="button-action-bottom">
-                <paper-button raised class="btn-success" on-click="_save">
-                    <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                </paper-button>
-                <paper-button raised class="btn-close"  class="btn-default">
-                    <iron-icon icon="[[i18n.button.reset.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.reset.label]]
-                </paper-button>
-            </div>
-        </div>
+
 
     </template>
 

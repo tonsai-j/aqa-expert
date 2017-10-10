@@ -19,8 +19,11 @@
 <link rel="import" href="../../../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../../redux/profile/profile-redux.html">
 
+<link rel="import" href="../../components/nylon-animate-css/nylon-animate-css.html">
+
 <dom-module id="page-register">
     <template>
+        <style include="nylon-animate-css"></style>
         <style include="shared-styles flexbox-grid flexbox-grid-remove-padding ">
             .row {
                 padding-right: 0rem;
@@ -85,42 +88,8 @@
                 background-color: #4E97D9;
             }
         </style>
-        <!-- <div class="container row center-md center-lg center-sm">
-            <div class="col-lg-5 col-md-8  col-sm-10  col-xs-12">
-                <nylon-panel-card id="panelCard">
-                    <div slot="header">
-                        <div class="header">
-                            <h3>[[i18n.register.title]]</h3>
-                        </div>
-                    </div>
-                    <div slot="content" class="middle-md">
-                        <div class="col-xs-12">
-                                <nylon-input id="inputTaxNo" class="required input" required label="[[i18n.register.taxno]]" value="{{data.taxno}}" allowed-pattern="[0-9]"
-                                maxlength="13" required on-keyup="_enter" always-float-label
-                                ></nylon-input>
-                        </div>
-                        <div class="col-xs-12">
-                            <nylon-combo-box id="comboTypeAss" class="required input" required label="[[i18n.register.level]]" items='{{typeAssessor}}'
-                                value="{{data.type_assessor_id}}" item-label-path="type_assessor_name" item-value-path="id">
-                                <template>
-                                    [[item.type_assessor_name]]
-                                </template>
-                            </nylon-combo-box>
-                        </div>
-                    </div>
-                    <app-toolbar slot="footer">
-                        <div main-title></div>
-                        <paper-button raised class="btn-default" on-click="_clear">
-                            <iron-icon icon="[[i18n.button.reset.icon]]"></iron-icon>&nbsp;[[i18n.button.reset.label]]
-                        </paper-button>
-                        <paper-button raised class="btn-success" on-click="_register">
-                            <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp;[[i18n.button.register.label]]
-                        </paper-button>
-                    </app-toolbar>
-                </nylon-panel-card>
-            </div>
-        </div> -->
-        <div class="container row center-md center-lg center-sm">
+        <!-- animated bounceInDown -->
+        <div class="container row center-md center-lg center-sm ">
             <div class="col-lg-4 col-md-12  col-sm-3  col-xs-12">
                 <nylon-panel-card id="panelCard">
                     <div slot="header">
@@ -268,7 +237,7 @@
                         Polymer.Async.timeOut.after(900),
                         () => {
                             Nylon.dispatch('REGISTER_CHECK_TAXNO', this.data.taxno, (data) => {
-                                console.log(data)
+                                // console.log(data)
                                 if (data.length > 0) {
                                     this.$.inputTaxNo.validate(true);
                                     // localStorage.setItem("taxno", this.data.taxno)

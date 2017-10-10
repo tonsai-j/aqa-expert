@@ -22,11 +22,14 @@
 <link rel="import" href="../../../i18n/profile/page-01-i18n.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
 
+<link rel="import" href="../../../components/nylon-animate-css/nylon-animate-css.html">
+
 
 
 <dom-module id="page-01">
     <template>
         <style include="granite-bootstrap"></style>
+        <style include="nylon-animate-css"></style>
         <style include="flexbox-grid shared-styles">
              :host {
                 display: block --paper-input-container-underline: {
@@ -55,7 +58,7 @@
         </style>
         <!-- page-1 -->
 
-        <nylon-panel-card>
+        <nylon-panel-card >
 
             <div slot="content" items="[[basic]]">
                 <div class="header-title">
