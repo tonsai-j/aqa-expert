@@ -50,11 +50,12 @@
             }
         </style>
         <!-- page-10 -->
-        <div class="header-title">
-            [[i18n.page10.bank_account]]
-        </div>
+
         <nylon-panel-card>
             <div slot="content">
+                <div class="header-title">
+                    [[i18n.page10.bank_account]]
+                </div>
                 <div class="row middle-md">
                     <div class="col-md-3 col-md-offset-1">
                         <nylon-combo-box class="required" required always-float-label label="[[i18n.page10.bank]]*" items='{{bankList}}' value="{{bank.bank_id}}"
@@ -91,16 +92,24 @@
                         <nylon-input class="required" required always-float-label label="[[i18n.page10.account_name]]*" value="{{bank.account_name}}"></nylon-input>
                     </div>
                 </div>
-            </div>
-            <!--  -->
+                <div class="row center-md button-buttom">
+                    <div class="button-action-bottom">
+                        <div class="button-action-bottom">
+                            <paper-button raised class="btn-success" on-click="_save">
+                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                            </paper-button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </nylon-panel-card>
-        <div class="header-title">
-            [[i18n.page10.photo_account]]
-        </div>
 
+        <div style="margin-top:5%;"></div>
         <nylon-panel-card>
             <div slot="content">
+                <div class="header-title">
+                    [[i18n.page10.photo_account]]
+                </div>
                 <div class="row middle-md center-md">
                     <div class=" col-md-12">
                         <img id="output_image" src$="[[rootPath]]images/I20170901111610.jpg" />
@@ -110,21 +119,24 @@
                         <paper-button raised on-tap="upload_img" class="upload_image btn-primary"> อัพ</paper-button>
                     </div>
                 </div>
+                <div class="row center-md button-buttom">
+                    <div class="button-action-bottom">
+                        <div class="button-action-bottom">
+                            <paper-button raised class="btn-success" on-click="_save">
+                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                            </paper-button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- <app-toolbar slot="footer">
-                <div main-title></div>
-                <paper-button raised class="btn-success" on-click="_save">
-                    <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>[[i18n.button.save.label]]
-                </paper-button>
-            </app-toolbar> -->
         </nylon-panel-card>
-        <div class="row end-md ">
+        <!-- <div class="row end-md ">
             <div class="button-action-bottom">
                 <paper-button raised class="btn-success" on-click="_save">
                     <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
                 </paper-button>
             </div>
-        </div>
+        </div> -->
     </template>
 
     <script>

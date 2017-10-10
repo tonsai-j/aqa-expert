@@ -36,6 +36,16 @@
           -webkit-font-smoothing: antialiased;
         }
 
+        --nylon-font-trirong-regular: {
+          font-family: 'trirong-regular', 'tahoma', sans-serif;
+          -webkit-font-smoothing: antialiased;
+        }
+
+        --nylon-font-trirong-regular-bone: {
+          font-family: 'trirong-regular', 'tahoma', sans-serif;
+          font-weight: bold;
+          -webkit-font-smoothing: antialiased;
+        }
         --nylon-font-trirong-family: {
           font-family: 'trirong-medium', 'tahoma', sans-serif;
           -webkit-font-smoothing: antialiased;
@@ -184,6 +194,7 @@
         color: #FFF;
       }
       /* หัวข้อใหญ่ของแต่ละหน้่า */
+
       .header-title {
         font-size: 20px;
         margin: 1em;
@@ -221,8 +232,8 @@
         background-color: #FFF;
         color: #707070;
       }
-      paper-button[disabled]
-      paper-button.btn-primary[disabled],
+
+      paper-button[disabled] paper-button.btn-primary[disabled],
       paper-button.btn-danger[disabled],
       paper-button.btn-warning[disabled],
       paper-button.btn-default[disabled],
@@ -230,77 +241,107 @@
         background-color: #e1e1e1;
         color: #949393;
       }
+
       .button-action-bottom {
         margin: 20px;
       }
+
+      .button-buttom{
+        margin-top: 3%;
+      }
       vaadin-grid#material {
+        height: auto;
+        @apply --nylon-font-mitr-family;
         --divider-color: rgba(0, 0, 0, var(--dark-divider-opacity));
+
         --vaadin-grid-cell: {
-          padding: 0;
+          padding: 1rem;
+          border-right: 1px solid #ddd;
+          /* text-align: center; */
         }
         ;
+
         --vaadin-grid-header-cell: {
-          min-height: calc(var(--font-size-default) * 4);
-          color: rgba(0, 0, 0, var(--dark-secondary-opacity));
-          font-size: var(--font-size-h5);
-          font-weight: bold;
-          background-color: #F1F1F1;
-          padding: 5px 5px;
-          @apply --nylon-font-mitr-family-bone;
-          /*border-bottom: 1px solid red;*/
-          /*border: 0.5px solid rgba(0, 0, 0, var(--dark-secondary-opacity));*/
+          height: 36px;
+          color: white;
+          font-size: 14px;
+          background-color: #62a8ea;
+          padding: 1rem;
         }
         ;
+
         --vaadin-grid-body-cell: {
-          /* min-height: calc(var(--font-size-default) * 5)48px; */
-          min-height: 40px;
-          font-size: var(--font-size-h5);
-          /* color: rgba(0, 0, 0, var(--dark-primary-opacity)); */
-          color: #3e505c
-          word-warp font-size: 17px;
-          @apply --nylon-font-trirong-family;
+          @apply --nylon-font-trirong-regular;
+          height: 48px;
+          color: rgba(0, 0, 0, var(--dark-primary-opacity));
+          font-size: 13px;
         }
         ;
-        --vaadin-grid-footer-cell: {
-          min-height: calc(var(--font-size-default) * 4);
-          color: rgba(0, 0, 0, var(--dark-secondary-opacity));
-          font-size: var(--font-size-h5);
-          font-weight: bold;
-          padding: 5px 5px;
-          @apply --nylon-font-mitr-family-bone;
-        }
-        ;
+
         --vaadin-grid-body-row-hover-cell: {
-          background-color: var(--paper-grey-200);
+          /* border-bottom:2px solid #62a8ea; */
+          background-color: #ECF9FA;
         }
         ;
+
         --vaadin-grid-body-row-selected-cell: {
           background-color: var(--paper-grey-100);
         }
         ;
-        --vaadin-grid-focused-cell: {
-          box-shadow: none;
-          font-weight: bold;
+        --vaadin-grid-body-row-odd-cell: {
+          background-color: #f3f7f9;
         }
         ;
       }
 
-      vaadin-grid#material .text-left {
-        text-align: left;
-        padding-right: 10px;
+      vaadin-grid#material .cell {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-right: 56px;
       }
 
-      vaadin-grid#material .text-center {
-        text-align: center;
+      vaadin-grid#material .cell.last {
+        padding-right: 24px;
       }
 
-      vaadin-grid#material .text-right {
+      vaadin-grid#material .cell.numeric {
         text-align: right;
-        padding-right: 10px;
       }
 
-      vaadin-grid#material .cursor {
-        cursor: pointer
+      vaadin-grid#material paper-checkbox {
+        --primary-color: var(--paper-indigo-500);
+        margin: 0 24px;
+      }
+
+      vaadin-grid#material vaadin-grid-sorter {
+        --vaadin-grid-sorter-arrow: {
+          display: none !important;
+        }
+        ;
+      }
+
+      vaadin-grid#material vaadin-grid-sorter .cell {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      vaadin-grid#material vaadin-grid-sorter iron-icon {
+        transform: scale(0.8) translateZ(0);
+        transition: all 0.3s;
+      }
+
+      vaadin-grid#material vaadin-grid-sorter:not([direction]) iron-icon {
+        color: rgba(0, 0, 0, var(--dark-disabled-opacity));
+      }
+
+      vaadin-grid#material vaadin-grid-sorter[direction] {
+        color: rgba(0, 0, 0, var(--dark-primary-opacity));
+      }
+
+      vaadin-grid#material vaadin-grid-sorter[direction=desc] iron-icon {
+        transform: scale(0.8) rotate(180deg) translateZ(0);
       }
     </style>
   </template>

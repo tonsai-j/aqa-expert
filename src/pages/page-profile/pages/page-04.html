@@ -24,12 +24,13 @@
                 display: block
             }
         </style>
-        <div class="header-title">
-            [[i18n.page04.title]]
-        </div>
+
         <nylon-panel-card>
             <div slot="content">
-                <div class="row end-md middle-md">
+                <div class="header-title">
+                    [[i18n.page04.title]]
+                </div>
+                <div class="row start-md middle-md">
                     <div class="label col-md-3">
                         <paper-button raised class="btn-primary" action="add" on-tap=_openPanelRight>
                             <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]</paper-button>
@@ -84,9 +85,9 @@
                                 [[item.label]]
                             </template>
                         </nylon-combo-box> -->
-                        <nylon-combo-box class="required" required always-float-label label="[[i18n.page04.group]]" items='{{specialistgroup}}'
-                            value="{{data.group_specialist_id}}" item-label-path="group_specialist_name" item-value-path="id"
-                            on-selected-item-changed="getObject" object-name="data.group_specialist">
+                        <nylon-combo-box class="required" required always-float-label label="[[i18n.page04.group]]" items='{{specialistgroup}}' value="{{data.group_specialist_id}}"
+                            item-label-path="group_specialist_name" item-value-path="id" on-selected-item-changed="getObject"
+                            object-name="data.group_specialist">
                             <template>
                                 [[item.group_specialist_name]]
                             </template>
@@ -108,8 +109,18 @@
                         </nylon-combo-box>
 
                     </div>
+                    <div class="row center-md button-buttom">
+                        <div class="button-action-bottom">
+                            <paper-button raised class="btn-success" on-click="_save">
+                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                            </paper-button>
+                            <paper-button raised on-click="_closePanelRight">
+                                <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
+                            </paper-button>
+                        </div>
+                    </div>
                 </div>
-                <app-toolbar slot="footer">
+                <!-- <app-toolbar slot="footer">
                     <div main-title></div>
                     <paper-button raised class="btn-success" on-click="_save">
                         <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
@@ -117,8 +128,7 @@
                     <paper-button raised on-click="_closePanelRight">
                         <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
                     </paper-button>
-
-                </app-toolbar>
+                </app-toolbar> -->
             </nylon-panel-card>
         </nylon-panel-right>
 
@@ -166,8 +176,8 @@
                 // console.log(this.data)
                 super.ready();
                 // console.log(1111);
-                    Nylon.dispatch('PROFILE_04_GET_SPECIALISTGROUP')
-                    Nylon.dispatch('PROFILE_04_GET_SPECIALISTTYPE')
+                Nylon.dispatch('PROFILE_04_GET_SPECIALISTGROUP')
+                Nylon.dispatch('PROFILE_04_GET_SPECIALISTTYPE')
                 Polymer.RenderStatus.afterNextRender(this, function () {
                     // console.log(1111);
                     // Nylon.dispatch('PROFILE_04_GET_SPECIALISTGROUP')

@@ -22,12 +22,13 @@
 <dom-module id="page-03">
     <template>
         <style include="flexbox-grid shared-styles"></style>
-        <div class="header-title">
-            [[i18n.page03.title]]
-        </div>
+
         <nylon-panel-card>
             <div slot="content">
-                <div class="row end-md middle-md">
+                <div class="header-title">
+                    [[i18n.page03.title]]
+                </div>
+                <div class="row start-md middle-md">
                     <div class="label col-md-3">
                         <paper-button raised class="btn-primary" action="add" on-click="_openPanelRight">
                             <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]
@@ -92,7 +93,7 @@
                 <div slot="content">
                     <div class="row">
                         <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-4">
-                            <nylon-combo-box label="[[i18n.page03.eduLevel]]"  always-float-label  items='{{eduLevel}}' value="{{data.edu_level_id}}" item-label-path="edu_level_name"
+                            <nylon-combo-box label="[[i18n.page03.eduLevel]]" always-float-label items='{{eduLevel}}' value="{{data.edu_level_id}}" item-label-path="edu_level_name"
                                 item-value-path="id" on-selected-item-changed="getObject" object-name="data.edu_level" class="required"
                                 required>
                                 <template>
@@ -101,16 +102,16 @@
                             </nylon-combo-box>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-4">
-                            <nylon-combo-box label="[[i18n.page03.typeAcademy]]"  always-float-label  items='{{typeAcademy}}' value="{{data.type_academy_id}}" item-label-path="type_academy_name"
-                                item-value-path="id" on-change="_getAacademy" on-selected-item-changed="getObject" object-name="data.type_academy"
-                                class="required" required>
+                            <nylon-combo-box label="[[i18n.page03.typeAcademy]]" always-float-label items='{{typeAcademy}}' value="{{data.type_academy_id}}"
+                                item-label-path="type_academy_name" item-value-path="id" on-change="_getAacademy" on-selected-item-changed="getObject"
+                                object-name="data.type_academy" class="required" required>
                                 <template>
                                     [[item.type_academy_name]]
                                 </template>
                             </nylon-combo-box>
                         </div>
                         <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
-                            <nylon-combo-box label="[[i18n.page03.academy]]" always-float-label  items='{{academy}}' value="{{data.academy_id}}" item-label-path="academy_name"
+                            <nylon-combo-box label="[[i18n.page03.academy]]" always-float-label items='{{academy}}' value="{{data.academy_id}}" item-label-path="academy_name"
                                 item-value-path="id" on-selected-item-changed="getObject" object-name="data.academy" class="required"
                                 required>
                                 <template>
@@ -119,7 +120,7 @@
                             </nylon-combo-box>
                         </div>
                         <div class="col-md-offset-1  col-xs-12 col-sm-12 col-md-8">
-                            <nylon-combo-box label="[[i18n.page03.faculty]]" always-float-label  items='{{faculty}}' value="{{data.faculty_id}}" item-label-path="faculty_name"
+                            <nylon-combo-box label="[[i18n.page03.faculty]]" always-float-label items='{{faculty}}' value="{{data.faculty_id}}" item-label-path="faculty_name"
                                 item-value-path="id" on-selected-item-changed="getObject" object-name="data.faculty" class="required"
                                 required>
                                 <template>
@@ -128,24 +129,26 @@
                             </nylon-combo-box>
                         </div>
                         <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
-                            <nylon-combo-box label="[[i18n.page03.groupFaculty]]" always-float-label  items='{{groupFaculty}}' value="{{data.group_faculty_id}}" item-label-path="group_faculty_name"
-                                item-value-path="id" on-selected-item-changed="getObject" object-name="data.group_faculty">
+                            <nylon-combo-box label="[[i18n.page03.groupFaculty]]" always-float-label items='{{groupFaculty}}' value="{{data.group_faculty_id}}"
+                                item-label-path="group_faculty_name" item-value-path="id" on-selected-item-changed="getObject"
+                                object-name="data.group_faculty">
                                 <template>
                                     [[item.group_faculty_name]]
                                 </template>
                             </nylon-combo-box>
                         </div>
                         <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
-                            <nylon-combo-box label="[[i18n.page03.fieldStudy]]" always-float-label  items='{{fieldStudy}}' value="{{data.field_study_id}}" item-label-path="field_study_name"
-                                item-value-path="id" on-selected-item-changed="getObject" object-name="data.field_study" class="required"
-                                required>
+                            <nylon-combo-box label="[[i18n.page03.fieldStudy]]" always-float-label items='{{fieldStudy}}' value="{{data.field_study_id}}"
+                                item-label-path="field_study_name" item-value-path="id" on-selected-item-changed="getObject"
+                                object-name="data.field_study" class="required" required>
                                 <template>
                                     [[item.field_study_name]]
                                 </template>
                             </nylon-combo-box>
                         </div>
                         <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
-                            <nylon-input always-float-label label="[[i18n.page03.degree]] ([[i18n.page03.full]])" value="{{data.degree_full}}" class="required" required></nylon-input>
+                            <nylon-input always-float-label label="[[i18n.page03.degree]] ([[i18n.page03.full]])" value="{{data.degree_full}}" class="required"
+                                required></nylon-input>
                         </div>
                         <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
                             <nylon-input always-float-label label="[[i18n.page03.degree]] ([[i18n.page03.short]])" value="{{data.degree_short}}"></nylon-input>
@@ -157,20 +160,31 @@
                             <nylon-input always-float-label label="[[i18n.page03.minor]]" value="{{data.minor}}"></nylon-input>
                         </div>
                         <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-4">
-                            <nylon-input always-float-label label="[[i18n.page03.year]]" value="{{data.year}}" allowed-pattern="[0-9]" maxlength="4" class="required" required></nylon-input>
+                            <nylon-input always-float-label label="[[i18n.page03.year]]" value="{{data.year}}" allowed-pattern="[0-9]" maxlength="4"
+                                class="required" required></nylon-input>
+                        </div>
+                    </div>
+                    <div class="row center-md button-buttom">
+                        <div class="button-action-bottom">
+                            <paper-button raised class="btn-success" on-click="_save">
+                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                            </paper-button>
+                            <paper-button raised on-click="_closePanelRight">
+                                <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
+                            </paper-button>
                         </div>
                     </div>
                 </div>
-                <app-toolbar slot="footer">
+                <!-- <app-toolbar slot="footer">
                     <div main-title></div>
                     <paper-button raised class="btn-success" on-click="_save">
-                            <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                        </paper-button>
+                        <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                    </paper-button>
                     <paper-button raised on-click="_closePanelRight">
                         <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
                     </paper-button>
-                   
-                </app-toolbar>
+
+                </app-toolbar> -->
             </nylon-panel-card>
         </nylon-panel-right>
     </template>

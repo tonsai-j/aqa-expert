@@ -54,12 +54,13 @@
             }
         </style>
         <!-- page-1 -->
-        <div class="header-title">
-            [[i18n.page01.basic_data]]:
-        </div>
+
         <nylon-panel-card>
 
             <div slot="content" items="[[basic]]">
+                <div class="header-title">
+                    [[i18n.page01.basic_data]]:
+                </div>
                 <div><br>[[i18n.page01.field]]*</div><br>
                 <div class="row meddle-md ">
                     <div class="col-md-3">
@@ -193,6 +194,16 @@
                         </div>
                     </div>
                 </div>
+                <div class="row center-md button-buttom">
+                    <div class="button-action-bottom">
+                        <paper-button raised class="btn-success" on-click="_save">
+                            <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                        </paper-button>
+                        <!-- <paper-button raised class="btn-default" on-click="_readIDCard">
+                                    <iron-icon icon="[[i18n.button.readCard.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.readCard.label]]
+                                </paper-button> -->
+                    </div>
+                </div>
             </div>
             <!-- <app-toolbar slot="footer">
                 <div main-title></div>
@@ -207,16 +218,7 @@
 
         </nylon-panel-card>
 
-        <div class="row end-md ">
-            <div class="button-action-bottom">
-                <paper-button raised class="btn-success" on-click="_save">
-                    <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                </paper-button>
-                <!-- <paper-button raised class="btn-default" on-click="_readIDCard">
-                    <iron-icon icon="[[i18n.button.readCard.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.readCard.label]]
-                </paper-button> -->
-            </div>
-        </div>
+
     </template>
 
     <script>
@@ -289,7 +291,7 @@
                     Nylon.dispatch('PROFILE_01_GET_LIST_NATIONALITY')
                     Nylon.dispatch('PROFILE_01_GET_LIST_RELIGION')
                     Nylon.dispatch('PROFILE_01_GET_LIST_WORK_STATUS')
-                    Nylon.dispatch('REGISTER_CHECK_PERSON',localStorage.getItem('taxno'))
+                    Nylon.dispatch('REGISTER_CHECK_PERSON', localStorage.getItem('taxno'))
                 });
             }
             upload_img() {

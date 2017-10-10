@@ -39,13 +39,14 @@
                 display: inline-block
             }
         </style>
-        <div class="header-title">
-            [[i18n.page07.title]]
-        </div>
+
         <nylon-panel-card>
             <div slot="content">
-                <div class="row end-md middle-md">
-                    <div class="label col-md-3">
+                <div class="header-title">
+                    [[i18n.page07.title]]
+                </div>
+                <div class="row start-md middle-md">
+                    <div class="col-md-3">
                         <paper-button raised class="btn-primary" action="add" on-click="_openPanelRight">
                             <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]</paper-button>
                     </div>
@@ -97,20 +98,20 @@
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="col-md-12">
-                        <nylon-input label="[[i18n.page07.education]]" always-float-label  value="[[info.type_assessor.type_assessor_name]]" disabled>
+                        <nylon-input label="[[i18n.page07.education]]" always-float-label value="[[info.type_assessor.type_assessor_name]]" disabled>
                         </nylon-input>
                     </div>
                     <div class="col-md-12">
-                        <nylon-combo-box label="[[i18n.page07.type]]" always-float-label  items='{{typeAcademy}}' value="{{data.type_academy_id}}" item-label-path="type_academy_name"
-                            item-value-path="id" on-change="_getAacademy" on-selected-item-changed="getObject" object-name="data.type_academy"
-                            class="required" required>
+                        <nylon-combo-box label="[[i18n.page07.type]]" always-float-label items='{{typeAcademy}}' value="{{data.type_academy_id}}"
+                            item-label-path="type_academy_name" item-value-path="id" on-change="_getAacademy" on-selected-item-changed="getObject"
+                            object-name="data.type_academy" class="required" required>
                             <template>
                                 [[item.type_academy_name]]
                             </template>
                         </nylon-combo-box>
                     </div>
                     <div class="col-md-12">
-                        <nylon-combo-box label="[[i18n.page07.name]]" always-float-label  items='{{academy}}' value="{{data.academy_id}}" item-label-path="academy_name"
+                        <nylon-combo-box label="[[i18n.page07.name]]" always-float-label items='{{academy}}' value="{{data.academy_id}}" item-label-path="academy_name"
                             item-value-path="id" on-selected-item-changed="getObject" object-name="data.academy" class="required"
                             required>
                             <template>
@@ -118,8 +119,18 @@
                             </template>
                         </nylon-combo-box>
                     </div>
+                    <div class="row center-md button-buttom">
+                        <div class="button-action-bottom">
+                            <paper-button raised class="btn-success" on-click="_save">
+                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                            </paper-button>
+                            <paper-button raised on-click="_closePanelRight">
+                                <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
+                            </paper-button>
+                        </div>
+                    </div>
                 </div>
-                <app-toolbar slot="footer">
+                <!-- <app-toolbar slot="footer">
                     <div main-title></div>
                     <paper-button raised class="btn-success" on-click="_save">
                         <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
@@ -128,7 +139,7 @@
                         <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
                     </paper-button>
 
-                </app-toolbar>
+                </app-toolbar> -->
             </nylon-panel-card>
         </nylon-panel-right>
 
