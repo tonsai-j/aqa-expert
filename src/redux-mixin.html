@@ -9,9 +9,9 @@
     // Setup a Redux store
     Nylon.createReducer = (asyncReducers) => {
         return Redux.combineReducers(
-            Object.assign({},{
-                i18n: i18nReducer     
-            },asyncReducers)
+            Object.assign({}, {
+                i18n: i18nReducer
+            }, asyncReducers)
         )
     }
 
@@ -26,7 +26,7 @@
 
     // Reducer spliter
     Nylon.store.asyncReducers = {}
-    Nylon.addReducer = (name,reducer) => {
+    Nylon.addReducer = (name, reducer) => {
         Nylon.store.asyncReducers[name] = reducer
         Nylon.store.replaceReducer(
             Nylon.createReducer(Nylon.store.asyncReducers)
@@ -37,33 +37,33 @@
     // Merge action
     Nylon.store.actions = {}
     Nylon.addAction = (actions) => {
-        Nylon.store.actions = Object.assign({},Nylon.store.actions,actions)
+        Nylon.store.actions = Object.assign({}, Nylon.store.actions, actions)
     }
-    
+
     // Dispatch store
-    Nylon.dispatch = function(){
+    Nylon.dispatch = function () {
         var args = [];
-        if(arguments.length>1){
+        if (arguments.length > 1) {
             var argumentsArr = Array.prototype.slice.call(arguments)
             args = argumentsArr.slice(1, argumentsArr.length)
-        }else if(arguments.length==0){
+        } else if (arguments.length == 0) {
             console.error('Nylon :: dispatch  must have arguments.')
             return
         }
+        if (el !== undefined) {
+            var el = args.filter(function (a) {
+                return a.localName
+            })
 
-        var el = args.filter(function(a){
-            return a.localName
-        })
-
-        if(el.length!=0){
-            console.error(`Nylon :: Do not have element in arguments. \n Error at ${arguments[0]} action.`)
-            return
+            if (el.length != 0) {
+                console.error(`Nylon :: Do not have element in arguments. \n Error at ${arguments[0]} action.`)
+                return
+            }
         }
-            
 
-        if(Nylon.store.actions[arguments[0]]){
+        if (Nylon.store.actions[arguments[0]]) {
             Nylon.store.dispatch(
-                Nylon.store.actions[arguments[0]].apply(this,args)
+                Nylon.store.actions[arguments[0]].apply(this, args)
             )
         }
     }

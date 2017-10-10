@@ -25,13 +25,13 @@
 
       static get is() { return 'nylon-app'; }
 
-      static get properties() { 
+      static get properties() {
         return {
-          pathName:{
-            type:String,
-            value:"/"
+          pathName: {
+            type: String,
+            value: "/"
           }
-        } 
+        }
       }
 
       ready() {
@@ -58,10 +58,11 @@
 
       _pageChanged(e) {
         let elementName = e.detail.element.localName
+        // console.log(elementName);
         let resolvedUrl = this.resolveUrl(`pages/${elementName}/${elementName}.html`);
         //console.log(this.$.nylonInit.$.layoutMain.$.progress)
         //var progress = this.$.nylonInit.$.layoutMain.progress()
-
+        // console.log(resolvedUrl);
         Polymer.importHref(
           resolvedUrl,
           () => {
@@ -85,27 +86,33 @@
           true);
       }
 
-      _pageRule(e){
-        var np = e.detail
-        var element = np.element
-        var elementName = element.localName;
-        
-        if(np.ctx.gotoPage){
-          if(elementName=='page-401' && np.ctx.gotoPage=='401')
-            np.pass()
-        }else{
-          if(localStorage.token){
-            Nylon.dispatch('authVerifyToken')
-      
-            np.pass()
-            
-          }else{
-            np.ctx.gotoPage = '401'
-            np.next()
+      _pageRule(e) {
+        try {
+          var np = e.detail
+          var element = np.element
+          var elementName = element.localName;
+          console.log(elementName);
+          console.log(111111);
+          if (np.ctx.gotoPage) {
+            if (elementName == 'page-401' && np.ctx.gotoPage == '401')
+              np.pass()
+          } else {
+            if (localStorage.token) {
+              Nylon.dispatch('authVerifyToken')
+
+              np.pass()
+
+            } else {
+              np.ctx.gotoPage = '401'
+              np.next()
+            }
+
           }
-          
+        } catch (e) {
+          console.log(e);
         }
-        
+
+
       }
 
     }
