@@ -174,9 +174,9 @@
       static get is() { return 'page-dashboard' }
       static get properties() {
         return {
-          role: {
+          auth: {
             type: String,
-            value: 'admin'
+            statePath: 'auth.user',
           },
           expenses: {
             type: Object,
@@ -189,13 +189,12 @@
       connectedCallback() {
         super.connectedCallback()
 
-
-        if (this.role == 'admin') {
+        if (this.auth.admin == true) {
           console.log('admin')
           Nylon.dispatch('DASHBOARD_GET_EXPENSES')
           this.shadowRoot.querySelector('.user').style.display = 'none'
 
-        } else if (this.role == 'user') {
+        } else if (this.auth.admin == false) {
           Nylon.dispatch('DASHBOARD_GET_EXPENSES')
           console.log('user')
           this.shadowRoot.querySelector('.admin').style.display = 'none'
