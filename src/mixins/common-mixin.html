@@ -54,9 +54,9 @@
                 let time = new Date(date)
                 date = new Date(time.setHours(time.getHours() + 7)).toISOString()
                 date = date.split("T")[0]
-                // if (date.split('-')[0] !== '9999')
+                if (date.split('-')[0] !== '9999')
                     return `${date.split('-')[2]}/${date.split('-')[1]}/${Number(date.split('-')[0]) + 543}`
-                // return date
+                return '-'//date//'ปัจจุบัน'
             }
         }
         genUrl(url) {
