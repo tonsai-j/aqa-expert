@@ -11,18 +11,28 @@
             :host {
                 display: block;
             }
+
+            .c3-legend-item,
+            .c3-shape,
+            .c3-arc,
+            .c3-chart-arc,
+            .c3-target,
+            .c3-tooltip,
+            .tick {
+                @apply --nylon-font-mitr-family
+            }
         </style>
-        <div id="chart" ></div>
+        <div id="chart"></div>
     </template>
 
     <script>
         class NylonC3 extends Polymer.Element {
             static get is() { return 'nylon-c3' }
-            ready(){
+            ready() {
                 super.ready()
                 console.log('NylonC3')
             }
-            generate(obj){
+            generate(obj) {
                 obj.bindto = this.$.chart
                 this.chart = c3.generate(obj)
             }

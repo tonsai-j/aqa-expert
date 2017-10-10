@@ -127,6 +127,7 @@
         }
 
       }
+
       connectedCallback() {
         super.connectedCallback()
 
@@ -143,6 +144,32 @@
         }
       }
 
+      formatMoney(inum) {  // ฟังก์ชันสำหรับแปลงค่าตัวเลขให้อยู่ในรูปแบบ เงิน
+        var s_inum = new String(inum);
+        var num2 = s_inum.split(".");
+        var n_inum = "";
+        if (num2[0] != undefined) {
+          var l_inum = num2[0].length;
+          for (var i = 0; i < l_inum; i++) {
+            if (parseInt(l_inum - i) % 3 == 0) {
+              if (i == 0) {
+                n_inum += s_inum.charAt(i);
+              } else {
+                n_inum += "," + s_inum.charAt(i);
+              }
+            } else {
+              n_inum += s_inum.charAt(i);
+            }
+          }
+        } else {
+          n_inum = inum;
+        }
+        if (num2[1] != undefined) {
+          n_inum += "." + num2[1];
+        }
+        return n_inum;
+      }
+
       expenses_change(e) {
         // console.log(e)
         var columns = []
@@ -150,7 +177,7 @@
 
         for (var i in e) {
           if (e[i].amount != 0) {
-            columns.push([e[i].group_expenses_name + ' ' + e[i].price + '฿', Number(e[i].percentage.toFixed(2))])
+            columns.push([e[i].group_expenses_name + ' ' + this.formatMoney(e[i].price) + '฿', Number(e[i].percentage.toFixed(2))])
 
           }
           expenses_list.push({
@@ -204,7 +231,7 @@
           this.$.chart4_admin.generate({
             data: {
               columns: [
-                ['จำนวนเปอร์เซ็นต์', 70, 60, 55, 50, 30, 10]
+                ['จากจำนวน 1,000 โรงเรียนคิดเป็น', 70, 60, 55, 50, 30, 10]
               ],
             },
             axis: {
@@ -218,6 +245,9 @@
             },
             color: {
               pattern: ['#0000cc']
+            },
+            legend: {
+              show: false
             }
           })
 
