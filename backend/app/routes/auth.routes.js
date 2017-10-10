@@ -1,5 +1,6 @@
 module.exports = function(app){
-    var authCtrl = require('../controllers/auth/auth.controller')
+    const authCtrl = require('../controllers/auth/auth.controller')
+    const authenticate = require('./authenticate');
     app.post('/login',authCtrl.login)
 
     // app.post('/taxno',authCtrl.authTaxno)
@@ -7,4 +8,6 @@ module.exports = function(app){
     // app.get('/verifyToken',authCtrl.verifyToken)
     // app.get('/verifyTransform',authCtrl.verifyTransform)
     // app.get('/checkToken',authCtrl.checkToken)
+
+    app.get('/user',authenticate(),authCtrl.user)
 }
