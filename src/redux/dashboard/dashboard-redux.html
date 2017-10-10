@@ -6,6 +6,8 @@
             case 'DASHBOARD_GET_EXPENSES':
                 state.expenses = action.data
                 return state
+            case 'DASHBOARD_GET_PARTICIPANT':
+                state.participant = action.data
             default:
                 return state
         }
@@ -38,6 +40,18 @@
             }
 
         },
+        DASHBOARD_GET_PARTICIPANT: function () {
+            return dispatch => {
+                    axios.get(`/participant/year`).then(
+                        res => {
+                            dispatch({ type: 'DASHBOARD_GET_PARTICIPANT', data: res.data })
+                        }
+                    )
+            }
+
+        },
+
+
 
     })
 
