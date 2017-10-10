@@ -79,7 +79,7 @@
         </style>
 
         <fieldset class="rating">
-            <div class="resultRating"><div>[[title]]</div><div hidden="{{active}}">[[value]]</div></div>
+            <div class="resultRating"><div>[[title]][[value]]</div></div>
              
 
             <input type="radio" id="star5" name="rating" value="5" />
@@ -149,11 +149,11 @@
                 }
             }
             showText(e){
-                this.active = true;
+                this.value = '';
                 this.title = e.currentTarget.title
             }
             clearText(){
-                this.active = false;
+                this.value = this.title;
                 this.title = '';
             }
             setText(e){

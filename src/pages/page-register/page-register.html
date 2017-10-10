@@ -137,16 +137,15 @@
                         <iron-pages selected={{page}}>
                             <div>
                                 <div class="col-xs-12">
-                                    <nylon-input class=" input" label=[[i18n.register.user]] value="{{test.user}}" on-keyup="_enter" always-float-label></nylon-input>
+                                    <nylon-input class="input" label="[[i18n.register.user]]" value="{{login.username}}" always-float-label></nylon-input>
                                 </div>
                                 <div class="col-xs-12">
-                                    <nylon-input class=" input" label=[[i18n.register.password]] value="{{test.password}}" allowed-pattern="[0-9]" maxlength="13"
-                                        on-keyup="_enter" always-float-label></nylon-input>
+                                    <nylon-input type="password" class="input" label="[[i18n.register.password]]" value="{{login.password}}" always-float-label></nylon-input>
                                 </div>
                                 <!-- <app-toolbar slot="footer">
                                     <div main-title></div> -->
                                 <div style="margin:20px"></div>
-                                <paper-button raised class="btn-success col-xs-12 row center-md" on-click="_dashboard">
+                                <paper-button raised class="btn-success col-xs-12 row center-md" on-click="_login">
                                     <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp;[[i18n.button.login.label]]
                                 </paper-button>
                                 <!-- </app-toolbar> -->
@@ -253,6 +252,12 @@
                         type: String,
                         value: '0'
 
+                    },
+                    login:{
+                        type: Object,
+                        value: function(){
+                            return { username:'',password:'' }
+                        }
                     }
                 };
             }
@@ -290,6 +295,11 @@
             nylonPagesActive() {
                 Nylon.dispatch('REGISTER_GET_TYPE_ASSESSOR')
             }
+
+            _login(){
+                Nylon.dispatch('authLogin',this.login)    
+            }
+
             _enter(e) {
                 if (e.code === 'Enter') {
                     this._register();
