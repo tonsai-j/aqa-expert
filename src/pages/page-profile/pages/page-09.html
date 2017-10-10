@@ -96,7 +96,9 @@
                                     <template>[[item.role]]</template>
                                 </vaadin-grid-column> -->
                             </vaadin-grid>
-
+                            <div class="no-content" hidden="{{datas.length}}">
+                                    ไม่มีข้อมูล
+                                </div>
                             [[i18n.common.total_items]] {{datas.length}} [[i18n.common.list]]
                         </div>
                     </div>

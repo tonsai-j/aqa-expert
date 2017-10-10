@@ -86,6 +86,12 @@ Custom property | Description | Default
                     :host {
                       display: block;
                       padding: 8px 0;
+                      --paper-input-container-disabled: {
+        opacity: 1;
+      }
+--paper-input-container-underline-disabled: {
+        display: none;
+      }
                     }
               
                     :host > #overlay {
@@ -188,6 +194,16 @@ Custom property | Description | Default
                       @apply --paper-font-subhead;
                       @apply --paper-input-container-input;
                     }
+                    label {
+        font-family: mitr-light, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      input {
+        font-family: trirong-regular, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
                   </style>
               
                   <paper-input-container
