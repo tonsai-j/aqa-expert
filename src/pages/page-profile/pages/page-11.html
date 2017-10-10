@@ -157,7 +157,7 @@
                             <paper-button raised class="btn-success" on-click="_save">
                                 <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
                             </paper-button>
-                            <paper-button raised on-click="_closePanelRight">
+                            <paper-button raised  class="btn-close" on-click="_closePanelRight">
                                 <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
                             </paper-button>
                         </div>
@@ -350,12 +350,7 @@
                     msg: this.i18n.confirm.delete.msg,
                     icon: this.i18n.confirm.delete.icon,
                     btn: [
-                        {
-                            label: this.i18n.button.close.label,
-                            icon: this.i18n.button.close.icon,
-                            class: 'btn-default',
-                            'dialog-dismiss': true
-                        },
+                        
                         {
                             label: this.i18n.button.delete.label,
                             icon: this.i18n.button.delete.icon,
@@ -371,7 +366,13 @@
                                         Nylon.toast('delete')
                                     });
                             }
-                        }
+                        },
+                        {
+                            label: this.i18n.button.close.label,
+                            icon: this.i18n.button.close.icon,
+                            class: 'btn-close',
+                            'dialog-dismiss': true
+                        },
                     ]
                 })
             }
