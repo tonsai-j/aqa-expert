@@ -13,6 +13,7 @@
 
 <link rel="import" href="../../../../bower_components/l2t-paper-rating/l2t-paper-rating.html">
 
+<link rel="import" href="../../../components/nylon-rating/nylon-rating.html">
 
 <link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
@@ -90,72 +91,20 @@
                 </div>
             </div>
         </nylon-panel-card>
-        <div class="header-title">
-            รูปแบบการให้คะแนน
-        </div>
+
+
         <nylon-panel-card>
             <div slot="content">
-                <div class="row col-md-offset-1 middle-md">
-                    <div class="col-md-3">
-                        <l2t-paper-rating rating="0" readonly></l2t-paper-rating>
-                    </div>
-                    <div class="col-md-3">
-                        [[i18n.page06.no_skill]]
-                    </div>
+                <div class="header-title">
+                    [[i18n.page06.title_2]]
                 </div>
-                <div class="row col-md-offset-1 middle-md">
-                    <div class="col-md-3">
-                        <l2t-paper-rating rating="1" readonly></l2t-paper-rating>
-                    </div>
-                    <div class="col-md-3">
-                        [[i18n.page06.little]]
-                    </div>
-                </div>
-                <div class="row col-md-offset-1 middle-md">
-                    <div class="col-md-3">
-                        <l2t-paper-rating rating="2" readonly></l2t-paper-rating>
-                    </div>
-                    <div class="col-md-3">
-                        [[i18n.page06.fair]]
-                    </div>
-                </div>
-                <div class="row col-md-offset-1 middle-md">
-                    <div class="col-md-3">
-                        <l2t-paper-rating rating="3" readonly></l2t-paper-rating>
-                    </div>
-                    <div class="col-md-3">
-                        [[i18n.page06.good]]
-                    </div>
-                </div>
-                <div class="row col-md-offset-1 middle-md">
-                    <div class="col-md-3">
-                        <l2t-paper-rating rating="4" readonly></l2t-paper-rating>
-                    </div>
-                    <div class="col-md-3">
-                        [[i18n.page06.excellent]]
-                    </div>
-                </div>
-                <div class="row col-md-offset-1 middle-md">
-                    <div class="col-md-3">
-                        <l2t-paper-rating rating="5" readonly></l2t-paper-rating>
-                    </div>
-                    <div class="col-md-3">
-                        [[i18n.page06.great]]
-                    </div>
-                </div>
-            </div>
-        </nylon-panel-card>
-        <div class="header-title">
-            [[i18n.page06.title_2]]
-        </div>
-        <nylon-panel-card>
-            <div slot="content">
                 <div class="row col-md-offset-1 middle-md">
                     <div class="col-md-3">
                         <div class="label">[[i18n.page06.word]] :</div>
                     </div>
-                    <div class="col-md-6">
-                        <l2t-paper-rating rating="{{data.computer.word}}"></l2t-paper-rating>
+                    <div class="col-md-6">{{data.computer.word}}
+                        <l2t-paper-rating icon="favorite-border" rating="{{data.computer.word}}"></l2t-paper-rating>
+                        <!-- <nylon-rating value="{{data.computer.word}}"></nylon-rating> -->
                         <!-- <paper-radio-group selected="{{data.computer.word}}" attr-for-selected="name" required class="required-radio">
                             <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
                             <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>

@@ -203,37 +203,42 @@
 
       paper-button {
         height: 36px;
-        @apply --nylon-font-mitr-family-bone;
+        @apply --nylon-font-mitr-family;
       }
       /* --gl-danger-color: #d9534f;
         --gl-disabled-color: #D5D8DC;  */
 
       paper-button.btn-primary {
         background-color: #3583cb;
+        min-width: 140px;
         color: #FFF;
       }
 
       paper-button.btn-warning {
         background-color: #f0ad4e;
+        min-width: 140px;
         color: #FFF;
       }
 
       paper-button.btn-danger {
         background-color: #d9534f;
+        min-width: 140px;
         color: #FFF;
       }
 
       paper-button.btn-success {
         background-color: #5cb103;
+        min-width: 140px;
         color: #FFF;
       }
 
       paper-button.btn-default {
         background-color: #FFF;
+        min-width: 140px;
         color: #707070;
       }
 
-      paper-button[disabled] paper-button.btn-primary[disabled],
+      paper-button[disabled], paper-button.btn-primary[disabled],
       paper-button.btn-danger[disabled],
       paper-button.btn-warning[disabled],
       paper-button.btn-default[disabled],

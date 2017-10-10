@@ -11,6 +11,8 @@
 
 <link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
 
+<link rel="import" href="../../../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
@@ -42,268 +44,171 @@
             }
         </style>
         <!-- page-2 -->
-
-        <nylon-panel-card>
-            <div slot="content">
-                <div class="header-title">
-                    [[i18n.page02.doc_send]]
-                </div>
-                <div class="row middle-md">
-                    <div class="label col-md-3">
-                        [[i18n.page02.address_doc_send]]
-                    </div>
-                    <div class="input col-md-9">
-                        <paper-radio-group selected="{{address.address_selected}}">
-                            <paper-radio-button name="address_contract">[[i18n.page02.address_contract]]</paper-radio-button>
-                            <paper-radio-button name="address_work">[[i18n.page02.address_work]]</paper-radio-button>
-                        </paper-radio-group>
-                    </div>
-                </div>
-                <hr>
-                <div class="row middle-md">
-                    <div class="col-md-12">
-                        <div class="row middle-md">
-                            &nbsp;&nbsp;[[i18n.page02.address_contract]]&nbsp;&nbsp;(
-                            <nylon-input class="required" required no-label-float value="{{address.address_contract_name}}"></nylon-input>)&nbsp;&nbsp;
+        <div class="row middle-md">
+            <div class="col-md-4">
+                <nylon-panel-card>
+                    <div slot="content">
+                        <div class="row end-md middle-md">
+                            <paper-icon-button icon="create"></paper-icon-button>
                         </div>
                     </div>
-
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.home_number]]*" value="{{address.address_contract.home_number}}"></nylon-input>
-                    </div>
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.village_no]]" value="{{address.address_contract.village_no}}"></nylon-input>
-                    </div>
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.village_name]]" value="{{address.address_contract.village_name}}"></nylon-input>
-                    </div>
-
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.building]]" value="{{address.address_contract.building}}"></nylon-input>
-                    </div>
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.alley]]" value="{{address.address_contract.alley}}"></nylon-input>
-                    </div>
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.road]]" value="{{address.address_contract.road}}"></nylon-input>
-                    </div>
-
-                    <div class="input col-md-3 col-md-offset-1">
-                        [[getProvinceAddressContract(address.address_contract.region_id)]]
-                        <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.region]]" items='{{regionList}}' value="{{address.address_contract.region_id}}"
-                            item-label-path="region_th" item-value-path="id" on-selected-item-changed="getObject" object-name="address.address_contract.region"
-                            class="required" required>
-                            <template>
-                                [[item.region_th]]
-                            </template>
-                        </nylon-combo-box>
-                    </div>
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.province]]" items='{{provinceContractList}}'
-                            value="{{address.address_contract.provinc_id}}" item-label-path="province_th" item-value-path="id"
-                            on-selected-item-changed="getObject" object-name="address.address_contract.province" class="required"
-                            required>
-                            <template>
-                                [[item.province_th]]
-                            </template>
-                        </nylon-combo-box>
-                    </div>
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.amphoe]]*" value="{{address.address_contract.amphoe}}"></nylon-input>
-                        <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.amphoe]]*" items='{{amphoeList}}' value="{{address.address_contract.amphoe}}"
-                                            item-label-path="label" item-value-path="value">
-                                            <template>
-                                                [[item.label]]
-                                            </template>
-                                        </nylon-combo-box> -->
-                    </div>
-
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.district]]*" value="{{address.address_contract.district}}"></nylon-input>
-                        <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.district]]" items='{{districtList}}'
-                                            value="{{address.address_contract.district}}" item-label-path="label" item-value-path="value">
-                                            <template>
-                                                [[item.label]]
-                                            </template>
-                                        </nylon-combo-box> -->
-                    </div>
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.zipcode]]*" value="{{address.address_contract.zipcode}}"></nylon-input>
-                    </div>
-
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.telephone]]" value="{{address.address_contract.telephone}}"></nylon-input>
-                    </div>
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.fax]]" value="{{address.address_contract.fax}}"></nylon-input>
-                    </div>
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.mobile_phone]]*" value="{{address.address_contract.mobile_phone}}"></nylon-input>
-                    </div>
-
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.email]]*" value="{{address.address_contract.email}}"></nylon-input>
-                    </div>
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.line_id]]" value="{{address.address_contract.line_id}}"></nylon-input>
-                    </div>
-                    <!-- <div class="label col-md-2">
-                                        :
-                                    </div>
-                                    <div class="input col-md-2">
-                                        <nylon-input always-float-label label=""></nylon-input>
-                                    </div> -->
-
-                    <div class="label col-md-2">
-                        [[i18n.page02.time_free]] :
-                    </div>
-                    <div class="input col-md-3">
-                        <div class="row middle-md">
-                            <div class="col-md-5">
-                                <nylon-input class="required" required type=time no-label-float value="{{address.address_contract.time_start}}"></nylon-input>
-                            </div>
-                            <div class="label col-md-2"> [[i18n.page02.to]]</div>
-                            <div class="col-md-5">
-                                <nylon-input class="required" required type=time no-label-float value="{{address.address_contract.time_end}}"></nylon-input>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="row middle-md">
-                    <div class="col-md-12">
-                        <div class="row middle-md">
-                            &nbsp;&nbsp;[[i18n.page02.address_work]]
-                            <paper-button raised class="btn-default" on-tap='copyDataAddress'>([[i18n.page02.copy_address]])</paper-button>&nbsp;&nbsp;
-
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="row middle-md">
-                            <div class="input col-md-7 col-md-offset-1">
-                                <nylon-input class="required" required always-float-label label="[[i18n.page02.company_name]]*" value="{{address.address_work.company_name}}"></nylon-input>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.home_number]]*" value="{{address.address_work.home_number}}"></nylon-input>
-                    </div>
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.village_no]]" value="{{address.address_work.village_no}}"></nylon-input>
-                    </div>
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.village_name]]" value="{{address.address_work.village_name}}"></nylon-input>
-                    </div>
-
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.building]]" value="{{address.address_work.building}}"></nylon-input>
-                    </div>
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.alley]]" value="{{address.address_work.alley}}"></nylon-input>
-                    </div>
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.road]]" value="{{address.address_work.road}}"></nylon-input>
-                    </div>
-
-                    <div class="input col-md-3 col-md-offset-1">
-                        [[getProvinceAddressContract(address.address_work.region_id)]]
-                        <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.region]]" items='{{regionList}}' value="{{address.address_work.region_id}}"
-                            item-label-path="region_th" item-value-path="id" on-selected-item-changed="getObject" object-name="address.address_work.region"
-                            class="required" required>
-                            <template>
-                                [[item.region_th]]
-                            </template>
-                        </nylon-combo-box>
-                    </div>
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.province]]" items='{{provinceContractList}}'
-                            value="{{address.address_work.provinc_id}}" item-label-path="province_th" item-value-path="id" on-selected-item-changed="getObject"
-                            object-name="address.address_work.province" class="required" required>
-                            <template>
-                                [[item.province_th]]
-                            </template>
-                        </nylon-combo-box>
-                    </div>
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.amphoe]]*" value="{{address.address_work.amphoe}}"></nylon-input>
-                        <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.amphoe]]*" items='{{amphoeList}}' value="{{address.address_work.amphoe}}"
-                                            item-label-path="label" item-value-path="value">
-                                            <template>
-                                                [[item.label]]
-                                            </template>
-                                        </nylon-combo-box> -->
-                    </div>
-
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.district]]*" value="{{address.address_work.district}}"></nylon-input>
-                        <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.district]]" items='{{districtList}}'
-                                            value="{{address.address_work.district}}" item-label-path="label" item-value-path="value">
-                                            <template>
-                                                [[item.label]]
-                                            </template>
-                                        </nylon-combo-box> -->
-                    </div>
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.zipcode]]*" value="{{address.address_work.zipcode}}"></nylon-input>
-                    </div>
-
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.telephone]]" value="{{address.address_work.telephone}}"></nylon-input>
-                    </div>
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.fax]]" value="{{address.address_work.fax}}"></nylon-input>
-                    </div>
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.mobile_phone]]*" value="{{address.address_work.mobile_phone}}"></nylon-input>
-                    </div>
-
-                    <!-- <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.email]]*" value="{{address.address_work.email}}"></nylon-input>
-                    </div>
-                    <div class="input col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page02.line_id]]" value="{{address.address_work.line_id}}"></nylon-input>
-                    </div> -->
-                    <!-- <div class="label col-md-2">
-                                        :
-                                    </div>
-                                    <div class="input col-md-2">
-                                        <nylon-input always-float-label label=""></nylon-input>
-                                    </div> -->
-                    <!-- <div class="col-md-12">
-                        <div class="row middle-md">
-                            <div class="input col-md-2 col-md-offset-1">
-                                [[i18n.page02.time_free]] :
-                            </div>
-                            <div class="col-md-2">
-                                <nylon-input class="required" required type=time no-label-float value="{{address.address_work.time_start}}"></nylon-input>
-                            </div>
-                            <div class="input col-md-1"> [[i18n.page02.to]]</div>
-                            <div class="col-md-2">
-                                <nylon-input class="required" required type=time no-label-float value="{{address.address_work.time_end}}"></nylon-input>
-                            </div>
-                        </div>
-                    </div> -->
-                </div>
-
+                </nylon-panel-card>
             </div>
+            <div class="col-md-4">
+                <nylon-panel-card>
+                    <div slot="content">
+                        <div class="row end-md middle-md">
+                            <paper-icon-button icon="create"></paper-icon-button>
+                        </div>
+                    </div>
+                </nylon-panel-card>
             </div>
-            <!-- <app-toolbar slot="footer">
-                <div main-title></div>
-                <paper-button raised class="btn-success" on-click="_save">
-                    <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+            <div class="col-md-4">
+                <nylon-panel-card>
+                    <div slot="content">
+                        <div class="row end-md middle-md">
+                            <paper-icon-button icon="create"></paper-icon-button>
+                        </div>
+                    </div>
+                </nylon-panel-card>
+            </div>
+        </div>
 
-                </paper-button>
-            </app-toolbar> -->
-
-        </nylon-panel-card>
-        <div class="row end-md ">
-            <div class="button-action-bottom">
-                <paper-button raised class="btn-success" on-click="_save">
-                    <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+        <div class="row start-md middle-md" style="margin-top:3%">
+            <div class="col-md-3">
+                <paper-button raised class="btn-primary" action="add" on-click="_openPanelRight">
+                    <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]
                 </paper-button>
             </div>
         </div>
+        <div class="address" style="margin-top:3%">
+            <nylon-panel-card>
+                <div slot="content">
+                    <div class="row end-md middle-md">
+                        <paper-icon-button icon="create"></paper-icon-button>
+                    </div>
+                </div>
+            </nylon-panel-card>
+        </div>
+
+        <nylon-panel-right id="panelRight" title="[[i18n.page02.title]]">
+            <nylon-panel-card slot="content">
+                <div slot="content">
+                    <div class="row middle-md">
+                        <div class="input col-md-3 col-md-offset-1">
+                            <nylon-input class="required" required always-float-label label="[[i18n.page02.home_number]]*" value="{{data.home_number}}"></nylon-input>
+                        </div>
+                        <div class="input col-md-3 col-md-offset-1">
+                            <nylon-input class="required" required always-float-label label="[[i18n.page02.village_no]]" value="{{data.village_no}}"></nylon-input>
+                        </div>
+                        <div class="input col-md-3 col-md-offset-1">
+                            <nylon-input class="required" required always-float-label label="[[i18n.page02.village_name]]" value="{{data.village_name}}"></nylon-input>
+                        </div>
+
+                        <div class="input col-md-3 col-md-offset-1">
+                            <nylon-input class="required" required always-float-label label="[[i18n.page02.building]]" value="{{data.building}}"></nylon-input>
+                        </div>
+                        <div class="input col-md-3 col-md-offset-1">
+                            <nylon-input class="required" required always-float-label label="[[i18n.page02.alley]]" value="{{data.alley}}"></nylon-input>
+                        </div>
+                        <div class="input col-md-3 col-md-offset-1">
+                            <nylon-input class="required" required always-float-label label="[[i18n.page02.road]]" value="{{data.road}}"></nylon-input>
+                        </div>
+
+                        <div class="input col-md-3 col-md-offset-1">
+                            [[getProvinceAddressContract(data.region_id)]]
+                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.region]]" items='{{regionList}}' value="{{data.region_id}}"
+                                item-label-path="region_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.region"
+                                class="required" required>
+                                <template>
+                                    [[item.region_th]]
+                                </template>
+                            </nylon-combo-box>
+                        </div>
+                        <div class="input col-md-3 col-md-offset-1">
+                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.province]]" items='{{provinceContractList}}'
+                                value="{{data.provinc_id}}" item-label-path="province_th" item-value-path="id" on-selected-item-changed="getObject"
+                                object-name="data.province" class="required" required>
+                                <template>
+                                    [[item.province_th]]
+                                </template>
+                            </nylon-combo-box>
+                        </div>
+                        <div class="input col-md-3 col-md-offset-1">
+                            <nylon-input class="required" required always-float-label label="[[i18n.page02.amphoe]]*" value="{{data.amphoe}}"></nylon-input>
+                            <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.amphoe]]*" items='{{amphoeList}}' value="{{data.amphoe}}"
+                                                            item-label-path="label" item-value-path="value">
+                                                            <template>
+                                                                [[item.label]]
+                                                            </template>
+                                                        </nylon-combo-box> -->
+                        </div>
+
+                        <div class="input col-md-3 col-md-offset-1">
+                            <nylon-input class="required" required always-float-label label="[[i18n.page02.district]]*" value="{{data.district}}"></nylon-input>
+                            <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.district]]" items='{{districtList}}'
+                                                            value="{{data.district}}" item-label-path="label" item-value-path="value">
+                                                            <template>
+                                                                [[item.label]]
+                                                            </template>
+                                                        </nylon-combo-box> -->
+                        </div>
+                        <div class="input col-md-3 col-md-offset-1">
+                            <nylon-input class="required" required always-float-label label="[[i18n.page02.zipcode]]*" value="{{data.zipcode}}"></nylon-input>
+                        </div>
+
+                        <div class="input col-md-3 col-md-offset-1">
+                            <nylon-input class="required" required always-float-label label="[[i18n.page02.telephone]]" value="{{data.telephone}}"></nylon-input>
+                        </div>
+                        <div class="input col-md-3 col-md-offset-1">
+                            <nylon-input class="required" required always-float-label label="[[i18n.page02.fax]]" value="{{data.fax}}"></nylon-input>
+                        </div>
+                        <div class="input col-md-3 col-md-offset-1">
+                            <nylon-input class="required" required always-float-label label="[[i18n.page02.mobile_phone]]*" value="{{data.mobile_phone}}"></nylon-input>
+                        </div>
+
+                        <div class="input col-md-3 col-md-offset-1">
+                            <nylon-input class="required" required always-float-label label="[[i18n.page02.email]]*" value="{{data.email}}"></nylon-input>
+                        </div>
+                        <div class="input col-md-3 col-md-offset-1">
+                            <nylon-input class="required" required always-float-label label="[[i18n.page02.line_id]]" value="{{data.line_id}}"></nylon-input>
+                        </div>
+                        <!-- <div class="label col-md-2">
+                                                        :
+                                                    </div>
+                                                    <div class="input col-md-2">
+                                                        <nylon-input always-float-label label=""></nylon-input>
+                                                    </div> -->
+
+                        <div class="label col-md-2">
+                            [[i18n.page02.time_free]] :
+                        </div>
+                        <div class="input col-md-3">
+                            <div class="row middle-md">
+                                <div class="col-md-5">
+                                    <nylon-input class="required" required type=time no-label-float value="{{address.time_start}}"></nylon-input>
+                                </div>
+                                <div class="label col-md-2"> [[i18n.page02.to]]</div>
+                                <div class="col-md-5">
+                                    <nylon-input class="required" required type=time no-label-float value="{{address.time_end}}"></nylon-input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row center-md button-buttom">
+                        <div class="button-action-bottom">
+                            <paper-button raised class="btn-success" on-click="_save">
+                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                            </paper-button>
+                            <paper-button raised on-click="_closePanelRight">
+                                <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
+                            </paper-button>
+                        </div>
+                    </div>
+                </div>
+            </nylon-panel-card>
+        </nylon-panel-right>
+
     </template>
 
     <script>
@@ -362,8 +267,22 @@
                     data: {
                         type: Object,
                         value: {
-                            address_contract: {},
-                            address_work: {}
+                            home_number: '',
+                            village_no: '',
+                            village_name: '',
+                            building: '',
+                            alley: '',
+                            road: '',
+                            region_id: '',
+                            provinc_id: '',
+                            amphoe: '',
+                            district: '',
+                            zipcode: '',
+                            telephone: '',
+                            fax: '',
+                            mobile_phone: '',
+                            email: '',
+                            line_id: '',
                         }
                     },
                 };
@@ -397,37 +316,73 @@
                 this.notifyPath('address.address_work')
             }
             getProvinceAddressContract(region_id) {
-                if (this.address !== undefined && region_id !== undefined && region_id !== '') {
+                console.log(region_id);
+                if (this.data !== undefined && region_id !== undefined && region_id !== '') {
                     this._debouncer = Polymer.Debouncer.debounce(
                         this._debouncer, // initially undefined
                         Polymer.Async.timeOut.after(100),
                         () => {
-                            let region_id = this.address.address_contract.region.old_id
+                            console.log(this.date);
+                            let region_id = this.date.region.old_id
                             Nylon.dispatch('PROFILE_02_GET_LIST_PROVINCE', region_id, 'contract')
                         })
                 }
             }
-            getProvinceAddressWork(region_id) {
-                if (this.address !== undefined && region_id !== undefined && region_id !== '') {
-                    this._debouncer = Polymer.Debouncer.debounce(
-                        this._debouncer, // initially undefined
-                        Polymer.Async.timeOut.after(100),
-                        () => {
-                            let region_id = this.address.address_work.region.old_id
-                            Nylon.dispatch('PROFILE_02_GET_LIST_PROVINCE', region_id, 'work')
-                        })
+            // getProvinceAddressWork(region_id) {
+            //     if (this.address !== undefined && region_id !== undefined && region_id !== '') {
+            //         this._debouncer = Polymer.Debouncer.debounce(
+            //             this._debouncer, // initially undefined
+            //             Polymer.Async.timeOut.after(100),
+            //             () => {
+            //                 let region_id = this.address.address_work.region.old_id
+            //                 Nylon.dispatch('PROFILE_02_GET_LIST_PROVINCE', region_id, 'work')
+            //             })
+            //     }
+            // }
+            _openPanelRight(e) {
+                if (e.currentTarget.getAttribute('action') == 'edit') {
+                    this.set('data', e.model.item)
+                    this.set('_index', e.model.index)
+                } else {
+                    this.set('data', {})
+                    this.set('_index', undefined)
                 }
+                this.$.panelRight.open();
             }
-
             _save() {
                 // console.log(this.address)
                 // console.log(this.validateForm('.required'));
                 if (this.validateForm('.required')) {
-                    Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'address', this.address,
-                        () => {
-                            Nylon.toast('update')
-                        }
-                    )
+                    // Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'address', this.address,
+                    //     () => {
+                    //         Nylon.toast('update')
+                    //     }
+                    // )
+                    if (typeof this._index === 'undefined') {
+                        var newData = Object.assign(this.data, {
+                            date_created: new Date().toISOString(),
+                            date_updated: new Date().toISOString(),
+                            creater: this.info.taxno,
+                            updater: this.info.taxno
+                        });
+                        Nylon.dispatch('PROFILE_PUSH_ARRAY', this.info.id, 'address', newData
+                            , () => {
+                                this._closePanelRight();
+                                this.set('data', {});
+                                Nylon.toast('insert')
+                            });
+                    } else {
+                        var newData = Object.assign(this.data, {
+                            date_updated: new Date().toISOString(),
+                            updater: this.info.taxno
+                        });
+                        Nylon.dispatch('PROFILE_UPDATE_ARRAY', this.info.id, 'address', this._index, newData
+                            , () => {
+                                this._closePanelRight();
+                                this.set('data', {});
+                                Nylon.toast('update')
+                            });
+                    }
                 } else {
                     Nylon.toast('required')
                 }
