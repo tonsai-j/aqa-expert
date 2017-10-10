@@ -112,9 +112,19 @@
         <div class="col-xs-12 ">
           <nylon-panel-card>
             <app-toolbar slot="header">
-              <div main-title>สรุปการประเมินสถานศึกษา</div>
+              <div main-title>สรุปผลการประเมินสถานศึกษา</div>
             </app-toolbar>
             <nylon-c3 slot="content" id="chart3_admin"></nylon-c3>
+          </nylon-panel-card>
+        </div>
+
+
+        <div class="col-xs-12">
+          <nylon-panel-card>
+            <app-toolbar slot="header">
+              <div main-title>สรุปผลการประเมินสถานศึกษา</div>
+            </app-toolbar>
+            <nylon-c3 slot="content" id="chart4_admin"></nylon-c3>
           </nylon-panel-card>
         </div>
 
@@ -271,26 +281,72 @@
         // })
 
 
+        // this.$.chart3_admin.generate({
+        //   data: {
+        //     x: 'x',
+        //     columns: [
+        //       ['x', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม'],
+        //       ['สถานศึกษาที่ต้องเข้ารับการประเมิน', 3000, 3200, 3500, 3300, 3800, 3100],
+        //       ['ได้รับการประเมินแล้ว', 2800, 3100, 2700, 2900, 3500, 3000]
+        //     ],
+        //     type: 'bar'
+        //   },
+        //   axis: {
+        //     x: {
+        //       type: 'category',
+        //       tick: {
+        //         rotate: 0,
+        //         multiline: false
+        //       },
+        //     }
+        //   }
+        // })
+
         this.$.chart3_admin.generate({
           data: {
-            x: 'x',
             columns: [
-              ['x', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม'],
-              ['สถานศึกษาที่ต้องเข้ารับการประเมิน', 3000, 3200, 3500, 3300, 3800, 3100],
-              ['ได้รับการประเมินแล้ว', 2800, 3100, 2700, 2900, 3500, 3000]
+              // ['x', '2558', '2559', '2560', '2561'],
+              ['ดีมาก', 30, 200, 100, 400],
+              ['ดี', 40, 100, 140, 200],
+              ['พอใช้', 50, 200, 100, 400],
+              ['ต้องปรับปรุง', 60, 100, 140, 200],
+              ['ต้องปรับปรุงเร่งด่วน', 70, 100, 140, 200]
             ],
-            type: 'bar'
+            //  type: 'spline'
           },
           axis: {
             x: {
               type: 'category',
-              tick: {
-                rotate: 0,
-                multiline: false
-              },
+              categories: ['ปี 2558', 'ปี 2559', 'ปี 2560', 'ปี 2561']
             }
+          },
+          size: {
+            height: 250
           }
         })
+
+
+        this.$.chart4_admin.generate({
+          data: {
+            columns: [
+              // ['x', '2558', '2559', '2560', '2561'],
+              ['percent', 70, 60, 55,50,30,10]
+            ],
+            //  type: 'spline'
+          },
+          axis: {
+            x: {
+              type: 'category',
+              categories: ['จัดกลุ่ม', 'ส่งแผนการดำเนินงาน', 'เข้าประเมินสถานศึกษา', 'ตรวจร่างรายงาน', 'อภิมาน', 'ส่งรายงานฉบับสมบูรณ์']
+            }
+          },
+          size: {
+            height: 250
+          }
+        })
+
+
+
       }
     }
 
