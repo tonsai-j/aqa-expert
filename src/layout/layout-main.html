@@ -111,7 +111,15 @@
             }
             /*  */
         </style>
-
+        <!-- <template is="dom-if" if={{!showDrawer}}>
+            <section class="background-section">
+                <div class="opening-msg">{{!showDrawer}}2
+                    <div class="app-container" id="slotlogin">
+                        <slot></slot>
+                    </div>
+                </div>
+            </section>
+        </template> -->
         <!-- <template is="dom-if" if={{showDrawer}}> -->
             <app-drawer-layout>
                 <app-drawer class="page" slot="drawer">
@@ -155,15 +163,7 @@
             </app-drawer-layout>
         <!-- </template> -->
 
-        <!-- <template is="dom-if" if={{!showDrawer}}>
-            <section class="background-section">
-                <div class="opening-msg">
-                    <div class="app-container" id="slotlogin">
-                        <slot></slot>
-                    </div>
-                </div>
-            </section>
-        </template> -->
+
     </template>
 
     <script>
@@ -202,9 +202,11 @@
                 if (e === '/') {
                     this.set('showDrawer', false)
                     // console.log(this.$.slotlogin);
+                    // console.log('---------------');
                     // console.log(e)
                 } else {
                     this.set('showDrawer', true)
+                    // console.log('---------------');
                     // console.log(e)
                 }
 
