@@ -23,6 +23,7 @@
 <link rel="import" href="../../../redux/profile/page-02-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
+<link rel="import" href="../../../../bower_components/polymer/lib/elements/dom-repeat.html">
 
 <dom-module id="page-02">
     <template>
@@ -84,6 +85,10 @@
         <div class="address" style="margin-top:3%">
             <nylon-panel-card>
                 <div slot="content">
+                    <template is="dom-repeat" item="[[data]]" items='{{contract}}'>
+                        <div>[[item.home_number]]</div>
+                    </template>
+
                     <div class="row end-md middle-md">
                         <paper-icon-button icon="create"></paper-icon-button>
                     </div>
@@ -264,8 +269,18 @@
                         statePath: 'profile.info.address',
                         value: {}
                     },
-                    data: {
+                    contract: {
                         type: Object,
+                        statePath: 'profile.info.contract',
+                        value: {
+                            address_current: {},
+                            address_hometown: {},
+                            address_work: {},
+                            address: []
+                        }
+                    },
+                    data: {
+                        type: Array,
                         value: {
                             home_number: '',
                             village_no: '',
@@ -322,8 +337,9 @@
                         this._debouncer, // initially undefined
                         Polymer.Async.timeOut.after(100),
                         () => {
-                            console.log(this.date);
-                            let region_id = this.date.region.old_id
+                            // console.log(this.date);
+                            console.log(this.data.region.old_id);
+                            let region_id = this.data.region.old_id
                             Nylon.dispatch('PROFILE_02_GET_LIST_PROVINCE', region_id, 'contract')
                         })
                 }
@@ -339,6 +355,9 @@
             //             })
             //     }
             // }
+            _closePanelRight() {
+                this.$.panelRight.close();
+            }
             _openPanelRight(e) {
                 if (e.currentTarget.getAttribute('action') == 'edit') {
                     this.set('data', e.model.item)

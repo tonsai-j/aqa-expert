@@ -71,7 +71,11 @@
                         </div>
                         <div class="col-md-12 middle-md center-md">
                             <input id="ifile" type=file accept="image/*" on-change="preview_image">
-                            <paper-button raised on-tap="upload_img" class="upload_image btn-primary"> อัพ</paper-button>
+
+                            <paper-button raised on-tap="upload_img" class="upload_image btn-upload">
+                                <iron-icon icon="[[i18n.button.upload.icon]]">
+                                </iron-icon>&nbsp;&nbsp; [[i18n.button.upload.label]]</paper-button>
+                            </paper-button>
                         </div>
                     </div>
                     <div class="col-md-9">

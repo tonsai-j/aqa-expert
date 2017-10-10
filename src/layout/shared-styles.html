@@ -208,6 +208,18 @@
       /* --gl-danger-color: #d9534f;
         --gl-disabled-color: #D5D8DC;  */
 
+      paper-button.btn-upload {
+        background-color: #a3afb7;
+        min-width: 140px;
+        color: #FFF;
+      }
+
+      paper-button.btn-add {
+        background-color: #3583ca;
+        min-width: 140px;
+        color: #FFF;
+      }
+
       paper-button.btn-primary {
         background-color: #3583cb;
         min-width: 140px;
@@ -222,6 +234,12 @@
 
       paper-button.btn-danger {
         background-color: #d9534f;
+        min-width: 140px;
+        color: #FFF;
+      }
+
+      paper-button.btn-delete {
+        background-color: #ff7400;
         min-width: 140px;
         color: #FFF;
       }
@@ -244,14 +262,56 @@
         min-width: 140px;
         color: #979797;
       }
-      paper-button.btn-close {
+      /*  hover */
+
+      paper-button.btn-upload:hover {
+        background-color: #ccd5cd
+      }
+
+      paper-button.btn-add:hover {
+        background-color: #5ca4e5;
+      }
+
+      paper-button.btn-close:hover {
         background-color: #e3dede;
       }
+
+      paper-button.btn-delete:hover {
+        background-color: #ffa900;
+      }
+
       paper-button.btn-success:hover {
         background-color: #71d161;
       }
+      /*  end hover */
+      /*  focus */
+
+      paper-button.btn-upload:focus {
+        background-color: #76838f
+      }
+
+      paper-button.btn-add:focus {
+        background-color: #085498;
+      }
+
+      paper-button.btn-close:focus {
+        background-color: #f3efef;
+      }
+
+      paper-button.btn-delete:focus {
+        background-color: #ff4d00;
+      }
+
+      paper-button.btn-success:focus {
+        background-color: #2e622f;
+      }
+      /*  end focus */
 
       paper-button[disabled],
+      paper-button.btn-close[disabled],
+      paper-button.btn-upload[disabled],
+      paper-button.btn-delete[disabled],
+      paper-button.btn-add[disabled],
       paper-button.btn-primary[disabled],
       paper-button.btn-danger[disabled],
       paper-button.btn-warning[disabled],
@@ -260,6 +320,16 @@
       paper-button.btn-close[disabled] {
         background-color: #e1e1e1;
         color: #949393;
+      }
+
+      paper-icon-button {
+        margin: 5px 5px 5px 5px;
+      }
+
+      paper-icon-button:hover {
+        background-color: var(--paper-grey-200);
+        border-radius: 5px;
+        box-shadow: inset 0 0 3px 3px rgba(0, 0, 0, .2);
       }
 
       .button-action-bottom {

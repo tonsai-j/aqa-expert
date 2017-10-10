@@ -22,6 +22,24 @@
              :host {
                 display: block
             }
+            #output_image {
+                border: 1px solid black;
+                width: 10em;
+                height: 10em;
+            }
+
+            #ifile {
+                width: 0.1px;
+                height: 0.1px;
+                opacity: 0;
+                overflow: hidden;
+                position: absolute;
+                z-index: -1;
+            }
+
+            .upload_image {
+                margin-top: 5px;
+            }
         </style>
         <!-- page-13-->
 
@@ -31,6 +49,7 @@
                 <div class="header-title">
                     [[i18n.page13.title]]
                 </div>
+                <input type="file"  id="ifile" name="profile_pic" accept=".jpg, .jpeg, .pdf">
                 <div class="row  middle-md">
                     <div class="col-md-12">
                         <vaadin-grid id='material' items='{{documentFile}}'>
@@ -60,7 +79,8 @@
                                 </template>
                                 <template>
                                     <div class="text-center">
-                                        <input type="file" id="profile_pic" name="profile_pic" accept=".jpg, .jpeg, .pdf">
+                                        <paper-button raised on-tap="upload_img" class="upload_image btn-upload"> เลือกเอกสาร</paper-button>
+                                       
                                     </div>
                                 </template>
                             </vaadin-grid-column>
@@ -156,6 +176,9 @@
                 Polymer.RenderStatus.afterNextRender(this, function () {
 
                 });
+            }
+            upload_img() {
+                this.$.ifile.click()
             }
         }
 
