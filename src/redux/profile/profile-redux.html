@@ -53,9 +53,11 @@
     Nylon.addAction({
         PROFILE_LOGIN: function (data) {
             // console.log('eeeeeeee');
+            // '/profile/ข้อมูลพื้นฐาน'
+            let path = data.pathUrl || '/profile/ข้อมูลพื้นฐาน'
             return dispatch => {
                 dispatch({ type: 'PROFILE_LOGIN', data: data })
-                Nylon.redirect('/profile/ข้อมูลพื้นฐาน');
+                Nylon.redirect(path);
             }
         },
         PROFILE_UPDATE: function (id, field, data, callback) {
