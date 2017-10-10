@@ -18,7 +18,12 @@ exports.post = function (req, res) {
                             properties: false,
                             meeting: false,
                             exam: false,
-                            // contact: { },
+                            contact: {
+                                current: {},
+                                home: {},
+                                work: {},
+                                address: []
+                            },
                             education: [],
                             specialist: [],
                             working: [],
@@ -52,7 +57,7 @@ exports.post = function (req, res) {
         })
 }
 exports.check = function (req, res) {
-    r.table('profile').getAll(req.query.taxno, { index: 'taxno' }).pluck('taxno', 'type_assessor_id', 'type_assessor', 'basic', 'contact')
+    r.table('profile').getAll(req.query.taxno, { index: 'taxno' }).pluck('taxno', 'type_assessor_id', 'type_assessor', 'basic')
         .run()
         .then(function (data) {
             res.json(data)

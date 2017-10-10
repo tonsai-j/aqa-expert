@@ -164,11 +164,11 @@
                                         always-float-label></nylon-input>
                                 </div>
                                 <div class="col-xs-12">
-                                    <nylon-input class="required input" required label=[[i18n.register.phone]] value="{{data.contact.mobile}}" required on-keyup="_enter"
+                                    <nylon-input class="required input" required label=[[i18n.register.phone]] value="{{data.basic.mobile}}" required on-keyup="_enter"
                                         always-float-label></nylon-input>
                                 </div>
                                 <div class="col-xs-12">
-                                    <nylon-input class="required input" required label=[[i18n.register.email]] value="{{data.contact.email}}" required on-keyup="_enter"
+                                    <nylon-input class="required input" required label=[[i18n.register.email]] value="{{data.basic.email}}" required on-keyup="_enter"
                                         always-float-label></nylon-input>
                                 </div>
                                 <div class="col-xs-12">
@@ -231,9 +231,7 @@
                             type_assessor_id: 1,
                             basic: {
                                 firstname_th: '',
-                                lastname_th: ''
-                            },
-                            contact: {
+                                lastname_th: '',
                                 email: '',
                                 mobile: ''
                             }
@@ -274,16 +272,15 @@
                                 if (data.length > 0) {
                                     this.$.inputTaxNo.validate(true);
                                     var basic = data[0].basic
-                                    var contact = data[0].contact
                                     this.set('data.basic.firstname_th', basic.firstname_th)
                                     this.set('data.basic.lastname_th', basic.lastname_th)
-                                    this.set('data.contact.email', contact.email)
-                                    this.set('data.contact.mobile', contact.mobile)
+                                    this.set('data.basic.email', basic.email)
+                                    this.set('data.basic.mobile', basic.mobile)
                                 } else {
                                     this.set('data.basic.firstname_th', '')
                                     this.set('data.basic.lastname_th', '')
-                                    this.set('data.contact.email', '')
-                                    this.set('data.contact.mobile', '')
+                                    this.set('data.basic.email', '')
+                                    this.set('data.basic.mobile', '')
                                 }
                             })
                         });
