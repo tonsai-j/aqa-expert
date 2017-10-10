@@ -21,7 +21,7 @@
     Nylon.addAction({
         authLogin:function(login){
             return dispatch => {
-                axios.post('http://localhost:3000/api/auth/login',login).then( 
+                axios.post('/auth/login',login).then( 
                     res => {
                         localStorage.setItem("token", res.data.token)
                         Nylon.redirect('/dashboard')
@@ -38,7 +38,7 @@
 
         authTransform:function(url){
             return dispatch => {
-                axios.get('http://localhost:3000/api/auth/transform').then( 
+                axios.get('/auth/transform').then( 
                     res => {
                         window.location = `${url}/auth/transform?source=${res.data.token}`
                     }
