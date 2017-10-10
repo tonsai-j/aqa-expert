@@ -227,7 +227,7 @@
       }
 
       paper-button.btn-success {
-        background-color: #5cb103;
+        background-color: #49a34a;
         min-width: 140px;
         color: #FFF;
       }
@@ -238,11 +238,26 @@
         color: #707070;
       }
 
-      paper-button[disabled], paper-button.btn-primary[disabled],
+      paper-button.btn-close {
+        background-color: #FFF;
+        border: 1px solid #979797;
+        min-width: 140px;
+        color: #979797;
+      }
+      paper-button.btn-close {
+        background-color: #e3dede;
+      }
+      paper-button.btn-success:hover {
+        background-color: #71d161;
+      }
+
+      paper-button[disabled],
+      paper-button.btn-primary[disabled],
       paper-button.btn-danger[disabled],
       paper-button.btn-warning[disabled],
       paper-button.btn-default[disabled],
-      paper-button.btn-success[disabled] {
+      paper-button.btn-success[disabled],
+      paper-button.btn-close[disabled] {
         background-color: #e1e1e1;
         color: #949393;
       }
@@ -251,9 +266,10 @@
         margin: 20px;
       }
 
-      .button-buttom{
+      .button-buttom {
         margin-top: 3%;
       }
+
       vaadin-grid#material {
         height: auto;
         @apply --nylon-font-mitr-family;

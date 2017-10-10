@@ -19,6 +19,9 @@
 <link rel="import" href="./nylon-mitr-font.html">
 
 <link rel="import" href="../i18n/profile/page-00-i18n.html">
+
+<link rel="import" href="../i18n/dashboard/dashboard-i18n.html">
+
 <link rel="import" href="../redux-mixin.html">
 <link rel="import" href="../i18n/menu-i18n.html">
 <link rel="import" href="../my-icons.html">
@@ -66,11 +69,12 @@
                 font-family: mitr-light, sans-serif;
                 -webkit-font-smoothing: antialiased;
                 background-color: #263238;
-                color: #727f8a;
+                color: #efeff1;
             }
 
             iron-selector>paper-icon-item:hover {
-                background-color: #232C33;
+                background-color: #192125;
+                color: #b0bec5;
             }
 
             iron-selector>paper-icon-item.iron-selected {
@@ -83,12 +87,13 @@
                 padding-left: 1em;
                 line-height: 3em;
                 background-color: #3583CB;
-                color: #BBBFD3;
+                color: #efeff1;
+                cursor: pointer;
             }
 
             iron-icon.icon-menu {
                 /* --iron-icon-stroke-color: #FFF; */
-                color: #fff;
+                color: #efeff1;
                 cursor: pointer;
                 /* fill: red; */
             }
@@ -204,7 +209,7 @@
                         value: [
                             {
                                 icon: 'perm-identity',
-                                page: 'register/สมัครผู้ประเมินภายนอก',
+                                page: '/',
                                 name: 'สมัคร',
                                 sub_title_menu: [
                                     {
@@ -215,6 +220,24 @@
                                                 icon: 'i18n.menu.register.icon',
                                                 label: 'i18n.menu.register.label',
                                                 href: '/'
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                icon: 'perm-identity',
+                                page: '/dashboard',
+                                name: 'สรุป',
+                                sub_title_menu: [
+                                    {
+                                        page_name: 'i18n.dashboard.summary_report',
+                                        sub_menu: [
+                                            {
+                                                page_name: 'page-dashboard/dashboard',
+                                                icon: 'i18n.menu.register.icon',
+                                                label: 'i18n.dashboard.summary_report',
+                                                href: '/dashboard'
                                             }
                                         ]
                                     }
@@ -367,7 +390,7 @@
             }
             getUrl(url) {
                 // console.log(url);
-                if (url !== '/') {
+                // if (url !== '/') {
                     this.set('menuPage', 'menu')
                     for (var index = 0; index < this.menu.length; index++) {
                         for (var j = 0; j < this.menu[index].sub_title_menu.length; j++) {
@@ -381,7 +404,7 @@
                             }
                         }
                     }
-                }
+                // }
             }
             ready() {
                 super.ready()
