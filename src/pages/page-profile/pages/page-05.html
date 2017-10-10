@@ -28,12 +28,13 @@
                 display: block
             }
         </style>
-        <div class="header-title">
-            [[i18n.page05.title]]
-        </div>
+
         <nylon-panel-card>
             <div slot="content">
-                <div class="row end-md middle-md">
+                <div class="header-title">
+                    [[i18n.page05.title]]
+                </div>
+                <div class="row start-md middle-md">
                     <div class="label col-md-3">
                         <paper-button raised class="btn-primary" on-tap=_openPanelRight>
                             <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]</paper-button>
@@ -171,9 +172,18 @@
                         </div>
                     </div>
 
-
+                    <div class="row center-md button-buttom">
+                        <div class="button-action-bottom">
+                            <paper-button raised class="btn-success" on-click="_save">
+                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                            </paper-button>
+                            <paper-button raised on-click="_closePanelRight">
+                                <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
+                            </paper-button>
+                        </div>
+                    </div>
                 </div>
-                <app-toolbar slot="footer">
+                <!-- <app-toolbar slot="footer">
                     <div main-title></div>
                     <paper-button raised class="btn-success" on-click="_save">
                         <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
@@ -181,7 +191,7 @@
                     <paper-button raised on-click="_closePanelRight">
                         <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
                     </paper-button>
-                </app-toolbar>
+                </app-toolbar> -->
             </nylon-panel-card>
         </nylon-panel-right>
 
@@ -259,7 +269,11 @@
             }
             _openPanelRight(e) {
                 if (e.currentTarget.getAttribute('action') == 'edit') {
-                    this.set('data', e.model.item)
+                    let data =  JSON.parse(JSON.stringify(e.model.item));
+                    data.work_start_date  = data.work_start_date.split('T')[0]
+                    data.work_end_date = data.work_end_date.split('T')[0]
+                    // console.log(data);
+                    this.set('data', data)
                     this.set('_index', e.model.index)
                 } else {
                     this.set('data', {})

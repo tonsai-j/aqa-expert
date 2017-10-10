@@ -45,14 +45,15 @@
             }
         </style>
         <!-- page-11 -->
-        <div class="header-title">
-            [[i18n.page11.title]]
-        </div>
+
 
         <nylon-panel-card>
             <div slot="content">
-                <div class="row end-md middle-md">
-                    <div class="label col-md-3">
+                <div class="header-title">
+                    [[i18n.page11.title]]
+                </div>
+                <div class="row start-md middle-md">
+                    <div class=" col-md-3">
                         <paper-button raised class="btn-primary" on-tap=_openPanelRight>
                             <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]</paper-button>
                     </div>
@@ -105,6 +106,7 @@
                 </div>
             </div>
         </nylon-panel-card>
+
         <nylon-panel-right id="right" title="[[i18n.page11.title]]" width="80%">
             <nylon-panel-card slot="content">
                 <div slot="content">
@@ -150,18 +152,27 @@
                             </div>
                         </div>
                     </template>
-
+                    <div class="row center-md button-buttom">
+                        <div class="button-action-bottom">
+                            <paper-button raised class="btn-success" on-click="_save">
+                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                            </paper-button>
+                            <paper-button raised on-click="_closePanelRight">
+                                <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
+                            </paper-button>
+                        </div>
+                    </div>
                 </div>
-                <app-toolbar slot="footer">
+                <!-- <app-toolbar slot="footer">
                     <div main-title></div>
                     <paper-button raised class="btn-success" on-click="_save">
-                            <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                        </paper-button>
+                        <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                    </paper-button>
                     <paper-button raised on-click="_closePanelRight">
                         <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
                     </paper-button>
-                    
-                </app-toolbar>
+
+                </app-toolbar> -->
             </nylon-panel-card>
         </nylon-panel-right>
 

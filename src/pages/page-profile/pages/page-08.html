@@ -39,62 +39,64 @@
                 display: inline-block
             }
         </style>
-        <div class="header-title">
-        [[i18n.page08.title]]
-        </div>
+
         <nylon-panel-card>
             <div slot="content">
-                    <div class="row end-md middle-md">
-                        <div class="label col-md-3">
-                            <paper-button raised class="btn-primary" action="add" on-tap="openPanelRight">
-                                <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]
-                            </paper-button>
-                        </div>
+                <div class="header-title">
+                    [[i18n.page08.title]]
+                </div>
+                <div class="row start-md middle-md">
+                    <div class=" col-md-3">
+                        <paper-button raised class="btn-primary" action="add" on-tap="openPanelRight">
+                            <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]
+                        </paper-button>
                     </div>
-                    <br>
-                    <div class="row  middle-md">
-                        <div class="col-md-12">
-                            <vaadin-grid id='material' items='{{datas}}'>
-                                <vaadin-grid-column width="50px" flex-grow="0">
-                                    <template class="header">
-                                        <div style="text-align: center">#</div>
-                                    </template>
-                                    <template>
-                                        <div style="text-align: center">[[autoIndex(index)]] </div>
-                                    </template>
-                                </vaadin-grid-column>
-                                <vaadin-grid-column>
-                                    <template class="header">[[i18n.page08.type]]</template>
-                                    <template>[[item.type_research.type_research_name]]</template>
-                                </vaadin-grid-column>
-                                <vaadin-grid-column>
-                                    <template class="header">[[i18n.page08.name]]</template>
-                                    <template>[[item.research_name]]</template>
-                                </vaadin-grid-column>
-                                <vaadin-grid-column>
-                                    <template class="header">[[i18n.page08.year]]</template>
-                                    <template>[[item.research_year]]</template>
-                                </vaadin-grid-column>
-                                <vaadin-grid-column>
-                                    <template class="header">[[i18n.page08.date]]</template>
-                                    <template>[[changeDate(item.date_updated)]]</template>
-                                </vaadin-grid-column>
-                                <vaadin-grid-column>
-                                    <template class="header">
-                                        <div style="text-align: center">[[i18n.common.tools]]</div>
-                                    </template>
-                                    <template>
-                                        <span style="text-align: center">
+                </div>
+                <br>
+
+                <div class="row  middle-md">
+                    <div class="col-md-12">
+                        <vaadin-grid id='material' items='{{datas}}'>
+                            <vaadin-grid-column width="50px" flex-grow="0">
+                                <template class="header">
+                                    <div style="text-align: center">#</div>
+                                </template>
+                                <template>
+                                    <div style="text-align: center">[[autoIndex(index)]] </div>
+                                </template>
+                            </vaadin-grid-column>
+                            <vaadin-grid-column>
+                                <template class="header">[[i18n.page08.type]]</template>
+                                <template>[[item.type_research.type_research_name]]</template>
+                            </vaadin-grid-column>
+                            <vaadin-grid-column>
+                                <template class="header">[[i18n.page08.name]]</template>
+                                <template>[[item.research_name]]</template>
+                            </vaadin-grid-column>
+                            <vaadin-grid-column>
+                                <template class="header">[[i18n.page08.year]]</template>
+                                <template>[[item.research_year]]</template>
+                            </vaadin-grid-column>
+                            <vaadin-grid-column>
+                                <template class="header">[[i18n.page08.date]]</template>
+                                <template>[[changeDate(item.date_updated)]]</template>
+                            </vaadin-grid-column>
+                            <vaadin-grid-column>
+                                <template class="header">
+                                    <div style="text-align: center">[[i18n.common.tools]]</div>
+                                </template>
+                                <template>
+                                    <span style="text-align: center">
                                             <paper-icon-button icon="[[i18n.button.edit.icon]]" action="edit" on-click="openPanelRight"></paper-icon-button>
                                             <paper-icon-button icon="[[i18n.button.delete.icon]]" on-click="_confirmDel"></paper-icon-button>
                                             </span>
-                                    </template>
-                                </vaadin-grid-column>
-                            </vaadin-grid>
-                        </div>
+                                </template>
+                            </vaadin-grid-column>
+                        </vaadin-grid>
                     </div>
-                    [[i18n.common.total_items]] {{datas.length}} [[i18n.common.list]]
-     
+                </div>
+                [[i18n.common.total_items]] {{datas.length}} [[i18n.common.list]]
+
             </div>
         </nylon-panel-card>
         <nylon-panel-right id="right" title="[[i18n.page08.history]]" width="80%">
@@ -115,8 +117,18 @@
                         <nylon-input class="required" required label="[[i18n.page08.year]]" always-float-label value="{{data.research_year}}" allow-pattern="[0-9]"
                             maxlength="4" minlength="4"></nylon-input>
                     </div>
+                    <div class="row center-md button-buttom">
+                        <div class="button-action-bottom">
+                            <paper-button raised class="btn-success" on-click="_save">
+                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                            </paper-button>
+                            <paper-button raised on-click="closePanelRight">
+                                <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
+                            </paper-button>
+                        </div>
+                    </div>
                 </div>
-                <app-toolbar slot="footer">
+                <!-- <app-toolbar slot="footer">
                     <div main-title></div>
                     <paper-button raised class="btn-success" on-click="_save">
                             <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
@@ -125,7 +137,7 @@
                         <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
                     </paper-button>
                     
-                </app-toolbar>
+                </app-toolbar> -->
             </nylon-panel-card>
         </nylon-panel-right>
     </template>
