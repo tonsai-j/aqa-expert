@@ -19,6 +19,10 @@
         display: block;
       }
 
+      .font {
+        @apply --nylon-font-family;
+      }
+
       .font-bone {
         @apply --nylon-font-family-bone;
       }
@@ -38,7 +42,7 @@
         <div class="col-xs-6 ">
           <nylon-panel-card>
             <app-toolbar slot="header">
-              <div main-title class="font-bone">ค่าใช้จ่าย</div>
+              <div main-title class="font">ค่าใช้จ่าย</div>
             </app-toolbar>
             <nylon-c3 slot="content" id="chart1_user"></nylon-c3>
           </nylon-panel-card>
@@ -47,7 +51,7 @@
         <div class="col-xs-12">
           <nylon-panel-card>
             <app-toolbar slot="header">
-              <div main-title class="font-bone">สรุปผลการประเมินสถานศึกษา</div>
+              <div main-title class="font">สรุปผลการประเมินสถานศึกษา</div>
             </app-toolbar>
             <nylon-c3 slot="content" id="chart2_user"></nylon-c3>
           </nylon-panel-card>
@@ -61,7 +65,7 @@
         <div class="col-xs-6 ">
           <nylon-panel-card>
             <app-toolbar slot="header">
-              <div main-title class="font-bone">ค่าใช้จ่ายโดยรวม</div>
+              <div main-title class="font">ค่าใช้จ่ายโดยรวม</div>
             </app-toolbar>
             <nylon-c3 slot="content" id="chart1_admin"></nylon-c3>
           </nylon-panel-card>
@@ -71,7 +75,7 @@
         <div class="col-xs-6 ">
           <nylon-panel-card>
             <app-toolbar slot="header">
-              <div main-title class="font-bone">ผู้เข้าอบรม</div>
+              <div main-title class="font">ผู้เข้าอบรม</div>
             </app-toolbar>
             <nylon-c3 slot="content" id="chart2_admin"></nylon-c3>
           </nylon-panel-card>
@@ -81,7 +85,7 @@
         <div class="col-xs-12 ">
           <nylon-panel-card>
             <app-toolbar slot="header">
-              <div main-title class="font-bone">สรุปผลการประเมินสถานศึกษา</div>
+              <div main-title class="font">สรุปผลการประเมินสถานศึกษา</div>
             </app-toolbar>
             <nylon-c3 slot="content" id="chart3_admin"></nylon-c3>
           </nylon-panel-card>
@@ -91,7 +95,7 @@
         <div class="col-xs-12">
           <nylon-panel-card>
             <app-toolbar slot="header">
-              <div main-title class="font-bone">สรุปผลการประเมินสถานศึกษา</div>
+              <div main-title class="font">สรุปผลการประเมินสถานศึกษา</div>
             </app-toolbar>
             <nylon-c3 slot="content" id="chart4_admin"></nylon-c3>
           </nylon-panel-card>
@@ -193,7 +197,7 @@
               height: 350
             },
             color: {
-              pattern: ['#91a63b', '#00ff00', '#f47820', '#0000cc', '#ff0000']
+              pattern: ['#339933', '#00ff00', '#f47820', '#0000cc', '#ff0000']
             }
           })
 
@@ -211,6 +215,9 @@
             },
             size: {
               height: 350
+            },
+            color: {
+              pattern: ['#0000cc']
             }
           })
 
@@ -244,6 +251,9 @@
             },
             size: {
               height: 350
+            },
+            color: {
+              pattern: ['#0000cc']
             }
           })
         }
