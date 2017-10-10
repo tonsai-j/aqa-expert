@@ -164,12 +164,12 @@
                                         always-float-label></nylon-input>
                                 </div>
                                 <div class="col-xs-12">
-                                    <nylon-input class="required input" required label=[[i18n.register.phone]] value="{{data.address.address_contract.mobile_phone}}"
-                                        required on-keyup="_enter" always-float-label></nylon-input>
+                                    <nylon-input class="required input" required label=[[i18n.register.phone]] value="{{data.address.mobile}}" required on-keyup="_enter"
+                                        always-float-label></nylon-input>
                                 </div>
                                 <div class="col-xs-12">
-                                    <nylon-input class="required input" required label=[[i18n.register.email]] value="{{data.address.address_contract.email}}"
-                                        required on-keyup="_enter" always-float-label></nylon-input>
+                                    <nylon-input class="required input" required label=[[i18n.register.email]] value="{{data.address.email}}" required on-keyup="_enter"
+                                        always-float-label></nylon-input>
                                 </div>
                                 <div class="col-xs-12">
                                     <nylon-combo-box id="comboTypeAss" class="required input" required label="[[i18n.register.level]]" items='{{typeAssessor}}'
@@ -234,10 +234,8 @@
                                 lastname_th: ''
                             },
                             address: {
-                                address_contract: {
-                                    email: '',
-                                    mobile_phone: ''
-                                }
+                                email: '',
+                                mobile: ''
                             }
                         }
                     },
@@ -253,10 +251,10 @@
                         value: '0'
 
                     },
-                    login:{
+                    login: {
                         type: Object,
-                        value: function(){
-                            return { username:'',password:'' }
+                        value: function () {
+                            return { username: '', password: '' }
                         }
                     }
                 };
@@ -278,13 +276,13 @@
                                     var address = data[0].address
                                     this.set('data.basic.firstname_th', basic.firstname_th)
                                     this.set('data.basic.lastname_th', basic.lastname_th)
-                                    this.set('data.address.address_contract.email', address.address_contract.email)
-                                    this.set('data.address.address_contract.mobile_phone', address.address_contract.mobile_phone)
+                                    this.set('data.address.email', address.email)
+                                    this.set('data.address.mobile', address.mobile)
                                 } else {
                                     this.set('data.basic.firstname_th', '')
                                     this.set('data.basic.lastname_th', '')
-                                    this.set('data.address.address_contract.email', '')
-                                    this.set('data.address.address_contract.mobile_phone', '')
+                                    this.set('data.address.email', '')
+                                    this.set('data.address.mobile', '')
                                 }
                             })
                         });
@@ -296,8 +294,8 @@
                 Nylon.dispatch('REGISTER_GET_TYPE_ASSESSOR')
             }
 
-            _login(){
-                Nylon.dispatch('authLogin',this.login)    
+            _login() {
+                Nylon.dispatch('authLogin', this.login)
             }
 
             _enter(e) {
