@@ -8,21 +8,17 @@ exports.post = function (req, res) {
                     .merge(function (m) {
                         return {
                             type_assessor: r.table('type_assessor').get(req.body.type_assessor_id),
-                            basic: m('basic').merge(function (m2) {
-                                return r.branch(m2.hasFields('birth_date'), {
-                                    birth_date: r.ISO8601(m2('birth_date')).inTimezone('+07'),
-                                    expire_date: r.ISO8601(m2('expire_date')).inTimezone('+07'),
-                                    issue_date: r.ISO8601(m2('issue_date')).inTimezone('+07')
-                                }, {})
-                            }),
+                            // basic: m('basic').merge(function (m2) {
+                            //     return r.branch(m2.hasFields('birth_date'), {
+                            //         birth_date: r.ISO8601(m2('birth_date')).inTimezone('+07'),
+                            //         expire_date: r.ISO8601(m2('expire_date')).inTimezone('+07'),
+                            //         issue_date: r.ISO8601(m2('issue_date')).inTimezone('+07')
+                            //     }, {})
+                            // }),
                             properties: false,
                             meeting: false,
                             exam: false,
-                            address: {
-                                address1: {},
-                                address2: {},
-                                address_selected: ''
-                            },
+                            // contact: { },
                             education: [],
                             specialist: [],
                             working: [],
@@ -56,7 +52,7 @@ exports.post = function (req, res) {
         })
 }
 exports.check = function (req, res) {
-    r.table('profile').getAll(req.query.taxno, { index: 'taxno' }).pluck('taxno', 'type_assessor_id', 'type_assessor', 'basic', 'address')
+    r.table('profile').getAll(req.query.taxno, { index: 'taxno' }).pluck('taxno', 'type_assessor_id', 'type_assessor', 'basic', 'contact')
         .run()
         .then(function (data) {
             res.json(data)
