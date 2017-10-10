@@ -3,8 +3,7 @@
         state = state || {
             data: {},
             region: [],
-            provinceContract: [],
-            provinceWork: [],
+            province: [],
             amphoe: [],
             district: [],
         }
@@ -14,11 +13,7 @@
                 state.region = action.payload
                 return state
             case 'PROFILE_02_GET_LIST_PROVINCE':
-                if (action.address === 'contract') {
-                    state.provinceContract = action.payload
-                } else {
-                    state.provinceWork = action.payload
-                }
+                state.province = action.payload
                 return state
             case 'PROFILE_02_GET_LIST_AMPHOE':
                 state.amphoe = action.payload
@@ -45,12 +40,12 @@
                     })
             }
         },
-        PROFILE_02_GET_LIST_PROVINCE: function (region_id, addressContract = 'contract') {
+        PROFILE_02_GET_LIST_PROVINCE: function () {
             return dispatch => {
-                axios.get('/province?region_id=' + region_id)
+                axios.get('/province')
                     .then(res => {
                         // console.log(addressContract);
-                        dispatch({ type: 'PROFILE_02_GET_LIST_PROVINCE', payload: res.data, address: addressContract })
+                        dispatch({ type: 'PROFILE_02_GET_LIST_PROVINCE', payload: res.data })
                     }
                     ).catch(err => {
                         console.log({ err })

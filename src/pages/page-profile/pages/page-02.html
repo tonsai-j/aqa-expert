@@ -7,6 +7,7 @@
 
 <link rel="import" href="../../../../bower_components/paper-radio-group/paper-radio-group.html">
 <link rel="import" href="../../../../bower_components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
 <!-- <link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html"> -->
 
 <link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
@@ -45,12 +46,20 @@
             }
         </style>
         <!-- page-2 -->
-        <div class="row middle-md">
+        <div class="row">
             <div class="col-md-4">
                 <nylon-panel-card>
                     <div slot="content">
-                        <div class="row end-md middle-md">
-                            <paper-icon-button icon="create"></paper-icon-button>
+                        <div class="header-title">
+                            <div class="row">
+                                <div style="color:#0288D1;text-align:center">
+                                    [[i18n.page02.addsHome]]
+                                    <iron-icon icon="home"></iron-icon>
+                                </div>
+                                <p>
+                                    [[_address(home)]]
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </nylon-panel-card>
@@ -58,69 +67,159 @@
             <div class="col-md-4">
                 <nylon-panel-card>
                     <div slot="content">
-                        <div class="row end-md middle-md">
-                            <paper-icon-button icon="create"></paper-icon-button>
+                        <div class="header-title">
+                            <div class="row">
+                                <div style="color:#0288D1;text-align:center">
+                                    [[i18n.page02.addsMail]]
+                                    <iron-icon icon="mail"></iron-icon>
+                                </div>
+                                <p>
+                                    [[_address(mail)]]
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </nylon-panel-card>
             </div>
+
             <div class="col-md-4">
                 <nylon-panel-card>
                     <div slot="content">
-                        <div class="row end-md middle-md">
-                            <paper-icon-button icon="create"></paper-icon-button>
+                        <div class="header-title">
+                            <div class="row">
+                                <div style="color:#0288D1;text-align:center">
+                                    [[i18n.page02.addsWork]]
+                                    <iron-icon icon="work"></iron-icon>
+                                </div>
+                                <p>
+                                    [[_address(work)]]
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </nylon-panel-card>
             </div>
         </div>
 
-        <div class="row start-md middle-md" style="margin-top:3%">
+        <div class="row start-md middle-md" style="margin-top:5%">
             <div class="col-md-3">
                 <paper-button raised class="btn-primary" action="add" on-click="_openPanelRight">
-                    <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]
+                    <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]][[i18n.page02.address]]
                 </paper-button>
             </div>
         </div>
-        <div class="address" style="margin-top:3%">
-            <nylon-panel-card>
-                <div slot="content">
-                    <template is="dom-repeat" item="[[data]]" items='{{contract}}'>
-                        <div>[[item.home_number]]</div>
-                    </template>
-
-                    <div class="row end-md middle-md">
-                        <paper-icon-button icon="create"></paper-icon-button>
+        <div class="address" style="margin-top:2px">
+            <!-- <template is="dom-repeat" items='[[address]]' mutable-data>
+                <nylon-panel-card style="margin-top:5px">
+                    <div slot="content">
+                        <div class="row between-md">
+                            <div class="col-md-11">
+                                [[_prefixAddress('',item.home_number)]] [[_prefixAddress('ม.',item.village_no)]] [[_prefixAddress('หมู่บ้าน',item.village_name)]]
+                                [[_prefixAddress('',item.building)]] [[_prefixAddress('ซ.',item.alley)]] [[_prefixAddress('ถ.',item.road)]]
+                                [[_prefixAddress('ต.',item.district)]] [[_prefixAddress('อ.',item.amphoe)]] [[_prefixAddress('จ.',item.province.province_th)]]
+                                [[_prefixAddress('',item.zipcode)]] [[_prefixAddress('โทร.',item.telephone)]] [[_prefixAddress('แฟกซ์.',item.fax)]]
+                            </div>
+                            <div class="row end-md middle-md">
+                                <paper-icon-button icon="create" action="edit" on-tap="_openPanelRight"></paper-icon-button>
+                                <paper-icon-button icon="delete" on-tap="_confirmDel"></paper-icon-button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </nylon-panel-card>
+                </nylon-panel-card>
+            </template> -->
+            <vaadin-grid id='material' items='{{address}}'>
+                <vaadin-grid-column width="50px">
+                    <template class="header">
+                        <div style="text-align:center">[[i18n.common.no]]</div>
+                    </template>
+                    <template>
+                        <div style="text-align: center">[[autoIndex(index)]] </div>
+                    </template>
+                </vaadin-grid-column>
+                <vaadin-grid-column width="50%">
+                    <template class="header">[[i18n.page02.address]]</template>
+                    <template>
+                        [[_address(item)]]
+                        <!-- [[_prefixAddress('',item.home_number)]] [[_prefixAddress('ม.',item.village_no)]] [[_prefixAddress('หมู่บ้าน',item.village_name)]]
+                        [[_prefixAddress('',item.building)]] [[_prefixAddress('ซ.',item.alley)]] [[_prefixAddress('ถ.',item.road)]]
+                        [[_prefixAddress('ต.',item.district)]] [[_prefixAddress('อ.',item.amphoe)]] [[_prefixAddress('จ.',item.province.province_th)]]
+                        [[_prefixAddress('',item.zipcode)]] [[_prefixAddress('โทร.',item.telephone)]] [[_prefixAddress('แฟกซ์.',item.fax)]] -->
+                    </template>
+                </vaadin-grid-column>
+                <vaadin-grid-column>
+                    <template class="header">
+                        <div style="text-align: center">[[i18n.page02.addsHome]]</div>
+                    </template>
+                    <template>
+                        <div style="text-align: center">
+                            <paper-icon-button on-tap="onSelect" obj-name="home" raised icon="file-upload"></paper-icon-button>
+                        </div>
+                    </template>
+                </vaadin-grid-column>
+                <vaadin-grid-column>
+                    <template class="header">
+                        <div style="text-align: center">[[i18n.page02.addsMail]]</div>
+                    </template>
+                    <template>
+                        <div style="text-align: center">
+                            <paper-icon-button on-tap="onSelect" obj-name="mail" raised icon="file-upload"></paper-icon-button>
+                        </div>
+                    </template>
+                </vaadin-grid-column>
+                <vaadin-grid-column>
+                    <template class="header">
+                        <div style="text-align: center">[[i18n.page02.addsWork]]</div>
+                    </template>
+                    <template>
+                        <div style="text-align: center">
+                            <paper-icon-button on-tap="onSelect" obj-name="work" raised icon="file-upload"></paper-icon-button>
+                        </div>
+                    </template>
+                </vaadin-grid-column>
+                <vaadin-grid-column>
+                    <template class="header">
+                        <div style="text-align: center">[[i18n.common.tools]]</div>
+                    </template>
+                    <template>
+                        <span style="text-align: center">
+                            <paper-icon-button icon="[[i18n.button.edit.icon]]" action="edit" on-click="_openPanelRight"></paper-icon-button>
+                            <paper-icon-button icon="[[i18n.button.delete.icon]]" on-click="_confirmDel"></paper-icon-button>
+                        </span>
+                    </template>
+                </vaadin-grid-column>
+            </vaadin-grid>
+            <div class="no-content" hidden="{{address.length}}">
+                ไม่มีข้อมูล
+            </div>
         </div>
-
         <nylon-panel-right id="panelRight" title="[[i18n.page02.title]]">
             <nylon-panel-card slot="content">
                 <div slot="content">
+                    <div class="header-title">
+                        [[i18n.page02.address]]:
+                    </div>
                     <div class="row middle-md">
                         <div class="input col-md-3 col-md-offset-1">
                             <nylon-input class="required" required always-float-label label="[[i18n.page02.home_number]]*" value="{{data.home_number}}"></nylon-input>
                         </div>
                         <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input class="required" required always-float-label label="[[i18n.page02.village_no]]" value="{{data.village_no}}"></nylon-input>
+                            <nylon-input always-float-label label="[[i18n.page02.village_no]]" value="{{data.village_no}}"></nylon-input>
                         </div>
                         <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input class="required" required always-float-label label="[[i18n.page02.village_name]]" value="{{data.village_name}}"></nylon-input>
-                        </div>
-
-                        <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input class="required" required always-float-label label="[[i18n.page02.building]]" value="{{data.building}}"></nylon-input>
-                        </div>
-                        <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input class="required" required always-float-label label="[[i18n.page02.alley]]" value="{{data.alley}}"></nylon-input>
-                        </div>
-                        <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input class="required" required always-float-label label="[[i18n.page02.road]]" value="{{data.road}}"></nylon-input>
+                            <nylon-input always-float-label label="[[i18n.page02.village_name]]" value="{{data.village_name}}"></nylon-input>
                         </div>
 
                         <div class="input col-md-3 col-md-offset-1">
+                            <nylon-input always-float-label label="[[i18n.page02.building]]" value="{{data.building}}"></nylon-input>
+                        </div>
+                        <div class="input col-md-3 col-md-offset-1">
+                            <nylon-input always-float-label label="[[i18n.page02.alley]]" value="{{data.alley}}"></nylon-input>
+                        </div>
+                        <div class="input col-md-3 col-md-offset-1">
+                            <nylon-input always-float-label label="[[i18n.page02.road]]" value="{{data.road}}"></nylon-input>
+                        </div>
+
+                        <!-- <div class="input col-md-3 col-md-offset-1">
                             [[getProvinceAddressContract(data.region_id)]]
                             <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.region]]" items='{{regionList}}' value="{{data.region_id}}"
                                 item-label-path="region_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.region"
@@ -129,55 +228,52 @@
                                     [[item.region_th]]
                                 </template>
                             </nylon-combo-box>
+                        </div> -->
+                        <div class="input col-md-3 col-md-offset-1">
+                            <nylon-input class="required" required always-float-label label="[[i18n.page02.district]]*" value="{{data.district}}"></nylon-input>
+                            <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.district]]" items='{{districtList}}'
+                                                                value="{{data.district}}" item-label-path="label" item-value-path="value">
+                                                                <template>
+                                                                    [[item.label]]
+                                                                </template>
+                                                            </nylon-combo-box> -->
                         </div>
                         <div class="input col-md-3 col-md-offset-1">
-                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.province]]" items='{{provinceContractList}}'
-                                value="{{data.provinc_id}}" item-label-path="province_th" item-value-path="id" on-selected-item-changed="getObject"
-                                object-name="data.province" class="required" required>
+                            <nylon-input class="required" required always-float-label label="[[i18n.page02.amphoe]]*" value="{{data.amphoe}}"></nylon-input>
+                            <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.amphoe]]*" items='{{amphoeList}}' value="{{data.amphoe}}"
+                                                                    item-label-path="label" item-value-path="value">
+                                                                    <template>
+                                                                        [[item.label]]
+                                                                    </template>
+                                                                </nylon-combo-box> -->
+                        </div>
+                        <div class="input col-md-3 col-md-offset-1">
+                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.province]]*" items='{{province}}' value="{{data.provinc_id}}"
+                                item-label-path="province_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.province"
+                                class="required" required>
                                 <template>
                                     [[item.province_th]]
                                 </template>
                             </nylon-combo-box>
                         </div>
-                        <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input class="required" required always-float-label label="[[i18n.page02.amphoe]]*" value="{{data.amphoe}}"></nylon-input>
-                            <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.amphoe]]*" items='{{amphoeList}}' value="{{data.amphoe}}"
-                                                            item-label-path="label" item-value-path="value">
-                                                            <template>
-                                                                [[item.label]]
-                                                            </template>
-                                                        </nylon-combo-box> -->
-                        </div>
 
-                        <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input class="required" required always-float-label label="[[i18n.page02.district]]*" value="{{data.district}}"></nylon-input>
-                            <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.district]]" items='{{districtList}}'
-                                                            value="{{data.district}}" item-label-path="label" item-value-path="value">
-                                                            <template>
-                                                                [[item.label]]
-                                                            </template>
-                                                        </nylon-combo-box> -->
-                        </div>
+
+
                         <div class="input col-md-3 col-md-offset-1">
                             <nylon-input class="required" required always-float-label label="[[i18n.page02.zipcode]]*" value="{{data.zipcode}}"></nylon-input>
                         </div>
 
                         <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input class="required" required always-float-label label="[[i18n.page02.telephone]]" value="{{data.telephone}}"></nylon-input>
+                            <nylon-input always-float-label label="[[i18n.page02.telephone]]" value="{{data.telephone}}"></nylon-input>
                         </div>
                         <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input class="required" required always-float-label label="[[i18n.page02.fax]]" value="{{data.fax}}"></nylon-input>
+                            <nylon-input always-float-label label="[[i18n.page02.fax]]" value="{{data.fax}}"></nylon-input>
                         </div>
-                        <div class="input col-md-3 col-md-offset-1">
+                        <!-- <div class="input col-md-3 col-md-offset-1">
                             <nylon-input class="required" required always-float-label label="[[i18n.page02.mobile_phone]]*" value="{{data.mobile_phone}}"></nylon-input>
-                        </div>
+                        </div> -->
 
-                        <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input class="required" required always-float-label label="[[i18n.page02.email]]*" value="{{data.email}}"></nylon-input>
-                        </div>
-                        <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input class="required" required always-float-label label="[[i18n.page02.line_id]]" value="{{data.line_id}}"></nylon-input>
-                        </div>
+
                         <!-- <div class="label col-md-2">
                                                         :
                                                     </div>
@@ -185,17 +281,17 @@
                                                         <nylon-input always-float-label label=""></nylon-input>
                                                     </div> -->
 
-                        <div class="label col-md-2">
+                        <!-- <div class="lacol-md-3 col-md-offset-1">
                             [[i18n.page02.time_free]] :
-                        </div>
-                        <div class="input col-md-3">
+                        </div> -->
+                        <div class="input col-md-3 col-md-offset-1">
                             <div class="row middle-md">
                                 <div class="col-md-5">
-                                    <nylon-input class="required" required type=time no-label-float value="{{address.time_start}}"></nylon-input>
+                                    <nylon-input class="required" label="[[i18n.page02.time_free]]" required type=time always-float-label value="{{data.time_start}}"></nylon-input>
                                 </div>
                                 <div class="label col-md-2"> [[i18n.page02.to]]</div>
                                 <div class="col-md-5">
-                                    <nylon-input class="required" required type=time no-label-float value="{{address.time_end}}"></nylon-input>
+                                    <nylon-input class="required" label="" required type=time always-float-label value="{{data.time_end}}"></nylon-input>
                                 </div>
                             </div>
                         </div>
@@ -242,45 +338,53 @@
                         type: Object,
                         statePath: 'i18n',
                     },
-                    // data: {
-                    //     statePath: 'profile_page02.data'
+                    // regionList: {
+                    //     statePath: 'profile_page02.region'
                     // },
-                    regionList: {
-                        statePath: 'profile_page02.region'
+                    province: {
+                        statePath: 'profile_page02.province'
                     },
-                    provinceContractList: {
-                        statePath: 'profile_page02.provinceContract'
-                    },
-                    provinceWorkList: {
-                        statePath: 'profile_page02.provinceWork'
-                    },
-                    amphoeList: {
-                        statePath: 'profile_page02.amphoe'
-                    },
-                    districtList: {
-                        statePath: 'profile_page02.district'
-                    },
+                    // amphoeList: {
+                    //     statePath: 'profile_page02.amphoe'
+                    // },
+                    // districtList: {
+                    //     statePath: 'profile_page02.district'
+                    // },
                     info: {
                         type: Object,
                         statePath: 'profile.info'
                     },
                     address: {
-                        type: Object,
+                        type: Array,
                         statePath: 'profile.info.address',
+                        value: []
+                    },
+                    // contact: {
+                    //     type: Object,
+                    //     statePath: 'profile.info.contact',
+                    //     value: {
+                    //         home: {},
+                    //         mail: {},
+                    //         work: {}
+                    //     }
+                    // },
+                    home: {
+                        type: Object,
+                        statePath: 'profile.info.contact.home',
                         value: {}
                     },
-                    contract: {
+                    mail: {
                         type: Object,
-                        statePath: 'profile.info.contract',
-                        value: {
-                            address_current: {},
-                            address_hometown: {},
-                            address_work: {},
-                            address: []
-                        }
+                        statePath: 'profile.info.contact.mail',
+                        value: {}
+                    },
+                    work: {
+                        type: Object,
+                        statePath: 'profile.info.contact.work',
+                        value: {}
                     },
                     data: {
-                        type: Array,
+                        type: Object,
                         value: {
                             home_number: '',
                             village_no: '',
@@ -288,16 +392,14 @@
                             building: '',
                             alley: '',
                             road: '',
-                            region_id: '',
+                            // region_id: '',
                             provinc_id: '',
                             amphoe: '',
                             district: '',
                             zipcode: '',
                             telephone: '',
-                            fax: '',
-                            mobile_phone: '',
-                            email: '',
-                            line_id: '',
+                            fax: ''
+                            // mobile_phone: ''
                         }
                     },
                 };
@@ -318,43 +420,12 @@
             ready() {
                 super.ready()
                 Polymer.RenderStatus.afterNextRender(this, function () {
-                    Nylon.dispatch('PROFILE_02_GET_LIST_REGION')
-                    // Nylon.dispatch('PROFILE_02_GET_LIST_PROVINCE')
+                    // Nylon.dispatch('PROFILE_02_GET_LIST_REGION')
+                    Nylon.dispatch('PROFILE_02_GET_LIST_PROVINCE')
                     // Nylon.dispatch('PROFILE_02_GET_LIST_AMPHOE')
                     // Nylon.dispatch('PROFILE_02_GET_LIST_DISTRICT')
                 });
             }
-            copyDataAddress(data) {
-                this.address = Object.assign(this.address, {
-                    address_work: this.address.address_contract
-                });
-                this.notifyPath('address.address_work')
-            }
-            getProvinceAddressContract(region_id) {
-                console.log(region_id);
-                if (this.data !== undefined && region_id !== undefined && region_id !== '') {
-                    this._debouncer = Polymer.Debouncer.debounce(
-                        this._debouncer, // initially undefined
-                        Polymer.Async.timeOut.after(100),
-                        () => {
-                            // console.log(this.date);
-                            console.log(this.data.region.old_id);
-                            let region_id = this.data.region.old_id
-                            Nylon.dispatch('PROFILE_02_GET_LIST_PROVINCE', region_id, 'contract')
-                        })
-                }
-            }
-            // getProvinceAddressWork(region_id) {
-            //     if (this.address !== undefined && region_id !== undefined && region_id !== '') {
-            //         this._debouncer = Polymer.Debouncer.debounce(
-            //             this._debouncer, // initially undefined
-            //             Polymer.Async.timeOut.after(100),
-            //             () => {
-            //                 let region_id = this.address.address_work.region.old_id
-            //                 Nylon.dispatch('PROFILE_02_GET_LIST_PROVINCE', region_id, 'work')
-            //             })
-            //     }
-            // }
             _closePanelRight() {
                 this.$.panelRight.close();
             }
@@ -368,15 +439,19 @@
                 }
                 this.$.panelRight.open();
             }
+            onSelect(e) {
+                const objName = e.currentTarget.getAttribute('obj-name');
+                // console.log(objName, e.model.item);
+                Nylon.dispatch('PROFILE_UPDATE', this.info.id, `contact.${objName}`, e.model.item,
+                    () => {
+                        Nylon.toast('update')
+                        this.notifyPath(objName);
+                        // this.set('contact.' + objName, e.model.item);
+                    }
+                )
+            }
             _save() {
-                // console.log(this.address)
-                // console.log(this.validateForm('.required'));
                 if (this.validateForm('.required')) {
-                    // Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'address', this.address,
-                    //     () => {
-                    //         Nylon.toast('update')
-                    //     }
-                    // )
                     if (typeof this._index === 'undefined') {
                         var newData = Object.assign(this.data, {
                             date_created: new Date().toISOString(),
@@ -389,6 +464,7 @@
                                 this._closePanelRight();
                                 this.set('data', {});
                                 Nylon.toast('insert')
+                                this.notifyPath('address');
                             });
                     } else {
                         var newData = Object.assign(this.data, {
@@ -400,15 +476,62 @@
                                 this._closePanelRight();
                                 this.set('data', {});
                                 Nylon.toast('update')
+                                this.notifyPath('address');
                             });
                     }
                 } else {
                     Nylon.toast('required')
                 }
+            }
+            _confirmDel(e) {
+                Nylon.confirm({
+                    title: this.i18n.confirm.delete.title,
+                    msg: this.i18n.confirm.delete.msg,
+                    icon: this.i18n.confirm.delete.icon,
+                    btn: [
 
+                        {
+                            label: this.i18n.button.delete.label,
+                            icon: this.i18n.button.delete.icon,
+                            class: 'btn-delete',
+                            'dialog-confirm': true,
+                            'autofocus': true,
+                            action: () => {
+                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'address', e.model.index
+                                    , () => {
+                                        this._closePanelRight()
+                                        this.set('data', {})
+                                        Nylon.toast('delete')
+                                    });
+                            }
+                        },
+                        {
+                            label: this.i18n.button.close.label,
+                            icon: this.i18n.button.close.icon,
+                            class: 'btn-close',
+                            'dialog-dismiss': true
+                        },
+                    ]
+                })
+            }
+            _prefixAddress(txt, value) {
+                return (typeof value === 'undefined' ? '' : txt + value)
+            }
+            _address(obj) {
+                // console.log('1', obj)
+                if (typeof obj !== 'undefined' && obj !== null) {
+                    // console.log('2', obj)
+                    if (Object.keys(obj).length !== 0) {
+                        // console.log('3', obj)
+                        return this._prefixAddress('', obj.home_number) + ' ' + this._prefixAddress('ม.', obj.village_no) + ' ' + this._prefixAddress('หมู่บ้าน', obj.village_name) + ' ' +
+                            this._prefixAddress('อาคาร', obj.building) + ' ' + this._prefixAddress('ซ.', obj.alley) + ' ' + this._prefixAddress('ถ.', obj.road) + ' ' +
+                            this._prefixAddress('ต.', obj.district) + ' ' + this._prefixAddress('อ.', obj.amphoe) + ' ' + this._prefixAddress('จ.', obj.province.province_th) + ' ' +
+                            this._prefixAddress('', obj.zipcode) + ' ' + this._prefixAddress('โทร.', obj.telephone) + ' ' + this._prefixAddress('แฟกซ์.', obj.fax)
+
+                    }
+                }
             }
         }
-
         window.customElements.define(Page02.is, Page02);
     </script>
 </dom-module>
