@@ -46,6 +46,7 @@
     "iron-dropdown": "PolymerElements/iron-dropdown#^2.0.0",
     "iron-validator-behavior": "PolymerElements/iron-validator-behavior#^2.0.0",
     "c3": "^0.4.17",
-    "jwt-decode": "^2.2.0"
+    "jwt-decode": "^2.2.0",
+    "iron-collapse": "PolymerElements/iron-collapse#^2.0.0"
   }
 }
