@@ -30,60 +30,25 @@
 
     <div class="container">
       <div class="row user">
-        <div class="col-xs-4">
+
+        <div class="col-xs-6 ">
           <nylon-panel-card>
             <app-toolbar slot="header">
-              <div main-title>ผู้สำเร็จการศึกษาที่ได้งานทำ / ศึกษาต่อ</div>
+              <div main-title>ค่าใช้จ่าย</div>
             </app-toolbar>
-            <nylon-c3 slot="content" id="chart"></nylon-c3>
-          </nylon-panel-card>
-        </div>
-        <div class="col-xs-5">
-          <nylon-panel-card>
-            <app-toolbar slot="header">
-              <div main-title>อัตรส่วนของครู : ผู้เรียน</div>
-            </app-toolbar>
-            <nylon-c3 slot="content" id="chart2"></nylon-c3>
-          </nylon-panel-card>
-        </div>
-        <div class="col-xs-3">
-          <nylon-panel-card>
-            <app-toolbar slot="header">
-              <div main-title>โครงการนวัตกรรม / สิ่งประดิษฐ์</div>
-            </app-toolbar>
-            <nylon-c3 slot="content" id="chart3"></nylon-c3>
-          </nylon-panel-card>
-        </div>
-        <div class="col-xs-4">
-          <nylon-panel-card>
-            <app-toolbar slot="header">
-              <div main-title>ผลการประเมินตนเอง (SAR)</div>
-            </app-toolbar>
-            <nylon-c3 slot="content" id="chart4"></nylon-c3>
+            <nylon-c3 slot="content" id="chart1_user"></nylon-c3>
           </nylon-panel-card>
         </div>
 
-        <div class="col-xs-8">
+        <div class="col-xs-12">
           <nylon-panel-card>
             <app-toolbar slot="header">
-              <div main-title>ผู้เรียนที่ผ่านการประเมินสมรรถนะ ตามมาตราฐานวิชาชีพ</div>
+              <div main-title>สรุปผลการประเมินสถานศึกษา</div>
             </app-toolbar>
-            <vaadin-grid id="chart5" slot="content" sub-slot="grid">
-              <vaadin-grid-column width="360px">
-                <template class="header">&nbsp;</template>
-                <template> [[item.name]] </template>
-              </vaadin-grid-column>
-              <vaadin-grid-column>
-                <template class="header">ปวช.</template>
-                <template> [[item.price]] </template>
-              </vaadin-grid-column>
-              <vaadin-grid-column>
-                <template class="header">ปวส.</template>
-                <template> [[item.edu2]] </template>
-              </vaadin-grid-column>
-            </vaadin-grid>
+            <nylon-c3 slot="content" id="chart4_user"></nylon-c3>
           </nylon-panel-card>
         </div>
+
       </div>
     </div>
 
@@ -127,43 +92,6 @@
             <nylon-c3 slot="content" id="chart4_admin"></nylon-c3>
           </nylon-panel-card>
         </div>
-
-
-        <!-- <div class="col-xs-3 ">
-          <nylon-panel-card>
-            <app-toolbar slot="header">
-              <div main-title>ผู้เข้าอบรม</div>
-            </app-toolbar>
-            <nylon-c3 slot="content" id="chart3_admin"></nylon-c3>
-          </nylon-panel-card>
-        </div>
-
-        <div class="col-xs-3 ">
-          <nylon-panel-card>
-            <app-toolbar slot="header">
-              <div main-title>ผู้เข้าอบรม</div>
-            </app-toolbar>
-            <nylon-c3 slot="content" id="chart4_admin"></nylon-c3>
-          </nylon-panel-card>
-        </div>
-
-        <div class="col-xs-3 ">
-          <nylon-panel-card>
-            <app-toolbar slot="header">
-              <div main-title>ผู้เข้าอบรม</div>
-            </app-toolbar>
-            <nylon-c3 slot="content" id="chart5_admin"></nylon-c3>
-          </nylon-panel-card>
-        </div>
-
-        <div class="col-xs-3 ">
-          <nylon-panel-card>
-            <app-toolbar slot="header">
-              <div main-title>ผู้เข้าอบรม</div>
-            </app-toolbar>
-            <nylon-c3 slot="content" id="chart6_admin"></nylon-c3>
-          </nylon-panel-card>
-        </div> -->
 
       </div>
     </div>
@@ -235,6 +163,17 @@
             pattern: ['#6acbd5', '#2db1c3', '#91a63b', '#f47820', '#ca202c']
           }
         })
+        
+        this.$.chart1_user.generate({
+          data: {
+            columns,
+            type: 'pie',
+            onclick: function (d, i) { console.log("onclick", d, i); }
+          },
+          size: {
+            height: 250
+          }
+        })
 
 
         this.$.chart2_admin.generate({
@@ -262,61 +201,16 @@
 
         })
 
-        // this.$.chart3_admin.generate({
-        //   data: {
-        //     x: 'x',
-        //     columns: [
-        //       ['x','2559', '2560', '2561', '2562', '2563', '2564'],
-        //       ['สถานศึกษาที่ต้องเข้ารับการประเมิน', 3000, 3200,3500, 3300, 3800, 3100],
-        //       ['ได้รับการประเมินแล้ว', 2800, 3100, 2700, 2900, 3500, 3000]
-        //     ],
-        //     type: 'bar'
-
-        //   },
-        //   bar: {
-        //     width: {
-        //       ratio: 0.5
-        //     }
-        //   },
-        //   size: {
-        //     height: 250
-        //   }
-
-        // })
-
-
-        // this.$.chart3_admin.generate({
-        //   data: {
-        //     x: 'x',
-        //     columns: [
-        //       ['x', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม'],
-        //       ['สถานศึกษาที่ต้องเข้ารับการประเมิน', 3000, 3200, 3500, 3300, 3800, 3100],
-        //       ['ได้รับการประเมินแล้ว', 2800, 3100, 2700, 2900, 3500, 3000]
-        //     ],
-        //     type: 'bar'
-        //   },
-        //   axis: {
-        //     x: {
-        //       type: 'category',
-        //       tick: {
-        //         rotate: 0,
-        //         multiline: false
-        //       },
-        //     }
-        //   }
-        // })
 
         this.$.chart3_admin.generate({
           data: {
             columns: [
-              // ['x', '2558', '2559', '2560', '2561'],
               ['ดีมาก', 30, 200, 100, 400],
               ['ดี', 40, 100, 140, 200],
               ['พอใช้', 50, 200, 100, 400],
               ['ต้องปรับปรุง', 60, 100, 140, 200],
               ['ต้องปรับปรุงเร่งด่วน', 70, 100, 140, 200]
             ],
-            //  type: 'spline'
           },
           axis: {
             x: {
@@ -339,7 +233,6 @@
               // ['x', '2558', '2559', '2560', '2561'],
               ['percent', 70, 60, 55, 50, 30, 10]
             ],
-            //  type: 'spline'
           },
           axis: {
             x: {
@@ -353,6 +246,23 @@
         })
 
 
+        this.$.chart4_user.generate({
+          data: {
+            columns: [
+              ['percent',100,80,75, 70, 60, 55,50,30,10]
+            ],
+          },
+          axis: {
+            x: {
+              type: 'category',
+              categories: ['สถานศึกษที่เข้าประเมิน', 'ทำสัญญา', 'ส่งแผนการดำเนินงาน', 'เบิกงวด 1'
+              , 'เข้าประเมินสถานศึกษา', 'ตรวจร่างรายงาน','อภิมาน' ,'ส่งรายงานฉบับสมบูรณ์','เบิกงวด 2']
+            }
+          },
+          size: {
+            height: 250
+          }
+        })
 
       }
     }

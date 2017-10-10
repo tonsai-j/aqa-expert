@@ -3,14 +3,17 @@
     Nylon.addReducer('auth', function (state, action) {
         state = state || {
             select: {},
-            user: {}
+            user: {},
+            auth:false
         }
 
         switch (action.type) {
             case 'AUTH':
                 return state
             case 'AUTH_VERIFY_TOKEN':
-                return Object.assign({},state,{user:action.payload})
+                return Object.assign({},state,{user:action.payload,auth:true})
+            case 'AUTH_LOGOUT': 
+                return Object.assign({},state,{user:{},auth:false})
             default:
                 return state
         }
@@ -32,6 +35,15 @@
                         console.log(err)
                     }
                 )
+            }
+
+        },
+
+        authLogout:function(login){
+            return dispatch => {
+                localStorage.removeItem("token")
+                Nylon.redirect('/')
+                dispatch({type:'AUTH_LOGOUT'})
             }
 
         },

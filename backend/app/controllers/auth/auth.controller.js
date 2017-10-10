@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const sha1 = require('sha1')
 // const Joi = require('joi')
 
-const secret = 'OnesqaAutomatedQA2byKMUTNB2018'
+const secret = require('../../../config/secret')
 
 //const profileModel = require('../../models/aqa_expert/profile.model');
 
@@ -107,3 +107,8 @@ exports.login = (req, res) => {
     
 
 //   }
+
+
+  exports.user = (req, res) => {
+    res.json(req.user)
+  }
