@@ -269,7 +269,11 @@
             }
             _openPanelRight(e) {
                 if (e.currentTarget.getAttribute('action') == 'edit') {
-                    this.set('data', e.model.item)
+                    let data =  JSON.parse(JSON.stringify(e.model.item));
+                    data.work_start_date  = data.work_start_date.split('T')[0]
+                    data.work_end_date = data.work_end_date.split('T')[0]
+                    // console.log(data);
+                    this.set('data', data)
                     this.set('_index', e.model.index)
                 } else {
                     this.set('data', {})
