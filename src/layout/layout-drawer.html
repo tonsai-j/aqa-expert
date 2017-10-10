@@ -73,6 +73,12 @@
                 color: #b0bec5;
             }
 
+            paper-icon-item {
+                --paper-item-min-height: 30px;
+                line-height: 30px;
+                font-size: 14px;
+            }
+
             iron-selector>paper-icon-item:hover {
                 background-color: #192125;
                 color: #ffffff;
@@ -84,10 +90,11 @@
             }
 
             .title-menu {
-                height: 3em;
-                padding-left: 1em;
-                line-height: 3em;
+                height: 34px;
+                padding-left: 16px;
+                line-height: 34px;
                 background-color: #3583CB;
+                border-bottom: 1px solid #7b7bec;
                 color: #efeff1;
                 cursor: pointer;
             }
@@ -392,19 +399,19 @@
             getUrl(url) {
                 // console.log(url);
                 // if (url !== '/') {
-                    this.set('menuPage', 'menu')
-                    for (var index = 0; index < this.menu.length; index++) {
-                        for (var j = 0; j < this.menu[index].sub_title_menu.length; j++) {
-                            for (var k = 0; k < this.menu[index].sub_title_menu[j].sub_menu.length; k++) {
-                                let href = this.menu[index].sub_title_menu[j].sub_menu[k].href
-                                // console.log(this.menu[index].sub_title_menu[j].sub_menu[k].href);
-                                if (href === url) {
-                                    this.set('menuIsUse', this.menu[index].sub_title_menu)
-                                    this.set('page', this.pathName)
-                                }
+                this.set('menuPage', 'menu')
+                for (var index = 0; index < this.menu.length; index++) {
+                    for (var j = 0; j < this.menu[index].sub_title_menu.length; j++) {
+                        for (var k = 0; k < this.menu[index].sub_title_menu[j].sub_menu.length; k++) {
+                            let href = this.menu[index].sub_title_menu[j].sub_menu[k].href
+                            // console.log(this.menu[index].sub_title_menu[j].sub_menu[k].href);
+                            if (href === url) {
+                                this.set('menuIsUse', this.menu[index].sub_title_menu)
+                                this.set('page', this.pathName)
                             }
                         }
                     }
+                }
                 // }
             }
             ready() {
