@@ -114,6 +114,11 @@
             type: Object,
             statePath: 'dashboard.expenses',
             observer: 'expenses_change'
+          },
+          participant: {
+            type: Object,
+            statePath: 'dashboard.participant',
+            observer: 'participant_change'
           }
         }
 
@@ -123,11 +128,12 @@
 
         if (this.auth.admin == true) {
           Nylon.dispatch('DASHBOARD_GET_EXPENSES')
+          Nylon.dispatch('DASHBOARD_GET_PARTICIPANT')
           this.shadowRoot.querySelector('.user').style.display = 'none'
 
         } else {
           // Nylon.dispatch('DASHBOARD_GET_EXPENSES', this.auth.taxno)
-          Nylon.dispatch('DASHBOARD_GET_EXPENSES')
+          Nylon.dispatch('DASHBOARD_GET_EXPENSES', '1909800788263')
           this.shadowRoot.querySelector('.admin').style.display = 'none'
 
         }
@@ -167,31 +173,6 @@
             }
           })
 
-          this.$.chart2_admin.generate({
-            data: {
-              x: 'x',
-              columns: [
-                ['x', '2559', '2560', '2561', '2562', '2563', '2564'],
-                ['เชิญ', 30, 200, 100, 200, 150, 140],
-                ['ตอบรับ', 130, 100, 140, 200, 150, 50],
-                ['เข้าร่วม', 130, 100, 140, 200, 150, 50]
-              ],
-              type: 'bar'
-            },
-            bar: {
-              width: {
-                ratio: 0.5
-              }
-            },
-            size: {
-              height: 250
-            },
-            color: {
-              pattern: ['#35c1d0', '#147fae', '#094266']
-            }
-
-          })
-
           this.$.chart3_admin.generate({
             data: {
               columns: [
@@ -219,7 +200,6 @@
           this.$.chart4_admin.generate({
             data: {
               columns: [
-                // ['x', '2558', '2559', '2560', '2561'],
                 ['จำนวนเปอร์เซ็นต์', 70, 60, 55, 50, 30, 10]
               ],
             },
@@ -267,6 +247,79 @@
             }
           })
         }
+      }
+
+
+      participant_change(e) {
+        // console.log(e)
+        var invite_data = ['เชิญ']
+        var email_data = ['ตอบรับ']
+        var confirm_data = ['เข้าร่วม']
+        var x_label = []
+        for (var i in e) {
+          invite_data.push(e[i].invite)
+          email_data.push(e[i].email)
+          confirm_data.push(e[i].confirm)
+          x_label.push(e[i].group)
+        }
+        var data = [
+          invite_data,
+          email_data,
+          confirm_data
+        ]
+        // console.log(data)
+        this.$.chart2_admin.generate({
+          data: {
+            columns: data,
+            type: 'bar'
+          },
+          axis: {
+            x: {
+              type: 'category',
+              categories: x_label
+            }
+          },
+          bar: {
+            width: {
+              ratio: 0.5
+            }
+          },
+          size: {
+            height: 250
+          },
+          color: {
+            pattern: ['#35c1d0', '#147fae', '#094266']
+          }
+
+        })
+
+
+
+        // this.$.chart2_admin.generate({
+        //     data: {
+        //       x: 'x',
+        //       columns: [
+        //         ['x', '2559', '2560', '2561', '2562', '2563', '2564'],
+        //         ['เชิญ', 30, 200, 100, 200, 150, 140],
+        //         ['ตอบรับ', 130, 100, 140, 200, 150, 50],
+        //         ['เข้าร่วม', 130, 100, 140, 200, 150, 50]
+        //       ],
+        //       type: 'bar'
+        //     },
+        //     bar: {
+        //       width: {
+        //         ratio: 0.5
+        //       }
+        //     },
+        //     size: {
+        //       height: 250
+        //     },
+        //     color: {
+        //       pattern: ['#35c1d0', '#147fae', '#094266']
+        //     }
+
+        //   })
+
       }
     }
 
