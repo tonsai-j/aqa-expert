@@ -10,7 +10,7 @@ exports.update = function (req, res) {
     const keys = req.body.field.split('.');
     let obj = {};
     if (keys.length > 1) {
-        obj[keys[0]] = { [keys[1]]: data };
+        obj[keys[0]] = { [keys[1]]: r.literal(data) };
     } else {
         obj[keys[0]] = data;
     }

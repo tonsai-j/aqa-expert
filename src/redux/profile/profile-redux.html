@@ -24,7 +24,13 @@
                 state.info = action.data
                 return state
             case 'PROFILE_UPDATE':
-                state.info[action.field] = action.data
+                const fields = action.field.split('.');
+                if (fields.length > 1) {
+                    // delete state.info[fields[0]][fields[1]];
+                    state.info[fields[0]][fields[1]] = JSON.parse(JSON.stringify(action.data))
+                } else {
+                    state.info[fields[0]] = JSON.parse(JSON.stringify(action.data))
+                }
                 return state
             case 'PROFILE_PUSH_ARRAY':
                 if (!state.info.hasOwnProperty(action.field))
