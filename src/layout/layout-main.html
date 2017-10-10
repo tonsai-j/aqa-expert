@@ -95,61 +95,75 @@
             .profile-icon-menu {
                 color: #76838f
             }
+
+            body,
+            html {
+                margin: 0;
+                padding: 0;
+            }
+
+            .background-section {
+                width: 100%;
+                background: linear-gradient( rgba(73, 77, 86, 0), rgb(73, 77, 86)), url('https://s-media-cache-ak0.pinimg.com/originals/90/6e/a5/906ea53ecaa5be963e960daf8b645af2.jpg') no-repeat;
+                background-size: cover;
+                box-sizing: border-box;
+                height: 100vh;
+            }
             /*  */
         </style>
 
-        <app-drawer-layout>
-            <!-- -->
-            <app-drawer class="page" slot="drawer">
-                <layout-drawer id="layoutDrawer" path-name="[[pathName]]"></layout-drawer>
-            </app-drawer>
-            <app-header-layout>
-
-                <app-header slot="header" fixed condenses effects="waterfall">
-
-                    <app-toolbar class="header">
-                        <div style="width:65%;" class="full-height ">
-                            <div class="row middle-md full-height">
-                                <!-- <div class="col-md-2 ">
-                                    <paper-button toggles on-click="changeLanguage">[[i18n.language]]</paper-button>
-                                </div> -->
-                                <div class="col-md-10 ">
-                                    <div>[[i18n.common.myApp]]</div>
+        <!-- <template is="dom-if" if={{showDrawer}}> -->
+            <app-drawer-layout>
+                <app-drawer class="page" slot="drawer">
+                    <layout-drawer id="layoutDrawer" path-name="[[pathName]]"></layout-drawer>
+                </app-drawer>
+                <app-header-layout>
+                    <app-header slot="header" fixed condenses effects="waterfall">
+                        <app-toolbar class="header">
+                            <div style="width:65%;" class="full-height ">
+                                <div class="row middle-md full-height">
+                                    <div class="col-md-10 ">
+                                        <div>[[i18n.common.myApp]]</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div style="width:30% ;" class="full-height ">
-                            <div class="full-height row middle-md">
-                                <div class="full-height row middle-md col-md-1 mini-menu">
-                                    <img id="profile_image_mini" src$="[[rootPath]]images/I20170901111610.jpg" />
-                                </div>
-                                <div class="full-height row middle-md col-md-1 mini-menu">
-                                    <iron-icon class="profile-icon-menu" icon="social:notifications"></iron-icon>
-                                </div>
-                                <div class="full-height row middle-md col-md-1 mini-menu">
-                                    <iron-icon class="profile-icon-menu" icon="mail"></iron-icon>
-                                </div>
-                                <div class="full-height row middle-md col-md-1 mini-menu">
-                                    <iron-icon class="profile-icon-menu" icon="settings"></iron-icon>
+                            <div style="width:30% ;" class="full-height ">
+                                <div class="full-height row middle-md">
+                                    <div class="full-height row middle-md col-md-1 mini-menu">
+                                        <img id="profile_image_mini" src$="[[rootPath]]images/I20170901111610.jpg" />
+                                    </div>
+                                    <div class="full-height row middle-md col-md-1 mini-menu">
+                                        <iron-icon class="profile-icon-menu" icon="social:notifications"></iron-icon>
+                                    </div>
+                                    <div class="full-height row middle-md col-md-1 mini-menu">
+                                        <iron-icon class="profile-icon-menu" icon="mail"></iron-icon>
+                                    </div>
+                                    <div class="full-height row middle-md col-md-1 mini-menu">
+                                        <iron-icon class="profile-icon-menu" icon="settings"></iron-icon>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </app-toolbar>
+                        <template is="dom-if" if="[[progressEnable]]">
+                            <paper-progress id="progress" value="[[progressValue]]" indeterminate="[[progressIndeterminate]]"></paper-progress>
+                        </template>
+                    </app-header>
+                    <div style="margin:8px;" id="slotMain">
+                        <slot></slot>
+                    </div>
+                </app-header-layout>
+            </app-drawer-layout>
+        <!-- </template> -->
 
-
-                    </app-toolbar>
-                    <template is="dom-if" if="[[progressEnable]]">
-                        <paper-progress id="progress" value="[[progressValue]]" indeterminate="[[progressIndeterminate]]"></paper-progress>
-                    </template>
-                </app-header>
-                <div style="margin:8px;">
-                    <slot></slot>
+        <!-- <template is="dom-if" if={{!showDrawer}}>
+            <section class="background-section">
+                <div class="opening-msg">
+                    <div class="app-container" id="slotlogin">
+                        <slot></slot>
+                    </div>
                 </div>
-
-
-            </app-header-layout>
-        </app-drawer-layout>
-
-
+            </section>
+        </template> -->
     </template>
 
     <script>
@@ -166,9 +180,14 @@
                     progressEnable: Boolean,
                     progressIndeterminate: Boolean,
                     progressValue: Number,
+                    showDrawer: {
+                        type: Boolean,
+                        value: false
+                    },
                     pathName: {
                         type: String,
-                        value: "/"
+                        value: "/",
+                        observer: 'setFullScreen'
                     }
 
                 };
@@ -178,7 +197,18 @@
                 super.ready()
                 Nylon.changeLanguage('th')
             }
+            setFullScreen(e) {
+                // let createslot = document.createElement("slot");
+                if (e === '/register/สมัครผู้ประเมินภายนอก') {
+                    this.set('showDrawer', false)
+                    console.log(this.$.slotlogin);
+                    console.log(e)
+                } else {
+                    this.set('showDrawer', true)
+                    console.log(e)
+                }
 
+            }
             changeLanguage() {
                 if (this.i18n.language == "en") {
                     Nylon.changeLanguage('th')

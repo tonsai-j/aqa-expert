@@ -65,7 +65,9 @@
         Polymer.importHref(
           resolvedUrl,
           () => {
-            this.$.nylonInit.$.layoutMain.$.layoutDrawer.page = elementName
+            // console.log(elementName);
+            // console.log(this.$.nylonInit.$.layoutMain.$.layoutDrawer.page);
+            // this.$.nylonInit.$.layoutMain.$.layoutDrawer.page = elementName
 
             if (!Nylon.$[elementName])
               Nylon.$[elementName] = e.detail.element

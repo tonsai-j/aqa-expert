@@ -158,7 +158,7 @@
                         <div name="menu">
                             <template is="dom-repeat" items={{menuIsUse}} as="sub_title" index-as="main_index">
                                 <div class="title-menu" on-click="toggle">
-                                    <paper-icon-button icon="my-icons:expand-more" ></paper-icon-button> [[_changeTotext(sub_title.page_name)]]
+                                    <paper-icon-button icon="my-icons:expand-more"></paper-icon-button> [[_changeTotext(sub_title.page_name)]]
                                 </div>
                                 <iron-collapse id="collapse-[[main_index]]" opened>
                                     <iron-selector class="ironmenu" selected="[[page]]" attr-for-selected="name" role="navigation">
@@ -171,10 +171,10 @@
                                     </iron-selector>
                                 </iron-collapse>
                             </template>
+                            <div style="margin-bottom: 50px;">
+                            </div>
                         </div>
-                        <div style="">
-                            1111111111111111111
-                        </div>
+
                     </iron-pages>
                 </div>
             </div>
@@ -361,7 +361,7 @@
                 let icon = e.currentTarget.childNodes[1].icon
                 if (icon === 'my-icons:expand-more') {
                     e.currentTarget.childNodes[1].icon = 'my-icons:chevron-right'
-                }else {
+                } else {
                     e.currentTarget.childNodes[1].icon = 'my-icons:expand-more'
                 }
             }
