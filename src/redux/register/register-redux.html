@@ -40,12 +40,14 @@
 
                 )
         },
-        REGISTER_POST: function (data) {
+        REGISTER_POST: function (data,pathUrl) {
             // console.log('yyyy');
+            // console.log(data);
             // var progress = Nylon.$['page-register'].$.panelCard.progress({ position: 'top' })
             return dispatch =>
                 axios.post('/register', data).then(
                     res => {
+                        res.data.pathUrl = pathUrl || '/profile/ข้อมูลพื้นฐาน'
                         // console.log('xxxxxxx');
                         Nylon.dispatch('PROFILE_LOGIN', res.data)
                         // progress(() => {

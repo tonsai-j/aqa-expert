@@ -12,7 +12,11 @@
 <link rel="lazy-import" href="./pages/page-tests/page-tests.html">
 <link rel="lazy-import" href="pages/page-401/page-401.html">
 <link rel="lazy-import" href="pages/page-404/page-404.html">
+<!-- เรียกล็อกอิน -->
 
+<link rel="import" href="./redux-mixin.html">
+
+<link rel="import" href="./redux/register/register-redux.html">
 
 <dom-module id="nylon-init">
   <template>
@@ -42,16 +46,39 @@
   </template>
 
   <script>
-    class NylonInit extends Polymer.Element {
+    class NylonInit extends ReduxMixin(Polymer.Element) {
 
       static get is() { return 'nylon-init' }
 
-      static get properties() { 
+      static get properties() {
         return {
-          pathName:{
-            type:String,
+          pathName: {
+            type: String,
           }
-        } 
+        }
+      }
+      ready() {
+        super.ready()
+        this._debouncer = Polymer.Debouncer.debounce(
+          this._debouncer, // initially undefined
+          Polymer.Async.timeOut.after(700),
+          () => {
+            // console.log(localStorage.getItem('taxno'));
+            if (localStorage.getItem('taxno') !== null) {
+              Nylon.dispatch('REGISTER_CHECK_TAXNO', localStorage.getItem('taxno'), (data) => {
+                // console.log(this.pathName);
+                let pathUrl = this.pathName
+                // console.log(data);
+                Nylon.dispatch('REGISTER_POST', data[0],pathUrl)
+              })
+            } else {
+              Nylon.redirect('/profile/ข้อมูลพื้นฐาน');
+            }
+
+          });
+
+        // console.log(localStorage.getItem('taxno'));
+        // console.log(11);
       }
 
     }

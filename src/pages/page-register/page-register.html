@@ -272,6 +272,7 @@
                             Nylon.dispatch('REGISTER_CHECK_TAXNO', this.data.taxno, (data) => {
                                 if (data.length > 0) {
                                     this.$.inputTaxNo.validate(true);
+                                    localStorage.setItem("taxno", this.data.taxno)
                                     var basic = data[0].basic
                                     var address = data[0].address
                                     this.set('data.basic.firstname_th', basic.firstname_th)
@@ -279,6 +280,7 @@
                                     this.set('data.address.email', address.email)
                                     this.set('data.address.mobile', address.mobile)
                                 } else {
+                                    localStorage.removeItem("taxno")
                                     this.set('data.basic.firstname_th', '')
                                     this.set('data.basic.lastname_th', '')
                                     this.set('data.address.email', '')
@@ -287,6 +289,7 @@
                             })
                         });
                 } else {
+                    localStorage.removeItem("taxno")
                     this.$.inputTaxNo.validate(false);
                 }
             }
@@ -296,6 +299,7 @@
 
             _login() {
                 Nylon.dispatch('authLogin', this.login)
+                localStorage.removeItem("taxno")
             }
 
             _enter(e) {
