@@ -20,15 +20,16 @@
 
 <link rel="import" href="./flexbox-grid.html">
 
+<link rel="import" href="./shared-styles.html">
 <link rel="import" href="./layout-drawer.html">
 <link rel="import" href="../redux-mixin.html">
 
 
 <dom-module id="layout-main">
     <template>
-        <style include="flexbox-grid flexbox-grid-remove-padding"></style>
+        <style include="shared-styles flexbox-grid flexbox-grid-remove-padding"></style>
         <style>
-             :host {
+            :host {
                 --app-primary-color: #0288D1;
                 --app-secondary-color: black;
                 /* --app-drawer-width: 300px; */
@@ -109,6 +110,11 @@
                 box-sizing: border-box;
                 height: 100vh;
             }
+
+            .font {
+                @apply --nylon-font-mitr-family
+            }
+
             /*  */
         </style>
         <!-- <template is="dom-if" if={{!showDrawer}}>
@@ -121,46 +127,46 @@
             </section>
         </template> -->
         <!-- <template is="dom-if" if={{showDrawer}}> -->
-            <app-drawer-layout>
-                <app-drawer class="page" slot="drawer">
-                    <layout-drawer id="layoutDrawer" path-name="[[pathName]]"></layout-drawer>
-                </app-drawer>
-                <app-header-layout>
-                    <app-header slot="header" fixed condenses effects="waterfall">
-                        <app-toolbar class="header">
-                            <div style="width:65%;" class="full-height ">
-                                <div class="row middle-md full-height">
-                                    <div class="col-md-10 ">
-                                        <div>[[i18n.common.myApp]]</div>
-                                    </div>
+        <app-drawer-layout>
+            <app-drawer class="page" slot="drawer">
+                <layout-drawer id="layoutDrawer" path-name="[[pathName]]"></layout-drawer>
+            </app-drawer>
+            <app-header-layout>
+                <app-header slot="header" fixed condenses effects="waterfall">
+                    <app-toolbar class="header">
+                        <div style="width:65%;" class="full-height ">
+                            <div class="row middle-md full-height">
+                                <div class="col-md-10 ">
+                                    <div class="font">[[i18n.common.myApp]]</div>
                                 </div>
                             </div>
-                            <div style="width:30% ;" class="full-height ">
-                                <div class="full-height row middle-md">
-                                    <div class="full-height row middle-md col-md-1 mini-menu">
-                                        <img id="profile_image_mini" src$="[[rootPath]]images/I20170901111610.jpg" />
-                                    </div>
-                                    <div class="full-height row middle-md col-md-1 mini-menu">
-                                        <iron-icon class="profile-icon-menu" icon="social:notifications"></iron-icon>
-                                    </div>
-                                    <div class="full-height row middle-md col-md-1 mini-menu">
-                                        <iron-icon class="profile-icon-menu" icon="mail"></iron-icon>
-                                    </div>
-                                    <div class="full-height row middle-md col-md-1 mini-menu">
-                                        <iron-icon class="profile-icon-menu" icon="settings"></iron-icon>
-                                    </div>
+                        </div>
+                        <div style="width:30% ;" class="full-height ">
+                            <div class="full-height row middle-md">
+                                <div class="full-height row middle-md col-md-1 mini-menu">
+                                    <img id="profile_image_mini" src$="[[rootPath]]images/I20170901111610.jpg" />
+                                </div>
+                                <div class="full-height row middle-md col-md-1 mini-menu">
+                                    <iron-icon class="profile-icon-menu" icon="social:notifications"></iron-icon>
+                                </div>
+                                <div class="full-height row middle-md col-md-1 mini-menu">
+                                    <iron-icon class="profile-icon-menu" icon="mail"></iron-icon>
+                                </div>
+                                <div class="full-height row middle-md col-md-1 mini-menu">
+                                    <iron-icon class="profile-icon-menu" icon="settings"></iron-icon>
                                 </div>
                             </div>
-                        </app-toolbar>
-                        <template is="dom-if" if="[[progressEnable]]">
-                            <paper-progress id="progress" value="[[progressValue]]" indeterminate="[[progressIndeterminate]]"></paper-progress>
-                        </template>
-                    </app-header>
-                    <div style="margin:8px;" id="slotMain">
-                        <slot></slot>
-                    </div>
-                </app-header-layout>
-            </app-drawer-layout>
+                        </div>
+                    </app-toolbar>
+                    <template is="dom-if" if="[[progressEnable]]">
+                        <paper-progress id="progress" value="[[progressValue]]" indeterminate="[[progressIndeterminate]]"></paper-progress>
+                    </template>
+                </app-header>
+                <div style="margin:8px;" id="slotMain">
+                    <slot></slot>
+                </div>
+            </app-header-layout>
+        </app-drawer-layout>
         <!-- </template> -->
 
 
