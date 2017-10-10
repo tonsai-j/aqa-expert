@@ -54,6 +54,9 @@
         PROFILE_LOGIN: function (data) {
             // console.log('eeeeeeee');
             // '/profile/ข้อมูลพื้นฐาน'
+            // console.log(data.taxno);
+            localStorage.removeItem("taxno")
+            localStorage.setItem("taxno", data.taxno)
             let path = data.pathUrl || '/profile/ข้อมูลพื้นฐาน'
             return dispatch => {
                 dispatch({ type: 'PROFILE_LOGIN', data: data })

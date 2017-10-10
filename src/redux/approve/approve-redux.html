@@ -42,6 +42,8 @@
         },
         APPROVE_GET_PROPERTY: function (id) {
             // console.log(id)
+            localStorage.removeItem("taxno")
+            localStorage.setItem("taxno",id)
             return dispatch => {
                 axios.get('profile?id=' + id).then(
                     res => {

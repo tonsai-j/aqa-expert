@@ -271,7 +271,7 @@
                                 console.log(data)
                                 if (data.length > 0) {
                                     this.$.inputTaxNo.validate(true);
-                                    localStorage.setItem("taxno", this.data.taxno)
+                                    // localStorage.setItem("taxno", this.data.taxno)
                                     var basic = data[0].basic
                                     this.set('data.basic.firstname_th', basic.firstname_th)
                                     this.set('data.basic.lastname_th', basic.lastname_th)
