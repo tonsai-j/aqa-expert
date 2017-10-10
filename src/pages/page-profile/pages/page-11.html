@@ -101,6 +101,9 @@
                                 </template>
                             </vaadin-grid-column>
                         </vaadin-grid>
+                        <div class="no-content" hidden="{{zone.length}}">
+                                ไม่มีข้อมูล
+                            </div>
                         [[i18n.common.total_items]] {{zone.length}} [[i18n.common.list]]
                     </div>
                 </div>

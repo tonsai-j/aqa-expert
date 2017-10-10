@@ -74,6 +74,12 @@ style this element.
     <style>
         :host {
           display: block;
+          --paper-input-container-disabled: {
+        opacity: 1;
+      }
+--paper-input-container-underline-disabled: {
+        display: none;
+      }
         }
   
         :host([focused]) {
@@ -137,6 +143,17 @@ style this element.
         label {
           pointer-events: none;
         }
+        label {
+        font-family: mitr-light, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      input {
+        font-family: trirong-regular, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        
+      }
+
       </style>
   
       <paper-input-container id="container"

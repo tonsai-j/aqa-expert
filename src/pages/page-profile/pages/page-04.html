@@ -72,6 +72,9 @@
                         </template>
                     </vaadin-grid-column>
                 </vaadin-grid>
+                <div class="no-content" hidden="{{specialist.length}}">
+                        ไม่มีข้อมูล
+                    </div>
                 [[i18n.common.total_items]] {{specialist.length}} [[i18n.common.list]]
             </div>
         </nylon-panel-card>
