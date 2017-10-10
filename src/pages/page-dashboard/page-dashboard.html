@@ -45,7 +45,7 @@
             <app-toolbar slot="header">
               <div main-title>สรุปผลการประเมินสถานศึกษา</div>
             </app-toolbar>
-            <nylon-c3 slot="content" id="chart4_user"></nylon-c3>
+            <nylon-c3 slot="content" id="chart2_user"></nylon-c3>
           </nylon-panel-card>
         </div>
 
@@ -131,8 +131,7 @@
       }
 
       expenses_change(e) {
-        console.log(e)
-
+        // console.log(e)
         var columns = []
         var expenses_list = []
 
@@ -149,112 +148,119 @@
           })
         }
 
+        if (this.auth.admin == true) {
 
-        this.$.chart1_admin.generate({
-          data: {
-            columns,
-            type: 'pie',
-            onclick: function (d, i) { console.log("onclick", d, i); }
-          },
-          size: {
-            height: 250
-          }
-        })
-        
-        this.$.chart1_user.generate({
-          data: {
-            columns,
-            type: 'pie',
-            onclick: function (d, i) { console.log("onclick", d, i); }
-          },
-          size: {
-            height: 250
-          }
-        })
-
-
-        this.$.chart2_admin.generate({
-          data: {
-            x: 'x',
-            columns: [
-              ['x', '2559', '2560', '2561', '2562', '2563', '2564'],
-              ['เชิญ', 30, 200, 100, 200, 150, 140],
-              ['ตอบรับ', 130, 100, 140, 200, 150, 50],
-              ['เข้าร่วม', 130, 100, 140, 200, 150, 50]
-            ],
-            type: 'bar'
-
-          },
-          bar: {
-            width: {
-              ratio: 0.5
+          this.$.chart1_admin.generate({
+            data: {
+              columns,
+              type: 'pie',
+              onclick: function (d, i) { console.log("onclick", d, i); }
+            },
+            size: {
+              height: 250
+            },
+            color: {
+              pattern: ['#348ea9', '#53bb9b', '#f48c37', '#f04946', '#fab41c']
             }
-          },
-          size: {
-            height: 250
-          }
+          })
 
-        })
-
-
-        this.$.chart3_admin.generate({
-          data: {
-            columns: [
-              ['ดีมาก', 30, 200, 100, 400],
-              ['ดี', 40, 100, 140, 200],
-              ['พอใช้', 50, 200, 100, 400],
-              ['ต้องปรับปรุง', 60, 100, 140, 200],
-              ['ต้องปรับปรุงเร่งด่วน', 70, 100, 140, 200]
-            ],
-          },
-          axis: {
-            x: {
-              type: 'category',
-              categories: ['ปี 2558', 'ปี 2559', 'ปี 2560', 'ปี 2561']
+          this.$.chart2_admin.generate({
+            data: {
+              x: 'x',
+              columns: [
+                ['x', '2559', '2560', '2561', '2562', '2563', '2564'],
+                ['เชิญ', 30, 200, 100, 200, 150, 140],
+                ['ตอบรับ', 130, 100, 140, 200, 150, 50],
+                ['เข้าร่วม', 130, 100, 140, 200, 150, 50]
+              ],
+              type: 'bar'
+            },
+            bar: {
+              width: {
+                ratio: 0.5
+              }
+            },
+            size: {
+              height: 250
+            },
+            color: {
+              pattern: ['#35c1d0', '#147fae', '#094266']
             }
-          },
-          size: {
-            height: 250
-          }
-        })
 
+          })
 
-        this.$.chart4_admin.generate({
-          data: {
-            columns: [
-              ['percent', 70, 60, 55,50,30,10]
-            ],
-          },
-          axis: {
-            x: {
-              type: 'category',
-              categories: ['จัดกลุ่ม', 'ส่งแผนการดำเนินงาน', 'เข้าประเมินสถานศึกษา', 'ตรวจร่างรายงาน', 'อภิมาน', 'ส่งรายงานฉบับสมบูรณ์']
+          this.$.chart3_admin.generate({
+            data: {
+              columns: [
+                ['ดีมาก', 30, 200, 100, 400],
+                ['ดี', 40, 100, 140, 200],
+                ['พอใช้', 50, 200, 100, 400],
+                ['ต้องปรับปรุง', 60, 100, 140, 200],
+                ['ต้องปรับปรุงเร่งด่วน', 70, 100, 140, 200]
+              ],
+            },
+            axis: {
+              x: {
+                type: 'category',
+                categories: ['ปี 2558', 'ปี 2559', 'ปี 2560', 'ปี 2561']
+              }
+            },
+            size: {
+              height: 350
+            },
+            color: {
+              pattern: ['#91a63b', '#fab41c', '#f47820', '#ca202e', '#7b112e']
             }
-          },
-          size: {
-            height: 250
-          }
-        })
+          })
 
-
-        this.$.chart4_user.generate({
-          data: {
-            columns: [
-              ['percent',100,80,75, 70, 60, 55,50,30,10]
-            ],
-          },
-          axis: {
-            x: {
-              type: 'category',
-              categories: ['สถานศึกษที่เข้าประเมิน', 'ทำสัญญา', 'ส่งแผนการดำเนินงาน', 'เบิกงวด 1'
-              , 'เข้าประเมินสถานศึกษา', 'ตรวจร่างรายงาน','อภิมาน' ,'ส่งรายงานฉบับสมบูรณ์','เบิกงวด 2']
+          this.$.chart4_admin.generate({
+            data: {
+              columns: [
+                // ['x', '2558', '2559', '2560', '2561'],
+                ['เปอร์เซนต์', 70, 60, 55, 50, 30, 10]
+              ],
+            },
+            axis: {
+              x: {
+                type: 'category',
+                categories: ['จัดกลุ่ม', 'ส่งแผนการดำเนินงาน', 'เข้าประเมินสถานศึกษา', 'ตรวจร่างรายงาน', 'อภิมาน', 'ส่งรายงานฉบับสมบูรณ์']
+              }
+            },
+            size: {
+              height: 350
             }
-          },
-          size: {
-            height: 250
-          }
-        })
+          })
 
+        } else {
+
+          this.$.chart1_user.generate({
+            data: {
+              columns,
+              type: 'pie',
+              onclick: function (d, i) { console.log("onclick", d, i); }
+            },
+            size: {
+              height: 250
+            }
+          })
+          this.$.chart2_user.generate({
+            data: {
+              columns: [
+                ['เปอร์เซนต์', 100, 80, 75, 70, 60, 55, 50, 30, 10]
+              ],
+            },
+            axis: {
+              x: {
+                type: 'category',
+                categories: ['สถานศึกษที่เข้าประเมิน', 'ทำสัญญา', 'ส่งแผนการดำเนินงาน', 'เบิกงวด 1'
+                  , 'เข้าประเมินสถานศึกษา', 'ตรวจร่างรายงาน', 'อภิมาน', 'ส่งรายงานฉบับสมบูรณ์', 'เบิกงวด 2']
+              }
+            },
+            size: {
+              height: 250
+            }
+          })
+        }
       }
     }
 
