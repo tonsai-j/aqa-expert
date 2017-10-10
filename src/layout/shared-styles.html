@@ -364,6 +364,7 @@
         --vaadin-grid-body-cell: {
           @apply --nylon-font-trirong-regular;
           height: 48px;
+          word-wrap: break-word;
           color: rgba(0, 0, 0, var(--dark-primary-opacity));
           font-size: 13px;
         }
@@ -433,6 +434,16 @@
 
       vaadin-grid#material vaadin-grid-sorter[direction=desc] iron-icon {
         transform: scale(0.8) rotate(180deg) translateZ(0);
+      }
+      .no-content{
+        background-color: var(--paper-grey-100);
+        text-align: center;
+        padding: 15px;
+        border: 1px solid #ddd;
+        @apply --nylon-font-mitr-family;
+      }
+      .no-content:hover{
+        background-color: var(--paper-grey-200);
       }
     </style>
   </template>

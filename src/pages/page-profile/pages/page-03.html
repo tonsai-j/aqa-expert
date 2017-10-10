@@ -37,7 +37,6 @@
                 </div>
                 <br>
                 <div class="row middle-md">
-
                     <div slot="content" class="col-md-12">
                         <vaadin-grid id='material' slot="content" sub-slot="grid" items="[[datas]]">
                             <vaadin-grid-column width="50px" flex-grow="0">
@@ -83,6 +82,9 @@
                                 </template>
                             </vaadin-grid-column>
                         </vaadin-grid>
+                        <div class="no-content" hidden="{{datas.length}}">
+                            ไม่มีข้อมูล
+                        </div>
                         [[i18n.common.total_items]] {{datas.length}} [[i18n.common.list]]
                     </div>
                 </div>
