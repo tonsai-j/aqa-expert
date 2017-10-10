@@ -1,0 +1,64 @@
+<link rel="import" href="../../bower_components/jwt-decode/jwt-decode.html">
+<script>
+    Nylon.addReducer('auth', function (state, action) {
+        state = state || {
+            select: {},
+            user: {}
+        }
+
+        switch (action.type) {
+            case 'AUTH':
+                return state
+            case 'AUTH_VERIFY_TOKEN':
+                return Object.assign({},state,{user:action.payload})
+            default:
+                return state
+        }
+        return state
+    })
+
+
+    Nylon.addAction({
+        authLogin:function(login){
+            return dispatch => {
+                axios.post('http://localhost:3000/api/auth/login',login).then( 
+                    res => {
+                        localStorage.setItem("token", res.data.token)
+                        Nylon.redirect('/dashboard')
+                    }
+                )
+                .catch(
+                    err => {
+                        console.log(err)
+                    }
+                )
+            }
+
+        },
+
+        authTransform:function(url){
+            return dispatch => {
+                axios.get('http://localhost:3000/api/auth/transform').then( 
+                    res => {
+                        window.location = `${url}/auth/transform?source=${res.data.token}`
+                    }
+                )
+                .catch(
+                    err => {
+                        console.log(err)
+                    }
+                )
+            }
+
+        },
+
+        authVerifyToken:function(){
+            return dispatch => {
+                var decode = jwt_decode(localStorage.token)
+                dispatch({type:'AUTH_VERIFY_TOKEN',payload:decode})
+            }
+        }
+
+    })
+
+</script>

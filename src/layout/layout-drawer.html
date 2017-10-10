@@ -5,10 +5,12 @@
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../bower_components/paper-item/paper-icon-item.html">
-
 <link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
-
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
+
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+
+<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
 
 <link rel="import" href="./flexbox-grid.html">
 
@@ -25,6 +27,10 @@
     <template>
         <style include="flexbox-grid flexbox-grid-remove-padding"></style>
         <style>
+             :host {
+                --main-color: #e0e0e0
+            }
+
             * {
                 font-family: mitr-light, sans-serif;
                 -webkit-font-smoothing: antialiased;
@@ -88,8 +94,7 @@
             }
 
             .home-icon {
-                /* color: #fff;
-                background-color: #0288D1; */
+                color: var(--main-color);
                 --iron-icon-height: 45px;
                 --iron-icon-width: 45px;
             }
@@ -136,46 +141,45 @@
             <div class="row center-md middle-md home-icon header-left-menu">
                 <iron-icon icon="home" class="icon-menu" on-tap="changeMenu"></iron-icon>
             </div>
-            <div style="height:80vh;">
+
+            <div style="height:100%">
                 <div id="style-4" style="height: 100%; overflow: auto; display:block">
                     <iron-pages selected="{{menuPage}}" attr-for-selected="name">
                         <div name="main">
-                            <!-- <div class="row"> -->
                             <iron-selector selected="[[page]]" attr-for-selected="name" role="navigation">
                                 <template is="dom-repeat" items={{menu}}>
-                                    <!-- <div class="col-md-6 borderz icon-page row middle-md center-md" name="{{item.page}}" on-tap="changeToMenu">
-                                        <iron-icon icon="{{item.icon}}" class="icon-menu"></iron-icon>
-                                    </div> -->
                                     <paper-icon-item name="{{item.page}}" on-tap="changeToMenu">
                                         <iron-icon icon="{{item.icon}}" slot="item-icon"></iron-icon>
                                         [[item.name]]
                                     </paper-icon-item>
                                 </template>
                             </iron-selector>
-                            <!-- </div> -->
                         </div>
                         <div name="menu">
                             <template is="dom-repeat" items={{menuIsUse}} as="sub_title" index-as="main_index">
-                                <div class="title-menu">
-                                    [[_changeTotext(sub_title.page_name)]]
+                                <div class="title-menu" on-click="toggle">
+                                    <paper-icon-button icon="my-icons:expand-more"></paper-icon-button> [[_changeTotext(sub_title.page_name)]]
                                 </div>
-                                <iron-selector class="ironmenu" selected="[[page]]" attr-for-selected="name" role="navigation">
-                                    <template is="dom-repeat" items={{sub_title.sub_menu}}>
-                                        <paper-icon-item indexmain="[[main_index]],[[index]]" name="[[item.href]]" href="[[item.href]]"
-                                            on-click="_redirect">
-                                            <iron-icon icon="[[_changeTotext(item.icon)]]" slot="item-icon"></iron-icon>
-                                            [[_changeTotext(item.label)]]
-                                        </paper-icon-item>
-                                    </template>
-                                </iron-selector>
+                                <iron-collapse id="collapse-[[main_index]]" opened>
+                                    <iron-selector class="ironmenu" selected="[[page]]" attr-for-selected="name" role="navigation">
+                                        <template is="dom-repeat" items={{sub_title.sub_menu}}>
+                                            <paper-icon-item indexmain="[[main_index]],[[index]]" name="[[item.href]]" href="[[item.href]]" on-click="_redirect">
+                                                <iron-icon icon="[[_changeTotext(item.icon)]]" slot="item-icon"></iron-icon>
+                                                [[_changeTotext(item.label)]]
+                                            </paper-icon-item>
+                                        </template>
+                                    </iron-selector>
+                                </iron-collapse>
                             </template>
+                            <div style="margin-bottom: 50px;">
+                            </div>
                         </div>
-                    </iron-pages>
 
+                    </iron-pages>
                 </div>
             </div>
-            <div style="height:100%;background-color: #21292e;">
-            </div>
+            <!-- <div style="height:100%;background-color: #21292e;">
+            </div> -->
         </div>
 
     </template>
@@ -351,7 +355,16 @@
                     }
                 }
             }
-
+            toggle(e) {
+                let getElement = e.currentTarget.nextElementSibling
+                getElement.toggle()
+                let icon = e.currentTarget.childNodes[1].icon
+                if (icon === 'my-icons:expand-more') {
+                    e.currentTarget.childNodes[1].icon = 'my-icons:chevron-right'
+                } else {
+                    e.currentTarget.childNodes[1].icon = 'my-icons:expand-more'
+                }
+            }
             getUrl(url) {
                 // console.log(url);
                 if (url !== '/') {
@@ -363,19 +376,11 @@
                                 // console.log(this.menu[index].sub_title_menu[j].sub_menu[k].href);
                                 if (href === url) {
                                     this.set('menuIsUse', this.menu[index].sub_title_menu)
-                                    this.set('page',this.pathName)
-                                    // console.log(this.shadowRoot.querySelectorAll('.ironmenu'));
-                                    //     console.log(index,j,k);
-                                    //    console.log(href === url); 
+                                    this.set('page', this.pathName)
                                 }
-                                // console.log(href === url);
                             }
                         }
-                        // console.log(this.menu[index]);
-
                     }
-                    //     console.log(this.menuPage);
-                    // console.log(url); 
                 }
             }
             ready() {
@@ -383,7 +388,7 @@
                 // console.log(this._params)
             }
 
-            toogleMenu() {
+            toogleMenu(index) {
                 this.$.drawer.toggle();
             }
 
