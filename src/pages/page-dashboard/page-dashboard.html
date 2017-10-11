@@ -33,11 +33,16 @@
       }
 
       /* .container-dashboard */
+
       /* #contentContainer, */
+
       /* #wrapper, */
+
       /* .card */
+
       /* .row  */
-     .container {
+
+      .container {
         background-color: #ffffff;
         margin: 0px
         /* background-image:url(./dashboad.jpg); */
@@ -62,7 +67,16 @@
 
     <div class="container">
       <div class="toolbar">
-        <paper-icon-button icon="apps" title="heart" on-click="openAppsMenu"></paper-icon-button>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="font" style="text-align: left; font-size: 30px">Automated QA</div>
+          </div>
+          <div class="col-md-6">
+            <paper-icon-button icon="apps" title="heart" on-click="openAppsMenu"></paper-icon-button>
+          </div>
+        </div>
+
+
         <paper-dialog id="dialog" no-overlap horizontal-align="right" vertical-align="top">
           <paper-dialog-scrollable id="dialogScroll">
             <page-dashboard-app on-close="closeDialog"></page-dashboard-app>
