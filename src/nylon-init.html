@@ -24,11 +24,17 @@
        :host {
         display: block;
       }
+
+      [hidden] {
+        display: none;
+      }
+
+      
     </style>
 
     <nylon-dialog></nylon-dialog>
 
-    <layout-main id="layoutMain" path-name="[[pathName]]">
+    <layout-main id="layoutMain" path-name="[[pathName]]" hidden$="[[login]]">
       <nylon-pages id="nylonPage">
         <page-register path="/"></page-register>
         <page-profile path="/profile/:name"></page-profile>
@@ -40,8 +46,12 @@
         <page-404 path="*"></page-404>
       </nylon-pages>
     </layout-main>
+    <page-register path="/" hidden$="[[!login]]"></page-register>
 
 
+
+
+    
 
   </template>
 
@@ -54,6 +64,10 @@
         return {
           pathName: {
             type: String,
+            observer: '_pathNameChange'
+          },
+          login: {
+            type: Boolean
           }
         }
       }
@@ -70,13 +84,22 @@
                 Nylon.dispatch('REGISTER_POST', data[0],pathUrl)
               })
             } else {
-              Nylon.redirect('/')
+              // Nylon.redirect('/')
             }
 
           });
 
         // console.log(localStorage.getItem('taxno'));
         // console.log(11);
+      }
+
+      _pathNameChange(val){
+        if(val == "/"){
+          this.login = true;
+        }else{
+          this.login = false;
+        }
+        
       }
 
     }
