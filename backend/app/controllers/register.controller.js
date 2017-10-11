@@ -18,11 +18,11 @@ exports.post = function (req, res) {
                             properties: false,
                             meeting: false,
                             exam: false,
+                            address: [],
                             contact: {
-                                current: {},
+                                mail: {},
                                 home: {},
-                                work: {},
-                                address: []
+                                work: {}
                             },
                             education: [],
                             specialist: [],
