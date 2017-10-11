@@ -90,6 +90,7 @@
                 color: white;
                 background-color: #4E97D9;
             }
+
             /* body,
             html {
                 margin: 0;
@@ -231,14 +232,17 @@
                                 <iron-pages selected={{page}}>
                                     <div>
                                         <div class="col-xs-12">
-                                            <nylon-input class="input" label="[[i18n.register.user]]" value="{{login.username}}" always-float-label></nylon-input>
+                                            <nylon-input class="required-login input" required label="[[i18n.register.user]]" value="{{login.username}}" always-float-label
+                                                on-keyup="_enterLogin"></nylon-input>
                                         </div>
                                         <div class="col-xs-12">
-                                            <nylon-input type="password" class="input" label="[[i18n.register.password]]" value="{{login.password}}" always-float-label></nylon-input>
+                                            <nylon-input type="password" class="required-login input" required label="[[i18n.register.password]]" value="{{login.password}}"
+                                                always-float-label on-keyup="_enterLogin"></nylon-input>
                                         </div>
                                         <div style="margin:20px"></div>
                                         <paper-button raised class="btn-success col-xs-12 row center-md" on-click="_login">
-                                            <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp;[[i18n.button.login.label]]
+                                            <!-- <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp; -->
+                                            [[i18n.button.login.label]]
                                         </paper-button>
                                     </div>
                                     <div>
@@ -247,19 +251,19 @@
                                                 required on-keyup="autoFill" always-float-label></nylon-input>
                                         </div>
                                         <div class="col-xs-12">
-                                            <nylon-input class="required input" required label=[[i18n.register.name]] value="{{data.basic.firstname_th}}" required on-keyup="_enter"
+                                            <nylon-input class="required input" required label=[[i18n.register.name]] value="{{data.basic.firstname_th}}" required on-keyup="_enterRegister"
                                                 always-float-label></nylon-input>
                                         </div>
                                         <div class="col-xs-12">
-                                            <nylon-input class="required input" required label=[[i18n.register.lname]] value="{{data.basic.lastname_th}}" required on-keyup="_enter"
+                                            <nylon-input class="required input" required label=[[i18n.register.lname]] value="{{data.basic.lastname_th}}" required on-keyup="_enterRegister"
                                                 always-float-label></nylon-input>
                                         </div>
                                         <div class="col-xs-12">
-                                            <nylon-input class="required input" required label=[[i18n.register.phone]] value="{{data.basic.mobile}}" required on-keyup="_enter"
+                                            <nylon-input class="required input" required label=[[i18n.register.phone]] value="{{data.basic.mobile}}" required on-keyup="_enterRegister"
                                                 always-float-label></nylon-input>
                                         </div>
                                         <div class="col-xs-12">
-                                            <nylon-input class="required input" required label=[[i18n.register.email]] value="{{data.basic.email}}" required on-keyup="_enter"
+                                            <nylon-input class="required input" required label=[[i18n.register.email]] value="{{data.basic.email}}" required on-keyup="_enterRegister"
                                                 always-float-label></nylon-input>
                                         </div>
                                         <div class="col-xs-12">
@@ -272,7 +276,8 @@
                                         </div>
                                         <div style="margin:20px"></div>
                                         <paper-button raised class="btn-success col-xs-12 row center-md" on-click="_register">
-                                            <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp;[[i18n.button.register.label]]
+                                            <!-- <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp; -->
+                                            [[i18n.button.register.label]]
                                         </paper-button>
                                     </div>
                                 </iron-pages>
@@ -414,11 +419,20 @@
             }
 
             _login() {
-                Nylon.dispatch('authLogin', this.login)
-                localStorage.removeItem("taxno")
+                if (this.validateForm('.required-login')) {
+                    Nylon.dispatch('authLogin', this.login)
+                    localStorage.removeItem("taxno")
+                } else {
+                    Nylon.toast('required')
+                }
+            }
+            _enterLogin(e) {
+                if (e.code === 'Enter') {
+                    this._login();
+                }
             }
 
-            _enter(e) {
+            _enterRegister(e) {
                 if (e.code === 'Enter') {
                     this._register();
                 }

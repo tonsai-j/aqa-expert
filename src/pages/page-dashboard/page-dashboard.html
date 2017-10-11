@@ -71,16 +71,50 @@
           <div class="col-md-6">
             <div class="font" style="text-align: left; font-size: 30px">Automated QA</div>
           </div>
-          <div class="col-md-6">
-            <paper-icon-button icon="apps" title="heart" on-click="openAppsMenu"></paper-icon-button>
+          <div class="col-md-6 font">
+            <div class="row end-md middle-md">
+              <!-- คุณ[[auth.fname]] [[auth.lname]] -->
+              <img style="border-radius: 50%;margin-left:10px;" on-click="openAccountMenu" height="30px" width="30px" src="https://scontent.fbkk5-6.fna.fbcdn.net/v/t1.0-9/21730806_10214817299332471_1720520233013026164_n.jpg?_nc_eui2=v1%3AAeFfvggC3dXtjlNdscoftIinc428mqdp0MXye36T0AthdI8pHRR9aPqB2mrPFrz-elxjpK4H1PG3qPcyi0NGHYxafP5OMCXkXcq-6A6SKbY9-g&oh=31d7833d0b2e8cc296a75223a4bee41a&oe=5A84901F"
+                alt="">
+              <!-- <paper-icon-button on-click="openAccountMenu" on-click="openAccountMenu"></paper-icon-button> -->
+              <paper-icon-button icon="apps" title="heart" on-click="openAppsMenu"></paper-icon-button>
+
+            </div>
+
           </div>
         </div>
-
-
         <paper-dialog id="dialog" no-overlap horizontal-align="right" vertical-align="top">
           <paper-dialog-scrollable id="dialogScroll">
             <page-dashboard-app on-close="closeDialog"></page-dashboard-app>
           </paper-dialog-scrollable>
+        </paper-dialog>
+
+        <paper-dialog id="dialog2" no-overlap horizontal-align="right" vertical-align="top" width="500px">
+          <div class="row">
+            <div class="col-md-4 start-md">
+              <img style="border-radius: 50%;margin-left:10px;" on-click="openAccountMenu" height="80px" width="80px" src="https://scontent.fbkk5-6.fna.fbcdn.net/v/t1.0-9/21730806_10214817299332471_1720520233013026164_n.jpg?_nc_eui2=v1%3AAeFfvggC3dXtjlNdscoftIinc428mqdp0MXye36T0AthdI8pHRR9aPqB2mrPFrz-elxjpK4H1PG3qPcyi0NGHYxafP5OMCXkXcq-6A6SKbY9-g&oh=31d7833d0b2e8cc296a75223a4bee41a&oe=5A84901F"
+                alt="">
+            </div>
+            <div class="font col-md-8 end-md">
+              <div>
+                คุณ[[auth.fname]] [[auth.lname]]
+              </div>
+              <div>
+                [[auth.email]]
+              </div>
+              <paper-button style="text-align: center;margin-top:5px;" raised noink on-tap="logout">ออกจากระบบ</paper-button>
+
+            </div>
+          </div>
+
+          <!-- <div class="row">
+            <div class="font col-md-12">
+            </div>
+          </div> -->
+
+
+          <!-- <page-dashboard-app on-close="closeDialog"></page-dashboard-app> -->
+
         </paper-dialog>
       </div>
       <div class="user">
@@ -244,6 +278,10 @@
         this.$.dialog.toggle();
       }
 
+      openAccountMenu(e) {
+        this.$.dialog2.toggle();
+      }
+
       closeDialog() {
         this.$.dialog.close();
       }
@@ -269,7 +307,12 @@
 
         }
       }
-
+      logout() {
+        // setTimeout(() => {
+        //   Nylon.redirect('')
+        // }, 800);
+        location.href = '';
+      }
       formatMoney(inum) {  // ฟังก์ชันสำหรับแปลงค่าตัวเลขให้อยู่ในรูปแบบ เงิน
         var s_inum = new String(inum);
         var num2 = s_inum.split(".");
