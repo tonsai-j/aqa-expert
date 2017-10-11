@@ -153,7 +153,9 @@ style this element.
         -webkit-font-smoothing: antialiased;
         
       }
-
+      .required-field{
+        color: red;
+      }
       </style>
   
       <paper-input-container id="container"
@@ -165,7 +167,11 @@ style this element.
   
         <slot name="prefix" slot="prefix"></slot>
   
-        <label hidden$="[[!label]]" aria-hidden="true" for="input" slot="label">[[label]]</label>
+        <label hidden$="[[!label]]" aria-hidden="true" for="input" slot="label">[[label]]
+          <template is="dom-if" if={{required}}>
+            <span class="required-field">*</span>
+          </template>
+        </label>
   
         <span id="template-placeholder"></span>
   
@@ -222,7 +228,6 @@ style this element.
           accept$="[[accept]]"
           multiple$="[[multiple]]">
     </template>
-  
     <template id="v1">
       <!-- Need to bind maxlength so that the paper-input-char-counter works correctly -->
       <iron-input bind-value="{{value}}" id="input" slot="input"
@@ -272,7 +277,6 @@ style this element.
       Polymer.PaperInputBehavior,
       Polymer.IronFormElementBehavior
     ],
-
     beforeRegister: function () {
       // We need to tell which kind of of template to stamp based on
       // what kind of `iron-input` we got, but because of polyfills and
@@ -304,13 +308,11 @@ style this element.
     listeners: {
       'iron-input-ready': '_onIronInputReady'
     },
-
     _onIronInputReady: function () {
       if (this.inputElement &&
         this._typesThatHaveText.indexOf(this.$.nativeInput.type) !== -1) {
         this.alwaysFloatLabel = true;
       }
-
       // Only validate when attached if the input already has a value.
       if (!!this.inputElement.bindValue) {
         this.$.container._handleValueAndAutoValidate(this.inputElement);
