@@ -140,6 +140,7 @@
 
             div#slider {
                 overflow: hidden;
+                z-index: 1;
             }
 
             div#slider figure img {
@@ -149,30 +150,72 @@
 
             div#slider figure {
                 position: relative;
-                width: 500%;
+                height: 100vh;
                 margin: 0;
                 left: 0;
                 text-align: left;
                 font-size: 0;
-                animation: 20s slidy infinite;
+                animation: 10s slidy infinite;
             }
-            
+
+            #bg {
+                /* Full height */
+                height: 100vh;
+                /* Center and scale the image nicely */
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            .bg1 {
+                /* The image used */
+                background-image: url('/images/pic_login/img1.jpg');
+            }
+
+            .bg2 {
+                /* The image used */
+                background-image: url('/images/pic_login/img2.jpg');
+            }
+
+            .bg3 {
+                /* The image used */
+                background-image: url('/images/pic_login/img3.jpg');
+            }
+
+            .background-section {
+                z-index: 10;
+                position: absolute;
+                top: 2%;
+                right: 12%;
+            }
         </style>
 
-        <div id="slider">
+        <!-- <div id="slider">
             <figure>
-                <img src="http://localhost:8080/images/pic_profile/1.login.jpg" alt>
-                <img src="http://localhost:8080/images/pic_profile/1-1.login.jpg" alt>
-                <img src="http://localhost:8080/images/pic_profile/2-1.login.jpg" alt>
-                <img src="http://localhost:8080/images/pic_profile/3-1.login.jpg">
-                <img src="http://localhost:8080/images/pic_profile/1.login.jpg" alt>
+                <img src="/images/pic_login/img1.jpg" alt>
+                <img src="/images/pic_login/img2.jpg" alt>
+                <img src="/images/pic_login/img3.jpg" alt>
             </figure>
-        </div>
+        </div> -->
+        <!-- <div class="img"></div> -->
+
+        <iron-pages id="bgimg" selected="{{selectPage}}">
+            <div class="bg1" id="bg"></div>
+            <div class="bg1" id="bg"></div>
+            <div class="bg2" id="bg"></div>
+            <div class="bg2" id="bg"></div>
+            <div class="bg3" id="bg"></div>
+            <div class="bg3" id="bg"></div>
+        </iron-pages>
+
+
+        <!-- <div class="col-lg-4 col-md-12  col-sm-3  col-xs-12 "> -->
+        <!-- <img src="/images/pic_login/img1.jpg" alt id="slider"> -->
         <!-- animated bounceInDown -->
         <section class="background-section">
             <div class="opening-msg">
                 <div id="login" class="container row center-md center-lg center-sm ">
-                    <div class="col-lg-4 col-md-12  col-sm-3  col-xs-12 ">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <nylon-panel-card id="panelCard">
                             <div slot="header">
                                 <div class="header">
@@ -271,6 +314,10 @@
                         type: Array,
                         statePath: 'register.typeAssessor'
                     },
+                    selectPage: {
+                        type: Number,
+                        value: 0
+                    },
                     data: {
                         type: Object,
                         value: {
@@ -306,12 +353,31 @@
             }
             ready() {
                 super.ready();
+
                 var elem = this.$.login
                 this.fadeInDown(elem, 1, 300)
+                setInterval(() => {
+                    let page = () => {
+                        let pageSelete = this.selectPage
+                        if (pageSelete === 5) {
+                            pageSelete = 0
+                        } else {
+                            pageSelete++
+                        }
+                        return pageSelete
+                    }
+                    this.set('selectPage', page())
+                }, 1500)
             }
             connectedCallback() {
                 super.connectedCallback()
-
+                // var elem = this.$.bg
+                // console.log(elem.style);
+                // setInterval(() => {
+                //     var elem = this.$.bg
+                //     console.log(elem.style);
+                //     console.log('Hello')
+                // }, 1000);
             }
             autoFill() {
                 if (this.checkPersonID(this.data.taxno)) {

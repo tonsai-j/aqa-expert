@@ -62,7 +62,7 @@
                     </div>
                     <div class="row middle-md">
                         <div class="col-md-3 col-md-offset-1">
-                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page10.bank]]*" items='{{bankList}}' value="{{bank.bank_id}}"
+                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page10.bank]]" items='{{bankList}}' value="{{bank.bank_id}}"
                                 item-label-path="bank_name_th" item-value-path="id" on-selected-item-changed="getObject" object-name="bank.bank">
                                 <template>
                                     [[item.bank_name_th]]
@@ -70,7 +70,7 @@
                             </nylon-combo-box>
                         </div>
                         <div class="col-md-3 col-md-offset-1">
-                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page10.account_Types]]*" items='{{typeList}}'
+                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page10.account_Types]]" items='{{typeList}}'
                                 value="{{bank.type_account_id}}" item-label-path="type_account_name_th" item-value-path="id"
                                 on-selected-item-changed="getObject" object-name="bank.type_account">
                                 <template>
@@ -79,12 +79,12 @@
                             </nylon-combo-box>
                         </div>
                         <div class="col-md-3 col-md-offset-1">
-                            <nylon-input class="required" required always-float-label label="[[i18n.page10.branch]]*" value="{{bank.branch}}"></nylon-input>
+                            <nylon-input class="required" required always-float-label label="[[i18n.page10.branch]]" value="{{bank.branch}}"></nylon-input>
                         </div>
                     </div>
                     <div class="row middle-md">
                         <div class="col-md-4 col-md-offset-1">
-                            <nylon-input class="required" required always-float-label allowed-pattern="[0-9]" label="[[i18n.page10.account_number]]*"
+                            <nylon-input class="required" required always-float-label allowed-pattern="[0-9]" label="[[i18n.page10.account_number]]"
                                 value="{{bank.account_number}}"></nylon-input>
                         </div>
                         <div class="input col-md-3">
@@ -93,7 +93,7 @@
                     </div>
                     <div class="row middle-md">
                         <div class="col-md-7 col-md-offset-1">
-                            <nylon-input class="required" required always-float-label label="[[i18n.page10.account_name]]*" value="{{bank.account_name}}"></nylon-input>
+                            <nylon-input class="required" required always-float-label label="[[i18n.page10.account_name]]" value="{{bank.account_name}}"></nylon-input>
                         </div>
                     </div>
                     <div class="row center-md button-buttom">
@@ -119,7 +119,7 @@
                             <img id="output_image" src$="[[rootPath]]images/I20170901111610.jpg" />
                         </div>
                         <div class=" col-md-3">
-                            <input id="ifile" type=file accept="image/*" on-change="preview_image">
+                            <input id="ifile" type=file accept="image/" on-change="preview_image">
                             <paper-button raised on-tap="upload_img" class="upload_image btn-upload">
                                 <iron-icon icon="[[i18n.button.upload.icon]]"></iron-icon>&nbsp;&nbsp; [[i18n.button.upload.label]]</paper-button>
                         </div>

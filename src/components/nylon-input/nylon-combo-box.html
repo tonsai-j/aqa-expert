@@ -197,11 +197,15 @@ Custom property | Description | Default
                     label {
         font-family: mitr-light, sans-serif;
         -webkit-font-smoothing: antialiased;
+        font-size:20px;
       }
 
       input {
         font-family: trirong-regular, sans-serif;
         -webkit-font-smoothing: antialiased;
+      }
+      .required-field{
+        color: red;
       }
 
                   </style>
@@ -219,7 +223,11 @@ Custom property | Description | Default
                       hidden$="[[!label]]"
                       aria-hidden="true"
                       on-tap="_openAsync"
-                      for="input">[[label]]</label>
+                      for="input">[[label]]
+                      <template is="dom-if" if={{required}}>
+                        <span class="required-field">*</span>
+                      </template>
+                    </label>
               
                     <slot name="prefix" slot="prefix"></slot>
               

@@ -178,7 +178,8 @@
                                         <template is="dom-repeat" items={{sub_title.sub_menu}}>
                                             <paper-icon-item indexmain="[[main_index]],[[index]]" name="[[item.href]]" href="[[item.href]]" on-click="_redirect">
                                                 <iron-icon icon="[[_changeTotext(item.icon)]]" slot="item-icon"></iron-icon>
-                                                [[_changeTotext(item.label)]]
+                                                <!-- [[checklingth(item.label)]] -->
+                                               <div style$=[[checklingth(item.label)]]>[[_changeTotext(item.label)]]</div>  
                                             </paper-icon-item>
                                         </template>
                                     </iron-selector>
@@ -187,7 +188,6 @@
                             <div style="margin-bottom: 50px;">
                             </div>
                         </div>
-
                     </iron-pages>
                 </div>
             </div>
@@ -492,7 +492,13 @@
                             break;
                     }
                 }
-
+            }
+            checklingth(text){
+                if (this._changeTotext(text).length >= 25) {
+                    return 'padding-left: 13px;'
+                } else {
+                    return ''
+                }
             }
 
         }
