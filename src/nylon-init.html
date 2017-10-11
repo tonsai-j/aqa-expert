@@ -80,7 +80,7 @@
           () => {
             // console.log(localStorage.getItem('taxno'));
             let texno = localStorage.getItem('taxno')
-            console.log(texno);
+            // console.log(texno);
             if (texno !== null && texno !== undefined && texno !== '') {
               Nylon.dispatch('REGISTER_CHECK_TAXNO', texno, (data) => {
 
