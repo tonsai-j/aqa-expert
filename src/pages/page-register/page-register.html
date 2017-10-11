@@ -189,6 +189,10 @@
                 top: 2%;
                 right: 12%;
             }
+
+            .font {
+                @apply --nylon-font-mitr-family
+            }
         </style>
 
         <!-- <div id="slider">
@@ -220,14 +224,14 @@
                         <nylon-panel-card id="panelCard">
                             <div slot="header">
                                 <div class="header">
-                                    <h3>AUTOMATED QA</h3>
+                                    <h3 class="font">AUTOMATED QA</h3>
                                 </div>
                             </div>
 
                             <div slot="content" class="middle-md">
                                 <paper-tabs selected={{page}}>
-                                    <paper-tab>[[i18n.register.login]]</paper-tab>
-                                    <paper-tab>[[i18n.register.title]]</paper-tab>
+                                    <paper-tab class="font">[[i18n.register.login]] </paper-tab>
+                                    <paper-tab class="font">[[i18n.register.title]]</paper-tab>
                                 </paper-tabs>
                                 <iron-pages selected={{page}}>
                                     <div>
