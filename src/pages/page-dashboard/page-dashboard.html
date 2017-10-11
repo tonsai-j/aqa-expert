@@ -48,10 +48,19 @@
           </nylon-panel-card>
         </div>
 
+        <div class="col-xs-6 ">
+          <nylon-panel-card>
+            <app-toolbar slot="header">
+              <div main-title class="font">ประวัติการประเมินสถานศึกษา</div>
+            </app-toolbar>
+            <nylon-c3 slot="content" id="chart3_user"></nylon-c3>
+          </nylon-panel-card>
+        </div>
+
         <div class="col-xs-12">
           <nylon-panel-card>
             <app-toolbar slot="header">
-              <div main-title class="font">สรุปผลการประเมินสถานศึกษา</div>
+              <div main-title class="font">สรุปความก้าวหน้า</div>
             </app-toolbar>
             <nylon-c3 slot="content" id="chart2_user"></nylon-c3>
           </nylon-panel-card>
@@ -95,7 +104,7 @@
         <div class="col-xs-12">
           <nylon-panel-card>
             <app-toolbar slot="header">
-              <div main-title class="font">สรุปผลการประเมินสถานศึกษา</div>
+              <div main-title class="font">สรุปความก้าวหน้า</div>
             </app-toolbar>
             <nylon-c3 slot="content" id="chart4_admin"></nylon-c3>
           </nylon-panel-card>
@@ -304,6 +313,44 @@
               show: false
             }
           })
+
+
+          this.$.chart3_user.generate({
+            data: {
+                columns: [
+                    ['จำนวนสถานศึกษา', 0, 2, 4, 0, 0, 0],
+                ],
+                type: 'bar'
+            },
+            axis: {
+              x: {
+                label: 'กลุ่มระดับการศึกษาและประเภท',
+                type: 'category',
+                tick: {
+                  rotate: 0,
+                  multiline: false
+                },
+                categories: ['กลุ่ม 1', 'กลุ่ม 2', 'กลุ่ม 3', 'กลุ่ม 4'
+                  , 'กลุ่ม 5', 'กลุ่ม 6']
+              },
+              y: {
+                label: 'จำนวนสถานศึกษา'
+              }
+            },
+            bar: {
+                width: {
+                    ratio: 0.4 // this makes bar width 50% of length between ticks
+                }
+                // or
+                //width: 100 // this makes bar width 100px
+            },
+            size: {
+              height: 250
+            },
+            color: {
+              pattern: ['#f48c37']
+            },
+        })
         }
       }
 
