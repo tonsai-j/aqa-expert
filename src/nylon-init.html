@@ -28,30 +28,26 @@
       [hidden] {
         display: none;
       }
-
-      
     </style>
 
     <nylon-dialog></nylon-dialog>
-
-    <layout-main id="layoutMain" path-name="[[pathName]]" hidden$="[[login]]">
+    <layout-main id="layoutMain" path-name="[[pathName]]" hidden$="[[checkNomal(login,dashboard)]]">
       <nylon-pages id="nylonPage">
         <page-register path="/"></page-register>
         <page-profile path="/profile/:name"></page-profile>
         <page-approve path="/approve"></page-approve>
         <page-dashboard path="/dashboard" rule></page-dashboard>
         <page-tests path="/tests"></page-tests>
-        <!-- <page-view2 path="/view2/:id"></page-view2> -->
         <page-401 path="*"></page-401>
         <page-404 path="*"></page-404>
       </nylon-pages>
     </layout-main>
-    <page-register path="/" hidden$="[[!login]]"></page-register>
+    <page-register path="/" hidden$="[[checkLoginPage(login,dashboard)]]"></page-register>
+    <page-dashboard path="/dashboard" rule hidden$="[[checkDashboard(login,dashboard)]]"></page-dashboard>
 
 
 
 
-    
 
   </template>
 
@@ -67,7 +63,12 @@
             observer: '_pathNameChange'
           },
           login: {
-            type: Boolean
+            type: Boolean,
+            value: true
+          },
+          dashboard: {
+            type: Boolean,
+            value: false
           }
         }
       }
@@ -78,10 +79,13 @@
           Polymer.Async.timeOut.after(700),
           () => {
             // console.log(localStorage.getItem('taxno'));
-            if (localStorage.getItem('taxno') !== null) {
-              Nylon.dispatch('REGISTER_CHECK_TAXNO', localStorage.getItem('taxno'), (data) => {
+            let texno = localStorage.getItem('taxno')
+            console.log(texno);
+            if (texno !== null && texno !== undefined && texno !== '') {
+              Nylon.dispatch('REGISTER_CHECK_TAXNO', texno, (data) => {
+
                 let pathUrl = this.pathName
-                Nylon.dispatch('REGISTER_POST', data[0],pathUrl)
+                Nylon.dispatch('REGISTER_POST', data[0], pathUrl)
               })
             } else {
               // Nylon.redirect('/')
@@ -93,15 +97,34 @@
         // console.log(11);
       }
 
-      _pathNameChange(val){
-        if(val == "/"){
+      _pathNameChange(val) {
+        if (val == "/") {
           this.login = true;
-        }else{
+        } else {
           this.login = false;
         }
-        
+        if (val == "/dashboard") {
+          this.dashboard = true;
+        } else {
+          this.dashboard = false;
+        }
       }
 
+      checkLoginPage(login, dashboard) {
+        if (login === true && dashboard === false)
+          return false
+        return true
+      }
+      checkNomal(login, dashboard) {
+        if (login === false && dashboard === false)
+          return false
+        return true
+      }
+      checkDashboard(login, dashboard) {
+        if (login === false && dashboard === true)
+          return false
+        return true
+      }
     }
 
     window.customElements.define(NylonInit.is, NylonInit);
