@@ -5,6 +5,11 @@
 
 <link rel="import" href="../../components/nylon-panel-card/nylon-panel-card.html">
 <link rel="import" href="../../components/nylon-c3/nylon-c3.html">
+<link rel="import" href="./page-dashboard-app.html">
+
+<link rel="import" href="../../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../../bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
 
 <link rel="import" href="../../redux-mixin.html">
 <link rel="import" href="../../redux/dashboard/dashboard-redux.html">
@@ -27,13 +32,20 @@
         @apply --nylon-font-mitr-family-bone;
       }
 
-      .container-dashboard,
-      .container,
-      #contentContainer,
-      #wrapper,
-      .card,
-      .row {
+      /* .container-dashboard */
+
+      /* #contentContainer, */
+
+      /* #wrapper, */
+
+      /* .card */
+
+      /* .row  */
+
+      .container {
         background-color: #ffffff;
+        margin: 0px
+        /* background-image:url(./dashboad.jpg); */
       }
 
       app-toolbar {
@@ -43,12 +55,38 @@
       nylon-panel-card {
         margin: 5px
       }
+
+      .toolbar {
+        text-align: right;
+      }
+
+      paper-dialog {
+        margin: 0
+      }
     </style>
 
     <div class="container">
-      <div class="row user">
+      <div class="toolbar">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="font" style="text-align: left; font-size: 30px">Automated QA</div>
+          </div>
+          <div class="col-md-6">
+            <paper-icon-button icon="apps" title="heart" on-click="openAppsMenu"></paper-icon-button>
+          </div>
+        </div>
 
-        <!-- <div class="col-xs-6 ">
+
+        <paper-dialog id="dialog" no-overlap horizontal-align="right" vertical-align="top">
+          <paper-dialog-scrollable id="dialogScroll">
+            <page-dashboard-app on-close="closeDialog"></page-dashboard-app>
+          </paper-dialog-scrollable>
+        </paper-dialog>
+      </div>
+      <div class="user">
+        <div class="row">
+
+          <!-- <div class="col-xs-6 ">
           <div main-title class="font">ค่าใช้จ่าย</div>
           <nylon-c3 slot="content" id="chart1_user"></nylon-c3>
         </div>
@@ -63,99 +101,117 @@
           <nylon-c3 slot="content" id="chart2_user"></nylon-c3>
         </div> -->
 
+        </div>
       </div>
-    </div>
+      <div class="admin">
+        <div class="row">
+          <div class="col-xs-6 ">
+            <!-- <nylon-panel-card> -->
+            <app-toolbar slot="header">
+              <div main-title class="font">ผู้สำเร็จการศึกษาที่ได้งานทำ/ศึกษาต่อ</div>
+            </app-toolbar>
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="font" style="text-align: center;">ปวช.</div>
+                <nylon-c3 slot="content" id="chart1_1_admin"></nylon-c3>
+              </div>
+              <div class="col-xs-6">
+                <div class="font" style="text-align: center;">ปวส.</div>
+                <nylon-c3 slot="content" id="chart1_2_admin"></nylon-c3>
+              </div>
+            </div>
 
-    <div class="container">
-      <div class="row admin">
-        <div class="col-xs-6 ">
-          <!-- <nylon-panel-card> -->
-          <app-toolbar slot="header">
-            <div main-title class="font">ผู้สำเร็จการศึกษาที่ได้งานทำ/ศึกษาต่อ</div>
-          </app-toolbar>
-          <div class="row">
-            <div class="col-xs-6">
-              <div class="font" style="text-align: center;">ปวช.</div>
-              <nylon-c3 slot="content" id="chart1_1_admin"></nylon-c3>
-            </div>
-            <div class="col-xs-6">
-              <div class="font" style="text-align: center;">ปวส.</div>
-              <nylon-c3 slot="content" id="chart1_2_admin"></nylon-c3>
-            </div>
+            <table slot="content" class="font">
+              <tr>
+                <td>
+                  <div style="width: 10px; height: 10px; background-color: #348ea9"></div>
+                </td>
+                <td style="font-size: 12px">ได้งานทำให้สาขาที่เกี่ยวข้อง</td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="width: 10px; height: 10px; background-color: #53bb9b"></div>
+                </td>
+                <td style="font-size: 12px">ศึกษาในสาขาวิชาที่เกี่ยวข้อง</td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="width: 10px; height: 10px; background-color: #f48c37"></div>
+                </td>
+                <td style="font-size: 12px">ประกอบอาชีพอิสระ</td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="width: 10px; height: 10px; background-color: #f04946"></div>
+                </td>
+                <td style="font-size: 12px">ว่างงาน</td>
+              </tr>
+            </table>
+            <!-- </nylon-panel-card> -->
           </div>
 
-          <table slot="content" class="font">
-            <tr>
-              <td>
-                <div style="width: 10px; height: 10px; background-color: #348ea9"></div>
-              </td>
-              <td style="font-size: 12px">ได้งานทำให้สาขาที่เกี่ยวข้อง</td>
-            </tr>
-            <tr>
-              <td>
-                <div style="width: 10px; height: 10px; background-color: #53bb9b"></div>
-              </td>
-              <td style="font-size: 12px">ศึกษาในสาขาวิชาที่เกี่ยวข้อง</td>
-            </tr>
-            <tr>
-              <td>
-                <div style="width: 10px; height: 10px; background-color: #f48c37"></div>
-              </td>
-              <td style="font-size: 12px">ประกอบอาชีพอิสระ</td>
-            </tr>
-            <tr>
-              <td>
-                <div style="width: 10px; height: 10px; background-color: #f04946"></div>
-              </td>
-              <td style="font-size: 12px">ว่างงาน</td>
-            </tr>
-          </table>
-          <!-- </nylon-panel-card> -->
+
+          <div class="col-xs-6">
+            <!-- <nylon-panel-card> -->
+            <app-toolbar slot="header">
+              <div main-title class="font">อัตราส่วนครู : ผู้เรียน</div>
+            </app-toolbar>
+            <nylon-c3 slot="content" id="chart2_admin"></nylon-c3>
+            <!-- </nylon-panel-card> -->
+          </div>
+
+          <div class="col-xs-6">
+            <!-- <nylon-panel-card> -->
+            <app-toolbar slot="header">
+              <div main-title class="font">การประเมินผลตนเอง (SAR)</div>
+            </app-toolbar>
+            <nylon-c3 slot="content" id="chart3_admin"></nylon-c3>
+            <!-- </nylon-panel-card> -->
+
+            <table slot="content" class="font">
+              <tr>
+                <td>
+                  <div style="width: 50px; height: 5px; background-color: #0000cc"></div>
+                </td>
+                <td style="font-size: 12px">ปีการศึกษา 2559</td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="width: 50px; height: 5px; background-color: #ff7f0e"></div>
+                </td>
+                <td style="font-size: 12px">ปีการศึกษา 2560</td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="col-xs-6">
+            <!-- <nylon-panel-card> -->
+            <app-toolbar slot="header">
+              <div main-title class="font">การจัดการเรียนการสอนที่เน้นผู้เรียนเป็นสำคัญ</div>
+            </app-toolbar>
+            <div class="row" style="margin-top: 0cm;">
+              <div class="col-xs-6">
+                <nylon-c3 slot="content" id="chart4_1_admin"></nylon-c3>
+                <div class="font" style="text-align: center; font-size: 12px;">การจัดการเรียนการสอนรายวิชา</div>
+              </div>
+              <div class="col-xs-6">
+                <nylon-c3 slot="content" id="chart4_2_admin"></nylon-c3>
+                <div class="font" style="text-align: center; font-size: 12px;">การพัฒนารายวิชาร่วมกับสถานประกอบการ</div>
+              </div>
+              <div class="col-xs-6">
+                <nylon-c3 slot="content" id="chart4_3_admin"></nylon-c3>
+                <div class="font" style="text-align: center; font-size: 12px;">ผู้เรียนในระบบทวิภาคี</div>
+              </div>
+              <div class="col-xs-6">
+                <nylon-c3 slot="content" id="chart4_4_admin"></nylon-c3>
+                <div class="font" style="text-align: center; font-size: 12px;">การจัดกิจกรรมเสริมหลักสูตร</div>
+              </div>
+            </div>
+
+            <!-- </nylon-panel-card> -->
+          </div>
+
         </div>
-
-
-        <div class="col-xs-6">
-          <!-- <nylon-panel-card> -->
-          <app-toolbar slot="header">
-            <div main-title class="font">อัตราส่วนครู : ผู้เรียน</div>
-          </app-toolbar>
-          <nylon-c3 slot="content" id="chart2_admin"></nylon-c3>
-          <!-- </nylon-panel-card> -->
-        </div>
-
-        <div class="col-xs-6">
-          <!-- <nylon-panel-card> -->
-          <app-toolbar slot="header">
-            <div main-title class="font">การประเมินผลตนเอง (SAR)</div>
-          </app-toolbar>
-          <nylon-c3 slot="content" id="chart3_admin"></nylon-c3>
-          <!-- </nylon-panel-card> -->
-
-          <table slot="content" class="font">
-            <tr>
-              <td>
-                <div style="width: 50px; height: 5px; background-color: #0000cc"></div>
-              </td>
-              <td style="font-size: 12px">ปีการศึกษา 2559</td>
-            </tr>
-            <tr>
-              <td>
-                <div style="width: 50px; height: 5px; background-color: #ff7f0e"></div>
-              </td>
-              <td style="font-size: 12px">ปีการศึกษา 2560</td>
-            </tr>
-          </table>
-        </div>
-
-        <div class="col-xs-6">
-          <!-- <nylon-panel-card> -->
-          <app-toolbar slot="header">
-            <div main-title class="font">สรุปผลการประเมินสถานศึกษา</div>
-          </app-toolbar>
-          <nylon-c3 slot="content" id="chart4_admin"></nylon-c3>
-          <!-- </nylon-panel-card> -->
-        </div>
-
       </div>
     </div>
   </template>
@@ -182,6 +238,15 @@
         }
 
       }
+      openAppsMenu(e) {
+        var element = e.currentTarget;
+        this.$.dialog.positionTarget = element;
+        this.$.dialog.toggle();
+      }
+
+      closeDialog() {
+        this.$.dialog.close();
+      }
 
       connectedCallback() {
         super.connectedCallback()
@@ -189,14 +254,16 @@
         if (this.auth.admin == true) {
           Nylon.dispatch('DASHBOARD_GET_EXPENSES')
           Nylon.dispatch('DASHBOARD_GET_PARTICIPANT')
-          this.shadowRoot.querySelector('.user').style.display = 'none'
-          this.shadowRoot.querySelector('.admin').style.display = ''
+          // this.shadowRoot.querySelector('.user').style.display = 'none'
+          // this.shadowRoot.querySelector('.admin').style.display = ''
+
+
 
         } else {
           // Nylon.dispatch('DASHBOARD_GET_EXPENSES', this.auth.taxno)
-          Nylon.dispatch('DASHBOARD_GET_EXPENSES', '1909800788263')
-          this.shadowRoot.querySelector('.admin').style.display = 'none'
-          this.shadowRoot.querySelector('.user').style.display = ''
+          // Nylon.dispatch('DASHBOARD_GET_EXPENSES', '1909800788263')
+          // this.shadowRoot.querySelector('.admin').style.display = 'none'
+          // this.shadowRoot.querySelector('.user').style.display = ''
 
 
 
@@ -235,146 +302,187 @@
         if (this.auth.admin == true) {
           console.log(this.$.chart1_1_admin)
 
-
           this.$.chart1_1_admin.generate({
             data: {
               columns: [
-                ['data1', 30],
-                ['data2', 120],
+                ['ได้งานทำให้สาขาที่เกี่ยวข้อง', 26],
+                ['ศึกษาในสาขาวิชาที่เกี่ยวข้อง', 53],
+                ['ประกอบอาชีพอิสระ', 15],
+                ['ว่างงาน', 6]
               ],
-              type: 'donut',
-              onclick: function (d, i) { console.log("onclick", d, i); },
-              onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-              onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+              type: 'pie'
             },
-            donut: {
-              title: "Iris Petal Width"
+            size: {
+              height: 250
+            },
+            color: {
+              pattern: ['#348ea9', '#53bb9b', '#f48c37', '#f04946', '#fab41c']
+            },
+            legend: {
+              show: false
             }
           })
 
-          // this.$.chart1_1_admin.generate({
-          //   data: {
-          //     columns: [
-          //       ['ได้งานทำให้สาขาที่เกี่ยวข้อง', 26],
-          //       ['ศึกษาในสาขาวิชาที่เกี่ยวข้อง', 53],
-          //       ['ประกอบอาชีพอิสระ', 15],
-          //       ['ว่างงาน', 6]
-          //     ],
-          //     type: 'pie'
-          //   },
-          //   size: {
-          //     height: 250
-          //   },
-          //   color: {
-          //     pattern: ['#348ea9', '#53bb9b', '#f48c37', '#f04946', '#fab41c']
-          //   },
-          //   legend: {
-          //     show: false
-          //   }
-          // })
 
+          this.$.chart1_2_admin.generate({
+            data: {
+              columns: [
+                ['ได้งานทำให้สาขาที่เกี่ยวข้อง', 48],
+                ['ศึกษาในสาขาวิชาที่เกี่ยวข้อง', 28],
+                ['ประกอบอาชีพอิสระ', 15],
+                ['ว่างงาน', 9]
+              ],
+              type: 'pie',
+              // onclick: function (d, i) { console.log("onclick", d, i); }
+            },
+            size: {
+              height: 250
+            },
+            color: {
+              pattern: ['#348ea9', '#53bb9b', '#f48c37', '#f04946', '#fab41c']
+            },
+            legend: {
+              show: false
+            }
+          })
 
-          // this.$.chart1_2_admin.generate({
-          //   data: {
-          //     columns: [
-          //       ['ได้งานทำให้สาขาที่เกี่ยวข้อง', 48],
-          //       ['ศึกษาในสาขาวิชาที่เกี่ยวข้อง', 28],
-          //       ['ประกอบอาชีพอิสระ', 15],
-          //       ['ว่างงาน', 9]
-          //     ],
-          //     type: 'pie',
-          //     // onclick: function (d, i) { console.log("onclick", d, i); }
-          //   },
-          //   size: {
-          //     height: 250
-          //   },
-          //   color: {
-          //     pattern: ['#348ea9', '#53bb9b', '#f48c37', '#f04946', '#fab41c']
-          //   },
-          //   legend: {
-          //     show: false
-          //   }
-          // })
+          this.$.chart2_admin.generate({
+            data: {
+              columns: [
+                ['จำนวนครูต่อผู้เรียน', 9, 17, 13, 4, 7, 10, 8, 10, 6, 12]
+              ],
+              type: 'bar'
+            },
+            axis: {
+              x: {
+                type: 'category',
+                categories: ['ภาพรวม', 'อุตสาหกรรม', 'พานิชยกรรม/บริหารธุรกิจ', 'ประมง', 'ศิลปกรรม', 'คหกรรม', 'เกษตรกรรม', 'อุตสาหกรรมการท่องเที่ยว', 'อุตสาหกรรมสิ่งทอ', 'เทคโนโลยีสารสนเทศและการสื่อสาร'],
+                tick: {
+                  rotate: 90,
+                  multiline: false
+                },
+              }
+            },
+            bar: {
+              width: {
+                ratio: 0.5
+              }
+            },
+            size: {
+              height: 450
+            },
+            color: {
+              pattern: ['#35c1d0', '#147fae', '#094266']
+            },
+            legend: {
+              show: false
+            },
+            tooltip: {
+              grouped: false // Default true
+            }
+          })
 
-          // this.$.chart2_admin.generate({
-          //   data: {
-          //     columns: [
-          //       ['จำนวนครูต่อผู้เรียน', 9, 17, 13, 4, 7, 10, 8, 10, 6, 12]
-          //     ],
-          //     type: 'bar'
-          //   },
-          //   axis: {
-          //     x: {
-          //       type: 'category',
-          //       categories: ['ภาพรวม', 'อุตสาหกรรม', 'พานิชยกรรม/บริหารธุรกิจ', 'ประมง', 'ศิลปกรรม', 'คหกรรม', 'เกษตรกรรม', 'อุตสาหกรรมการท่องเที่ยว', 'อุตสาหกรรมสิ่งทอ', 'เทคโนโลยีสารสนเทศและการสื่อสาร'],
-          //       tick: {
-          //         rotate: 90,
-          //         multiline: false
-          //       },
-          //     }
-          //   },
-          //   bar: {
-          //     width: {
-          //       ratio: 0.5
-          //     }
-          //   },
-          //   size: {
-          //     height: 450
-          //   },
-          //   color: {
-          //     pattern: ['#35c1d0', '#147fae', '#094266']
-          //   },
-          //   // legend: {
-          //   //   show: false
-          //   // },
-          //   tooltip: {
-          //     grouped: false // Default true
-          //   }
-          // })
+          this.$.chart3_admin.generate({
+            data: {
+              columns: [
+                ['ปีการศึกษา 2559', 3, 4, 3, 2],
+                ['ปีการศึกษา 2560', 3, 3, 5, 3]
+              ],
+            },
+            axis: {
+              x: {
+                label: 'มาตราฐาน',
+                type: 'category',
+                categories: ['มาตราฐานที่ 1', 'มาตราฐานที่ 2', 'มาตราฐานที่ 3', 'มาตราฐานที่ 4']
+              },
+              y: {
+                label: 'ระดับ'
+              }
+            },
+            size: {
+              height: 300
+            },
+            color: {
+              pattern: ['#0000cc', '#ff7f0e']
+            },
+            legend: {
+              show: false
+            }
+          })
 
-          // this.$.chart3_admin.generate({
-          //   data: {
-          //     columns: [
-          //       ['ปีการศึกษา 2559', 3, 4, 3, 2],
-          //       ['ปีการศึกษา 2560', 3, 3, 5, 3]
-          //     ],
-          //   },
-          //   axis: {
-          //     x: {
-          //       label: 'มาตราฐาน',
-          //       type: 'category',
-          //       categories: ['มาตราฐานที่ 1', 'มาตราฐานที่ 2', 'มาตราฐานที่ 3', 'มาตราฐานที่ 4']
-          //     },
-          //     y: {
-          //       label: 'ระดับ'
-          //     }
-          //   },
-          //   size: {
-          //     height: 300
-          //   },
-          //   color: {
-          //     pattern: ['#0000cc', '#ff7f0e']
-          //   },
-          //   legend: {
-          //     show: false
-          //   }
-          // })
+          this.$.chart4_1_admin.generate({
+            data: {
+              columns: [
+                ['การจัดการเรียนการสอนรายวิชา', 80]
+              ],
+              type: 'gauge'
+            },
+            color: {
+              pattern: ['#35c1d0', '#35c1d0', '#35c1d0', '#35c1d0'], // the three color levels for the percentage values.
+              threshold: {
+                //            unit: 'value', // percentage is default
+                //            max: 200, // 100 is default
+                values: [30, 60, 90, 100]
+              }
+            },
+            size: {
+              height: 120
+            }
+          })
 
-          // this.$.chart4_admin.generate({
-          //   data: {
-          //     columns: [
-          //       ['data1', 30],
-          //       ['data2', 120],
-          //     ],
-          //     type: 'donut',
-          //     // onclick: function (d, i) { console.log("onclick", d, i); },
-          //     // onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-          //     // onmouseout: function (d, i) { console.log("onmouseout", d, i); }
-          //   },
-          //   donut: {
-          //     title: "Iris Petal Width"
-          //   }
-          // })
+          this.$.chart4_2_admin.generate({
+            data: {
+              columns: [
+                ['การพัฒนารายวิชาร่วมกับสถานประกอบการ', 91.4]
+              ],
+              type: 'gauge'
+            },
+            color: {
+              pattern: ['#ff7f0e', '#ff7f0e', '#ff7f0e', '#ff7f0e'], // the three color levels for the percentage values.
+              threshold: {
+                values: [30, 60, 90, 100]
+              }
+            },
+            size: {
+              height: 120
+            }
+          })
+
+          this.$.chart4_3_admin.generate({
+            data: {
+              columns: [
+                ['ผู้เรียนในระบบทวิภาคี', 50.4]
+              ],
+              type: 'gauge'
+            },
+            color: {
+              pattern: ['#60B044', '#60B044', '#60B044', '#60B044'], // the three color levels for the percentage values.
+              threshold: {
+                values: [30, 60, 90, 100]
+              }
+            },
+            size: {
+              height: 120
+            }
+          })
+
+          this.$.chart4_4_admin.generate({
+            data: {
+              columns: [
+                ['การจัดกิจกรรมเสริมหลักสูตร', 60.8]
+              ],
+              type: 'gauge'
+            },
+            color: {
+              pattern: ['#53bb9b', '#53bb9b', '#53bb9b', '#53bb9b'], // the three color levels for the percentage values.
+              threshold: {
+                values: [30, 60, 90, 100]
+              }
+            },
+            size: {
+              height: 120
+            }
+          })
 
         } else {
 

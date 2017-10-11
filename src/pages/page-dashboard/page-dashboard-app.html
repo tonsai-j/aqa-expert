@@ -1,0 +1,166 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../layout/shared-styles.html">
+<link rel="import" href="../../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../../../bower_components/paper-icon-button/paper-icon-button.html">
+
+<dom-module id="page-dashboard-app">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+            }
+
+            .font {
+                @apply --nylon-font-mitr-family
+            }
+
+            .header {
+                /* text-align: center; */
+                padding-left: 1em;
+                padding-right: 1em;
+                /* background-color: blue; */
+            }
+
+            .page {
+                max-width: 400px;
+                min-width: 200px;
+                height: auto;
+            }
+
+            .img-size {
+                height: 4rem;
+                width: 4rem;
+            }
+
+            .img-container {
+                background-color: white;
+                border-radius: 50%;
+                transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+            }
+
+            .boxshadow {
+                cursor: pointer;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            }
+
+            .boxshadow:hover {
+                box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+            }
+
+            .box {
+                /* padding: 1rem; */
+                /* background-color: blue; */
+                text-align: center;
+                border-radius: 10px;
+                padding-bottom: 1em;
+            }
+
+            @media only screen and (max-width: 400px) {
+                .img-size {
+                    height: 3rem;
+                    width: 3rem;
+                }
+                .app-name {
+                    font-size: 0.5em;
+                }
+            }
+
+            .app-name {
+                font-size: 1em;
+            }
+        </style>
+        <div class="page">
+            <div class="header">
+                <div class="row between-xs">
+                    <div class="col-xs-6">
+                        <div class="box">
+                            <h3 class="font">Automated QA</h3>
+                        </div>
+                    </div>
+                    <div class="col-xs-2">
+                        <div class="box">
+                            <paper-icon-button icon="close" on-tap="closeDialog"></paper-icon-button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="content">
+                <div class="row">
+                    <template is="dom-repeat" items="[[items]]">
+                        <div class="col-xs-6 col-sm-4 col-md-6 col-lg-6">
+                            <div class="box">
+                                <div class="pic" on-click="_link">
+                                    <iron-image class="img-container img-size boxshadow" sizing="contain" src="[[item.img_path]]"></iron-image>
+                                </div>
+                                <div class="app-name font">[[item.name]]</div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+        </div>
+    </template>
+
+    <script>
+        class PageDashboardApp extends ReduxMixin(Polymer.Element) {
+            static get is() { return 'page-dashboard-app' }
+            static get properties() {
+                return {
+                    i18n: {
+                        type: Object,
+                        statePath: 'i18n'
+                    },
+                    items: {
+                        type: Array,
+                        value: [
+                            {
+                                name: 'ระบบฐานข้อมูล ผู้ใช้งาน',
+                                img_path: '/images/user.png'
+                            },
+                            {
+                                name: 'ระบบประเมินและรับรองสถานศึกษา',
+                                img_path: '/images/sar.png'
+                            },
+                            {
+                                name: 'ระบบพัฒนาผู้ประเมิน',
+                                img_path: '/images/ev.png',
+                                link: '/approve'
+                            },
+                            {
+                                name: 'ระบบงานสร้างความรู้ความเข้าใจกับผู้เกี่ยวข้อง',
+                                img_path: '/images/meet.png',
+                            },
+                            {
+                                name: 'ระบบนิติการ',
+                                img_path: '/images/expert.png'
+                            },
+                            {
+                                name: 'ระบบงานสนับสนุน',
+                                img_path: '/images/sp.png'
+                            },
+                            {
+                                name: 'ระบบออกรายงานสำหรับผู้บริหาร',
+                                img_path: '/images/report.png'
+                            }
+                        ]
+                    }
+                }
+            }
+
+            _link(e) {
+                console.log(e.model.item)
+                if(e.model.item.link){
+                    Nylon.redirect(e.model.item.link)
+                }
+            }
+            closeDialog() {
+                this.dispatchEvent(new CustomEvent('close'));
+            }
+        }
+
+        window.customElements.define(PageDashboardApp.is, PageDashboardApp);
+    </script>
+</dom-module>
