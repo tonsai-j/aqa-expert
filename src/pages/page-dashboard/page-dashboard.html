@@ -48,7 +48,7 @@
     <div class="container">
       <div class="row user">
 
-        <div class="col-xs-6 ">
+        <!-- <div class="col-xs-6 ">
           <div main-title class="font">ค่าใช้จ่าย</div>
           <nylon-c3 slot="content" id="chart1_user"></nylon-c3>
         </div>
@@ -61,7 +61,7 @@
         <div class="col-xs-12">
           <div main-title class="font">สรุปความก้าวหน้า</div>
           <nylon-c3 slot="content" id="chart2_user"></nylon-c3>
-        </div>
+        </div> -->
 
       </div>
     </div>
@@ -76,11 +76,11 @@
           <div class="row">
             <div class="col-xs-6">
               <div class="font" style="text-align: center;">ปวช.</div>
-              <nylon-c3 slot="content" id="chart1_admin"></nylon-c3>
+              <nylon-c3 slot="content" id="chart1_1_admin"></nylon-c3>
             </div>
             <div class="col-xs-6">
               <div class="font" style="text-align: center;">ปวส.</div>
-              <nylon-c3 slot="content" id="chart1_1_admin"></nylon-c3>
+              <nylon-c3 slot="content" id="chart1_2_admin"></nylon-c3>
             </div>
           </div>
 
@@ -190,11 +190,15 @@
           Nylon.dispatch('DASHBOARD_GET_EXPENSES')
           Nylon.dispatch('DASHBOARD_GET_PARTICIPANT')
           this.shadowRoot.querySelector('.user').style.display = 'none'
+          this.shadowRoot.querySelector('.admin').style.display = ''
 
         } else {
           // Nylon.dispatch('DASHBOARD_GET_EXPENSES', this.auth.taxno)
           Nylon.dispatch('DASHBOARD_GET_EXPENSES', '1909800788263')
           this.shadowRoot.querySelector('.admin').style.display = 'none'
+          this.shadowRoot.querySelector('.user').style.display = ''
+
+
 
         }
       }
@@ -226,256 +230,241 @@
       }
 
       expenses_change(e) {
-        // console.log(e)
-        var columns = []
-        var expenses_list = []
 
-        for (var i in e) {
-          if (e[i].amount != 0) {
-            columns.push([e[i].group_expenses_name + ' ' + this.formatMoney(e[i].price) + '฿', Number(e[i].percentage.toFixed(2))])
-
-          }
-          expenses_list.push({
-            name: e[i].group_expenses_name,
-            percentage: Number(e[i].percentage.toFixed(2)),
-            price: e[i].price,
-            amount: e[i].amount
-          })
-        }
 
         if (this.auth.admin == true) {
+          console.log(this.$.chart1_1_admin)
 
-          this.$.chart1_admin.generate({
-            data: {
-              columns: [
-                ['ได้งานทำให้สาขาที่เกี่ยวข้อง', 26],
-                ['ศึกษาในสาขาวิชาที่เกี่ยวข้อง', 53],
-                ['ประกอบอาชีพอิสระ', 15],
-                ['ว่างงาน', 6]
-              ],
-              type: 'pie',
-              onclick: function (d, i) { console.log("onclick", d, i); }
-            },
-            size: {
-              height: 250
-            },
-            color: {
-              pattern: ['#348ea9', '#53bb9b', '#f48c37', '#f04946', '#fab41c']
-            },
-            legend: {
-              show: false
-            }
-          })
 
           this.$.chart1_1_admin.generate({
-            data: {
-              columns: [
-                ['ได้งานทำให้สาขาที่เกี่ยวข้อง', 48],
-                ['ศึกษาในสาขาวิชาที่เกี่ยวข้อง', 28],
-                ['ประกอบอาชีพอิสระ', 15],
-                ['ว่างงาน', 9]
-              ],
-              type: 'pie',
-              // onclick: function (d, i) { console.log("onclick", d, i); }
-            },
-            size: {
-              height: 250
-            },
-            color: {
-              pattern: ['#348ea9', '#53bb9b', '#f48c37', '#f04946', '#fab41c']
-            },
-            legend: {
-              show: false
-            }
-          })
-
-          this.$.chart3_admin.generate({
-            data: {
-              columns: [
-                ['ปีการศึกษา 2559', 3, 4, 3, 2],
-                ['ปีการศึกษา 2560', 3, 3, 5, 3]
-              ],
-            },
-            axis: {
-              x: {
-                label: 'มาตราฐาน',
-                type: 'category',
-                categories: ['มาตราฐานที่ 1', 'มาตราฐานที่ 2', 'มาตราฐานที่ 3', 'มาตราฐานที่ 4']
-              },
-              y: {
-                label: 'ระดับ'
-              }
-            },
-            size: {
-              height: 300
-            },
-            color: {
-              pattern: ['#0000cc', '#ff7f0e']
-            },
-            legend: {
-              show: false
-            }
-          })
-
-          this.$.chart4_admin.generate({
             data: {
               columns: [
                 ['data1', 30],
                 ['data2', 120],
               ],
               type: 'donut',
-              // onclick: function (d, i) { console.log("onclick", d, i); },
-              // onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-              // onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+              onclick: function (d, i) { console.log("onclick", d, i); },
+              onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+              onmouseout: function (d, i) { console.log("onmouseout", d, i); }
             },
             donut: {
               title: "Iris Petal Width"
             }
           })
 
+          // this.$.chart1_1_admin.generate({
+          //   data: {
+          //     columns: [
+          //       ['ได้งานทำให้สาขาที่เกี่ยวข้อง', 26],
+          //       ['ศึกษาในสาขาวิชาที่เกี่ยวข้อง', 53],
+          //       ['ประกอบอาชีพอิสระ', 15],
+          //       ['ว่างงาน', 6]
+          //     ],
+          //     type: 'pie'
+          //   },
+          //   size: {
+          //     height: 250
+          //   },
+          //   color: {
+          //     pattern: ['#348ea9', '#53bb9b', '#f48c37', '#f04946', '#fab41c']
+          //   },
+          //   legend: {
+          //     show: false
+          //   }
+          // })
+
+
+          // this.$.chart1_2_admin.generate({
+          //   data: {
+          //     columns: [
+          //       ['ได้งานทำให้สาขาที่เกี่ยวข้อง', 48],
+          //       ['ศึกษาในสาขาวิชาที่เกี่ยวข้อง', 28],
+          //       ['ประกอบอาชีพอิสระ', 15],
+          //       ['ว่างงาน', 9]
+          //     ],
+          //     type: 'pie',
+          //     // onclick: function (d, i) { console.log("onclick", d, i); }
+          //   },
+          //   size: {
+          //     height: 250
+          //   },
+          //   color: {
+          //     pattern: ['#348ea9', '#53bb9b', '#f48c37', '#f04946', '#fab41c']
+          //   },
+          //   legend: {
+          //     show: false
+          //   }
+          // })
+
+          // this.$.chart2_admin.generate({
+          //   data: {
+          //     columns: [
+          //       ['จำนวนครูต่อผู้เรียน', 9, 17, 13, 4, 7, 10, 8, 10, 6, 12]
+          //     ],
+          //     type: 'bar'
+          //   },
+          //   axis: {
+          //     x: {
+          //       type: 'category',
+          //       categories: ['ภาพรวม', 'อุตสาหกรรม', 'พานิชยกรรม/บริหารธุรกิจ', 'ประมง', 'ศิลปกรรม', 'คหกรรม', 'เกษตรกรรม', 'อุตสาหกรรมการท่องเที่ยว', 'อุตสาหกรรมสิ่งทอ', 'เทคโนโลยีสารสนเทศและการสื่อสาร'],
+          //       tick: {
+          //         rotate: 90,
+          //         multiline: false
+          //       },
+          //     }
+          //   },
+          //   bar: {
+          //     width: {
+          //       ratio: 0.5
+          //     }
+          //   },
+          //   size: {
+          //     height: 450
+          //   },
+          //   color: {
+          //     pattern: ['#35c1d0', '#147fae', '#094266']
+          //   },
+          //   // legend: {
+          //   //   show: false
+          //   // },
+          //   tooltip: {
+          //     grouped: false // Default true
+          //   }
+          // })
+
+          // this.$.chart3_admin.generate({
+          //   data: {
+          //     columns: [
+          //       ['ปีการศึกษา 2559', 3, 4, 3, 2],
+          //       ['ปีการศึกษา 2560', 3, 3, 5, 3]
+          //     ],
+          //   },
+          //   axis: {
+          //     x: {
+          //       label: 'มาตราฐาน',
+          //       type: 'category',
+          //       categories: ['มาตราฐานที่ 1', 'มาตราฐานที่ 2', 'มาตราฐานที่ 3', 'มาตราฐานที่ 4']
+          //     },
+          //     y: {
+          //       label: 'ระดับ'
+          //     }
+          //   },
+          //   size: {
+          //     height: 300
+          //   },
+          //   color: {
+          //     pattern: ['#0000cc', '#ff7f0e']
+          //   },
+          //   legend: {
+          //     show: false
+          //   }
+          // })
+
+          // this.$.chart4_admin.generate({
+          //   data: {
+          //     columns: [
+          //       ['data1', 30],
+          //       ['data2', 120],
+          //     ],
+          //     type: 'donut',
+          //     // onclick: function (d, i) { console.log("onclick", d, i); },
+          //     // onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+          //     // onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+          //   },
+          //   donut: {
+          //     title: "Iris Petal Width"
+          //   }
+          // })
+
         } else {
 
-          this.$.chart1_user.generate({
-            data: {
-              columns,
-              type: 'pie',
-              onclick: function (d, i) { console.log("onclick", d, i); }
-            },
-            size: {
-              height: 250
-            },
-            color: {
-              pattern: ['#348ea9', '#53bb9b', '#f48c37', '#f04946', '#fab41c']
-            }
-          })
-          this.$.chart2_user.generate({
-            data: {
-              columns: [
-                ['จำนวนเปอร์เซ็นต์', 100, 80, 75, 70, 60, 55, 50, 30, 10]
-              ],
-            },
-            axis: {
-              x: {
-                label: 'ขั้นตอนกระบวนการ',
-                type: 'category',
-                tick: {
-                  rotate: 65,
-                  multiline: false
-                },
-                categories: ['สถานศึกษาที่เข้าประเมิน', 'ทำสัญญา', 'ส่งแผนการดำเนินงาน', 'เบิกงวด 1'
-                  , 'เข้าประเมินสถานศึกษา', 'ตรวจร่างรายงาน', 'อภิมาน', 'ส่งรายงานฉบับสมบูรณ์', 'เบิกงวด 2']
-              },
-              y: {
-                label: 'จำนวนเปอร์เซ็นต์'
-              }
-            },
-            size: {
-              height: 500
-            },
-            color: {
-              pattern: ['#0000cc']
-            },
-            legend: {
-              show: false
-            }
-          })
+          // this.$.chart1_user.generate({
+          //   data: {
+          //     columns,
+          //     type: 'pie',
+          //     onclick: function (d, i) { console.log("onclick", d, i); }
+          //   },
+          //   size: {
+          //     height: 250
+          //   },
+          //   color: {
+          //     pattern: ['#348ea9', '#53bb9b', '#f48c37', '#f04946', '#fab41c']
+          //   }
+          // })
+          // this.$.chart2_user.generate({
+          //   data: {
+          //     columns: [
+          //       ['จำนวนเปอร์เซ็นต์', 100, 80, 75, 70, 60, 55, 50, 30, 10]
+          //     ],
+          //   },
+          //   axis: {
+          //     x: {
+          //       label: 'ขั้นตอนกระบวนการ',
+          //       type: 'category',
+          //       tick: {
+          //         rotate: 65,
+          //         multiline: false
+          //       },
+          //       categories: ['สถานศึกษาที่เข้าประเมิน', 'ทำสัญญา', 'ส่งแผนการดำเนินงาน', 'เบิกงวด 1'
+          //         , 'เข้าประเมินสถานศึกษา', 'ตรวจร่างรายงาน', 'อภิมาน', 'ส่งรายงานฉบับสมบูรณ์', 'เบิกงวด 2']
+          //     },
+          //     y: {
+          //       label: 'จำนวนเปอร์เซ็นต์'
+          //     }
+          //   },
+          //   size: {
+          //     height: 500
+          //   },
+          //   color: {
+          //     pattern: ['#0000cc']
+          //   },
+          //   legend: {
+          //     show: false
+          //   }
+          // })
 
 
-          this.$.chart3_user.generate({
-            data: {
-              columns: [
-                ['จำนวนสถานศึกษา', 0, 2, 4, 0, 0, 0],
-              ],
-              type: 'bar'
-            },
-            axis: {
-              x: {
-                label: 'กลุ่มระดับการศึกษาและประเภท',
-                type: 'category',
-                tick: {
-                  rotate: 0,
-                  multiline: false
-                },
-                categories: ['กลุ่ม 1', 'กลุ่ม 2', 'กลุ่ม 3', 'กลุ่ม 4'
-                  , 'กลุ่ม 5', 'กลุ่ม 6']
-              },
-              y: {
-                label: 'จำนวนสถานศึกษา'
-              }
-            },
-            bar: {
-              width: {
-                ratio: 0.4 // this makes bar width 50% of length between ticks
-              }
-              // or
-              //width: 100 // this makes bar width 100px
-            },
-            size: {
-              height: 250
-            },
-            color: {
-              pattern: ['#f48c37']
-            },
-          })
+          // this.$.chart3_user.generate({
+          //   data: {
+          //     columns: [
+          //       ['จำนวนสถานศึกษา', 0, 2, 4, 0, 0, 0],
+          //     ],
+          //     type: 'bar'
+          //   },
+          //   axis: {
+          //     x: {
+          //       label: 'กลุ่มระดับการศึกษาและประเภท',
+          //       type: 'category',
+          //       tick: {
+          //         rotate: 0,
+          //         multiline: false
+          //       },
+          //       categories: ['กลุ่ม 1', 'กลุ่ม 2', 'กลุ่ม 3', 'กลุ่ม 4'
+          //         , 'กลุ่ม 5', 'กลุ่ม 6']
+          //     },
+          //     y: {
+          //       label: 'จำนวนสถานศึกษา'
+          //     }
+          //   },
+          //   bar: {
+          //     width: {
+          //       ratio: 0.4 // this makes bar width 50% of length between ticks
+          //     }
+          //     // or
+          //     //width: 100 // this makes bar width 100px
+          //   },
+          //   size: {
+          //     height: 250
+          //   },
+          //   color: {
+          //     pattern: ['#f48c37']
+          //   },
+          // })
         }
       }
 
 
-      participant_change(e) {
-        // console.log(e)
-        var invite_data = ['เชิญ']
-        var email_data = ['ตอบรับ']
-        var confirm_data = ['เข้าร่วม']
-        var x_label = []
-        for (var i in e) {
-          invite_data.push(e[i].invite)
-          email_data.push(e[i].email)
-          confirm_data.push(e[i].confirm)
-          x_label.push(e[i].group)
-        }
-        var data = [
-          invite_data,
-          email_data,
-          confirm_data
-        ]
-        // console.log(data)
-        this.$.chart2_admin.generate({
-          data: {
-            columns: [
-              ['จำนวนครูต่อผู้เรียน', 9, 17, 13, 4, 7, 10, 8, 10, 6, 12]
-            ],
-            type: 'bar'
-          },
-          axis: {
-            x: {
-              type: 'category',
-              categories: ['ภาพรวม', 'อุตสาหกรรม', 'พานิชยกรรม/บริหารธุรกิจ', 'ประมง', 'ศิลปกรรม', 'คหกรรม', 'เกษตรกรรม', 'อุตสาหกรรมการท่องเที่ยว', 'อุตสาหกรรมสิ่งทอ', 'เทคโนโลยีสารสนเทศและการสื่อสาร'],
-              tick: {
-                rotate: 90,
-                multiline: false
-              },
-            }
-          },
-          bar: {
-            width: {
-              ratio: 0.5
-            }
-          },
-          size: {
-            height: 450
-          },
-          color: {
-            pattern: ['#35c1d0', '#147fae', '#094266']
-          },
-          // legend: {
-          //   show: false
-          // },
-          tooltip: {
-            grouped: false // Default true
-          }
-        })
-
-      }
+      participant_change(e) { }
     }
 
     window.customElements.define(PageDashboard.is, PageDashboard);
