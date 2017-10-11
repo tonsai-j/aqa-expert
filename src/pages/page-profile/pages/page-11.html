@@ -65,12 +65,13 @@
                             <template class="row-details">
                                 <div class="details">
                                     <div class="row">
-                                        <div class="col-md-1" style="margin-right:5px"></div>
+                                        <div class="col-md-1" style="margin-right:15px"></div>
                                         <template is="dom-repeat" items={{item.province}}>
+                                            <template is="dom-if" if={{modforBr(index)}}>
+                                                <div class="col-md-1" style="margin-right:15px"></div>
+                                            </template>
                                             <span class="col-md-2">[[autoIndex(index)]].[[item.province_th]], </span>
-                                            <!-- <template is="dom-if" if={{modforBr(index)}}>
-                                        <br />
-                                    </template> -->
+
                                         </template>
                                     </div>
                                 </div>
@@ -248,7 +249,8 @@
                 this.$.material.expandedItems = [e.detail.value];
             }
             modforBr(index) {
-                if ((index % 7) === 0 && index !== 0)
+                console.log((index % 5) === 0 && index !== 0);
+                if ((index % 5) === 0 && index !== 0)
                     return true
             }
             setChecked(province) {
