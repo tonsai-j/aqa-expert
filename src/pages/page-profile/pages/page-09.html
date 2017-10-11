@@ -18,6 +18,7 @@
 <link rel="import" href="../../../i18n/profile/page-09-i18n.html">
 <link rel="import" href="../../../redux/profile/page-09-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../mixins/animate-mixin.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
 
 
@@ -40,7 +41,7 @@
                 display: inline-block
             }
         </style>
-        <nylon-panel-card>
+        <nylon-panel-card id="meeting">
             <div slot="content">
                     <div class="header-title">
                             [[i18n.page09.title]]
@@ -182,7 +183,7 @@
          * @polymer
          * @extends {Polymer.Element}
          */
-        class Page09 extends CommonMixin(ReduxMixin(Polymer.Element)) {
+        class Page09 extends AnimateMixin(CommonMixin(ReduxMixin(Polymer.Element))) {
             /**
              * String providing the tag name to profile the element under.
              */
@@ -213,6 +214,8 @@
 
             ready() {
                 super.ready();
+                var elem = this.$.meeting
+                this.fadeInDown(elem, 1, 300)
 
             }
             _getMeeting() {

@@ -22,6 +22,7 @@
 <link rel="import" href="../../../nylon-i18n.html">
 <link rel="import" href="../../../i18n/profile/page-06-i18n.html">
 <link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../mixins/animate-mixin.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
 <dom-module id="page-06">
     <template>
@@ -52,255 +53,256 @@
             }
         </style>
 
-        <nylon-panel-card>
-            <div slot="content">
-                <div class="header-title">
-                    [[i18n.page06.title_1]]
-                </div>
-                <div class="row col-md-offset-1 middle-md">
-                    <div class="col-md-5">
-                        [[i18n.page06.edu_school]]
+        <div id="skills">
+            <nylon-panel-card>
+                <div slot="content">
+                    <div class="header-title">
+                        [[i18n.page06.title_1]]
                     </div>
-                    <div class="col-md-1">
-                        <nylon-input label="" no-label-float value="{{data.edu.school}}" allowed-pattern="[0-9]" required class="required">
-                            <div slot="suffix">
-                                &nbsp;&nbsp;[[i18n.page06.year]]
-                            </div>
-                        </nylon-input>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-5">
+                            [[i18n.page06.edu_school]]
+                        </div>
+                        <div class="col-md-1">
+                            <nylon-input label="" no-label-float value="{{data.edu.school}}" allowed-pattern="[0-9]" required class="required">
+                                <div slot="suffix">
+                                    &nbsp;&nbsp;[[i18n.page06.year]]
+                                </div>
+                            </nylon-input>
+                        </div>
                     </div>
-                </div>
-                <div class="row col-md-offset-1 middle-md">
-                    <div class="col-md-5">
-                        [[i18n.page06.edu_teach]]
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-5">
+                            [[i18n.page06.edu_teach]]
+                        </div>
+                        <div class="col-md-1">
+                            <nylon-input label="" no-label-float value="{{data.edu.teach}}" allowed-pattern="[0-9]" required class="required">
+                                <div slot="suffix">
+                                    &nbsp;&nbsp;[[i18n.page06.year]]
+                                </div>
+                            </nylon-input>
+                        </div>
                     </div>
-                    <div class="col-md-1">
-                        <nylon-input label="" no-label-float value="{{data.edu.teach}}" allowed-pattern="[0-9]" required class="required">
-                            <div slot="suffix">
-                                &nbsp;&nbsp;[[i18n.page06.year]]
-                            </div>
-                        </nylon-input>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-5">
+                            [[i18n.page06.edu_qa]]
+                        </div>
+                        <div class="col-md-1">
+                            <nylon-input label="" no-label-float value="{{data.edu.qa}}" allowed-pattern="[0-9]" required class="required">
+                                <div slot="suffix">
+                                    &nbsp;&nbsp;[[i18n.page06.year]]
+                                </div>
+                            </nylon-input>
+                        </div>
                     </div>
-                </div>
-                <div class="row col-md-offset-1 middle-md">
-                    <div class="col-md-5">
-                        [[i18n.page06.edu_qa]]
-                    </div>
-                    <div class="col-md-1">
-                        <nylon-input label="" no-label-float value="{{data.edu.qa}}" allowed-pattern="[0-9]" required class="required">
-                            <div slot="suffix">
-                                &nbsp;&nbsp;[[i18n.page06.year]]
-                            </div>
-                        </nylon-input>
-                    </div>
-                </div>
-                <div class="row center-md meddle-md">
-                    <div class="button-action-bottom">
-                        <paper-button raised class="btn-success" on-click="_save">
-                            <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                        </paper-button>
-                        <!-- <paper-button raised class="btn-close" class="btn-default">
+                    <div class="row center-md meddle-md">
+                        <div class="button-action-bottom">
+                            <paper-button raised class="btn-success" on-click="_save">
+                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                            </paper-button>
+                            <!-- <paper-button raised class="btn-close" class="btn-default">
                             <iron-icon icon="[[i18n.button.reset.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.reset.label]]
                         </paper-button> -->
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nylon-panel-card>
+            </nylon-panel-card>
 
-        <nylon-panel-card>
-            <div slot="content">
-                <div class="header-title">
-                    [[i18n.page06.title_2]]
-                </div>
-                <div class="row col-md-offset-1 middle-md">
-                    <div class="col-md-3">
-                        <div class="label">[[i18n.page06.word]] :</div>
+            <nylon-panel-card>
+                <div slot="content">
+                    <div class="header-title">
+                        [[i18n.page06.title_2]]
                     </div>
-                    <div class="col-md-6">
-                        <!-- <l2t-paper-rating icon="favorite-border" rating="{{data.computer.word}}"></l2t-paper-rating>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-3">
+                            <div class="label">[[i18n.page06.word]] :</div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- <l2t-paper-rating icon="favorite-border" rating="{{data.computer.word}}"></l2t-paper-rating>
                         <nylon-rating value="{{data.computer.word}}"></nylon-rating> -->
-                        <paper-radio-group selected="{{data.computer.word}}" attr-for-selected="name" required class="required-radio">
-                            <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
-                            <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
-                            <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
-                            <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
-                        </paper-radio-group>
+                            <paper-radio-group selected="{{data.computer.word}}" attr-for-selected="name" required class="required-radio">
+                                <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
+                                <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
+                                <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
+                                <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
+                            </paper-radio-group>
+                        </div>
                     </div>
-                </div>
-                <div class="row col-md-offset-1 middle-md">
-                    <div class="col-md-3">
-                        <div class="label">[[i18n.page06.excel]]:</div>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-3">
+                            <div class="label">[[i18n.page06.excel]]:</div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- <l2t-paper-rating rating="{{data.computer.excel}}"></l2t-paper-rating> -->
+                            <paper-radio-group selected="{{data.computer.excel}}" attr-for-selected="name" required class="required-radio">
+                                <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
+                                <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
+                                <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
+                                <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
+                            </paper-radio-group>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <!-- <l2t-paper-rating rating="{{data.computer.excel}}"></l2t-paper-rating> -->
-                        <paper-radio-group selected="{{data.computer.excel}}" attr-for-selected="name" required class="required-radio">
-                            <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
-                            <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
-                            <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
-                            <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
-                        </paper-radio-group>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-3">
+                            <div class="label">[[i18n.page06.power_point]]:</div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- <l2t-paper-rating rating="{{data.computer.pwt}}"></l2t-paper-rating> -->
+                            <paper-radio-group selected="{{data.computer.pwt}}" attr-for-selected="name" required class="required-radio">
+                                <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
+                                <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
+                                <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
+                                <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
+                            </paper-radio-group>
+                        </div>
                     </div>
-                </div>
-                <div class="row col-md-offset-1 middle-md">
-                    <div class="col-md-3">
-                        <div class="label">[[i18n.page06.power_point]]:</div>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-3">
+                            <div class="label">[[i18n.page06.email]] :</div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- <l2t-paper-rating rating="{{data.computer.email}}"></l2t-paper-rating> -->
+                            <paper-radio-group selected="{{data.computer.email}}" attr-for-selected="name" required class="required-radio">
+                                <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
+                                <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
+                                <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
+                                <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
+                            </paper-radio-group>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <!-- <l2t-paper-rating rating="{{data.computer.pwt}}"></l2t-paper-rating> -->
-                        <paper-radio-group selected="{{data.computer.pwt}}" attr-for-selected="name" required class="required-radio">
-                            <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
-                            <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
-                            <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
-                            <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
-                        </paper-radio-group>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-3">
+                            <div class="label">[[i18n.page06.smart_device]]:</div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- <l2t-paper-rating rating="{{data.computer.device}}"></l2t-paper-rating> -->
+                            <paper-radio-group selected="{{data.computer.device}}" attr-for-selected="name" required class="required-radio">
+                                <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
+                                <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
+                                <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
+                                <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
+                            </paper-radio-group>
+                        </div>
                     </div>
-                </div>
-                <div class="row col-md-offset-1 middle-md">
-                    <div class="col-md-3">
-                        <div class="label">[[i18n.page06.email]] :</div>
-                    </div>
-                    <div class="col-md-6">
-                        <!-- <l2t-paper-rating rating="{{data.computer.email}}"></l2t-paper-rating> -->
-                        <paper-radio-group selected="{{data.computer.email}}" attr-for-selected="name" required class="required-radio">
-                            <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
-                            <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
-                            <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
-                            <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
-                        </paper-radio-group>
-                    </div>
-                </div>
-                <div class="row col-md-offset-1 middle-md">
-                    <div class="col-md-3">
-                        <div class="label">[[i18n.page06.smart_device]]:</div>
-                    </div>
-                    <div class="col-md-6">
-                        <!-- <l2t-paper-rating rating="{{data.computer.device}}"></l2t-paper-rating> -->
-                        <paper-radio-group selected="{{data.computer.device}}" attr-for-selected="name" required class="required-radio">
-                            <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
-                            <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
-                            <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
-                            <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
-                        </paper-radio-group>
-                    </div>
-                </div>
-                <div class="row center-md meddle-md">
-                    <div class="button-action-bottom">
-                        <paper-button raised class="btn-success" on-click="_save">
-                            <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                        </paper-button>
-                        <!-- <paper-button raised class="btn-close" class="btn-default">
+                    <div class="row center-md meddle-md">
+                        <div class="button-action-bottom">
+                            <paper-button raised class="btn-success" on-click="_save">
+                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                            </paper-button>
+                            <!-- <paper-button raised class="btn-close" class="btn-default">
                             <iron-icon icon="[[i18n.button.reset.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.reset.label]]
                         </paper-button> -->
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nylon-panel-card>
+            </nylon-panel-card>
 
-        <nylon-panel-card>
-            <div slot="content">
-                <div class="header-title">
-                    [[i18n.page06.title_3]]
-                </div>
-                <div class="row col-md-offset-1 middle-md">
-                    <div class="col-md-3">
-                        <div class="label">[[i18n.page06.thai]] :</div>
+            <nylon-panel-card>
+                <div slot="content">
+                    <div class="header-title">
+                        [[i18n.page06.title_3]]
                     </div>
-                    <div class="col-md-6">
-                        <!-- <l2t-paper-rating rating="{{data.type.th}}"></l2t-paper-rating> -->
-                        <paper-radio-group selected="{{data.type.th}}" attr-for-selected="name" required class="required-radio">
-                            <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
-                            <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
-                            <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
-                            <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
-                        </paper-radio-group>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-3">
+                            <div class="label">[[i18n.page06.thai]] :</div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- <l2t-paper-rating rating="{{data.type.th}}"></l2t-paper-rating> -->
+                            <paper-radio-group selected="{{data.type.th}}" attr-for-selected="name" required class="required-radio">
+                                <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
+                                <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
+                                <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
+                                <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
+                            </paper-radio-group>
+                        </div>
                     </div>
-                </div>
-                <div class="row col-md-offset-1 middle-md">
-                    <div class="col-md-3">
-                        <div class="label">[[i18n.page06.english]] :</div>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-3">
+                            <div class="label">[[i18n.page06.english]] :</div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- <l2t-paper-rating rating="{{data.type.en}}"></l2t-paper-rating> -->
+                            <paper-radio-group selected="{{data.type.en}}" attr-for-selected="name" required class="required-radio">
+                                <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
+                                <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
+                                <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
+                                <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
+                            </paper-radio-group>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <!-- <l2t-paper-rating rating="{{data.type.en}}"></l2t-paper-rating> -->
-                        <paper-radio-group selected="{{data.type.en}}" attr-for-selected="name" required class="required-radio">
-                            <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
-                            <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
-                            <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
-                            <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
-                        </paper-radio-group>
-                    </div>
-                </div>
-                <!-- </fieldset> -->
-                <div class="row center-md meddle-md">
-                    <div class="button-action-bottom">
-                        <paper-button raised class="btn-success" on-click="_save">
-                            <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                        </paper-button>
-                        <!-- <paper-button raised class="btn-close" class="btn-default">
+                    <!-- </fieldset> -->
+                    <div class="row center-md meddle-md">
+                        <div class="button-action-bottom">
+                            <paper-button raised class="btn-success" on-click="_save">
+                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                            </paper-button>
+                            <!-- <paper-button raised class="btn-close" class="btn-default">
                             <iron-icon icon="[[i18n.button.reset.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.reset.label]]
                         </paper-button> -->
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nylon-panel-card>
+            </nylon-panel-card>
 
-        <nylon-panel-card>
-            <div slot="content">
-                <div class="header-title">
-                    [[i18n.page06.title_4]]
-                </div>
-                <div class="row col-md-offset-1 middle-md">
-                    <div class="col-md-3">
-                        <div class="label">[[i18n.page06.china]] :</div>
+            <nylon-panel-card>
+                <div slot="content">
+                    <div class="header-title">
+                        [[i18n.page06.title_4]]
                     </div>
-                    <div class="col-md-6">
-                        <!-- <l2t-paper-rating rating="{{data.lang.cn}}"></l2t-paper-rating> -->
-                        <paper-radio-group selected="{{data.lang.cn}}" attr-for-selected="name" required class="required-radio">
-                            <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
-                            <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
-                            <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
-                            <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
-                        </paper-radio-group>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-3">
+                            <div class="label">[[i18n.page06.china]] :</div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- <l2t-paper-rating rating="{{data.lang.cn}}"></l2t-paper-rating> -->
+                            <paper-radio-group selected="{{data.lang.cn}}" attr-for-selected="name" required class="required-radio">
+                                <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
+                                <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
+                                <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
+                                <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
+                            </paper-radio-group>
+                        </div>
                     </div>
-                </div>
-                <div class="row col-md-offset-1 middle-md">
-                    <div class="col-md-3">
-                        <div class="label">[[i18n.page06.japan]] :</div>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-3">
+                            <div class="label">[[i18n.page06.japan]] :</div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- <l2t-paper-rating rating="{{data.lang.jp}}"></l2t-paper-rating> -->
+                            <paper-radio-group selected="{{data.lang.jp}}" attr-for-selected="name" required class="required-radio">
+                                <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
+                                <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
+                                <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
+                                <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
+                            </paper-radio-group>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <!-- <l2t-paper-rating rating="{{data.lang.jp}}"></l2t-paper-rating> -->
-                        <paper-radio-group selected="{{data.lang.jp}}" attr-for-selected="name" required class="required-radio">
-                            <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
-                            <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
-                            <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
-                            <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
-                        </paper-radio-group>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-3">
+                            <div class="label">[[i18n.page06.english]] :</div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- <l2t-paper-rating rating="{{data.lang.en}}"></l2t-paper-rating> -->
+                            <paper-radio-group selected="{{data.lang.en}}" attr-for-selected="name" required class="required-radio">
+                                <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
+                                <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
+                                <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
+                                <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
+                            </paper-radio-group>
+                        </div>
                     </div>
-                </div>
-                <div class="row col-md-offset-1 middle-md">
-                    <div class="col-md-3">
-                        <div class="label">[[i18n.page06.english]] :</div>
-                    </div>
-                    <div class="col-md-6">
-                        <!-- <l2t-paper-rating rating="{{data.lang.en}}"></l2t-paper-rating> -->
-                        <paper-radio-group selected="{{data.lang.en}}" attr-for-selected="name" required class="required-radio">
-                            <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
-                            <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
-                            <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
-                            <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
-                        </paper-radio-group>
-                    </div>
-                </div>
-                <div class="row center-md meddle-md">
-                    <div class="button-action-bottom">
-                        <paper-button raised class="btn-success" on-click="_save">
-                            <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                        </paper-button>
-                        <!-- <paper-button raised class="btn-close" class="btn-default">
+                    <div class="row center-md meddle-md">
+                        <div class="button-action-bottom">
+                            <paper-button raised class="btn-success" on-click="_save">
+                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                            </paper-button>
+                            <!-- <paper-button raised class="btn-close" class="btn-default">
                             <iron-icon icon="[[i18n.button.reset.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.reset.label]]
                         </paper-button> -->
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- <app-toolbar slot="footer">
+                <!-- <app-toolbar slot="footer">
                 <div main-title></div>
                 <paper-button raised class="btn-default">
                     <iron-icon icon="[[i18n.button.reset.icon]]"></iron-icon>[[i18n.button.reset.label]]
@@ -309,8 +311,8 @@
                     <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>[[i18n.button.save.label]]
                 </paper-button>
             </app-toolbar> -->
-        </nylon-panel-card>
-
+            </nylon-panel-card>
+        </div>
 
 
     </template>
@@ -324,7 +326,7 @@
          * @polymer
          * @extends {Polymer.Element}
          */
-        class Page06 extends CommonMixin(ReduxMixin(Polymer.Element)) {
+        class Page06 extends AnimateMixin(CommonMixin(ReduxMixin(Polymer.Element))) {
             /**
              * String providing the tag name to profile the element under.
              */
@@ -367,6 +369,8 @@
              */
             ready() {
                 super.ready();
+                var elem = this.$.skills
+                this.fadeInDown(elem, 1, 300)
             }
             _save() {
                 var req = this.shadowRoot.querySelectorAll('.required-radio')

@@ -17,6 +17,7 @@
 <link rel="import" href="../../../i18n/profile/page-10-i18n.html">
 <link rel="import" href="../../../redux/profile/page-10-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../mixins/animate-mixin.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
 
 <dom-module id="page-10">
@@ -53,98 +54,92 @@
             }
         </style>
         <!-- page-10 -->
-
-        <nylon-panel-card>
-            <div slot="content">
-                <div class="header-title">
-                    [[i18n.page10.bank_account]]
-                </div>
-                <div class="row middle-md">
-                    <div class="col-md-3 col-md-offset-1">
-                        <nylon-combo-box class="required" required always-float-label label="[[i18n.page10.bank]]*" items='{{bankList}}' value="{{bank.bank_id}}"
-                            item-label-path="bank_name_th" item-value-path="id" on-selected-item-changed="getObject" object-name="bank.bank">
-                            <template>
-                                [[item.bank_name_th]]
-                            </template>
-                        </nylon-combo-box>
+        <div id="bank">
+            <nylon-panel-card>
+                <div slot="content">
+                    <div class="header-title">
+                        [[i18n.page10.bank_account]]
                     </div>
-                    <div class="col-md-3 col-md-offset-1">
-                        <nylon-combo-box class="required" required always-float-label label="[[i18n.page10.account_Types]]*" items='{{typeList}}'
-                            value="{{bank.type_account_id}}" item-label-path="type_account_name_th" item-value-path="id" on-selected-item-changed="getObject"
-                            object-name="bank.type_account">
-                            <template>
-                                [[item.type_account_name_th]]
-                            </template>
-                        </nylon-combo-box>
+                    <div class="row middle-md">
+                        <div class="col-md-3 col-md-offset-1">
+                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page10.bank]]*" items='{{bankList}}' value="{{bank.bank_id}}"
+                                item-label-path="bank_name_th" item-value-path="id" on-selected-item-changed="getObject" object-name="bank.bank">
+                                <template>
+                                    [[item.bank_name_th]]
+                                </template>
+                            </nylon-combo-box>
+                        </div>
+                        <div class="col-md-3 col-md-offset-1">
+                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page10.account_Types]]*" items='{{typeList}}'
+                                value="{{bank.type_account_id}}" item-label-path="type_account_name_th" item-value-path="id"
+                                on-selected-item-changed="getObject" object-name="bank.type_account">
+                                <template>
+                                    [[item.type_account_name_th]]
+                                </template>
+                            </nylon-combo-box>
+                        </div>
+                        <div class="col-md-3 col-md-offset-1">
+                            <nylon-input class="required" required always-float-label label="[[i18n.page10.branch]]*" value="{{bank.branch}}"></nylon-input>
+                        </div>
                     </div>
-                    <div class="col-md-3 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page10.branch]]*" value="{{bank.branch}}"></nylon-input>
+                    <div class="row middle-md">
+                        <div class="col-md-4 col-md-offset-1">
+                            <nylon-input class="required" required always-float-label allowed-pattern="[0-9]" label="[[i18n.page10.account_number]]*"
+                                value="{{bank.account_number}}"></nylon-input>
+                        </div>
+                        <div class="input col-md-3">
+                            [[i18n.page10.warning]]
+                        </div>
                     </div>
-                </div>
-                <div class="row middle-md">
-                    <div class="col-md-4 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label allowed-pattern="[0-9]" label="[[i18n.page10.account_number]]*"
-                            value="{{bank.account_number}}"></nylon-input>
+                    <div class="row middle-md">
+                        <div class="col-md-7 col-md-offset-1">
+                            <nylon-input class="required" required always-float-label label="[[i18n.page10.account_name]]*" value="{{bank.account_name}}"></nylon-input>
+                        </div>
                     </div>
-                    <div class="input col-md-3">
-                        [[i18n.page10.warning]]
-                    </div>
-                </div>
-                <div class="row middle-md">
-                    <div class="col-md-7 col-md-offset-1">
-                        <nylon-input class="required" required always-float-label label="[[i18n.page10.account_name]]*" value="{{bank.account_name}}"></nylon-input>
-                    </div>
-                </div>
-                <div class="row center-md button-buttom">
-                    <div class="button-action-bottom">
+                    <div class="row center-md button-buttom">
                         <div class="button-action-bottom">
-                            <paper-button raised class="btn-success" on-click="_save">
-                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                            </paper-button>
+                            <div class="button-action-bottom">
+                                <paper-button raised class="btn-success" on-click="_save">
+                                    <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                                </paper-button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </nylon-panel-card>
+            </nylon-panel-card>
 
-        <div style="margin-top:5%;"></div>
-        <nylon-panel-card>
-            <div slot="content">
-                <div class="header-title">
-                    [[i18n.page10.photo_account]]
-                </div>
-                <div class="row middle-md center-md">
-                    <div class=" col-md-12">
-                        <img id="output_image" src$="[[rootPath]]images/I20170901111610.jpg" />
+            <div style="margin-top:5%;"></div>
+            <nylon-panel-card>
+                <div slot="content">
+                    <div class="header-title">
+                        [[i18n.page10.photo_account]]
                     </div>
-                    <div class=" col-md-3">
-                        <input id="ifile" type=file accept="image/*" on-change="preview_image">
-                        <paper-button raised on-tap="upload_img" class="upload_image btn-upload">
-                            <iron-icon icon="[[i18n.button.upload.icon]]"></iron-icon>&nbsp;&nbsp; [[i18n.button.upload.label]]</paper-button>
+                    <div class="row middle-md center-md">
+                        <div class=" col-md-12">
+                            <img id="output_image" src$="[[rootPath]]images/I20170901111610.jpg" />
+                        </div>
+                        <div class=" col-md-3">
+                            <input id="ifile" type=file accept="image/*" on-change="preview_image">
+                            <paper-button raised on-tap="upload_img" class="upload_image btn-upload">
+                                <iron-icon icon="[[i18n.button.upload.icon]]"></iron-icon>&nbsp;&nbsp; [[i18n.button.upload.label]]</paper-button>
+                        </div>
                     </div>
-                </div>
-                <div class="row center-md button-buttom">
-                    <div class="button-action-bottom">
+                    <div class="row center-md button-buttom">
                         <div class="button-action-bottom">
-                            <paper-button raised class="btn-success" on-click="_save">
-                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                            </paper-button>
+                            <div class="button-action-bottom">
+                                <paper-button raised class="btn-success" on-click="_save">
+                                    <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                                </paper-button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </nylon-panel-card>
-        <!-- <div class="row end-md ">
-            <div class="button-action-bottom">
-                <paper-button raised class="btn-success" on-click="_save">
-                    <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                </paper-button>
-            </div>
-        </div> -->
+            </nylon-panel-card>
+        </div>
     </template>
 
     <script>
-        class Page10 extends CommonMixin(ReduxMixin(Polymer.Element)) {
+        class Page10 extends AnimateMixin(CommonMixin(ReduxMixin(Polymer.Element))) {
 
             static get is() {
                 return 'page-10';
@@ -180,6 +175,8 @@
 
             ready() {
                 super.ready();
+                var elem = this.$.bank
+                this.fadeInDown(elem, 1, 300)
                 Nylon.dispatch('PROFILE_10_GET_LIST_BANK')
                 Nylon.dispatch('PROFILE_10_GET_LIST_ACCOUNT_TYPE')
             }

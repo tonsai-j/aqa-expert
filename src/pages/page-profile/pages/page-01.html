@@ -19,6 +19,8 @@
 <link rel="import" href="../../../redux/profile/page-01-redux.html">
 <link rel="import" href="../../../redux/register/register-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../mixins/animate-mixin.html">
+
 <link rel="import" href="../../../i18n/profile/page-01-i18n.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
 
@@ -57,81 +59,79 @@
             }
         </style>
         <!-- page-1 -->
-
-        <nylon-panel-card >
-
-            <div slot="content" items="[[basic]]">
-                <div class="header-title">
-                    [[i18n.page01.basic_data]]:
-                </div>
-                <div><br>[[i18n.page01.field]]*</div><br>
-                <div class="row meddle-md ">
-                    <div class="col-md-3">
-                        <div class="col-md-12 middle-md center-md">
-                            <img id="output_image" src$="[[rootPath]]images/I20170901111610.jpg" />
-                            <!-- [[importPath]]
-                                    [[rootPath]] -->
-                        </div>
-                        <div class="col-md-12 middle-md center-md">
-                            <input id="ifile" type=file accept="image/*" on-change="preview_image">
-
-                            <paper-button raised on-tap="upload_img" class="upload_image btn-upload">
-                                <iron-icon icon="[[i18n.button.upload.icon]]">
-                                </iron-icon>&nbsp;&nbsp; [[i18n.button.upload.label]]</paper-button>
-                            </paper-button>
-                        </div>
+            <nylon-panel-card id="basic">
+                <div slot="content" items="[[basic]]">
+                    <div class="header-title">
+                        [[i18n.page01.basic_data]]:
                     </div>
-                    <div class="col-md-9">
-                        <div class="row middle-md ">
-                            <div class="col-md-7 ">
-                                <nylon-input always-float-label label="[[i18n.page01.register]]:" value="[[info.id]]" disabled></nylon-input>
+                    <div><br>[[i18n.page01.field]]*</div><br>
+                    <div class="row meddle-md ">
+                        <div class="col-md-3">
+                            <div class="col-md-12 middle-md center-md">
+                                <img id="output_image" src$="[[rootPath]]images/I20170901111610.jpg" />
+                                <!-- [[importPath]]
+                                    [[rootPath]] -->
                             </div>
-                            <div class="col-md-3 col-md-offset-1">
-                                <nylon-input always-float-label label="[[i18n.page01.tax_no]]:" value="[[info.taxno]]" disabled></nylon-input>
-                            </div>
-                        </div>
-                        <div class="row middle-md ">
-                            <div class="col-md-3">
-                                <nylon-input class="required" required always-float-label label="[[i18n.page01.prefix_th]]:" value="{{data.prefix_th}}"></nylon-input>
-                            </div>
-                            <div class="col-md-3 col-md-offset-1">
-                                <nylon-input class="required" required always-float-label label="[[i18n.page01.firstname_th]]*:" value="{{data.firstname_th}}"></nylon-input>
-                            </div>
-                            <div class="col-md-3 col-md-offset-1">
-                                <nylon-input class="required" required always-float-label label="[[i18n.page01.lastname_th]]*:" value="{{data.lastname_th}}"></nylon-input>
+                            <div class="col-md-12 middle-md center-md">
+                                <input id="ifile" type=file accept="image/*" on-change="preview_image">
+
+                                <paper-button raised on-tap="upload_img" class="upload_image btn-upload">
+                                    <iron-icon icon="[[i18n.button.upload.icon]]">
+                                    </iron-icon>&nbsp;&nbsp; [[i18n.button.upload.label]]</paper-button>
+                                </paper-button>
                             </div>
                         </div>
-                        <div class="row middle-md ">
-                            <div class="col-md-3">
-                                <nylon-input class="required" required always-float-label label="[[i18n.page01.prefix_en]]:" value="{{data.prefix_en}}"></nylon-input>
+                        <div class="col-md-9">
+                            <div class="row middle-md ">
+                                <div class="col-md-7 ">
+                                    <nylon-input always-float-label label="[[i18n.page01.register]]:" value="[[info.id]]" disabled></nylon-input>
+                                </div>
+                                <div class="col-md-3 col-md-offset-1">
+                                    <nylon-input always-float-label label="[[i18n.page01.tax_no]]:" value="[[info.taxno]]" disabled></nylon-input>
+                                </div>
                             </div>
-                            <div class="col-md-3 col-md-offset-1">
-                                <nylon-input class="required" required always-float-label label="[[i18n.page01.firstname_en]]:" value="{{data.firstname_en}}"></nylon-input>
+                            <div class="row middle-md ">
+                                <div class="col-md-3">
+                                    <nylon-input class="required" required always-float-label label="[[i18n.page01.prefix_th]]:" value="{{data.prefix_th}}"></nylon-input>
+                                </div>
+                                <div class="col-md-3 col-md-offset-1">
+                                    <nylon-input class="required" required always-float-label label="[[i18n.page01.firstname_th]]*:" value="{{data.firstname_th}}"></nylon-input>
+                                </div>
+                                <div class="col-md-3 col-md-offset-1">
+                                    <nylon-input class="required" required always-float-label label="[[i18n.page01.lastname_th]]*:" value="{{data.lastname_th}}"></nylon-input>
+                                </div>
                             </div>
-                            <div class="col-md-3 col-md-offset-1">
-                                <nylon-input class="required" required always-float-label label="[[i18n.page01.lastname_en]]:" value="{{data.lastname_en}}"></nylon-input>
+                            <div class="row middle-md ">
+                                <div class="col-md-3">
+                                    <nylon-input class="required" required always-float-label label="[[i18n.page01.prefix_en]]:" value="{{data.prefix_en}}"></nylon-input>
+                                </div>
+                                <div class="col-md-3 col-md-offset-1">
+                                    <nylon-input class="required" required always-float-label label="[[i18n.page01.firstname_en]]:" value="{{data.firstname_en}}"></nylon-input>
+                                </div>
+                                <div class="col-md-3 col-md-offset-1">
+                                    <nylon-input class="required" required always-float-label label="[[i18n.page01.lastname_en]]:" value="{{data.lastname_en}}"></nylon-input>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row middle-md ">
-                            <div class="col-md-3">
-                                <!-- {{data.gender_id}}// -->
-                                <nylon-combo-box always-float-label label="[[i18n.page01.gender]]" items='{{genderList}}' value="{{data.gender_id}}" item-label-path="gender_name_th"
-                                    item-value-path="id" on-selected-item-changed="getObject" object-name="data.gender" class="required"
-                                    required>
-                                    <template>
-                                        [[item.gender_name_th]]
-                                    </template>
-                                </nylon-combo-box>
-                            </div>
-                            <div class="col-md-3 col-md-offset-1">
-                                <nylon-combo-box always-float-label label="[[i18n.page01.ethnicity]]" items='{{nationalityList}}' value="{{data.race_id}}"
-                                    item-label-path="nationality_name_th" item-value-path="id" on-selected-item-changed="getObject"
-                                    object-name="data.race" class="required" required>
-                                    <template>
-                                        [[item.nationality_name_th]]
-                                    </template>
-                                </nylon-combo-box>
-                                <!-- <nylon-combo-box-light id="demo3" attr-for-value="bind-value" always-float-label label="[[i18n.page01.ethnicity]]" items='{{nationalityList}}'
+                            <div class="row middle-md ">
+                                <div class="col-md-3">
+                                    <!-- {{data.gender_id}}// -->
+                                    <nylon-combo-box always-float-label label="[[i18n.page01.gender]]" items='{{genderList}}' value="{{data.gender_id}}" item-label-path="gender_name_th"
+                                        item-value-path="id" on-selected-item-changed="getObject" object-name="data.gender" class="required"
+                                        required>
+                                        <template>
+                                            [[item.gender_name_th]]
+                                        </template>
+                                    </nylon-combo-box>
+                                </div>
+                                <div class="col-md-3 col-md-offset-1">
+                                    <nylon-combo-box always-float-label label="[[i18n.page01.ethnicity]]" items='{{nationalityList}}' value="{{data.race_id}}"
+                                        item-label-path="nationality_name_th" item-value-path="id" on-selected-item-changed="getObject"
+                                        object-name="data.race" class="required" required>
+                                        <template>
+                                            [[item.nationality_name_th]]
+                                        </template>
+                                    </nylon-combo-box>
+                                    <!-- <nylon-combo-box-light id="demo3" attr-for-value="bind-value" always-float-label label="[[i18n.page01.ethnicity]]" items='{{nationalityList}}'
                                     value="{{data.race_id}}" item-label-path="nationality_name_th" item-value-path="id" on-selected-item-changed="getObject"
                                     object-name="data.race" class="required" required>
                                     <iron-input>
@@ -141,84 +141,84 @@
                                 </nylon-combo-box-light>
                                 <iron-icon icon="arrow-drop-down" slot="suffix" suffix style="position: absolute;
                                 top: 32px; right: 16px; cursor: pointer;" on-tap="_openDropDown"></iron-icon> -->
+                                </div>
+                                <div class="col-md-3 col-md-offset-1">
+                                    <nylon-combo-box always-float-label label="[[i18n.page01.religion]]" items='{{religionList}}' value="{{data.religion_id}}"
+                                        item-label-path="religion_name_th" item-value-path="id" on-selected-item-changed="getObject"
+                                        object-name="data.religion" class="required" required>
+                                        <template>
+                                            [[item.religion_name_th]]
+                                        </template>
+                                    </nylon-combo-box>
+                                </div>
                             </div>
-                            <div class="col-md-3 col-md-offset-1">
-                                <nylon-combo-box always-float-label label="[[i18n.page01.religion]]" items='{{religionList}}' value="{{data.religion_id}}"
-                                    item-label-path="religion_name_th" item-value-path="id" on-selected-item-changed="getObject"
-                                    object-name="data.religion" class="required" required>
-                                    <template>
-                                        [[item.religion_name_th]]
-                                    </template>
-                                </nylon-combo-box>
+                            <div class="row middle-md ">
+                                <div class="col-md-3">
+                                    <nylon-combo-box always-float-label label="[[i18n.page01.nationality]]" items='{{nationalityList}}' value="{{data.nationality_id}}"
+                                        item-label-path="nationality_name_th" item-value-path="id" on-selected-item-changed="getObject"
+                                        object-name="data.nationality" class="required" required>
+                                        <template>
+                                            [[item.nationality_name_th]]
+                                        </template>
+                                    </nylon-combo-box>
+                                </div>
+                                <div class="col-md-3 col-md-offset-1">
+                                    <nylon-combo-box always-float-label label="[[i18n.page01.status]]" items='{{statusList}}' value="{{data.status_id}}" item-label-path="work_status_name_th"
+                                        item-value-path="id" on-selected-item-changed="getObject" object-name="data.status" class="required"
+                                        required>
+                                        <template>
+                                            [[item.work_status_name_th]]
+                                        </template>
+                                    </nylon-combo-box>
+                                </div>
+                                <div class="col-md-3 col-md-offset-1">
+                                    <nylon-combo-box always-float-label label="[[i18n.page01.academic]]" items='{{academicList}}' value="{{data.type_academic_id}}"
+                                        item-label-path="academic_position_name_th" item-value-path="id" on-selected-item-changed="getObject"
+                                        object-name="data.type_academic" class="required" required>
+                                        <template>
+                                            [[item.academic_position_name_th]]
+                                        </template>
+                                    </nylon-combo-box>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row middle-md ">
-                            <div class="col-md-3">
-                                <nylon-combo-box always-float-label label="[[i18n.page01.nationality]]" items='{{nationalityList}}' value="{{data.nationality_id}}"
-                                    item-label-path="nationality_name_th" item-value-path="id" on-selected-item-changed="getObject"
-                                    object-name="data.nationality" class="required" required>
-                                    <template>
-                                        [[item.nationality_name_th]]
-                                    </template>
-                                </nylon-combo-box>
+                            <div class="row middle-md ">
+                                <div class="col-md-3">{{_calcAge(data.birth_date)}}
+                                    <!-- <nylon-input always-float-label label="Name:"></nylon-input> -->
+                                    <!-- <nylon-date-picker id="date" label="[[i18n.page01.birth]]:" class="required" required selected="{{data.birth_date}}" show-bc ></nylon-date-picker> -->
+                                    <nylon-input class="required" required always-float-label label="[[i18n.page01.birth]]:" type="date" value="{{data.birth_date}}"></nylon-input>
+                                </div>
+                                <div class="col-md-3 col-md-offset-1">
+                                    <nylon-input always-float-label label="[[i18n.page01.age]]:" value="[[age]]" disabled></nylon-input>
+                                </div>
+                                <div class="col-md-3 col-md-offset-1">
+                                    <nylon-input class="required" required always-float-label label="[[i18n.page01.mobile]]:" value="{{data.mobile}}"></nylon-input>
+                                </div>
                             </div>
-                            <div class="col-md-3 col-md-offset-1">
-                                <nylon-combo-box always-float-label label="[[i18n.page01.status]]" items='{{statusList}}' value="{{data.status_id}}" item-label-path="work_status_name_th"
-                                    item-value-path="id" on-selected-item-changed="getObject" object-name="data.status" class="required"
-                                    required>
-                                    <template>
-                                        [[item.work_status_name_th]]
-                                    </template>
-                                </nylon-combo-box>
-                            </div>
-                            <div class="col-md-3 col-md-offset-1">
-                                <nylon-combo-box always-float-label label="[[i18n.page01.academic]]" items='{{academicList}}' value="{{data.type_academic_id}}"
-                                    item-label-path="academic_position_name_th" item-value-path="id" on-selected-item-changed="getObject"
-                                    object-name="data.type_academic" class="required" required>
-                                    <template>
-                                        [[item.academic_position_name_th]]
-                                    </template>
-                                </nylon-combo-box>
-                            </div>
-                        </div>
-                        <div class="row middle-md ">
-                            <div class="col-md-3">{{_calcAge(data.birth_date)}}
-                                <!-- <nylon-input always-float-label label="Name:"></nylon-input> -->
-                                <!-- <nylon-date-picker id="date" label="[[i18n.page01.birth]]:" class="required" required selected="{{data.birth_date}}" show-bc ></nylon-date-picker> -->
-                                <nylon-input class="required" required always-float-label label="[[i18n.page01.birth]]:" type="date" value="{{data.birth_date}}"></nylon-input>
-                            </div>
-                            <div class="col-md-3 col-md-offset-1">
-                                <nylon-input always-float-label label="[[i18n.page01.age]]:" value="[[age]]" disabled></nylon-input>
-                            </div>
-                            <div class="col-md-3 col-md-offset-1">
-                                <nylon-input class="required" required always-float-label label="[[i18n.page01.mobile]]:"  value="{{data.mobile}}"></nylon-input>
-                            </div>
-                        </div>
-                        <div class="row middle-md ">
-                            <div class="col-md-3">
-                                <nylon-input class="required" required always-float-label label="[[i18n.page01.date_of_issue]]:" type="date" value="{{data.issue_date}}"></nylon-input>
-                            </div>
-                            <div class="col-md-3 col-md-offset-1">
-                                <nylon-input class="required" required always-float-label label="[[i18n.page01.expiration_date]]:" type="date" value="{{data.expire_date}}"></nylon-input>
-                            </div>
-                            <div class="col-md-3 col-md-offset-1">
-                                <nylon-input class="required" required always-float-label label="[[i18n.page01.email]]:"  value="{{data.email}}"></nylon-input>
+                            <div class="row middle-md ">
+                                <div class="col-md-3">
+                                    <nylon-input class="required" required always-float-label label="[[i18n.page01.date_of_issue]]:" type="date" value="{{data.issue_date}}"></nylon-input>
+                                </div>
+                                <div class="col-md-3 col-md-offset-1">
+                                    <nylon-input class="required" required always-float-label label="[[i18n.page01.expiration_date]]:" type="date" value="{{data.expire_date}}"></nylon-input>
+                                </div>
+                                <div class="col-md-3 col-md-offset-1">
+                                    <nylon-input class="required" required always-float-label label="[[i18n.page01.email]]:" value="{{data.email}}"></nylon-input>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row center-md button-buttom">
-                    <div class="button-action-bottom">
-                        <paper-button raised class="btn-success" on-click="_save">
-                            <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                        </paper-button>
-                        <!-- <paper-button raised class="btn-default" on-click="_readIDCard">
+                    <div class="row center-md button-buttom">
+                        <div class="button-action-bottom">
+                            <paper-button raised class="btn-success" on-click="_save">
+                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                            </paper-button>
+                            <!-- <paper-button raised class="btn-default" on-click="_readIDCard">
                                     <iron-icon icon="[[i18n.button.readCard.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.readCard.label]]
                                 </paper-button> -->
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- <app-toolbar slot="footer">
+                <!-- <app-toolbar slot="footer">
                 <div main-title></div>
                 <paper-button raised class="btn-success" on-click="_save">
                     <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
@@ -229,13 +229,12 @@
             </app-toolbar> -->
 
 
-        </nylon-panel-card>
-
+            </nylon-panel-card>
 
     </template>
 
     <script>
-        class Page01 extends CommonMixin(ReduxMixin(Polymer.Element)) {
+        class Page01 extends AnimateMixin(CommonMixin(ReduxMixin(Polymer.Element))) {
 
             static get is() {
                 return 'page-01';
@@ -298,6 +297,8 @@
             // }
             ready() {
                 super.ready();
+                var elem = this.$.basic
+                this.fadeInDown(elem, 1, 500)
                 Polymer.RenderStatus.afterNextRender(this, function () {
                     Nylon.dispatch('PROFILE_01_GET_LIST_ACADAMIC_POSITION')
                     Nylon.dispatch('PROFILE_01_GET_LIST_GENDER')
