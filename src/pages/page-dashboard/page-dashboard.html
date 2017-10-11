@@ -27,8 +27,17 @@
         @apply --nylon-font-mitr-family-bone;
       }
 
-      .container-dashboard {
-        background-color: #3399ff;
+      .container-dashboard,
+      .container,
+      #contentContainer,
+      #wrapper,
+      .card,
+      .row {
+        background-color: #ffffff;
+      }
+
+      app-toolbar {
+        text-align: center;
       }
 
       nylon-panel-card {
@@ -40,30 +49,18 @@
       <div class="row user">
 
         <div class="col-xs-6 ">
-          <nylon-panel-card>
-            <app-toolbar slot="header">
-              <div main-title class="font">ค่าใช้จ่าย</div>
-            </app-toolbar>
-            <nylon-c3 slot="content" id="chart1_user"></nylon-c3>
-          </nylon-panel-card>
+          <div main-title class="font">ค่าใช้จ่าย</div>
+          <nylon-c3 slot="content" id="chart1_user"></nylon-c3>
         </div>
 
         <div class="col-xs-6 ">
-          <nylon-panel-card>
-            <app-toolbar slot="header">
-              <div main-title class="font">ประวัติการประเมินสถานศึกษา</div>
-            </app-toolbar>
-            <nylon-c3 slot="content" id="chart3_user"></nylon-c3>
-          </nylon-panel-card>
+          <div main-title class="font">ประวัติการประเมินสถานศึกษา</div>
+          <nylon-c3 slot="content" id="chart3_user"></nylon-c3>
         </div>
 
         <div class="col-xs-12">
-          <nylon-panel-card>
-            <app-toolbar slot="header">
-              <div main-title class="font">สรุปความก้าวหน้า</div>
-            </app-toolbar>
-            <nylon-c3 slot="content" id="chart2_user"></nylon-c3>
-          </nylon-panel-card>
+          <div main-title class="font">สรุปความก้าวหน้า</div>
+          <nylon-c3 slot="content" id="chart2_user"></nylon-c3>
         </div>
 
       </div>
@@ -72,42 +69,91 @@
     <div class="container">
       <div class="row admin">
         <div class="col-xs-6 ">
-          <nylon-panel-card>
-            <app-toolbar slot="header">
-              <div main-title class="font">ค่าใช้จ่ายโดยรวม</div>
-            </app-toolbar>
-            <nylon-c3 slot="content" id="chart1_admin"></nylon-c3>
-          </nylon-panel-card>
+          <!-- <nylon-panel-card> -->
+          <app-toolbar slot="header">
+            <div main-title class="font">ผู้สำเร็จการศึกษาที่ได้งานทำ/ศึกษาต่อ</div>
+          </app-toolbar>
+          <div class="row">
+            <div class="col-xs-6">
+              <div class="font" style="text-align: center;">ปวช.</div>
+              <nylon-c3 slot="content" id="chart1_admin"></nylon-c3>
+            </div>
+            <div class="col-xs-6">
+              <div class="font" style="text-align: center;">ปวส.</div>
+              <nylon-c3 slot="content" id="chart1_1_admin"></nylon-c3>
+            </div>
+          </div>
+
+          <table slot="content" class="font">
+            <tr>
+              <td>
+                <div style="width: 10px; height: 10px; background-color: #348ea9"></div>
+              </td>
+              <td style="font-size: 12px">ได้งานทำให้สาขาที่เกี่ยวข้อง</td>
+            </tr>
+            <tr>
+              <td>
+                <div style="width: 10px; height: 10px; background-color: #53bb9b"></div>
+              </td>
+              <td style="font-size: 12px">ศึกษาในสาขาวิชาที่เกี่ยวข้อง</td>
+            </tr>
+            <tr>
+              <td>
+                <div style="width: 10px; height: 10px; background-color: #f48c37"></div>
+              </td>
+              <td style="font-size: 12px">ประกอบอาชีพอิสระ</td>
+            </tr>
+            <tr>
+              <td>
+                <div style="width: 10px; height: 10px; background-color: #f04946"></div>
+              </td>
+              <td style="font-size: 12px">ว่างงาน</td>
+            </tr>
+          </table>
+          <!-- </nylon-panel-card> -->
         </div>
 
 
-        <div class="col-xs-6 ">
-          <nylon-panel-card>
-            <app-toolbar slot="header">
-              <div main-title class="font">ผู้เข้าอบรม</div>
-            </app-toolbar>
-            <nylon-c3 slot="content" id="chart2_admin"></nylon-c3>
-          </nylon-panel-card>
+        <div class="col-xs-6">
+          <!-- <nylon-panel-card> -->
+          <app-toolbar slot="header">
+            <div main-title class="font">อัตราส่วนครู : ผู้เรียน</div>
+          </app-toolbar>
+          <nylon-c3 slot="content" id="chart2_admin"></nylon-c3>
+          <!-- </nylon-panel-card> -->
         </div>
 
+        <div class="col-xs-6">
+          <!-- <nylon-panel-card> -->
+          <app-toolbar slot="header">
+            <div main-title class="font">การประเมินผลตนเอง (SAR)</div>
+          </app-toolbar>
+          <nylon-c3 slot="content" id="chart3_admin"></nylon-c3>
+          <!-- </nylon-panel-card> -->
 
-        <div class="col-xs-12 ">
-          <nylon-panel-card>
-            <app-toolbar slot="header">
-              <div main-title class="font">สรุปผลการประเมินสถานศึกษา</div>
-            </app-toolbar>
-            <nylon-c3 slot="content" id="chart3_admin"></nylon-c3>
-          </nylon-panel-card>
+          <table slot="content" class="font">
+            <tr>
+              <td>
+                <div style="width: 50px; height: 5px; background-color: #0000cc"></div>
+              </td>
+              <td style="font-size: 12px">ปีการศึกษา 2559</td>
+            </tr>
+            <tr>
+              <td>
+                <div style="width: 50px; height: 5px; background-color: #ff7f0e"></div>
+              </td>
+              <td style="font-size: 12px">ปีการศึกษา 2560</td>
+            </tr>
+          </table>
         </div>
 
-
-        <div class="col-xs-12">
-          <nylon-panel-card>
-            <app-toolbar slot="header">
-              <div main-title class="font">สรุปความก้าวหน้า</div>
-            </app-toolbar>
-            <nylon-c3 slot="content" id="chart4_admin"></nylon-c3>
-          </nylon-panel-card>
+        <div class="col-xs-6">
+          <!-- <nylon-panel-card> -->
+          <app-toolbar slot="header">
+            <div main-title class="font">สรุปผลการประเมินสถานศึกษา</div>
+          </app-toolbar>
+          <nylon-c3 slot="content" id="chart4_admin"></nylon-c3>
+          <!-- </nylon-panel-card> -->
         </div>
 
       </div>
@@ -201,7 +247,12 @@
 
           this.$.chart1_admin.generate({
             data: {
-              columns,
+              columns: [
+                ['ได้งานทำให้สาขาที่เกี่ยวข้อง', 26],
+                ['ศึกษาในสาขาวิชาที่เกี่ยวข้อง', 53],
+                ['ประกอบอาชีพอิสระ', 15],
+                ['ว่างงาน', 6]
+              ],
               type: 'pie',
               onclick: function (d, i) { console.log("onclick", d, i); }
             },
@@ -210,60 +261,75 @@
             },
             color: {
               pattern: ['#348ea9', '#53bb9b', '#f48c37', '#f04946', '#fab41c']
+            },
+            legend: {
+              show: false
+            }
+          })
+
+          this.$.chart1_1_admin.generate({
+            data: {
+              columns: [
+                ['ได้งานทำให้สาขาที่เกี่ยวข้อง', 48],
+                ['ศึกษาในสาขาวิชาที่เกี่ยวข้อง', 28],
+                ['ประกอบอาชีพอิสระ', 15],
+                ['ว่างงาน', 9]
+              ],
+              type: 'pie',
+              onclick: function (d, i) { console.log("onclick", d, i); }
+            },
+            size: {
+              height: 250
+            },
+            color: {
+              pattern: ['#348ea9', '#53bb9b', '#f48c37', '#f04946', '#fab41c']
+            },
+            legend: {
+              show: false
             }
           })
 
           this.$.chart3_admin.generate({
             data: {
               columns: [
-                ['ดีมาก', 60, 61, 58, 46],
-                ['ดี', 25, 20, 18, 20],
-                ['พอใช้', 10, 15, 17, 19],
-                ['ต้องปรับปรุง', 3, 5, 4, 5],
-                ['ต้องปรับปรุงเร่งด่วน', 2, 1, 3, 2]
+                ['ปีการศึกษา 2559', 3, 4, 3, 2],
+                ['ปีการศึกษา 2560', 3, 3, 5, 3]
               ],
             },
             axis: {
               x: {
+                label: 'มาตราฐาน',
                 type: 'category',
-                categories: ['ปี 2558', 'ปี 2559', 'ปี 2560', 'ปี 2561']
+                categories: ['มาตราฐานที่ 1', 'มาตราฐานที่ 2', 'มาตราฐานที่ 3', 'มาตราฐานที่ 4']
               },
               y: {
-                label: 'จำนวนเปอร์เซ็นต์',
+                label: 'ระดับ'
               }
             },
             size: {
-              height: 350
+              height: 300
             },
             color: {
-              pattern: ['#339933', '#00ff00', '#f47820', '#0000cc', '#ff0000']
+              pattern: ['#0000cc', '#ff7f0e']
+            },
+            legend: {
+              show: false
             }
           })
 
           this.$.chart4_admin.generate({
             data: {
               columns: [
-                ['จากจำนวน 1,000 โรงเรียนคิดเป็น', 70, 60, 55, 50, 30, 10]
+                ['data1', 30],
+                ['data2', 120],
               ],
+              type: 'donut',
+              onclick: function (d, i) { console.log("onclick", d, i); },
+              onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+              onmouseout: function (d, i) { console.log("onmouseout", d, i); }
             },
-            axis: {
-              x: {
-                label: 'ขั้นตอนกระบวนการ',
-                type: 'category',
-                categories: ['จัดกลุ่ม', 'ส่งแผนการดำเนินงาน', 'เข้าประเมินสถานศึกษา', 'ตรวจร่างรายงาน', 'อภิมาน', 'ส่งรายงานฉบับสมบูรณ์']
-              },
-              y: {
-                label: 'จำนวนเปอร์เซ็นต์'
-              }
-            },
-            size: {
-              height: 350
-            },
-            color: {
-              pattern: ['#0000cc']
-            },
-            legend: {
-              show: false
+            donut: {
+              title: "Iris Petal Width"
             }
           })
 
@@ -317,10 +383,10 @@
 
           this.$.chart3_user.generate({
             data: {
-                columns: [
-                    ['จำนวนสถานศึกษา', 0, 2, 4, 0, 0, 0],
-                ],
-                type: 'bar'
+              columns: [
+                ['จำนวนสถานศึกษา', 0, 2, 4, 0, 0, 0],
+              ],
+              type: 'bar'
             },
             axis: {
               x: {
@@ -338,11 +404,11 @@
               }
             },
             bar: {
-                width: {
-                    ratio: 0.4 // this makes bar width 50% of length between ticks
-                }
-                // or
-                //width: 100 // this makes bar width 100px
+              width: {
+                ratio: 0.4 // this makes bar width 50% of length between ticks
+              }
+              // or
+              //width: 100 // this makes bar width 100px
             },
             size: {
               height: 250
@@ -350,7 +416,7 @@
             color: {
               pattern: ['#f48c37']
             },
-        })
+          })
         }
       }
 
@@ -375,13 +441,19 @@
         // console.log(data)
         this.$.chart2_admin.generate({
           data: {
-            columns: data,
+            columns: [
+              ['จำนวนครูต่อผู้เรียน', 9, 17, 13, 4, 7, 10, 8, 10, 6, 12]
+            ],
             type: 'bar'
           },
           axis: {
             x: {
               type: 'category',
-              categories: x_label
+              categories: ['ภาพรวม', 'อุตสาหกรรม', 'พานิชยกรรม/บริหารธุรกิจ', 'ประมง', 'ศิลปกรรม', 'คหกรรม', 'เกษตรกรรม', 'อุตสาหกรรมการท่องเที่ยว', 'อุตสาหกรรมสิ่งทอ', 'เทคโนโลยีสารสนเทศและการสื่อสาร'],
+              tick: {
+                rotate: 90,
+                multiline: false
+              },
             }
           },
           bar: {
@@ -390,12 +462,17 @@
             }
           },
           size: {
-            height: 250
+            height: 450
           },
           color: {
             pattern: ['#35c1d0', '#147fae', '#094266']
+          },
+          // legend: {
+          //   show: false
+          // },
+          tooltip: {
+            grouped: false // Default true
           }
-
         })
 
       }
