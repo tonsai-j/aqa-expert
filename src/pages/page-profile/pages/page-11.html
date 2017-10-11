@@ -23,6 +23,7 @@
 
 <link rel="import" href="../../../redux/profile/page-11-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../mixins/animate-mixin.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
 
 <dom-module id="page-11">
@@ -47,7 +48,7 @@
         <!-- page-11 -->
 
 
-        <nylon-panel-card>
+        <nylon-panel-card id="zone">
             <div slot="content">
                 <div class="header-title">
                     [[i18n.page11.title]]
@@ -64,117 +65,117 @@
                         <vaadin-grid id='material' on-active-item-changed="_onActiveItemChanged" items='{{zone}}'>
                             <template class="row-details">
                                 <div class="details">
-                                    <span class="col-md-12">
-                                    <template is="dom-repeat" items={{item.province}}>
-                                        <span class="col-md-3">[[autoIndex(index)]].[[item.province_th]], </span>
-                                    <template is="dom-if" if={{modforBr(index)}}>
-                                        <br />
-                                    </template>
+                                    <div class="row">
+                                        <div class="col-md-1" style="margin-right:15px"></div>
+                                        <template is="dom-repeat" items={{item.province}}>
+                                            <template is="dom-if" if={{modforBr(index)}}>
+                                                <div class="col-md-1" style="margin-right:15px"></div>
+                                            </template>
+                                            <span class="col-md-2">[[autoIndex(index)]].[[item.province_th]], </span>
 
-                                    <!-- <span style="word-wrap:break-word;">[[item.province_th]],</span> -->
+                                        </template>
+                                    </div>
+                                </div>
                             </template>
-                            </span>
-                            </div>
-    </template>
-    <vaadin-grid-column width="10%" flex-grow="0">
-        <template class="header">
-            <div class="text-center">#</div>
-        </template>
-        <template>
-            <div class="text-center">[[autoIndex(index)]]</div>
-        </template>
-    </vaadin-grid-column>
-    <vaadin-grid-column width="55%">
-        <template class="header">[[i18n.page11.region]]</template>
-        <template>[[item.region.region_th]]</template>
-    </vaadin-grid-column>
-    <vaadin-grid-column width="20%">
-        <template class="header">[[i18n.page11.province]]</template>
-        <template>
-            <div class="row ">
-                [[item.province.length]]
-            </div>
-        </template>
-    </vaadin-grid-column>
-    <vaadin-grid-column width="15%" style="text-align: right">
-        <template class="header">
-            <div style="text-align: center">
-                [[i18n.common.tools]]
-            </div>
-        </template>
-        <template>
-            <span style="text-align: center">
+                            <vaadin-grid-column width="10%" flex-grow="0">
+                                <template class="header">
+                                    <div class="text-center">#</div>
+                                </template>
+                                <template>
+                                    <div class="text-center">[[autoIndex(index)]]</div>
+                                </template>
+                            </vaadin-grid-column>
+                            <vaadin-grid-column width="55%">
+                                <template class="header">[[i18n.page11.region]]</template>
+                                <template>[[item.region.region_th]]</template>
+                            </vaadin-grid-column>
+                            <vaadin-grid-column width="20%">
+                                <template class="header">[[i18n.page11.province]]</template>
+                                <template>
+                                    <div class="row ">
+                                        [[item.province.length]]
+                                    </div>
+                                </template>
+                            </vaadin-grid-column>
+                            <vaadin-grid-column width="15%" style="text-align: right">
+                                <template class="header">
+                                    <div style="text-align: center">
+                                        [[i18n.common.tools]]
+                                    </div>
+                                </template>
+                                <template>
+                                    <span style="text-align: center">
                                                 <paper-icon-button icon="[[i18n.button.edit.icon]]" action="edit" on-click="_openPanelRight"></paper-icon-button>
                                                 <paper-icon-button icon="[[i18n.button.delete.icon]]" on-click="_confirmDel"></paper-icon-button>
                                             </span>
-        </template>
-    </vaadin-grid-column>
-    </vaadin-grid>
-    <div class="no-content" hidden="{{zone.length}}">
-        ไม่มีข้อมูล
-    </div>
-    [[i18n.common.total_items]] {{zone.length}} [[i18n.common.list]]
-    </div>
-    </div>
-    </div>
-    </nylon-panel-card>
-
-    <nylon-panel-right id="right" title="[[i18n.page11.title]]" width="80%">
-        <nylon-panel-card slot="content">
-            <div slot="content">
-                <div class="row col-md-offset-1 middle-md">
-                    <div class="col-md-4">{{getProvince(data.region_id)}}
-                        <!-- items='{{regionList}}' -->
-                        <nylon-combo-box class="required" disabled={{regionDisabled}} required always-float-label label="[[i18n.page11.region]]"
-                            items='{{_filterChanged(regionList)}}' value="{{data.region_id}}" item-label-path="region_th" item-value-path="id"
-                            on-selected-item-changed="getObject" object-name="data.region">
-                            <template>
-                                [[item.region_th]]
-                            </template>
-                        </nylon-combo-box>
-                    </div>
-                </div>
-
-                <div class="row col-md-offset-1 middle-md">
-                    <div class="col-md-5">
-                        <paper-checkbox checked="{{masterCheck}}" disabled="{{masterCheckDisable}}" on-tap='seletedCheckAll'>[[i18n.page11.province_all]]</paper-checkbox>
-                    </div>
-                </div>
-                <div class="row col-md-offset-1 middle-md">
-                    <div class="col-md-4">
-                        [[i18n.page11.province_list]]
-                    </div>
-                </div>
-
-                <template is="dom-if" if={{masterCheckDisable}}>
-                    <div class="row col-md-offset-1 middle-md">
-                        -
-                    </div>
-                </template>
-
-                <template is="dom-if" if={{!masterCheckDisable}}>
-                    <div class="row col-md-offset-1 middle-md">
-                        <div class="row col-md-9">
-                            <template is="dom-repeat" items={{provinceList}}>
-                                <span class="col-md-4">
-                                                 <paper-checkbox checked="{{item.checked}}">[[item.province_th]]</paper-checkbox>  
-                                            </span>
-                            </template>
+                                </template>
+                            </vaadin-grid-column>
+                        </vaadin-grid>
+                        <div class="no-content" hidden="{{zone.length}}">
+                            ไม่มีข้อมูล
                         </div>
-                    </div>
-                </template>
-                <div class="row center-md button-buttom">
-                    <div class="button-action-bottom">
-                        <paper-button raised class="btn-success" on-click="_save">
-                            <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                        </paper-button>
-                        <paper-button raised class="btn-close" on-click="_closePanelRight">
-                            <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
-                        </paper-button>
+                        [[i18n.common.total_items]] {{zone.length}} [[i18n.common.list]]
                     </div>
                 </div>
             </div>
-            <!-- <app-toolbar slot="footer">
+        </nylon-panel-card>
+
+        <nylon-panel-right id="right" title="[[i18n.page11.title]]" width="80%">
+            <nylon-panel-card slot="content">
+                <div slot="content">
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-4">{{getProvince(data.region_id)}}
+                            <!-- items='{{regionList}}' -->
+                            <nylon-combo-box class="required" disabled={{regionDisabled}} required always-float-label label="[[i18n.page11.region]]"
+                                items='{{_filterChanged(regionList)}}' value="{{data.region_id}}" item-label-path="region_th"
+                                item-value-path="id" on-selected-item-changed="getObject" object-name="data.region">
+                                <template>
+                                    [[item.region_th]]
+                                </template>
+                            </nylon-combo-box>
+                        </div>
+                    </div>
+
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-5">
+                            <paper-checkbox checked="{{masterCheck}}" disabled="{{masterCheckDisable}}" on-tap='seletedCheckAll'>[[i18n.page11.province_all]]</paper-checkbox>
+                        </div>
+                    </div>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-4">
+                            [[i18n.page11.province_list]]
+                        </div>
+                    </div>
+
+                    <template is="dom-if" if={{masterCheckDisable}}>
+                        <div class="row col-md-offset-1 middle-md">
+                            -
+                        </div>
+                    </template>
+
+                    <template is="dom-if" if={{!masterCheckDisable}}>
+                        <div class="row col-md-offset-1 middle-md">
+                            <div class="row col-md-9">
+                                <template is="dom-repeat" items={{provinceList}}>
+                                    <span class="col-md-4">
+                                                 <paper-checkbox checked="{{item.checked}}">[[item.province_th]]</paper-checkbox>  
+                                            </span>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+                    <div class="row center-md button-buttom">
+                        <div class="button-action-bottom">
+                            <paper-button raised class="btn-success" on-click="_save">
+                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                            </paper-button>
+                            <paper-button raised class="btn-close" on-click="_closePanelRight">
+                                <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
+                            </paper-button>
+                        </div>
+                    </div>
+                </div>
+                <!-- <app-toolbar slot="footer">
                     <div main-title></div>
                     <paper-button raised class="btn-success" on-click="_save">
                         <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
@@ -184,14 +185,14 @@
                     </paper-button>
 
                 </app-toolbar> -->
-        </nylon-panel-card>
-    </nylon-panel-right>
+            </nylon-panel-card>
+        </nylon-panel-right>
 
 
     </template>
 
     <script>
-        class Page11 extends CommonMixin(ReduxMixin(Polymer.Element)) {
+        class Page11 extends AnimateMixin(CommonMixin(ReduxMixin(Polymer.Element))) {
 
             static get is() {
                 return 'page-11';
@@ -242,6 +243,8 @@
 
             ready() {
                 super.ready();
+                var elem = this.$.zone
+                this.fadeInDown(elem, 1, 300)
                 Nylon.dispatch('PROFILE_02_GET_LIST_REGION')
             }
             _onActiveItemChanged(e) {
@@ -249,7 +252,8 @@
                 this.$.material.expandedItems = [e.detail.value];
             }
             modforBr(index) {
-                if ((index % 7) === 0 && index !== 0)
+                // console.log((index % 5) === 0 && index !== 0);
+                if ((index % 5) === 0 && index !== 0)
                     return true
             }
             setChecked(province) {

@@ -23,6 +23,7 @@
 <link rel="import" href="../../../i18n/profile/page-02-i18n.html">
 <link rel="import" href="../../../redux/profile/page-02-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../mixins/animate-mixin.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
 <link rel="import" href="../../../../bower_components/polymer/lib/elements/dom-repeat.html">
 
@@ -46,70 +47,71 @@
             }
         </style>
         <!-- page-2 -->
-        <div class="row">
-            <div class="col-md-4">
-                <nylon-panel-card>
-                    <div slot="content">
-                        <div class="header-title">
-                            <div class="row">
-                                <div style="color:#0288D1;text-align:center">
-                                    [[i18n.page02.addsHome]]
-                                    <iron-icon icon="home"></iron-icon>
+        <div id="address">
+            <div class="row">
+                <div class="col-md-4">
+                    <nylon-panel-card>
+                        <div slot="content">
+                            <div class="header-title">
+                                <div class="row">
+                                    <div style="color:#0288D1;text-align:center">
+                                        [[i18n.page02.addsHome]]
+                                        <iron-icon icon="home"></iron-icon>
+                                    </div>
+                                    <p>
+                                        [[_address(home)]]
+                                    </p>
                                 </div>
-                                <p>
-                                    [[_address(home)]]
-                                </p>
                             </div>
                         </div>
-                    </div>
-                </nylon-panel-card>
-            </div>
-            <div class="col-md-4">
-                <nylon-panel-card>
-                    <div slot="content">
-                        <div class="header-title">
-                            <div class="row">
-                                <div style="color:#0288D1;text-align:center">
-                                    [[i18n.page02.addsMail]]
-                                    <iron-icon icon="mail"></iron-icon>
+                    </nylon-panel-card>
+                </div>
+                <div class="col-md-4">
+                    <nylon-panel-card>
+                        <div slot="content">
+                            <div class="header-title">
+                                <div class="row">
+                                    <div style="color:#0288D1;text-align:center">
+                                        [[i18n.page02.addsMail]]
+                                        <iron-icon icon="mail"></iron-icon>
+                                    </div>
+                                    <p>
+                                        [[_address(mail)]]
+                                    </p>
                                 </div>
-                                <p>
-                                    [[_address(mail)]]
-                                </p>
                             </div>
                         </div>
-                    </div>
-                </nylon-panel-card>
+                    </nylon-panel-card>
+                </div>
+
+                <div class="col-md-4">
+                    <nylon-panel-card>
+                        <div slot="content">
+                            <div class="header-title">
+                                <div class="row">
+                                    <div style="color:#0288D1;text-align:center">
+                                        [[i18n.page02.addsWork]]
+                                        <iron-icon icon="work"></iron-icon>
+                                    </div>
+                                    <p>
+                                        [[_address(work)]]
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </nylon-panel-card>
+                </div>
             </div>
 
-            <div class="col-md-4">
-                <nylon-panel-card>
-                    <div slot="content">
-                        <div class="header-title">
-                            <div class="row">
-                                <div style="color:#0288D1;text-align:center">
-                                    [[i18n.page02.addsWork]]
-                                    <iron-icon icon="work"></iron-icon>
-                                </div>
-                                <p>
-                                    [[_address(work)]]
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </nylon-panel-card>
+            <div class="row start-md middle-md" style="margin-top:5%">
+                <div class="col-md-3">
+                    <paper-button raised class="btn-primary" action="add" on-click="_openPanelRight">
+                        <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]][[i18n.page02.address]]
+                    </paper-button>
+                </div>
             </div>
-        </div>
-
-        <div class="row start-md middle-md" style="margin-top:5%">
-            <div class="col-md-3">
-                <paper-button raised class="btn-primary" action="add" on-click="_openPanelRight">
-                    <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]][[i18n.page02.address]]
-                </paper-button>
-            </div>
-        </div>
-        <div class="address" style="margin-top:2px">
-            <!-- <template is="dom-repeat" items='[[address]]' mutable-data>
+            <div class="address" style="margin-top:2px">
+                <!-- <template is="dom-repeat" items='[[address]]' mutable-data>
                 <nylon-panel-card style="margin-top:5px">
                     <div slot="content">
                         <div class="row between-md">
@@ -127,69 +129,70 @@
                     </div>
                 </nylon-panel-card>
             </template> -->
-            <vaadin-grid id='material' items='{{address}}'>
-                <vaadin-grid-column width="50px">
-                    <template class="header">
-                        <div style="text-align:center">[[i18n.common.no]]</div>
-                    </template>
-                    <template>
-                        <div style="text-align: center">[[autoIndex(index)]] </div>
-                    </template>
-                </vaadin-grid-column>
-                <vaadin-grid-column width="50%">
-                    <template class="header">[[i18n.page02.address]]</template>
-                    <template>
-                        [[_address(item)]]
-                        <!-- [[_prefixAddress('',item.home_number)]] [[_prefixAddress('ม.',item.village_no)]] [[_prefixAddress('หมู่บ้าน',item.village_name)]]
+                <vaadin-grid id='material' items='{{address}}'>
+                    <vaadin-grid-column width="50px">
+                        <template class="header">
+                            <div style="text-align:center">[[i18n.common.no]]</div>
+                        </template>
+                        <template>
+                            <div style="text-align: center">[[autoIndex(index)]] </div>
+                        </template>
+                    </vaadin-grid-column>
+                    <vaadin-grid-column width="50%">
+                        <template class="header">[[i18n.page02.address]]</template>
+                        <template>
+                            [[_address(item)]]
+                            <!-- [[_prefixAddress('',item.home_number)]] [[_prefixAddress('ม.',item.village_no)]] [[_prefixAddress('หมู่บ้าน',item.village_name)]]
                         [[_prefixAddress('',item.building)]] [[_prefixAddress('ซ.',item.alley)]] [[_prefixAddress('ถ.',item.road)]]
                         [[_prefixAddress('ต.',item.district)]] [[_prefixAddress('อ.',item.amphoe)]] [[_prefixAddress('จ.',item.province.province_th)]]
                         [[_prefixAddress('',item.zipcode)]] [[_prefixAddress('โทร.',item.telephone)]] [[_prefixAddress('แฟกซ์.',item.fax)]] -->
-                    </template>
-                </vaadin-grid-column>
-                <vaadin-grid-column>
-                    <template class="header">
-                        <div style="text-align: center">[[i18n.page02.addsHome]]</div>
-                    </template>
-                    <template>
-                        <div style="text-align: center">
-                            <paper-icon-button on-tap="onSelect" obj-name="home" raised icon="file-upload"></paper-icon-button>
-                        </div>
-                    </template>
-                </vaadin-grid-column>
-                <vaadin-grid-column>
-                    <template class="header">
-                        <div style="text-align: center">[[i18n.page02.addsMail]]</div>
-                    </template>
-                    <template>
-                        <div style="text-align: center">
-                            <paper-icon-button on-tap="onSelect" obj-name="mail" raised icon="file-upload"></paper-icon-button>
-                        </div>
-                    </template>
-                </vaadin-grid-column>
-                <vaadin-grid-column>
-                    <template class="header">
-                        <div style="text-align: center">[[i18n.page02.addsWork]]</div>
-                    </template>
-                    <template>
-                        <div style="text-align: center">
-                            <paper-icon-button on-tap="onSelect" obj-name="work" raised icon="file-upload"></paper-icon-button>
-                        </div>
-                    </template>
-                </vaadin-grid-column>
-                <vaadin-grid-column>
-                    <template class="header">
-                        <div style="text-align: center">[[i18n.common.tools]]</div>
-                    </template>
-                    <template>
-                        <span style="text-align: center">
+                        </template>
+                    </vaadin-grid-column>
+                    <vaadin-grid-column>
+                        <template class="header">
+                            <div style="text-align: center">[[i18n.page02.addsHome]]</div>
+                        </template>
+                        <template>
+                            <div style="text-align: center">
+                                <paper-icon-button on-tap="onSelect" obj-name="home" raised icon="file-upload"></paper-icon-button>
+                            </div>
+                        </template>
+                    </vaadin-grid-column>
+                    <vaadin-grid-column>
+                        <template class="header">
+                            <div style="text-align: center">[[i18n.page02.addsMail]]</div>
+                        </template>
+                        <template>
+                            <div style="text-align: center">
+                                <paper-icon-button on-tap="onSelect" obj-name="mail" raised icon="file-upload"></paper-icon-button>
+                            </div>
+                        </template>
+                    </vaadin-grid-column>
+                    <vaadin-grid-column>
+                        <template class="header">
+                            <div style="text-align: center">[[i18n.page02.addsWork]]</div>
+                        </template>
+                        <template>
+                            <div style="text-align: center">
+                                <paper-icon-button on-tap="onSelect" obj-name="work" raised icon="file-upload"></paper-icon-button>
+                            </div>
+                        </template>
+                    </vaadin-grid-column>
+                    <vaadin-grid-column>
+                        <template class="header">
+                            <div style="text-align: center">[[i18n.common.tools]]</div>
+                        </template>
+                        <template>
+                            <span style="text-align: center">
                             <paper-icon-button icon="[[i18n.button.edit.icon]]" action="edit" on-click="_openPanelRight"></paper-icon-button>
                             <paper-icon-button icon="[[i18n.button.delete.icon]]" on-click="_confirmDel"></paper-icon-button>
                         </span>
-                    </template>
-                </vaadin-grid-column>
-            </vaadin-grid>
-            <div class="no-content" hidden="{{address.length}}">
-                ไม่มีข้อมูล
+                        </template>
+                    </vaadin-grid-column>
+                </vaadin-grid>
+                <div class="no-content" hidden="{{address.length}}">
+                    ไม่มีข้อมูล
+                </div>
             </div>
         </div>
         <nylon-panel-right id="panelRight" title="[[i18n.page02.title]]">
@@ -321,7 +324,7 @@
          * @polymer
          * @extends {Polymer.Element}
          */
-        class Page02 extends CommonMixin(ReduxMixin(Polymer.Element)) {
+        class Page02 extends AnimateMixin(CommonMixin(ReduxMixin(Polymer.Element))) {
             /**
              * String providing the tag name to profile the element under.
              */
@@ -419,6 +422,8 @@
              */
             ready() {
                 super.ready()
+                var elem = this.$.address
+                this.fadeInDown(elem, 1, 300)
                 Polymer.RenderStatus.afterNextRender(this, function () {
                     // Nylon.dispatch('PROFILE_02_GET_LIST_REGION')
                     Nylon.dispatch('PROFILE_02_GET_LIST_PROVINCE')

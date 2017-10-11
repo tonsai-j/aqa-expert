@@ -12,6 +12,7 @@
 
 <link rel="import" href="../../layout/shared-styles.html">
 <link rel="import" href="../../redux-mixin.html">
+<link rel="import" href="../../mixins/animate-mixin.html">
 <link rel="import" href="../../redux/approve/approve-redux.html">
 <link rel="import" href="../../i18n/approve/main-i18n.html">
 <link rel="import" href="../../redux/profile/profile-redux.html">
@@ -26,7 +27,7 @@
             }
         </style>
 
-        <nylon-panel-card>
+        <nylon-panel-card id="approve">
             <div slot="content">
                 <div class="header-title">
                     [[i18n.approve.title]]
@@ -172,7 +173,7 @@
     </template>
 
     <script>
-        class PageApprove extends CommonMixin(ReduxMixin(Polymer.Element)) {
+        class PageApprove extends AnimateMixin(CommonMixin(ReduxMixin(Polymer.Element))) {
 
             static get is() {
                 return 'page-approve';
@@ -204,6 +205,8 @@
             }
             ready() {
                 super.ready();
+                var elem = this.$.approve
+                this.fadeInDown(elem, 1, 300)
                 Nylon.dispatch('APPROVE_GET_LISTS')
             }
             _openPanelRight(e) {
@@ -217,7 +220,7 @@
                 }
             }
             _card(e) {
-                console.log(e.model.item.id);
+                // console.log(e.model.item.id);
                 window.open('https://localhost:3000/api/report/assessor/cardId?id=' + e.model.item.id)
                 // Nylon.dispatch('APPROVE_GET_CARD', e.model.item.id)
             }

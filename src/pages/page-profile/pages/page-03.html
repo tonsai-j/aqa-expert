@@ -1,6 +1,7 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../layout/shared-styles.html">
 <link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../mixins/animate-mixin.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
 <link rel="import" href="../../../i18n/profile/page-03-i18n.html">
 <link rel="import" href="../../../redux/profile/page-03-redux.html">
@@ -23,7 +24,7 @@
     <template>
         <style include="flexbox-grid shared-styles"></style>
 
-        <nylon-panel-card>
+        <nylon-panel-card id="eduLevel">
             <div slot="content">
                 <div class="header-title">
                     [[i18n.page03.title]]
@@ -192,7 +193,7 @@
     </template>
 
     <script>
-        class Page03 extends CommonMixin(ReduxMixin(Polymer.Element)) {
+        class Page03 extends AnimateMixin(CommonMixin(ReduxMixin(Polymer.Element))) {
             static get is() {
                 return 'page-03';
             }
@@ -259,6 +260,8 @@
             }
             ready() {
                 super.ready();
+                var elem = this.$.eduLevel
+                this.fadeInDown(elem, 1, 300)
                 Nylon.dispatch('PROFILE_03_GET_EDU_LEVEL');
                 Nylon.dispatch('PROFILE_03_GET_TYPE_ACADEMY');
                 Nylon.dispatch('PROFILE_03_GET_ACADEMY', '');

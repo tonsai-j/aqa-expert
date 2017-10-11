@@ -19,6 +19,7 @@
 <link rel="import" href="../../../i18n/profile/page-12-i18n.html">
 <link rel="import" href="../../../redux/profile/page-02-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../mixins/animate-mixin.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
 
 <dom-module id="page-12">
@@ -42,7 +43,7 @@
         </style>
         <!-- page-12 -->
 
-        <nylon-panel-card>
+        <nylon-panel-card id="references">
             <div slot="content">
                 <div class="header-title">
                     [[i18n.page12.references]]
@@ -152,7 +153,7 @@
     </template>
 
     <script>
-        class Page12 extends CommonMixin(ReduxMixin(Polymer.Element)) {
+        class Page12 extends AnimateMixin(CommonMixin(ReduxMixin(Polymer.Element))) {
 
             static get is() {
                 return 'page-12';
@@ -185,7 +186,8 @@
 
             ready() {
                 super.ready();
-
+                var elem = this.$.references
+                this.fadeInDown(elem, 1, 300)
                 Polymer.RenderStatus.afterNextRender(this, function () {
 
                 });
