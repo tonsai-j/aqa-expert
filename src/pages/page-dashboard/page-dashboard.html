@@ -52,6 +52,16 @@
       paper-dialog {
         margin: 0
       }
+
+      #logout:hover {
+        color: #808080;
+        background-color: #f2f2f2;
+      }
+
+      #app:hover {
+        color: #000000;
+        background-color: #f2f2f2;
+      }
     </style>
 
     <div class="container">
@@ -66,7 +76,8 @@
               <img style="border-radius: 50%;margin-left:10px;" on-click="openAccountMenu" height="30px" width="30px" src="https://scontent.fbkk5-6.fna.fbcdn.net/v/t1.0-9/21730806_10214817299332471_1720520233013026164_n.jpg?_nc_eui2=v1%3AAeFfvggC3dXtjlNdscoftIinc428mqdp0MXye36T0AthdI8pHRR9aPqB2mrPFrz-elxjpK4H1PG3qPcyi0NGHYxafP5OMCXkXcq-6A6SKbY9-g&oh=31d7833d0b2e8cc296a75223a4bee41a&oe=5A84901F"
                 alt="">
               <!-- <paper-icon-button on-click="openAccountMenu" on-click="openAccountMenu"></paper-icon-button> -->
-              <paper-icon-button icon="apps" title="heart" on-click="openAppsMenu"></paper-icon-button>
+              <iron-icon id="app" style="border-radius: 50%; margin-left:15px; color:#8c8c8c;" icon="apps" on-click="openAppsMenu"></iron-icon>
+              <!-- <paper-icon-button icon="apps" title="heart" on-click="openAppsMenu"></paper-icon-button> -->
 
             </div>
 
@@ -91,7 +102,7 @@
               <div>
                 [[auth.email]]
               </div>
-              <paper-button style="text-align: center;margin-top:5px;" raised noink on-tap="logout">ออกจากระบบ</paper-button>
+              <paper-button id="logout" style="text-align: center;margin-top:5px;" raised noink on-tap="logout">ออกจากระบบ</paper-button>
 
             </div>
           </div>
