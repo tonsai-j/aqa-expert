@@ -2,7 +2,6 @@
 <link rel="import" href="../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../bower_components/vaadin-grid/vaadin-grid.html">
 <link rel="import" href="../../../bower_components/vaadin-grid/vaadin-grid-column.html">
-
 <link rel="import" href="../../components/nylon-panel-card/nylon-panel-card.html">
 <link rel="import" href="../../components/nylon-c3/nylon-c3.html">
 <link rel="import" href="./page-dashboard-app.html">
@@ -31,16 +30,6 @@
       .font-bone {
         @apply --nylon-font-mitr-family-bone;
       }
-
-      /* .container-dashboard */
-
-      /* #contentContainer, */
-
-      /* #wrapper, */
-
-      /* .card */
-
-      /* .row  */
 
       .container {
         background-color: #ffffff;
@@ -106,15 +95,6 @@
 
             </div>
           </div>
-
-          <!-- <div class="row">
-            <div class="font col-md-12">
-            </div>
-          </div> -->
-
-
-          <!-- <page-dashboard-app on-close="closeDialog"></page-dashboard-app> -->
-
         </paper-dialog>
       </div>
       <div class="user">
@@ -266,12 +246,12 @@
           },
           participant: {
             type: Object,
-            statePath: 'dashboard.participant',
-            observer: 'participant_change'
+            statePath: 'dashboard.participant'
           }
         }
 
       }
+
       openAppsMenu(e) {
         var element = e.currentTarget;
         this.$.dialog.positionTarget = element;
@@ -291,7 +271,7 @@
 
         if (this.auth.admin == true) {
           Nylon.dispatch('DASHBOARD_GET_EXPENSES')
-          Nylon.dispatch('DASHBOARD_GET_PARTICIPANT')
+          // Nylon.dispatch('DASHBOARD_GET_PARTICIPANT')
           // this.shadowRoot.querySelector('.user').style.display = 'none'
           // this.shadowRoot.querySelector('.admin').style.display = ''
 
@@ -302,48 +282,17 @@
           // Nylon.dispatch('DASHBOARD_GET_EXPENSES', '1909800788263')
           // this.shadowRoot.querySelector('.admin').style.display = 'none'
           // this.shadowRoot.querySelector('.user').style.display = ''
-
-
-
         }
       }
+
       logout() {
-        // setTimeout(() => {
-        //   Nylon.redirect('')
-        // }, 800);
+        Nylon.dispatch('authLogout')
         location.href = '';
-      }
-      formatMoney(inum) {  // ฟังก์ชันสำหรับแปลงค่าตัวเลขให้อยู่ในรูปแบบ เงิน
-        var s_inum = new String(inum);
-        var num2 = s_inum.split(".");
-        var n_inum = "";
-        if (num2[0] != undefined) {
-          var l_inum = num2[0].length;
-          for (var i = 0; i < l_inum; i++) {
-            if (parseInt(l_inum - i) % 3 == 0) {
-              if (i == 0) {
-                n_inum += s_inum.charAt(i);
-              } else {
-                n_inum += "," + s_inum.charAt(i);
-              }
-            } else {
-              n_inum += s_inum.charAt(i);
-            }
-          }
-        } else {
-          n_inum = inum;
-        }
-        if (num2[1] != undefined) {
-          n_inum += "." + num2[1];
-        }
-        return n_inum;
       }
 
       expenses_change(e) {
 
-
         if (this.auth.admin == true) {
-          console.log(this.$.chart1_1_admin)
 
           this.$.chart1_1_admin.generate({
             data: {
@@ -614,8 +563,6 @@
         }
       }
 
-
-      participant_change(e) { }
     }
 
     window.customElements.define(PageDashboard.is, PageDashboard);
