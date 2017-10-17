@@ -21,7 +21,7 @@ exports.post = function (req, res) {
                             address: [],
                             contact: {
                                 mail: {},
-                                home: {},
+                                // home: {}
                                 work: {}
                             },
                             education: [],
