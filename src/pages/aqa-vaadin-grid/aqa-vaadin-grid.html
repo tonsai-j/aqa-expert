@@ -3,9 +3,43 @@
 <dom-module id="aqa-vaadin-grid">
     <template>
         <style>
-            .grid::slotted(*) {
+            .grid ::slotted(*) {
+                color:green;
                 height: auto;
-                /* border: 1px solid #ddd; */
+                --divider-color: rgba(0, 0, 0, var(--dark-divider-opacity)); 
+                --vaadin-grid-header-cell: {
+                    color: white;
+                    font-size: 18px;
+                    background-color:#62a8ea;
+                    padding: 0.5rem;
+                    border-right:1px solid #ddd;
+                    text-align:center;
+                    font-family: MitrLight;
+                };
+                --vaadin-grid-body-cell: {
+                    color: rgba(0, 0, 0, var(--dark-primary-opacity));
+                    font-size: 1rem;
+                    border-right:1px solid #ddd;
+                    font-family: TrirongRegular;
+                    white-space: normal;
+                };
+
+                  --vaadin-grid-body-row-hover-cell: {
+                    background-color:#ECF9FA;
+                };  
+
+                 --vaadin-grid-body-row-selected-cell: {
+                    background-color: var(--paper-grey-100);
+                }; 
+                 --vaadin-grid-body-row-odd-cell: {
+                    background-color: #f3f7f9;
+                }; 
+            }
+
+
+
+
+            /* height: auto;
                 --divider-color: rgba(0, 0, 0, var(--dark-divider-opacity)); 
                
 
@@ -20,13 +54,11 @@
                 };
 
                 --vaadin-grid-body-cell: {
-                     /* height: 48px;  */
                     color: rgba(0, 0, 0, var(--dark-primary-opacity));
                     font-size: 1rem;
                     border-right:1px solid #ddd;
                     font-family: TrirongRegular;
                     white-space: normal;
-                    /* text-align:center; */
                 };
 
                   --vaadin-grid-body-row-hover-cell: {
@@ -38,11 +70,12 @@
                 }; 
                  --vaadin-grid-body-row-odd-cell: {
                     background-color: #f3f7f9;
-                }; 
+                };  */
 
-            }
 
-             vaadin-grid#material .cell {
+
+
+             /* vaadin-grid#material .cell {
                 overflow: hidden;
                 text-overflow: ellipsis;
                 padding-right: 56px;
@@ -90,7 +123,7 @@
 
             vaadin-grid#material vaadin-grid-sorter[direction=desc] iron-icon {
                 transform: scale(0.8) rotate(180deg) translateZ(0);
-            }
+            } */
         </style>
         <div class="grid">
             <slot></slot>
@@ -102,6 +135,9 @@
             static get properties() {
                 return {
                 }
+            }
+            ready(){
+                super.ready()
             }
         }
         window.customElements.define(AqaVaadinGrid.is, AqaVaadinGrid);
