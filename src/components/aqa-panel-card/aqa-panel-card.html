@@ -6,32 +6,38 @@
 <link rel="import" href="../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../bower_components/paper-progress/paper-progress.html">
-
-
-<dom-module id="nylon-panel-card">
+<link rel="import" href="../aqa-font/aqa-mitr-font.html">
+<link rel="import" href="../aqa-font/aqa-trirong-font.html">
+<dom-module id="aqa-panel-card">
     <template>
         <style>
-             :host {
-
+            :host {
                 display: block;
+            }
+
+            * {
+                /* TrirongLight MitrExtraLight */
+                font-family: MitrLight;
+                box-sizing: border-box;
             }
 
             .card {
                 position: relative;
                 background-color: #039BE5;
-                color: #FFF;
-                border-radius: 2px;
                 background-color: #fff;
-                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+             
+                border-radius: 4px;
+                -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+                box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
             }
+            
 
             .card ::slotted([slot=header]) {
-                border-bottom: #EEE solid 1px;
-                background-color: #F5F5F5;
+                border-radius: 4px;
                 height: 48px;
-                border-bottom: #EEE solid 1px;
-                font-size: 1rem;
-                color: #707070;
+                /* border-bottom: #EEE solid 1px; */
+                font-size: 1.2rem;
+                color: #37474f;
             }
 
             .card ::slotted([slot=footer]) {
@@ -125,8 +131,8 @@
     </template>
 
     <script>
-        class NylonPanelCard extends Polymer.Element {
-            static get is() { return 'nylon-panel-card'; }
+        class AqaPanelCard extends Polymer.Element {
+            static get is() { return 'aqa-panel-card'; }
             static get properties() {
                 return {
                     notifyMsg: String,
@@ -241,6 +247,6 @@
             }
         }
 
-        window.customElements.define(NylonPanelCard.is, NylonPanelCard);
+        window.customElements.define(AqaPanelCard.is, AqaPanelCard);
     </script>
 </dom-module>

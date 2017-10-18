@@ -4,6 +4,9 @@
 
 <link rel="import" href="../../components/aqa-form/aqa-input.html">
 <link rel="import" href="../../components/aqa-panel/aqa-panel.html">
+<link rel="import" href="../../components/aqa-panel-card/aqa-panel-card.html">
+<link rel="import" href="../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+
 
 <dom-module id="page-404">
   <template>
@@ -16,14 +19,23 @@
     [[test.common.myApp]]
     Oops you hit a 404. <a href="[[rootPath]]">Head back to home.</a>
     <br><br><br><br>
-
-    <br>
     <aqa-panel>
         <aqa-input id="x" label="ชื่อผู้ใช้งาน" value="{{xx}}" error-massage="Error Massage" required></aqa-input>
+        <button on-click="abc">validate</button>
+        <button on-click="reset">reset</button>
     </aqa-panel>
+    <aqa-panel-card>
+      <app-toolbar slot="header">
+        <div main-title>โครงการนวัตกรรม / สิ่งประดิษฐ์</div>
+      </app-toolbar>
+      <div slot="content">
+        <aqa-input id="x" label="ชื่อผู้ใช้งาน" value="{{xx}}" error-massage="Error Massage" required></aqa-input>
+        <button on-click="abc">validate</button>
+        <button on-click="reset">reset</button>
+      </div>
+    </aqa-panel-card>
     
-    <button on-click="abc">validate</button>
-    <button on-click="reset">reset</button>
+    
     
   </template>
 
