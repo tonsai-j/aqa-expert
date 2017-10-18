@@ -2,107 +2,32 @@
 <link rel="import" href="../../components/nylon-rating/nylon-rating.html">
 <link rel="import" href="../../../bower_components/vaadin-grid/vaadin-grid.html">
 
+<link rel="import" href="../../components/aqa-font/aqa-mitr-font.html">
+<link rel="import" href="../../components/aqa-font/aqa-trirong-font.html">
 
+<link rel="import" href="../../../bower_components/paper-icon-button/paper-icon-button.html">
+
+<link rel="import" href="../aqa-vaadin-grid/aqa-vaadin-grid.html">
+
+<link rel="import" href="../../components/aqa-button/aqa-button.html">
+<link rel="import" href="../../components/aqa-icon-button/aqa-icon-button.html">
+<link rel="import" href="../../components/aqa-title/aqa-title.html">
+<link rel="import" href="../../components/aqa-breadcrumb/aqa-breadcrumb.html">
 <dom-module id="page-tests">
     <template>
          <style>
-            vaadin-grid#material {
-                height: auto;
-                 font-family: Roboto, sans-serif;
-                --divider-color: rgba(0, 0, 0, var(--dark-divider-opacity)); 
-
-                --vaadin-grid-cell: {
-                    padding: 1rem;
-                    border-right:1px solid #ddd;
-                    /* text-align: center; */
-                }
-                ;
-
-                --vaadin-grid-header-cell: {
-                    height: 64px;
-                    color: white;
-                    font-size: 18px;
-                    background-color:#62a8ea;
-                    padding: 1rem;
-                }
-                ;
-
-                --vaadin-grid-body-cell: {
-                    height: 48px;
-                    color: rgba(0, 0, 0, var(--dark-primary-opacity));
-                    font-size: 13px;
-                }
-                ;
-
-                  --vaadin-grid-body-row-hover-cell: {
-                    /* border-bottom:2px solid #62a8ea; */
-                    background-color:#ECF9FA;
-                };  
-
-                 --vaadin-grid-body-row-selected-cell: {
-                    background-color: var(--paper-grey-100);
-                }
-                ; 
-                 --vaadin-grid-body-row-odd-cell: {
-                    background-color: #f3f7f9;
-                }; 
-
-            }
-
-             vaadin-grid#material .cell {
-                overflow: hidden;
-                text-overflow: ellipsis;
-                padding-right: 56px;
-            }
-
-            vaadin-grid#material .cell.last {
-                padding-right: 24px;
-            }
-
-            vaadin-grid#material .cell.numeric {
-                text-align: right;
-            }
-
-            vaadin-grid#material paper-checkbox {
-                --primary-color: var(--paper-indigo-500);
-                margin: 0 24px;
-            }
-
-            vaadin-grid#material vaadin-grid-sorter {
-                --vaadin-grid-sorter-arrow: {
-                    display: none !important;
-                }
-                ;
-            }
-
-            vaadin-grid#material vaadin-grid-sorter .cell {
-                flex: 1;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            vaadin-grid#material vaadin-grid-sorter iron-icon {
-                transform: scale(0.8) translateZ(0);
-                transition: all 0.3s;
-            }
-
-            vaadin-grid#material vaadin-grid-sorter:not([direction]) iron-icon {
-                color: rgba(0, 0, 0, var(--dark-disabled-opacity));
-            }
-
-            vaadin-grid#material vaadin-grid-sorter[direction] {
-                color: rgba(0, 0, 0, var(--dark-primary-opacity));
-            }
-
-            vaadin-grid#material vaadin-grid-sorter[direction=desc] iron-icon {
-                transform: scale(0.8) rotate(180deg) translateZ(0);
-            } 
+           
+          
         </style> 
-
-        <div>PageTests</div>
- 
-        <vaadin-grid id="material" items="[[items]]" size="200">   
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <aqa-title>ทดสอบ</aqa-title>
+        <aqa-breadcrumb items="[[datas]]"></aqa-breadcrumb>
+        <aqa-vaadin-grid>
+            <vaadin-grid items="[[items]]" size="200">   
             <vaadin-grid-column width="66px" flex="0">
                 <template class="header">
                     <div class="cell">
@@ -127,13 +52,22 @@
                     <div class="cell">Email</div>
                 </template>
                 <template>
-                    <div class="cell">[[item.email]]</div>
+                    <div class="cell textTop">[[item.email]]</div>
                 </template>
             </vaadin-grid-column>
 
-        </vaadin-grid> 
-         <nylon-rating></nylon-rating> 
-
+            </vaadin-grid> 
+        </aqa-vaadin-grid>
+      
+        
+         <!-- <nylon-rating></nylon-rating>  -->
+        <aqa-button type="primary" icon="done">บันทึก</aqa-button>
+        <aqa-icon-button label="showMe">
+            <paper-icon-button icon="done"></paper-icon-button>
+        </aqa-icon-button>
+        <!-- <button class="btn btn-primary">บันทึก</button>
+        <button class="btn btn-success">ใช้งาน</button>
+        <button class="btn btn-default">บันทึก</button> -->
         </template>
 
         <script>
@@ -148,12 +82,25 @@
                             type:Array,
                             value:[
                                 {
-                                   name:'sasd',
+                                   name:'ทดสอบ',
                                    email:'12334@mail.com'
                                 },
                                 {
-                                   name:'sasd22',
-                                   email:'333@mail.com'
+                                   name:'ครูไทย',
+                                   email:'kruthai.com'
+                                }
+                            ]
+                        },
+                        datas:{
+                            type:Array,
+                            value:[
+                                {
+                                    label:'test',
+                                    url:'#test'
+                                },
+                                {
+                                    label:'test',
+                                    url:'#test'
                                 }
                             ]
                         }
