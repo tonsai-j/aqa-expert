@@ -1,0 +1,20 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<dom-module id="aqa-header">
+    <template>
+        <style></style>
+        <div>
+            <slot></slot>
+        </div>
+    </template>
+    <script>
+        class AqaHeader extends Polymer.Element {
+            static get is() { return 'aqa-header'; }
+            static get properties() {
+                return {
+                }
+            }
+        }
+        window.customElements.define(AqaHeader.is, AqaHeader);
+
+    </script>
+</dom-module>

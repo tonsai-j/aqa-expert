@@ -24,6 +24,7 @@
         <br>
         <br>
         <br>
+        
         <aqa-title>ทดสอบ</aqa-title>
         <aqa-breadcrumb items="[[datas]]"></aqa-breadcrumb>
         <aqa-vaadin-grid>
@@ -52,7 +53,9 @@
                     <div class="cell">Email</div>
                 </template>
                 <template>
-                    <div class="cell textTop">[[item.email]]</div>
+                    <aqa-icon-button label="showMe">
+                        <paper-icon-button icon="done"></paper-icon-button>
+                    </aqa-icon-button>
                 </template>
             </vaadin-grid-column>
 
@@ -62,9 +65,7 @@
         
          <!-- <nylon-rating></nylon-rating>  -->
         <aqa-button type="primary" icon="done">บันทึก</aqa-button>
-        <aqa-icon-button label="showMe">
-            <paper-icon-button icon="done"></paper-icon-button>
-        </aqa-icon-button>
+       
         <!-- <button class="btn btn-primary">บันทึก</button>
         <button class="btn btn-success">ใช้งาน</button>
         <button class="btn btn-default">บันทึก</button> -->
