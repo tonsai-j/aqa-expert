@@ -1,0 +1,70 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../aqa-font/aqa-trirong-font.html">
+
+<dom-module id="aqa-panel">
+    <template>
+        <style>
+            * {
+                font-family: TrirongLight;
+                box-sizing: border-box;
+            }
+
+            .panel {
+                position: relative;
+                margin-bottom: 30px;
+                border-width: 0;
+
+                background-color: #fff;
+             
+                border-radius: 4px;
+                -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+                box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+            }
+
+
+            .panel-heading {
+                position: relative;
+                padding: 0;
+                border-bottom: 1px solid transparent;
+                border-top-left-radius: 3px;
+                border-top-right-radius: 3px;
+            }
+
+            .panel-title {
+                display: block;
+                padding: 20px 30px;
+                font-size: 18px;
+                color: #37474f;
+            }
+
+            .panel-body{
+                padding-top: 0;
+                position: relative;
+                padding: 0 30px 30px 30px;
+            }
+        </style>
+
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Extended</h3>
+            </div>
+            <div class="panel-body">
+                <slot></slot>
+            </div>
+        </div>
+
+    </template>
+
+    <script>
+        class AqaPanel extends Polymer.Element {
+            static get is() { return 'aqa-panel' }
+            static get properties() {
+                return {
+                }
+            }
+
+        }
+
+        window.customElements.define(AqaPanel.is, AqaPanel);
+    </script>
+</dom-module>

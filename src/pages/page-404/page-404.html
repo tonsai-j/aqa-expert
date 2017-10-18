@@ -2,6 +2,9 @@
 <link rel="import" href="../../redux-mixin.html">
 <link rel="import" href="../../layout/shared-styles.html">
 
+<link rel="import" href="../../components/aqa-form/aqa-input.html">
+<link rel="import" href="../../components/aqa-panel/aqa-panel.html">
+
 <dom-module id="page-404">
   <template>
     <style include="shared-styles">
@@ -12,6 +15,16 @@
     </style>
     [[test.common.myApp]]
     Oops you hit a 404. <a href="[[rootPath]]">Head back to home.</a>
+    <br><br><br><br>
+
+    <br>
+    <aqa-panel>
+        <aqa-input id="x" label="ชื่อผู้ใช้งาน" value="{{xx}}" error-massage="Error Massage" required></aqa-input>
+    </aqa-panel>
+    
+    <button on-click="abc">validate</button>
+    <button on-click="reset">reset</button>
+    
   </template>
 
   <script>
@@ -28,6 +41,15 @@
           }
         };
       }
+
+      abc(){
+        this.$.x.validate()
+      }
+
+      reset(){
+        this.$.x.reset()
+      }
+
     }
 
     window.customElements.define(Page404.is, Page404);
