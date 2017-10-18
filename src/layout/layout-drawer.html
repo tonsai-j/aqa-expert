@@ -30,7 +30,7 @@
     <template>
         <style include="flexbox-grid flexbox-grid-remove-padding"></style>
         <style>
-             :host {
+            :host {
                 --main-color: #e0e0e0
             }
 
@@ -39,10 +39,11 @@
                 -webkit-font-smoothing: antialiased;
             }
 
-             :host {
+            :host {
                 display: block;
                 z-index: 1;
             }
+
             /* .drawer-list {
                 margin: 0 20px;
             }
@@ -89,14 +90,62 @@
                 background-color: #232C33;
             }
 
+            iron-selector>.menu-item {
+                cursor: pointer;
+                font-family: mitr-light, sans-serif;
+                -webkit-font-smoothing: antialiased;
+                background-color: #263238;
+                /* color: #efeff1; */
+                color: #b0bec5;
+            }
+
+            .menu-item {
+                padding:3px 10px 3px 30px;
+                display: -webkit-flex;
+                display: flex;
+                -webkit-align-items: center;
+                align-items: center;
+
+
+                --paper-item-min-height: 30px;
+                line-height: 30px;
+                font-size: 14px;
+            }
+
+            iron-selector>.menu-item:hover {
+                background-color: #192125;
+                color: #ffffff;
+            }
+
+            iron-selector>.menu-item.iron-selected {
+                color: #ffffff;
+                background-color: #232C33;
+            }
+
+            .menu-item > div {
+                padding-left:5px;
+            }
+
+
+
+
+
+
             .title-menu {
-                height: 34px;
+                display: -webkit-flex;
+                display: flex;
+                -webkit-align-items: center;
+                align-items: center;
+                -webkit-justify-content: space-between;
+                justify-content: space-between;
+
+                height: 45px;
                 padding-left: 16px;
-                line-height: 34px;
                 background-color: #3583CB;
-                border-bottom: 1px solid #7b7bec;
+                border-bottom: 1px solid #333;
                 color: #efeff1;
                 cursor: pointer;
+
             }
 
             iron-icon.icon-menu {
@@ -137,6 +186,7 @@
                 height: 100vh;
                 /* position:relative; */
             }
+
             /* .borderz {
                 border: 1px solid red;
             } */
@@ -171,16 +221,20 @@
                         <div name="menu">
                             <template is="dom-repeat" items={{menuIsUse}} as="sub_title" index-as="main_index">
                                 <div class="title-menu" on-click="toggle">
-                                    <paper-icon-button icon="my-icons:expand-more"></paper-icon-button> [[_changeTotext(sub_title.page_name)]]
+                                    [[_changeTotext(sub_title.page_name)]]
+                                    <paper-icon-button icon="my-icons:expand-more"></paper-icon-button>
                                 </div>
                                 <iron-collapse id="collapse-[[main_index]]" opened>
                                     <iron-selector class="ironmenu" selected="[[page]]" attr-for-selected="name" role="navigation">
                                         <template is="dom-repeat" items={{sub_title.sub_menu}}>
-                                            <paper-icon-item indexmain="[[main_index]],[[index]]" name="[[item.href]]" href="[[item.href]]" on-click="_redirect">
+                                            <div class="menu-item" indexmain="[[main_index]],[[index]]" name="[[item.href]]" href="[[item.href]]" on-click="_redirect">
                                                 <iron-icon icon="[[_changeTotext(item.icon)]]" slot="item-icon"></iron-icon>
-                                                <!-- [[checklingth(item.label)]] -->
+                                                <div style$=[[checklingth(item.label)]]>[[_changeTotext(item.label)]]</div>
+                                            </div>
+                                            <!-- <paper-icon-item indexmain="[[main_index]],[[index]]" name="[[item.href]]" href="[[item.href]]" on-click="_redirect">
+                                                <iron-icon icon="[[_changeTotext(item.icon)]]" slot="item-icon"></iron-icon>
                                                <div style$=[[checklingth(item.label)]]>[[_changeTotext(item.label)]]</div>  
-                                            </paper-icon-item>
+                                            </paper-icon-item> -->
                                         </template>
                                     </iron-selector>
                                 </iron-collapse>
@@ -493,7 +547,7 @@
                     }
                 }
             }
-            checklingth(text){
+            checklingth(text) {
                 if (this._changeTotext(text).length >= 25) {
                     return 'padding-left: 13px;'
                 } else {
