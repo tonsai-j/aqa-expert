@@ -9,10 +9,49 @@
 <link rel="import" href="../../components/aqa-icon-button/aqa-icon-button.html">
 <link rel="import" href="../../components/aqa-title/aqa-title.html">
 <link rel="import" href="../../components/aqa-breadcrumb/aqa-breadcrumb.html">
+
+<link rel="import" href="../../../bower_components/iron-icons/social-icons.html">
+
+<link rel="import" href="../../components/aqa-header/aqa-header.html">
+
 <dom-module id="page-tests">
     <template>
-        <aqa-title>ทดสอบ</aqa-title>
-        <aqa-breadcrumb items="[[datas]]"></aqa-breadcrumb>
+        <style>
+            .flex-container{
+                display: flex;
+                justify-content: space-between;
+            }
+            .header-content>b{
+                font-family: MitrLight;
+            }
+            .icon{
+                --iron-icon-height: 32px;
+                --iron-icon-width: 32px;
+                margin: 0.4rem;
+                --iron-icon-fill-color:#37474F;
+            }
+        </style>
+        <div class="flex-container">
+            <div class="flex-item">
+                <aqa-title>ทดสอบ</aqa-title>
+                <aqa-breadcrumb items="[[datas]]"></aqa-breadcrumb>
+            </div>
+           <div class="flex-item" style="display:flex">
+               <div style="margin:auto">
+                    <div class="header-content">
+                        <b>ผู้ประเมินระดับการศึกษาขั้นพื้นฐาน (ปฐมวัย)</b>
+                    </div>
+                    <div class="header-content" style="text-align:right">
+                        <b>รองศาสตร์จารย์บรรเจิด เริศฤดี</b>
+                    </div>
+               </div>
+                <div style="margin:auto">
+                    <iron-icon class="icon" icon="social:person"></iron-icon>
+                </div>
+           </div>
+        </div>
+       
+        
         <aqa-vaadin-grid>
             <vaadin-grid items="[[items]]" size="200">   
             <vaadin-grid-column width="66px" flex="0">
