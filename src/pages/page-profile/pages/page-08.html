@@ -192,7 +192,7 @@
             ready() {
                 super.ready();
                 var elem = this.$.research
-                this.fadeInDown(elem, 1, 300)
+                //this.fadeInDown(elem, 1, 300)
                 Polymer.RenderStatus.afterNextRender(this, function () {
                     Nylon.dispatch('PROFILE_08_GET_LIST_TYPE_RESEARCH')
                 });

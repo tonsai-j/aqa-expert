@@ -423,7 +423,7 @@
             ready() {
                 super.ready()
                 var elem = this.$.address
-                this.fadeInDown(elem, 1, 300)
+                //this.fadeInDown(elem, 1, 300)
                 Polymer.RenderStatus.afterNextRender(this, function () {
                     // Nylon.dispatch('PROFILE_02_GET_LIST_REGION')
                     Nylon.dispatch('PROFILE_02_GET_LIST_PROVINCE')

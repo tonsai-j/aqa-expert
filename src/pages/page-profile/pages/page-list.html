@@ -41,11 +41,12 @@
                 height: 10em;
                 color: #BDBDBD;
             }
-        </style>{{checkStyle(setShow)}}
-        <paper-progress hidden={{setShow}} indeterminate class="red"></paper-progress>
+        </style>
+        <!-- {{checkStyle(setShow)}} -->
+        <!-- <paper-progress hidden={{setShow}} indeterminate class="red"></paper-progress>
         <div class="row middle-md  center-md" id='loader'>
             <iron-icon id="icon-load" icon="view-list"></iron-icon>
-        </div>
+        </div> -->
         <iron-pages selected="{{selected}}" attr-for-selected="name" selected-item="{{itemChanged}}" id="ironPageMenu">
             <page-01 name="ข้อมูลพื้นฐาน"></page-01>
             <page-02 name="ที่อยู่ในการติดต่อ"></page-02>
@@ -113,13 +114,13 @@
             ready() {
                 super.ready();
             }
-            checkStyle(setShow) {
-                if (setShow) {
-                    this.$.loader.style = 'display: none;'
-                } else {
-                    this.$.loader.style = 'display: block;'
-                }
-            }
+            // checkStyle(setShow) {
+            //     if (setShow) {
+            //         this.$.loader.style = 'display: none;'
+            //     } else {
+            //         this.$.loader.style = 'display: block;'
+            //     }
+            // }
             // _listMenu() {
             //     for (var i = 0; i < this.listMenu.length; i++) {
             //         var newElement = document.createElement(this.listMenu[i]['component']);
