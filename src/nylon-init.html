@@ -31,8 +31,7 @@
     </style>
 
     <nylon-dialog></nylon-dialog>
-    <layout-main id="layoutMain" path-name="[[pathName]]" hidden$="[[checkNomal(login,dashboard)]]">
-      
+    <layout-main id="layoutMain" path-name="[[pathName]]">
       <nylon-pages id="nylonPage">
         <page-register path="/"></page-register>
         <page-profile path="/profile/:name"></page-profile>
@@ -42,13 +41,8 @@
         <!-- <page-401 path="*"></page-401> -->
         <page-404 path="*"></page-404>
       </nylon-pages>
-
     </layout-main>
-    <page-register path="/" hidden$="[[checkLoginPage(login,dashboard)]]"></page-register>
-    <page-dashboard path="/dashboard" rule hidden$="[[checkDashboard(login,dashboard)]]"></page-dashboard>
-
-
-
+   
 
 
   </template>
