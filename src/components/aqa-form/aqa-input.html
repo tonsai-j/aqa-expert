@@ -100,7 +100,7 @@
                     <span>*</span>
                 </template>
             </label>
-            <input type="text" class="form-control" placeholder="[[placeholder]]" value="{{value::input}}" has-error$="{{hasError}}">
+            <input type$="[[type]]" class="form-control" placeholder="[[placeholder]]" value="{{value::input}}" has-error$="{{hasError}}">
             <template is="dom-if" if="[[hasError]]">
                 <small class="help-block" data-fv-validator="notEmpty" data-fv-for="username" data-fv-result="INVALID">[[errorMassage]]</small>
             </template>
@@ -143,6 +143,10 @@
                     allowedPattern:{
                         type:String,
                         value:""
+                    },
+                    type:{
+                        type:String,
+                        value:'text'
                     }
                 }
             }
