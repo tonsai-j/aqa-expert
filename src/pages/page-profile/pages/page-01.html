@@ -305,7 +305,7 @@
             ready() {
                 super.ready();
                 var elem = this.$.basic
-                this.fadeInDown(elem, 1, 500)
+                //this.fadeInDown(elem, 1, 500)
                 Polymer.RenderStatus.afterNextRender(this, function () {
                     Nylon.dispatch('PROFILE_01_GET_LIST_ACADAMIC_POSITION')
                     Nylon.dispatch('PROFILE_01_GET_LIST_GENDER')
