@@ -161,13 +161,13 @@
                 this.set('isDashboard', this.currentPage === 'หน้าหลัก')
             }
             _changePage(e) {
-                if (typeof this.info.id === 'undefined') {
-                    Nylon.redirect('/register');
-                } else {
-                    let page = e.currentTarget.name
-                    this.set('isDashboard', page === this.i18n.page00.mainPage)
-                    Nylon.redirect('/profile/' + page);
-                }
+                // if (typeof this.info.id === 'undefined') {
+                //     Nylon.redirect('/register');
+                // } else {
+                //     let page = e.currentTarget.name
+                //     this.set('isDashboard', page === this.i18n.page00.mainPage)
+                //     Nylon.redirect('/profile/' + page);
+                // }
             }
             // _disabled() {
             //     console.log(this.props);
