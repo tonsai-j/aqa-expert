@@ -87,11 +87,11 @@
                                 <aqa-input class="required" label="[[i18n.page01.prefix_th]]" value="{{data.prefix_th}}" error-massage="Error Massage" required></aqa-input>
                                 <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.prefix_th]]:" value="{{data.prefix_th}}"></nylon-input> -->
                             </div>
-                            <div class="col-md-3 col-md-offset-1">
+                            <div class="col-md-4">
                                 <aqa-input class="required" label="[[i18n.page01.firstname_th]]" value="{{data.firstname_th}}" error-massage="Error Massage" required></aqa-input>
                                 <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.firstname_th]]:" value="{{data.firstname_th}}"></nylon-input> -->
                             </div>
-                            <div class="col-md-3 col-md-offset-1">
+                            <div class="col-md-4">
                                     <aqa-input class="required" label="[[i18n.page01.lastname_th]]" value="{{data.lastname_th}}" error-massage="Error Massage" required></aqa-input>
                                 <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.lastname_th]]:" value="{{data.lastname_th}}"></nylon-input> -->
                             </div>
@@ -101,17 +101,17 @@
                                     <aqa-input class="required" label="[[i18n.page01.prefix_en]]" value="{{data.prefix_en}}" error-massage="Error Massage" required></aqa-input>
                                 <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.prefix_en]]:" value="{{data.prefix_en}}"></nylon-input> -->
                             </div>
-                            <div class="col-md-3 col-md-offset-1">
+                            <div class="col-md-4">
                                     <aqa-input class="required" label="[[i18n.page01.firstname_en]]" value="{{data.firstname_en}}" error-massage="Error Massage" required></aqa-input>
                                 <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.firstname_en]]:" value="{{data.firstname_en}}"></nylon-input> -->
                             </div>
-                            <div class="col-md-3 col-md-offset-1">
+                            <div class="col-md-4">
                                     <aqa-input class="required" label="[[i18n.page01.lastname_en]]" value="{{data.lastname_en}}" error-massage="Error Massage" required></aqa-input>
                                 <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.lastname_en]]:" value="{{data.lastname_en}}"></nylon-input> -->
                             </div>
                         </div>
                         <div class="row middle-md ">
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <!-- {{data.gender_id}}// -->
                                 <nylon-combo-box always-float-label label="[[i18n.page01.gender]]" items='{{genderList}}' value="{{data.gender_id}}" item-label-path="gender_name_th"
                                     item-value-path="id" on-selected-item-changed="getObject" object-name="data.gender" class="required"
@@ -121,7 +121,7 @@
                                     </template>
                                 </nylon-combo-box>
                             </div>
-                            <div class="col-md-3 col-md-offset-1">
+                            <div class="col-md-4 col-md-offset-1">
                                 <nylon-combo-box always-float-label label="[[i18n.page01.ethnicity]]" items='{{nationalityList}}' value="{{data.race_id}}"
                                     item-label-path="nationality_name_th" item-value-path="id" on-selected-item-changed="getObject"
                                     object-name="data.race" class="required" required>
@@ -140,7 +140,7 @@
                                     <iron-icon icon="arrow-drop-down" slot="suffix" suffix style="position: absolute;
                                     top: 32px; right: 16px; cursor: pointer;" on-tap="_openDropDown"></iron-icon> -->
                             </div>
-                            <div class="col-md-3 col-md-offset-1">
+                            <div class="col-md-4">
                                 <nylon-combo-box always-float-label label="[[i18n.page01.religion]]" items='{{religionList}}' value="{{data.religion_id}}"
                                     item-label-path="religion_name_th" item-value-path="id" on-selected-item-changed="getObject"
                                     object-name="data.religion" class="required" required>
@@ -160,7 +160,7 @@
                                     </template>
                                 </nylon-combo-box>
                             </div>
-                            <div class="col-md-3 col-md-offset-1">
+                            <div class="col-md-4">
                                 <nylon-combo-box always-float-label label="[[i18n.page01.status]]" items='{{statusList}}' value="{{data.status_id}}" item-label-path="work_status_name_th"
                                     item-value-path="id" on-selected-item-changed="getObject" object-name="data.status" class="required"
                                     required>
@@ -169,7 +169,7 @@
                                     </template>
                                 </nylon-combo-box>
                             </div>
-                            <div class="col-md-3 col-md-offset-1">
+                            <div class="col-md-4">
                                 <nylon-combo-box always-float-label label="[[i18n.page01.academic]]" items='{{academicList}}' value="{{data.type_academic_id}}"
                                     item-label-path="academic_position_name_th" item-value-path="id" on-selected-item-changed="getObject"
                                     object-name="data.type_academic" class="required" required>
@@ -180,31 +180,31 @@
                             </div>
                         </div>
                         <div class="row middle-md ">
-                            <div class="col-md-3">{{_calcAge(data.birth_date)}}
+                            <div class="col-md-2">
+                                    <aqa-input class="required" label="[[i18n.page01.age]]" value="[[age]]" error-massage="Error Massage" required></aqa-input>
+                                <!-- <nylon-input always-float-label label="[[i18n.page01.age]]:" value="[[age]]" disabled></nylon-input> -->
+                            </div>
+                            <div class="col-md-3 col-md-offset-1">{{_calcAge(data.birth_date)}}
                                 <!-- <nylon-input always-float-label label="Name:"></nylon-input> -->
                                 <!-- <nylon-date-picker id="date" label="[[i18n.page01.birth]]:" class="required" required selected="{{data.birth_date}}" show-bc ></nylon-date-picker> -->
                                 <aqa-input class="required" label="[[i18n.page01.birth]]" value="{{data.birth_date}}" error-massage="Error Massage" required></aqa-input>
                                 <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.birth]]:" type="date" value="{{data.birth_date}}"></nylon-input> -->
                             </div>
-                            <div class="col-md-3 col-md-offset-1">
-                                    <aqa-input class="required" label="[[i18n.page01.age]]" value="[[age]]" error-massage="Error Massage" required></aqa-input>
-                                <!-- <nylon-input always-float-label label="[[i18n.page01.age]]:" value="[[age]]" disabled></nylon-input> -->
-                            </div>
-                            <div class="col-md-3 col-md-offset-1">
+                            <div class="col-md-4 col-md-offset-1">
                                     <aqa-input class="required" label="[[i18n.page01.mobile]]" value="{{data.mobile}}" error-massage="Error Massage" required></aqa-input>
                                 <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.mobile]]:" value="{{data.mobile}}"></nylon-input> -->
-                            </div>
+                            </div> 
                         </div>
                         <div class="row middle-md ">
                             <div class="col-md-3">
                                     <aqa-input class="required" label="[[i18n.page01.date_of_issue]]" value="{{data.issue_date}}" error-massage="Error Massage" required></aqa-input>
                                 <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.date_of_issue]]:" type="date" value="{{data.issue_date}}"></nylon-input> -->
                             </div>
-                            <div class="col-md-3 col-md-offset-1">
+                            <div class="col-md-4">
                                     <aqa-input class="required" label="[[i18n.page01.expiration_date]]" value="{{data.expire_date}}" error-massage="Error Massage" required></aqa-input>
                                 <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.expiration_date]]:" type="date" value="{{data.expire_date}}"></nylon-input> -->
                             </div>
-                            <div class="col-md-3 col-md-offset-1">
+                            <div class="col-md-4">
                                     <aqa-input class="required" label="[[i18n.page01.email]]" value="{{data.email}}" error-massage="Error Massage" required></aqa-input>
                                 <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.email]]:" value="{{data.email}}"></nylon-input> -->
                             </div>
