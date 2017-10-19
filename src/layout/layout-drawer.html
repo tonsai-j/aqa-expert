@@ -25,6 +25,7 @@
 <link rel="import" href="../redux-mixin.html">
 <link rel="import" href="../i18n/menu-i18n.html">
 <link rel="import" href="../my-icons.html">
+<link rel="import" href="../components/apa-icon/aqa-icon-menu.html">
 
 <dom-module id="layout-drawer">
     <template>
@@ -228,8 +229,8 @@
                                     <iron-selector class="ironmenu" selected="[[page]]" attr-for-selected="name" role="navigation">
                                         <template is="dom-repeat" items={{sub_title.sub_menu}}>
                                             <div class="menu-item" indexmain="[[main_index]],[[index]]" name="[[item.href]]" href="[[item.href]]" on-click="_redirect">
-                                                <iron-icon icon="[[_changeTotext(item.icon)]]" slot="item-icon"></iron-icon>
-                                                <div style$=[[checklingth(item.label)]]>[[_changeTotext(item.label)]]</div>
+                                                <iron-icon icon="[[item.icon]]" slot="item-icon"></iron-icon>
+                                                <div>[[item.label]]</div>
                                             </div>
                                             <!-- <paper-icon-item indexmain="[[main_index]],[[index]]" name="[[item.href]]" href="[[item.href]]" on-click="_redirect">
                                                 <iron-icon icon="[[_changeTotext(item.icon)]]" slot="item-icon"></iron-icon>
@@ -315,21 +316,27 @@
                                         sub_menu: [
                                             {
                                                 page_name: 'page-profile/ข้อมูลพื้นฐาน',
-                                                icon: 'i18n.menu.profile.icon',
-                                                label: 'i18n.page00.basic',
+                                                icon: 'aqa-icon-menu:info',
+                                                label: 'ข้อมูลพื้นฐาน',
                                                 href: '/profile/ข้อมูลพื้นฐาน'
                                             },
                                             {
                                                 page_name: 'page-profile/ที่อยู่ในการติดต่อ',
-                                                icon: 'i18n.menu.profile.icon',
-                                                label: 'i18n.page00.address',
+                                                icon: 'aqa-icon-menu:address',
+                                                label: 'ที่อยู่ในการติดต่อ',
                                                 href: '/profile/ที่อยู่ในการติดต่อ'
                                             },
                                             {
                                                 page_name: 'page-profile/บัญชีธนาคาร',
-                                                icon: 'i18n.menu.profile.icon',
-                                                label: 'i18n.page00.bank',
+                                                icon: 'aqa-icon-menu:bank',
+                                                label: 'บัญชีธนาคาร',
                                                 href: '/profile/บัญชีธนาคาร'
+                                            },
+                                            {
+                                                page_name: 'page-profile/ความสามารถอื่นๆ',
+                                                icon: 'aqa-icon-menu:other',
+                                                label: 'ความสามารถอื่นๆ',
+                                                href: '/profile/ความสามารถอื่นๆ'
                                             }
                                         ]
                                     },
@@ -338,72 +345,63 @@
                                         sub_menu: [
                                             {
                                                 page_name: 'page-profile/วุฒิการศึกษา',
-                                                icon: 'i18n.menu.profile.icon',
-                                                label: 'i18n.page00.education',
+                                                icon: 'aqa-icon-menu:education',
+                                                label: 'วุฒิการศึกษา',
                                                 href: '/profile/วุฒิการศึกษา'
                                             },
                                             {
-                                                page_name: 'page-profile/ผลงานทางวิชาการ',
-                                                icon: 'i18n.menu.profile.icon',
-                                                label: 'i18n.page00.research',
-                                                href: '/profile/ผลงานทางวิชาการ'
-                                            },
-                                            {
-                                                page_name: 'page-profile/สาขาเชี่ยวชาญ',
-                                                icon: 'i18n.menu.profile.icon',
-                                                label: 'i18n.page00.specialist',
-                                                href: '/profile/สาขาเชี่ยวชาญ'
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        page_name: 'i18n.page00.history',
-                                        sub_menu: [
-                                            {
                                                 page_name: 'page-profile/ประวัติการทำงาน',
-                                                icon: 'i18n.menu.profile.icon',
-                                                label: 'i18n.page00.working',
+                                                icon: 'aqa-icon-menu:work',
+                                                label: 'ประวัติการทำงาน',
                                                 href: '/profile/ประวัติการทำงาน'
                                             },
                                             {
+                                                page_name: 'page-profile/สาขาเชี่ยวชาญ',
+                                                icon: 'aqa-icon-menu:skills',
+                                                label: 'สาขาเชี่ยวชาญ',
+                                                href: '/profile/สาขาเชี่ยวชาญ'
+                                            },
+                                            {
+                                                page_name: 'page-profile/ผลงานทางวิชาการ',
+                                                icon: 'aqa-icon-menu:portfolio',
+                                                label: 'ผลงานทางวิชาการ',
+                                                href: '/profile/ผลงานทางวิชาการ'
+                                            },
+                                            {
                                                 page_name: 'page-profile/ประวัติการประเมิน',
-                                                icon: 'i18n.menu.profile.icon',
-                                                label: 'i18n.page00.assessment',
+                                                icon: 'aqa-icon-menu:evalution',
+                                                label: 'ประวัติการประเมิน',
                                                 href: '/profile/ประวัติการประเมิน'
                                             },
                                             {
                                                 page_name: 'page-profile/ประวัติการอบรมประกันคุณภาพภายใน',
-                                                icon: 'i18n.menu.profile.icon',
-                                                label: 'i18n.page00.meeting',
+                                                icon: 'aqa-icon-menu:training',
+                                                label: 'ประวัติการอบรมประกันคุณภาพภายใน',
                                                 href: '/profile/ประวัติการอบรมประกันคุณภาพภายใน'
                                             }
+                                            
                                         ]
                                     },
                                     {
                                         page_name: 'i18n.page00.other_information',
                                         sub_menu: [
-                                            {
-                                                page_name: 'page-profile/ความสามารถอื่นๆ',
-                                                icon: 'i18n.menu.profile.icon',
-                                                label: 'i18n.page00.skills',
-                                                href: '/profile/ความสามารถอื่นๆ'
-                                            },
+                                           
                                             {
                                                 page_name: 'page-profile/ภาคที่สะดวกในการประเมิน',
-                                                icon: 'i18n.menu.profile.icon',
-                                                label: 'i18n.page00.zone',
+                                                icon: 'aqa-icon-menu:location',
+                                                label: 'ภาคที่สะดวกในการประเมิน',
                                                 href: '/profile/ภาคที่สะดวกในการประเมิน'
                                             },
                                             {
                                                 page_name: 'page-profile/บุคคลอ้างอิง',
-                                                icon: 'i18n.menu.profile.icon',
-                                                label: 'i18n.page00.references',
+                                                icon: 'aqa-icon-menu:refer',
+                                                label: 'บุคคลอ้างอิง',
                                                 href: '/profile/บุคคลอ้างอิง'
                                             },
                                             {
                                                 page_name: 'page-profile/ไฟล์เอกสาร',
-                                                icon: 'i18n.menu.profile.icon',
-                                                label: 'i18n.page00.documents',
+                                                icon: 'aqa-icon-menu:document',
+                                                label: 'ไฟล์เอกสาร',
                                                 href: '/profile/ไฟล์เอกสาร'
                                             }
                                         ]

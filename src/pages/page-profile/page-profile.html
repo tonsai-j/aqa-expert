@@ -15,6 +15,15 @@
 <link rel="import" href="../../i18n/profile/main-i18n.html">
 <link rel="import" href="./pages/page-00.html">
 
+<link rel="import" href="../../components/aqa-title/aqa-title.html">
+<link rel="import" href="../../components/aqa-breadcrumb/aqa-breadcrumb.html">
+<!-- 
+<link rel="import" href=""> -->
+
+<!-- <link rel="import" href="../../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../components/apa-icon/aqa-icon-menu.html"> -->
+
+
 <dom-module id="page-profile">
     <template>
         <style include="shared-styles flexbox-grid-remove-padding">
@@ -57,34 +66,31 @@
                 @apply --nylon-font-mitr-family;
             }
         </style>
-        <div class="row header" style="padding: 20px">
+
+        <aqa-title>ข้อมูลพื้นฐาน</aqa-title>
+        <aqa-breadcrumb items="[[datas]]"></aqa-breadcrumb>
+        <br>
+        <!-- <paper-icon-button icon="aqa-icon-menu:address"></paper-icon-button> -->
+
+        <!-- <div class="row header" style="padding: 20px"> -->
             <!-- <div class="row" style="padding-left: 20px"> -->
             <!-- <app-toolbar slot="header"> -->
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
                 <div class="start-xs header-title-profile">
                     [[info.type_assessor.type_assessor_name]] : [[basic.firstname_th]] [[basic.lastname_th]]
 
                 </div>
             </div>
-            
-            <div class="col-md-6">
+             -->
+            <!-- <div class="col-md-6">
                 <div class="end-xs">
                     <paper-button raised class="btn-primary" id="btnApprove" on-click="_confirmApprove" disabled="{{props}}">
                         <iron-icon icon="offline-pin"></iron-icon>[[i18n.profile.approve]]
                     </paper-button>
                 </div>
-            </div>
-            <!-- </app-toolbar> -->
+            </div> -->
 
-            <!-- </div> -->
-            <!-- <template is="dom-if" if={{!isDashboard}}>
-                    <div class="row end-md">
-                        <paper-button raised class="btn-default"> กลับหน้าหลัก</paper-button>
-                        <div class="col-md-offset-1"></div>
-                    </div>
-                </template> -->
-
-        </div>
+        <!-- </div> -->
 
         <div class="row">
 
@@ -144,9 +150,37 @@
                         type: Boolean,
                         value: true
                     },
+                    items:{
+                        type:Array,
+                        value:[
+                            {
+                                name:'ทดสอบ',
+                                email:'12334@mail.com'
+                            },
+                            {
+                                name:'ครูไทย',
+                                email:'kruthai.com'
+                            }
+                        ]
+                    },
+                    datas:{
+                        type:Array,
+                        value:[
+                            {
+                                label:'ข้อมูลทั่วไป',
+                                url:'#test'
+                            },
+                            {
+                                label:'ข้อมูลพื้นฐาน',
+                                url:'#test'
+                            }
+                        ]
+                    }
 
                 };
             }
+
+
             constructor() {
                 super();
             }
