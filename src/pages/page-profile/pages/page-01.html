@@ -18,7 +18,7 @@
 <link rel="import" href="../../../components/nylon-animate-css/nylon-animate-css.html">
 <link rel="import" href="../../../components/aqa-panel/aqa-panel.html">
 <link rel="import" href="../../../components/aqa-form/aqa-input.html">
-
+<link rel="import" href="../../../components/aqa-button/aqa-button.html">
 <dom-module id="page-01">
     <template>
         <style include="granite-bootstrap"></style>
@@ -213,9 +213,12 @@
                 </div>
                 <div class="row center-md button-buttom">
                     <div class="button-action-bottom">
-                        <paper-button raised class="btn-success" on-click="_save">
+                        <!-- <paper-button raised class="btn-success" on-click="_save">
                             <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                        </paper-button>
+                        </paper-button> -->
+                        <aqa-button type="success" icon="[[i18n.button.save.icon]]">
+                           [[i18n.button.save.label]]
+                        </aqa-button>
                         <!-- <paper-button raised class="btn-default" on-click="_readIDCard">
                                         <iron-icon icon="[[i18n.button.readCard.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.readCard.label]]
                                     </paper-button> -->
