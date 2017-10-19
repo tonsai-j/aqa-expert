@@ -59,30 +59,67 @@
             .border {
                 border: 1px solid black;
             }
+
             /* .header{
                 margin-bottom: 2em;
             } */
-            .header-title-profile{
+
+            .header-title-profile {
                 @apply --nylon-font-mitr-family;
+            }
+
+            .flex-container{
+                display: flex;
+                justify-content: space-between;
+            }
+            .header-content>b{
+                font-family: MitrLight;
+            }
+            .icon{
+                --iron-icon-height: 32px;
+                --iron-icon-width: 32px;
+                margin: 0.4rem;
+                --iron-icon-fill-color:#37474F;
             }
         </style>
 
-        <aqa-title>ข้อมูลพื้นฐาน</aqa-title>
-        <aqa-breadcrumb items="[[datas]]"></aqa-breadcrumb>
+        
+
+
+        <div class="flex-container">
+            <div class="flex-item">
+                <aqa-title>ข้อมูลพื้นฐาน</aqa-title>
+                <aqa-breadcrumb items="[[datas]]"></aqa-breadcrumb>
+            </div>
+            <div class="flex-item" style="display:flex;color:#777">
+                <div style="margin:auto">
+                    <div class="header-content">
+                        <b>ผู้ประเมินระดับการศึกษาขั้นพื้นฐาน (ปฐมวัย)</b>
+                    </div>
+                    <div class="header-content" style="text-align:right">
+                        <b>รองศาสตร์จารย์บรรเจิด เริศฤดี</b>
+                    </div>
+                </div>
+                <div style="margin:auto">
+                    <iron-icon class="icon" icon="social:person"></iron-icon>
+                </div>
+            </div>
+        </div>
+
         <br>
         <!-- <paper-icon-button icon="aqa-icon-menu:address"></paper-icon-button> -->
 
         <!-- <div class="row header" style="padding: 20px"> -->
-            <!-- <div class="row" style="padding-left: 20px"> -->
-            <!-- <app-toolbar slot="header"> -->
-            <!-- <div class="col-md-6">
+        <!-- <div class="row" style="padding-left: 20px"> -->
+        <!-- <app-toolbar slot="header"> -->
+        <!-- <div class="col-md-6">
                 <div class="start-xs header-title-profile">
                     [[info.type_assessor.type_assessor_name]] : [[basic.firstname_th]] [[basic.lastname_th]]
 
                 </div>
             </div>
              -->
-            <!-- <div class="col-md-6">
+        <!-- <div class="col-md-6">
                 <div class="end-xs">
                     <paper-button raised class="btn-primary" id="btnApprove" on-click="_confirmApprove" disabled="{{props}}">
                         <iron-icon icon="offline-pin"></iron-icon>[[i18n.profile.approve]]
@@ -150,29 +187,29 @@
                         type: Boolean,
                         value: true
                     },
-                    items:{
-                        type:Array,
-                        value:[
+                    items: {
+                        type: Array,
+                        value: [
                             {
-                                name:'ทดสอบ',
-                                email:'12334@mail.com'
+                                name: 'ทดสอบ',
+                                email: '12334@mail.com'
                             },
                             {
-                                name:'ครูไทย',
-                                email:'kruthai.com'
+                                name: 'ครูไทย',
+                                email: 'kruthai.com'
                             }
                         ]
                     },
-                    datas:{
-                        type:Array,
-                        value:[
+                    datas: {
+                        type: Array,
+                        value: [
                             {
-                                label:'ข้อมูลทั่วไป',
-                                url:'#test'
+                                label: 'ข้อมูลทั่วไป',
+                                url: '#test'
                             },
                             {
-                                label:'ข้อมูลพื้นฐาน',
-                                url:'#test'
+                                label: 'ข้อมูลพื้นฐาน',
+                                url: '#test'
                             }
                         ]
                     }

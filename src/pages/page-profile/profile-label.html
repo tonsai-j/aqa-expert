@@ -1,0 +1,64 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/iron-icon/iron-icon.html">
+
+<dom-module id="page-profile">
+    <template>
+        <style>
+            .flex-container {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .header-content>b {
+                font-family: MitrLight;
+            }
+
+            .icon {
+                --iron-icon-height: 32px;
+                --iron-icon-width: 32px;
+                margin: 0.4rem;
+                --iron-icon-fill-color: #37474F;
+            }
+        </style>
+        <div class="flex-container">
+            <div class="flex-item" style="display:flex">
+                <div style="margin:auto">
+                    <div class="header-content">
+                        <b>ผู้ประเมินระดับการศึกษาขั้นพื้นฐาน (ปฐมวัย)</b>
+                    </div>
+                    <div class="header-content" style="text-align:right">
+                        <b>รองศาสตร์จารย์บรรเจิด เริศฤดี</b>
+                    </div>
+                </div>
+                <div style="margin:auto">
+                    <iron-icon class="icon" icon="social:person"></iron-icon>
+                </div>
+            </div>
+        </div>
+
+
+    </template>
+
+    <script>
+        class PageProfile extends ReduxMixin(Polymer.Element) {
+            static get is() {
+                return 'page-profile';
+            }
+            static get properties() {
+                return {
+                    name: {
+                        type: String,
+                        value: ''
+                    },
+                    position: {
+                        type: String,
+                        value: ''
+                    }
+                };
+            }
+
+        }
+
+        window.customElements.define(PageProfile.is, PageProfile);
+    </script>
+</dom-module>
