@@ -98,15 +98,15 @@
                         </div>
                         <div class="row middle-md ">
                             <div class="col-md-3">
-                                    <aqa-input class="required" label="[[i18n.page01.prefix_en]]" value="{{data.prefix_en}}" error-massage="Error Massage" required></aqa-input>
+                                    <aqa-input class="required" label="[[i18n.page01.prefix_en]]" value="{{data.prefix_en}}" error-massage="Error Massage" ></aqa-input>
                                 <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.prefix_en]]:" value="{{data.prefix_en}}"></nylon-input> -->
                             </div>
                             <div class="col-md-4">
-                                    <aqa-input class="required" label="[[i18n.page01.firstname_en]]" value="{{data.firstname_en}}" error-massage="Error Massage" required></aqa-input>
+                                    <aqa-input class="required" label="[[i18n.page01.firstname_en]]" value="{{data.firstname_en}}" error-massage="Error Massage" ></aqa-input>
                                 <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.firstname_en]]:" value="{{data.firstname_en}}"></nylon-input> -->
                             </div>
                             <div class="col-md-4">
-                                    <aqa-input class="required" label="[[i18n.page01.lastname_en]]" value="{{data.lastname_en}}" error-massage="Error Massage" required></aqa-input>
+                                    <aqa-input class="required" label="[[i18n.page01.lastname_en]]" value="{{data.lastname_en}}" error-massage="Error Massage" ></aqa-input>
                                 <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.lastname_en]]:" value="{{data.lastname_en}}"></nylon-input> -->
                             </div>
                         </div>
@@ -181,10 +181,11 @@
                         </div>
                         <div class="row middle-md ">
                             <div class="col-md-2">
-                                    <aqa-input class="required" label="[[i18n.page01.age]]" value="[[age]]" error-massage="Error Massage" required></aqa-input>
+                                    <aqa-input class="required" label="[[i18n.page01.age]]" value="[[age]]" error-massage="Error Massage"></aqa-input>
                                 <!-- <nylon-input always-float-label label="[[i18n.page01.age]]:" value="[[age]]" disabled></nylon-input> -->
                             </div>
                             <div class="col-md-3 col-md-offset-1">{{_calcAge(data.birth_date)}}
+                     
                                 <!-- <nylon-input always-float-label label="Name:"></nylon-input> -->
                                 <!-- <nylon-date-picker id="date" label="[[i18n.page01.birth]]:" class="required" required selected="{{data.birth_date}}" show-bc ></nylon-date-picker> -->
                                 <aqa-input class="required" label="[[i18n.page01.birth]]" value="{{data.birth_date}}" error-massage="Error Massage" required></aqa-input>
@@ -216,7 +217,7 @@
                         <!-- <paper-button raised class="btn-success" on-click="_save">
                             <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
                         </paper-button> -->
-                        <aqa-button type="success" icon="[[i18n.button.save.icon]]">
+                        <aqa-button type="success" icon="[[i18n.button.save.icon]]" on-click="_save">
                            [[i18n.button.save.label]]
                         </aqa-button>
                         <!-- <paper-button raised class="btn-default" on-click="_readIDCard">
