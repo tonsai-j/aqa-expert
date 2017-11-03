@@ -1,8 +1,9 @@
 exports.import = (req, res) => {
     const r = req.r;
+    const dbName = req.params.dbName.toLowerCase();
     req.jdbc.query("mssql", `
     SELECT *
-    from ${req.params.dbName}
+    from ${dbName}
 ` , []
         , function (err, datas) {
             datas = JSON.parse(datas);
@@ -17,16 +18,16 @@ exports.import = (req, res) => {
                     }
                     return obj;
                 });
-                r.branch(r.db('aqa_cds').tableList().contains(req.params.dbName),
-                    r.db('aqa_cds').table(req.params.dbName).delete(),
-                    r.db('aqa_cds').tableCreate(req.params.dbName)
+                r.branch(r.db('aqa_cds').tableList().contains(dbName),
+                    r.db('aqa_cds').table(dbName).delete(),
+                    r.db('aqa_cds').tableCreate(dbName)
                 ).do((d) => {
-                    return r.db('aqa_cds').table(req.params.dbName).insert(newDatas)
+                    return r.db('aqa_cds').table(dbName).insert(newDatas)
                 }).run().then((result) => {
                     res.json(result);
                 });
             } else {
-                res.json(`DBNAME: ${req.params.dbName.toUpperCase()} IS EMPTY!`);
+                res.json(`DBNAME: ${dbName.toUpperCase()} IS EMPTY!`);
             }
         });
 };
