@@ -1,13 +1,8 @@
-<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<!-- <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../layout/flexbox-grid.html">
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
-<!-- <link rel="import" href="../../../../bower_components/paper-input/paper-input.html"> -->
-
 <link rel="import" href="../../../components/nylon-input/nylon-input.html">
-
-<!-- <link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html"> -->
-<!-- <link rel="import" href="../../../components/nylon-input/nylon-combo-box.html"> -->
 <link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
@@ -20,89 +15,46 @@
 <link rel="import" href="../../../redux/profile/page-02-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
 <link rel="import" href="../../../mixins/animate-mixin.html">
+<link rel="import" href="../../../mixins/common-mixin.html"> -->
+
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../mixins/animate-mixin.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
+<link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../../../bower_components/iron-icons/iron-icons.html">
+
+<link rel="import" href="../../../layout/flexbox-grid.html">
+<link rel="import" href="../../../layout/shared-styles.html">
+<link rel="import" href="../../../components/aqa-form/aqa-combo-box.html">
+<link rel="import" href="../../../components/aqa-panel/aqa-panel.html">
+<link rel="import" href="../../../components/aqa-button/aqa-button.html">
+<link rel="import" href="../../../components/aqa-form/aqa-input.html">
+<link rel="import" href="./components/references-list.html">
+<link rel="import" href="../../../components/aqa-title/aqa-title-name.html">
 
 <dom-module id="page-12">
     <template>
-        <style include="shared-styles flexbox-grid">
-             :host {
-                display: block
-            }
-
-            .label {
-                text-align: right;
-            }
-
-            .input {
-                text-align: left;
-            }
-
-            paper-radio-button {
-                display: inline-block
-            }
-        </style>
-        <!-- page-12 -->
-
-        <nylon-panel-card id="references">
-            <div slot="content">
-                <div class="header-title">
-                    [[i18n.page12.references]]
-                </div>
-                <div class="row start-md middle-md">
-                    <div class="col-md-3">
-                        <paper-button raised class="btn-primary" action="add" on-tap=_openPanelRight>
-                            <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]</paper-button>
+        <style include="flexbox-grid"></style>
+        <div class="page-container">
+            <aqa-title-name></aqa-title-name>
+            <aqa-panel id="basic">
+                <app-toolbar slot="header">
+                    <div main-title>บุคคลที่ติดต่อได้กรณีฉุกเฉิน</div>
+                </app-toolbar>
+                <div slot="content">
+                    <div class="row start-xs" style="margin-bottom:0.5rem">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <aqa-button type="primary" icon="add">เพิ่ม</aqa-button>
+                            </div>
+                        </div>
                     </div>
+                    <references-list></references-list>
                 </div>
-                <br>
-                <vaadin-grid id='material' items='{{references}}'>
-                    <vaadin-grid-column width="50px" flex-grow="0">
-                        <template class="header">
-                            <div style="text-align: center">[[i18n.common.no]]</div>
-                        </template>
-                        <template>
-                            <div style="text-align: center">[[autoIndex(index)]] </div>
-                        </template>
-                    </vaadin-grid-column>
-                    <vaadin-grid-column>
-                        <template class="header">[[i18n.page12.name]]</template>
-                        <template>[[item.firstname]]</template>
-                    </vaadin-grid-column>
-                    <vaadin-grid-column>
-                        <template class="header">[[i18n.page12.lastname]]</template>
-                        <template>[[item.lastname]]</template>
-                    </vaadin-grid-column>
-                    <vaadin-grid-column>
-                        <template class="header">[[i18n.page12.phone]]</template>
-                        <template>[[item.phone]] </template>
-                    </vaadin-grid-column>
-                    <vaadin-grid-column>
-                        <template class="header">[[i18n.page12.cell_phone]]</template>
-                        <template>[[item.cell_phone]] </template>
-                    </vaadin-grid-column>
-                    <vaadin-grid-column>
-                        <template class="header">[[i18n.page12.email]]</template>
-                        <template>[[item.email]] </template>
-                    </vaadin-grid-column>
-                    <vaadin-grid-column>
-                        <template class="header">
-                            <div style="text-align: center">[[i18n.common.tools]]</div>
-                        </template>
-                        <template>
-                            <span style="text-align: center">
-                                <paper-icon-button icon="[[i18n.button.edit.icon]]" action="edit" on-click="_openPanelRight"></paper-icon-button>
-                                <paper-icon-button icon="[[i18n.button.delete.icon]]" on-click="_confirmDel"></paper-icon-button>
-                                </span>
-                        </template>
-                    </vaadin-grid-column>
-                </vaadin-grid>
-                <div class="no-content" hidden="{{references.length}}">
-                        ไม่มีข้อมูล
-                    </div>
-                [[i18n.common.total_items]] {{references.length}} [[i18n.common.list]]
-            </div>
-        </nylon-panel-card>
-        <nylon-panel-right id="right" title="[[i18n.page12.references]]" width="80%">
+            </aqa-panel>
+        </div>
+        <!-- <nylon-panel-right id="right" title="[[i18n.page12.references]]" width="80%">
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
@@ -140,15 +92,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- <app-toolbar slot="footer">
-                    <div main-title></div>
-
-                </app-toolbar> -->
             </nylon-panel-card>
 
-        </nylon-panel-right>
-
-        </nylon-panel-card>
+        </nylon-panel-right> -->
 
     </template>
 
