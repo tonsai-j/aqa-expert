@@ -38,6 +38,7 @@
 <link rel="import" href="../../../components/nylon-input/nylon-input.html">
 <link rel="import" href="../../../i18n/profile/page-05-i18n.html">
 <link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
+<link rel="import" href="../../../../bower_components/paper-checkbox/paper-checkbox.html">
 
 <dom-module id="page-05">
     <template>
@@ -65,31 +66,31 @@
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page05.agency_type]]" items='{{saluList}}' value="{{data.salu_name_id}}"
+                            <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.agency_type]]" items='{{saluList}}' value="{{data.salu_name_id}}"
                                 item-label-path="salu_name_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.salu">
                                 <template>
                                     [[item.salu_name_th]]
                                 </template>
-                            </nylon-combo-box>
-                            <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page05.agency_type]]" items='{{saluList}}' value="{{data.salu_id}}"
+                            </aqa-combo-box>
+                            <!-- <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.agency_type]]" items='{{saluList}}' value="{{data.salu_id}}"
                                 item-label-path="salu_name_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.salu"
                                 class="required" required >
                                 <template>
                                     [[item.salu_name_th]]
                                 </template>
-                            </nylon-combo-box> -->
+                            </aqa-combo-box> -->
                         </div>
                         <div class="col-md-4">
-                            <nylon-input label="[[i18n.page05.agency_name]]" class="required" required always-float-label value="{{data.agency_name}}"></nylon-input>
+                            <aqa-input label="[[i18n.page05.agency_name]]" class="required" required always-float-label value="{{data.agency_name}}"></aqa-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <nylon-input label="[[i18n.page05.s_date]]" class="required" required always-float-label type="date" value="{{data.work_start_date}}"></nylon-input>
+                            <aqa-input label="[[i18n.page05.s_date]]" class="required" required always-float-label type="date" value="{{data.work_start_date}}"></aqa-input>
                         </div>
                         <div class="col-md-4">
-                            <nylon-input label="[[i18n.page05.to]]" class="required" required always-float-label type="date" value="{{data.work_end_date}}"
-                                disabled={{workenddate}}></nylon-input>
+                            <aqa-input label="[[i18n.page05.to]]" class="required" required always-float-label type="date" value="{{data.work_end_date}}"
+                                disabled={{workenddate}}></aqa-input>
                         </div>
                         <div class="col-md-2">
                             <paper-checkbox on-tap="_disabledEndDate">[[i18n.page05.present]] </paper-checkbox>
@@ -97,42 +98,42 @@
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <nylon-input label="[[i18n.page05.first_position]]" class="required" required always-float-label value="{{data.first_position}}"></nylon-input>
+                            <aqa-input label="[[i18n.page05.first_position]]" class="required" required always-float-label value="{{data.first_position}}"></aqa-input>
                         </div>
                         <div class="col-md-4">
-                            <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{amphoeList}}' value="{{working.degree}}"
+                            <!-- <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{amphoeList}}' value="{{working.degree}}"
                                 item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
-                            </nylon-combo-box> -->
-                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{workpos1List}}' value="{{data.working_1_id}}"
+                            </aqa-combo-box> -->
+                            <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{workpos1List}}' value="{{data.working_1_id}}"
                                 item-label-path="workpos1_name_th" item-value-path="id" on-selected-item-changed="getObject"
                                 object-name="data.working_1">
                                 <template>
                                     [[item.workpos1_name_th]]
                                 </template>
-                            </nylon-combo-box>
+                            </aqa-combo-box>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <nylon-input label="[[i18n.page05.final_position]]" class="required" required always-float-label value="{{data.final_position}}"></nylon-input>
+                            <aqa-input label="[[i18n.page05.final_position]]" class="required" required always-float-label value="{{data.final_position}}"></aqa-input>
                         </div>
                         <div class="col-md-4">
-                            <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{amphoeList}}' value="{{working.degree}}"
+                            <!-- <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{amphoeList}}' value="{{working.degree}}"
                                 item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
-                            </nylon-combo-box> -->
-                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{workpos1List}}' value="{{data.working_2_id}}"
+                            </aqa-combo-box> -->
+                            <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{workpos1List}}' value="{{data.working_2_id}}"
                                 item-label-path="workpos1_name_th" item-value-path="id" on-selected-item-changed="getObject"
                                 object-name="data.working_2">
                                 <template>
                                     [[item.workpos1_name_th]]
                                 </template>
-                            </nylon-combo-box>
+                            </aqa-combo-box>
                         </div>
                     </div>
 
