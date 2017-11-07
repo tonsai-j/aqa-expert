@@ -1,14 +1,10 @@
-<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<!-- <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../layout/flexbox-grid.html">
-<!-- <link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html"> -->
 <link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
-<!-- <link rel="import" href="../../../../bower_components/paper-input/paper-input.html"> -->
-
 <link rel="import" href="../../../components/nylon-input/nylon-input.html">
-
 <link rel="import" href="../../../../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
@@ -20,186 +16,46 @@
 <link rel="import" href="../../../redux/profile/page-05-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
 <link rel="import" href="../../../mixins/animate-mixin.html">
+<link rel="import" href="../../../mixins/common-mixin.html"> -->
+
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../mixins/animate-mixin.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
+<link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../../../bower_components/iron-icons/iron-icons.html">
+
+<link rel="import" href="../../../layout/flexbox-grid.html">
+<link rel="import" href="../../../layout/shared-styles.html">
+<link rel="import" href="../../../components/aqa-form/aqa-combo-box.html">
+<link rel="import" href="../../../components/aqa-panel/aqa-panel.html">
+<link rel="import" href="../../../components/aqa-button/aqa-button.html">
+<link rel="import" href="../../../components/aqa-form/aqa-input.html">
+<link rel="import" href="./components/career-history-list.html">
+
+<link rel="import" href="../../../components/aqa-title/aqa-title-name.html">
 
 <dom-module id="page-05">
     <template>
-        <style include="shared-styles flexbox-grid">
-             :host {
-                display: block
-            }
-        </style>
-
-        <nylon-panel-card id="workpos1">
-            <div slot="content">
-                <div class="header-title">
-                    [[i18n.page05.title]]
-                </div>
-                <div class="row start-md middle-md">
-                    <div class="label col-md-3">
-                        <paper-button raised class="btn-primary" on-tap=_openPanelRight>
-                            <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]</paper-button>
-                    </div>
-                </div>
-                <br>
-                <vaadin-grid id='material' items='{{working}}'>
-                    <vaadin-grid-column>
-                        <template class="header" width="50px" flex-grow="0">
-                            <div class="text-center">
-                                    [[i18n.common.no]]
-                            </div>
-                        </template>
-                        <template>
-                            <div class="text-center">[[autoIndex(index)]]</div>
-                        </template>
-                    </vaadin-grid-column>
-                    <vaadin-grid-column>
-                        <template class="header">[[i18n.page05.department]]</template>
-                        <template>[[item.agency_name]]</template>
-                    </vaadin-grid-column>
-                    <vaadin-grid-column>
-                        <template class="header">[[i18n.page05.s_date]]</template>
-                        <template>[[changeDate(item.work_start_date)]]</template>
-                    </vaadin-grid-column>
-                    <vaadin-grid-column>
-                        <template class="header">[[i18n.page05.e_date]]</template>
-                        <template>[[changeDate(item.work_end_date)]]</template>
-                    </vaadin-grid-column>
-                    <vaadin-grid-column>
-                        <template class="header">[[i18n.page05.first_position]]</template>
-                        <template>[[item.first_position]]</template>
-                    </vaadin-grid-column>
-                    <vaadin-grid-column>
-                        <template class="header">[[i18n.page05.final_position]]</template>
-                        <template>[[item.final_position]]</template>
-                    </vaadin-grid-column>
-                    <vaadin-grid-column>
-                        <template class="header">[[i18n.page05.date]]</template>
-                        <template>
-                            <div class="text-center">
-                                [[item.updater]] / [[changeDate(item.date_updated)]]
-                            </div>
-                        </template>
-                    </vaadin-grid-column>
-                    <vaadin-grid-column>
-                        <template class="header">
-                            <div style="text-align: center">[[i18n.common.tools]]</div>
-                        </template>
-                        <template>
-                            <span style="text-align: center">
-                                <paper-icon-button icon="[[i18n.button.edit.icon]]" action="edit" on-click="_openPanelRight"></paper-icon-button>
-                                <paper-icon-button icon="[[i18n.button.delete.icon]]" on-click="_confirmDel"></paper-icon-button>
-                                </span>
-                        </template>
-                    </vaadin-grid-column>
-                </vaadin-grid>
-                <div class="no-content" hidden="{{working.length}}">
-                        ไม่มีข้อมูล
-                    </div>
-                [[i18n.common.total_items]] {{working.length}} [[i18n.common.list]]
-
-            </div>
-        </nylon-panel-card>
-        <nylon-panel-right id="right" title="[[i18n.page05.title]]" width="80%">
-            <nylon-panel-card slot="content">
+        <style include="flexbox-grid"></style>
+        <div class="page-container">
+            <aqa-title-name></aqa-title-name>
+            <aqa-panel id="basic">
+                <app-toolbar slot="header">
+                    <div main-title>ประวัติการทำงาน</div>
+                </app-toolbar>
                 <div slot="content">
-                    <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-4">
-                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page05.agency_type]]" items='{{saluList}}' value="{{data.salu_name_id}}"
-                                item-label-path="salu_name_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.salu">
-                                <template>
-                                    [[item.salu_name_th]]
-                                </template>
-                            </nylon-combo-box>
-                            <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page05.agency_type]]" items='{{saluList}}' value="{{data.salu_id}}"
-                                item-label-path="salu_name_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.salu"
-                                class="required" required >
-                                <template>
-                                    [[item.salu_name_th]]
-                                </template>
-                            </nylon-combo-box> -->
-                        </div>
-                        <div class="col-md-4">
-                            <nylon-input label="[[i18n.page05.agency_name]]" class="required" required always-float-label value="{{data.agency_name}}"></nylon-input>
+                    <div class="row start-xs" style="margin-bottom:0.5rem">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <aqa-button type="primary" icon="add">เพิ่ม</aqa-button>
+                            </div>
                         </div>
                     </div>
-                    <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-4">
-                            <nylon-input label="[[i18n.page05.s_date]]" class="required" required always-float-label type="date" value="{{data.work_start_date}}"></nylon-input>
-                        </div>
-                        <div class="col-md-4">
-                            <nylon-input label="[[i18n.page05.to]]" class="required" required always-float-label type="date" value="{{data.work_end_date}}"
-                                disabled={{workenddate}}></nylon-input>
-                        </div>
-                        <div class="col-md-2">
-                            <paper-checkbox on-tap="_disabledEndDate">[[i18n.page05.present]] </paper-checkbox>
-                        </div>
-                    </div>
-                    <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-4">
-                            <nylon-input label="[[i18n.page05.first_position]]" class="required" required always-float-label value="{{data.first_position}}"></nylon-input>
-                        </div>
-                        <div class="col-md-4">
-                            <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{amphoeList}}' value="{{working.degree}}"
-                                item-label-path="label" item-value-path="value">
-                                <template>
-                                    [[item.label]]
-                                </template>
-                            </nylon-combo-box> -->
-                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{workpos1List}}' value="{{data.working_1_id}}"
-                                item-label-path="workpos1_name_th" item-value-path="id" on-selected-item-changed="getObject"
-                                object-name="data.working_1">
-                                <template>
-                                    [[item.workpos1_name_th]]
-                                </template>
-                            </nylon-combo-box>
-                        </div>
-                    </div>
-                    <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-4">
-                            <nylon-input label="[[i18n.page05.final_position]]" class="required" required always-float-label value="{{data.final_position}}"></nylon-input>
-                        </div>
-                        <div class="col-md-4">
-                            <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{amphoeList}}' value="{{working.degree}}"
-                                item-label-path="label" item-value-path="value">
-                                <template>
-                                    [[item.label]]
-                                </template>
-                            </nylon-combo-box> -->
-                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{workpos1List}}' value="{{data.working_2_id}}"
-                                item-label-path="workpos1_name_th" item-value-path="id" on-selected-item-changed="getObject"
-                                object-name="data.working_2">
-                                <template>
-                                    [[item.workpos1_name_th]]
-                                </template>
-                            </nylon-combo-box>
-                        </div>
-                    </div>
-
-                    <div class="row center-md button-buttom">
-                        <div class="button-action-bottom">
-                            <paper-button raised class="btn-success" on-click="_save">
-                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                            </paper-button>
-                            <paper-button raised  class="btn-close" on-click="_closePanelRight">
-                                <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
-                            </paper-button>
-                        </div>
-                    </div>
+                    <career-history-list></career-history-list>
                 </div>
-                <!-- <app-toolbar slot="footer">
-                    <div main-title></div>
-                    <paper-button raised class="btn-success" on-click="_save">
-                        <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                    </paper-button>
-                    <paper-button raised on-click="_closePanelRight">
-                        <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
-                    </paper-button>
-                </app-toolbar> -->
-            </nylon-panel-card>
-        </nylon-panel-right>
-
-
+            </aqa-panel>
+        </div>
 
     </template>
 
@@ -275,8 +131,8 @@
             }
             _openPanelRight(e) {
                 if (e.currentTarget.getAttribute('action') == 'edit') {
-                    let data =  JSON.parse(JSON.stringify(e.model.item));
-                    data.work_start_date  = data.work_start_date.split('T')[0]
+                    let data = JSON.parse(JSON.stringify(e.model.item));
+                    data.work_start_date = data.work_start_date.split('T')[0]
                     data.work_end_date = data.work_end_date.split('T')[0]
                     // console.log(data);
                     this.set('data', data)
