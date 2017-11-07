@@ -127,10 +127,10 @@
                     <div>1</div>
                 </div>
             </label> -->
-
             <template is="dom-repeat" items="[[itemreverse(items)]]">
+                   
                 <input type="radio" id$="star[[name]][[item.pointer]]" name$="rating-[[name]]" checked$="[[selectedValue(item.pointer,item.label)]]"
-                    value="[[item.value]]" on-tap="setValue" />
+                    value="[[item.value]]" on-tap="setValue" disabled="[[disabled]]"/>
                 <label class="full section" for$="star[[name]][[item.pointer]]" on-mouseover="showText" on-mouseout="clearText" on-click="setText"
                     title="[[item.label]]" on-tap="setValue">
                     <div class="avartar">
@@ -169,6 +169,10 @@
                         type: String,
                         value: ''
                     },
+                    disabled: {
+                        type: Boolean,
+                        value: false
+                    },
                     active: {
                         type: Boolean,
                         value: true
@@ -206,6 +210,8 @@
                 }
             }
             setValue(e) {
+                if (this.disabled)
+                    return 
                 let data = e.model.__data.item
                 this.set('selected', data.value)
             }
@@ -229,6 +235,8 @@
                 //     });
             }
             showText(e) {
+                if (this.disabled)
+                    return 
                 this.active = false;
                 this.value = e.currentTarget.title
             }
@@ -246,6 +254,8 @@
                 return arr;
             }
             setText(e) {
+                if (this.disabled)
+                    return 
                 this.active = true
                 this.value = e.currentTarget.title;
                 this.title = e.currentTarget.title;
