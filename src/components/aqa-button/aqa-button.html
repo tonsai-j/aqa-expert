@@ -8,9 +8,14 @@
             button:focus {outline:0;}
             .btn {
                 font-family: MitrLight;
-                padding: 6px 15px;
+                padding: 0.5rem 1rem;
                 font-size: 1rem;
                 cursor: pointer;
+                
+            }
+            .btn-full-width{
+                width:100%;
+                height: auto;
             }
             .btn:disabled{
                 cursor: no-drop;
@@ -75,16 +80,13 @@
                 background-color: #a0a3a9;
                 border: 1px solid #a0a3a9;
             }
-            iron-icon {
-                margin-right: 0.2rem;
-            }
         </style>
         
-        <button class$="btn btn-[[type]]" disabled$="[[disabled]]">
-            <div style="display:flex">
+        <button class$="btn btn-[[type]]" disabled$="[[disabled]]" title="ปุ่ม"> 
+            <template is="dom-if" if="[[check_icon(icon)]]">
                 <iron-icon icon="[[icon]]"></iron-icon>
-                <slot></slot>
-            </div>
+            </template>
+            <slot></slot>
         </button>
 
 
@@ -112,6 +114,10 @@
                         value: false
                     }
                 };
+            }
+            check_icon(val){
+                if(val) return true;
+                else return false
             }
             ready() {
                 super.ready();

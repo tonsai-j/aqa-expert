@@ -1,12 +1,5 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
-<link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
-
-<link rel="import" href="../../../components/nylon-input/nylon-input.html">
-
-<link rel="import" href="../../../../bower_components/granite-bootstrap/granite-bootstrap.html"> ้
-<link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../layout/shared-styles.html">
 <link rel="import" href="../../../layout/flexbox-grid.html">
 <link rel="import" href="../../../redux/profile/page-01-redux.html">
@@ -15,232 +8,183 @@
 <link rel="import" href="../../../mixins/animate-mixin.html">
 <link rel="import" href="../../../i18n/profile/page-01-i18n.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
-<link rel="import" href="../../../components/nylon-animate-css/nylon-animate-css.html">
+<!-- <link rel="import" href="../../../components/nylon-animate-css/nylon-animate-css.html"> -->
 <link rel="import" href="../../../components/aqa-panel/aqa-panel.html">
 <link rel="import" href="../../../components/aqa-form/aqa-input.html">
 <link rel="import" href="../../../components/aqa-button/aqa-button.html">
+<link rel="import" href="../../../components/aqa-title/aqa-title-name.html">
+<link rel="import" href="../../../components/aqa-form/aqa-date-picker.html">
+<link rel="import" href="../../../../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../../../components/aqa-form/aqa-combo-box.html">
+
 <dom-module id="page-01">
     <template>
-        <style include="granite-bootstrap"></style>
-        <style include="nylon-animate-css"></style>
         <style include="flexbox-grid shared-styles">
-            :host {
-                display: block --paper-input-container-underline: {
-                    display: none;
-                }
-            }
+            /* #example-sizing-contain {
+                width: 100%;
+                height: auto;
+            } */
 
             #output_image {
-                border: 1px solid black;
-                width: 10em;
-                height: 10em;
+                width: 100%;
+                height: auto;
+                min-width: 96px;
+                min-height: auto;
+                margin: 0 auto;
             }
 
-            #ifile {
-                width: 0.1px;
-                height: 0.1px;
-                opacity: 0;
-                overflow: hidden;
-                position: absolute;
-                z-index: -1;
+            .img-circle {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
             }
 
-            .upload_image {
-                margin-top: 5px;
+            .flex-container {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .header-content>b {
+                font-family: MitrLight;
+            }
+
+            .flex {
+                display: flex;
+            }
+
+            .flex-item {
+                margin: 0 auto;
             }
         </style>
-        <!-- page-1 -->
+        <div class="page-container">
 
-        <aqa-panel id="basic">
-            <app-toolbar slot="header">
-                <div main-title>[[i18n.page01.basic_data]]</div>
-            </app-toolbar>
-            <div slot="content">
-                <!-- <aqa-input id="x" label="ชื่อผู้ใช้งาน" value="{{xx}}" error-massage="Error Massage" required></aqa-input> -->
-                <div class="row meddle-md ">
-                    <div class="col-md-3">
-                        <div class="col-md-12 middle-md center-md">
-                            <img id="output_image" src$="[[rootPath]]images/I20170901111610.jpg" />
-                            <!-- [[importPath]]
-                                        [[rootPath]] -->
+            <aqa-title-name></aqa-title-name>
+            <aqa-panel id="basic">
+                <app-toolbar slot="header">
+                    <div main-title>ข้อมูลพื้นฐาน</div>
+                </app-toolbar>
+                <div slot="content">
+                    <div class="row center-sm" style="text-align:left">
+                        <div class="col-xs-12 col-lg-10">
+                            <div class="row">
+                                <!-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                                    <aqa-input class="form" label="เลขประจำตัวประชาชน" type="pid" required></aqa-input>
+                                </div> -->
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                                    <aqa-input class="form" label="รหัสผู้ประเมิน"></aqa-input>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                                    <aqa-input label="สถานะ" value=""></aqa-input>
+                                    <!-- <aqa-input label="วันที่ออกบัตร" value=""></aqa-input> -->
+                                    <!-- <aqa-date-picker id="date" label="วันที่ออกบัตร" selected="" show-bc></aqa-date-picker> -->
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-12 col-lg-4">
+                                    <aqa-combo-box label="ตำแหน่งทางวิชาการ" items="[[academicList]]" item-label-path="label" item-value-path="value" auto-validate
+                                        required disabled></aqa-combo-box>
+                                    <!-- <aqa-combo-box label="สถานะการทำงาน" items="[[statusList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>  -->
+                                    <!-- <aqa-date-picker id="date" label="วันที่บัตรหมดอายุ" selected="" show-bc></aqa-date-picker> -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                                    <!-- <aqa-input class="form" label="คำนำหน้า (ไทย)" value="" required></aqa-input>  -->
+                                    <aqa-combo-box class="form" label="คำนำหน้า (ไทย)" items="[[prefix]]" item-label-path="label_th" item-value-path="value"></aqa-combo-box>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                                    <aqa-input class="form" label="ชื่อ (ไทย)" auto-validate pattern="[a-zA-Zก-์. ]*" error-message="ตัวอักษรเท่านั้น" required></aqa-input>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
+                                    <aqa-input class="form" label="นามสกุล (ไทย)" auto-validate pattern="[a-zA-Zก-์. ]*" error-message="ตัวอักษรเท่านั้น" required></aqa-input>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                                    <!-- <aqa-input label="คำนำหน้า (อังกฤษ)" value=""></aqa-input>  -->
+                                    <aqa-combo-box class="form" label="คำนำหน้า (อังกฤษ)" items="[[prefix]]" item-label-path="label_eng" item-value-path="value"></aqa-combo-box>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                                    <aqa-input label="ชื่อ (อังกฤษ)"></aqa-input>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
+                                    <aqa-input label="นามสกุล (อังกฤษ)" value=""></aqa-input>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-12 middle-md center-md">
-                            <input id="ifile" type=file accept="image/" on-change="preview_image">
-
-                            <paper-button raised on-tap="upload_img" class="upload_image btn-upload">
-                                <iron-icon icon="[[i18n.button.upload.icon]]">
-                                </iron-icon>&nbsp;&nbsp; [[i18n.button.upload.label]]</paper-button>
-                            </paper-button>
+                        <div class="first-xs last-lg col-xs-12 col-sm-4 col-lg-2">
+                            <div>
+                                <!-- <div class="flex-item"> -->
+                                <img id="output_image" src$="[[rootPath]]../../../images/user upload.png" />
+                                <aqa-button type="primary btn-full-width" icon="icons:file-upload" style="max-width:96px">อัพโหลด</aqa-button>
+                                <!-- </div> -->
+                            </div>
+                            <div style="margin:1rem"></div>
                         </div>
                     </div>
-                    <div class="col-md-9">
-                        <div class="row middle-md ">
-                            <div class="col-md-7 ">
-                                <nylon-input always-float-label label="[[i18n.page01.register]]:" value="[[info.id]]" disabled></nylon-input>
-                            </div>
-                            <div class="col-md-3 col-md-offset-1">
-                                <nylon-input always-float-label label="[[i18n.page01.tax_no]]:" value="[[info.taxno]]" disabled></nylon-input>
-                            </div>
+
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                            <aqa-combo-box label="เพศ" items="[[genderList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
                         </div>
-                        <div class="row middle-md ">
-                            <div class="col-md-3">
-                                <aqa-input class="required" label="[[i18n.page01.prefix_th]]" value="{{data.prefix_th}}" error-massage="Error Massage" required></aqa-input>
-                                <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.prefix_th]]:" value="{{data.prefix_th}}"></nylon-input> -->
-                            </div>
-                            <div class="col-md-4">
-                                <aqa-input class="required" label="[[i18n.page01.firstname_th]]" value="{{data.firstname_th}}" error-massage="Error Massage" required></aqa-input>
-                                <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.firstname_th]]:" value="{{data.firstname_th}}"></nylon-input> -->
-                            </div>
-                            <div class="col-md-4">
-                                    <aqa-input class="required" label="[[i18n.page01.lastname_th]]" value="{{data.lastname_th}}" error-massage="Error Massage" required></aqa-input>
-                                <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.lastname_th]]:" value="{{data.lastname_th}}"></nylon-input> -->
-                            </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                            <aqa-combo-box label="ศาสนา" items="[[religionList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
                         </div>
-                        <div class="row middle-md ">
-                            <div class="col-md-3">
-                                    <aqa-input class="required" label="[[i18n.page01.prefix_en]]" value="{{data.prefix_en}}" error-massage="Error Massage" ></aqa-input>
-                                <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.prefix_en]]:" value="{{data.prefix_en}}"></nylon-input> -->
-                            </div>
-                            <div class="col-md-4">
-                                    <aqa-input class="required" label="[[i18n.page01.firstname_en]]" value="{{data.firstname_en}}" error-massage="Error Massage" ></aqa-input>
-                                <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.firstname_en]]:" value="{{data.firstname_en}}"></nylon-input> -->
-                            </div>
-                            <div class="col-md-4">
-                                    <aqa-input class="required" label="[[i18n.page01.lastname_en]]" value="{{data.lastname_en}}" error-massage="Error Massage" ></aqa-input>
-                                <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.lastname_en]]:" value="{{data.lastname_en}}"></nylon-input> -->
-                            </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <aqa-combo-box label="เชื้อชาติ" items="[[nationalityList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
                         </div>
-                        <div class="row middle-md ">
-                            <div class="col-md-2">
-                                <!-- {{data.gender_id}}// -->
-                                <nylon-combo-box always-float-label label="[[i18n.page01.gender]]" items='{{genderList}}' value="{{data.gender_id}}" item-label-path="gender_name_th"
-                                    item-value-path="id" on-selected-item-changed="getObject" object-name="data.gender" class="required"
-                                    required>
-                                    <template>
-                                        [[item.gender_name_th]]
-                                    </template>
-                                </nylon-combo-box>
-                            </div>
-                            <div class="col-md-4 col-md-offset-1">
-                                <nylon-combo-box always-float-label label="[[i18n.page01.ethnicity]]" items='{{nationalityList}}' value="{{data.race_id}}"
-                                    item-label-path="nationality_name_th" item-value-path="id" on-selected-item-changed="getObject"
-                                    object-name="data.race" class="required" required>
-                                    <template>
-                                        [[item.nationality_name_th]]
-                                    </template>
-                                </nylon-combo-box>
-                                <!-- <nylon-combo-box-light id="demo3" attr-for-value="bind-value" always-float-label label="[[i18n.page01.ethnicity]]" items='{{nationalityList}}'
-                                        value="{{data.race_id}}" item-label-path="nationality_name_th" item-value-path="id" on-selected-item-changed="getObject"
-                                        object-name="data.race" class="required" required>
-                                        <iron-input>
-                                            <nylon-input>
-                                            </nylon-input>
-                                        </iron-input>
-                                    </nylon-combo-box-light>
-                                    <iron-icon icon="arrow-drop-down" slot="suffix" suffix style="position: absolute;
-                                    top: 32px; right: 16px; cursor: pointer;" on-tap="_openDropDown"></iron-icon> -->
-                            </div>
-                            <div class="col-md-4">
-                                <nylon-combo-box always-float-label label="[[i18n.page01.religion]]" items='{{religionList}}' value="{{data.religion_id}}"
-                                    item-label-path="religion_name_th" item-value-path="id" on-selected-item-changed="getObject"
-                                    object-name="data.religion" class="required" required>
-                                    <template>
-                                        [[item.religion_name_th]]
-                                    </template>
-                                </nylon-combo-box>
-                            </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                            <aqa-combo-box label="สัญชาติ" items="[[nationalityList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
                         </div>
-                        <div class="row middle-md ">
-                            <div class="col-md-3">
-                                <nylon-combo-box always-float-label label="[[i18n.page01.nationality]]" items='{{nationalityList}}' value="{{data.nationality_id}}"
-                                    item-label-path="nationality_name_th" item-value-path="id" on-selected-item-changed="getObject"
-                                    object-name="data.nationality" class="required" required>
-                                    <template>
-                                        [[item.nationality_name_th]]
-                                    </template>
-                                </nylon-combo-box>
-                            </div>
-                            <div class="col-md-4">
-                                <nylon-combo-box always-float-label label="[[i18n.page01.status]]" items='{{statusList}}' value="{{data.status_id}}" item-label-path="work_status_name_th"
-                                    item-value-path="id" on-selected-item-changed="getObject" object-name="data.status" class="required"
-                                    required>
-                                    <template>
-                                        [[item.work_status_name_th]]
-                                    </template>
-                                </nylon-combo-box>
-                            </div>
-                            <div class="col-md-4">
-                                <nylon-combo-box always-float-label label="[[i18n.page01.academic]]" items='{{academicList}}' value="{{data.type_academic_id}}"
-                                    item-label-path="academic_position_name_th" item-value-path="id" on-selected-item-changed="getObject"
-                                    object-name="data.type_academic" class="required" required>
-                                    <template>
-                                        [[item.academic_position_name_th]]
-                                    </template>
-                                </nylon-combo-box>
-                            </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                            <aqa-date-picker class="form" value="{{birthDay}}" >
+                                <aqa-input label="วัน/เดือน/ปี เกิด (พ.ศ.)"></aqa-input>
+                            </aqa-date-picker>
+                            <!-- <aqa-date-picker id="date" label="วัน/เดือน/ปี เกิด" selected="{{birthDay}}" show-bc></aqa-date-picker> -->
                         </div>
-                        <div class="row middle-md ">
-                            <div class="col-md-2">
-                                    <aqa-input class="required" label="[[i18n.page01.age]]" value="[[age]]" error-massage="Error Massage"></aqa-input>
-                                <!-- <nylon-input always-float-label label="[[i18n.page01.age]]:" value="[[age]]" disabled></nylon-input> -->
-                            </div>
-                            <div class="col-md-3 col-md-offset-1">{{_calcAge(data.birth_date)}}
-                     
-                                <!-- <nylon-input always-float-label label="Name:"></nylon-input> -->
-                                <!-- <nylon-date-picker id="date" label="[[i18n.page01.birth]]:" class="required" required selected="{{data.birth_date}}" show-bc ></nylon-date-picker> -->
-                                <aqa-input class="required" label="[[i18n.page01.birth]]" value="{{data.birth_date}}" error-massage="Error Massage" required></aqa-input>
-                                <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.birth]]:" type="date" value="{{data.birth_date}}"></nylon-input> -->
-                            </div>
-                            <div class="col-md-4 col-md-offset-1">
-                                    <aqa-input class="required" label="[[i18n.page01.mobile]]" value="{{data.mobile}}" error-massage="Error Massage" required></aqa-input>
-                                <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.mobile]]:" value="{{data.mobile}}"></nylon-input> -->
-                            </div> 
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2">
+                            <aqa-input label="อายุ (ปี)" value="{{mathAge(birthDay)}}" disabled></aqa-input>
                         </div>
-                        <div class="row middle-md ">
-                            <div class="col-md-3">
-                                    <aqa-input class="required" label="[[i18n.page01.date_of_issue]]" value="{{data.issue_date}}" error-massage="Error Massage" required></aqa-input>
-                                <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.date_of_issue]]:" type="date" value="{{data.issue_date}}"></nylon-input> -->
-                            </div>
-                            <div class="col-md-4">
-                                    <aqa-input class="required" label="[[i18n.page01.expiration_date]]" value="{{data.expire_date}}" error-massage="Error Massage" required></aqa-input>
-                                <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.expiration_date]]:" type="date" value="{{data.expire_date}}"></nylon-input> -->
-                            </div>
-                            <div class="col-md-4">
-                                    <aqa-input class="required" label="[[i18n.page01.email]]" value="{{data.email}}" error-massage="Error Massage" required></aqa-input>
-                                <!-- <nylon-input class="required" required always-float-label label="[[i18n.page01.email]]:" value="{{data.email}}"></nylon-input> -->
-                            </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                            <aqa-input class="form" label="เบอร์มือถือ" type="phone" required></aqa-input>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                            <aqa-input class="form" label="เลขประจำตัวประชาชน" type="pid" required></aqa-input>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                            <aqa-date-picker required disabled>
+                                <aqa-input label="วันที่ออกบัตร (พ.ศ.)"></aqa-input>
+                            </aqa-date-picker>
+                            <!-- <aqa-date-picker id="date" label="วันที่ออกบัตร" selected="" show-bc></aqa-date-picker> -->
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                            <aqa-date-picker>
+                                <aqa-input label="วันที่บัตรหมดอายุ (พ.ศ.)"></aqa-input>
+                            </aqa-date-picker>
+                            <!-- <aqa-date-picker id="date" label="วันที่บัตรหมดอายุ" selected="" show-bc></aqa-date-picker> -->
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                            <aqa-combo-box label="สถานะการทำงาน" items="[[statusList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
                         </div>
                     </div>
+
                 </div>
-                <div class="row center-md button-buttom">
-                    <div class="button-action-bottom">
-                        <!-- <paper-button raised class="btn-success" on-click="_save">
-                            <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                        </paper-button> -->
-                        <aqa-button type="success" icon="[[i18n.button.save.icon]]" on-click="_save">
-                           [[i18n.button.save.label]]
-                        </aqa-button>
-                        <!-- <paper-button raised class="btn-default" on-click="_readIDCard">
-                                        <iron-icon icon="[[i18n.button.readCard.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.readCard.label]]
-                                    </paper-button> -->
-                    </div>
+
+        </div>
+
+
+
+        <div class="row center-xs">
+            <div class="col-lg-2">
+                <div style="padding:0rem 2rem;">
+                    <aqa-button type="success btn-full-width" on-tap="getForm">บันทึก</aqa-button>
                 </div>
             </div>
-        </aqa-panel>
+        </div>
 
 
-        <!-- <nylon-panel-card id="basic">
-            <div slot="content" items="[[basic]]">
-                <div class="header-title">
-                    [[i18n.page01.basic_data]]
-                </div>
-                <div>
-                    <br>[[i18n.page01.field]]</div>
-                <br>
+        <paper-toast id="toast" horizontal-align="right" vertical-align="bottom" text="บันทึกสำเร็จ"></paper-toast>
 
-            </div>
-
-        </nylon-panel-card> -->
 
     </template>
 
@@ -420,6 +364,102 @@
                         Nylon.toast('error', this.i18n.page01.error)
                     }
                 })
+            }
+            calAge(dateString) {
+                if (dateString === undefined || dateString === '')
+                    return ''
+                var now = new Date();
+                var today = new Date(now.getYear(), now.getMonth(), now.getDate());
+
+                var yearNow = now.getYear();
+                var monthNow = now.getMonth();
+                var dateNow = now.getDate();
+
+                var dob = new Date(dateString);
+
+                var yearDob = dob.getYear();
+                var monthDob = dob.getMonth();
+                var dateDob = dob.getDate();
+                var age = {};
+                var ageString = "";
+                var yearString = "";
+                var monthString = "";
+                var dayString = "";
+
+
+                let yearAge = yearNow - yearDob;
+
+                if (monthNow >= monthDob)
+                    var monthAge = monthNow - monthDob;
+                else {
+                    yearAge--;
+                    var monthAge = 12 + monthNow - monthDob;
+                }
+
+                if (dateNow >= dateDob)
+                    var dateAge = dateNow - dateDob;
+                else {
+                    monthAge--;
+                    var dateAge = 31 + dateNow - dateDob;
+
+                    if (monthAge < 0) {
+                        monthAge = 11;
+                        yearAge--;
+                    }
+                }
+
+                age = {
+                    years: yearAge,
+                    months: monthAge,
+                    days: dateAge
+                };
+
+                if (age.years > 1) yearString = " ปี";
+                else yearString = " ปี";
+                if (age.months > 1) monthString = " เดือน";
+                else monthString = " เดือน";
+                if (age.days > 1) dayString = " วัน";
+                else dayString = " วัน";
+
+
+                // if ((age.years > 0) && (age.months > 0) && (age.days > 0))
+                //     ageString = age.years + yearString + " " + age.months + monthString + " " + age.days + dayString
+                // else if ((age.years == 0) && (age.months == 0) && (age.days > 0))
+                //     ageString = age.days + dayString
+                // else if ((age.years > 0) && (age.months == 0) && (age.days == 0))
+                //     ageString = age.years + yearString + " old. Happy Birthday!!";
+                // else if ((age.years > 0) && (age.months > 0) && (age.days == 0))
+                //     ageString = age.years + yearString + " " + age.months + monthString
+                // else if ((age.years == 0) && (age.months > 0) && (age.days > 0))
+                //     ageString = age.months + monthString + " " + age.days + dayString
+                // else if ((age.years > 0) && (age.months == 0) && (age.days > 0))
+                //     ageString = age.years + yearString + " " + age.days + dayString
+                // else if ((age.years == 0) && (age.months > 0) && (age.days == 0))
+                //     ageString = age.months + monthString
+                // else ageString = "ไม่สามารถคำนวนอายุได้!";
+
+                if ((age.years > 0) && (age.months > 0) && (age.days > 0))
+                    ageString = age.years + yearString + " " + age.months + monthString + " "
+                else if ((age.years == 0) && (age.months == 0) && (age.days > 0))
+                    ageString = age.days + dayString
+                else if ((age.years > 0) && (age.months == 0) && (age.days == 0))
+                    ageString = age.years + yearString + " สุขสันต์วันเกิด!!";
+                else if ((age.years > 0) && (age.months > 0) && (age.days == 0))
+                    ageString = age.years + yearString + " " + age.months + monthString
+                else if ((age.years == 0) && (age.months > 0) && (age.days > 0))
+                    ageString = age.months + monthString
+                else if ((age.years > 0) && (age.months == 0) && (age.days > 0))
+                    ageString = age.years + yearString
+                else if ((age.years == 0) && (age.months > 0) && (age.days == 0))
+                    ageString = age.months + monthString
+                else ageString = "ไม่สามารถคำนวนอายุได้!";
+
+                return ageString;
+
+            }
+            mathAge(date) {
+                // console.log('ss', date)
+                return this.calAge(date)
             }
         }
 

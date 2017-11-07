@@ -1,0 +1,27 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../components/aqa-font/aqa-mitr-font.html">
+<dom-module id="aqa-title">
+    <template>
+        <style>
+            .page-title{
+                color:#37474F;
+                font-family: MitrLight;
+                font-size: 26px;
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+        </style>
+        <h1 class="page-title"><slot></slot></h1>
+    </template>
+    <script>
+        class AqaTitle extends ReduxMixin(Polymer.Element) {
+            static get is() { return 'aqa-title'; }
+            static get properties() {
+                return {
+                }
+            }
+        }
+        window.customElements.define(AqaTitle.is, AqaTitle);
+
+    </script>
+</dom-module>

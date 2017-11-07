@@ -1,0 +1,75 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/iron-icons/social-icons.html">
+<link rel="import" href="../../../bower_components/iron-icon/iron-icon.html">
+
+<dom-module id="aqa-title-name">
+    <template>
+        <style>
+            .header-content>b {
+                font-family: MitrLight;
+                text-align: left;
+            }
+            .flex-container {
+                display: flex;
+                justify-content: space-between;
+            }
+            .img-circle {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+            }
+            iron-icon{
+                margin-right: 0.5rem;
+                --iron-icon-width:42px;
+                --iron-icon-height:42px;
+            }
+            #output_image{
+                width: 42px;
+                height: 42px;
+                margin-right: 0.5rem;
+            }
+        </style>
+        <div class="flex-container">
+            <div class="flex-item" style="display:flex">
+                <div style="margin:auto">
+                   <img id="output_image" src$="[[rootPath]]../../../images/user upload.png" />
+                </div>
+                <div style="margin:auto">
+                    <div class="header-content">
+                        <b>รองศาสตร์จารย์บรรเจิด เริศฤดี</b>
+                    </div>
+                    <div class="header-content">
+                        <b>ผู้ประเมินระดับการศึกษาขั้นพื้นฐาน (ปฐมวัย)</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p></p>
+
+    </template>
+
+    <script>
+        class AqaTitleName extends Polymer.Element {
+
+            static get is() {
+                return 'aqa-title-name';
+            }
+
+            static get properties() {
+                return {
+
+                };
+            }
+            ready() {
+                super.ready();
+
+                Polymer.RenderStatus.afterNextRender(this, function () {
+
+                });
+            }
+
+        }
+
+        window.customElements.define(AqaTitleName.is, AqaTitleName);
+    </script>
+</dom-module>

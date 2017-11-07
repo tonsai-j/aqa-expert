@@ -1,0 +1,233 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+
+<link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-progress/paper-progress.html">
+<link rel="import" href="../my-icons.html">
+
+
+<link rel="import" href="../../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+
+<link rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
+
+<link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
+
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/iron-icons/social-icons.html">
+<link rel="import" href="../../bower_components/paper-badge/paper-badge.html">
+
+
+
+<link rel="import" href="./flexbox-grid.html">
+
+<link rel="import" href="./shared-styles.html">
+<link rel="import" href="./layout-drawer.html">
+<link rel="import" href="../redux-mixin.html">
+
+
+
+<dom-module id="layout-main">
+    <template>
+        <style>
+            :host {
+                --app-primary-color: #0288D1;
+                --app-secondary-color: black;
+                display: block;
+            }
+
+            app-drawer-layout:not([narrow]) [drawer-toggle] {
+                display: none;
+            }
+/* 
+            app-header {
+                position: fixed;
+                z-index: 1;
+                width: 100%;
+            } */
+
+            app-toolbar.header {
+                height: 55px;
+                
+                background-color: #fff;
+            }
+
+            [main-title] {
+                font-family: MitrLight;
+                color: #0288D1;
+            }
+
+            paper-icon-button {
+                color: #777;
+            }
+
+            app-header paper-icon-button {
+                --paper-icon-button-ink-color: white;
+            }
+            
+
+            paper-progress {
+                position: absolute;
+                width: 100%;
+                height: 2px;
+                --paper-progress-active-color: #FFFF8D;
+            }
+
+            .img-circle {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+            }
+
+        </style>
+
+        <app-drawer-layout>
+            <app-drawer slot="drawer">
+                <layout-drawer id="layoutDrawer" path-name="[[pathName]]"></layout-drawer>
+            </app-drawer>
+            <app-header-layout>
+                <app-header slot="header" fixed condenses effects="waterfall">
+                    <app-toolbar class="header">
+                        <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
+                        <div main-title>[[i18n.common.myApp]]</div>
+                        <div class="divImage">
+                            <img class="img-circle" src$="[[rootPath]]images/I20170901111610.jpg" /> 
+                        </div>
+                        <paper-icon-button id="icon-notification" icon="social:notifications"></paper-icon-button>
+                        <!-- <paper-badge for="number" label="4"></paper-badge> -->
+                        <paper-icon-button icon="mail"></paper-icon-button>
+                        <paper-icon-button icon="settings"></paper-icon-button>
+                        <!-- <div style="width:65%;" class="full-height ">
+                            <div class="row middle-md full-height">
+                                <div class="col-md-10 ">
+                                    <div class="font">[[i18n.common.myApp]]</div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div style="width:30% ;" class="full-height ">
+                            <div class="full-height row middle-md">
+                                <div class="full-height row middle-md col-md-1 mini-menu">
+                                    <img id="profile_image_mini" src$="[[rootPath]]images/I20170901111610.jpg" />
+                                </div>
+                                <div class="full-height row middle-md col-md-1 mini-menu">
+                                    <iron-icon class="profile-icon-menu" icon="social:notifications"></iron-icon>
+                                </div>
+                                <div class="full-height row middle-md col-md-1 mini-menu">
+                                    <iron-icon class="profile-icon-menu" icon="mail"></iron-icon>
+                                </div>
+                                <div class="full-height row middle-md col-md-1 mini-menu">
+                                    <iron-icon class="profile-icon-menu" icon="settings"></iron-icon>
+                                </div>
+                            </div>
+                        </div> -->
+                    </app-toolbar>
+                    <template is="dom-if" if="[[progressEnable]]">
+                        <paper-progress id="progress" value="[[progressValue]]" indeterminate="[[progressIndeterminate]]"></paper-progress>
+                    </template>
+                </app-header>
+                <div style="margin:8px;" id="slotMain">
+                    <slot></slot>
+                </div>
+            </app-header-layout>
+        </app-drawer-layout>
+
+
+    </template>
+
+    <script>
+        class LayoutMain extends ReduxMixin(Polymer.Element) {
+
+            static get is() { return 'layout-main'; }
+
+            static get properties() {
+                return {
+                    i18n: {
+                        type: Object,
+                        statePath: 'i18n'
+                    },
+                    progressEnable: Boolean,
+                    progressIndeterminate: Boolean,
+                    progressValue: Number,
+                    showDrawer: {
+                        type: Boolean,
+                        value: false
+                    },
+                    pathName: {
+                        type: String,
+                        value: "/",
+                        observer: 'setFullScreen'
+                    }
+
+                };
+            }
+
+            ready() {
+                super.ready()
+                Nylon.changeLanguage('th')
+            }
+            setFullScreen(e) {
+                // let createslot = document.createElement("slot");
+                if (e === '/') {
+                    this.set('showDrawer', false)
+                    // console.log(this.$.slotlogin);
+                    // console.log('---------------');
+                    // console.log(e)
+                } else {
+                    this.set('showDrawer', true)
+                    // console.log('---------------');
+                    // console.log(e)
+                }
+
+            }
+            changeLanguage() {
+                if (this.i18n.language == "en") {
+                    Nylon.changeLanguage('th')
+                } else {
+                    Nylon.changeLanguage('en')
+                }
+            }
+
+            toogleMenu() {
+                this.$.layoutDrawer.toogleMenu()
+            }
+
+            progress() {
+
+                if (this.progressEnable) {
+                    this.progressClose()
+                } else {
+                    this.progressEnable = true
+                    this.progressIndeterminate = true
+                    this.progressValue = Math.random() * (95 - 70) + 70
+
+                    setTimeout(() => {
+                        this.progressIndeterminate = false;
+                    }, 800)
+
+                    return this.progressClose.bind(this)
+                }
+
+
+            }
+
+            progressClose(callback) {
+                this.progressValue = 100
+                setTimeout(() => {
+                    this.progressIndeterminate = false;
+                    if (callback)
+                        callback()
+                }, 300)
+
+                setTimeout(() => {
+                    this.progressEnable = false
+                }, 500)
+            }
+
+        }
+
+        window.customElements.define(LayoutMain.is, LayoutMain);
+    </script>
+</dom-module>

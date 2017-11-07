@@ -1,0 +1,168 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="nylon-rating">
+    <template>
+        <style>
+            /****** Style Star Rating Widget *****/
+            .resultRating{
+                display: flex; 
+                width: auto;
+                height: 25px;
+                color:black;
+            }
+            .resultRating>div{
+                margin: auto;
+            }
+            .rating {
+                border: none;
+                float: left;
+            }
+
+            .rating>input {
+                display: none;
+            }
+
+            .rating>label:before {
+                margin: 5px;
+                font-size: 1.25em;
+                display: inline-block;
+                content: "("atttr(value)")";   
+            }
+
+            .rating>.half:before {
+                content: "\f089"; 
+                position: absolute;
+            }
+
+            .rating>label {
+                color: #FFD700;
+                float: right;
+            }
+            .avartar{
+                display: flex; 
+                width: 25px;
+                height: 25px;
+                border:2px solid #FFD700;
+                font-size: 15px;
+                border-radius: 50%;
+                /* margin-right: 5px; */
+            }
+            .avartar>div{
+                margin: auto;
+            }
+            /***** CSS Magic to Highlight Stars on Hover *****/
+
+            .rating>input:checked~label,
+            /* show gold star when clicked */
+
+            .rating:not(:checked)>label:hover,
+            /* hover current star */
+
+            .rating:not(:checked)>label:hover~label {
+                background-color: #FFD700;
+                border-radius: 50%;
+                color:white;
+            }
+            /* hover previous stars in list */
+
+            .rating>input:checked+label:hover,
+            /* hover current star when changing rating */
+
+            .rating>input:checked~label:hover,
+            .rating>label:hover~input:checked~label,
+            /* lighten current selection */
+
+            .rating>input:checked~label:hover~label {
+                color: white;
+                background-color:#FFED85;
+                border-radius: 50%;
+            }
+        </style>
+
+        <fieldset class="rating">
+            <div class="resultRating"><div>[[title]][[value]]</div></div>
+             
+
+            <input type="radio" id="star5" name="rating" value="5" />
+            <label class="full" for="star5" on-mouseover="showText" on-mouseout="clearText" on-click="setText" title="Awesome - 5 stars">
+                <div class="avartar">
+                    <div>5</div>
+                </div>
+            </label>
+
+            <input type="radio" id="star4" name="rating" value="4" />
+            <label class="full" for="star4" on-mouseover="showText" on-mouseout="clearText" on-click="setText" title="Pretty good - 4 stars">
+                 <div class="avartar">
+                    <div>4</div>
+                </div>
+            </label>
+
+            <input type="radio" id="star3" name="rating" value="3" />
+            <label class="full" for="star3" on-mouseover="showText" on-mouseout="clearText" on-click="setText" title="Meh - 3 stars">
+                <div class="avartar">
+                    <div>3</div>
+                </div>
+            </label>
+
+            <input type="radio" id="star2" name="rating" value="2" />
+            <label class="full" for="star2" on-mouseover="showText" on-mouseout="clearText" on-click="setText" title="Kinda bad - 2 stars">
+                <div class="avartar">
+                    <div>2</div>
+                </div>
+            </label>
+
+            <input type="radio" id="star1" name="rating" value="1" />
+            <label class="full" for="star1" on-mouseover="showText" on-mouseout="clearText" on-click="setText" title="Sucks big time - 1 star">
+                <div class="avartar">
+                    <div>1</div>
+                </div>
+            </label>
+
+            <input type="radio" id="star0" name="rating" value="0" checked/>
+            <label class="full" for="star0" on-mouseover="showText" on-mouseout="clearText" on-click="setText" title="Noob!!">
+                <div class="avartar">
+                    <div>0</div>
+                </div>
+            </label>
+        </fieldset>
+
+    </template>
+
+    <script>
+        class NylonRating extends Polymer.Element {
+            static get is() {
+                return 'nylon-rating';
+            }
+            static get properties(){
+                return {
+                    title:{
+                        type:String,
+                        value:''
+                    },
+                    value:{
+                        type:String,
+                        value:''
+                    },
+                    active:{
+                        type:Boolean,
+                        value: true
+                    }
+                }
+            }
+            showText(e){
+                this.value = '';
+                this.title = e.currentTarget.title
+            }
+            clearText(){
+                this.value = this.title;
+                this.title = '';
+            }
+            setText(e){
+                // this.active = false;
+                 this.value = e.currentTarget.title
+            }
+        }
+
+        window.customElements.define(NylonRating.is, NylonRating);
+    </script>
+</dom-module>

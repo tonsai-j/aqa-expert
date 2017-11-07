@@ -1,0 +1,560 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<!-- <link rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html"> -->
+<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/paper-item/paper-icon-item.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+
+<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
+
+<link rel="import" href="./flexbox-grid.html">
+
+<link rel="import" href="./nylon-trirong-font.html">
+<link rel="import" href="./nylon-cschatthai-font.html">
+<link rel="import" href="./nylon-mitr-font.html">
+
+<link rel="import" href="../i18n/profile/page-00-i18n.html">
+
+<link rel="import" href="../i18n/dashboard/dashboard-i18n.html">
+
+<link rel="import" href="../redux-mixin.html">
+<link rel="import" href="../i18n/menu-i18n.html">
+<link rel="import" href="../my-icons.html">
+<link rel="import" href="../components/apa-icon/aqa-icon-menu.html">
+
+<dom-module id="layout-drawer">
+    <template>
+        <style include="flexbox-grid flexbox-grid-remove-padding"></style>
+        <style>
+            :host {
+                --main-color: #e0e0e0
+            }
+
+            * {
+                font-family: mitr-light, sans-serif;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            :host {
+                display: block;
+                z-index: 1;
+            }
+
+            /* .drawer-list {
+                margin: 0 20px;
+            }
+
+            .drawer-list a {
+                display: block;
+                padding: 0 16px;
+                text-decoration: none;
+                color: var(--app-secondary-color);
+                line-height: 40px;
+            }
+
+            .drawer-list a.iron-selected {
+                color: black;
+                font-weight: bold;
+            } */
+
+            #drawer {
+                z-index: 1
+            }
+
+            iron-selector>paper-icon-item {
+                cursor: pointer;
+                font-family: mitr-light, sans-serif;
+                -webkit-font-smoothing: antialiased;
+                background-color: #263238;
+                /* color: #efeff1; */
+                color: #b0bec5;
+            }
+
+            paper-icon-item {
+                --paper-item-min-height: 30px;
+                line-height: 30px;
+                font-size: 14px;
+            }
+
+            iron-selector>paper-icon-item:hover {
+                background-color: #192125;
+                color: #ffffff;
+            }
+
+            iron-selector>paper-icon-item.iron-selected {
+                color: #ffffff;
+                background-color: #232C33;
+            }
+
+            iron-selector>.menu-item {
+                cursor: pointer;
+                font-family: mitr-light, sans-serif;
+                -webkit-font-smoothing: antialiased;
+                background-color: #263238;
+                /* color: #efeff1; */
+                color: #b0bec5;
+            }
+
+            .menu-item {
+                padding:3px 10px 3px 30px;
+                display: -webkit-flex;
+                display: flex;
+                -webkit-align-items: center;
+                align-items: center;
+
+
+                --paper-item-min-height: 30px;
+                line-height: 30px;
+                font-size: 14px;
+            }
+
+            iron-selector>.menu-item:hover {
+                background-color: #192125;
+                color: #ffffff;
+            }
+
+            iron-selector>.menu-item.iron-selected {
+                color: #ffffff;
+                background-color: #232C33;
+            }
+
+            .menu-item > div {
+                padding-left:5px;
+            }
+
+
+
+
+
+
+            .title-menu {
+                display: -webkit-flex;
+                display: flex;
+                -webkit-align-items: center;
+                align-items: center;
+                -webkit-justify-content: space-between;
+                justify-content: space-between;
+
+                height: 45px;
+                padding-left: 16px;
+                background-color: #3583CB;
+                border-bottom: 1px solid #333;
+                color: #efeff1;
+                cursor: pointer;
+
+            }
+
+            iron-icon.icon-menu {
+                /* --iron-icon-stroke-color: #FFF; */
+                color: #efeff1;
+                cursor: pointer;
+                /* fill: red; */
+            }
+
+            .home-icon {
+                color: var(--main-color);
+                --iron-icon-height: 45px;
+                --iron-icon-width: 45px;
+            }
+
+            .header-left-menu {
+                background-color: #4e97d9;
+                height: 55px;
+            }
+
+            #style-4::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                background-color: #F5F5F5;
+            }
+
+            #style-4::-webkit-scrollbar {
+                width: 4px;
+                background-color: #F5F5F5;
+            }
+
+            #style-4::-webkit-scrollbar-thumb {
+                background-color: #000000;
+                border: 2px solid #555555;
+            }
+
+            .page {
+                background-color: #263238;
+                height: 100vh;
+                /* position:relative; */
+            }
+
+            /* .borderz {
+                border: 1px solid red;
+            } */
+
+            .icon-page {
+                height: 128px;
+            }
+
+            .icon-page>iron-icon {
+                height: 80%;
+                width: 80%;
+            }
+        </style>
+        <div class="page">
+            <div class="row center-md middle-md home-icon header-left-menu">
+                <iron-icon icon="home" class="icon-menu" on-tap="changeMenu"></iron-icon>
+            </div>
+
+            <div style="height:100%">
+                <div id="style-4" style="height: 100%; overflow: auto; display:block">
+                    <iron-pages selected="{{menuPage}}" attr-for-selected="name">
+                        <div name="main">
+                            <iron-selector selected="[[page]]" attr-for-selected="name" role="navigation">
+                                <template is="dom-repeat" items={{menu}}>
+                                    <paper-icon-item name="{{item.page}}" on-tap="changeToMenu">
+                                        <iron-icon icon="{{item.icon}}" slot="item-icon"></iron-icon>
+                                        [[item.name]]
+                                    </paper-icon-item>
+                                </template>
+                            </iron-selector>
+                        </div>
+                        <div name="menu">
+                            <template is="dom-repeat" items={{menuIsUse}} as="sub_title" index-as="main_index">
+                                <div class="title-menu" on-click="toggle">
+                                    [[_changeTotext(sub_title.page_name)]]
+                                    <paper-icon-button icon="my-icons:expand-more"></paper-icon-button>
+                                </div>
+                                <iron-collapse id="collapse-[[main_index]]" opened>
+                                    <iron-selector class="ironmenu" selected="[[page]]" attr-for-selected="name" role="navigation">
+                                        <template is="dom-repeat" items={{sub_title.sub_menu}}>
+                                            <div class="menu-item" indexmain="[[main_index]],[[index]]" name="[[item.href]]" href="[[item.href]]" on-click="_redirect">
+                                                <iron-icon icon="[[item.icon]]" slot="item-icon"></iron-icon>
+                                                <div>[[item.label]]</div>
+                                            </div>
+                                            <!-- <paper-icon-item indexmain="[[main_index]],[[index]]" name="[[item.href]]" href="[[item.href]]" on-click="_redirect">
+                                                <iron-icon icon="[[_changeTotext(item.icon)]]" slot="item-icon"></iron-icon>
+                                               <div style$=[[checklingth(item.label)]]>[[_changeTotext(item.label)]]</div>  
+                                            </paper-icon-item> -->
+                                        </template>
+                                    </iron-selector>
+                                </iron-collapse>
+                            </template>
+                            <div style="margin-bottom: 50px;">
+                            </div>
+                        </div>
+                    </iron-pages>
+                </div>
+            </div>
+            <!-- <div style="height:100%;background-color: #21292e;">
+            </div> -->
+        </div>
+
+    </template>
+
+    <script>
+        class LayoutDrawer extends ReduxMixin(Polymer.Element) {
+
+            static get is() { return 'layout-drawer'; }
+
+            static get properties() {
+                return {
+                    page: String,
+                    i18n: {
+                        statePath: 'i18n'
+                    },
+                    menuPage: {
+                        type: String,
+                        value: 'main'
+                    },
+                    menu: {
+                        type: Array,
+                        value: [
+                            {
+                                icon: 'perm-identity',
+                                page: '/',
+                                name: 'สมัคร',
+                                sub_title_menu: [
+                                    {
+                                        page_name: 'i18n.menu.register.label',
+                                        sub_menu: [
+                                            {
+                                                page_name: 'page-register/register',
+                                                icon: 'i18n.menu.register.icon',
+                                                label: 'i18n.menu.register.label',
+                                                href: '/'
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                icon: 'my-icons:insert-chart',
+                                page: '/dashboard',
+                                name: 'สรุป',
+                                sub_title_menu: [
+                                    {
+                                        page_name: 'i18n.dashboard.summary_report',
+                                        sub_menu: [
+                                            {
+                                                page_name: 'page-dashboard/dashboard',
+                                                icon: 'i18n.dashboard.dashboard.icon',
+                                                label: 'i18n.dashboard.summary_report',
+                                                href: '/dashboard'
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                icon: 'assignment',
+                                page: 'profile/ข้อมูลพื้นฐาน',
+                                name: 'ข้อมูลส่วนตัว',
+                                sub_title_menu: [
+                                    {
+                                        page_name: 'i18n.page00.general_information',
+                                        sub_menu: [
+                                            {
+                                                page_name: 'page-profile/ข้อมูลพื้นฐาน',
+                                                icon: 'aqa-icon-menu:info',
+                                                label: 'ข้อมูลพื้นฐาน',
+                                                href: '/profile/ข้อมูลพื้นฐาน'
+                                            },
+                                            {
+                                                page_name: 'page-profile/ที่อยู่ในการติดต่อ',
+                                                icon: 'aqa-icon-menu:address',
+                                                label: 'ที่อยู่ในการติดต่อ',
+                                                href: '/profile/ที่อยู่ในการติดต่อ'
+                                            },
+                                            {
+                                                page_name: 'page-profile/บัญชีธนาคาร',
+                                                icon: 'aqa-icon-menu:bank',
+                                                label: 'บัญชีธนาคาร',
+                                                href: '/profile/บัญชีธนาคาร'
+                                            },
+                                            {
+                                                page_name: 'page-profile/ความสามารถอื่นๆ',
+                                                icon: 'aqa-icon-menu:other',
+                                                label: 'ความสามารถอื่นๆ',
+                                                href: '/profile/ความสามารถอื่นๆ'
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        page_name: 'i18n.page00.education_topic',
+                                        sub_menu: [
+                                            {
+                                                page_name: 'page-profile/วุฒิการศึกษา',
+                                                icon: 'aqa-icon-menu:education',
+                                                label: 'วุฒิการศึกษา',
+                                                href: '/profile/วุฒิการศึกษา'
+                                            },
+                                            {
+                                                page_name: 'page-profile/ประวัติการทำงาน',
+                                                icon: 'aqa-icon-menu:work',
+                                                label: 'ประวัติการทำงาน',
+                                                href: '/profile/ประวัติการทำงาน'
+                                            },
+                                            {
+                                                page_name: 'page-profile/สาขาเชี่ยวชาญ',
+                                                icon: 'aqa-icon-menu:skills',
+                                                label: 'สาขาเชี่ยวชาญ',
+                                                href: '/profile/สาขาเชี่ยวชาญ'
+                                            },
+                                            {
+                                                page_name: 'page-profile/ผลงานทางวิชาการ',
+                                                icon: 'aqa-icon-menu:portfolio',
+                                                label: 'ผลงานทางวิชาการ',
+                                                href: '/profile/ผลงานทางวิชาการ'
+                                            },
+                                            {
+                                                page_name: 'page-profile/ประวัติการประเมิน',
+                                                icon: 'aqa-icon-menu:evalution',
+                                                label: 'ประวัติการประเมิน',
+                                                href: '/profile/ประวัติการประเมิน'
+                                            },
+                                            {
+                                                page_name: 'page-profile/ประวัติการอบรมประกันคุณภาพภายใน',
+                                                icon: 'aqa-icon-menu:training',
+                                                label: 'ประวัติการอบรมประกันคุณภาพภายใน',
+                                                href: '/profile/ประวัติการอบรมประกันคุณภาพภายใน'
+                                            }
+                                            
+                                        ]
+                                    },
+                                    {
+                                        page_name: 'i18n.page00.other_information',
+                                        sub_menu: [
+                                           
+                                            {
+                                                page_name: 'page-profile/ภาคที่สะดวกในการประเมิน',
+                                                icon: 'aqa-icon-menu:location',
+                                                label: 'ภาคที่สะดวกในการประเมิน',
+                                                href: '/profile/ภาคที่สะดวกในการประเมิน'
+                                            },
+                                            {
+                                                page_name: 'page-profile/บุคคลอ้างอิง',
+                                                icon: 'aqa-icon-menu:refer',
+                                                label: 'บุคคลอ้างอิง',
+                                                href: '/profile/บุคคลอ้างอิง'
+                                            },
+                                            {
+                                                page_name: 'page-profile/ไฟล์เอกสาร',
+                                                icon: 'aqa-icon-menu:document',
+                                                label: 'ไฟล์เอกสาร',
+                                                href: '/profile/ไฟล์เอกสาร'
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                icon: 'account-box',
+                                page: '/approve',
+                                name: 'อนุมัติผู้ประเมิน',
+                                sub_title_menu: [
+                                    {
+                                        page_name: 'i18n.menu.approve.label',
+                                        sub_menu: [
+                                            {
+                                                page_name: 'page-profile',
+                                                icon: 'i18n.menu.approve.icon',
+                                                label: 'i18n.menu.approve.label',
+                                                href: '/approve'
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    menuIsUse: {
+                        type: Array,
+                        value: [],
+                    },
+                    pathName: {
+                        type: String,
+                        observer: 'getUrl'
+                    }
+                }
+            }
+            toggle(e) {
+                let getElement = e.currentTarget.nextElementSibling
+                getElement.toggle()
+                let icon = e.currentTarget.childNodes[1].icon
+                if (icon === 'my-icons:expand-more') {
+                    e.currentTarget.childNodes[1].icon = 'my-icons:chevron-right'
+                } else {
+                    e.currentTarget.childNodes[1].icon = 'my-icons:expand-more'
+                }
+            }
+            getUrl(url) {
+                // console.log(url);
+                // if (url !== '/') {
+                this.set('menuPage', 'menu')
+                for (var index = 0; index < this.menu.length; index++) {
+                    for (var j = 0; j < this.menu[index].sub_title_menu.length; j++) {
+                        for (var k = 0; k < this.menu[index].sub_title_menu[j].sub_menu.length; k++) {
+                            let href = this.menu[index].sub_title_menu[j].sub_menu[k].href
+                            // console.log(this.menu[index].sub_title_menu[j].sub_menu[k].href);
+                            if (href === url) {
+                                this.set('menuIsUse', this.menu[index].sub_title_menu)
+                                this.set('page', this.pathName)
+                            }
+                        }
+                    }
+                }
+                // }
+            }
+            ready() {
+                super.ready()
+                // console.log(this._params)
+            }
+
+            toogleMenu(index) {
+                this.$.drawer.toggle();
+            }
+
+            _redirect(e) {
+                let iron = this.shadowRoot.querySelectorAll('.ironmenu')
+                // console.log(iron);
+                let withOut = e.currentTarget.indexmain
+                let indexMain = withOut.split(',')[0]
+                // console.log(indexMain);
+                iron.forEach((element, index) => {
+                    if (Number(indexMain) !== index)
+                        element.selected = ''
+                    return element
+                    // 
+                }, this);
+                let link = e.currentTarget.href
+                Nylon.redirect(link)
+                setTimeout(() => {
+                    // this.$.drawer.close()
+                }, 500)
+                // Nylon.redirect(e.currentTarget.getAttribute('href'))
+                // setTimeout(() => {
+                //     this.$.drawer.close()
+                // }, 500)
+            }
+            changeMenu(e) {
+                let page = (this.menuPage === 'main' ? 'menu' : 'main')
+                // ถ้า this.menuIsUse ว่าง ให้เอาเมนูอันแรกไปใส่
+                if (this.menuIsUse.length < 1) {
+                    this.set('menuIsUse', this.menu[0].sub_title_menu)
+                }
+                this.set('menuPage', page)
+                // console.log(page);
+            }
+            changeToMenu(e) {
+                // console.log(e.currentTarget.name);
+                let item = e.model.__data.item.sub_title_menu
+
+                this.set('menuIsUse', item)
+                // console.log(e.model.__data.item.sub_title_menu);
+                this.changeMenu()
+            }
+            _changeTotext(text) {
+                if (text !== undefined) {
+                    let texts = text.split('.')
+                    // let i18n = text.split('.').shift()
+                    // // console.log(texts.shift());
+                    // let textss = texts.join('.')
+                    // console.log(textss);
+                    // // console.log(this.i18n[textss]);
+                    // // console.log(texts.shift());
+                    // // return this[text]
+                    // console.log(texts);
+                    // console.log(this[texts[0]]);
+                    switch (texts.length) {
+                        case 2:
+                            return this[texts[0]][texts[1]]
+                            break;
+                        case 3:
+                            return this[texts[0]][texts[1]][texts[2]]
+                            break;
+                        case 4:
+                            return this[texts[0]][texts[1]][texts[2]][texts[3]]
+                            break;
+                        case 5:
+                            return this[texts[0]][texts[1]][texts[2]][texts[3]][texts[4]]
+                            break;
+                        default:
+                            console.log('Error Not Have');
+                            break;
+                    }
+                }
+            }
+            checklingth(text) {
+                if (this._changeTotext(text).length >= 25) {
+                    return 'padding-left: 13px;'
+                } else {
+                    return ''
+                }
+            }
+
+        }
+
+        window.customElements.define(LayoutDrawer.is, LayoutDrawer);
+    </script>
+</dom-module>

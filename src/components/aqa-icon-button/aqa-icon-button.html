@@ -1,4 +1,6 @@
 <link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/paper-tooltip/paper-tooltip.html">
+
 <dom-module id="aqa-icon-button">
     <template>
         <style>
@@ -68,6 +70,7 @@
             } */
         </style>
         <!-- <button class="tooltip"> -->
+            <paper-tooltip id="tooltip" offset="0"></paper-tooltip>
             <div class="tooltip">
                 <slot></slot>
                 <template is="dom-if" if="[[showTooltip(label)]]">
@@ -88,6 +91,19 @@
                         value:''
                     }
                 }
+            }
+            ready(){
+                // super.ready()
+                const elementList = Polymer.dom(this.root).querySelector('body').children
+                console.log(elementList)
+                for (var index = 0; index < elementList.length; index++) {
+                    console.log(elementList[index].tagName);
+                    if(elementList[index].tagName == "NYLON-APP"){
+                        console.log(elementList[index]);
+                    }
+                }
+                // console.log(this.$.tooltip)
+                // console.log(Polymer.dom(this.root).querySelector('body').children)
             }
             showTooltip(val){
                 if(val) return true;

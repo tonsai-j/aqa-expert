@@ -11,15 +11,11 @@
                 margin-bottom: 0;
             }
         </style>
-        <h1 class="page-title"><slot></slot></h1>
+        <div class="page-title"><slot></slot></div>
     </template>
     <script>
-        class AqaTitle extends ReduxMixin(Polymer.Element) {
+        class AqaTitle extends Polymer.Element {
             static get is() { return 'aqa-title'; }
-            static get properties() {
-                return {
-                }
-            }
         }
         window.customElements.define(AqaTitle.is, AqaTitle);
 
