@@ -1,7 +1,6 @@
-<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<!-- <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../layout/flexbox-grid.html">
 <link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
-<!-- <link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html"> -->
 <link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
@@ -15,127 +14,46 @@
 <link rel="import" href="../../../redux-mixin.html">
 <link rel="import" href="../../../mixins/animate-mixin.html">
 <link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
+<link rel="import" href="../../../mixins/common-mixin.html"> -->
+
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../mixins/animate-mixin.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
+<link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../../../bower_components/iron-icons/iron-icons.html">
+
+<link rel="import" href="../../../layout/flexbox-grid.html">
+<link rel="import" href="../../../layout/shared-styles.html">
+<link rel="import" href="../../../components/aqa-form/aqa-combo-box.html">
+<link rel="import" href="../../../components/aqa-panel/aqa-panel.html">
+<link rel="import" href="../../../components/aqa-button/aqa-button.html">
+<link rel="import" href="../../../components/aqa-form/aqa-input.html">
+<link rel="import" href="./components/specia-list.html">
+<link rel="import" href="../../../components/aqa-title/aqa-title-name.html">
 
 
 <dom-module id="page-04">
     <template>
-        <style include="shared-styles flexbox-grid">
-             :host {
-                display: block
-            }
-        </style>
-
-        <nylon-panel-card id="specialisttype">
-            <div slot="content">
-                <div class="header-title">
-                    [[i18n.page04.title]]
-                </div>
-                <div class="row start-md middle-md">
-                    <div class="label col-md-3">
-                        <paper-button raised class="btn-primary" action="add" on-tap=_openPanelRight>
-                            <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]</paper-button>
-                    </div>
-                </div>
-                <br>
-                <vaadin-grid id='material' items='{{specialist}}'>
-                    <vaadin-grid-column>
-                        <template class="header" width="50px" flex-grow="0">
-                            <div class="text-center">
-                                    [[i18n.common.no]]
-                            </div>
-                        </template>
-                        <template>
-                            <div class="text-center">[[autoIndex(index)]]</div>
-                        </template>
-                    </vaadin-grid-column>
-                    <vaadin-grid-column>
-                        <template class="header">[[i18n.page04.group]]</template>
-                        <template>[[item.group_specialist.group_specialist_name]]</template>
-                    </vaadin-grid-column>
-                    <vaadin-grid-column>
-                        <template class="header">[[i18n.page04.type]]</template>
-                        <template>[[item.type_specialist.type_specialist_name]]</template>
-                    </vaadin-grid-column>
-                    <vaadin-grid-column>
-                        <template class="header">[[i18n.page04.date]]</template>
-                        <template>[[item.updater]] [[changeDate(item.date_updated)]]</template>
-                    </vaadin-grid-column>
-                    <vaadin-grid-column>
-                        <template class="header">
-                            <div style="text-align: center">[[i18n.common.tools]]</div>
-                        </template>
-                        <template>
-                            <span style="text-align: center">
-                                <paper-icon-button icon="[[i18n.button.edit.icon]]" action="edit" on-click="_openPanelRight"></paper-icon-button>
-                                <paper-icon-button icon="[[i18n.button.delete.icon]]" on-click="_confirmDel"></paper-icon-button>
-                                </span>
-                        </template>
-                    </vaadin-grid-column>
-                </vaadin-grid>
-                <div class="no-content" hidden="{{specialist.length}}">
-                        ไม่มีข้อมูล
-                    </div>
-                [[i18n.common.total_items]] {{specialist.length}} [[i18n.common.list]]
-            </div>
-        </nylon-panel-card>
-        <nylon-panel-right id="right" title="สาขาที่เชี่ยวชาญ" width="80%">
-            <nylon-panel-card slot="content">
+        <style include="flexbox-grid"></style>
+        <div class="page-container">
+            <aqa-title-name></aqa-title-name>
+            <aqa-panel id="basic">
+                <app-toolbar slot="header">
+                    <div main-title>สาขาเชี่ยวชาญ</div>
+                </app-toolbar>
                 <div slot="content">
-                    <div class="col-md-offset-1  col-md-4">
-                        <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page04.group]]" items='{{amphoeList}}' value="{{specialization.specialized_branches}}"
-                            item-label-path="label" item-value-path="value">
-                            <template>
-                                [[item.label]]
-                            </template>
-                        </nylon-combo-box> -->
-                        <nylon-combo-box class="required" required always-float-label label="[[i18n.page04.group]]" items='{{specialistgroup}}' value="{{data.group_specialist_id}}"
-                            item-label-path="group_specialist_name" item-value-path="id" on-selected-item-changed="getObject"
-                            object-name="data.group_specialist">
-                            <template>
-                                [[item.group_specialist_name]]
-                            </template>
-                        </nylon-combo-box>
-                    </div>
-                    <div class="col-md-offset-1 col-md-8">
-                        <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page04.type]]" items='{{amphoeList}}' value="{{specialization.specialized_type}}"
-                            item-label-path="label" item-value-path="value">
-                            <template>
-                                [[item.label]]
-                            </template>
-                        </nylon-combo-box> -->
-                        <nylon-combo-box class="required" required always-float-label label="[[i18n.page04.type]]" items='{{specialisttype}}' value="{{data.type_specialist_id}}"
-                            item-label-path="type_specialist_name" item-value-path="id" on-selected-item-changed="getObject"
-                            object-name="data.type_specialist">
-                            <template>
-                                [[item.type_specialist_name]]
-                            </template>
-                        </nylon-combo-box>
-
-                    </div>
-                    <div class="row center-md button-buttom">
-                        <div class="button-action-bottom">
-                            <paper-button raised class="btn-success" on-click="_save">
-                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                            </paper-button>
-                            <paper-button raised class="btn-close" on-click="_closePanelRight">
-                                <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
-                            </paper-button>
+                    <div class="row start-xs" style="margin-bottom:0.5rem">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <aqa-button type="primary" icon="add">เพิ่ม</aqa-button>
+                            </div>
                         </div>
                     </div>
+                    <specia-list></specia-list>
                 </div>
-                <!-- <app-toolbar slot="footer">
-                    <div main-title></div>
-                    <paper-button raised class="btn-success" on-click="_save">
-                        <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                    </paper-button>
-                    <paper-button raised on-click="_closePanelRight">
-                        <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
-                    </paper-button>
-                </app-toolbar> -->
-            </nylon-panel-card>
-        </nylon-panel-right>
-
+            </aqa-panel>
+        </div>
     </template>
 
     <script>
