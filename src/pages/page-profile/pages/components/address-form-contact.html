@@ -1,0 +1,670 @@
+<link rel="import" href="../../../../../bower_components/polymer/polymer-element.html">
+
+<link rel="import" href="../../../../layout/flexbox-grid.html">
+<link rel="import" href="../../../../layout/shared-styles.html">
+<link rel="import" href="../../../../components/aqa-form/aqa-combo-box.html">
+<link rel="import" href="../../../../components/aqa-panel/aqa-panel.html">
+<link rel="import" href="../../../../components/aqa-button/aqa-button.html">
+<link rel="import" href="../../../../components/aqa-form/aqa-input.html">
+
+<dom-module id="address-form-contact">
+    <template>
+        <style include="flexbox-grid shared-styles">
+
+        </style>
+        <div>
+            <div class="section-content row">
+                <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                    <aqa-input label="เลขที่" value="" required></aqa-input>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                    <aqa-input label="หมู่ที่" value=""></aqa-input>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <aqa-input label="หมู่บ้าน" value=""></aqa-input>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-12 col-lg-4">
+                    <aqa-input label="อาคาร" value=""></aqa-input>
+                </div>
+            </div>
+            <div class="section-content row">
+                <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                    <aqa-input label="ซอย" value=""></aqa-input>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <aqa-input label="ถนน" value=""></aqa-input>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <aqa-combo-box label="ภาค" items="[[region]]" item-label-path="region_th" item-value-path="old_id" value="{{region_id}}"
+                        required></aqa-combo-box>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-12 col-lg-3">
+                    <aqa-combo-box id="province" label="จังหวัด" items="[[checkIsRegion(region_id,province,region_id.*)]]" item-label-path="province_th"
+                        item-value-path="old_id" value="" required></aqa-combo-box>
+                </div>
+            </div>
+            <div class="section-content row">
+                <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <!-- <aqa-input label="อำเภอ / เขต" value="" required></aqa-input> -->
+                    <aqa-combo-box label="อำเภอ / เขต" items="[[district]]" item-label-path="label" item-value-path="value" required></aqa-combo-box>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <aqa-combo-box label="ตำบล / แขวง" items="[[subdistrict]]" item-label-path="label" item-value-path="value" value=""></aqa-combo-box>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <aqa-input label="รหัสไปรษณีย์" value="" required></aqa-input>
+                </div>
+            </div>
+            <div class="section-content row">
+                <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <aqa-input label="โทรศัพท์" value=""></aqa-input>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <aqa-input label="โทรสาร" value=""></aqa-input>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <aqa-input type="phone" label="โทรศัพท์เคลื่อนที่" value="" required></aqa-input>
+                </div>
+            </div>
+            <div class="section-content row">
+                <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <aqa-input label="อีเมล" value="" required></aqa-input>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <aqa-input label="Line ID" value=""></aqa-input>
+                </div>
+            </div>
+            <!-- <div class="section-content row">
+                <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-2" style="margin:auto 0">
+                    <b>ช่วงเวลาที่สามารถติดต่อได้ : </b>
+                </div>
+                <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                    <aqa-input label="ตั้งแต่เวลา" value=""></aqa-input>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                    <aqa-input label="ถึงเวลา" value=""></aqa-input>
+                </div>
+            </div> -->
+        </div>
+    </template>
+    <script>
+        class AddressFormContract extends Polymer.Element {
+            static get is() { return 'address-form-contact'; }
+            static get properties() {
+                return {
+                    // address1:{
+                    //     type:Array,
+                    //     value:[
+                    //         {
+                    //             label:'ภาคเหนือ',
+                    //             value:'1'
+                    //         },
+                    //         {
+                    //             label:'ภาคกลาง',
+                    //             value:'2'
+                    //         },
+                    //         {
+                    //             label:'ภาคใต้',
+                    //             value:'3'
+                    //         },
+                    //         {
+                    //             label:'ภาคอีสาน',
+                    //             value:'4'
+                    //         }
+                    //     ]
+                    // },
+                    region_id: {
+                        type: String,
+                        value: ''
+                    },
+                    region: {
+                        type: Array,
+                        value: [
+                            {
+                                "id": "89fe5ffa-0331-4e8f-ad3f-afdbf7ace4ef",
+                                "old_id": "2",
+                                "region_th": "ภาคกลาง"
+                            },
+                            {
+                                "id": "135ddfba-11bc-4879-8fac-6ba826ce6342",
+                                "old_id": "4",
+                                "region_th": "ภาคตะวันตก"
+                            },
+                            {
+                                "id": "597ff7c5-95ae-47f6-99de-67a5fe1d7035",
+                                "old_id": "5",
+                                "region_th": "ภาคตะวันออก"
+                            },
+                            {
+                                "id": "8214124e-a2db-433c-b320-555ab5ced487",
+                                "old_id": "3",
+                                "region_th": "ภาคตะวันออกเฉียงเหนือ"
+                            },
+                            {
+                                "id": "bd840811-0296-4451-b83a-64396ee31b3f",
+                                "old_id": "1",
+                                "region_th": "ภาคเหนือ"
+                            },
+                            {
+                                "id": "17ca0851-d76a-46da-8829-b91b7e37456e",
+                                "old_id": "6",
+                                "region_th": "ภาคใต้"
+                            }
+                        ]
+                    },
+                    district: {
+                        type: Array,
+                        value: [
+                            {
+                                label: 'เมือง',
+                                value: '01'
+                            }
+                        ]
+                    },
+                    subdistrict: {
+                        type: Array,
+                        value: [
+                            {
+                                label: 'เทศบาลตำบลบ้านดู่',
+                                value: '01'
+                            }
+                        ]
+                    },
+                    // address2: {
+                    //     type: Array,
+                    //     value: [
+                    //         {
+                    //             label: 'กรุงเทพมหานคร ',
+                    //             value: '1'
+                    //         },
+                    //         {
+                    //             label: 'กระบี่',
+                    //             value: '2'
+                    //         },
+                    //         {
+                    //             label: 'ตราด',
+                    //             value: '3'
+                    //         },
+                    //         {
+                    //             label: 'ประจวบคีรีขันธ์',
+                    //             value: '4'
+                    //         }
+                    //     ]
+                    // }
+                    province: {
+                        type: Array,
+                        value: [
+                            {
+                                "id": "6998ca21-4a55-423f-8b7d-0e50cdb8f6c2",
+                                "old_id": "65",
+                                "province_th": "กระบี่",
+                                "region_old_id": "6"
+                            },
+                            {
+                                "id": "8424ca1d-93b2-4070-b0c5-80a0611e7838",
+                                "old_id": "1",
+                                "province_th": "กรุงเทพมหานคร",
+                                "region_old_id": "2"
+                            },
+                            {
+                                "id": "5c658626-1f75-49eb-9a07-02a5a70712d1",
+                                "old_id": "57",
+                                "province_th": "กาญจนบุรี",
+                                "region_old_id": "4"
+                            },
+                            {
+                                "id": "c5daf5aa-a3b7-49c9-8fa7-391afe1a5bb9",
+                                "old_id": "35",
+                                "province_th": "กาฬสินธุ์",
+                                "region_old_id": "3"
+                            },
+                            {
+                                "id": "6ef71dce-3d1b-4de7-97fe-9814a96b869d",
+                                "old_id": "50",
+                                "province_th": "กำแพงเพชร",
+                                "region_old_id": "2"
+                            },
+                            {
+                                "id": "e93c3071-4597-4d1d-8555-8440e9260380",
+                                "old_id": "29",
+                                "province_th": "ขอนแก่น",
+                                "region_old_id": "3"
+                            },
+                            {
+                                "id": "9321b0b0-c4c8-46e3-ac4b-9b22eeff507f",
+                                "old_id": "13",
+                                "province_th": "จันทบุรี",
+                                "region_old_id": "5"
+                            },
+                            {
+                                "id": "bf94af80-bec4-4853-9f4a-7f1a2e0e1e91",
+                                "old_id": "15",
+                                "province_th": "ฉะเชิงเทรา",
+                                "region_old_id": "5"
+                            },
+                            {
+                                "id": "4222b1b1-f1b3-49b5-8eef-8e36fde0052e",
+                                "old_id": "11",
+                                "province_th": "ชลบุรี",
+                                "region_old_id": "5"
+                            },
+                            {
+                                "id": "ef98dca2-cbfe-49cf-9eeb-eacfc40c711d",
+                                "old_id": "9",
+                                "province_th": "ชัยนาท",
+                                "region_old_id": "2"
+                            },
+                            {
+                                "id": "05a3f220-970b-4b36-b90a-5326dc51c4d5",
+                                "old_id": "25",
+                                "province_th": "ชัยภูมิ",
+                                "region_old_id": "3"
+                            },
+                            {
+                                "id": "21d07092-d5fe-49f8-ad8f-264ba0fe682e",
+                                "old_id": "70",
+                                "province_th": "ชุมพร",
+                                "region_old_id": "6"
+                            },
+                            {
+                                "id": "8a576183-0e2d-4616-a46b-8e9f10758ff6",
+                                "old_id": "73",
+                                "province_th": "ตรัง",
+                                "region_old_id": "6"
+                            },
+                            {
+                                "id": "cd0e2a97-a47b-46a3-9946-a35bf493bdde",
+                                "old_id": "14",
+                                "province_th": "ตราด",
+                                "region_old_id": "5"
+                            },
+                            {
+                                "id": "fc22c47c-e7d9-4f90-91d2-03bc84e74ecf",
+                                "old_id": "51",
+                                "province_th": "ตาก",
+                                "region_old_id": "4"
+                            },
+                            {
+                                "id": "8f8159c0-2b55-4bfc-a057-fc913fa0f3dc",
+                                "old_id": "17",
+                                "province_th": "นครนายก",
+                                "region_old_id": "2"
+                            },
+                            {
+                                "id": "72cfa52f-934b-42b4-85f0-9c5c3722cdc1",
+                                "old_id": "59",
+                                "province_th": "นครปฐม",
+                                "region_old_id": "2"
+                            },
+                            {
+                                "id": "ddd888eb-9fe4-494b-a31b-47d2448896e9",
+                                "old_id": "37",
+                                "province_th": "นครพนม",
+                                "region_old_id": "3"
+                            },
+                            {
+                                "id": "53faf83a-1d8e-4bf1-80a5-c2ea57c7d6c4",
+                                "old_id": "19",
+                                "province_th": "นครราชสีมา",
+                                "region_old_id": "3"
+                            },
+                            {
+                                "id": "745829af-ebea-4a9b-9ada-db96093a0cda",
+                                "old_id": "64",
+                                "province_th": "นครศรีธรรมราช",
+                                "region_old_id": "6"
+                            },
+                            {
+                                "id": "44c34cee-96c4-4fa6-8ca7-7e0b980666e1",
+                                "old_id": "48",
+                                "province_th": "นครสวรรค์",
+                                "region_old_id": "2"
+                            },
+                            {
+                                "id": "7daa4d82-59fb-4edf-89a6-c61a780a4f2f",
+                                "old_id": "3",
+                                "province_th": "นนทบุรี",
+                                "region_old_id": "2"
+                            },
+                            {
+                                "id": "0664bc19-2857-4440-9b93-276ec4f3b9eb",
+                                "old_id": "77",
+                                "province_th": "นราธิวาส",
+                                "region_old_id": "6"
+                            },
+                            {
+                                "id": "2ce93a95-f7ba-4091-9703-a6d8a2ef809c",
+                                "old_id": "44",
+                                "province_th": "น่าน",
+                                "region_old_id": "1"
+                            },
+                            {
+                                "id": "d0df4607-4861-4277-b278-44bb536adc5a",
+                                "old_id": "27",
+                                "province_th": "บึงกาฬ",
+                                "region_old_id": "3"
+                            },
+                            {
+                                "id": "adf36e9b-f12f-4253-bad9-8e3ef0a00162",
+                                "old_id": "20",
+                                "province_th": "บุรีรัมย์",
+                                "region_old_id": "3"
+                            },
+                            {
+                                "id": "f73d115f-2230-49da-92b5-f5206013cc81",
+                                "old_id": "4",
+                                "province_th": "ปทุมธานี",
+                                "region_old_id": "2"
+                            },
+                            {
+                                "id": "7476a03f-36b5-46fc-93d7-b861706af71a",
+                                "old_id": "63",
+                                "province_th": "ประจวบคีรีขันธ์",
+                                "region_old_id": "4"
+                            },
+                            {
+                                "id": "29f830db-2d7f-4b09-b6ea-aff706801061",
+                                "old_id": "16",
+                                "province_th": "ปราจีนบุรี",
+                                "region_old_id": "5"
+                            },
+                            {
+                                "id": "5fa7239a-fc07-4156-a790-e1e532fb0738",
+                                "old_id": "75",
+                                "province_th": "ปัตตานี",
+                                "region_old_id": "6"
+                            },
+                            {
+                                "id": "f6e5c2c6-84b8-48f0-b91f-6b5e6486939a",
+                                "old_id": "5",
+                                "province_th": "พระนครศรีอยุธยา",
+                                "region_old_id": "2"
+                            },
+                            {
+                                "id": "02e74089-f3d0-4262-8531-71c705405dea",
+                                "old_id": "45",
+                                "province_th": "พะเยา",
+                                "region_old_id": "1"
+                            },
+                            {
+                                "id": "4c5c2bab-9358-46fa-8c66-a6fb7e8352b3",
+                                "old_id": "66",
+                                "province_th": "พังงา",
+                                "region_old_id": "6"
+                            },
+                            {
+                                "id": "a329a55a-ff34-4df8-b972-ae4c165cc56e",
+                                "old_id": "74",
+                                "province_th": "พัทลุง",
+                                "region_old_id": "6"
+                            },
+                            {
+                                "id": "4f95e20d-6fe7-4064-bdfd-35dbf0f7d6cd",
+                                "old_id": "54",
+                                "province_th": "พิจิตร",
+                                "region_old_id": "2"
+                            },
+                            {
+                                "id": "b0ff60a0-29c8-41e2-9214-061c6df37621",
+                                "old_id": "53",
+                                "province_th": "พิษณุโลก",
+                                "region_old_id": "2"
+                            },
+                            {
+                                "id": "5636499f-005d-4f7b-9829-ac8d806c6329",
+                                "old_id": "67",
+                                "province_th": "ภูเก็ต",
+                                "region_old_id": "6"
+                            },
+                            {
+                                "id": "e39e83cd-72f8-4b35-8553-3cce2eae2665",
+                                "old_id": "33",
+                                "province_th": "มหาสารคาม",
+                                "region_old_id": "3"
+                            },
+                            {
+                                "id": "453705af-cfb4-4f31-8957-944d76fc1e10",
+                                "old_id": "38",
+                                "province_th": "มุกดาหาร",
+                                "region_old_id": "3"
+                            },
+                            {
+                                "id": "4a2d2c2d-0c77-4f99-8c67-02c97167758e",
+                                "old_id": "76",
+                                "province_th": "ยะลา",
+                                "region_old_id": "6"
+                            },
+                            {
+                                "id": "6db90c12-8ddd-482c-8d12-439a64a8e590",
+                                "old_id": "24",
+                                "province_th": "ยโสธร",
+                                "region_old_id": "3"
+                            },
+                            {
+                                "id": "767561b6-63a6-4376-809d-dbde638e1b93",
+                                "old_id": "69",
+                                "province_th": "ระนอง",
+                                "region_old_id": "6"
+                            },
+                            {
+                                "id": "8553a567-916d-4e8b-a8af-e5dbc5b6d16f",
+                                "old_id": "12",
+                                "province_th": "ระยอง",
+                                "region_old_id": "5"
+                            },
+                            {
+                                "id": "48e3926e-719a-42f6-b589-2246906f7744",
+                                "old_id": "56",
+                                "province_th": "ราชบุรี",
+                                "region_old_id": "4"
+                            },
+                            {
+                                "id": "6502e3b9-c8f4-4683-8fcc-340d45600fe6",
+                                "old_id": "34",
+                                "province_th": "ร้อยเอ็ด",
+                                "region_old_id": "3"
+                            },
+                            {
+                                "id": "b7f9b45a-4de6-4943-8843-9872de2dff90",
+                                "old_id": "7",
+                                "province_th": "ลพบุรี",
+                                "region_old_id": "2"
+                            },
+                            {
+                                "id": "6ef9826b-feb7-4724-a552-775070184ee3",
+                                "old_id": "41",
+                                "province_th": "ลำปาง",
+                                "region_old_id": "1"
+                            },
+                            {
+                                "id": "555eb651-255b-49e4-a73d-f4ec6a0edf7b",
+                                "old_id": "40",
+                                "province_th": "ลำพูน",
+                                "region_old_id": "1"
+                            },
+                            {
+                                "id": "376a9889-1b4c-4782-b776-5b30efddb016",
+                                "old_id": "22",
+                                "province_th": "ศรีสะเกษ",
+                                "region_old_id": "3"
+                            },
+                            {
+                                "id": "fe514c15-3bc9-410d-aa87-39794d4b7f1a",
+                                "old_id": "36",
+                                "province_th": "สกลนคร",
+                                "region_old_id": "3"
+                            },
+                            {
+                                "id": "ab937e5a-877f-4a97-93c5-87de24b30751",
+                                "old_id": "71",
+                                "province_th": "สงขลา",
+                                "region_old_id": "6"
+                            },
+                            {
+                                "id": "3fa16049-9d04-4b02-8d22-a5478c0ae4b5",
+                                "old_id": "72",
+                                "province_th": "สตูล",
+                                "region_old_id": "6"
+                            },
+                            {
+                                "id": "d1e5fa4c-1b9f-4f8a-99e3-492c5b48d50c",
+                                "old_id": "2",
+                                "province_th": "สมุทรปราการ",
+                                "region_old_id": "2"
+                            },
+                            {
+                                "id": "5b9b26fa-a834-4dc7-85d4-cf2ee35165a4",
+                                "old_id": "61",
+                                "province_th": "สมุทรสงคราม",
+                                "region_old_id": "2"
+                            },
+                            {
+                                "id": "306af79f-1413-405b-8236-35aeb5338490",
+                                "old_id": "60",
+                                "province_th": "สมุทรสาคร",
+                                "region_old_id": "2"
+                            },
+                            {
+                                "id": "b0f6adf2-80e4-409b-b3f2-5bc39491eeaf",
+                                "old_id": "10",
+                                "province_th": "สระบุรี",
+                                "region_old_id": "2"
+                            },
+                            {
+                                "id": "8cc05d3e-90da-426e-88f6-162a0383cf5e",
+                                "old_id": "18",
+                                "province_th": "สระแก้ว",
+                                "region_old_id": "5"
+                            },
+                            {
+                                "id": "e528cb88-d2a4-445e-9c86-3a98e415f159",
+                                "old_id": "8",
+                                "province_th": "สิงห์บุรี",
+                                "region_old_id": "2"
+                            },
+                            {
+                                "id": "88112b20-ae1f-471e-9501-95e5e785ae20",
+                                "old_id": "58",
+                                "province_th": "สุพรรณบุรี",
+                                "region_old_id": "2"
+                            },
+                            {
+                                "id": "f607f1a1-f4a3-4df8-9490-4ba26037606d",
+                                "old_id": "68",
+                                "province_th": "สุราษฎร์ธานี",
+                                "region_old_id": "6"
+                            },
+                            {
+                                "id": "3d1dc231-53d5-43dc-9d2b-b695e444a4c6",
+                                "old_id": "21",
+                                "province_th": "สุรินทร์",
+                                "region_old_id": "3"
+                            },
+                            {
+                                "id": "5967409f-5071-4ed0-9732-68eeead7764d",
+                                "old_id": "52",
+                                "province_th": "สุโขทัย",
+                                "region_old_id": "2"
+                            },
+                            {
+                                "id": "4dd3780b-aec6-4c4b-bf4f-038742d19ed9",
+                                "old_id": "32",
+                                "province_th": "หนองคาย",
+                                "region_old_id": "3"
+                            },
+                            {
+                                "id": "278148de-2df9-4bd6-a1ab-4b3a3fff619d",
+                                "old_id": "28",
+                                "province_th": "หนองบัวลำภู",
+                                "region_old_id": "3"
+                            },
+                            {
+                                "id": "b61ba5a9-0912-4e86-bed2-9a4faaa95156",
+                                "old_id": "26",
+                                "province_th": "อำนาจเจริญ",
+                                "region_old_id": "3"
+                            },
+                            {
+                                "id": "98b7288a-aded-4173-9468-4fea81f83e5d",
+                                "old_id": "30",
+                                "province_th": "อุดรธานี",
+                                "region_old_id": "3"
+                            },
+                            {
+                                "id": "ffe8ef3e-427e-40e7-9ada-1f731e1bacd3",
+                                "old_id": "42",
+                                "province_th": "อุตรดิตถ์",
+                                "region_old_id": "1"
+                            },
+                            {
+                                "id": "227f7c47-9aa2-4e35-9cac-74518b9a9825",
+                                "old_id": "49",
+                                "province_th": "อุทัยธานี",
+                                "region_old_id": "2"
+                            },
+                            {
+                                "id": "4f8c03f9-0ce4-4a41-9014-e079bf9ffc74",
+                                "old_id": "23",
+                                "province_th": "อุบลราชธานี",
+                                "region_old_id": "3"
+                            },
+                            {
+                                "id": "117b6936-21d5-4e95-bcb3-c142475360ab",
+                                "old_id": "6",
+                                "province_th": "อ่างทอง",
+                                "region_old_id": "2"
+                            },
+                            {
+                                "id": "4d4ee90f-7148-4160-a746-8a288d7a0c1c",
+                                "old_id": "46",
+                                "province_th": "เชียงราย",
+                                "region_old_id": "1"
+                            },
+                            {
+                                "id": "ab02fd27-b788-48d0-b4ee-778bdef4e3f6",
+                                "old_id": "39",
+                                "province_th": "เชียงใหม่",
+                                "region_old_id": "1"
+                            },
+                            {
+                                "id": "1ea41c5e-118c-4223-80eb-33c4ce8d7189",
+                                "old_id": "62",
+                                "province_th": "เพชรบุรี",
+                                "region_old_id": "4"
+                            },
+                            {
+                                "id": "49d3057a-0d3a-4af1-b979-d139d209cd85",
+                                "old_id": "55",
+                                "province_th": "เพชรบูรณ์",
+                                "region_old_id": "2"
+                            },
+                            {
+                                "id": "10cea3b4-c725-4d73-9689-8451d7a7de02",
+                                "old_id": "31",
+                                "province_th": "เลย",
+                                "region_old_id": "3"
+                            },
+                            {
+                                "id": "e43c676d-74eb-46e4-b4ca-ba1b16688ec1",
+                                "old_id": "43",
+                                "province_th": "แพร่",
+                                "region_old_id": "1"
+                            },
+                            {
+                                "id": "b637996c-2a0d-4b42-8f41-a621dd172ea3",
+                                "old_id": "47",
+                                "province_th": "แม่ฮ่องสอน",
+                                "region_old_id": "1"
+                            }
+                        ]
+                    }
+                }
+            }
+            checkIsRegion(region_id, province) {
+                let newProvice = province.filter(item => item.region_old_id === region_id)
+                return newProvice
+            }
+        }
+        window.customElements.define(AddressFormContract.is, AddressFormContract);
+    </script>
+</dom-module>

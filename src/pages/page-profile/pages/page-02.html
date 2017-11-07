@@ -1,17 +1,11 @@
-<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<!-- <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../layout/flexbox-grid.html">
 <link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
-<!-- <link rel="import" href="../../../../bower_components/paper-input/paper-input.html"> -->
-
 <link rel="import" href="../../../components/nylon-input/nylon-input.html">
-
 <link rel="import" href="../../../../bower_components/paper-radio-group/paper-radio-group.html">
 <link rel="import" href="../../../../bower_components/paper-radio-button/paper-radio-button.html">
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
-<!-- <link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html"> -->
-
 <link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
-
 <link rel="import" href="../../../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
@@ -25,293 +19,134 @@
 <link rel="import" href="../../../redux-mixin.html">
 <link rel="import" href="../../../mixins/animate-mixin.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
-<link rel="import" href="../../../../bower_components/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../../../../bower_components/polymer/lib/elements/dom-repeat.html"> -->
+้<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../../../bower_components/iron-icons/iron-icons.html">
+
+<link rel="import" href="../../../layout/flexbox-grid.html">
+<link rel="import" href="../../../layout/shared-styles.html">
+<link rel="import" href="../../../components/aqa-form/aqa-combo-box.html">
+<link rel="import" href="../../../components/aqa-panel/aqa-panel.html">
+<link rel="import" href="../../../components/aqa-button/aqa-button.html">
+<link rel="import" href="../../../components/aqa-form/aqa-input.html">
+
+<link rel="import" href="../../../components/aqa-title/aqa-title-name.html">
+
+<link rel="import" href="../../../components/aqa-font/aqa-mitr-font.html">
+
+<link rel="import" href="../../../mixins/common-mixin.html">
+
+<link rel="import" href="../../../redux-mixin.html">
+
+<link rel="import" href="./components/address-form-contact.html">
+
+<link rel="import" href="../../../redux/profile/page-02-redux.html">
+
 
 <dom-module id="page-02">
     <template>
-        <style include='flexbox-grid shared-styles'>
-             :host {
-                display: block
+        <style include="flexbox-grid shared-styles">
+            .section {
+                margin: 0.5rem;
             }
 
-            .border {
-                border: 1px solid black;
+            .section-header {
+                margin-bottom: 1rem;
+                font-size: 1.2rem;
+            }
+            /* .section-content {
+                margin-left: 1.5rem;
+            } */
+
+            .white-space {
+                margin: 1rem;
             }
 
-            .label {
-                text-align: right;
-            }
-
-            .input {
-                text-align: left;
+            h2 {
+                font-family: MitrRegular;
+                font-weight: normal;
             }
         </style>
-        <!-- page-2 -->
-        <div id="address">
-            <div class="row">
-                <div class="col-md-4">
-                    <nylon-panel-card>
-                        <div slot="content">
-                            <div class="header-title">
-                                <div class="row">
-                                    <div style="color:#0288D1;text-align:center">
-                                        [[i18n.page02.addsHome]]
-                                        <iron-icon icon="home"></iron-icon>
-                                    </div>
-                                    <p>
-                                        [[_address(home)]]
-                                    </p>
-                                </div>
-                            </div>
+        <div class="page-container">
+            <!-- <h2>ที่อยู่ในการติดต่อ</h2> -->
+            <aqa-title-name></aqa-title-name>
+            <aqa-panel id="basic">
+                <app-toolbar slot="header">
+                    <div main-title>ที่จัดส่งเอกสาร</div>
+                </app-toolbar>
+                <div slot="content">
+                    <!-- <div class="section row">
+                        <div class="col-xs-12 section-header" style="margin:auto 0">
+                            <b>ที่จัดส่งเอกสาร</b>
+                            <hr>
                         </div>
-                    </nylon-panel-card>
-                </div>
-                <div class="col-md-4">
-                    <nylon-panel-card>
-                        <div slot="content">
-                            <div class="header-title">
-                                <div class="row">
-                                    <div style="color:#0288D1;text-align:center">
-                                        [[i18n.page02.addsMail]]
-                                        <iron-icon icon="mail"></iron-icon>
-                                    </div>
-                                    <p>
-                                        [[_address(mail)]]
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </nylon-panel-card>
-                </div>
-
-                <div class="col-md-4">
-                    <nylon-panel-card>
-                        <div slot="content">
-                            <div class="header-title">
-                                <div class="row">
-                                    <div style="color:#0288D1;text-align:center">
-                                        [[i18n.page02.addsWork]]
-                                        <iron-icon icon="work"></iron-icon>
-                                    </div>
-                                    <p>
-                                        [[_address(work)]]
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </nylon-panel-card>
-                </div>
-            </div>
-
-            <div class="row start-md middle-md" style="margin-top:5%">
-                <div class="col-md-3">
-                    <paper-button raised class="btn-primary" action="add" on-click="_openPanelRight">
-                        <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]][[i18n.page02.address]]
-                    </paper-button>
-                </div>
-            </div>
-            <div class="address" style="margin-top:2px">
-                <!-- <template is="dom-repeat" items='[[address]]' mutable-data>
-                <nylon-panel-card style="margin-top:5px">
-                    <div slot="content">
-                        <div class="row between-md">
-                            <div class="col-md-11">
-                                [[_prefixAddress('',item.home_number)]] [[_prefixAddress('ม.',item.village_no)]] [[_prefixAddress('หมู่บ้าน',item.village_name)]]
-                                [[_prefixAddress('',item.building)]] [[_prefixAddress('ซ.',item.alley)]] [[_prefixAddress('ถ.',item.road)]]
-                                [[_prefixAddress('ต.',item.district)]] [[_prefixAddress('อ.',item.amphoe)]] [[_prefixAddress('จ.',item.province.province_th)]]
-                                [[_prefixAddress('',item.zipcode)]] [[_prefixAddress('โทร.',item.telephone)]] [[_prefixAddress('แฟกซ์.',item.fax)]]
-                            </div>
-                            <div class="row end-md middle-md">
-                                <paper-icon-button icon="create" action="edit" on-tap="_openPanelRight"></paper-icon-button>
-                                <paper-icon-button icon="delete" on-tap="_confirmDel"></paper-icon-button>
+                    </div> -->
+                    <div class="section-content">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6">
+                                <input type="radio" name="address" checked> ที่อยู่ที่สะดวกในการติดต่อ
+                                <input type="radio" name="address"> ที่อยู่ที่ทำงาน
+                                <!-- <aqa-combo-box label="สถานที่จัดส่งเอกสาร" items="[[address]]" item-label-path="label" item-value-path="value"></aqa-combo-box> -->
                             </div>
                         </div>
                     </div>
-                </nylon-panel-card>
-            </template> -->
-                <vaadin-grid id='material' items='{{address}}'>
-                    <vaadin-grid-column width="50px">
-                        <template class="header">
-                            <div style="text-align:center">[[i18n.common.no]]</div>
-                        </template>
-                        <template>
-                            <div style="text-align: center">[[autoIndex(index)]] </div>
-                        </template>
-                    </vaadin-grid-column>
-                    <vaadin-grid-column width="50%">
-                        <template class="header">[[i18n.page02.address]]</template>
-                        <template>
-                            [[_address(item)]]
-                            <!-- [[_prefixAddress('',item.home_number)]] [[_prefixAddress('ม.',item.village_no)]] [[_prefixAddress('หมู่บ้าน',item.village_name)]]
-                        [[_prefixAddress('',item.building)]] [[_prefixAddress('ซ.',item.alley)]] [[_prefixAddress('ถ.',item.road)]]
-                        [[_prefixAddress('ต.',item.district)]] [[_prefixAddress('อ.',item.amphoe)]] [[_prefixAddress('จ.',item.province.province_th)]]
-                        [[_prefixAddress('',item.zipcode)]] [[_prefixAddress('โทร.',item.telephone)]] [[_prefixAddress('แฟกซ์.',item.fax)]] -->
-                        </template>
-                    </vaadin-grid-column>
-                    <vaadin-grid-column>
-                        <template class="header">
-                            <div style="text-align: center">[[i18n.page02.addsHome]]</div>
-                        </template>
-                        <template>
-                            <div style="text-align: center">
-                                <paper-icon-button on-tap="onSelect" obj-name="home" raised icon="file-upload"></paper-icon-button>
+                </div>
+            </aqa-panel>
+            <div class="white-space"></div>
+            <aqa-panel id="basic">
+                <app-toolbar slot="header">
+                    <div main-title>ที่อยู่ที่ติดต่อได้สะดวก</div>
+                </app-toolbar>
+                <div slot="content">
+                    <!-- <div class="section row">
+                        <div class="col-xs-12 section-header">
+                            <b>ที่อยู่ที่ติดต่อได้สะดวก</b>
+                            <hr>
+                        </div>
+                    </div> -->
+                    <div class="section-content">
+                        <address-form-contact></address-form-contact>
+                    </div>
+                </div>
+            </aqa-panel>
+            <div class="white-space"></div>
+            <aqa-panel id="basic">
+                <app-toolbar slot="header">
+                    <div main-title>ที่ทำงาน </div>
+                </app-toolbar>
+                <div slot="content">
+                    <!-- <div class="section row">
+                        <div class="col-xs-12 section-header">
+                            <b>ที่ทำงาน</b>
+                            <aqa-button type="primary">คัดลอกจากที่อยู่ที่สะดวกในการติดต่อ</aqa-button>
+                            <hr>
+                        </div>
+                    </div> -->
+                    <div class="section-content">
+                        <p>
+                            <aqa-button type="primary">คัดลอกจากที่อยู่ที่สะดวกในการติดต่อ</aqa-button>
+                        </p>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <aqa-input label="ชื่อองค์กร" value=""></aqa-input>
                             </div>
-                        </template>
-                    </vaadin-grid-column>
-                    <vaadin-grid-column>
-                        <template class="header">
-                            <div style="text-align: center">[[i18n.page02.addsMail]]</div>
-                        </template>
-                        <template>
-                            <div style="text-align: center">
-                                <paper-icon-button on-tap="onSelect" obj-name="mail" raised icon="file-upload"></paper-icon-button>
-                            </div>
-                        </template>
-                    </vaadin-grid-column>
-                    <vaadin-grid-column>
-                        <template class="header">
-                            <div style="text-align: center">[[i18n.page02.addsWork]]</div>
-                        </template>
-                        <template>
-                            <div style="text-align: center">
-                                <paper-icon-button on-tap="onSelect" obj-name="work" raised icon="file-upload"></paper-icon-button>
-                            </div>
-                        </template>
-                    </vaadin-grid-column>
-                    <vaadin-grid-column>
-                        <template class="header">
-                            <div style="text-align: center">[[i18n.common.tools]]</div>
-                        </template>
-                        <template>
-                            <span style="text-align: center">
-                            <paper-icon-button icon="[[i18n.button.edit.icon]]" action="edit" on-click="_openPanelRight"></paper-icon-button>
-                            <paper-icon-button icon="[[i18n.button.delete.icon]]" on-click="_confirmDel"></paper-icon-button>
-                        </span>
-                        </template>
-                    </vaadin-grid-column>
-                </vaadin-grid>
-                <div class="no-content" hidden="{{address.length}}">
-                    ไม่มีข้อมูล
+                        </div>
+                        <address-form-contact></address-form-contact>
+                    </div>
+
+                </div>
+            </aqa-panel>
+            <div class="white-space"></div>
+            <div class="row center-xs">
+                <div class="col-lg-2">
+                    <div style="padding:0rem 2rem;">
+                        <aqa-button type="success btn-full-width">บันทึก</aqa-button>
+                    </div>
                 </div>
             </div>
         </div>
-        <nylon-panel-right id="panelRight" title="[[i18n.page02.title]]">
-            <nylon-panel-card slot="content">
-                <div slot="content">
-                    <div class="header-title">
-                        [[i18n.page02.address]]:
-                    </div>
-                    <div class="row middle-md">
-                        <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input class="required" required always-float-label label="[[i18n.page02.home_number]]" value="{{data.home_number}}"></nylon-input>
-                        </div>
-                        <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input always-float-label label="[[i18n.page02.village_no]]" value="{{data.village_no}}"></nylon-input>
-                        </div>
-                        <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input always-float-label label="[[i18n.page02.village_name]]" value="{{data.village_name}}"></nylon-input>
-                        </div>
-
-                        <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input always-float-label label="[[i18n.page02.building]]" value="{{data.building}}"></nylon-input>
-                        </div>
-                        <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input always-float-label label="[[i18n.page02.alley]]" value="{{data.alley}}"></nylon-input>
-                        </div>
-                        <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input always-float-label label="[[i18n.page02.road]]" value="{{data.road}}"></nylon-input>
-                        </div>
-
-                        <!-- <div class="input col-md-3 col-md-offset-1">
-                            [[getProvinceAddressContract(data.region_id)]]
-                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.region]]" items='{{regionList}}' value="{{data.region_id}}"
-                                item-label-path="region_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.region"
-                                class="required" required>
-                                <template>
-                                    [[item.region_th]]
-                                </template>
-                            </nylon-combo-box>
-                        </div> -->
-                        <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input class="required" required always-float-label label="[[i18n.page02.district]]" value="{{data.district}}"></nylon-input>
-                            <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.district]]" items='{{districtList}}'
-                                                                value="{{data.district}}" item-label-path="label" item-value-path="value">
-                                                                <template>
-                                                                    [[item.label]]
-                                                                </template>
-                                                            </nylon-combo-box> -->
-                        </div>
-                        <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input class="required" required always-float-label label="[[i18n.page02.amphoe]]" value="{{data.amphoe}}"></nylon-input>
-                            <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.amphoe]]*" items='{{amphoeList}}' value="{{data.amphoe}}"
-                                                                    item-label-path="label" item-value-path="value">
-                                                                    <template>
-                                                                        [[item.label]]
-                                                                    </template>
-                                                                </nylon-combo-box> -->
-                        </div>
-                        <div class="input col-md-3 col-md-offset-1">
-                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page02.province]]" items='{{province}}' value="{{data.provinc_id}}"
-                                item-label-path="province_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.province"
-                                class="required" required>
-                                <template>
-                                    [[item.province_th]]
-                                </template>
-                            </nylon-combo-box>
-                        </div>
-
-
-
-                        <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input class="required" required always-float-label label="[[i18n.page02.zipcode]]" value="{{data.zipcode}}"></nylon-input>
-                        </div>
-
-                        <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input always-float-label label="[[i18n.page02.telephone]]" value="{{data.telephone}}"></nylon-input>
-                        </div>
-                        <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input always-float-label label="[[i18n.page02.fax]]" value="{{data.fax}}"></nylon-input>
-                        </div>
-                        <!-- <div class="input col-md-3 col-md-offset-1">
-                            <nylon-input class="required" required always-float-label label="[[i18n.page02.mobile_phone]]*" value="{{data.mobile_phone}}"></nylon-input>
-                        </div> -->
-
-
-                        <!-- <div class="label col-md-2">
-                                                        :
-                                                    </div>
-                                                    <div class="input col-md-2">
-                                                        <nylon-input always-float-label label=""></nylon-input>
-                                                    </div> -->
-
-                        <!-- <div class="lacol-md-3 col-md-offset-1">
-                            [[i18n.page02.time_free]] :
-                        </div> -->
-                        <div class="input col-md-3 col-md-offset-1">
-                            <div class="row middle-md">
-                                <div class="col-md-5">
-                                    <nylon-input class="required" label="[[i18n.page02.time_free]]" required type=time always-float-label value="{{data.time_start}}"></nylon-input>
-                                </div>
-                                <div class="label col-md-2"> [[i18n.page02.to]]</div>
-                                <div class="col-md-5">
-                                    <nylon-input class="required" label="" required type=time always-float-label value="{{data.time_end}}"></nylon-input>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row center-md button-buttom">
-                        <div class="button-action-bottom">
-                            <paper-button raised class="btn-success" on-click="_save">
-                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                            </paper-button>
-                            <paper-button raised on-click="_closePanelRight">
-                                <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
-                            </paper-button>
-                        </div>
-                    </div>
-                </div>
-            </nylon-panel-card>
-        </nylon-panel-right>
 
     </template>
 
