@@ -1,0 +1,84 @@
+<link rel="import" href="../../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../../../bower_components/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../../../../../bower_components/polymer/lib/elements/dom-if.html">
+<link rel="import" href="../../../../components/nylon-rating/nylon-rating.html">
+<link rel="import" href="../../../../components/aqa-button/aqa-button.html">
+<link rel="import" href="../../../../layout/shared-styles.html">
+<link rel="import" href="../../../../layout/flexbox-grid.html">
+<link rel="import" href="../../../../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../../../../bower_components/iron-icons/test/iron-icons.html">
+<link rel="import" href="../../../../../images/icon-moon-delete.html">
+<link rel="import" href="../../../../components/aqa-tooltip/aqa-tooltip.html">
+
+<dom-module id="skill-form">
+    <template>
+        <style include="shared-styles flexbox-grid">
+            .textRight {
+                text-align: right;
+            }
+
+            paper-icon-button {
+                color: #616161
+            }
+
+            .btn-delete:hover {
+                color: #C62828;
+            }
+        </style>
+        <div class="row center-xs">
+
+            <template is="dom-repeat" items="[[items]]">
+                <div class="start-xs end-md col-xs-12 col-md-4" style="margin:auto 0">
+                    [[item.label]]
+                </div>
+                <!-- on-tap="getData" value-as="{{item.value}}" -->
+                <div class="center-xs col-xs-12 col-md-5">
+                    <nylon-rating name="[[name]][[index]]" selected="{{item.value}}"></nylon-rating>
+                </div>
+                <div class="col-xs-12 col-md-3" style="margin:auto 0;text-align:left">
+                    <template is="dom-if" if="[[item.isDelete]]">
+                        <aqa-tooltip label="ลบ">
+                            <paper-icon-button class="btn-delete" on-tap="delData" icon="icomoon:bin"></paper-icon-button>
+                        </aqa-tooltip>
+                    </template>
+                </div>
+            </template>
+            <!-- <div class="row">
+                <div class="col-xs-12" style="margin-top:1rem">
+                    <aqa-button type="success">บันทึก</aqa-button>
+                </div>
+            </div> -->
+        </div>
+    </template>
+    <script>
+        class SkillForm extends Polymer.Element {
+            static get is() { return 'skill-form'; }
+            static get properties() {
+                return {
+                    items: {
+                        type: Array,
+                        value: []
+                    },
+                    name: {
+                        type: String,
+                        value: '0'
+                    }
+                }
+            }
+            delData(e) {
+                // console.log(e.model.index)
+                this.splice('items', e.model.index, 1)
+            }
+            getData(e) {
+                let motherItem = e.model.__data.item.id
+                if (e.currentTarget.valueAs !== undefined){
+                    // console.log(motherItem);
+                    // console.log(e.currentTarget.value);
+                }
+                    
+                // console.log(e.currentTarget.value);
+            }
+        }
+        window.customElements.define(SkillForm.is, SkillForm);
+    </script>
+</dom-module>

@@ -1,22 +1,18 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../../../layout/flexbox-grid.html">
-<link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
-<!-- <link rel="import" href="../../../../bower_components/paper-input/paper-input.html"> -->
-
-<link rel="import" href="../../../components/nylon-input/nylon-input.html">
-
-<link rel="import" href="../../../../bower_components/paper-checkbox/paper-checkbox.html">
-<link rel="import" href="../../../../bower_components/paper-radio-group/paper-radio-group.html">
-<link rel="import" href="../../../../bower_components/paper-radio-button/paper-radio-button.html">
-
-
-<link rel="import" href="../../../../bower_components/l2t-paper-rating/l2t-paper-rating.html">
-
+<link rel="import" href="../../../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../../components/nylon-rating/nylon-rating.html">
-
-<link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
+<link rel="import" href="../../../layout/flexbox-grid.html">
+<link rel="import" href="../../../layout/shared-styles.html">
+<link rel="import" href="../../../components/aqa-form/aqa-combo-box.html">
+<link rel="import" href="../../../components/aqa-panel/aqa-panel.html">
+<link rel="import" href="../../../components/aqa-button/aqa-button.html">
+<link rel="import" href="../../../components/aqa-form/aqa-input.html">
+<link rel="import" href="./components/skill-form.html">
+<link rel="import" href="../../../components/aqa-font/aqa-trirong-font.html">
+<link rel="import" href="../../../components/aqa-font/aqa-mitr-font.html">
+<link rel="import" href="../../../layout/shared-styles.html">
+<link rel="import" href="../../../components/aqa-title/aqa-title-name.html">
 <link rel="import" href="../../../my-icons.html">
 <link rel="import" href="../../../layout/shared-styles.html">
 <link rel="import" href="../../../nylon-i18n.html">
@@ -24,296 +20,149 @@
 <link rel="import" href="../../../redux-mixin.html">
 <link rel="import" href="../../../mixins/animate-mixin.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
+
 <dom-module id="page-06">
     <template>
-        <style include="shared-styles flexbox-grid">
-             :host {
-                display: block
+        <style include="flexbox-grid shared-styles">
+            .section {
+                margin: 0.5rem;
             }
 
-            .label {
+            .section-header {
+                margin-bottom: 1rem;
+                font-size: 1.2rem;
+            }
+
+            .section-content {
+                margin-left: 1.5rem;
+            }
+
+            .textRight {
                 text-align: right;
             }
 
-            .input {
+            .textLeft {
                 text-align: left;
             }
 
-            paper-radio-button {
-                display: inline-block
+            .white-space {
+                margin: 1rem;
             }
 
-            l2t-paper-rating {
-                --rating-ink-color: blue;
-                --rating-icon-color: #fdd835;
-            }
-
-            nylon-panel-card {
-                margin-bottom: 3%;
+            h2 {
+                font-family: MitrRegular;
+                font-weight: normal;
             }
         </style>
-
-        <div id="skills">
-            <nylon-panel-card>
-                <div slot="content">
-                    <div class="header-title">
-                        [[i18n.page06.title_1]]
-                    </div>
-                    <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-5">
-                            [[i18n.page06.edu_school]]
-                        </div>
-                        <div class="col-md-1">
-                            <nylon-input label="" no-label-float value="{{data.edu.school}}" allowed-pattern="[0-9]" required class="required">
-                                <div slot="suffix">
-                                    &nbsp;&nbsp;[[i18n.page06.year]]
+        <div class="page-container">
+            <aqa-title-name></aqa-title-name>
+            <div class="row">
+                <div class="col-xs-12">
+                    <aqa-panel id="card basic">
+                        <app-toolbar slot="header">
+                            <div main-title>ประสบการณ์/ความเชี่ยวชาญด้านการศึกษา</div>
+                        </app-toolbar>
+                        <div slot="content">
+                            <div class="row center-xs">
+                                <div class="col-xs-12">
+                                    <div class="row">
+                                        <div class="start-xs end-md font col-xs-12 col-md-4" style="margin:auto 0">
+                                            มีประสบการณ์ด้านการบริหารสถานศึกษา
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <aqa-combo-box items="[[list]]" placeholder="เลือก" item-label-path="label" item-value-path="value"></aqa-combo-box>
+                                        </div>
+                                        <div class="col-xs-12 font col-md-2" style="text-align:left;margin:auto 0">
+                                            ปี
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="start-xs end-md font col-xs-12 col-md-4" style="margin:auto 0">
+                                            มีประสบการณ์ด้านการจัดการเรียนการสอน
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <aqa-combo-box items="[[list]]" placeholder="เลือก" item-label-path="label" item-value-path="value"></aqa-combo-box>
+                                        </div>
+                                        <div class="col-xs-12 font col-md-2" style="text-align:left;margin:auto 0">
+                                            ปี
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="start-xs end-md font col-xs-12 col-md-4" style="margin:auto 0">
+                                            มีประสบการณ์ด้านการประกันคุณภาพ
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <aqa-combo-box items="[[list]]" placeholder="เลือก" item-label-path="label" item-value-path="value"></aqa-combo-box>
+                                        </div>
+                                        <div class="col-xs-12 font col-md-2" style="text-align:left;margin:auto 0">
+                                            ปี
+                                        </div>
+                                    </div>
                                 </div>
-                            </nylon-input>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-5">
-                            [[i18n.page06.edu_teach]]
+                    </aqa-panel>
+                </div>
+                <div class="white-space"></div>
+                <div class="col-xs-12">
+                    <aqa-panel id="card basic">
+                        <app-toolbar slot="header">
+                            <div main-title>ความสามารถด้านคอมพิวเตอร์</div>
+                        </app-toolbar>
+                        <div slot="content">
+                            <div>
+                                <skill-form name="1" items="[[computer]]"></skill-form>
+                            </div>
                         </div>
-                        <div class="col-md-1">
-                            <nylon-input label="" no-label-float value="{{data.edu.teach}}" allowed-pattern="[0-9]" required class="required">
-                                <div slot="suffix">
-                                    &nbsp;&nbsp;[[i18n.page06.year]]
+                    </aqa-panel>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="white-space"></div>
+                    <aqa-panel id="card basic">
+                        <app-toolbar slot="header">
+                            <div main-title>ความสามารถด้านการพิมพ์</div>
+                        </app-toolbar>
+                        <div slot="content">
+                            <div>
+                                <skill-form name="2" items="[[print]]"></skill-form>
+                            </div>
+                        </div>
+                    </aqa-panel>
+                </div>
+                <div class="col-xs-12">
+                    <div class="white-space"></div>
+                    <aqa-panel id="card basic">
+                        <app-toolbar slot="header">
+                            <div main-title>ความสามารถด้านภาษา</div>
+                        </app-toolbar>
+                        <div slot="content">
+                            <div>
+                                <skill-form name="2" items="[[language]]"></skill-form>
+                                <div class="row">
+                                    <div class="start-xs end-md col-xs-12 col-md-4" style="margin:auto 0">
+                                        อื่นๆ
+                                    </div>
+                                    <div class="col-xs-12 col-md-5">
+                                        <aqa-combo-box items="[[alllanguage]]" placeholder="เลือก" item-label-path="label" item-value-path="label" value="{{selectLanguage}}"></aqa-combo-box>
+                                    </div>
+                                    <div class="col-xs-3"></div>
                                 </div>
-                            </nylon-input>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-5">
-                            [[i18n.page06.edu_qa]]
-                        </div>
-                        <div class="col-md-1">
-                            <nylon-input label="" no-label-float value="{{data.edu.qa}}" allowed-pattern="[0-9]" required class="required">
-                                <div slot="suffix">
-                                    &nbsp;&nbsp;[[i18n.page06.year]]
-                                </div>
-                            </nylon-input>
-                        </div>
-                    </div>
-                    <div class="row center-md meddle-md">
-                        <div class="button-action-bottom">
-                            <paper-button raised class="btn-success" on-click="_save">
-                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                            </paper-button>
-                            <!-- <paper-button raised class="btn-close" class="btn-default">
-                            <iron-icon icon="[[i18n.button.reset.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.reset.label]]
-                        </paper-button> -->
-                        </div>
+                    </aqa-panel>
+                </div>
+            </div>
+            <div style="margin:1rem"></div>
+            <div class="row center-xs">
+                <div class="col-lg-2">
+                    <div style="padding:0rem 2rem;">
+                        <aqa-button type="success btn-full-width">บันทึก</aqa-button>
                     </div>
                 </div>
-            </nylon-panel-card>
-
-            <nylon-panel-card>
-                <div slot="content">
-                    <div class="header-title">
-                        [[i18n.page06.title_2]]
-                    </div>
-                    <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-3">
-                            <div class="label">[[i18n.page06.word]] :</div>
-                        </div>
-                        <div class="col-md-6">
-                            <!-- <l2t-paper-rating icon="favorite-border" rating="{{data.computer.word}}"></l2t-paper-rating>
-                        <nylon-rating value="{{data.computer.word}}"></nylon-rating> -->
-                            <paper-radio-group selected="{{data.computer.word}}" attr-for-selected="name" required class="required-radio">
-                                <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
-                                <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
-                                <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
-                                <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
-                            </paper-radio-group>
-                        </div>
-                    </div>
-                    <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-3">
-                            <div class="label">[[i18n.page06.excel]]:</div>
-                        </div>
-                        <div class="col-md-6">
-                            <!-- <l2t-paper-rating rating="{{data.computer.excel}}"></l2t-paper-rating> -->
-                            <paper-radio-group selected="{{data.computer.excel}}" attr-for-selected="name" required class="required-radio">
-                                <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
-                                <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
-                                <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
-                                <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
-                            </paper-radio-group>
-                        </div>
-                    </div>
-                    <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-3">
-                            <div class="label">[[i18n.page06.power_point]]:</div>
-                        </div>
-                        <div class="col-md-6">
-                            <!-- <l2t-paper-rating rating="{{data.computer.pwt}}"></l2t-paper-rating> -->
-                            <paper-radio-group selected="{{data.computer.pwt}}" attr-for-selected="name" required class="required-radio">
-                                <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
-                                <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
-                                <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
-                                <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
-                            </paper-radio-group>
-                        </div>
-                    </div>
-                    <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-3">
-                            <div class="label">[[i18n.page06.email]] :</div>
-                        </div>
-                        <div class="col-md-6">
-                            <!-- <l2t-paper-rating rating="{{data.computer.email}}"></l2t-paper-rating> -->
-                            <paper-radio-group selected="{{data.computer.email}}" attr-for-selected="name" required class="required-radio">
-                                <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
-                                <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
-                                <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
-                                <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
-                            </paper-radio-group>
-                        </div>
-                    </div>
-                    <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-3">
-                            <div class="label">[[i18n.page06.smart_device]]:</div>
-                        </div>
-                        <div class="col-md-6">
-                            <!-- <l2t-paper-rating rating="{{data.computer.device}}"></l2t-paper-rating> -->
-                            <paper-radio-group selected="{{data.computer.device}}" attr-for-selected="name" required class="required-radio">
-                                <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
-                                <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
-                                <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
-                                <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
-                            </paper-radio-group>
-                        </div>
-                    </div>
-                    <div class="row center-md meddle-md">
-                        <div class="button-action-bottom">
-                            <paper-button raised class="btn-success" on-click="_save">
-                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                            </paper-button>
-                            <!-- <paper-button raised class="btn-close" class="btn-default">
-                            <iron-icon icon="[[i18n.button.reset.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.reset.label]]
-                        </paper-button> -->
-                        </div>
-                    </div>
-                </div>
-            </nylon-panel-card>
-
-            <nylon-panel-card>
-                <div slot="content">
-                    <div class="header-title">
-                        [[i18n.page06.title_3]]
-                    </div>
-                    <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-3">
-                            <div class="label">[[i18n.page06.thai]] :</div>
-                        </div>
-                        <div class="col-md-6">
-                            <!-- <l2t-paper-rating rating="{{data.type.th}}"></l2t-paper-rating> -->
-                            <paper-radio-group selected="{{data.type.th}}" attr-for-selected="name" required class="required-radio">
-                                <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
-                                <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
-                                <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
-                                <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
-                            </paper-radio-group>
-                        </div>
-                    </div>
-                    <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-3">
-                            <div class="label">[[i18n.page06.english]] :</div>
-                        </div>
-                        <div class="col-md-6">
-                            <!-- <l2t-paper-rating rating="{{data.type.en}}"></l2t-paper-rating> -->
-                            <paper-radio-group selected="{{data.type.en}}" attr-for-selected="name" required class="required-radio">
-                                <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
-                                <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
-                                <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
-                                <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
-                            </paper-radio-group>
-                        </div>
-                    </div>
-                    <!-- </fieldset> -->
-                    <div class="row center-md meddle-md">
-                        <div class="button-action-bottom">
-                            <paper-button raised class="btn-success" on-click="_save">
-                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                            </paper-button>
-                            <!-- <paper-button raised class="btn-close" class="btn-default">
-                            <iron-icon icon="[[i18n.button.reset.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.reset.label]]
-                        </paper-button> -->
-                        </div>
-                    </div>
-                </div>
-            </nylon-panel-card>
-
-            <nylon-panel-card>
-                <div slot="content">
-                    <div class="header-title">
-                        [[i18n.page06.title_4]]
-                    </div>
-                    <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-3">
-                            <div class="label">[[i18n.page06.china]] :</div>
-                        </div>
-                        <div class="col-md-6">
-                            <!-- <l2t-paper-rating rating="{{data.lang.cn}}"></l2t-paper-rating> -->
-                            <paper-radio-group selected="{{data.lang.cn}}" attr-for-selected="name" required class="required-radio">
-                                <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
-                                <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
-                                <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
-                                <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
-                            </paper-radio-group>
-                        </div>
-                    </div>
-                    <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-3">
-                            <div class="label">[[i18n.page06.japan]] :</div>
-                        </div>
-                        <div class="col-md-6">
-                            <!-- <l2t-paper-rating rating="{{data.lang.jp}}"></l2t-paper-rating> -->
-                            <paper-radio-group selected="{{data.lang.jp}}" attr-for-selected="name" required class="required-radio">
-                                <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
-                                <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
-                                <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
-                                <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
-                            </paper-radio-group>
-                        </div>
-                    </div>
-                    <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-3">
-                            <div class="label">[[i18n.page06.english]] :</div>
-                        </div>
-                        <div class="col-md-6">
-                            <!-- <l2t-paper-rating rating="{{data.lang.en}}"></l2t-paper-rating> -->
-                            <paper-radio-group selected="{{data.lang.en}}" attr-for-selected="name" required class="required-radio">
-                                <paper-radio-button name="4">[[i18n.page06.excellent]]</paper-radio-button>
-                                <paper-radio-button name="3">[[i18n.page06.good]]</paper-radio-button>
-                                <paper-radio-button name="2">[[i18n.page06.fair]]</paper-radio-button>
-                                <paper-radio-button name="1">[[i18n.page06.no_skill]]</paper-radio-button>
-                            </paper-radio-group>
-                        </div>
-                    </div>
-                    <div class="row center-md meddle-md">
-                        <div class="button-action-bottom">
-                            <paper-button raised class="btn-success" on-click="_save">
-                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                            </paper-button>
-                            <!-- <paper-button raised class="btn-close" class="btn-default">
-                            <iron-icon icon="[[i18n.button.reset.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.reset.label]]
-                        </paper-button> -->
-                        </div>
-                    </div>
-                </div>
-                <!-- <app-toolbar slot="footer">
-                <div main-title></div>
-                <paper-button raised class="btn-default">
-                    <iron-icon icon="[[i18n.button.reset.icon]]"></iron-icon>[[i18n.button.reset.label]]
-                </paper-button>
-                <paper-button raised class="btn-primary" on-click="_save">
-                    <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>[[i18n.button.save.label]]
-                </paper-button>
-            </app-toolbar> -->
-            </nylon-panel-card>
+            </div>
         </div>
-
 
     </template>
 
@@ -351,6 +200,97 @@
                         type: Object,
                         statePath: 'profile.info.skills',
                         value: {}
+                    },
+                    computer: {
+                        type: Array,
+                        value: [
+                            {
+                                id: 1,
+                                label: 'Microsoft Word',
+                                value: 2
+                            },
+                            {
+                                id: 2,
+                                label: 'Microsoft Excel',
+                                value: 0
+                            },
+                            {
+                                id: 3,
+                                label: 'Microsoft Power Point',
+                                value: 2
+                            },
+                            {
+                                id: 4,
+                                label: 'Email',
+                                value: 3
+                            },
+                            {
+                                id: 5,
+                                label: 'Smart Device (Smartphone/Tablet/Notebook)',
+                                value: 0
+                            }
+                        ]
+                    },
+                    language: {
+                        type: Array,
+                        value: [
+                            {
+                                id: 1,
+                                label: 'ภาษาอังกฤษ',
+                                value: 1
+                            },
+                            {
+                                id: 2,
+                                label: 'ภาษาจีน',
+                                value: 0
+                            },
+                            {
+                                id: 3,
+                                label: 'ภาษาญี่ปุ่น',
+                                value: 0
+                            }
+                        ]
+                    },
+                    alllanguage: {
+                        type: Array,
+                        value: [
+                            {
+                                id: 1,
+                                label: 'ภาษาฮ้อ',
+                                value: 0
+                            },
+                            {
+                                id: 2,
+                                label: 'ภาษาอราเมอิกใหม่คัลเดีย',
+                                value: 1
+                            }
+                        ]
+                    },
+                    print: {
+                        type: Array,
+                        value: [
+                            {
+                                id: 1,
+                                label: 'ภาษาไทย',
+                                value: 3
+                            },
+                            {
+                                id: 2,
+                                label: 'ภาษาอังกฤษ',
+                                value: 3
+                            }
+                        ]
+                    },
+                    list: {
+                        type: Array,
+                        value: function () {
+                            var obj = []
+                            for (var index = 0; index <= 50; index++) {
+                                if (index == 0) obj.push({ label: 'ไม่มีประสบการณ์', value: index })
+                                else obj.push({ label: index, value: index })
+                            }
+                            return obj;
+                        }
                     }
                 };
             }
