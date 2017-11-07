@@ -14,7 +14,12 @@ exports.import = (req, res) => {
                     })
                     let obj = data;
                     for (let i = 0; i < objDate.length; i++) {
-                        obj[objDate[i]] = r.ISO8601(new Date(data[objDate[i]]).toISOString()).inTimezone('+07');
+                        const d = new Date(data[objDate[i]]);
+                        if(d.getFullYear()>=2000){
+                            obj[objDate[i]] = r.ISO8601(d.toISOString()).inTimezone('+07');
+                        }else{
+                            obj[objDate[i]] = r.now().inTimezone('+07');
+                        }  
                     }
                     return obj;
                 });
