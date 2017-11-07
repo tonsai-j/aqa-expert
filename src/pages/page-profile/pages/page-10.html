@@ -1,12 +1,6 @@
-<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
-<!-- <link rel="import" href="../../../../bower_components/paper-input/paper-input.html"> -->
-
+<!-- <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../components/nylon-input/nylon-input.html">
-
-<!-- <link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html"> -->
-
 <link rel="import" href="../../../my-icons.html">
-
 <link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
@@ -18,123 +12,159 @@
 <link rel="import" href="../../../redux/profile/page-10-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
 <link rel="import" href="../../../mixins/animate-mixin.html">
+<link rel="import" href="../../../mixins/common-mixin.html"> -->
+
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../mixins/animate-mixin.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
+<link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../../components/aqa-title/aqa-title-name.html">
+<link rel="import" href="../../../layout/flexbox-grid.html">
+<link rel="import" href="../../../layout/shared-styles.html">
+<link rel="import" href="../../../components/aqa-form/aqa-combo-box.html">
+<link rel="import" href="../../../components/aqa-panel/aqa-panel.html">
+<link rel="import" href="../../../components/aqa-button/aqa-button.html">
+<link rel="import" href="../../../components/aqa-form/aqa-input.html">
+
+<link rel="import" href="../../../../bower_components/paper-dialog/paper-dialog.html">
+
+<link rel="import" href="../../../components/aqa-lightbox/aqa-lightbox.html">
+
+<link rel="import" href="../../../../bower_components/iron-image/iron-image.html">
 
 <dom-module id="page-10">
     <template>
         <style include="flexbox-grid shared-styles">
-             :host {
-                display: block
-            }
-
-            #wrapper {
-                text-align: center;
-                margin: 0 auto;
-                padding: 0px;
-                width: 995px;
+            .upload-area {
+                background-color: #e4eaec;
+                display: flex;
+                margin: 0.5rem;
+                border: 1px solid #e4eaec;
+                border-radius: 0.2rem;
             }
 
             #output_image {
-                border: 1px solid black;
-                width: 10em;
-                height: 10em;
+                width: 100%;
+                height: auto;
+                max-width: 200px;
+                max-height: auto;
+                margin: 0 auto;
             }
 
-            #ifile {
-                width: 0.1px;
-                height: 0.1px;
-                opacity: 0;
-                overflow: hidden;
-                position: absolute;
-                z-index: -1;
+            .upload-body {
+                margin: auto 0;
+                padding: 0.5rem;
             }
 
-            .upload_image {
-                margin-top: 5px;
+            .box-file {
+                border: 1px solid #e4eaec;
+                width: 100%;
+                height: auto;
+            }
+
+            .box-item {
+                padding: 0.5rem;
+            }
+
+            .box-item-footer {
+                background-color: #e4eaec;
+            }
+
+            .sizing-contain {
+                /* width: 100%;
+                height: auto; */
+                width: 100%;
+                height: auto;
+                max-width: 200px;
+                max-height: 200px;
+            }
+
+            .img-hover:hover {
+                cursor: pointer;
+                background-color: #e4eaec;
+                opacity: 0.5;
             }
         </style>
-        <!-- page-10 -->
-        <div id="bank">
-            <nylon-panel-card>
+        <div class="page-container">
+            <aqa-title-name></aqa-title-name>
+            <aqa-panel id="basic">
+                <app-toolbar slot="header">
+                    <div main-title>บัญชีธนาคาร</div>
+                </app-toolbar>
                 <div slot="content">
-                    <div class="header-title">
-                        [[i18n.page10.bank_account]]
-                    </div>
-                    <div class="row middle-md">
-                        <div class="col-md-3 col-md-offset-1">
-                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page10.bank]]" items='{{bankList}}' value="{{bank.bank_id}}"
-                                item-label-path="bank_name_th" item-value-path="id" on-selected-item-changed="getObject" object-name="bank.bank">
-                                <template>
-                                    [[item.bank_name_th]]
-                                </template>
-                            </nylon-combo-box>
-                        </div>
-                        <div class="col-md-3 col-md-offset-1">
-                            <nylon-combo-box class="required" required always-float-label label="[[i18n.page10.account_Types]]" items='{{typeList}}'
-                                value="{{bank.type_account_id}}" item-label-path="type_account_name_th" item-value-path="id"
-                                on-selected-item-changed="getObject" object-name="bank.type_account">
-                                <template>
-                                    [[item.type_account_name_th]]
-                                </template>
-                            </nylon-combo-box>
-                        </div>
-                        <div class="col-md-3 col-md-offset-1">
-                            <nylon-input class="required" required always-float-label label="[[i18n.page10.branch]]" value="{{bank.branch}}"></nylon-input>
-                        </div>
-                    </div>
-                    <div class="row middle-md">
-                        <div class="col-md-4 col-md-offset-1">
-                            <nylon-input class="required" required always-float-label allowed-pattern="[0-9]" label="[[i18n.page10.account_number]]"
-                                value="{{bank.account_number}}"></nylon-input>
-                        </div>
-                        <div class="input col-md-3">
-                            [[i18n.page10.warning]]
-                        </div>
-                    </div>
-                    <div class="row middle-md">
-                        <div class="col-md-7 col-md-offset-1">
-                            <nylon-input class="required" required always-float-label label="[[i18n.page10.account_name]]" value="{{bank.account_name}}"></nylon-input>
-                        </div>
-                    </div>
-                    <div class="row center-md button-buttom">
-                        <div class="button-action-bottom">
-                            <div class="button-action-bottom">
-                                <paper-button raised class="btn-success" on-click="_save">
-                                    <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                                </paper-button>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-8">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <aqa-combo-box required label="ธนาคาร" items="[[bankList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <aqa-input required label="ประเภทบัญชี" value=""></aqa-input>
+                                    <!-- <aqa-combo-box label="ประเภทบัญชี" items="[[typeAccount]]" item-label-path="label" item-value-path="value"></aqa-combo-box> -->
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <aqa-input label="สาขา" value="" required></aqa-input>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <aqa-input required label="เลขที่บัญชี" allowed-pattern="[0-9]" error-message="ตัวเลขเท่านั้น" value=""></aqa-input>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <aqa-input required label="ชื่อบัญชี" value=""></aqa-input>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </nylon-panel-card>
 
-            <div style="margin-top:5%;"></div>
-            <nylon-panel-card>
-                <div slot="content">
-                    <div class="header-title">
-                        [[i18n.page10.photo_account]]
-                    </div>
-                    <div class="row middle-md center-md">
-                        <div class=" col-md-12">
-                            <img id="output_image" src$="[[rootPath]]images/I20170901111610.jpg" />
                         </div>
-                        <div class=" col-md-3">
-                            <input id="ifile" type=file accept="image/" on-change="preview_image">
-                            <paper-button raised on-tap="upload_img" class="upload_image btn-upload">
-                                <iron-icon icon="[[i18n.button.upload.icon]]"></iron-icon>&nbsp;&nbsp; [[i18n.button.upload.label]]</paper-button>
-                        </div>
-                    </div>
-                    <div class="row center-md button-buttom">
-                        <div class="button-action-bottom">
-                            <div class="button-action-bottom">
-                                <paper-button raised class="btn-success" on-click="_save">
-                                    <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                                </paper-button>
+                        <div class="col-xs-12 col-md-4">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <b>แนบไฟล์ : ภาพถ่ายสมุดบัญชีธนาคาร <span style="color:red">*</span></b>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="box-file">
+                                        <div class="box-item img-hover">
+                                            <div class="row center-xs">
+                                                <div class="col-xs-12">
+                                                    <aqa-lightbox>
+                                                        <img id="img" class="sizing-contain" src="../../../images/icon-img.png" alt="">
+                                                        <!-- <iron-image sizing="contain" id="img" src="http://i0.kym-cdn.com/entries/icons/mobile/000/005/608/nyan-cat-01-625x450.jpg"
+                                                                class="sizing-contain"></iron-image> -->
+                                                    </aqa-lightbox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="box-item box-item-footer">
+                                            <div>
+                                                <input type="file" id="upFile" on-change="fileChange" hidden>
+                                                <aqa-button type="primary" on-tap="upLoadFile" icon="icons:file-upload">อัพโหลด</aqa-button>
+                                                <span id="imgname"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <!-- <div class="row center-xs">
+                                <div class="col-xs-12 upload-area">
+                                    <div class="upload-body">
+                                       
+                                    </div>
+                                </div>
+                            </div> -->
                         </div>
+                    </div>
+
+
+                </div>
+            </aqa-panel>
+            <div style="margin:1rem"></div>
+            <div class="row center-xs">
+                <div class="col-lg-2">
+                    <div style="padding:0rem 2rem;">
+                        <aqa-button type="success btn-full-width">บันทึก</aqa-button>
                     </div>
                 </div>
-            </nylon-panel-card>
+            </div>
         </div>
     </template>
 
@@ -147,28 +177,138 @@
 
             static get properties() {
                 return {
-                    i18n: {
-                        type: Object,
-                        statePath: 'i18n',
-                    },
-                    rootPath: {
-                        type: String,
-                    },
                     bankList: {
-                        statePath: 'profile_page10.bank'
+                        type: Array,
+                        value: [
+                            {
+                                label: 'ธนาคารกรุงเทพ',
+                                value: '01'
+                            },
+                            {
+                                label: 'ธนาคารกรุงศรีอยุธยา',
+                                value: '02'
+                            },
+                            {
+                                label: 'ธนาคารกสิกรไทย',
+                                value: '03'
+                            },
+                            {
+                                label: 'ธนาคารเกียรตินาคิน',
+                                value: '04'
+                            },
+                            {
+                                label: 'ธนาคารซิติแบงก์',
+                                value: '05'
+                            },
+                            {
+                                label: 'ธนาคารทหารไทย',
+                                value: '06'
+                            },
+                            {
+                                label: 'ธนาคารทิสโก้',
+                                value: '07'
+                            },
+                            {
+                                label: 'ธนาคารซีไอเอ็มบี ไทย ',
+                                value: '08'
+                            },
+                            {
+                                label: 'ธนาคารไทยพาณิชย์',
+                                value: '09'
+                            },
+                            {
+                                label: 'ธนาคารธนชาต',
+                                value: '10'
+                            },
+                            {
+                                label: 'ธนาคารนครหลวงไทย',
+                                value: '11'
+                            },
+                            {
+                                label: 'ธนาคารยูโอบี',
+                                value: '12'
+                            },
+                            {
+                                label: 'ธนาคารสแตนดาร์ดชาร์เตอร์ดไทย',
+                                value: '13'
+                            },
+                            {
+                                label: 'ธนาคารเมกะสากลพาณิชย์',
+                                value: '14'
+                            },
+                            {
+                                label: 'ธนาคารไอซีบีซี',
+                                value: '15'
+                            },
+                            {
+                                label: 'ธนาคารพัฒนาวิสาหกิจขนาดกลางและขนาดย่อมแห่งประเทศไทย',
+                                value: '16'
+                            },
+                            {
+                                label: 'ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร',
+                                value: '17'
+                            },
+                            {
+                                label: 'ธนาคารเพื่อการส่งออกและนำเข้าแห่งประเทศไทย',
+                                value: '18'
+                            },
+                            {
+                                label: 'ธนาคารออมสิน',
+                                value: '19'
+                            },
+                            {
+                                label: 'ธนาคารอาคารสงเคราะห์',
+                                value: '20'
+                            },
+                            {
+                                label: 'ธนาคารอิสลามแห่งประเทศไทย',
+                                value: '21'
+                            },
+                        ]
                     },
-                    typeList: {
-                        statePath: 'profile_page10.account_Types'
+                    typeAccount: {
+                        type: Array,
+                        value: [
+                            {
+                                label: 'บัญชีเงินฝากออมทรัพย์',
+                                value: '01'
+                            },
+                            {
+                                label: 'บัญชีเงินฝากประจำ',
+                                value: '02'
+                            },
+                            {
+                                label: 'บัญชีเงินฝากกระแสรายวัน',
+                                value: '03'
+                            }
+                        ]
                     },
-                    info: {
-                        type: Object,
-                        statePath: 'profile.info'
-                    },
-                    bank: {
-                        type: Object,
-                        statePath: 'profile.info.bank',
-                        // value: {}
-                    },
+                    hasFile: {
+                        type: Boolean,
+                        value: false
+                    }
+                    // i18n: {
+                    //     type: Object,
+                    //     statePath: 'i18n',
+                    // },
+                    // rootPath: {
+                    //     type: String,
+                    // },
+                    // bankList: {
+                    //     statePath: 'profile_page10.bank'
+                    // },
+                    // typeList: {
+                    //     statePath: 'profile_page10.account_Types'
+                    // },
+                    // info: {
+                    //     type: Object,
+                    //     statePath: 'profile.info'
+                    // },
+                    // bank: {
+                    //     type: Object,
+                    //     statePath: 'profile.info.bank',
+                    //     // value: {}
+                    // },
                 };
             }
 
@@ -180,9 +320,12 @@
                 Nylon.dispatch('PROFILE_10_GET_LIST_BANK')
                 Nylon.dispatch('PROFILE_10_GET_LIST_ACCOUNT_TYPE')
             }
-            upload_img() {
-                this.$.ifile.click()
+            upLoadFile() {
+                this.$.upFile.click()
             }
+            // upload_img() {
+            //     this.$.ifile.click()
+            // }
             preview_image(e) {
                 var reader = new FileReader()
                 reader.onload = () => {
