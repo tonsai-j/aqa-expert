@@ -68,28 +68,28 @@
                                 [[item.label]]
                             </template>
                         </nylon-combo-box> -->
-                        <nylon-combo-box class="required" required always-float-label label="[[i18n.page04.group]]" items='{{specialistgroup}}' value="{{data.group_specialist_id}}"
+                        <aqa-combo-box class="required" required always-float-label label="[[i18n.page04.group]]" items='{{specialistgroup}}' value="{{data.group_specialist_id}}"
                             item-label-path="group_specialist_name" item-value-path="id" on-selected-item-changed="getObject"
                             object-name="data.group_specialist">
                             <template>
                                 [[item.group_specialist_name]]
                             </template>
-                        </nylon-combo-box>
+                        </aqa-combo-box>
                     </div>
                     <div class="col-md-offset-1 col-md-8">
-                        <!-- <nylon-combo-box class="required" required always-float-label label="[[i18n.page04.type]]" items='{{amphoeList}}' value="{{specialization.specialized_type}}"
+                        <!-- <aqa-combo-box class="required" required always-float-label label="[[i18n.page04.type]]" items='{{amphoeList}}' value="{{specialization.specialized_type}}"
                             item-label-path="label" item-value-path="value">
                             <template>
                                 [[item.label]]
                             </template>
-                        </nylon-combo-box> -->
-                        <nylon-combo-box class="required" required always-float-label label="[[i18n.page04.type]]" items='{{specialisttype}}' value="{{data.type_specialist_id}}"
+                        </aqa-combo-box> -->
+                        <aqa-combo-box class="required" required always-float-label label="[[i18n.page04.type]]" items='{{specialisttype}}' value="{{data.type_specialist_id}}"
                             item-label-path="type_specialist_name" item-value-path="id" on-selected-item-changed="getObject"
                             object-name="data.type_specialist">
                             <template>
                                 [[item.type_specialist_name]]
                             </template>
-                        </nylon-combo-box>
+                        </aqa-combo-box>
 
                     </div>
                     <div class="row center-md button-buttom">
