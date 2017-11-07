@@ -1,7 +1,7 @@
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../layout/flexbox-grid.html">
 <!-- <link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html"> -->
-<link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
+<link rel="import" href="../../../components/aqa-form/aqa-combo-box.html">
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
@@ -24,10 +24,14 @@
 
 <link rel="import" href="../../aqa-vaadin-grid/aqa-vaadin-grid.html">
 <link rel="import" href="../../../components/aqa-icon-button/aqa-icon-button.html">
+<link rel="import" href="../../../components/aqa-form/aqa-input.html">
+<link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
+
+
 <dom-module id="page-08">
     <template>
         <style include="flexbox-grid">
-            :host {
+             :host {
                 display: block
             }
 
@@ -163,24 +167,24 @@
                 [[i18n.common.total_items]] {{datas.length}} [[i18n.common.list]]
 
             </div>
-        </nylon-panel-card>
+        </nylon-panel-card> -->
         <nylon-panel-right id="right" title="[[i18n.page08.history]]" width="80%">
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="col-md-offset-2 col-md-8">
-                        <nylon-combo-box class="required" required always-float-label label="[[i18n.page08.type]]" items='{{type_research}}' item-label-path='type_research_name'
+                        <aqa-combo-box class="required" required always-float-label label="[[i18n.page08.type]]" items='{{type_research}}' item-label-path='type_research_name'
                             item-value-path='id' value="{{data.type_research_id}}" on-selected-item-changed='getObject' object-name='data.type_research'>
                             <template>
                                 [[item.type_research_name]]
                             </template>
-                        </nylon-combo-box>
+                        </aqa-combo-box>
                     </div>
                     <div class="col-md-offset-2 col-md-8">
-                        <nylon-input class="required" required label="[[i18n.page08.name]]" always-float-label value="{{data.research_name}}"></nylon-input>
+                        <aqa-input class="required" required label="[[i18n.page08.name]]" always-float-label value="{{data.research_name}}"></aqa-input>
                     </div>
                     <div class="col-md-offset-2 col-md-8">
-                        <nylon-input class="required" required label="[[i18n.page08.year]]" always-float-label value="{{data.research_year}}" allow-pattern="[0-9]"
-                            maxlength="4" minlength="4"></nylon-input>
+                        <aqa-input class="required" required label="[[i18n.page08.year]]" always-float-label value="{{data.research_year}}" allow-pattern="[0-9]"
+                            maxlength="4" minlength="4"></aqa-input>
                     </div>
                     <div class="row center-md button-buttom">
                         <div class="button-action-bottom">
@@ -192,10 +196,11 @@
                             </paper-button>
                         </div>
                     </div>
+
                 </div>
-               
+
             </nylon-panel-card>
-        </nylon-panel-right> -->
+        </nylon-panel-right>
     </template>
 
     <script>
