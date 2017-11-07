@@ -33,6 +33,12 @@
 <link rel="import" href="./components/references-list.html">
 <link rel="import" href="../../../components/aqa-title/aqa-title-name.html">
 
+<link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
+<link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
+
+<link rel="import" href="../../../components/nylon-input/nylon-input.html">
+
+
 <dom-module id="page-12">
     <template>
         <style include="flexbox-grid"></style>
@@ -46,7 +52,7 @@
                     <div class="row start-xs" style="margin-bottom:0.5rem">
                         <div class="col-xs-12">
                             <div class="box">
-                                <aqa-button type="primary" icon="add">เพิ่ม</aqa-button>
+                                <aqa-button type="primary" icon="add" on-tap=_openPanelRight>เพิ่ม</aqa-button>
                             </div>
                         </div>
                     </div>
@@ -54,7 +60,7 @@
                 </div>
             </aqa-panel>
         </div>
-        <!-- <nylon-panel-right id="right" title="[[i18n.page12.references]]" width="80%">
+        <nylon-panel-right id="right" title="[[i18n.page12.references]]" width="80%">
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
@@ -94,7 +100,7 @@
                 </div>
             </nylon-panel-card>
 
-        </nylon-panel-right> -->
+        </nylon-panel-right>
 
     </template>
 
