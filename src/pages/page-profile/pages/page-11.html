@@ -34,6 +34,16 @@
 <link rel="import" href="../../../components/aqa-form/aqa-input.html">
 <link rel="import" href="./components/zone-list.html">
 <link rel="import" href="../../../components/aqa-title/aqa-title-name.html">
+<link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
+<link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
+<link rel="import" href="../../../components/aqa-form/aqa-input.html">
+<link rel="import" href="../../../components/aqa-form/aqa-combo-box.html">
+<link rel="import" href="../../../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../../nylon-i18n.html">
+<link rel="import" href="../../../i18n/profile/page-11-i18n.html">
+<link rel="import" href="../../../redux/profile/page-02-redux.html">
+<link rel="import" href="../../../redux/profile/page-11-redux.html">
+
 
 <dom-module id="page-11">
     <template>
@@ -48,7 +58,7 @@
                     <div class="row start-xs" style="margin-bottom:0.5rem">
                         <div class="col-xs-12">
                             <div class="box">
-                                <aqa-button type="primary" icon="add">เพิ่ม</aqa-button>
+                                <aqa-button type="primary" icon="add" on-tap=_openPanelRight>เพิ่ม</aqa-button>
                             </div>
                         </div>
                     </div>
@@ -56,6 +66,72 @@
                 </div>
             </aqa-panel>
         </div>
+        <nylon-panel-right id="right" title="[[i18n.page11.title]]" width="80%">
+            <nylon-panel-card slot="content">
+                <div slot="content">
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-4">{{getProvince(data.region_id)}}
+                            <!-- items='{{regionList}}' -->
+                            <aqa-combo-box class="required" disabled={{regionDisabled}} required always-float-label label="[[i18n.page11.region]]"
+                                items='{{_filterChanged(regionList)}}' value="{{data.region_id}}" item-label-path="region_th"
+                                item-value-path="id" on-selected-item-changed="getObject" object-name="data.region">
+                                <template>
+                                    [[item.region_th]]
+                                </template>
+                            </aqa-combo-box>
+                        </div>
+                    </div>
+
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-5">
+                            <paper-checkbox checked="{{masterCheck}}" disabled="{{masterCheckDisable}}" on-tap='seletedCheckAll'>[[i18n.page11.province_all]]</paper-checkbox>
+                        </div>
+                    </div>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-4">
+                            [[i18n.page11.province_list]]
+                        </div>
+                    </div>
+
+                    <template is="dom-if" if={{masterCheckDisable}}>
+                        <div class="row col-md-offset-1 middle-md">
+                            -
+                        </div>
+                    </template>
+
+                    <template is="dom-if" if={{!masterCheckDisable}}>
+                        <div class="row col-md-offset-1 middle-md">
+                            <div class="row col-md-9">
+                                <template is="dom-repeat" items={{provinceList}}>
+                                    <span class="col-md-4">
+                                                 <paper-checkbox checked="{{item.checked}}">[[item.province_th]]</paper-checkbox>  
+                                            </span>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+                    <div class="row center-md button-buttom">
+                        <div class="button-action-bottom">
+                            <paper-button raised class="btn-success" on-click="_save">
+                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                            </paper-button>
+                            <paper-button raised class="btn-close" on-click="_closePanelRight">
+                                <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
+                            </paper-button>
+                        </div>
+                    </div>
+                </div>
+                <!-- <app-toolbar slot="footer">
+                    <div main-title></div>
+                    <paper-button raised class="btn-success" on-click="_save">
+                        <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
+                    </paper-button>
+                    <paper-button raised on-click="_closePanelRight">
+                        <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
+                    </paper-button>
+                </app-toolbar> -->
+            </nylon-panel-card>
+        </nylon-panel-right>
     </template>
 
     <script>
