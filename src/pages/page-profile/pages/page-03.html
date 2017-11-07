@@ -1,4 +1,4 @@
-<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<!-- <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../layout/shared-styles.html">
 <link rel="import" href="../../../redux-mixin.html">
 <link rel="import" href="../../../mixins/animate-mixin.html">
@@ -14,179 +14,46 @@
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
-<link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
+<link rel="import" href="../../../components/nylon-input/nylon-combo-box.html"> -->
 
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../mixins/animate-mixin.html">
+<link rel="import" href="../../../mixins/common-mixin.html">
+<link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../../../bower_components/iron-icons/iron-icons.html">
+
+<link rel="import" href="../../../layout/flexbox-grid.html">
+<link rel="import" href="../../../layout/shared-styles.html">
+<link rel="import" href="../../../components/aqa-form/aqa-combo-box.html">
+<link rel="import" href="../../../components/aqa-panel/aqa-panel.html">
+<link rel="import" href="../../../components/aqa-button/aqa-button.html">
+<link rel="import" href="../../../components/aqa-form/aqa-input.html">
+<link rel="import" href="./components/education-list.html">
+
+<link rel="import" href="../../../components/aqa-title/aqa-title-name.html">
 
 <dom-module id="page-03">
     <template>
-        <style include="flexbox-grid shared-styles"></style>
-
-        <nylon-panel-card id="eduLevel">
-            <div slot="content">
-                <div class="header-title">
-                    [[i18n.page03.title]]
-                </div>
-                <div class="row start-md middle-md">
-                    <div class="col-md-3">
-                        <paper-button raised class="btn-primary" action="add" on-click="_openPanelRight">
-                            <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]
-                        </paper-button>
-                    </div>
-                </div>
-                <br>
-                <div class="row middle-md">
-                    <div slot="content" class="col-md-12">
-                        <vaadin-grid id='material' slot="content" sub-slot="grid" items="[[datas]]">
-                            <vaadin-grid-column width="50px" flex-grow="0">
-                                <template class="header">[[i18n.common.no]]</template>
-                                <template>
-                                    <div style="text-align: center">[[autoIndex(index)]]</div>
-                                </template>
-                            </vaadin-grid-column>
-
-                            <vaadin-grid-column width="200px" flex-grow="0" resizable>
-                                <template class="header">[[i18n.page03.academy]]</template>
-                                <template>[[item.academy.academy_name]]</template>
-                            </vaadin-grid-column>
-
-                            <vaadin-grid-column width="100px" flex-grow="0" resizable>
-                                <template class="header">[[i18n.page03.eduLevel]]</template>
-                                <template>[[item.edu_level.edu_level_name]]</template>
-                            </vaadin-grid-column>
-
-                            <vaadin-grid-column width="250px" flex-grow="0" resizable>
-                                <template class="header">[[i18n.page03.degree]]</template>
-                                <template>[[item.degree_full]]</template>
-                            </vaadin-grid-column>
-
-                            <vaadin-grid-column width="100px" flex-grow="0" resizable>
-                                <template class="header">[[i18n.page03.year]]</template>
-                                <template>[[item.year]]</template>
-                            </vaadin-grid-column>
-
-                            <vaadin-grid-column width="150px">
-                                <template class="header">[[i18n.common.updater]]/[[i18n.common.date]]</template>
-                                <template>[[item.updater]] [[changeDate(item.date_updated)]]</template>
-                            </vaadin-grid-column>
-                            <vaadin-grid-column>
-                                <template class="header">
-                                    <div style="text-align: center">[[i18n.common.tools]]</div>
-                                </template>
-                                <template>
-                                    <span style="text-align: center">
-                                        <paper-icon-button icon="[[i18n.button.edit.icon]]" action="edit" on-click="_openPanelRight"></paper-icon-button>
-                                        <paper-icon-button icon="[[i18n.button.delete.icon]]" on-click="_confirmDel"></paper-icon-button>
-                                        </span>
-                                </template>
-                            </vaadin-grid-column>
-                        </vaadin-grid>
-                        <div class="no-content" hidden="{{datas.length}}">
-                            ไม่มีข้อมูล
-                        </div>
-                        [[i18n.common.total_items]] {{datas.length}} [[i18n.common.list]]
-                    </div>
-                </div>
-            </div>
-        </nylon-panel-card>
-        <nylon-panel-right id="panelRight" title="[[i18n.page03.title]]">
-            <nylon-panel-card slot="content">
+        <style include="flexbox-grid"></style>
+        <div class="page-container">
+            <aqa-title-name></aqa-title-name>
+            <aqa-panel id="basic">
+                <app-toolbar slot="header">
+                    <div main-title>วุฒิการศึกษา</div>
+                </app-toolbar>
                 <div slot="content">
-                    <div class="row">
-                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-4">
-                            <nylon-combo-box label="[[i18n.page03.eduLevel]]" always-float-label items='{{eduLevel}}' value="{{data.edu_level_id}}" item-label-path="edu_level_name"
-                                item-value-path="id" on-selected-item-changed="getObject" object-name="data.edu_level" class="required"
-                                required>
-                                <template>
-                                    [[item.edu_level_name]]
-                                </template>
-                            </nylon-combo-box>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-4">
-                            <nylon-combo-box label="[[i18n.page03.typeAcademy]]" always-float-label items='{{typeAcademy}}' value="{{data.type_academy_id}}"
-                                item-label-path="type_academy_name" item-value-path="id" on-change="_getAacademy" on-selected-item-changed="getObject"
-                                object-name="data.type_academy" class="required" required>
-                                <template>
-                                    [[item.type_academy_name]]
-                                </template>
-                            </nylon-combo-box>
-                        </div>
-                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
-                            <nylon-combo-box label="[[i18n.page03.academy]]" always-float-label items='{{academy}}' value="{{data.academy_id}}" item-label-path="academy_name"
-                                item-value-path="id" on-selected-item-changed="getObject" object-name="data.academy" class="required"
-                                required>
-                                <template>
-                                    [[item.academy_name]]
-                                </template>
-                            </nylon-combo-box>
-                        </div>
-                        <div class="col-md-offset-1  col-xs-12 col-sm-12 col-md-8">
-                            <nylon-combo-box label="[[i18n.page03.faculty]]" always-float-label items='{{faculty}}' value="{{data.faculty_id}}" item-label-path="faculty_name"
-                                item-value-path="id" on-selected-item-changed="getObject" object-name="data.faculty" class="required"
-                                required>
-                                <template>
-                                    [[item.faculty_name]]
-                                </template>
-                            </nylon-combo-box>
-                        </div>
-                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
-                            <nylon-combo-box label="[[i18n.page03.groupFaculty]]" always-float-label items='{{groupFaculty}}' value="{{data.group_faculty_id}}"
-                                item-label-path="group_faculty_name" item-value-path="id" on-selected-item-changed="getObject"
-                                object-name="data.group_faculty">
-                                <template>
-                                    [[item.group_faculty_name]]
-                                </template>
-                            </nylon-combo-box>
-                        </div>
-                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
-                            <nylon-combo-box label="[[i18n.page03.fieldStudy]]" always-float-label items='{{fieldStudy}}' value="{{data.field_study_id}}"
-                                item-label-path="field_study_name" item-value-path="id" on-selected-item-changed="getObject"
-                                object-name="data.field_study" class="required" required>
-                                <template>
-                                    [[item.field_study_name]]
-                                </template>
-                            </nylon-combo-box>
-                        </div>
-                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
-                            <nylon-input always-float-label label="[[i18n.page03.degree]] ([[i18n.page03.full]])" value="{{data.degree_full}}" class="required"
-                                required></nylon-input>
-                        </div>
-                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
-                            <nylon-input always-float-label label="[[i18n.page03.degree]] ([[i18n.page03.short]])" value="{{data.degree_short}}"></nylon-input>
-                        </div>
-                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-4">
-                            <nylon-input always-float-label label="[[i18n.page03.major]]" value="{{data.major}}" class="required" required></nylon-input>
-                        </div>
-                        <div class=" col-xs-12 col-sm-12 col-md-4">
-                            <nylon-input always-float-label label="[[i18n.page03.minor]]" value="{{data.minor}}"></nylon-input>
-                        </div>
-                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-4">
-                            <nylon-input always-float-label label="[[i18n.page03.year]]" value="{{data.year}}" allowed-pattern="[0-9]" maxlength="4"
-                                class="required" required></nylon-input>
+                    <div class="row start-xs" style="margin-bottom:0.5rem">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <aqa-button type="primary" icon="add">เพิ่ม</aqa-button>
+                            </div>
                         </div>
                     </div>
-                    <div class="row center-md button-buttom">
-                        <div class="button-action-bottom">
-                            <paper-button raised class="btn-success" on-click="_save">
-                                <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                            </paper-button>
-                            <paper-button raised class="btn-close" on-click="_closePanelRight">
-                                <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
-                            </paper-button>
-                        </div>
-                    </div>
+                    <education-list></education-list>
                 </div>
-                <!-- <app-toolbar slot="footer">
-                    <div main-title></div>
-                    <paper-button raised class="btn-success" on-click="_save">
-                        <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.save.label]]
-                    </paper-button>
-                    <paper-button raised on-click="_closePanelRight">
-                        <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>&nbsp;&nbsp;[[i18n.button.close.label]]
-                    </paper-button>
-
-                </app-toolbar> -->
-            </nylon-panel-card>
-        </nylon-panel-right>
+            </aqa-panel>
+        </div>
     </template>
 
     <script>
