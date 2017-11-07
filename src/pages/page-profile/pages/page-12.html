@@ -36,7 +36,11 @@
 <link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
 <link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
 <link rel="import" href="../../../components/nylon-input/nylon-input.html">
+<link rel="import" href="../../../nylon-i18n.html">
 <link rel="import" href="../../../i18n/profile/page-12-i18n.html">
+<link rel="import" href="../../../redux/profile/page-02-redux.html">
+<link rel="import" href="../../../components/aqa-form/aqa-input.html">
+<link rel="import" href="../../../components/aqa-form/aqa-combo-box.html">
 
 
 <dom-module id="page-12">
@@ -65,24 +69,24 @@
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <nylon-input label="[[i18n.page12.name]]" class="required" required always-float-label value="{{data.firstname}}"></nylon-input>
+                            <aqa-input label="[[i18n.page12.name]]" class="required" required always-float-label value="{{data.firstname}}"></aqa-input>
                         </div>
                         <div class="col-md-4">
-                            <nylon-input label="[[i18n.page12.lastname]]" class="required" required always-float-label value="{{data.lastname}}"></nylon-input>
+                            <aqa-input label="[[i18n.page12.lastname]]" class="required" required always-float-label value="{{data.lastname}}"></aqa-input>
                         </div>
 
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <nylon-input label="[[i18n.page12.phone]]" class="required" required always-float-label value="{{data.phone}}"></nylon-input>
+                            <aqa-input label="[[i18n.page12.phone]]" class="required" required always-float-label value="{{data.phone}}"></aqa-input>
                         </div>
                         <div class="col-md-4">
-                            <nylon-input label="[[i18n.page12.cell_phone]]" class="required" required always-float-label value="{{data.cell_phone}}"></nylon-input>
+                            <aqa-input label="[[i18n.page12.cell_phone]]" class="required" required always-float-label value="{{data.cell_phone}}"></aqa-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <nylon-input label="[[i18n.page12.email]]" class="required" required always-float-label value="{{data.email}}"></nylon-input>
+                            <aqa-input label="[[i18n.page12.email]]" class="required" required always-float-label value="{{data.email}}"></aqa-input>
                         </div>
 
                     </div>
