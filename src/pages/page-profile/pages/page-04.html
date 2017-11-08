@@ -36,7 +36,7 @@
 <link rel="import" href="../../../components/nylon-input/nylon-input.html">
 <link rel="import" href="../../../i18n/profile/page-04-i18n.html">
 <link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
-
+<link rel="import" href="../../../redux/profile/page-04-redux.html">
 <dom-module id="page-04">
     <template>
         <style include="flexbox-grid"></style>
@@ -69,10 +69,10 @@
                             </template>
                         </nylon-combo-box> -->
                         <aqa-combo-box class="required" required always-float-label label="[[i18n.page04.group]]" items='{{specialistgroup}}' value="{{data.group_specialist_id}}"
-                            item-label-path="group_specialist_name" item-value-path="id" on-selected-item-changed="getObject"
+                            item-label-path="label" item-value-path="value" on-selected-item-changed="getObject"
                             object-name="data.group_specialist">
                             <template>
-                                [[item.group_specialist_name]]
+                                [[item.label]]
                             </template>
                         </aqa-combo-box>
                     </div>
@@ -82,12 +82,12 @@
                             <template>
                                 [[item.label]]
                             </template>
-                        </aqa-combo-box> -->
+                        </aqa-combo-box> -->[[checkIsGroupSpecialist(data.group_specialist_id,data.group_specialist_id.*)]]
                         <aqa-combo-box class="required" required always-float-label label="[[i18n.page04.type]]" items='{{specialisttype}}' value="{{data.type_specialist_id}}"
-                            item-label-path="type_specialist_name" item-value-path="id" on-selected-item-changed="getObject"
+                            item-label-path="label" item-value-path="value" on-selected-item-changed="getObject"
                             object-name="data.type_specialist">
                             <template>
-                                [[item.type_specialist_name]]
+                                [[item.label]]
                             </template>
                         </aqa-combo-box>
 
@@ -169,14 +169,17 @@
                 //this.fadeInDown(elem, 1, 300)
                 // console.log(1111);
                 Nylon.dispatch('PROFILE_04_GET_SPECIALISTGROUP')
-                Nylon.dispatch('PROFILE_04_GET_SPECIALISTTYPE')
+                // Nylon.dispatch('PROFILE_04_GET_SPECIALISTTYPE')
                 Polymer.RenderStatus.afterNextRender(this, function () {
                     // console.log(1111);
                     // Nylon.dispatch('PROFILE_04_GET_SPECIALISTGROUP')
                     // Nylon.dispatch('PROFILE_04_GET_SPECIALISTTYPE')
                 });
             }
-
+            checkIsGroupSpecialist(group_specialist){
+                if (group_specialist !== undefined && group_specialist !== '')
+                    Nylon.dispatch('PROFILE_04_GET_SPECIALISTTYPE', group_specialist);
+            }
             _openPanelRight(e) {
                 if (e.currentTarget.getAttribute('action') == 'edit') {
                     this.set('data', e.model.item)

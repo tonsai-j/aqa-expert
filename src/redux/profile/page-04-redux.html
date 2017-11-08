@@ -29,9 +29,9 @@
                 )
             }
         },
-        PROFILE_04_GET_SPECIALISTTYPE: function () {
+        PROFILE_04_GET_SPECIALISTTYPE: function (group_specialist_id) {
             return dispatch => {
-                axios.get('/type/specialist').then(
+                axios.get('/type/specialist?group_specialist_id='+group_specialist_id).then(
                     res => {
                         dispatch({ type: 'PROFILE_04_GET_SPECIALISTTYPE', payload: res.data })
                     }
