@@ -1,13 +1,13 @@
 exports.list = function (req, res) {
-    r.db('aqa_cds').table('nationality')
+    r.db('aqa_cds').table('race')
     .filter({ ACTIVE: true })
         .merge((row) => {
             return {
-                label: row('NATIONALITYTHAIDESC'),
-                value: row('NATIONALITYCD'),
+                label: row('RACETHAIDESC'),
+                value: row('RACECD'),
             }
         })
-        .orderBy('NATIONALITYCD')
+        .orderBy('RACECD')
         .pluck('label', 'value')
         .run()
         .then(function (data) {

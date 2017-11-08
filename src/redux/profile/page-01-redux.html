@@ -6,6 +6,7 @@
             gender: [],
             religion: [],
             nationality: [],
+            race: [],
             workStatus: [],
 
         }
@@ -19,6 +20,9 @@
                 return state
             case 'PROFILE_01_GET_LIST_NATIONALITY':
                 state.nationality = action.payload
+                return state
+            case 'PROFILE_01_GET_LIST_RACE':
+                state.race = action.payload
                 return state
             case 'PROFILE_01_GET_LIST_RELIGION':
                 state.religion = action.payload
@@ -68,6 +72,18 @@
 
             }
         },
+        PROFILE_01_GET_LIST_RACE: function () {
+            return dispatch => {
+                axios.get('/race')
+                    .then(res => {
+                        dispatch({ type: 'PROFILE_01_GET_LIST_RACE', payload: res.data })
+                    }
+                    ).catch(err => {
+                        console.log({ err })
+                    })
+
+            }
+        },
         PROFILE_01_GET_LIST_RELIGION: function () {
             return dispatch => {
                 axios.get('/religion')
@@ -92,16 +108,16 @@
             }
         },
         // POST
-        PROFILE_01_POST_PICTURE: function (dataPic,profile) {
+        PROFILE_01_POST_PICTURE: function (dataPic, profile) {
             // console.log(dataPic);
             var data = new FormData()
             data.append('file', dataPic[0])
-            
+
             // console.log(data);
             return dispatch => {
                 axios.defaults.headers.common['pic_type'] = profile.pic_type
                 axios.defaults.headers.common['user_id'] = profile.user_id
-                axios.post('/upload/uploadpic',data)
+                axios.post('/upload/uploadpic', data)
                     .then(res => {
                         if (res.status === 200) {
                             Nylon.toast('update')
