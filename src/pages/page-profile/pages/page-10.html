@@ -18,6 +18,7 @@
 <link rel="import" href="../../../redux-mixin.html">
 <link rel="import" href="../../../mixins/animate-mixin.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
+<link rel="import" href="../../../redux/profile/page-10-redux.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../../components/aqa-title/aqa-title-name.html">
@@ -119,7 +120,9 @@
                         <div class="col-xs-12 col-md-4">
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <b>แนบไฟล์ : ภาพถ่ายสมุดบัญชีธนาคาร <span style="color:red">*</span></b>
+                                    <b>แนบไฟล์ : ภาพถ่ายสมุดบัญชีธนาคาร
+                                        <span style="color:red">*</span>
+                                    </b>
                                 </div>
                                 <div class="col-xs-12">
                                     <div class="box-file">
@@ -177,116 +180,10 @@
 
             static get properties() {
                 return {
-                    bankList: {
-                        type: Array,
-                        value: [
-                            {
-                                label: 'ธนาคารกรุงเทพ',
-                                value: '01'
-                            },
-                            {
-                                label: 'ธนาคารกรุงศรีอยุธยา',
-                                value: '02'
-                            },
-                            {
-                                label: 'ธนาคารกสิกรไทย',
-                                value: '03'
-                            },
-                            {
-                                label: 'ธนาคารเกียรตินาคิน',
-                                value: '04'
-                            },
-                            {
-                                label: 'ธนาคารซิติแบงก์',
-                                value: '05'
-                            },
-                            {
-                                label: 'ธนาคารทหารไทย',
-                                value: '06'
-                            },
-                            {
-                                label: 'ธนาคารทิสโก้',
-                                value: '07'
-                            },
-                            {
-                                label: 'ธนาคารซีไอเอ็มบี ไทย ',
-                                value: '08'
-                            },
-                            {
-                                label: 'ธนาคารไทยพาณิชย์',
-                                value: '09'
-                            },
-                            {
-                                label: 'ธนาคารธนชาต',
-                                value: '10'
-                            },
-                            {
-                                label: 'ธนาคารนครหลวงไทย',
-                                value: '11'
-                            },
-                            {
-                                label: 'ธนาคารยูโอบี',
-                                value: '12'
-                            },
-                            {
-                                label: 'ธนาคารสแตนดาร์ดชาร์เตอร์ดไทย',
-                                value: '13'
-                            },
-                            {
-                                label: 'ธนาคารเมกะสากลพาณิชย์',
-                                value: '14'
-                            },
-                            {
-                                label: 'ธนาคารไอซีบีซี',
-                                value: '15'
-                            },
-                            {
-                                label: 'ธนาคารพัฒนาวิสาหกิจขนาดกลางและขนาดย่อมแห่งประเทศไทย',
-                                value: '16'
-                            },
-                            {
-                                label: 'ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร',
-                                value: '17'
-                            },
-                            {
-                                label: 'ธนาคารเพื่อการส่งออกและนำเข้าแห่งประเทศไทย',
-                                value: '18'
-                            },
-                            {
-                                label: 'ธนาคารออมสิน',
-                                value: '19'
-                            },
-                            {
-                                label: 'ธนาคารอาคารสงเคราะห์',
-                                value: '20'
-                            },
-                            {
-                                label: 'ธนาคารอิสลามแห่งประเทศไทย',
-                                value: '21'
-                            },
-                        ]
-                    },
-                    typeAccount: {
-                        type: Array,
-                        value: [
-                            {
-                                label: 'บัญชีเงินฝากออมทรัพย์',
-                                value: '01'
-                            },
-                            {
-                                label: 'บัญชีเงินฝากประจำ',
-                                value: '02'
-                            },
-                            {
-                                label: 'บัญชีเงินฝากกระแสรายวัน',
-                                value: '03'
-                            }
-                        ]
-                    },
                     hasFile: {
                         type: Boolean,
                         value: false
-                    }
+                    },
                     // i18n: {
                     //     type: Object,
                     //     statePath: 'i18n',
@@ -294,9 +191,9 @@
                     // rootPath: {
                     //     type: String,
                     // },
-                    // bankList: {
-                    //     statePath: 'profile_page10.bank'
-                    // },
+                    bankList: {
+                        statePath: 'profile_page10.bank'
+                    },
                     // typeList: {
                     //     statePath: 'profile_page10.account_Types'
                     // },
@@ -312,13 +209,14 @@
                 };
             }
 
-
             ready() {
                 super.ready();
-                var elem = this.$.bank
-                //this.fadeInDown(elem, 1, 300)
-                Nylon.dispatch('PROFILE_10_GET_LIST_BANK')
-                Nylon.dispatch('PROFILE_10_GET_LIST_ACCOUNT_TYPE')
+                var elem = this.$.basic
+                //this.fadeInDown(elem, 1, 500)
+                Polymer.RenderStatus.afterNextRender(this, function () {
+                    Nylon.dispatch('PROFILE_10_GET_LIST_BANK')
+                    // Nylon.dispatch('REGISTER_CHECK_PERSON', localStorage.getItem('taxno'))
+                });
             }
             upLoadFile() {
                 this.$.upFile.click()

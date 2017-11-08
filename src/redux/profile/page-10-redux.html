@@ -1,52 +1,54 @@
 <script>
-        Nylon.addReducer('profile_page10', function (state, action) {
-            state = state || {
-                bank: [],
-                account_Types: [],
-            }
-    
-            switch (action.type) {
-                case 'PROFILE_10_GET_LIST_BANK':
-                    state.bank = action.payload
-                    return state
-                case 'PROFILE_10_GET_LIST_ACCOUNT_TYPE':
-                    state.account_Types = action.payload
-                    return state
-                
-                default:
-                    return state
-            }
-            return state
-        })
-    
-        Nylon.addAction({
-            PROFILE_10_GET_LIST_BANK: function () {
-                return dispatch => {
-                    axios.get('/bank')
+    Nylon.addReducer('profile_page10', function (state, action) {
+        state = state || {
+            bank: [],
+            account_Types: [],
+        }
+
+        switch (action.type) {
+            case 'PROFILE_10_GET_LIST_BANK':
+                state.bank = action.payload
+                return state
+            case 'PROFILE_10_GET_LIST_ACCOUNT_TYPE':
+                state.account_Types = action.payload
+                return state
+
+            default:
+                return state
+        }
+        return state
+    })
+
+    Nylon.addAction({
+        PROFILE_10_GET_LIST_BANK: function () {
+            console.log(3333);
+            return dispatch => {
+                axios.get('/bank')
                     .then(res => {
+                        console.log(111);
                         dispatch({ type: 'PROFILE_10_GET_LIST_BANK', payload: res.data })
                     })
                     .catch(err => {
                         console.log({ err })
                     })
-                    
-                }
-            },
-            PROFILE_10_GET_LIST_ACCOUNT_TYPE: function () {
-                return dispatch => {
-                    axios.get('/type/account')
+
+            }
+        },
+        PROFILE_10_GET_LIST_ACCOUNT_TYPE: function () {
+            return dispatch => {
+                axios.get('/type/account')
                     .then(res => {
                         dispatch({ type: 'PROFILE_10_GET_LIST_ACCOUNT_TYPE', payload: res.data })
                     })
                     .catch(err => {
                         console.log({ err })
                     })
-                    
-                }
-            },
-            
-           
-           
-        })
-    
-    </script>
+
+            }
+        },
+
+
+
+    })
+
+</script>
