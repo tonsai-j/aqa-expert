@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-12 col-lg-4">
                                     <aqa-combo-box label="ตำแหน่งทางวิชาการ" items="[[academicList]]" item-label-path="label" item-value-path="value" auto-validate
-                                        required disabled></aqa-combo-box>
+                                        required></aqa-combo-box>
                                     <!-- <aqa-combo-box label="สถานะการทำงาน" items="[[statusList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>  -->
                                     <!-- <aqa-date-picker id="date" label="วันที่บัตรหมดอายุ" selected="" show-bc></aqa-date-picker> -->
                                 </div>
@@ -256,11 +256,11 @@
                 //this.fadeInDown(elem, 1, 500)
                 Polymer.RenderStatus.afterNextRender(this, function () {
                     Nylon.dispatch('PROFILE_01_GET_LIST_ACADAMIC_POSITION')
-                    Nylon.dispatch('PROFILE_01_GET_LIST_GENDER')
-                    Nylon.dispatch('PROFILE_01_GET_LIST_NATIONALITY')
-                    Nylon.dispatch('PROFILE_01_GET_LIST_RELIGION')
-                    Nylon.dispatch('PROFILE_01_GET_LIST_WORK_STATUS')
-                    Nylon.dispatch('REGISTER_CHECK_PERSON', localStorage.getItem('taxno'))
+                    // Nylon.dispatch('PROFILE_01_GET_LIST_GENDER')
+                    // Nylon.dispatch('PROFILE_01_GET_LIST_NATIONALITY')
+                    // Nylon.dispatch('PROFILE_01_GET_LIST_RELIGION')
+                    // Nylon.dispatch('PROFILE_01_GET_LIST_WORK_STATUS')
+                    // Nylon.dispatch('REGISTER_CHECK_PERSON', localStorage.getItem('taxno'))
                 });
             }
             upload_img() {
