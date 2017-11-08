@@ -171,7 +171,8 @@
         <nylon-panel-right id="right" title="[[i18n.page08.history]]" width="80%">
             <nylon-panel-card slot="content">
                 <div slot="content">
-                    <div class="col-md-offset-2 col-md-8">
+                    <div class="row col-md-offset-1 middle-md">
+                    <div class="col-xs-10 col-sm-12 col-md-6 col-lg-2">
                         <aqa-combo-box class="required" required always-float-label label="[[i18n.page08.type]]" items='{{type_research}}' item-label-path='type_research_name'
                             item-value-path='id' value="{{data.type_research_id}}" on-selected-item-changed='getObject' object-name='data.type_research'>
                             <template>
@@ -179,12 +180,13 @@
                             </template>
                         </aqa-combo-box>
                     </div>
-                    <div class="col-md-offset-2 col-md-8">
+                    <div class="col-xs-10 col-sm-12 col-md-6 col-lg-8">
                         <aqa-input class="required" required label="[[i18n.page08.name]]" always-float-label value="{{data.research_name}}"></aqa-input>
                     </div>
-                    <div class="col-md-offset-2 col-md-8">
+                    <div class="col-xs-10 col-sm-12 col-md-6 col-lg-1">
                         <aqa-input class="required" required label="[[i18n.page08.year]]" always-float-label value="{{data.research_year}}" allow-pattern="[0-9]"
                             maxlength="4" minlength="4"></aqa-input>
+                    </div>
                     </div>
                     <!-- <div class="row center-md button-buttom">
                         <div class="button-action-bottom">
