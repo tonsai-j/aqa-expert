@@ -39,6 +39,7 @@
 <link rel="import" href="../../../i18n/profile/page-05-i18n.html">
 <link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
 <link rel="import" href="../../../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../../components/aqa-form/aqa-date-picker.html">
 
 <dom-module id="page-05">
     <template>
@@ -65,7 +66,7 @@
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-4">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2">
                             <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.agency_type]]" items='{{saluList}}' value="{{data.salu_name_id}}"
                                 item-label-path="salu_name_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.salu">
                                 <template>
@@ -83,19 +84,38 @@
                         <div class="col-md-4">
                             <aqa-input label="[[i18n.page05.agency_name]]" class="required" required always-float-label value="{{data.agency_name}}"></aqa-input>
                         </div>
-                    </div>
-                    <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-4">
-                            <aqa-input label="[[i18n.page05.s_date]]" class="required" required always-float-label type="date" value="{{data.work_start_date}}"></aqa-input>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2">
+                            <aqa-date-picker required>
+                                <aqa-input label="[[i18n.page05.s_date]]"></aqa-input>
+                            </aqa-date-picker>
                         </div>
-                        <div class="col-md-4">
-                            <aqa-input label="[[i18n.page05.to]]" class="required" required always-float-label type="date" value="{{data.work_end_date}}"
-                                disabled={{workenddate}}></aqa-input>
+                        <div>
+                            ถึง
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2">
+                            <aqa-date-picker required>
+                                <aqa-input label="[[i18n.page05.e_date]]"></aqa-input>
+                            </aqa-date-picker>
+                        </div>
+                        <div class="col-md-1">
+                            <paper-checkbox on-tap="_disabledEndDate">[[i18n.page05.present]] </paper-checkbox>
+                        </div>
+                    </div>
+                    <!-- <div class="row col-md-offset-1 middle-md">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                            <aqa-date-picker required>
+                                <aqa-input label="[[i18n.page05.s_date]]"></aqa-input>
+                            </aqa-date-picker>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                            <aqa-date-picker required>
+                                <aqa-input label="[[i18n.page05.to]]"></aqa-input>
+                            </aqa-date-picker>
                         </div>
                         <div class="col-md-2">
                             <paper-checkbox on-tap="_disabledEndDate">[[i18n.page05.present]] </paper-checkbox>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
                             <aqa-input label="[[i18n.page05.first_position]]" class="required" required always-float-label value="{{data.first_position}}"></aqa-input>
@@ -147,6 +167,7 @@
                             </paper-button>
                         </div>
                     </div> -->
+                    <br>
                     <div class="row center-xs">
                         <div class="col-lg-2">
                             <div style="padding:0rem 2rem;">
