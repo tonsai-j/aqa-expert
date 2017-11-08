@@ -21,11 +21,9 @@
 
     Nylon.addAction({
         PROFILE_10_GET_LIST_BANK: function () {
-            console.log(3333);
             return dispatch => {
                 axios.get('/bank')
                     .then(res => {
-                        console.log(111);
                         dispatch({ type: 'PROFILE_10_GET_LIST_BANK', payload: res.data })
                     })
                     .catch(err => {

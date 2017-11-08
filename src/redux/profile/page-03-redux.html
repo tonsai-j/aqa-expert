@@ -47,7 +47,7 @@
         },
         PROFILE_03_GET_TYPE_ACADEMY: function () {
             return dispatch => {
-                axios.get('/type/academy?group_work_id=H').then(
+                axios.get('/type/academy').then(
                     res => {
                         dispatch({ type: 'PROFILE_03_GET_TYPE_ACADEMY', data: res.data })
                     }
@@ -55,11 +55,11 @@
             }
         },
         PROFILE_03_GET_ACADEMY: function (typeAcademyId) {
-            var link = '/academy?group_work_id=H';
-            if (typeAcademyId != '')
-                link += `&type_academy_id=${typeAcademyId}`;
+            // var link = '/academy?group_work_id=H';
+            // if (typeAcademyId != '')
+            //     link += `&type_academy_id=${typeAcademyId}`;
             return dispatch => {
-                axios.get(link).then(
+                axios.get('/academy?type_academy_id=' + typeAcademyId).then(
                     res => {
                         dispatch({ type: 'PROFILE_03_GET_ACADEMY', data: res.data })
                     }
