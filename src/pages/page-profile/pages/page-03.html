@@ -72,7 +72,7 @@
                                 </template>
                             </aqa-combo-box>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-4">
+                        <div class="col-xs-12 col-sm-12 col-md-3">
                             <aqa-combo-box label="[[i18n.page03.typeAcademy]]" always-float-label items='{{typeAcademy}}' value="{{data.type_academy_id}}"
                                 item-label-path="label" item-value-path="value" on-change="_getAacademy" on-selected-item-changed="getObject"
                                 object-name="data.type_academy" class="required" required>
@@ -99,7 +99,7 @@
                                 </template>
                             </aqa-combo-box>
                         </div>
-                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
+                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-4">
                             <aqa-combo-box label="[[i18n.page03.groupFaculty]]" always-float-label items='{{groupFaculty}}' value="{{data.group_faculty_id}}"
                                 item-label-path="label" item-value-path="value" on-selected-item-changed="getObject"
                                 object-name="data.group_faculty">
@@ -108,7 +108,7 @@
                                 </template>
                             </aqa-combo-box>
                         </div>
-                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
+                        <div class="col-xs-12 col-sm-12 col-md-6">
                             <aqa-combo-box label="[[i18n.page03.fieldStudy]]" always-float-label items='{{fieldStudy}}' value="{{data.field_study_id}}"
                                 item-label-path="label" item-value-path="value" on-selected-item-changed="getObject"
                                 object-name="data.field_study" class="required" required>
@@ -117,22 +117,17 @@
                                 </template>
                             </aqa-combo-box>
                         </div>
-                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
-                            <aqa-input always-float-label label="[[i18n.page03.degree]] ([[i18n.page03.full]])" value="{{data.degree_full}}" class="required"
-                                required></aqa-input>
-                        </div>
-                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-8">
-                            <aqa-input always-float-label label="[[i18n.page03.degree]] ([[i18n.page03.short]])" value="{{data.degree_short}}"></aqa-input>
-                        </div>
-                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-4">
+                        
+                        
+                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-3">
                             <aqa-input always-float-label label="[[i18n.page03.major]]" value="{{data.major}}" class="required" required></aqa-input>
                         </div>
                         <div class=" col-xs-12 col-sm-12 col-md-4">
                             <aqa-input always-float-label label="[[i18n.page03.minor]]" value="{{data.minor}}"></aqa-input>
                         </div>
-                        <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-4">
+                        <div class="col-xs-12 col-sm-12 col-md-1">
                             <aqa-input always-float-label label="[[i18n.page03.year]]" value="{{data.year}}" allowed-pattern="[0-9]" maxlength="4" class="required"
-                                required></aqa-input>
+                                ></aqa-input>
                         </div>
                     </div>
                     <!-- <div class="row center-md button-buttom">
