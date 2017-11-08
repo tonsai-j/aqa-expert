@@ -1,9 +1,18 @@
 exports.list = function (req, res) {
-    var tb = r.table('province')
+    var tb = r.db('aqa_cds').table('province').filter({ ACTIVE: true })
+    let REGIONCD = Number(req.query.region_id)
     if (req.query.region_id) {
-        tb = r.table('province').getAll(req.query.region_id, { "index": "region_old_id" })
+        tb = r.db('aqa_cds').table('province').getAll(REGIONCD, { "index": "REGIONCD" })
+            .filter({ ACTIVE: true })
     }
-    tb.orderBy('province_th')
+    tb.merge((row) => {
+        return {
+            label: row('PROVINCEDESC'),
+            value: row('PROVINCECD'),
+        }
+    })
+        .orderBy('PROVINCEID')
+        .pluck('label', 'value')
         .run()
         .then(function (data) {
             res.json(data)

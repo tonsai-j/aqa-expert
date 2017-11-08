@@ -40,9 +40,9 @@
                     })
             }
         },
-        PROFILE_02_GET_LIST_PROVINCE: function () {
+        PROFILE_02_GET_LIST_PROVINCE: function (REGION_ID) {
             return dispatch => {
-                axios.get('/province')
+                axios.get('/province?region_id=' + REGION_ID)
                     .then(res => {
                         // console.log(addressContract);
                         dispatch({ type: 'PROFILE_02_GET_LIST_PROVINCE', payload: res.data })
@@ -53,107 +53,28 @@
             }
         },
 
-        PROFILE_02_GET_LIST_AMPHOE: function () {
+        PROFILE_02_GET_LIST_AMPHOE: function (province_id) {
             return dispatch => {
-                let res = {
-                    data: [
-                        {
-                            value: 1,
-                            label: 'อำเภอเมืองเชียงใหม่'
-                        },
-                        {
-                            value: 2,
-                            label: 'อำเภอเมืองขอนแก่น '
-                        },
-                        {
-                            value: 3,
-                            label: 'อำเภอเมืองกาญจนบุรี '
-                        },
-                        {
-                            value: 4,
-                            label: 'บางซื่อ'
-                        },
-                        {
-                            value: 5,
-                            label: 'อำเภอเมืองชลบุรี '
-                        },
-                        {
-                            value: 6,
-                            label: 'อำเภอเมืองกระบี่'
-                        }
-                    ]
-                }
-                dispatch({ type: 'PROFILE_02_GET_LIST_AMPHOE', payload: res.data })
-                // axios.get('/todolist').then(
-                //     res => {
-                //         progress(() => {
-                //             dispatch({ type: 'VIEW_2_GET_DATA', payload: res.data })
-                //         })
-                //     }
-                // )
-                //     .catch(
-                //     err => {
-                //         progress(() => {
-                //             console.log({ err })
-                //             Nylon.$['page-view2'].$.list.$.pc1.notify({
-                //                 status: 'error',
-                //                 msg: err.response.data.msg,
-                //                 position: 'top'
-                //             })
-                //         })
-                //     }
-                //     )
+                axios.get('/district?province_id=' + province_id)
+                    .then(res => {
+                        // console.log(addressContract);
+                        dispatch({ type: 'PROFILE_02_GET_LIST_AMPHOE', payload: res.data })
+                    }
+                    ).catch(err => {
+                        console.log({ err })
+                    })
             }
         },
-        PROFILE_02_GET_LIST_DISTRICT: function () {
+        PROFILE_02_GET_LIST_DISTRICT: function (district_id) {
             return dispatch => {
-                let res = {
-                    data: [
-                        {
-                            value: 1,
-                            label: 'เทศบาลตำบลบ้านหลวง'
-                        },
-                        {
-                            value: 2,
-                            label: 'เทศบาลตำบลน้ำพอง'
-                        },
-                        {
-                            value: 3,
-                            label: 'เทศบาลตำบลท่าขนุน'
-                        },
-                        {
-                            value: 4,
-                            label: 'ตลาดยอด'
-                        },
-                        {
-                            value: 5,
-                            label: 'เทศบาลตำบลบ้านบึง'
-                        },
-                        {
-                            value: 6,
-                            label: 'เทศบาลตำบลเกาะลันตาใหญ่'
-                        }]
+                axios.get('/district/sub?district_id=' + district_id)
+                .then(res => {
+                    // console.log(addressContract);
+                    dispatch({ type: 'PROFILE_02_GET_LIST_DISTRICT', payload: res.data })
                 }
-                dispatch({ type: 'PROFILE_02_GET_LIST_DISTRICT', payload: res.data })
-                // axios.get('/todolist').then(
-                //     res => {
-                //         progress(() => {
-                //             dispatch({ type: 'VIEW_2_GET_DATA', payload: res.data })
-                //         })
-                //     }
-                // )
-                //     .catch(
-                //     err => {
-                //         progress(() => {
-                //             console.log({ err })
-                //             Nylon.$['page-view2'].$.list.$.pc1.notify({
-                //                 status: 'error',
-                //                 msg: err.response.data.msg,
-                //                 position: 'top'
-                //             })
-                //         })
-                //     }
-                //     )
+                ).catch(err => {
+                    console.log({ err })
+                })
             }
         }
     })

@@ -1,6 +1,14 @@
 exports.list = function (req, res) {
-    r.table('region')
-        .orderBy('region_th')
+    r.db('aqa_cds').table('region')
+        .filter({ ACTIVE: true, ADDRYN: 'Y' })
+        .merge((row) => {
+            return {
+                label: row('REGIONDESC'),
+                value: row('REGIONCD'),
+            }
+        })
+        .orderBy('REGIONCD')
+        .pluck('label', 'value')
         .run()
         .then(function (data) {
             res.json(data)
