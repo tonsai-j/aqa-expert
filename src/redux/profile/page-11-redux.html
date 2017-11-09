@@ -34,7 +34,7 @@
         },
         PROFILE_11_GET_LIST_PROVINCE: function (region_id) {
             return dispatch => {
-                axios.get('/province?region_id='+ region_id)
+                axios.get('/province?region_id=' + region_id)
                     .then(res => {
                         dispatch({ type: 'PROFILE_11_GET_LIST_PROVINCE', payload: res.data })
                     }

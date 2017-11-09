@@ -41,7 +41,7 @@
 <link rel="import" href="../../../../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../../../nylon-i18n.html">
 <link rel="import" href="../../../i18n/profile/page-11-i18n.html">
-<link rel="import" href="../../../redux/profile/page-02-redux.html">
+<!-- <link rel="import" href="../../../redux/profile/page-02-redux.html"> -->
 <link rel="import" href="../../../redux/profile/page-11-redux.html">
 
 
@@ -70,13 +70,13 @@
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-4">{{getProvince(data.region_id)}}
+                        <div class="col-md-4">{{getProvince(data.region_id,data.region_id.*)}}
                             <!-- items='{{regionList}}' -->
-                            <aqa-combo-box class="required" disabled={{regionDisabled}} required always-float-label label="[[i18n.page11.region]]" items='{{_filterChanged(regionList)}}'
-                                value="{{data.region_id}}" item-label-path="region_th" item-value-path="id" on-selected-item-changed="getObject"
+                            <aqa-combo-box class="required" disabled={{regionDisabled}} required always-float-label label="[[i18n.page11.region]]" items='{{_filterChanged(regionList,regionList.*)}}'
+                                value="{{data.region_id}}" item-label-path="label" item-value-path="value" on-selected-item-changed="getObject"
                                 object-name="data.region">
                                 <template>
-                                    [[item.region_th]]
+                                    [[item.label]]
                                 </template>
                             </aqa-combo-box>
                         </div>
@@ -92,24 +92,24 @@
                             [[i18n.page11.province_list]]
                         </div>
                     </div>
-
+                    <!-- {{masterCheckDisable}}
                     <template is="dom-if" if={{masterCheckDisable}}>
                         <div class="row col-md-offset-1 middle-md">
-                            -
+                            -1
                         </div>
-                    </template>
+                    </template> -->
 
-                    <template is="dom-if" if={{!masterCheckDisable}}>
+                    <!-- <template is="dom-if" if={{!masterCheckDisable}}> -->
                         <div class="row col-md-offset-1 middle-md">
                             <div class="row col-md-9">
                                 <template is="dom-repeat" items={{provinceList}}>
                                     <span class="col-md-4">
-                                                 <paper-checkbox checked="{{item.checked}}">[[item.province_th]]</paper-checkbox>  
-                                            </span>
+                                        <paper-checkbox checked="{{item.checked}}">[[item.label]]</paper-checkbox>
+                                    </span>
                                 </template>
                             </div>
                         </div>
-                    </template>
+                    <!-- </template> -->
                     <!-- <div class="row center-md button-buttom">
                         <div class="button-action-bottom">
                             <paper-button raised class="btn-success" on-click="_save">
@@ -195,7 +195,7 @@
                 super.ready();
                 var elem = this.$.zone
                 //this.fadeInDown(elem, 1, 300)
-                Nylon.dispatch('PROFILE_02_GET_LIST_REGION')
+                // Nylon.dispatch('PROFILE_11_GET_LIST_REGION')
             }
             _onActiveItemChanged(e) {
                 // console.log(e.detail.value);
@@ -207,20 +207,22 @@
                     return true
             }
             setChecked(province) {
-                province.map((item, index) => {
-                    if (!item.hasOwnProperty('checked')) {
-                        // console.log(this.data.province);
-                        if (this.data.province !== undefined) {
-                            if (this.data.province.find(el => el.id === item.id) !== undefined) {
-                                item.checked = true
-                            } else {
-                                item.checked = false
-                            }
-                        }
 
-                    } else {
-                        item.checked = false
-                    }
+                if (province.length < 1)
+                    return
+                province.map((item, index) => {
+                    // if (!item.hasOwnProperty('checked')) {
+                    //     // console.log(this.data.province);
+                    //     if (this.data.province !== undefined) {
+                    //         if (this.data.province.find(el => el.id === item.id) !== undefined) {
+                    //             item.checked = true
+                    //         } else {
+                    //             item.checked = false
+                    //         }
+                    //     }
+                    // } else {
+                    item.checked = false
+                    // }
                     return item
                 })
                 let checkManster = province.map(prv => prv.checked).every(elem => elem == true)
@@ -228,9 +230,11 @@
                     checkManster = !checkManster
                 }
                 this.set('masterCheck', checkManster)
+                return province
             }
             _filterChanged(regions) {
-                if (this.zone !== undefined) {
+                // console.log(regions)
+                if (this.zone !== undefined && this.zone !== '' && this.zone.length > 0) {
                     regions.map(region => {
                         region.hidden = false
                         // this.data
@@ -242,26 +246,31 @@
                     })
                     // console.log(regions);
                     return regions
+                } else {
+                    // console.log(regions);
+                    return regions
                 }
             }
             getProvince(value) {
+                if (value === undefined || value === '')
+                    return
                 this.set('masterCheckDisable', true)
                 this._debouncer = Polymer.Debouncer.debounce(
                     this._debouncer, // initially undefined
                     Polymer.Async.timeOut.after(100),
                     () => {
-                        if (this.data !== undefined && value !== undefined) {
-                            if (this.data.region_id !== '' &&
-                                this.data.region_id !== undefined &&
-                                this.data.region !== undefined &&
-                                this.data.region.old_id !== undefined) {
-                                this.set('masterCheckDisable', false)
-                                Nylon.dispatch('PROFILE_11_GET_LIST_PROVINCE', this.data.region.old_id, 'contract')
-                                // this.set('masterCheckDisable',!this.masterCheckDisable)
-                            } else {
-                                this.set('provinceList', [])
-                            }
-                        }
+                        // console.log(value);
+                        // if (this.data !== undefined && value !== undefined) {
+                        // if (this.data.region_id !== '' &&
+                        //     this.data.region_id !== undefined &&
+                        //     this.data.region !== undefined) {
+                        //     this.set('masterCheckDisable', false)
+                        Nylon.dispatch('PROFILE_11_GET_LIST_PROVINCE', value)
+                        // this.set('masterCheckDisable',!this.masterCheckDisable)
+                        // } else {
+                        //     this.set('provinceList', [])
+                        // }
+                        // }
                     })
             }
             seletedCheckAll(e) {
