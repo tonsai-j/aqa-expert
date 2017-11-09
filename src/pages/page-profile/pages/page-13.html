@@ -21,6 +21,7 @@
 <link rel="import" href="../../../mixins/common-mixin.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../../i18n/profile/page-13-i18n.html">
 
 <link rel="import" href="../../../layout/flexbox-grid.html">
 <link rel="import" href="../../../layout/shared-styles.html">
@@ -52,7 +53,7 @@
             <aqa-title-name></aqa-title-name>
             <aqa-panel id="basic">
                 <app-toolbar slot="header">
-                    <div main-title>เอกสารแนบ</div>
+                    <div main-title>[[i18n.page13.title]]</div>
                 </app-toolbar>
                 <div slot="content">
                     <!-- <div class="row start-xs" style="margin-bottom:0.5rem">
@@ -64,20 +65,20 @@
                     </div> -->
                     <aqa-vaadin-grid>
                         <vaadin-grid id="material" items="{{documentFile}}">
-                            <vaadin-grid-column width=45% flex-grow="0" resizable>
+                            <vaadin-grid-column width=65% flex-grow="0" resizable>
                                 <template class="header ">
                                     <div class="header">
-                                        ชื่อเอกสารแนบ
+                                        [[i18n.page13.name]]
                                     </div>
                                 </template>
                                 <template>[[item.name]]</template>
                             </vaadin-grid-column>
-                            <vaadin-grid-column width=35% flex-grow="0" resizable>
-                                <template class="header">ไฟล์แนบ</template>
+                            <vaadin-grid-column width=25% flex-grow="0" resizable>
+                                <template class="header">[[i18n.page13.file]]</template>
                                 <template>[[item.file]]</template>
                             </vaadin-grid-column>
 
-                            <vaadin-grid-column width=20%>
+                            <vaadin-grid-column width=10%>
                                 <template class="header">
                                     <div class="text-center">Attach</div>
                                 </template>
