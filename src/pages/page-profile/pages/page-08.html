@@ -31,7 +31,7 @@
 <dom-module id="page-08">
     <template>
         <style include="flexbox-grid">
-             :host {
+            :host {
                 display: block
             }
 
@@ -53,7 +53,9 @@
                 <div main-title>[[i18n.page08.title]]</div>
             </app-toolbar>
             <div slot="content">
-                <aqa-button type="primary" icon="[[i18n.button.add.icon]]" action="add" on-tap="openPanelRight">เพิ่ม</aqa-button><br><br>
+                <aqa-button type="primary" icon="[[i18n.button.add.icon]]" action="add" on-tap="openPanelRight">เพิ่ม</aqa-button>
+                <br>
+                <br>
                 <aqa-vaadin-grid>
                     <vaadin-grid id="material" items="{{datas}}">
                         <vaadin-grid-column width="50px" flex-grow="0">
@@ -172,21 +174,22 @@
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
-                    <div class="col-xs-10 col-sm-12 col-md-6 col-lg-2">
-                        <aqa-combo-box class="required" required always-float-label label="[[i18n.page08.type]]" items='{{type_research}}' item-label-path='type_research_name'
-                            item-value-path='id' value="{{data.type_research_id}}" on-selected-item-changed='getObject' object-name='data.type_research'>
-                            <template>
-                                [[item.type_research_name]]
-                            </template>
-                        </aqa-combo-box>
-                    </div>
-                    <div class="col-xs-10 col-sm-12 col-md-6 col-lg-8">
-                        <aqa-input class="required" required label="[[i18n.page08.name]]" always-float-label value="{{data.research_name}}"></aqa-input>
-                    </div>
-                    <div class="col-xs-10 col-sm-12 col-md-6 col-lg-1">
-                        <aqa-input class="required" required label="[[i18n.page08.year]]" always-float-label value="{{data.research_year}}" allow-pattern="[0-9]"
-                            maxlength="4" minlength="4"></aqa-input>
-                    </div>
+                        <div class="col-xs-10 col-sm-12 col-md-6 col-lg-2">
+                            <aqa-combo-box class="required" required always-float-label label="[[i18n.page08.type]]" items='{{type_research}}' item-label-path='label'
+                                item-value-path='value' value="{{data.type_research_id}}" on-selected-item-changed='getObject'
+                                object-name='data.type_research'>
+                                <template>
+                                    [[item.label]]
+                                </template>
+                            </aqa-combo-box>
+                        </div>
+                        <div class="col-xs-10 col-sm-12 col-md-6 col-lg-8">
+                            <aqa-input class="required" required label="[[i18n.page08.name]]" always-float-label value="{{data.research_name}}"></aqa-input>
+                        </div>
+                        <div class="col-xs-10 col-sm-12 col-md-6 col-lg-1">
+                            <aqa-input class="required" required label="[[i18n.page08.year]]" always-float-label value="{{data.research_year}}" allow-pattern="[0-9]"
+                                maxlength="4" minlength="4"></aqa-input>
+                        </div>
                     </div>
                     <!-- <div class="row center-md button-buttom">
                         <div class="button-action-bottom">
@@ -257,7 +260,7 @@
             }
             ready() {
                 super.ready();
-                var elem = this.$.research
+                // var elem = this.$.research
                 //this.fadeInDown(elem, 1, 300)
                 Polymer.RenderStatus.afterNextRender(this, function () {
                     Nylon.dispatch('PROFILE_08_GET_LIST_TYPE_RESEARCH')
