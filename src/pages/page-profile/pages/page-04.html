@@ -37,6 +37,9 @@
 <link rel="import" href="../../../i18n/profile/page-04-i18n.html">
 <link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
 <link rel="import" href="../../../redux/profile/page-04-redux.html">
+<link rel="import" href="../../../../bower_components/paper-toast/paper-toast.html">
+
+
 <dom-module id="page-04">
     <template>
         <style include="flexbox-grid"></style>
@@ -44,13 +47,13 @@
             <aqa-title-name></aqa-title-name>
             <aqa-panel id="basic">
                 <app-toolbar slot="header">
-                    <div main-title>สาขาเชี่ยวชาญ</div>
+                    <div main-title>[[i18n.page04.title]]</div>
                 </app-toolbar>
                 <div slot="content">
                     <div class="row start-xs" style="margin-bottom:0.5rem">
                         <div class="col-xs-12">
                             <div class="box">
-                                <aqa-button type="primary" icon="add" on-tap=_openPanelRight>เพิ่ม</aqa-button>
+                                <aqa-button type="primary" icon="add" on-tap=_openPanelRight>[[i18n.button.add.label]]</aqa-button>
                             </div>
                         </div>
                     </div>
@@ -69,8 +72,7 @@
                             </template>
                         </nylon-combo-box> -->
                         <aqa-combo-box class="required" required always-float-label label="[[i18n.page04.group]]" items='{{specialistgroup}}' value="{{data.group_specialist_id}}"
-                            item-label-path="label" item-value-path="value" on-selected-item-changed="getObject"
-                            object-name="data.group_specialist">
+                            item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="data.group_specialist">
                             <template>
                                 [[item.label]]
                             </template>
@@ -84,8 +86,7 @@
                             </template>
                         </aqa-combo-box> -->[[checkIsGroupSpecialist(data.group_specialist_id,data.group_specialist_id.*)]]
                         <aqa-combo-box class="required" required always-float-label label="[[i18n.page04.type]]" items='{{specialisttype}}' value="{{data.type_specialist_id}}"
-                            item-label-path="label" item-value-path="value" on-selected-item-changed="getObject"
-                            object-name="data.type_specialist">
+                            item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="data.type_specialist">
                             <template>
                                 [[item.label]]
                             </template>
@@ -102,11 +103,11 @@
                             </paper-button>
                         </div>
                     </div> -->
-                    
+
                     <div class="row center-xs">
                         <div class="col-lg-2">
                             <div style="padding:0rem 2rem;">
-                                <aqa-button type="success btn-full-width" on-tap="getForm">บันทึก</aqa-button>
+                                <aqa-button type="success btn-full-width" on-tap="getForm">[[i18n.button.save.label]]</aqa-button>
                             </div>
                         </div>
                     </div>
@@ -122,6 +123,9 @@
                 </app-toolbar> -->
             </nylon-panel-card>
         </nylon-panel-right>
+
+        <paper-toast id="toast" horizontal-align="right" vertical-align="bottom" text="[[i18n.toast.save]]"></paper-toast>
+
     </template>
 
     <script>
@@ -176,7 +180,7 @@
                     // Nylon.dispatch('PROFILE_04_GET_SPECIALISTTYPE')
                 });
             }
-            checkIsGroupSpecialist(group_specialist){
+            checkIsGroupSpecialist(group_specialist) {
                 if (group_specialist !== undefined && group_specialist !== '')
                     Nylon.dispatch('PROFILE_04_GET_SPECIALISTTYPE', group_specialist);
             }
