@@ -1,12 +1,9 @@
-<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<!-- <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../layout/flexbox-grid.html">
-<!-- <link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html"> -->
 <link rel="import" href="../../../components/aqa-form/aqa-combo-box.html">
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
-<!-- <link rel="import" href="../../../../bower_components/paper-input/paper-input.html"> -->
-
 <link rel="import" href="../../../components/nylon-input/nylon-input.html">
 
 <link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
@@ -25,30 +22,54 @@
 <link rel="import" href="../../aqa-vaadin-grid/aqa-vaadin-grid.html">
 <link rel="import" href="../../../components/aqa-icon-button/aqa-icon-button.html">
 <link rel="import" href="../../../components/aqa-form/aqa-input.html">
-<link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
+<link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html"> -->
 
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../mixins/animate-mixin.html">
+<link rel="import" href="../../../mixins/common-mixin.html">
+<link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../../../bower_components/iron-icons/iron-icons.html">
+
+<link rel="import" href="../../../layout/flexbox-grid.html">
+<link rel="import" href="../../../layout/shared-styles.html">
+<link rel="import" href="../../../components/aqa-form/aqa-combo-box.html">
+<link rel="import" href="../../../components/aqa-panel/aqa-panel.html">
+<link rel="import" href="../../../components/aqa-button/aqa-button.html">
+<link rel="import" href="../../../components/aqa-form/aqa-input.html">
+<link rel="import" href="./components/research-list.html">
+<link rel="import" href="../../../components/aqa-title/aqa-title-name.html">
+<link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
+<link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
+<link rel="import" href="../../../components/nylon-input/nylon-input.html">
+<link rel="import" href="../../../i18n/profile/page-08-i18n.html">
+<link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
+<link rel="import" href="../../../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../../components/aqa-form/aqa-date-picker.html">
 
 <dom-module id="page-08">
     <template>
-        <style include="flexbox-grid">
-            :host {
-                display: block
-            }
+        <style include="flexbox-grid"></style>
+        <div class="page-container">
+            <aqa-title-name></aqa-title-name>
+            <aqa-panel id="basic">
+                <app-toolbar slot="header">
+                    <div main-title>[[i18n.page08.title]]</div>
+                </app-toolbar>
+                <div slot="content">
+                    <div class="row start-xs" style="margin-bottom:0.5rem">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <aqa-button type="primary" icon="add" on-tap=_openPanelRight>เพิ่ม</aqa-button>
+                            </div>
+                        </div>
+                    </div>
+                    <research-list></research-list>
+                </div>
+            </aqa-panel>
+        </div>
 
-            .label {
-                text-align: right;
-            }
-
-            .input {
-                text-align: left;
-            }
-
-            paper-radio-button {
-                display: inline-block
-            }
-        </style>
-
-        <aqa-panel id="research">
+        <!-- <aqa-panel id="research">
             <app-toolbar slot="header">
                 <div main-title>[[i18n.page08.title]]</div>
             </app-toolbar>
@@ -76,25 +97,26 @@
                         </vaadin-grid-column>
                         <vaadin-grid-column>
                             <template class="header">[[i18n.page08.year]]</template>
-                            <template>[[item.research_year]]</template>
+                            <template>[[item.level_education]]</template>
                         </vaadin-grid-column>
                         <vaadin-grid-column>
                             <template class="header">[[i18n.page08.date]]</template>
                             <template>[[changeDate(item.date_updated)]]</template>
                         </vaadin-grid-column>
-                        <vaadin-grid-column>
+                        <vaadin-grid-column width="100px" flex-grow="0">
                             <template class="header">
-                                <div style="text-align: center">[[i18n.common.tools]]</div>
+                                <div class="header">เครื่องมือ</div>
                             </template>
                             <template>
-                                <span style="text-align: center">
-                                    <aqa-icon-button action="edit" on-click="openPanelRight" label="edit">
-                                        <paper-icon-button icon="[[i18n.button.edit.icon]]"></paper-icon-button>
-                                    </aqa-icon-button>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <!-- <paper-icon-button icon="[[i18n.button.edit.icon]]" action="edit" on-click="openPanelRight"></paper-icon-button>
-                                            <paper-icon-button icon="[[i18n.button.delete.icon]]" on-click="_confirmDel"></paper-icon-button> -->
-                                </span>
+                                <div style="display:flex">
+                                    <aqa-tooltip label="ดู & แก้ไขรายละเอียด">
+                                        <paper-icon-button class="btn-edit" icon="create" noink></paper-icon-button>
+                                    </aqa-tooltip>
+                                    <aqa-tooltip label="ลบ">
+                                        <paper-icon-button class="btn-delete" icon="icomoon:bin" noink></paper-icon-button>
+                                    </aqa-tooltip>
+                                   
+                                </div>
                             </template>
                         </vaadin-grid-column>
                     </vaadin-grid>
@@ -102,9 +124,22 @@
                 <div class="no-content" hidden="{{datas.length}}">
                     ไม่มีข้อมูล
                 </div>
+                <paper-tooltip id="tooltip" position="top" offset="0"></paper-tooltip>
+                <div style="display:inline">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <div style="margin-top:1rem">จำนวนรายการทั้งหมด [[datas.length]] รายการ </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <div style="margin-top:1rem; text-align:right">แก้ไขล่าสุดวันที่ : 25/10/2560 <br> ผู้แก้ไข : รองศาสตร์จารย์บรรเจิด เริศฤดี </div>
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
 
-        </aqa-panel>
+        </aqa-panel> -->
 
         <!-- <nylon-panel-card id="research">
             <div slot="content">
@@ -331,7 +366,7 @@
                     ]
                 })
             }
-            openPanelRight(e) {
+            _openPanelRight(e) {
                 if (e.currentTarget.getAttribute('action') == 'edit') {
                     this.set('data', e.model.item)
                     this.set('_index', e.model.index)
