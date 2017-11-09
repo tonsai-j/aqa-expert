@@ -37,6 +37,7 @@
 <link rel="import" href="../../../components/nylon-input/nylon-input.html">
 <link rel="import" href="../../../i18n/profile/page-03-i18n.html">
 <link rel="import" href="../../../redux/profile/page-03-redux.html">
+<link rel="import" href="../../../../bower_components/paper-toast/paper-toast.html">
 
 <dom-module id="page-03">
     <template>
@@ -45,13 +46,13 @@
             <aqa-title-name></aqa-title-name>
             <aqa-panel id="basic">
                 <app-toolbar slot="header">
-                    <div main-title>วุฒิการศึกษา</div>
+                    <div main-title>[[i18n.page03.title]]</div>
                 </app-toolbar>
                 <div slot="content">
                     <div class="row start-xs" style="margin-bottom:0.5rem">
                         <div class="col-xs-12">
                             <div class="box">
-                                <aqa-button type="primary" icon="add" on-tap=_openPanelRight>เพิ่ม</aqa-button>
+                                <aqa-button type="primary" icon="add" on-tap=_openPanelRight>[[i18n.button.add.label]]</aqa-button>
                             </div>
                         </div>
                     </div>
@@ -148,7 +149,7 @@
                     <div class="row center-xs">
                         <div class="col-lg-2">
                             <div style="padding:0rem 2rem;">
-                                <aqa-button type="success btn-full-width" on-tap="getForm">บันทึก</aqa-button>
+                                <aqa-button type="success btn-full-width" on-tap="getForm">[[i18n.button.save.label]]</aqa-button>
                             </div>
                         </div>
                     </div>
@@ -164,6 +165,9 @@
                 </app-toolbar> -->
             </nylon-panel-card>
         </nylon-panel-right>
+
+        <paper-toast id="toast" horizontal-align="right" vertical-align="bottom" text="[[i18n.toast.save]]"></paper-toast>
+
     </template>
 
     <script>
