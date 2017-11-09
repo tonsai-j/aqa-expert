@@ -4,13 +4,13 @@
 <link rel="import" href="../../../../components/aqa-button/aqa-button.html">
 
 <link rel="import" href="../../../../components/aqa-tooltip/aqa-tooltip.html">
-
+<link rel="import" href="../../../redux-mixin.html">
 <link rel="import" href="../../../../../bower_components/paper-tooltip/paper-tooltip.html">
 <link rel="import" href="../../../../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../../../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../../../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../../../components/aqa-icon-button/aqa-icon-button.html">
-
+<link rel="import" href="../../../i18n/profile/page-07-i18n.html">
 <link rel="import" href="../../../../../images/icon-moon-delete.html">
 <link rel="import" href="../../../../layout/shared-styles.html">
 <dom-module id="academy-list">
@@ -37,7 +37,7 @@
             <vaadin-grid id="material" items="{{datas}}">
                 <vaadin-grid-column width="60px" flex-grow="0">
                     <template class="header">
-                        <div class="header" style="text-align: center">ลำดับ</div>
+                        <div class="header" style="text-align: center">[[i18n.common.no]]</div>
                     </template>
                     <template>
                         <div style="text-align: center">[[count(index)]]</div>
@@ -46,7 +46,7 @@
                 <vaadin-grid-column width="500px" flex-grow="0">
                     <template class="header">
                         <div class="header">
-                            ประเภท
+                             [[i18n.page07.type]]
                         </div>
                     </template>
                     <template>
@@ -56,7 +56,7 @@
                 <vaadin-grid-column width="160px" >
                     <template class="header">
                         <div class="header">
-                            ชื่อสถานศึกษา
+                             [[i18n.page07.name]]
                         </div>
                     </template>
                     <template>
@@ -102,10 +102,14 @@
 
     </template>
     <script>
-        class AcademyList extends Polymer.Element {
+        class AcademyList extends ReduxMixin(Polymer.Element) {
             static get is() { return 'academy-list'; }
             static get properties() {
                 return {
+                    i18n: {
+                        type: Object,
+                        statePath: 'i18n',
+                    },
                     datas: {
                         type: Array,
                         value: [
