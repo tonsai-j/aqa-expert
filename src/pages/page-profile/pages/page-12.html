@@ -41,7 +41,7 @@
 <link rel="import" href="../../../redux/profile/page-02-redux.html">
 <link rel="import" href="../../../components/aqa-form/aqa-input.html">
 <link rel="import" href="../../../components/aqa-form/aqa-combo-box.html">
-
+<link rel="import" href="../../../../bower_components/paper-toast/paper-toast.html">
 
 <dom-module id="page-12">
     <template>
@@ -50,13 +50,13 @@
             <aqa-title-name></aqa-title-name>
             <aqa-panel id="basic">
                 <app-toolbar slot="header">
-                    <div main-title>บุคคลที่ติดต่อได้กรณีฉุกเฉิน</div>
+                    <div main-title>[[i18n.page12.references]]</div>
                 </app-toolbar>
                 <div slot="content">
                     <div class="row start-xs" style="margin-bottom:0.5rem">
                         <div class="col-xs-12">
                             <div class="box">
-                                <aqa-button type="primary" icon="add" on-tap=_openPanelRight>เพิ่ม</aqa-button>
+                                <aqa-button type="primary" icon="add" on-tap=_openPanelRight>[[i18n.button.add.label]]</aqa-button>
                             </div>
                         </div>
                     </div>
@@ -74,21 +74,17 @@
                         <div class="col-md-4">
                             <aqa-input label="[[i18n.page12.lastname]]" class="required" required always-float-label value="{{data.lastname}}"></aqa-input>
                         </div>
-
-                    </div>
-                    <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <aqa-input label="[[i18n.page12.phone]]" class="required" required always-float-label value="{{data.phone}}"></aqa-input>
                         </div>
-                        <div class="col-md-4">
-                            <aqa-input label="[[i18n.page12.cell_phone]]" class="required" required always-float-label value="{{data.cell_phone}}"></aqa-input>
-                        </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
+                        <div class="col-md-3">
+                            <aqa-input label="[[i18n.page12.cell_phone]]" class="required" required always-float-label value="{{data.cell_phone}}"></aqa-input>
+                        </div>
                         <div class="col-md-4">
                             <aqa-input label="[[i18n.page12.email]]" class="required" required always-float-label value="{{data.email}}"></aqa-input>
                         </div>
-
                     </div>
                     <!-- <div class="row center-md button-buttom">
                         <div class="button-action-bottom">
@@ -103,7 +99,7 @@
                     <div class="row center-xs">
                         <div class="col-lg-2">
                             <div style="padding:0rem 2rem;">
-                                <aqa-button type="success btn-full-width" on-tap="getForm">บันทึก</aqa-button>
+                                <aqa-button type="success btn-full-width" on-tap="getForm">[[i18n.button.save.label]]</aqa-button>
                             </div>
                         </div>
                     </div>
@@ -111,6 +107,8 @@
             </nylon-panel-card>
 
         </nylon-panel-right>
+
+        <paper-toast id="toast" horizontal-align="right" vertical-align="bottom" text="[[i18n.toast.save]]"></paper-toast>
 
     </template>
 
