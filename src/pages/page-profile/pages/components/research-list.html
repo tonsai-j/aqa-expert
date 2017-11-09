@@ -10,7 +10,7 @@
 <link rel="import" href="../../../../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../../../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../../../components/aqa-icon-button/aqa-icon-button.html">
-
+<link rel="import" href="../../../redux-mixin.html">
 <link rel="import" href="../../../../../images/icon-moon-delete.html">
 <link rel="import" href="../../../../layout/shared-styles.html">
 <link rel="import" href="../../../../i18n/profile/page-08-i18n.html">
@@ -49,7 +49,7 @@
                         <div class="header">
                             <!-- [[i18n.page08.type]] -->
                             <!-- <div style="text-align: center">[[i18n.page08.type]]</div> -->
-                            ประเภทผลงาน
+                             [[i18n.page08.type]]
                         </div>
                     </template>
                     <template>
@@ -60,7 +60,7 @@
                     <template class="header">
                         <div class="header">
                             [[i18n.page08.name]]
-                            ชื่อผลงาน
+                            
                         </div>
                     </template>
                     <template>
@@ -71,7 +71,7 @@
                     <template class="header">
                         <div class="header">
                              [[i18n.page08.year]]
-                             ปีที่เผยแพร่
+                             
                         </div>
                     </template>
                     <template>
@@ -120,7 +120,7 @@
 
     </template>
     <script>
-        class ResearchList extends Polymer.Element {
+        class ResearchList extends ReduxMixin(Polymer.Element) {
             static get is() { return 'research-list'; }
             static get properties() {
                 return {
