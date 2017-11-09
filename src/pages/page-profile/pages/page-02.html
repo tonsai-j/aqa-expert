@@ -20,7 +20,8 @@
 <link rel="import" href="../../../mixins/animate-mixin.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
 <link rel="import" href="../../../../bower_components/polymer/lib/elements/dom-repeat.html"> -->
-้<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+้
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../mixins/animate-mixin.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/iron-icons/iron-icons.html">
@@ -39,10 +40,12 @@
 <link rel="import" href="../../../mixins/common-mixin.html">
 
 <link rel="import" href="../../../redux-mixin.html">
-
+<link rel="import" href="../../../i18n/profile/page-02-i18n.html">
 <link rel="import" href="./components/address-form-contact.html">
 
 <link rel="import" href="../../../redux/profile/page-02-redux.html">
+
+<link rel="import" href="../../../../bower_components/paper-toast/paper-toast.html">
 
 
 <dom-module id="page-02">
@@ -74,7 +77,7 @@
             <aqa-title-name></aqa-title-name>
             <aqa-panel id="basic">
                 <app-toolbar slot="header">
-                    <div main-title>ที่จัดส่งเอกสาร</div>
+                    <div main-title>[[i18n.page02.doc_send]]</div>
                 </app-toolbar>
                 <div slot="content">
                     <!-- <div class="section row">
@@ -86,8 +89,8 @@
                     <div class="section-content">
                         <div class="row">
                             <div class="col-xs-12 col-sm-6">
-                                <input type="radio" name="address" checked> ที่อยู่ที่สะดวกในการติดต่อ
-                                <input type="radio" name="address"> ที่อยู่ที่ทำงาน
+                                <input type="radio" name="address" checked> [[i18n.page02.add_contract]]
+                                <input type="radio" name="address"> [[i18n.page02.addsWork]]
                                 <!-- <aqa-combo-box label="สถานที่จัดส่งเอกสาร" items="[[address]]" item-label-path="label" item-value-path="value"></aqa-combo-box> -->
                             </div>
                         </div>
@@ -97,7 +100,7 @@
             <div class="white-space"></div>
             <aqa-panel id="basic">
                 <app-toolbar slot="header">
-                    <div main-title>ที่อยู่ที่ติดต่อได้สะดวก</div>
+                    <div main-title>[[i18n.page02.add_contract]]</div>
                 </app-toolbar>
                 <div slot="content">
                     <!-- <div class="section row">
@@ -114,7 +117,7 @@
             <div class="white-space"></div>
             <aqa-panel id="basic">
                 <app-toolbar slot="header">
-                    <div main-title>ที่ทำงาน </div>
+                    <div main-title>[[i18n.page02.addsWork]] </div>
                 </app-toolbar>
                 <div slot="content">
                     <!-- <div class="section row">
@@ -126,12 +129,12 @@
                     </div> -->
                     <div class="section-content">
                         <p>
-                            <aqa-button type="primary">คัดลอกจากที่อยู่ที่สะดวกในการติดต่อ</aqa-button>
+                            <aqa-button type="primary">[[i18n.page02.copy_address]]</aqa-button>
                         </p>
 
                         <div class="row">
                             <div class="col-xs-12">
-                                <aqa-input label="ชื่อองค์กร" value=""></aqa-input>
+                                <aqa-input label="[[i18n.page02.company_name]]" value=""></aqa-input>
                             </div>
                         </div>
                         <address-form-contact></address-form-contact>
@@ -143,11 +146,15 @@
             <div class="row center-xs">
                 <div class="col-lg-2">
                     <div style="padding:0rem 2rem;">
-                        <aqa-button type="success btn-full-width">บันทึก</aqa-button>
+                        <aqa-button type="success btn-full-width">[[i18n.button.save.label]]</aqa-button>
                     </div>
                 </div>
             </div>
         </div>
+
+
+        <paper-toast id="toast" horizontal-align="right" vertical-align="bottom" text="[[i18n.toast.save]]"></paper-toast>
+
 
     </template>
 

@@ -8,71 +8,76 @@
 <link rel="import" href="../../../../components/aqa-form/aqa-input.html">
 
 <link rel="import" href="../../../../redux-mixin.html">
+<link rel="import" href="../../../../i18n/profile/page-02-i18n.html">
+<link rel="import" href="../../../../../bower_components/paper-toast/paper-toast.html">
 
 <dom-module id="address-form-contact">
     <template>
         <style include="flexbox-grid shared-styles">
+
         </style>
         <div>
             <div class="section-content row">
                 <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                    <aqa-input label="เลขที่" value="" required></aqa-input>
+                    <aqa-input label="[[i18n.page02.home_number]]" value="" required></aqa-input>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                    <aqa-input label="หมู่ที่" value=""></aqa-input>
+                    <aqa-input label="[[i18n.page02.village_no]]" value=""></aqa-input>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                    <aqa-input label="หมู่บ้าน" value=""></aqa-input>
+                    <aqa-input label="[[i18n.page02.village_name]]" value=""></aqa-input>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-12 col-lg-4">
-                    <aqa-input label="อาคาร" value=""></aqa-input>
+                    <aqa-input label="[[i18n.page02.building]]" value=""></aqa-input>
                 </div>
             </div>
             <div class="section-content row">
                 <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                    <aqa-input label="ซอย" value=""></aqa-input>
+                    <aqa-input label="[[i18n.page02.alley]]" value=""></aqa-input>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                    <aqa-input label="ถนน" value=""></aqa-input>
+                    <aqa-input label="[[i18n.page02.road]]" value=""></aqa-input>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                    <aqa-combo-box label="ภาค" items="[[regionList]]" item-label-path="label" item-value-path="value" value="{{region_id}}" required></aqa-combo-box>
+                    <aqa-combo-box label="[[i18n.page02.region]]" items="[[regionList]]" item-label-path="label" item-value-path="value" value="{{region_id}}"
+                        required></aqa-combo-box>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-12 col-lg-3">[[checkIsRegion(region_id,region_id.*)]]
-                    <aqa-combo-box id="province" label="จังหวัด" items="[[provinceList]]" item-label-path="label" item-value-path="value" value="{{province_id}}"
-                        required></aqa-combo-box>
+                    <aqa-combo-box id="province" label="[[i18n.page02.province]]" items="[[provinceList]]" item-label-path="label" item-value-path="value"
+                        value="{{province_id}}" required></aqa-combo-box>
                 </div>
             </div>
             <div class="section-content row">
                 <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-4">[[checkIsProvince(province_id,province_id.*)]]
                     <!-- <aqa-input label="อำเภอ / เขต" value="" required></aqa-input> -->
-                    <aqa-combo-box label="อำเภอ / เขต" items="[[amphoeList]]" item-label-path="label" item-value-path="value" value="{{amphoeList_id}}"
+                    <aqa-combo-box label="[[i18n.page02.amphoe]]" items="[[amphoeList]]" item-label-path="label" item-value-path="value" value="{{amphoeList_id}}"
                         required></aqa-combo-box>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">[[checkIsAmphoe(amphoeList_id,amphoeList_id.*)]]
-                    <aqa-combo-box label="ตำบล / แขวง" items="[[districtList]]" item-label-path="label" item-value-path="value" value=""></aqa-combo-box>
+                    <aqa-combo-box label="[[i18n.page02.district]]" items="[[districtList]]" item-label-path="label" item-value-path="value"
+                        value=""></aqa-combo-box>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                    <aqa-input label="รหัสไปรษณีย์" value="" required></aqa-input>
+                    <aqa-input label="[[i18n.page02.zipcode]]" value="" required></aqa-input>
                 </div>
             </div>
             <div class="section-content row">
                 <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                    <aqa-input label="โทรศัพท์" value=""></aqa-input>
+                    <aqa-input label="[[i18n.page02.telephone]]" value=""></aqa-input>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                    <aqa-input label="โทรสาร" value=""></aqa-input>
+                    <aqa-input label="[[i18n.page02.fax]]" value=""></aqa-input>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                    <aqa-input type="phone" label="โทรศัพท์เคลื่อนที่" value="" required></aqa-input>
+                    <aqa-input type="phone" label="[[i18n.page02.mobile_phone]]" value="" required></aqa-input>
                 </div>
             </div>
             <div class="section-content row">
                 <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                    <aqa-input label="อีเมล" value="" required></aqa-input>
+                    <aqa-input label="[[i18n.page02.email]]" value="" required></aqa-input>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                    <aqa-input label="Line ID" value=""></aqa-input>
+                    <aqa-input label="[[i18n.page02.line_id]]" value=""></aqa-input>
                 </div>
             </div>
             <!-- <div class="section-content row">
@@ -87,12 +92,21 @@
                 </div>
             </div> -->
         </div>
+
+
+        <paper-toast id="toast" horizontal-align="right" vertical-align="bottom" text="[[i18n.toast.save]]"></paper-toast>
+
+
     </template>
     <script>
         class AddressFormContract extends ReduxMixin(Polymer.Element) {
             static get is() { return 'address-form-contact'; }
             static get properties() {
                 return {
+                    i18n: {
+                        type: Object,
+                        statePath: 'i18n',
+                    },
                     regionList: {
                         statePath: 'profile_page02.region'
                     },
