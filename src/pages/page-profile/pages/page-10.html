@@ -28,12 +28,15 @@
 <link rel="import" href="../../../components/aqa-panel/aqa-panel.html">
 <link rel="import" href="../../../components/aqa-button/aqa-button.html">
 <link rel="import" href="../../../components/aqa-form/aqa-input.html">
-
+<link rel="import" href="../../../nylon-i18n.html">
+<link rel="import" href="../../../i18n/profile/page-10-i18n.html">
+<link rel="import" href="../../../redux/profile/page-10-redux.html">
 <link rel="import" href="../../../../bower_components/paper-dialog/paper-dialog.html">
 
 <link rel="import" href="../../../components/aqa-lightbox/aqa-lightbox.html">
 
 <link rel="import" href="../../../../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../../../../bower_components/paper-toast/paper-toast.html">
 
 <dom-module id="page-10">
     <template>
@@ -92,7 +95,7 @@
             <aqa-title-name></aqa-title-name>
             <aqa-panel id="basic">
                 <app-toolbar slot="header">
-                    <div main-title>บัญชีธนาคาร</div>
+                    <div main-title>[[i18n.page10.bank_account]]</div>
                 </app-toolbar>
                 <div slot="content">
                     <div class="row">
@@ -102,17 +105,17 @@
                                     <aqa-combo-box required label="ธนาคาร" items="[[bankList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
                                 </div>
                                 <div class="col-xs-12 col-md-6">
-                                    <aqa-input required label="ประเภทบัญชี" value=""></aqa-input>
+                                    <aqa-input required label="[[i18n.page10.account_Types]]" value=""></aqa-input>
                                     <!-- <aqa-combo-box label="ประเภทบัญชี" items="[[typeAccount]]" item-label-path="label" item-value-path="value"></aqa-combo-box> -->
                                 </div>
                                 <div class="col-xs-12 col-md-6">
                                     <aqa-input label="สาขา" value="" required></aqa-input>
                                 </div>
                                 <div class="col-xs-12 col-md-6">
-                                    <aqa-input required label="เลขที่บัญชี" allowed-pattern="[0-9]" error-message="ตัวเลขเท่านั้น" value=""></aqa-input>
+                                    <aqa-input required label="[[i18n.page10.account_number]]" allowed-pattern="[0-9]" error-message="ตัวเลขเท่านั้น" value=""></aqa-input>
                                 </div>
                                 <div class="col-xs-12 col-md-6">
-                                    <aqa-input required label="ชื่อบัญชี" value=""></aqa-input>
+                                    <aqa-input required label="[[i18n.page10.account_name]]" value=""></aqa-input>
                                 </div>
                             </div>
 
@@ -140,7 +143,7 @@
                                         <div class="box-item box-item-footer">
                                             <div>
                                                 <input type="file" id="upFile" on-change="fileChange" hidden>
-                                                <aqa-button type="primary" on-tap="upLoadFile" icon="icons:file-upload">อัพโหลด</aqa-button>
+                                                <aqa-button type="primary" on-tap="upLoadFile" icon="icons:file-upload">[[i18n.button.upload.label]]</aqa-button>
                                                 <span id="imgname"></span>
                                             </div>
                                         </div>
@@ -164,11 +167,14 @@
             <div class="row center-xs">
                 <div class="col-lg-2">
                     <div style="padding:0rem 2rem;">
-                        <aqa-button type="success btn-full-width">บันทึก</aqa-button>
+                        <aqa-button type="success btn-full-width">[[i18n.button.save.label]]</aqa-button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <paper-toast id="toast" horizontal-align="right" vertical-align="bottom" text="[[i18n.toast.save]]"></paper-toast>
+
     </template>
 
     <script>
@@ -184,10 +190,10 @@
                         type: Boolean,
                         value: false
                     },
-                    // i18n: {
-                    //     type: Object,
-                    //     statePath: 'i18n',
-                    // },
+                    i18n: {
+                        type: Object,
+                        statePath: 'i18n',
+                    },
                     // rootPath: {
                     //     type: String,
                     // },
