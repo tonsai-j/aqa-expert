@@ -1,6 +1,5 @@
-<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<!-- <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../../layout/flexbox-grid.html">
-<!-- <link rel="import" href="../../../../bower_components/vaadin-combo-box/vaadin-combo-box.html"> -->
 <link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../../bower_components/paper-icon-button/paper-icon-button.html">
@@ -19,12 +18,36 @@
 <link rel="import" href="../../../redux/profile/page-09-redux.html">
 <link rel="import" href="../../../redux-mixin.html">
 <link rel="import" href="../../../mixins/animate-mixin.html">
+<link rel="import" href="../../../mixins/common-mixin.html"> -->
+
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../redux-mixin.html">
+<link rel="import" href="../../../mixins/animate-mixin.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
+<link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../../../bower_components/iron-icons/iron-icons.html">
+
+<link rel="import" href="../../../layout/flexbox-grid.html">
+<link rel="import" href="../../../layout/shared-styles.html">
+<link rel="import" href="../../../components/aqa-form/aqa-combo-box.html">
+<link rel="import" href="../../../components/aqa-panel/aqa-panel.html">
+<link rel="import" href="../../../components/aqa-button/aqa-button.html">
+<link rel="import" href="../../../components/aqa-form/aqa-input.html">
+<link rel="import" href="./components/meeting-list.html">
+<link rel="import" href="../../../components/aqa-title/aqa-title-name.html">
+<link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
+<link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
+<link rel="import" href="../../../components/nylon-input/nylon-input.html">
+<link rel="import" href="../../../i18n/profile/page-09-i18n.html">
+<link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
+<link rel="import" href="../../../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../../components/aqa-form/aqa-date-picker.html">
+<link rel="import" href="../../../../bower_components/paper-toast/paper-toast.html">
 
 
 <dom-module id="page-09">
     <template>
-        <style include="shared-styles flexbox-grid">
+        <!-- <style include="shared-styles flexbox-grid">
              :host {
                 display: block
             }
@@ -46,15 +69,6 @@
                     <div class="header-title">
                             [[i18n.page09.title]]
                             </div>
-                <!-- <fieldset>
-                    <legend>[[i18n.page09.title]]</legend> -->
-                    <!-- <div class="row end-md middle-md">
-                        <div class="label col-md-3">
-                            <paper-button raised class="btn-primary" on-tap=openPanelRight>
-                                <iron-icon icon="[[i18n.button.add.icon]]"></iron-icon>[[i18n.button.add.label]]</paper-button>
-                        </div>
-                    </div>
-                    <br> -->
                     <div class="row  middle-md">
                         <div class="col-md-12">
                             <vaadin-grid id='material' items='[[datas]]'>
@@ -92,10 +106,6 @@
                                         <paper-icon-button icon="[[i18n.button.download.icon]]"></paper-icon-button>
                                     </template>
                                 </vaadin-grid-column>
-                                <!-- <vaadin-grid-column>
-                                    <template class="header">[[i18n.page09.date]]</template>
-                                    <template>[[item.role]]</template>
-                                </vaadin-grid-column> -->
                             </vaadin-grid>
                             <div class="no-content" hidden="{{datas.length}}">
                                     ไม่มีข้อมูล
@@ -103,8 +113,29 @@
                             [[i18n.common.total_items]] {{datas.length}} [[i18n.common.list]]
                         </div>
                     </div>
-                <!-- </fieldset> -->
-            </div>
+            </div> -->
+        <style include="flexbox-grid"></style>
+        <div class="page-container">
+            <aqa-title-name></aqa-title-name>
+            <aqa-panel id="basic">
+                <app-toolbar slot="header">
+                    <div main-title>[[i18n.page09.title]]</div>
+                </app-toolbar>
+                <div slot="content">
+                    <div class="row start-xs" style="margin-bottom:0.5rem">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <aqa-button type="primary" icon="add" on-tap=_openPanelRight>[[i18n.button.add.label]]</aqa-button>
+                            </div>
+                        </div>
+                    </div>
+                    <meeting-list></meeting-list>
+                </div>
+            </aqa-panel>
+        </div>
+
+
+
         </nylon-panel-card>
         <!-- <nylon-panel-right id="right" title="[[i18n.page09.history]]" width="80%">
             <nylon-panel-card slot="content">

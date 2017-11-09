@@ -10,11 +10,11 @@
 <link rel="import" href="../../../../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../../../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../../../components/aqa-icon-button/aqa-icon-button.html">
-<link rel="import" href="../../../../i18n/profile/page-03-i18n.html">
-<link rel="import" href="../../../../redux/profile/page-03-redux.html">
+<link rel="import" href="../../../../i18n/profile/page-09-i18n.html">
+<link rel="import" href="../../../../redux/profile/page-09-redux.html">
 <link rel="import" href="../../../../../images/icon-moon-delete.html">
 <link rel="import" href="../../../../layout/shared-styles.html">
-<dom-module id="education-list">
+<dom-module id="meeting-list">
     <template>
         <style include="shared-styles">
             aqa-button {
@@ -44,24 +44,24 @@
                         <div style="text-align: center">[[count(index)]]</div>
                     </template>
                 </vaadin-grid-column>
-                <vaadin-grid-column width="200px">
+                <vaadin-grid-column width="20px">
                     <template class="header">
                         <div class="header">
-                             [[i18n.page03.academy]]
+                            [[i18n.page09.project]]
                         </div>
                     </template>
                     <template>
-                        <div>[[item.address_education]]</div>
+                        <div>[[item.]]</div>
                     </template>
                 </vaadin-grid-column>
-                <vaadin-grid-column width="140px" flex-grow="0">
+                <vaadin-grid-column width="200px" flex-grow="0">
                     <template class="header">
                         <div class="header">
-                             [[i18n.page03.eduLevel]]
+                            [[i18n.page09.date]]
                         </div>
                     </template>
                     <template>
-                        <div>[[item.level_education]]</div>
+                        <div>[[item.]]</div>
                     </template>
                 </vaadin-grid-column>
                 <!-- <vaadin-grid-column width="140px" flex-grow="0">
@@ -70,20 +70,20 @@
                         <div>[[item.sub_name_education]]</div>
                     </template>
                 </vaadin-grid-column> -->
-                <vaadin-grid-column width="200px" flex-grow="0">
+                <vaadin-grid-column width="140px" flex-grow="0">
                     <template class="header">
-                        <div class="header">[[i18n.page03.faculty]]</div>
+                        <div class="header">[[i18n.page09.hours]]</div>
                     </template>
                     <template>
-                        <div>[[item.name_faculty]]</div>
+                        <div>[[item.]]</div>
                     </template>
                 </vaadin-grid-column>
-                <vaadin-grid-column width="200px" flex-grow="0">
+                <vaadin-grid-column width="20px" >
                     <template class="header">
-                        <div class="header">[[i18n.page03.fieldStudy]]</div>
+                        <div class="header">[[i18n.page09.place]]</div>
                     </template>
                     <template>
-                        <div>[[item.name_branch]]</div>
+                        <div>[[item.]]</div>
                     </template>
                 </vaadin-grid-column>
                 <!-- <vaadin-grid-column>
@@ -98,19 +98,20 @@
                         <div>[[item.name_major2]]</div>
                     </template>
                 </vaadin-grid-column> -->
-                <vaadin-grid-column width="100px" flex-grow="0">
+                <vaadin-grid-column width="150px" flex-grow="0">
                     <template class="header">
-                        <div class="header">[[i18n.page03.year]]</div>
+                        <div class="header">[[i18n.page09.file]]</div>
                     </template>
                     <template>
-                        <div style="text-align: center">[[item.year_education]]</div>
+                        <div style="text-align: center">[[item.]]</div>
                     </template>
                 </vaadin-grid-column>
                 <!-- <vaadin-grid-column width="150px">
                     <template class="header">ผู้แก้ไข / วันที่</template>
                     <template> <div style="text-align: center">[[item.edit_name]] [[item.edit_date]]</div></template>
                 </vaadin-grid-column> -->
-                <vaadin-grid-column width="100px" flex-grow="0">
+
+                <!-- <vaadin-grid-column width="100px" flex-grow="0">
                     <template class="header">
                         <div class="header">เครื่องมือ</div>
                     </template>
@@ -122,12 +123,10 @@
                             <aqa-tooltip label="ลบ">
                                 <paper-icon-button class="btn-delete" icon="icomoon:bin" noink></paper-icon-button>
                             </aqa-tooltip>
-                            <!-- <paper-icon-button class="btn-edit" id="btn-[[index]]" name="แก้ไข" on-tap="getPosition" on-mouseover="updatePosition" icon="create"></paper-icon-button>
-                            <paper-icon-button class="btn-delete" id="btns-[[index]]" name="ลบ" on-tap="getPosition" on-mouseover="updatePosition" icon="delete"></paper-icon-button> -->
-
+                            
                         </div>
                     </template>
-                </vaadin-grid-column>
+                </vaadin-grid-column> -->
             </vaadin-grid>
         </aqa-vaadin-grid>
 
@@ -148,8 +147,8 @@
 
     </template>
     <script>
-        class EducationList extends ReduxMixin(Polymer.Element) {
-            static get is() { return 'education-list'; }
+        class MeetingList extends ReduxMixin(Polymer.Element) {
+            static get is() { return 'meeting-list'; }
             static get properties() {
                 return {
                     i18n: {
@@ -188,6 +187,6 @@
                 return val + 1
             }
         }
-        window.customElements.define(EducationList.is, EducationList);
+        window.customElements.define(MeetingList.is, MeetingList);
     </script>
 </dom-module>
