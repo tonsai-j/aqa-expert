@@ -60,27 +60,32 @@
         <nylon-panel-right id="right" title="[[i18n.page07.title]]" width="80%">
             <nylon-panel-card slot="content">
                 <div slot="content">
-                    <div class="col-md-12">
-                        <aqa-input label="[[i18n.page07.education]]" always-float-label value="[[info.type_assessor.type_assessor_name]]" disabled>
-                        </aqa-input>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-xs-10 col-sm-12 col-md-6 col-lg-2">
+                            <aqa-input label="[[i18n.page07.education]]" always-float-label value="[[info.type_assessor.type_assessor_name]]" disabled>
+                            </aqa-input>
+                        </div>
+                        <div class="col-xs-10 col-sm-12 col-md-6 col-lg-4">
+                            <aqa-combo-box label="[[i18n.page07.type]]" always-float-label items='{{typeAcademy}}' value="{{data.type_academy_id}}" item-label-path="label"
+                                item-value-path="value" on-change="_getAacademy" on-selected-item-changed="getObject" object-name="data.type_academy"
+                                class="required" required>
+                                <template>
+                                    [[item.label]]
+                                </template>
+                            </aqa-combo-box>
+                        </div>
                     </div>
-                    <div class="col-md-12">
-                        <aqa-combo-box label="[[i18n.page07.type]]" always-float-label items='{{typeAcademy}}' value="{{data.type_academy_id}}" item-label-path="label"
-                            item-value-path="value" on-change="_getAacademy" on-selected-item-changed="getObject" object-name="data.type_academy"
-                            class="required" required>
-                            <template>
-                                [[item.label]]
-                            </template>
-                        </aqa-combo-box>
-                    </div>
-                    <div class="col-md-12">
-                        <aqa-combo-box label="[[i18n.page07.name]]" always-float-label items='{{academy}}' value="{{data.academy_id}}" item-label-path="label"
-                            item-value-path="value" on-selected-item-changed="getObject" object-name="data.academy" class="required"
-                            required>
-                            <template>
-                                [[item.label]]
-                            </template>
-                        </aqa-combo-box>
+
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-xs-10 col-sm-12 col-md-6 col-lg-7">
+                            <aqa-combo-box label="[[i18n.page07.name]]" always-float-label items='{{academy}}' value="{{data.academy_id}}" item-label-path="label"
+                                item-value-path="value" on-selected-item-changed="getObject" object-name="data.academy" class="required"
+                                required>
+                                <template>
+                                    [[item.label]]
+                                </template>
+                            </aqa-combo-box>
+                        </div>
                     </div>
                     <!-- <div class="row center-md button-buttom">
                         <div class="button-action-bottom">
