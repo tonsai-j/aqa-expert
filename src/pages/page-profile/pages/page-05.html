@@ -62,6 +62,7 @@
                 </div>
             </aqa-panel>
         </div>
+
         <nylon-panel-right id="right" title="[[i18n.page05.title]]" width="80%">
             <nylon-panel-card slot="content">
                 <div slot="content">
@@ -81,26 +82,44 @@
                                 </template>
                             </aqa-combo-box> -->
                         </div>
+                    </div>
+                    <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
                             <aqa-input label="[[i18n.page05.agency_name]]" class="required" required always-float-label value="{{data.agency_name}}"></aqa-input>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2">
-                            <aqa-date-picker required>
+                    </div>
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-1">
+                            <!-- <aqa-date-picker required>
                                 <aqa-input label="[[i18n.page05.s_date]]"></aqa-input>
-                            </aqa-date-picker>
+                            </aqa-date-picker> -->
+                            <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.s_year]]" items='{{saluList}}' value="{{data.salu_name_id}}"
+                                item-label-path="salu_name_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.salu">
+                                <template>
+                                    [[item.salu_name_th]]
+                                </template>
+                            </aqa-combo-box>
                         </div>
                         <div>
-                            ถึง
+                             [[i18n.page05.to]] : 
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2">
-                            <aqa-date-picker required>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-1">
+                            <!-- <aqa-date-picker required>
                                 <aqa-input label="[[i18n.page05.e_date]]"></aqa-input>
-                            </aqa-date-picker>
+                            </aqa-date-picker> -->
+                            <aqa-combo-box class="required"  always-float-label label="" items='{{saluList}}' value="{{data.salu_name_id}}"
+                                item-label-path="salu_name_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.salu">
+                                <template>
+                                    [[item.salu_name_th]]
+                                </template>
+                            </aqa-combo-box>
                         </div>
                         <div class="col-md-1">
                             <paper-checkbox on-tap="_disabledEndDate">[[i18n.page05.present]] </paper-checkbox>
                         </div>
                     </div>
+
+
                     <!-- <div class="row col-md-offset-1 middle-md">
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                             <aqa-date-picker required>
@@ -118,7 +137,7 @@
                     </div> -->
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">
-                            <aqa-input label="[[i18n.page05.first_position]]" class="required" required always-float-label value="{{data.first_position}}"></aqa-input>
+                            <aqa-input label="[[i18n.page05.position]]" class="required" required always-float-label value="{{data.first_position}}"></aqa-input>
                         </div>
                         <div class="col-md-4">
                             <!-- <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{amphoeList}}' value="{{working.degree}}"
@@ -127,7 +146,7 @@
                                     [[item.label]]
                                 </template>
                             </aqa-combo-box> -->
-                            <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{workpos1List}}' value="{{data.working_1_id}}"
+                            <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.category]]" items='{{workpos1List}}' value="{{data.working_1_id}}"
                                 item-label-path="workpos1_name_th" item-value-path="id" on-selected-item-changed="getObject"
                                 object-name="data.working_1">
                                 <template>
@@ -136,26 +155,7 @@
                             </aqa-combo-box>
                         </div>
                     </div>
-                    <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-4">
-                            <aqa-input label="[[i18n.page05.final_position]]" class="required" required always-float-label value="{{data.final_position}}"></aqa-input>
-                        </div>
-                        <div class="col-md-4">
-                            <!-- <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{amphoeList}}' value="{{working.degree}}"
-                                item-label-path="label" item-value-path="value">
-                                <template>
-                                    [[item.label]]
-                                </template>
-                            </aqa-combo-box> -->
-                            <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.degree]]" items='{{workpos1List}}' value="{{data.working_2_id}}"
-                                item-label-path="workpos1_name_th" item-value-path="id" on-selected-item-changed="getObject"
-                                object-name="data.working_2">
-                                <template>
-                                    [[item.workpos1_name_th]]
-                                </template>
-                            </aqa-combo-box>
-                        </div>
-                    </div>
+
 
                     <!-- <div class="row center-md button-buttom">
                         <div class="button-action-bottom">
@@ -167,7 +167,7 @@
                             </paper-button>
                         </div>
                     </div> -->
-                    
+
                     <div class="row center-xs">
                         <div class="col-lg-2">
                             <div style="padding:0rem 2rem;">
