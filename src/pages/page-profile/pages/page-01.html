@@ -61,7 +61,7 @@
             <aqa-title-name></aqa-title-name>
             <aqa-panel id="basic">
                 <app-toolbar slot="header">
-                    <div main-title>ข้อมูลพื้นฐาน</div>
+                    <div main-title>[[i18n.page01.basic_data]]</div>
                 </app-toolbar>
                 <div slot="content">
                     <div class="row center-sm" style="text-align:left">
@@ -71,15 +71,15 @@
                                     <aqa-input class="form" label="เลขประจำตัวประชาชน" type="pid" required></aqa-input>
                                 </div> -->
                                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                                    <aqa-input class="form" label="รหัสผู้ประเมิน"></aqa-input>
+                                    <aqa-input class="form" label="[[i18n.page01.register]]"></aqa-input>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                                    <aqa-input label="สถานะ" value=""></aqa-input>
+                                    <aqa-input label="[[i18n.page01.status]]" value=""></aqa-input>
                                     <!-- <aqa-input label="วันที่ออกบัตร" value=""></aqa-input> -->
                                     <!-- <aqa-date-picker id="date" label="วันที่ออกบัตร" selected="" show-bc></aqa-date-picker> -->
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-12 col-lg-4">
-                                    <aqa-combo-box label="ตำแหน่งทางวิชาการ" items="[[academicList]]" item-label-path="label" item-value-path="value" auto-validate
+                                    <aqa-combo-box label="[[i18n.page01.academic]]" items="[[academicList]]" item-label-path="label" item-value-path="value" auto-validate
                                         required></aqa-combo-box>
                                     <!-- <aqa-combo-box label="สถานะการทำงาน" items="[[statusList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>  -->
                                     <!-- <aqa-date-picker id="date" label="วันที่บัตรหมดอายุ" selected="" show-bc></aqa-date-picker> -->
@@ -87,26 +87,26 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
-                                    <aqa-input class="form" label="คำนำหน้า (ไทย)" value="" required></aqa-input> 
+                                    <aqa-input class="form" label="[[i18n.page01.prefix_th]]" value="" required></aqa-input> 
                                     <!-- <aqa-combo-box class="form" label="คำนำหน้า (ไทย)" items="[[prefix]]" item-label-path="label_th" item-value-path="value"></aqa-combo-box> -->
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                                    <aqa-input class="form" label="ชื่อ (ไทย)" auto-validate pattern="[a-zA-Zก-์. ]*" error-message="ตัวอักษรเท่านั้น" required></aqa-input>
+                                    <aqa-input class="form" label="[[i18n.page01.firstname_th]]" auto-validate pattern="[a-zA-Zก-์. ]*" error-message="ตัวอักษรเท่านั้น" required></aqa-input>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
-                                    <aqa-input class="form" label="นามสกุล (ไทย)" auto-validate pattern="[a-zA-Zก-์. ]*" error-message="ตัวอักษรเท่านั้น" required></aqa-input>
+                                    <aqa-input class="form" label="[[i18n.page01.lastname_th]]" auto-validate pattern="[a-zA-Zก-์. ]*" error-message="ตัวอักษรเท่านั้น" required></aqa-input>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
-                                    <aqa-input label="คำนำหน้า (อังกฤษ)" value=""></aqa-input> 
+                                    <aqa-input label="[[i18n.page01.prefix_en]]" value=""></aqa-input> 
                                     <!-- <aqa-combo-box class="form" label="คำนำหน้า (อังกฤษ)" items="[[prefix]]" item-label-path="label_eng" item-value-path="value"></aqa-combo-box> -->
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                                    <aqa-input label="ชื่อ (อังกฤษ)"></aqa-input>
+                                    <aqa-input label="[[i18n.page01.firstname_en]]"></aqa-input>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
-                                    <aqa-input label="นามสกุล (อังกฤษ)" value=""></aqa-input>
+                                    <aqa-input label="[[i18n.page01.lastname_en]]" value=""></aqa-input>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +114,7 @@
                             <div>
                                 <!-- <div class="flex-item"> -->
                                 <img id="output_image" src$="[[rootPath]]../../../images/user upload.png" />
-                                <aqa-button type="primary btn-full-width" icon="icons:file-upload" style="max-width:96px">อัพโหลด</aqa-button>
+                                <aqa-button type="primary btn-full-width" icon="icons:file-upload" style="max-width:96px">[[i18n.page01.upload]]</aqa-button>
                                 <!-- </div> -->
                             </div>
                             <div style="margin:1rem"></div>
@@ -124,47 +124,47 @@
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                            <aqa-combo-box label="เพศ" items="[[genderList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
+                            <aqa-combo-box label="[[i18n.page01.gender]]" items="[[genderList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                            <aqa-combo-box label="ศาสนา" items="[[religionList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
+                            <aqa-combo-box label="[[i18n.page01.religion]]" items="[[religionList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                            <aqa-combo-box label="เชื้อชาติ" items="[[nationalityList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
+                            <aqa-combo-box label="[[i18n.page01.ethnicity]]" items="[[nationalityList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                            <aqa-combo-box label="สัญชาติ" items="[[raceList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
+                            <aqa-combo-box label="[[i18n.page01.nationality]]" items="[[raceList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
                             <aqa-date-picker class="form" value="{{birthDay}}" >
-                                <aqa-input label="วัน/เดือน/ปี เกิด (พ.ศ.)"></aqa-input>
+                                <aqa-input label="[[i18n.page01.birth]]"></aqa-input>
                             </aqa-date-picker>
                             <!-- <aqa-date-picker id="date" label="วัน/เดือน/ปี เกิด" selected="{{birthDay}}" show-bc></aqa-date-picker> -->
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2">
-                            <aqa-input label="อายุ (ปี)" value="{{mathAge(birthDay)}}" disabled></aqa-input>
+                            <aqa-input label="[[i18n.page01.age]]" value="{{mathAge(birthDay)}}" disabled></aqa-input>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                            <aqa-input class="form" label="เบอร์มือถือ" type="phone" required></aqa-input>
+                            <aqa-input class="form" label="[[i18n.page01.mobile]]" type="phone" required></aqa-input>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                            <aqa-input class="form" label="เลขประจำตัวประชาชน" type="pid" required></aqa-input>
+                            <aqa-input class="form" label="[[i18n.page01.tax_no]]" type="pid" required></aqa-input>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                             <aqa-date-picker required disabled>
-                                <aqa-input label="วันที่ออกบัตร (พ.ศ.)"></aqa-input>
+                                <aqa-input label="[[i18n.page01.date_of_issue]]"></aqa-input>
                             </aqa-date-picker>
                             <!-- <aqa-date-picker id="date" label="วันที่ออกบัตร" selected="" show-bc></aqa-date-picker> -->
                         </div>
 
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
                             <aqa-date-picker>
-                                <aqa-input label="วันที่บัตรหมดอายุ (พ.ศ.)"></aqa-input>
+                                <aqa-input label="[[i18n.page01.expiration_date]]"></aqa-input>
                             </aqa-date-picker>
                             <!-- <aqa-date-picker id="date" label="วันที่บัตรหมดอายุ" selected="" show-bc></aqa-date-picker> -->
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                            <aqa-combo-box label="สถานะการทำงาน" items="[[statusList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
+                            <aqa-combo-box label="[[i18n.page01.working_status]]" items="[[statusList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
                         </div>
                     </div>
 
@@ -177,13 +177,13 @@
         <div class="row center-xs">
             <div class="col-lg-2">
                 <div style="padding:0rem 2rem;">
-                    <aqa-button type="success btn-full-width" on-tap="getForm">บันทึก</aqa-button>
+                    <aqa-button type="success btn-full-width" on-tap="getForm">[[i18n.button.save.label]]</aqa-button>
                 </div>
             </div>
         </div>
 
 
-        <paper-toast id="toast" horizontal-align="right" vertical-align="bottom" text="บันทึกสำเร็จ"></paper-toast>
+        <paper-toast id="toast" horizontal-align="right" vertical-align="bottom" text="[[i18n.toast.save]]บันทึกสำเร็จ"></paper-toast>
 
 
     </template>
