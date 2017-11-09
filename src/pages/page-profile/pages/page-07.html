@@ -65,20 +65,20 @@
                         </aqa-input>
                     </div>
                     <div class="col-md-12">
-                        <aqa-combo-box label="[[i18n.page07.type]]" always-float-label items='{{typeAcademy}}' value="{{data.type_academy_id}}" item-label-path="type_academy_name"
-                            item-value-path="id" on-change="_getAacademy" on-selected-item-changed="getObject" object-name="data.type_academy"
+                        <aqa-combo-box label="[[i18n.page07.type]]" always-float-label items='{{typeAcademy}}' value="{{data.type_academy_id}}" item-label-path="label"
+                            item-value-path="value" on-change="_getAacademy" on-selected-item-changed="getObject" object-name="data.type_academy"
                             class="required" required>
                             <template>
-                                [[item.type_academy_name]]
+                                [[item.label]]
                             </template>
                         </aqa-combo-box>
                     </div>
                     <div class="col-md-12">
-                        <aqa-combo-box label="[[i18n.page07.name]]" always-float-label items='{{academy}}' value="{{data.academy_id}}" item-label-path="academy_name"
-                            item-value-path="id" on-selected-item-changed="getObject" object-name="data.academy" class="required"
+                        <aqa-combo-box label="[[i18n.page07.name]]" always-float-label items='{{academy}}' value="{{data.academy_id}}" item-label-path="label"
+                            item-value-path="value" on-selected-item-changed="getObject" object-name="data.academy" class="required"
                             required>
                             <template>
-                                [[item.academy_name]]
+                                [[item.label]]
                             </template>
                         </aqa-combo-box>
                     </div>
@@ -168,7 +168,7 @@
                 };
             }
             _init() {
-                Nylon.dispatch('PROFILE_07_GET_TYPE_ACADEMY', this.info.type_assessor.group_work_id);
+                Nylon.dispatch('PROFILE_07_GET_TYPE_ACADEMY');
                 Nylon.dispatch('PROFILE_07_GET_ACADEMY', this.info.type_assessor.group_work_id, '');
             }
             /**

@@ -20,9 +20,9 @@
 
 
     Nylon.addAction({
-        PROFILE_07_GET_TYPE_ACADEMY: function (groupWorkId) {
+        PROFILE_07_GET_TYPE_ACADEMY: function (groupWorkId = 'HIGHERYN') {
             return dispatch => {
-                axios.get(`/type/academy?group_work_id=${groupWorkId}`).then(
+                axios.get(`/type/academy/filter?type=` + groupWorkId).then(
                     res => {
                         dispatch({ type: 'PROFILE_07_GET_TYPE_ACADEMY', data: res.data })
                     }
