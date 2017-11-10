@@ -26,7 +26,7 @@
 
 <!-- <link rel="import" href="../../components/nylon-animate-css/nylon-animate-css.html"> -->
 
-<dom-module id="page-register">
+<dom-module id="page-test-login">
     <template>
         <!-- <style include="nylon-animate-css"></style> -->
         <style include="shared-styles flexbox-grid flexbox-grid-remove-padding ">
@@ -118,12 +118,10 @@
                 top: 2%;
                 right: 12%; */
                 width: 100%;
-                background: linear-gradient( rgb(98, 168, 234), rgb(53, 131, 202));
-                /* background: linear-gradient( rgb(53, 131, 202), rgb(98, 168, 234)); */
-                /* rgb(53, 131, 202,0.10) rgb(98, 168, 234,0.10) */
-                /* background-size: cover;
-                box-sizing: border-box; */
-                height: 100vh;
+                /* background: linear-gradient( rgba(73, 77, 86, 0), rgb(73, 77, 86)), url('./img') no-repeat; */
+                background-size: cover;
+                box-sizing: border-box;
+                height: 100%;
             }
 
             .font {
@@ -134,82 +132,82 @@
             <div class="opening-msg">
                 <div id="login" class="container row center-md center-lg center-sm ">
                     <div class="col-xs-12 col-sm-8 col-md-6 col-lg-3">
-                        <nylon-panel-card id="panelCard">
-                            <div slot="header">
-                                <div class="header">
-                                    <h3 class="font">AUTOMATED QA</h3>
-                                </div>
+                    <nylon-panel-card id="panelCard">
+                        <div slot="header">
+                            <div class="header">
+                                <h3 class="font">AUTOMATED QA</h3>
                             </div>
+                        </div>
 
-                            <div slot="content" class="middle-md">
-                                <paper-tabs selected={{page}}>
-                                    <paper-tab class="font">[[i18n.register.login]] </paper-tab>
-                                    <paper-tab class="font">[[i18n.register.title]]</paper-tab>
-                                </paper-tabs>
-                                <iron-pages selected={{page}}>
-                                    <div>
-                                        <div class="col-xs-12">
-                                            <nylon-input class="required-login input" required label="[[i18n.register.user]]" value="{{login.username}}" always-float-label
-                                                on-keyup="_enterLogin"></nylon-input>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <nylon-input type="password" class="required-login input" required label="[[i18n.register.password]]" value="{{login.password}}"
-                                                always-float-label on-keyup="_enterLogin"></nylon-input>
-                                        </div>
-                                        <!-- <div style="margin:20px"></div> -->
-                                        <div style="margin:10px">
-                                            <aqa-button type="success btn-full-width  row center-md" on-click="_login">
-                                                [[i18n.button.login.label]]
-                                            </aqa-button>
-                                        </div>
-                                        <!-- <paper-button raised class="btn-success col-xs-12 row center-md" on-click="_login"> -->
-                                        <!-- <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp; -->
-                                        <!-- [[i18n.button.login.label]]
+                        <div slot="content" class="middle-md">
+                            <paper-tabs selected={{page}}>
+                                <paper-tab class="font">[[i18n.register.login]] </paper-tab>
+                                <paper-tab class="font">[[i18n.register.title]]</paper-tab>
+                            </paper-tabs>
+                            <iron-pages selected={{page}}>
+                                <div>
+                                    <div class="col-xs-12">
+                                        <nylon-input class="required-login input" required label="[[i18n.register.user]]" value="{{login.username}}" always-float-label
+                                            on-keyup="_enterLogin"></nylon-input>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <nylon-input type="password" class="required-login input" required label="[[i18n.register.password]]" value="{{login.password}}"
+                                            always-float-label on-keyup="_enterLogin"></nylon-input>
+                                    </div>
+                                    <!-- <div style="margin:20px"></div> -->
+                                    <div style="margin:10px">
+                                        <aqa-button type="success btn-full-width  row center-md" on-click="_login">
+                                            [[i18n.button.login.label]]
+                                        </aqa-button>
+                                    </div>
+                                    <!-- <paper-button raised class="btn-success col-xs-12 row center-md" on-click="_login"> -->
+                                    <!-- <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp; -->
+                                    <!-- [[i18n.button.login.label]]
                                     </paper-button> -->
+                                </div>
+                                <div>
+                                    <div class="col-xs-12">
+                                        <nylon-input id="inputTaxNo" class="required input" required label="[[i18n.register.taxno]]" value="{{data.taxno}}" pattern="^(\d{13})?$"
+                                            required on-keyup="autoFill" always-float-label></nylon-input>
                                     </div>
-                                    <div>
-                                        <div class="col-xs-12">
-                                            <nylon-input id="inputTaxNo" class="required input" required label="[[i18n.register.taxno]]" value="{{data.taxno}}" pattern="^(\d{13})?$"
-                                                required on-keyup="autoFill" always-float-label></nylon-input>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <nylon-input class="required input" required label=[[i18n.register.name]] value="{{data.basic.firstname_th}}" required on-keyup="_enterRegister"
-                                                always-float-label></nylon-input>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <nylon-input class="required input" required label=[[i18n.register.lname]] value="{{data.basic.lastname_th}}" required on-keyup="_enterRegister"
-                                                always-float-label></nylon-input>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <nylon-input class="required input" required label=[[i18n.register.phone]] value="{{data.basic.mobile}}" required on-keyup="_enterRegister"
-                                                always-float-label></nylon-input>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <nylon-input class="required input" required label=[[i18n.register.email]] value="{{data.basic.email}}" required on-keyup="_enterRegister"
-                                                always-float-label></nylon-input>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <nylon-combo-box id="comboTypeAss" class="required input" required label="[[i18n.register.level]]" items='{{typeAssessor}}'
-                                                value="{{data.type_assessor_id}}" item-label-path="type_assessor_name" item-value-path="id">
-                                                <template>
-                                                    [[item.type_assessor_name]]
-                                                </template>
-                                            </nylon-combo-box>
-                                        </div>
-                                        <div style="margin:10px">
-                                            <aqa-button raised type="success btn-full-width  row center-md" on-click="_register">
-                                                [[i18n.button.register.label]]
-                                            </aqa-button>
-                                        </div>
-                                        <!-- <div style="margin:20px"></div>
+                                    <div class="col-xs-12">
+                                        <nylon-input class="required input" required label=[[i18n.register.name]] value="{{data.basic.firstname_th}}" required on-keyup="_enterRegister"
+                                            always-float-label></nylon-input>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <nylon-input class="required input" required label=[[i18n.register.lname]] value="{{data.basic.lastname_th}}" required on-keyup="_enterRegister"
+                                            always-float-label></nylon-input>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <nylon-input class="required input" required label=[[i18n.register.phone]] value="{{data.basic.mobile}}" required on-keyup="_enterRegister"
+                                            always-float-label></nylon-input>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <nylon-input class="required input" required label=[[i18n.register.email]] value="{{data.basic.email}}" required on-keyup="_enterRegister"
+                                            always-float-label></nylon-input>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <nylon-combo-box id="comboTypeAss" class="required input" required label="[[i18n.register.level]]" items='{{typeAssessor}}'
+                                            value="{{data.type_assessor_id}}" item-label-path="type_assessor_name" item-value-path="id">
+                                            <template>
+                                                [[item.type_assessor_name]]
+                                            </template>
+                                        </nylon-combo-box>
+                                    </div>
+                                    <div style="margin:10px">
+                                        <aqa-button raised type="success btn-full-width  row center-md" on-click="_register">
+                                            [[i18n.button.register.label]]
+                                        </aqa-button>
+                                    </div>
+                                    <!-- <div style="margin:20px"></div>
                                         <paper-button raised class="btn-success col-xs-12 row center-md" on-click="_register"> -->
-                                        <!-- <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp; -->
-                                        <!-- [[i18n.button.register.label]]
+                                    <!-- <iron-icon icon="[[i18n.button.register.icon]]"></iron-icon>&nbsp; -->
+                                    <!-- [[i18n.button.register.label]]
                                         </paper-button> -->
-                                    </div>
-                                </iron-pages>
-                            </div>
-                        </nylon-panel-card>
+                                </div>
+                            </iron-pages>
+                        </div>
+                    </nylon-panel-card>
                     </div>
                 </div>
             </div>
@@ -225,12 +223,12 @@
          * @polymer
          * @extends {Polymer.Element}
          */
-        class PageRegister extends AnimateMixin(CommonMixin(ReduxMixin(Polymer.Element))) {
+        class PageTestLogin extends AnimateMixin(CommonMixin(ReduxMixin(Polymer.Element))) {
             /**
              * String providing the tag name to register the element under.
              */
             static get is() {
-                return 'page-register';
+                return 'page-test-login';
             }
 
             /**
@@ -454,6 +452,6 @@
 
         }
 
-        window.customElements.define(PageRegister.is, PageRegister);
+        window.customElements.define(PageTestLogin.is, PageTestLogin);
     </script>
 </dom-module>
