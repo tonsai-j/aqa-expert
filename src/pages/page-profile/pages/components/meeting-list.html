@@ -40,9 +40,9 @@
                     <template class="header">
                         <div class="header" style="text-align: center">[[i18n.common.no]]</div>
                     </template>
-                    <template>
+                    <!-- <template>
                         <div style="text-align: center">[[count(index)]]</div>
-                    </template>
+                    </template> -->
                 </vaadin-grid-column>
                 <vaadin-grid-column width="20px">
                     <template class="header">
@@ -50,9 +50,9 @@
                             [[i18n.page09.project]]
                         </div>
                     </template>
-                    <template>
+                    <!-- <template>
                         <div>[[item.]]</div>
-                    </template>
+                    </template> -->
                 </vaadin-grid-column>
                 <vaadin-grid-column width="200px" flex-grow="0">
                     <template class="header">
@@ -60,78 +60,42 @@
                             [[i18n.page09.date]]
                         </div>
                     </template>
-                    <template>
+                    <!-- <template>
                         <div>[[item.]]</div>
-                    </template>
+                    </template> -->
                 </vaadin-grid-column>
-                <!-- <vaadin-grid-column width="140px" flex-grow="0">
-                    <template class="header"><div class="header">ชื่อปริญญา (ย่อ)</div></template>
-                    <template>
-                        <div>[[item.sub_name_education]]</div>
-                    </template>
-                </vaadin-grid-column> -->
                 <vaadin-grid-column width="140px" flex-grow="0">
                     <template class="header">
                         <div class="header">[[i18n.page09.hours]]</div>
                     </template>
-                    <template>
+                    <!-- <template>
                         <div>[[item.]]</div>
-                    </template>
+                    </template> -->
                 </vaadin-grid-column>
-                <vaadin-grid-column width="20px" >
+                <vaadin-grid-column width="20px">
                     <template class="header">
                         <div class="header">[[i18n.page09.place]]</div>
                     </template>
-                    <template>
+                    <!-- <template>
                         <div>[[item.]]</div>
-                    </template>
+                    </template> -->
                 </vaadin-grid-column>
-                <!-- <vaadin-grid-column>
-                    <template class="header"><div class="header">วิชาเอก</div></template>
-                    <template>
-                        <div>[[item.name_major]]</div>
-                    </template>
-                </vaadin-grid-column>
-                <vaadin-grid-column>
-                    <template class="header"><div class="header">วิชาโท</div></template>
-                    <template>
-                        <div>[[item.name_major2]]</div>
-                    </template>
-                </vaadin-grid-column> -->
                 <vaadin-grid-column width="150px" flex-grow="0">
                     <template class="header">
                         <div class="header">[[i18n.page09.file]]</div>
                     </template>
-                    <template>
+                    <!-- <template>
                         <div style="text-align: center">[[item.]]</div>
-                    </template>
+                    </template> -->
                 </vaadin-grid-column>
-                <!-- <vaadin-grid-column width="150px">
-                    <template class="header">ผู้แก้ไข / วันที่</template>
-                    <template> <div style="text-align: center">[[item.edit_name]] [[item.edit_date]]</div></template>
-                </vaadin-grid-column> -->
-
-                <!-- <vaadin-grid-column width="100px" flex-grow="0">
-                    <template class="header">
-                        <div class="header">เครื่องมือ</div>
-                    </template>
-                    <template>
-                        <div style="display:flex">
-                            <aqa-tooltip label="ดู & แก้ไขรายละเอียด">
-                                <paper-icon-button class="btn-edit" icon="create" noink></paper-icon-button>
-                            </aqa-tooltip>
-                            <aqa-tooltip label="ลบ">
-                                <paper-icon-button class="btn-delete" icon="icomoon:bin" noink></paper-icon-button>
-                            </aqa-tooltip>
-                            
-                        </div>
-                    </template>
-                </vaadin-grid-column> -->
             </vaadin-grid>
         </aqa-vaadin-grid>
+        <br>
+        <div>
+            ไม่มีข้อมูล
+        </div>
 
-
-        <paper-tooltip id="tooltip" position="top" offset="0"></paper-tooltip>
+        <!-- <paper-tooltip id="tooltip" position="top" offset="0"></paper-tooltip>
         <div style="display:inline">
             <div class="row">
                 <div class="col-xs-12 col-md-6">
@@ -143,7 +107,7 @@
             </div>
 
 
-        </div>
+        </div> -->
 
     </template>
     <script>
