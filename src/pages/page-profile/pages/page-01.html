@@ -79,34 +79,36 @@
                                     <!-- <aqa-date-picker id="date" label="วันที่ออกบัตร" selected="" show-bc></aqa-date-picker> -->
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-12 col-lg-4">
-                                    <aqa-combo-box label="[[i18n.page01.academic]]" items="[[academicList]]" item-label-path="label" item-value-path="value" auto-validate
-                                        required></aqa-combo-box>
+                                    <aqa-combo-box label="[[i18n.page01.academic]]" items="[[academicList]]" item-label-path="label" item-value-path="value"
+                                        auto-validate required></aqa-combo-box>
                                     <!-- <aqa-combo-box label="สถานะการทำงาน" items="[[statusList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>  -->
                                     <!-- <aqa-date-picker id="date" label="วันที่บัตรหมดอายุ" selected="" show-bc></aqa-date-picker> -->
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
-                                    <aqa-input class="form" label="[[i18n.page01.prefix_th]]" value="" required></aqa-input> 
+                                    <aqa-input class="form" label="[[i18n.page01.prefix_th]]" value="{{data.prefix_th}}" required></aqa-input>
                                     <!-- <aqa-combo-box class="form" label="คำนำหน้า (ไทย)" items="[[prefix]]" item-label-path="label_th" item-value-path="value"></aqa-combo-box> -->
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                                    <aqa-input class="form" label="[[i18n.page01.firstname_th]]" auto-validate pattern="[a-zA-Zก-์. ]*" error-message="ตัวอักษรเท่านั้น" required></aqa-input>
+                                    <aqa-input class="form" label="[[i18n.page01.firstname_th]]" value="{{data.firstname_th}}" auto-validate pattern="[a-zA-Zก-์. ]*"
+                                        error-message="ตัวอักษรเท่านั้น" required></aqa-input>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
-                                    <aqa-input class="form" label="[[i18n.page01.lastname_th]]" auto-validate pattern="[a-zA-Zก-์. ]*" error-message="ตัวอักษรเท่านั้น" required></aqa-input>
+                                    <aqa-input class="form" label="[[i18n.page01.lastname_th]]" value="{{data.lastname_th}}" auto-validate pattern="[a-zA-Zก-์. ]*"
+                                        error-message="ตัวอักษรเท่านั้น" required></aqa-input>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
-                                    <aqa-input label="[[i18n.page01.prefix_en]]" value=""></aqa-input> 
+                                    <aqa-input label="[[i18n.page01.prefix_en]]" value="{{data.prefix_en}}"></aqa-input>
                                     <!-- <aqa-combo-box class="form" label="คำนำหน้า (อังกฤษ)" items="[[prefix]]" item-label-path="label_eng" item-value-path="value"></aqa-combo-box> -->
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                                    <aqa-input label="[[i18n.page01.firstname_en]]"></aqa-input>
+                                    <aqa-input label="[[i18n.page01.firstname_en]]" value="{{data.firstname_en}}"></aqa-input>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
-                                    <aqa-input label="[[i18n.page01.lastname_en]]" value=""></aqa-input>
+                                    <aqa-input label="[[i18n.page01.lastname_en]]" value="{{data.lastname_en}}"></aqa-input>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +126,14 @@
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                            <aqa-combo-box label="[[i18n.page01.gender]]" items="[[genderList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
+                            <!-- <aqa-combo-box label="[[i18n.page01.gender]]" items="[[genderList]]" value="{{data.gender_id}}" item-label-path="label" 
+                            item-value-path="value"></aqa-combo-box> -->
+                            <aqa-combo-box always-float-label label="[[i18n.page01.gender]]" items='{{genderList}}' value="{{data.gender_id}}" item-label-path="label"
+                                item-value-path="value" on-selected-item-changed="getObject" object-name="data.gender">
+                                <template>
+                                    [[item.gender_name_th]]
+                                </template>
+                            </aqa-combo-box>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                             <aqa-combo-box label="[[i18n.page01.religion]]" items="[[religionList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
@@ -136,7 +145,7 @@
                             <aqa-combo-box label="[[i18n.page01.nationality]]" items="[[raceList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
-                            <aqa-date-picker class="form" value="{{birthDay}}" >
+                            <aqa-date-picker class="form" value="{{birthDay}}">
                                 <aqa-input label="[[i18n.page01.birth]]"></aqa-input>
                             </aqa-date-picker>
                             <!-- <aqa-date-picker id="date" label="วัน/เดือน/ปี เกิด" selected="{{birthDay}}" show-bc></aqa-date-picker> -->
@@ -145,21 +154,21 @@
                             <aqa-input label="[[i18n.page01.age]]" value="{{mathAge(birthDay)}}" disabled></aqa-input>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                            <aqa-input class="form" label="[[i18n.page01.mobile]]" type="phone" required></aqa-input>
+                            <aqa-input class="form" label="[[i18n.page01.mobile]]" type="phone" value="{{data.mobile}}" required></aqa-input>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
                             <aqa-input class="form" label="[[i18n.page01.tax_no]]" value="[[info.id]]" type="pid" required disabled></aqa-input>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                            <aqa-date-picker required disabled>
-                                <aqa-input label="[[i18n.page01.date_of_issue]]"></aqa-input>
+                            <aqa-date-picker>
+                                <aqa-input label="[[i18n.page01.date_of_issue]]" value="{{data.issue_date}}"></aqa-input>
                             </aqa-date-picker>
                             <!-- <aqa-date-picker id="date" label="วันที่ออกบัตร" selected="" show-bc></aqa-date-picker> -->
                         </div>
 
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
                             <aqa-date-picker>
-                                <aqa-input label="[[i18n.page01.expiration_date]]"></aqa-input>
+                                <aqa-input label="[[i18n.page01.expiration_date]]" type="date" value="{{data.expire_date}}"></aqa-input>
                             </aqa-date-picker>
                             <!-- <aqa-date-picker id="date" label="วันที่บัตรหมดอายุ" selected="" show-bc></aqa-date-picker> -->
                         </div>
@@ -251,6 +260,7 @@
             //     Nylon.dispatch('REGISTER_CHECK_PERSON')
             // }
             ready() {
+                console.log(this.genderList)
                 super.ready();
                 var elem = this.$.basic
                 //this.fadeInDown(elem, 1, 500)
