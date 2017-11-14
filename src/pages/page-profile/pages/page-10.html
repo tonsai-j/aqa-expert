@@ -102,20 +102,34 @@
                         <div class="col-xs-12 col-md-8">
                             <div class="row">
                                 <div class="col-xs-12 col-md-12">
-                                    <aqa-combo-box required label="ธนาคาร" items="[[bankList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
+                                    <!-- <aqa-combo-box required label="[[i18n.page10.bank]]" items="[[bankList]]" item-label-path="label" item-value-path="value"></aqa-combo-box> -->
+                                    <aqa-combo-box class="required" required always-float-label label="[[i18n.page10.bank]]*" items='{{bankList}}' value="{{bank.bank_id}}"
+                                        item-label-path="label" item-value-path="value" on-selected-item-changed="getObject"
+                                        object-name="bank.bank">
+                                        <template>
+                                            [[item.bank_name_th]]
+                                        </template>
+                                    </aqa-combo-box>
                                 </div>
                                 <div class="col-xs-12 col-md-6">
+                                    <!-- <aqa-combo-box class="required" required always-float-label label="[[i18n.page10.account_Types]]*" items='{{typeList}}'
+                                        value="{{bank.type_account_id}}" item-label-path="type_account_name_th" item-value-path="id"
+                                        on-selected-item-changed="getObject" object-name="bank.type_account">
+                                        <template>
+                                            [[item.type_account_name_th]]
+                                        </template>
+                                    </aqa-combo-box> -->
                                     <aqa-input required label="[[i18n.page10.account_Types]]" value=""></aqa-input>
                                     <!-- <aqa-combo-box label="ประเภทบัญชี" items="[[typeAccount]]" item-label-path="label" item-value-path="value"></aqa-combo-box> -->
                                 </div>
                                 <div class="col-xs-12 col-md-6">
-                                    <aqa-input label="สาขา" value="" required></aqa-input>
+                                    <aqa-input label="[[i18n.page10.branch]]" value="{{bank.branch}}" required></aqa-input>
                                 </div>
                                 <div class="col-xs-12 col-md-6">
-                                    <aqa-input required label="[[i18n.page10.account_number]]" allowed-pattern="[0-9]" error-message="ตัวเลขเท่านั้น" value=""></aqa-input>
+                                    <aqa-input required label="[[i18n.page10.account_number]]" allowed-pattern="[0-9]" error-message="ตัวเลขเท่านั้น" value="{{bank.account_number}}"></aqa-input>
                                 </div>
                                 <div class="col-xs-12 col-md-6">
-                                    <aqa-input required label="[[i18n.page10.account_name]]" value=""></aqa-input>
+                                    <aqa-input required label="[[i18n.page10.account_name]]" value="{{bank.account_name}}"></aqa-input>
                                 </div>
                             </div>
 
@@ -167,7 +181,7 @@
             <div class="row center-xs">
                 <div class="col-lg-2">
                     <div style="padding:0rem 2rem;">
-                        <aqa-button type="success btn-full-width">[[i18n.button.save.label]]</aqa-button>
+                        <aqa-button type="success btn-full-width" on-tap="_save">[[i18n.button.save.label]]</aqa-button>
                     </div>
                 </div>
             </div>
@@ -194,28 +208,29 @@
                         type: Object,
                         statePath: 'i18n',
                     },
-                    // rootPath: {
-                    //     type: String,
-                    // },
+                    rootPath: {
+                        type: String,
+                    },
                     bankList: {
                         statePath: 'profile_page10.bank'
                     },
-                    // typeList: {
-                    //     statePath: 'profile_page10.account_Types'
-                    // },
-                    // info: {
-                    //     type: Object,
-                    //     statePath: 'profile.info'
-                    // },
-                    // bank: {
-                    //     type: Object,
-                    //     statePath: 'profile.info.bank',
-                    //     // value: {}
-                    // },
+                    typeList: {
+                        statePath: 'profile_page10.account_Types'
+                    },
+                    info: {
+                        type: Object,
+                        statePath: 'profile.info'
+                    },
+                    bank: {
+                        type: Object,
+                        statePath: 'profile.info.bank',
+                        // value: {}
+                    },
                 };
             }
 
             ready() {
+
                 super.ready();
                 var elem = this.$.basic
                 //this.fadeInDown(elem, 1, 500)
@@ -239,7 +254,7 @@
                 reader.readAsDataURL(event.target.files[0])
             }
             _save() {
-                // console.log(this.bank);
+                console.log(this.bank);
                 if (this.validateForm('.required')) {
                     Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'bank', this.bank,
                         () => {
