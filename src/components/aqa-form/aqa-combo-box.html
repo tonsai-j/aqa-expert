@@ -121,6 +121,13 @@
                 position: relative;
             }
 
+            .arrow-drop-downw {
+                position: absolute;
+                top: 6px;
+                right: 20px;
+                cursor: pointer;
+            }
+
             .arrow-drop-down {
                 position: absolute;
                 top: 6px;
@@ -146,6 +153,7 @@
                         <aqa-combo-box-item item="[[item]]" item-label-path="[[itemLabelPath]]"></aqa-combo-box-item>
                     </template>
                 </vaadin-combo-box-light>
+                <iron-icon class="arrow-drop-downw" hidden="{{!value}}" icon="icons:clear" on-click="reset"></iron-icon>
                 <iron-icon class="arrow-drop-down" icon="icons:arrow-drop-down" on-click="_focusInput"></iron-icon>
             </div>
 

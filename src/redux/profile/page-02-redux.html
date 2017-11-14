@@ -40,7 +40,7 @@
                     })
             }
         },
-        PROFILE_02_GET_LIST_PROVINCE: function (REGION_ID) {
+        PROFILE_02_GET_LIST_PROVINCE: function (REGION_ID = 1) {
             return dispatch => {
                 axios.get('/province?region_id=' + REGION_ID)
                     .then(res => {
@@ -68,13 +68,13 @@
         PROFILE_02_GET_LIST_DISTRICT: function (district_id) {
             return dispatch => {
                 axios.get('/district/sub?district_id=' + district_id)
-                .then(res => {
-                    // console.log(addressContract);
-                    dispatch({ type: 'PROFILE_02_GET_LIST_DISTRICT', payload: res.data })
-                }
-                ).catch(err => {
-                    console.log({ err })
-                })
+                    .then(res => {
+                        // console.log(addressContract);
+                        dispatch({ type: 'PROFILE_02_GET_LIST_DISTRICT', payload: res.data })
+                    }
+                    ).catch(err => {
+                        console.log({ err })
+                    })
             }
         }
     })

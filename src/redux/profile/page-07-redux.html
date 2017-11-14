@@ -1,16 +1,25 @@
 <script>
     Nylon.addReducer('profile07', function (state, action) {
         state = state || {
+            typeWork: [],
             typeAcademy: [],
-            academy: []
+            academy: [],
+            province: [],
+            district: []
         }
 
         switch (action.type) {
+            case 'PROFILE_07_GET_TYPE_WORK':
+                state.typeWork = action.data
+                return state
             case 'PROFILE_07_GET_TYPE_ACADEMY':
                 state.typeAcademy = action.data
                 return state
             case 'PROFILE_07_GET_ACADEMY':
                 state.academy = action.data
+                return state
+            case 'PROFILE_07_GET_PROVINCE':
+                state.province = action.data
                 return state
             default:
                 return state
@@ -20,6 +29,24 @@
 
 
     Nylon.addAction({
+        PROFILE_07_GET_PROVINCE: function () {
+            return dispatch => {
+                axios.get(`/province?`).then(
+                    res => {
+                        dispatch({ type: 'PROFILE_07_GET_PROVINCE', data: res.data })
+                    }
+                )
+            }
+        },
+        PROFILE_07_GET_TYPE_WORK: function () {
+            return dispatch => {
+                axios.get(`/group/work`).then(
+                    res => {
+                        dispatch({ type: 'PROFILE_07_GET_TYPE_WORK', data: res.data })
+                    }
+                )
+            }
+        },
         PROFILE_07_GET_TYPE_ACADEMY: function (groupWorkId = 'HIGHERYN') {
             return dispatch => {
                 axios.get(`/type/academy/filter?type=` + groupWorkId).then(
@@ -29,12 +56,10 @@
                 )
             }
         },
-        PROFILE_07_GET_ACADEMY: function (groupWorkId, typeAcademyId) {
-            var link = `/academy?group_work_id=${groupWorkId}`;
-            if (typeAcademyId != '')
-                link += `&type_academy_id=${typeAcademyId}`;
+        PROFILE_07_GET_ACADEMY: function (groupWorkId = '', ACADEMYTYPCD = '', search = '') {
+            // console.log(groupWorkId,ACADEMYTYPCD);
             return dispatch => {
-                axios.get(link).then(
+                axios.get(`/academy/filter?group_work_id=${groupWorkId}&ACADEMYTYPCD=${ACADEMYTYPCD}&search=${search}`).then(
                     res => {
                         dispatch({ type: 'PROFILE_07_GET_ACADEMY', data: res.data })
                     }
