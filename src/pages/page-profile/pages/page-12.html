@@ -99,7 +99,7 @@
                     <div class="row center-xs">
                         <div class="col-lg-2">
                             <div style="padding:0rem 2rem;">
-                                <aqa-button type="success btn-full-width" on-tap="getForm">[[i18n.button.save.label]]</aqa-button>
+                                <aqa-button type="success btn-full-width" on-click="_save">[[i18n.button.save.label]]</aqa-button>
                             </div>
                         </div>
                     </div>
@@ -138,6 +138,9 @@
                         type: Array,
                         statePath: 'profile.info.references'
                     },
+                    _index: {
+                        type: Number
+                    }
                 };
             }
 
@@ -182,14 +185,15 @@
 
             // }
             _save() {
-                if (this.validateForm('.required')) {
+                if (!this.validateForm('.required')) {
                     if (typeof this._index === 'undefined') {
                         var newData = Object.assign(this.data, {
                             date_created: new Date().toISOString(),
                             date_updated: new Date().toISOString(),
                             creater: this.info.taxno,
                             updater: this.info.taxno
-                        });
+                        })
+                        // console.log(newData)
                         Nylon.dispatch('PROFILE_PUSH_ARRAY', this.info.id, 'references', newData
                             , () => {
                                 this._closePanelRight();
@@ -201,6 +205,7 @@
                             date_updated: new Date(),
                             updater: this.info.taxno
                         });
+                        // console.log(11111111111111111)
                         Nylon.dispatch('PROFILE_UPDATE_ARRAY', this.info.id, 'references', this._index, newData
                             , () => {
                                 this._closePanelRight();
