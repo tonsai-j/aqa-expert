@@ -1,13 +1,13 @@
 <script>
     Nylon.addReducer('profile_page05', function (state, action) {
         state = state || {
-            salu: [],
+            assescentertyp: [],
             workpos1: [],
         }
 
         switch (action.type) {
-            case 'PROFILE_05_GET_SALU':
-                state.salu = action.payload
+            case 'PROFILE_05_GET_ASSESCENTERTYP':
+                state.assescentertyp = action.payload
                 return state
             case 'PROFILE_05_GET_WORKPOS1':
                 state.workpos1 = action.payload
@@ -20,18 +20,18 @@
 
 
     Nylon.addAction({
-        PROFILE_05_GET_SALU: function () {
+        PROFILE_05_GET_ASSESCENTERTYP: function () {
             return dispatch => {
-                axios.get('/salu').then(
+                axios.get('/type/assescentertyp').then(
                     res => {
-                        dispatch({ type: 'PROFILE_05_GET_SALU', payload: res.data })
+                        dispatch({ type: 'PROFILE_05_GET_ASSESCENTERTYP', payload: res.data })
                     }
                 )
             }
         },
         PROFILE_05_GET_WORKPOS1: function () {
             return dispatch => {
-                axios.get('/workpos1').then(
+                axios.get('/aqaref?REFGROUP=WORKPOS').then(
                     res => {
                         dispatch({ type: 'PROFILE_05_GET_WORKPOS1', payload: res.data })
                     }

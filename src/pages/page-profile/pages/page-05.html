@@ -22,6 +22,7 @@
 <link rel="import" href="../../../redux-mixin.html">
 <link rel="import" href="../../../mixins/animate-mixin.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
+<link rel="import" href="../../../redux/profile/page-05-redux.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/iron-icons/iron-icons.html">
 
@@ -69,19 +70,13 @@
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
-                            <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.agency_type]]" items='{{saluList}}' value="{{data.salu_name_id}}"
-                                item-label-path="salu_name_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.salu">
+                            <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.agency_type]]" items='{{assescentertypList}}'
+                                value="{{data.assescentertyp_id}}" item-label-path="label" item-value-path="value" on-selected-item-changed="getObject"
+                                object-name="data.assescentertyp">
                                 <template>
-                                    [[item.salu_name_th]]
+                                    [[item.label]]
                                 </template>
                             </aqa-combo-box>
-                            <!-- <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.agency_type]]" items='{{saluList}}' value="{{data.salu_id}}"
-                                item-label-path="salu_name_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.salu"
-                                class="required" required >
-                                <template>
-                                    [[item.salu_name_th]]
-                                </template>
-                            </aqa-combo-box> -->
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
@@ -94,10 +89,11 @@
                             <!-- <aqa-date-picker required>
                                 <aqa-input label="[[i18n.page05.s_date]]"></aqa-input>
                             </aqa-date-picker> -->
-                            <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.s_year]]" items='{{saluList}}' value="{{data.salu_name_id}}"
-                                item-label-path="salu_name_th" item-value-path="id" on-selected-item-changed="getObject" object-name="data.salu">
+                            <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.s_year]]" items='{{yearList}}'
+                                value="{{data.year_work_start}}" item-label-path="label" item-value-path="value"
+                                >
                                 <template>
-                                    [[item.salu_name_th]]
+                                    [[item.label]]
                                 </template>
                             </aqa-combo-box>
                         </div>
@@ -108,10 +104,10 @@
                             <!-- <aqa-date-picker required>
                                 <aqa-input label="[[i18n.page05.e_date]]"></aqa-input>
                             </aqa-date-picker> -->
-                            <aqa-combo-box class="required" always-float-label label="" items='{{saluList}}' value="{{data.salu_name_id}}" item-label-path="salu_name_th"
-                                item-value-path="id" on-selected-item-changed="getObject" object-name="data.salu">
+                            <aqa-combo-box class="required" always-float-label label="" items='{{yearList}}' value="{{data.year_work_end}}"
+                                item-label-path="label" item-value-path="value" >
                                 <template>
-                                    [[item.salu_name_th]]
+                                    [[item.label]]
                                 </template>
                             </aqa-combo-box>
                         </div>
@@ -148,10 +144,9 @@
                                 </template>
                             </aqa-combo-box> -->
                             <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.category]]" items='{{workpos1List}}' value="{{data.working_1_id}}"
-                                item-label-path="workpos1_name_th" item-value-path="id" on-selected-item-changed="getObject"
-                                object-name="data.working_1">
+                                item-label-path="REFVALUE1" item-value-path="REFNAME1" on-selected-item-changed="getObject" object-name="data.working_1">
                                 <template>
-                                    [[item.workpos1_name_th]]
+                                    [[item.REFVALUE1]]
                                 </template>
                             </aqa-combo-box>
                         </div>
@@ -207,8 +202,8 @@
                         type: Object,
                         statePath: 'i18n',
                     },
-                    saluList: {
-                        statePath: 'profile_page05.salu'
+                    assescentertypList: {
+                        statePath: 'profile_page05.assescentertyp'
                     },
                     workpos1List: {
                         statePath: 'profile_page05.workpos1'
@@ -216,6 +211,21 @@
                     info: {
                         type: Object,
                         statePath: 'profile.info'
+                    },
+                    yearList: {
+                        type: Array,
+                        value: () => {
+                            let yearStart = 2500
+                            let yearEnd = new Date().getFullYear() + 543
+                            let year = []
+                            for (var i = yearStart; i <= yearEnd; i++) {
+                                year.push({
+                                    label: i,
+                                    value: i
+                                })
+                            }
+                            return year
+                        }
                     },
                     working: {
                         type: Array,
@@ -243,9 +253,10 @@
                 var elem = this.$.workpos1
                 //this.fadeInDown(elem, 1, 300)
                 Polymer.RenderStatus.afterNextRender(this, function () {
-                    Nylon.dispatch('PROFILE_05_GET_SALU')
+                    Nylon.dispatch('PROFILE_05_GET_ASSESCENTERTYP')
                     Nylon.dispatch('PROFILE_05_GET_WORKPOS1')
                 });
+
             }
             // openPanelRight() {
             //     this.$.right.open()
