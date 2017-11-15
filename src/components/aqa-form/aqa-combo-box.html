@@ -250,7 +250,21 @@
                         this.invalid = false
                     }
                 }
-
+                let newDate = {}
+                let detail = {
+                    queueProperty: false,
+                    value: null
+                }
+                if (val !== undefined && val !== '') {
+                    newDate = this.items.find(el => el[this.itemValuePath] === val)
+                    detail = {
+                        queueProperty: true,
+                        value: newDate
+                    }
+                }
+                this.dispatchEvent(new CustomEvent('selected-item-changed', {
+                    detail: detail
+                }))
             }
 
             _focusInput() {
