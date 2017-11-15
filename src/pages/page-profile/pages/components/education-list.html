@@ -14,6 +14,9 @@
 <link rel="import" href="../../../../redux/profile/page-03-redux.html">
 <link rel="import" href="../../../../../images/icon-moon-delete.html">
 <link rel="import" href="../../../../layout/shared-styles.html">
+
+<link rel="import" href="../../../../components/nylon-panel-right/nylon-panel-right.html">
+
 <dom-module id="education-list">
     <template>
         <style include="shared-styles">
@@ -47,21 +50,21 @@
                 <vaadin-grid-column width="200px">
                     <template class="header">
                         <div class="header">
-                             [[i18n.page03.academy]]
+                            [[i18n.page03.academy]]
                         </div>
                     </template>
                     <template>
-                        <div>[[item.address_education]]</div>
+                        <div>[[item.academy.academy_name]]</div>
                     </template>
                 </vaadin-grid-column>
                 <vaadin-grid-column width="140px" flex-grow="0">
                     <template class="header">
                         <div class="header">
-                             [[i18n.page03.eduLevel]]
+                            [[i18n.page03.eduLevel]]
                         </div>
                     </template>
                     <template>
-                        <div>[[item.level_education]]</div>
+                        <div>[[item.degree_full]]</div>
                     </template>
                 </vaadin-grid-column>
                 <!-- <vaadin-grid-column width="140px" flex-grow="0">
@@ -75,7 +78,7 @@
                         <div class="header">[[i18n.page03.faculty]]</div>
                     </template>
                     <template>
-                        <div>[[item.name_faculty]]</div>
+                        <div>[[item.faculty.faculty_name]]</div>
                     </template>
                 </vaadin-grid-column>
                 <vaadin-grid-column width="200px" flex-grow="0">
@@ -83,7 +86,7 @@
                         <div class="header">[[i18n.page03.fieldStudy]]</div>
                     </template>
                     <template>
-                        <div>[[item.name_branch]]</div>
+                        <div>[[item.field_study.field_study_name]]</div>
                     </template>
                 </vaadin-grid-column>
                 <!-- <vaadin-grid-column>
@@ -103,21 +106,21 @@
                         <div class="header">[[i18n.page03.year]]</div>
                     </template>
                     <template>
-                        <div style="text-align: center">[[item.year_education]]</div>
+                        <div style="text-align: center">[[item.year]]</div>
                     </template>
                 </vaadin-grid-column>
                 <!-- <vaadin-grid-column width="150px">
                     <template class="header">ผู้แก้ไข / วันที่</template>
                     <template> <div style="text-align: center">[[item.edit_name]] [[item.edit_date]]</div></template>
                 </vaadin-grid-column> -->
-                <vaadin-grid-column width="100px" flex-grow="0">
+                <vaadin-grid-column id="edit" width="100px" flex-grow="0">
                     <template class="header">
                         <div class="header">เครื่องมือ</div>
                     </template>
                     <template>
                         <div style="display:flex">
                             <aqa-tooltip label="ดู & แก้ไขรายละเอียด">
-                                <paper-icon-button class="btn-edit" icon="create" noink></paper-icon-button>
+                                <paper-icon-button class="btn-edit" icon="create" noink on-click="_openPanelRight"></paper-icon-button>
                             </aqa-tooltip>
                             <aqa-tooltip label="ลบ">
                                 <paper-icon-button class="btn-delete" icon="icomoon:bin" noink></paper-icon-button>
@@ -156,24 +159,29 @@
                         type: Object,
                         statePath: 'i18n'
                     },
+                    // datas: {
+                    //     type: Array,
+                    //     value: [
+                    //         {
+                    //             address_education: 'มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ',
+                    //             level_education: 'ปริญญาตรี',
+                    //             sub_name_education: 'คอบ',
+                    //             name_faculty: 'คณะครุศาสตร์อุตสาหกรรม',
+                    //             name_branch: 'คอมพิวเตอร์',
+                    //             name_major: 'เทคโนโลยีคอมพิวเตอร์',
+                    //             name_major2: '',
+                    //             name_education: 'การศึกษาบัณฑิต',
+                    //             year_education: 2560,
+                    //             edit_name: 'ผู้ใช้งาน',
+                    //             edit_date: '2/7/2560'
+                    //         },
+                    //     ]
+                    // }
                     datas: {
                         type: Array,
-                        value: [
-                            {
-                                address_education: 'มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ',
-                                level_education: 'ปริญญาตรี',
-                                sub_name_education: 'คอบ',
-                                name_faculty: 'คณะครุศาสตร์อุตสาหกรรม',
-                                name_branch: 'คอมพิวเตอร์',
-                                name_major: 'เทคโนโลยีคอมพิวเตอร์',
-                                name_major2: '',
-                                name_education: 'การศึกษาบัณฑิต',
-                                year_education: 2560,
-                                edit_name: 'ผู้ใช้งาน',
-                                edit_date: '2/7/2560'
-                            },
-                        ]
-                    }
+                        statePath: 'profile.info.education',
+                        value: []
+                    },
                 }
             }
             updatePosition(e) {
@@ -186,6 +194,19 @@
             }
             count(val) {
                 return val + 1
+            }
+            _openPanelRight(e) {
+                // console.log(this.$.edit)
+                if (e.currentTarget.getAttribute('action') == 'edit') {
+                    this.set('data', e.model.item)
+                    this.set('_index', e.model.index)
+                } else {
+                    this.set('data', {})
+                    this.set('_index', undefined)
+                }
+                // this.$.edit.panelRight.open();
+                this.dispatchEvent(new CustomEvent('open_panelRight', { detail: { kicked: true } }))
+                console.log();
             }
         }
         window.customElements.define(EducationList.is, EducationList);
