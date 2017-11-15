@@ -4,14 +4,14 @@ var config = {
     server: {
       port: 3000,
       cluster: 1,
-      https:true
+      https: true
     },
 
     database: {
       max: 10,
       servers: [
-        { host: 'rdb.codeunbug.com', port: 28015, user: 'admin', password: 'next@2017' }
-        // {host: '127.0.0.1', port: 28015}
+        // { host: 'rdb.codeunbug.com', port: 28015, user: 'admin', password: 'next@2017' }
+        { host: '192.168.10.18', port: 28015 }
       ],
       db: 'aqa_expert'
     },
@@ -42,10 +42,17 @@ var config = {
         user: "test",
         password: "If1C5B13eeNWvyCr"
       },
+      // {
+      //   name: "mssql",
+      //   driver: "com.microsoft.sqlserver.jdbc.SQLServerDriver",
+      //   url: "jdbc:sqlserver://127.0.0.1:1433;databaseName=AQADB",
+      //   user: "aqa",
+      //   password: "aqa@2017"
+      // }
       {
         name: "mssql",
         driver: "com.microsoft.sqlserver.jdbc.SQLServerDriver",
-        url: "jdbc:sqlserver://127.0.0.1:1433;databaseName=AQADB",
+        url: "jdbc:sqlserver://mssql.nextcorp.co.th:1433;databaseName=AQADB",
         user: "aqa",
         password: "aqa@2017"
       }
