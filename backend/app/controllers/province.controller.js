@@ -13,7 +13,7 @@ exports.list = function (req, res) {
             }
         })
         .orderBy('PROVINCEID')
-        .pluck('label', 'value')
+        // .pluck('label', 'value')
         .run()
         .then(function (data) {
             res.json(data)

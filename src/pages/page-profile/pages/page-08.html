@@ -28,6 +28,8 @@
 <link rel="import" href="../../../redux-mixin.html">
 <link rel="import" href="../../../mixins/animate-mixin.html">
 <link rel="import" href="../../../mixins/common-mixin.html">
+<link rel="import" href="../../../i18n/profile/page-08-i18n.html">
+<link rel="import" href="../../../redux/profile/page-08-redux.html">
 <link rel="import" href="../../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../../../bower_components/iron-icons/iron-icons.html">
 
@@ -42,7 +44,6 @@
 <link rel="import" href="../../../components/nylon-panel-right/nylon-panel-right.html">
 <link rel="import" href="../../../components/nylon-panel-card/nylon-panel-card.html">
 <link rel="import" href="../../../components/nylon-input/nylon-input.html">
-<link rel="import" href="../../../i18n/profile/page-08-i18n.html">
 <link rel="import" href="../../../components/nylon-input/nylon-combo-box.html">
 <link rel="import" href="../../../../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../../../components/aqa-form/aqa-date-picker.html">
@@ -303,6 +304,7 @@
                 //this.fadeInDown(elem, 1, 300)
                 Polymer.RenderStatus.afterNextRender(this, function () {
                     Nylon.dispatch('PROFILE_08_GET_LIST_TYPE_RESEARCH')
+                    console.log(1);
                 });
             }
             _date(d) {

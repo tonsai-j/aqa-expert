@@ -39,7 +39,7 @@
 
 <link rel="import" href="../../../redux/profile/page-02-redux.html">
 
-<link rel="import" href="../../aqa-vaadin-grid/aqa-vaadin-grid.html">
+<!-- <link rel="import" href="../../aqa-vaadin-grid/aqa-vaadin-grid.html"> -->
 
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
 
@@ -114,11 +114,11 @@
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                            <aqa-input label="รหัสสถานศึกษา" always-float-label value="{{info.type_assessor.type_assessor_name}}">
+                            <aqa-input label="รหัสสถานศึกษา" always-float-label value="{{data.sixorgid}}">
                             </aqa-input>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                            <aqa-input label="ชื่อสถานศึกษา" always-float-label value="{{info.type_assessor.type_assessor_name}}">
+                            <aqa-input label="ชื่อสถานศึกษา" always-float-label value="{{data.academy_name}}">
                             </aqa-input>
                         </div>
                     </div>
@@ -134,8 +134,7 @@
                             </aqa-combo-box>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                            <aqa-combo-box label="อำเภอ" always-float-label items='{{amphoe}}' value="{{data.amphoe_id}}" item-label-path="label"
-                                item-value-path="value" >
+                            <aqa-combo-box label="อำเภอ" always-float-label items='{{amphoe}}' value="{{data.amphoe_id}}" item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -145,7 +144,7 @@
                     <div class="row center-xs">
                         <div class="col-lg-2">
                             <div style="padding:0rem 2rem;">
-                                <aqa-button type="success btn-full-width" on-tap="getForm">ค้นหา</aqa-button>
+                                <aqa-button type="success btn-full-width" on-tap="getSearch">ค้นหา</aqa-button>
                             </div>
                         </div>
                     </div>
@@ -167,19 +166,19 @@
                             <vaadin-grid-column width="160px">
                                 <template class="header">
                                     <div class="header">
-                                        [[i18n.page07.name]]
+                                        [[i18n.page07.type]]
                                     </div>
                                     <vaadin-grid-filter aria-label="[[i18n.page07.type]]" path="ORGNBR" value="[[_filterItemORGNBR]]">
                                     </vaadin-grid-filter>
                                 </template>
                                 <template>
-                                    <div>[[item.ORGNBR]]</div>
+                                    <div>[[item.SIXORGID]]</div>
                                 </template>
                             </vaadin-grid-column>
                             <vaadin-grid-column width="500px" flex-grow="0">
                                 <template class="header">
                                     <div class="header">
-                                        [[i18n.page07.type]]
+                                        [[i18n.page07.name]]
                                     </div>
                                     <vaadin-grid-filter aria-label="[[i18n.page07.type]]" path="ORGTHAICOMPLETENAME" value="[[_filterItemORGTHAICOMPLETENAME]]">
                                     </vaadin-grid-filter>
@@ -188,8 +187,42 @@
                                     <div class="seletedAcadamy" on-tap="getData">[[item.ORGTHAICOMPLETENAME]]</div>
                                 </template>
                             </vaadin-grid-column>
-
-
+                            <vaadin-grid-column width="160px">
+                                <template class="header">
+                                    <div class="header">
+                                        ประเภท
+                                    </div>
+                                    <vaadin-grid-filter aria-label="[[i18n.page07.type]]" path="ACADEMYTYPDESC" value="[[_filterACADEMYTYPDESC]]">
+                                    </vaadin-grid-filter>
+                                </template>
+                                <template>
+                                    <div>[[item.ACADEMYTYPDESC]]</div>
+                                </template>
+                            </vaadin-grid-column>
+                            <vaadin-grid-column width="160px">
+                                <template class="header">
+                                    <div class="header">
+                                        จังหวัด
+                                    </div>
+                                    <vaadin-grid-filter aria-label="[[i18n.page07.type]]" path="PROVINCEDESC" value="[[_filterPROVINCEDESC]]">
+                                    </vaadin-grid-filter>
+                                </template>
+                                <template>
+                                    <div>[[item.PROVINCEDESC]]</div>
+                                </template>
+                            </vaadin-grid-column>
+                            <vaadin-grid-column width="160px">
+                                <template class="header">
+                                    <div class="header">
+                                        อำเภอ
+                                    </div>
+                                    <vaadin-grid-filter aria-label="[[i18n.page07.type]]" path="DISTRICTDESC" value="[[_filterDISTRICTDESC]]">
+                                    </vaadin-grid-filter>
+                                </template>
+                                <template>
+                                    <div>[[item.DISTRICTDESC]]</div>
+                                </template>
+                            </vaadin-grid-column>
                         </vaadin-grid>
                     </aqa-vaadin-grid>
                     <!-- </div> -->
@@ -234,7 +267,6 @@
                     info: {
                         type: Object,
                         statePath: 'profile.info',
-                        observer: '_init'
                     },
                     workType: {
                         type: Array,
@@ -309,7 +341,7 @@
             getData(e) {
                 let data = e.model.__data.item
                 this.set('acadamyName', data.ORGTHAICOMPLETENAME)
-                console.log(e.model.__data.item);
+                // console.log(e.model.__data.item);
             }
             _openPanelRight(e) {
                 if (e.currentTarget.getAttribute('action') == 'edit') {
@@ -353,6 +385,36 @@
             //     if (province_id !== undefined && province_id !== '')
             //         Nylon.dispatch('PROFILE_02_GET_LIST_AMPHOE', province_id)
             // }
+            getSearch() {
+                // value
+                // console.log(this.workType);
+                let group_work = this.workType.find(type => type.value === this.data.group_work_id)
+                let type_academy_id = this.typeAcademy.map(item => String(item.ACADEMYTYPID))
+                let province_id = '',
+                    amphoe = ''
+                if (this.data.province_id !== '') {
+                    province_id = this.province.find(item => item.PROVINCECD === this.data.province_id)
+                } else {
+                    province_id = { PROVINCEID: '' }
+                }
+                if (this.data.amphoe_id !== '') {
+                    amphoe = this.amphoe.find(item => item.DISTRICTCD === this.data.amphoe_id)
+                } else {
+                    amphoe = { DISTRICTID: '' }
+                }
+
+                let data = {
+                    amphoe_id: amphoe.DISTRICTID || '',
+                    group_work_id: group_work.old_id || '',
+                    province_id: province_id.PROVINCEID || '',
+                    type_academy_id: this.data.type_academy_id || type_academy_id,
+                    sixorgid: this.data.sixorgid || '',
+                    academy_name: this.data.academy_name || ''
+                }
+                Nylon.dispatch('PROFILE_07_GET_ACADEMY', this.genUrl(data));
+                // console.log(this.genUrl(data));
+                // console.log(data);
+            }
             _save() {
 
                 if (this.validateForm('.required')) {

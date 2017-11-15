@@ -30,6 +30,9 @@
 <link rel="import" href="../../../components/aqa-button/aqa-button.html">
 <link rel="import" href="../../../components/aqa-form/aqa-input.html">
 <!-- <link rel="import" href="./components/specia-list.html"> -->
+
+<link rel="import" href="../../../components/aqa-tooltip/aqa-tooltip.html">
+
 <link rel="import" href="../../../components/aqa-title/aqa-title-name.html">
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
 <link rel="import" href="../../../components/aqa-vaadin-grid/aqa-vaadin-grid.html">
@@ -37,7 +40,9 @@
 
 <link rel="import" href="../../../components/aqa-tooltip/aqa-tooltip.html">
 
-<link rel="import" href="../../../../bower_components/paper-tooltip/paper-tooltip.html">
+
+<link rel="import" href="../../../components/aqa-button/aqa-button.html">
+
 <link rel="import" href="../../../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../../../bower_components/iron-icons/iron-icons.html">
@@ -56,16 +61,9 @@
                     <div main-title>[[i18n.page13.title]]</div>
                 </app-toolbar>
                 <div slot="content">
-                    <!-- <div class="row start-xs" style="margin-bottom:0.5rem">
-                        <div class="col-xs-12">
-                            <div class="box">
-                                <aqa-button type="primary" icon="add">เพิ่ม</aqa-button>
-                            </div>
-                        </div>
-                    </div> -->
                     <aqa-vaadin-grid>
                         <vaadin-grid id="material" items="{{documentFile}}">
-                            <vaadin-grid-column width=65% flex-grow="0" resizable>
+                            <vaadin-grid-column width=55% flex-grow="0" resizable>
                                 <template class="header ">
                                     <div class="header">
                                         [[i18n.page13.name]]
@@ -78,121 +76,35 @@
                                 <template>[[item.file]]</template>
                             </vaadin-grid-column>
 
-                            <vaadin-grid-column width=10%>
-                                <template class="header">
-                                    <div class="text-center">Attach</div>
-                                </template>
-                                <template>
-                                    <div class="text-center">
-                                        <paper-button raised on-tap="upload_img" class="upload_image btn-upload"> เลือกเอกสาร</paper-button>
-                                        <!-- <img id="output_image" src$="[[rootPath]]../../../images/user upload.png" />
-                                        <aqa-button type="primary btn-full-width" icon="icons:file-upload" style="max-width:96px">เลือกเอกสาร</aqa-button> -->
-                                    </div>
-                                </template>
-                            </vaadin-grid-column>
-                            <!-- <vaadin-grid-column width="200px">
-                                <template class="header">
-                                    <div class="header">
-                                        ชื่อเอกสารแนบ
-                                    </div>
-                                </template>
-                                <template>
-                                    <template>
-                                        <div>[[item.name]]</div>
-                                    </template>
-                                </template>
-                            </vaadin-grid-column> -->
-                            <!-- <vaadin-grid-column width="200px">
-                                <template class="header">
-                                    <div class="header">
-                                        ไฟล์แนบ
-                                    </div>
-                                </template>
-                                <template>
-                                    <div>[[item.file]]</div>
-                                </template>
-                            </vaadin-grid-column>
-                            <vaadin-grid-column width="120px" flex-grow="0">
-                                <template class="header">
-                                    <div class="header">
-                                        Attach
-                                    </div>
-                                </template>
-                                <template>
-                                    <div>[[item.phone]]</div>
-                                </template> -->
-                            </vaadin-grid-column>
-                        </vaadin-grid>
-                    </aqa-vaadin-grid>
-                    <paper-tooltip id="tooltip" position="top" offset="0"></paper-tooltip>
-                    <div style="display:inline">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-6">
-                                <div style="margin-top:1rem">จำนวนรายการทั้งหมด [[documentFile.length]] รายการ </div>
-                            </div>
-                            <!-- <div class="col-xs-12 col-md-6">
-                                <div style="margin-top:1rem; text-align:right">แก้ไขล่าสุดวันที่ : 25/10/2560 <br> ผู้แก้ไข : รองศาสตร์จารย์บรรเจิด เริศฤดี </div>
-                            </div> -->
-                        </div>
-
-
-                    </div>
-                    <!-- <specia-list></specia-list> -->
-                </div>
-            </aqa-panel>
-        </div>
-        <!-- page-13-->
-
-
-        <!-- <nylon-panel-card id="documentFile">
-            <div slot="content">
-                <div class="header-title">
-                    [[i18n.page13.title]]
-                </div>
-                <input type="file"  id="ifile" name="profile_pic" accept=".jpg, .jpeg, .pdf">
-                <div class="row  middle-md">
-                    <div class="col-md-12">
-                        <vaadin-grid id='material' items='{{documentFile}}'>
-
-                            <vaadin-grid-column width="50px" flex-grow="0">
-                                <template class="header text-center">
-                                    <div class="text-center">[[i18n.common.no]]</div>
-                                </template>
-                                <template>
-                                    <div class="text-center">[[autoIndex(index)]]</div>
-                                </template>
-                            </vaadin-grid-column>
-
-                            <vaadin-grid-column width=45% flex-grow="0" resizable>
-                                <template class="header ">[[i18n.page13.name]]</template>
-                                <template>[[item.name]]</template>
-                            </vaadin-grid-column>
-
-                            <vaadin-grid-column width=35% flex-grow="0" resizable>
-                                <template class="header">[[i18n.page13.file]]</template>
-                                <template>[[item.file]]</template>
-                            </vaadin-grid-column>
-
                             <vaadin-grid-column width=20%>
                                 <template class="header">
                                     <div class="text-center">Attach</div>
                                 </template>
                                 <template>
                                     <div class="text-center">
-                                        <paper-button raised on-tap="upload_img" class="upload_image btn-upload"> เลือกเอกสาร</paper-button>
-                                       
+                                        <aqa-button raised on-tap="upload_img" class="upload_image btn-upload"> เลือกเอกสาร</aqa-button>
+                                        <!-- <img id="output_image" src$="[[rootPath]]../../../images/user upload.png" />
+                                        <aqa-button type="primary btn-full-width" icon="icons:file-upload" style="max-width:96px">เลือกเอกสาร</aqa-button> -->
                                     </div>
                                 </template>
                             </vaadin-grid-column>
+
+                            </vaadin-grid-column>
                         </vaadin-grid>
-                        <div class="no-content" hidden="{{documentFile.length}}">
-                                ไม่มีข้อมูล
+                    </aqa-vaadin-grid>
+                    <aqa-tooltip id="tooltip" position="top" offset="0"></aqa-tooltip>
+                    <div style="display:inline">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <div style="margin-top:1rem">จำนวนรายการทั้งหมด [[documentFile.length]] รายการ </div>
                             </div>
-                        [[i18n.common.total_items]] {{documentFile.length}} [[i18n.common.list]]
+                        </div>
+
+
                     </div>
                 </div>
-            </div>
-        </nylon-panel-card> -->
+            </aqa-panel>
+        </div>
 
 
     </template>

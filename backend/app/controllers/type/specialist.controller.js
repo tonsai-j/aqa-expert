@@ -10,7 +10,7 @@ exports.list = function (req, res) {
             }
         })
         .orderBy('SPECIALTYPDESC')
-        .pluck('label', 'value')
+        // .pluck('label', 'value')
         .run()
         .then(function (data) {
             res.json(data)

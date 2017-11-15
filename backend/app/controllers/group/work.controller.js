@@ -8,7 +8,7 @@ exports.list = function (req, res) {
             }
         })
         .orderBy('PRIORITY')
-        .pluck('label', 'value')
+        .pluck('label', 'value','old_id')
         .run()
         .then(function (data) {
             res.json(data)

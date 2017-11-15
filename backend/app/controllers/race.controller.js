@@ -1,6 +1,6 @@
 exports.list = function (req, res) {
     r.db('aqa_cds').table('race')
-    .filter({ ACTIVE: true })
+        .filter({ ACTIVE: true })
         .merge((row) => {
             return {
                 label: row('RACETHAIDESC'),
@@ -8,7 +8,7 @@ exports.list = function (req, res) {
             }
         })
         .orderBy('RACECD')
-        .pluck('label', 'value')
+        // .pluck('label', 'value')
         .run()
         .then(function (data) {
             res.json(data)

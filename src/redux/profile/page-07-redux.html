@@ -56,10 +56,10 @@
                 )
             }
         },
-        PROFILE_07_GET_ACADEMY: function (groupWorkId = '', ACADEMYTYPCD = '', search = '') {
+        PROFILE_07_GET_ACADEMY: function (url) {
             // console.log(groupWorkId,ACADEMYTYPCD);
             return dispatch => {
-                axios.get(`/academy/filter?group_work_id=${groupWorkId}&ACADEMYTYPCD=${ACADEMYTYPCD}&search=${search}`).then(
+                axios.get(`/academy/filter?${url}`).then(
                     res => {
                         dispatch({ type: 'PROFILE_07_GET_ACADEMY', data: res.data })
                     }

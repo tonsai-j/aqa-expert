@@ -21,70 +21,85 @@ exports.list = function (req, res) {
 }
 
 exports.filter = function (req, res) {
-    var ACADEMYTYPCD = req.query.ACADEMYTYPCD || ''
-    var groupWorkId = req.query.group_work_id || ''
-    let search = req.query.search || ''
+    let ACADEMYTYPCD = req.query.type_academy_id || ''
+    var groupWorkId = req.query.group_work_id || '9003'
+    let academy_name = req.query.academy_name || ''
+    let amphoe_id = req.query.amphoe_id || ''
+    let province_id = req.query.province_id || ''
+    let sixorgid = req.query.sixorgid || ''
+    sixorgid = sixorgid.toUpperCase()
     let filter = {}
-    if (groupWorkId !== '')
-        filter.ONESQAWORKGRPCD = groupWorkId
-    if (ACADEMYTYPCD !== '')
-        filter.ACADEMYTYPCD = ACADEMYTYPCD
-    // if (typeAcademy === '' || typeAcademy === undefined)
-    //     res.send('Data Not Found')
 
-    // r.db('aqa_cds').table('academy')//.getAll('H02500', { index: 'SIXORGID' })
-    //     .pluck('ACADEMYTYPID', 'ACTIVE', 'ORGNBR', 'SIXORGID')
-    //     .eqJoin('ORGNBR', r.db('aqa_cds').table('org'), { index: 'ORGNBR' })
-    //     .pluck("left", { right: ['ORGTHAICOMPLETENAME', 'ORGNAME', 'ORGNBR'] })
-    //     .zip()
-    //     // .filter(function (doc) {
-    //     //     return doc('ORGTHAICOMPLETENAME').match(search)
-    //     // })
-    //     .eqJoin(r.row('ACADEMYTYPID').coerceTo('number'), r.db('aqa_cds').table('academytyp'), { index: 'ACADEMYTYPID' })
-    //     .pluck("left", { right: ['ACADEMYTYPDESC', 'ACADEMYTYPID', 'ACADEMYTYPCD', 'ONESQAWORKGRPCD'] })
-    //     .zip()
-    //     .filter(filter)
-    //     // .limit(50)
-    //     .merge(function (val) {
-    //         return {
-    //             label: val('ORGTHAICOMPLETENAME'),
-    //             value: val('SIXORGID')
-    //         }
-    //     })
-    //     .orderBy('ORGTHAICOMPLETENAME')
-    r.db('aqa_cds').table('academytyp').getAll(filter.ONESQAWORKGRPCD, { index: 'ONESQAWORKGRPCD' })
-        .filter({ ACTIVE: true })
+    // console.log(ACADEMYTYPCD.search(',') > -1);
+    if (ACADEMYTYPCD.search(',') > -1) {
+        ACADEMYTYPCD = ACADEMYTYPCD.split(',')
+        // console.log(num);
+    } else {
+        ACADEMYTYPCD = [ACADEMYTYPCD]
+    }
 
-        // .pluck('ACADEMYTYPDESC', 'ACADEMYTYPID', 'ACTIVE', 'BASICYN', 'CAMPUSYN', 'CHILDHOODYN',
-        // 'EXTEDUCENTERYN', 'HIGHERYN', 'PRIORITY', 'ONESQAWORKGRPCD')
-        .innerJoin(r.row('ACADEMYTYPID').coerceTo('string'), r.db('aqa_cds').table('academy'), { index: 'ACADEMYTYPID' })
-        
-        // const orgnbr = r.db('aqa_cds').table('academy')
-        //     .getAll('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '35', '36', '37', { index: 'ACADEMYTYPID' })
-        //     .getField('ORGNBR')
-        //     .coerceTo('array');
-        // // .do(function(d){
-        // // return 
-        // const orgId = r.db('aqa_cds').table('org').getAll(r.args(orgnbr), { index: 'ORGNBR' })
-        //     .pluck('ORGNBR', 'ORGTHAICOMPLETENAME')
-        //     // })
-        //     // .filter(function (f) {
-        //     //     return f('ORGTHAICOMPLETENAME').match('บ้าน')
-        //     // })
-        //     .eqJoin(r.row('ORGNBR'), r.db('aqa_cds').table('academy'), { index: 'ORGNBR' })
-        //     .pluck("left", { right: ['ACADEMYTYPID', 'ACTIVE', 'ORGNBR', 'SIXORGID'] })
-        //     .zip()
-        //     .filter({ ACTIVE: '1' })
-        //     .coerceTo('array');
+    let orgnbr = r.db('aqa_cds').table('academy')
+        .getAll(r.args(ACADEMYTYPCD), { index: 'ACADEMYTYPID' })
+        .filter({ ACTIVE: '1' })
+        .getField('ORGNBR')
+        .coerceTo('array');
+    // // .do(function(d){
+    // // return 
+    let orgId = r.db('aqa_cds').table('org').getAll(r.args(orgnbr), { index: 'ORGNBR' })
+        .filter({ ACTIVE: '1' })
+        .filter(function (f) {
+            return f('ORGTHAICOMPLETENAME').match(academy_name)
+        })
+        .pluck('ORGNBR', 'ORGTHAICOMPLETENAME')
 
-        // // r.db('aqa_cds').table('org').getAll(r.args(orgId), { index: 'ORGTHAICOMPLETENAME' })
-        // //     .eqJoin(r.row('ORGNBR'), r.db('aqa_cds').table('academy'), { index: 'ORGNBR' })
-        // //     .pluck("left", { right: ['ACADEMYTYPID', 'ACTIVE', 'ORGNBR', 'SIXORGID'] })
-        // //     .zip()
-        // // .filter({ ACTIVE: '1' })
+        .eqJoin(r.row('ORGNBR'), r.db('aqa_cds').table('academy'), { index: 'ORGNBR' })
+        .pluck("left", { right: ['ACADEMYTYPID', 'ACTIVE', 'ORGNBR', 'SIXORGID'] })
+        .zip()
+        .filter(function (f) {
+            return f('SIXORGID').match(sixorgid)
+        })
+        .eqJoin(r.row('ACADEMYTYPID').coerceTo('number'), r.db('aqa_cds').table('academytyp'), { index: 'ACADEMYTYPID' })
+        .pluck("left", { right: ['ACADEMYTYPDESC'] })
+        .zip()
+        .eqJoin(r.row('ORGNBR'), r.db('aqa_cds').table('orgaddruse'), { index: 'ORGNBR' })
+        .pluck("left", { right: ['ADDRNBR'] })
+        .zip()
+        .eqJoin(r.row('ADDRNBR'), r.db('aqa_cds').table('addr'), { index: "﻿ADDRNBR" })
+        .pluck("left", { right: ['DISTRICTID', 'PROVINCEID'] })
+        .zip()
+        .coerceTo('array')
 
+    if (province_id !== '') {
+        orgId = orgId.filter({ PROVINCEID: province_id })
+            .eqJoin(r.row('PROVINCEID').coerceTo('number'), r.db('aqa_cds').table('province'), { index: "PROVINCEID" })
+            .pluck("left", { right: ['PROVINCEDESC'] })
+            .zip()
+
+        if (amphoe_id !== '') {
+            orgId = orgId.filter({ DISTRICTID: amphoe_id })
+                .eqJoin(r.row('DISTRICTID').coerceTo('number'), r.db('aqa_cds').table('district'), { index: "DISTRICTID" })
+                .pluck("left", { right: ['DISTRICTDESC'] })
+                .zip()
+        } else {
+            orgId = orgId
+                .eqJoin(r.row('DISTRICTID').coerceTo('number'), r.db('aqa_cds').table('district'), { index: "DISTRICTID" })
+                .pluck("left", { right: ['DISTRICTDESC'] })
+                .zip()
+        }
+    } else {
+        orgId = orgId
+            .eqJoin(r.row('PROVINCEID').coerceTo('number'), r.db('aqa_cds').table('province'), { index: "PROVINCEID" })
+            .pluck("left", { right: ['PROVINCEDESC'] })
+            .zip()
+            .eqJoin(r.row('DISTRICTID').coerceTo('number'), r.db('aqa_cds').table('district'), { index: "DISTRICTID" })
+            .pluck("left", { right: ['DISTRICTDESC'] })
+            .zip()
+    }
+    orgId
         // orgId
-        // .limit(1000)
+        .without('ACTIVE')
+        // .pluck("SIXORGID",'ACADEMYTYPDESC','DISTRICTDESC','PROVINCEDESC','ORGTHAICOMPLETENAME')
+        .orderBy('SIXORGID')
         .run()
         .then(function (data) {
             res.json(data)

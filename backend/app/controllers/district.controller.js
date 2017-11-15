@@ -13,7 +13,7 @@ exports.list = function (req, res) {
             }
         })
         .orderBy('DISTRICTCD')
-        .pluck('label', 'value')
+        // .pluck('label', 'value')
         .run()
         .then(function (data) {
             res.json(data)
@@ -34,7 +34,7 @@ exports.sub = function (req, res) {
             }
         })
         .orderBy('SUBDISTRICTCD')
-        .pluck('label', 'value', 'ZIPCODE')
+        // .pluck('label', 'value', 'ZIPCODE')
         .run()
         .then(function (data) {
             res.json(data)

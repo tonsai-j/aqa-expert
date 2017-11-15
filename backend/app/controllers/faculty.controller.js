@@ -8,7 +8,7 @@ exports.list = function (req, res) {
             }
         })
         .orderBy('FACULTYCD')
-        .pluck('label', 'value')
+        // .pluck('label', 'value')
         .run()
         .then(function (data) {
             res.json(data)

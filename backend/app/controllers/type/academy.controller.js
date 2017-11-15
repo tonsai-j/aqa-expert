@@ -55,7 +55,7 @@ exports.listfilter = function (req, res) {
             }
         })
         .orderBy('PRIORITY')
-        .pluck('label', 'value', 'ACADEMYTYPID')
+        // .pluck('label', 'value', 'ACADEMYTYPID')
         .run()
         .then(function (data) {
             res.json(data)
