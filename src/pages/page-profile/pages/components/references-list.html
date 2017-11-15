@@ -35,7 +35,7 @@
         </style>
 
         <aqa-vaadin-grid>
-            <vaadin-grid id="material" items="{{datas}}">
+            <vaadin-grid id="material" items="{{references}}">
                 <vaadin-grid-column width="60px" flex-grow="0">
                     <template class="header">
                         <div class="header" style="text-align: center">ลำดับ</div>
@@ -51,7 +51,7 @@
                         </div>
                     </template>
                     <template>
-                        <div>[[item.firts_name]]</div>
+                        <div>[[item.firstname]]</div>
                     </template>
                 </vaadin-grid-column>
                 <vaadin-grid-column width="200px">
@@ -61,7 +61,7 @@
                         </div>
                     </template>
                     <template>
-                        <div>[[item.last_name]]</div>
+                        <div>[[item.lastname]]</div>
                     </template>
                 </vaadin-grid-column>
                 <!-- <vaadin-grid-column width="140px" flex-grow="0">
@@ -87,7 +87,7 @@
                         </div>
                     </template>
                     <template>
-                        <div>[[item.telephone]]</div>
+                        <div>[[item.cell_phone]]</div>
                     </template>
                 </vaadin-grid-column>
                 <!-- <vaadin-grid-column>
@@ -107,7 +107,7 @@
                         <div class="header">[[i18n.page12.email]]</div>
                     </template>
                     <template>
-                        <div>[[item.e_mail]]</div>
+                        <div>[[item.email]]</div>
                     </template>
                 </vaadin-grid-column>
                 <!-- <vaadin-grid-column width="150px">
@@ -160,18 +160,22 @@
                         type: Object,
                         statePath: 'i18n',
                     },
-                    datas: {
+                    references: {
                         type: Array,
-                        value: [
-                            {
-                                firts_name: 'บรรเจิด',
-                                last_name: 'เลิศฤดี',
-                                phone: '-',
-                                telephone: '082-0222864',
-                                e_mail: 'test@gmail.com',
-                            },
-                        ]
-                    }
+                        statePath: 'profile.info.references'
+                    },
+                    // datas: {
+                    //     type: Array,
+                    //     value: [
+                    //         {
+                    //             firts_name: 'บรรเจิด',
+                    //             last_name: 'เลิศฤดี',
+                    //             phone: '-',
+                    //             telephone: '082-0222864',
+                    //             e_mail: 'test@gmail.com',
+                    //         },
+                    //     ]
+                    // }
                 }
             }
             updatePosition(e) {
