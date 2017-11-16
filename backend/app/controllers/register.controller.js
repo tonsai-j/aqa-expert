@@ -57,7 +57,9 @@ exports.post = function (req, res) {
         })
 }
 exports.check = function (req, res) {
-    r.table('profile').getAll(req.query.taxno, { index: 'taxno' }).pluck('taxno', 'type_assessor_id', 'type_assessor', 'basic')
+    // console.log(121212);
+    r.table('profile').getAll(req.query.taxno, { index: 'taxno' })
+    .pluck('taxno', 'type_assessor_id', 'type_assessor', 'basic')
         .run()
         .then(function (data) {
             res.json(data)

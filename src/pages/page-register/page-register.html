@@ -191,9 +191,9 @@
                                         </div>
                                         <div class="col-xs-12">
                                             <nylon-combo-box id="comboTypeAss" class="required input" required label="[[i18n.register.level]]" items='{{typeAssessor}}'
-                                                value="{{data.type_assessor_id}}" item-label-path="type_assessor_name" item-value-path="id">
+                                                value="{{data.type_assessor_id}}" item-label-path="label" item-value-path="value">
                                                 <template>
-                                                    [[item.type_assessor_name]]
+                                                    [[item.label]]
                                                 </template>
                                             </nylon-combo-box>
                                         </div>

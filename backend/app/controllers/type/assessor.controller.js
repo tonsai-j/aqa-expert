@@ -1,6 +1,14 @@
 exports.list = function (req, res) {
-    r.table('type_assessor')
-        .orderBy('id')
+    r.db('aqa_cds').table('assessortyp')
+        .filter({ ACTIVE: true })
+        .merge((row) => {
+            return {
+                label: row('ASSESSORTYPDESC'),
+                value: row('ASSESSORTYPCD'),
+            }
+        })
+        .orderBy('ASSESSORTYPCD')
+        // .pluck('label', 'value')
         .run()
         .then(function (data) {
             res.json(data)
