@@ -67,7 +67,7 @@
                         <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-3">
                             <!-- ระดับการศึกษา -->
                             <aqa-combo-box label="[[i18n.page03.eduLevel]]" always-float-label items='{{eduLevel}}' value="{{data.edu_level_id}}" item-label-path="label"
-                                item-value-path="value" on-selected-item-changed="getObject" object-name="data.edu_level">
+                                item-value-path="value" on-selected-item-changed="getObject" object-name="data.edu_level" class="required" required>
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -77,7 +77,7 @@
                             <!-- ประเภท -->
                             <aqa-combo-box label="[[i18n.page03.typeAcademy]]" always-float-label items='{{typeAcademy}}' value="{{data.type_academy_id}}"
                                 item-label-path="label" item-value-path="value" on-change="_getAacademy" on-selected-item-changed="getObject"
-                                object-name="data.type_academy">
+                                object-name="data.type_academy" class="required" required>
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -86,7 +86,7 @@
                         <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-5">[[checkIsTypeAcademy(data.type_academy_id,data.type_academy_id.*)]]
                             <!-- สถานศึกษา -->
                             <aqa-combo-box label="[[i18n.page03.academy]]" always-float-label items='{{academy}}' value="{{data.academy_id}}" item-label-path="label"
-                                item-value-path="value" on-selected-item-changed="getObject" object-name="data.academy">
+                                item-value-path="value" on-selected-item-changed="getObject" object-name="data.academy" class="required" required>
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -94,16 +94,16 @@
                         </div>
                         <div class=" col-xs-12 col-sm-12 col-md-5">
                             <!-- ชื่อเต็ม -->
-                            <aqa-input always-float-label label="[[i18n.page03.degree]] ([[i18n.page03.full]])" value="{{data.degree_full}}"></aqa-input>
+                            <aqa-input always-float-label label="[[i18n.page03.degree]] ([[i18n.page03.full]])" value="{{data.degree_full}}" class="required" required></aqa-input>
                         </div>
                         <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-2">
                             <!-- ชื่อย่อ -->
-                            <aqa-input always-float-label label="[[i18n.page03.degree]] ([[i18n.page03.short]])" value="{{data.degree_short}}"></aqa-input>
+                            <aqa-input always-float-label label="[[i18n.page03.degree]] ([[i18n.page03.short]])" value="{{data.degree_short}}" class="required" required></aqa-input>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-8">
                             <!-- คณะ -->
                             <aqa-combo-box label="[[i18n.page03.faculty]]" always-float-label items='{{faculty}}' value="{{data.faculty_id}}" item-label-path="label"
-                                item-value-path="value" on-selected-item-changed="getObject" object-name="data.faculty">
+                                item-value-path="value" on-selected-item-changed="getObject" object-name="data.faculty" class="required" required>
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -112,7 +112,7 @@
                         <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-10">
                             <!-- กลุ่มคณะ -->
                             <aqa-combo-box label="[[i18n.page03.groupFaculty]]" always-float-label items='{{groupFaculty}}' value="{{data.group_faculty_id}}"
-                                item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="data.group_faculty">
+                                item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="data.group_faculty" class="required" required>
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -121,7 +121,7 @@
                         <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-10">
                             <!-- สาขา -->
                             <aqa-combo-box label="[[i18n.page03.fieldStudy]]" always-float-label items='{{fieldStudy}}' value="{{data.field_study_id}}"
-                                item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="data.field_study">
+                                item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="data.field_study" class="required" required>
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -131,15 +131,15 @@
 
                         <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-4">
                             <!-- วิชาเอก -->
-                            <aqa-input always-float-label label="[[i18n.page03.major]]" value="{{data.major}}"></aqa-input>
+                            <aqa-input always-float-label label="[[i18n.page03.major]]" value="{{data.major}}" class="required" required></aqa-input>
                         </div>
                         <div class=" col-xs-12 col-sm-12 col-md-4">
                             <!-- วิชาโท -->
-                            <aqa-input always-float-label label="[[i18n.page03.minor]]" value="{{data.minor}}"></aqa-input>
+                            <aqa-input always-float-label label="[[i18n.page03.minor]]" value="{{data.minor}}" class="required" required></aqa-input>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-2">
                             <!-- ปีที่จบ -->
-                            <aqa-input always-float-label label="[[i18n.page03.year]]" value="{{data.year}}" allowed-pattern="[0-9]" maxlength="4"></aqa-input>
+                            <aqa-input always-float-label label="[[i18n.page03.year]]" value="{{data.year}}" allowed-pattern="[0-9]" maxlength="4" class="required" required></aqa-input>
                         </div>
                     </div>
                     <!-- <div class="row center-md button-buttom">
@@ -270,7 +270,7 @@
             // }
 
             _save() {
-                if (this.validateForm('.required')) {
+                if (!this.validateForm('.required')) {
                     if (typeof this._index === 'undefined') {
                         var newData = Object.assign(this.data, {
                             date_created: new Date().toISOString(),
