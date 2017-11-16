@@ -238,6 +238,10 @@
                     },
                 };
             }
+            // constructor() {
+            //     super();
+            //     this._boundListener = this._confirmDel.bind(this);
+            // }
             connectedCallback() {
                 // console.log(this.detail)
                 super.connectedCallback();
@@ -249,14 +253,14 @@
                     })
                 this.$.educationList.addEventListener('_delete', this._confirmDel)
             }
-            
+
             _openPanelRight(e) {
                 // if (e.currentTarget.getAttribute('action') == 'edit') {
                 //     this.set('data', e.model.item)
                 //     this.set('_index', e.model.index)
                 // } else {
-                    this.set('data', {})
-                    this.set('_index', undefined)
+                this.set('data', {})
+                this.set('_index', undefined)
                 // }
                 this.$.panelRight.open();
             }
