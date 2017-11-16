@@ -368,7 +368,7 @@
                             action: () => {
                                 Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'working', e.detail.index
                                     , () => {
-                                        this._closePanelRight()
+                                        // this._closePanelRight()
                                         this.set('data', {})
                                         Nylon.toast('delete')
                                     });
