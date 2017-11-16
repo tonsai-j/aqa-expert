@@ -66,7 +66,7 @@
                             </div>
                         </div>
                     </div>
-                    <research-list></research-list>
+                    <research-list id="researchList" info="[[info]]"></research-list>
                 </div>
             </aqa-panel>
         </div>
@@ -207,7 +207,7 @@
 
             </div>
         </nylon-panel-card> -->
-        <nylon-panel-right id="right" title="[[i18n.page08.history]]" width="80%">
+        <nylon-panel-right id="panelRight" title="[[i18n.page08.history]]" width="80%">
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
@@ -241,7 +241,7 @@
                     <div class="row center-xs">
                         <div class="col-lg-2">
                             <div style="padding:0rem 2rem;">
-                                <aqa-button type="success btn-full-width" on-tap="getForm">[[i18n.button.save.label]]</aqa-button>
+                                <aqa-button type="success btn-full-width" on-click="_save">[[i18n.button.save.label]]</aqa-button>
                             </div>
                         </div>
                     </div>
@@ -310,8 +310,19 @@
             _date(d) {
                 return new Date(d).toLocaleString()
             }
+            connectedCallback() {
+                // console.log(this.detail)
+                super.connectedCallback();
+                this.$.researchList.addEventListener('open_panelRight',
+                    (detail) => {
+                        this.$.panelRight.open();
+                        this.set('data', detail.detail.data)
+                        this.set('_index', detail.detail.index)
+                    })
+                this.$.researchList.addEventListener('_delete', this._confirmDel)
+            }
             _save() {
-                if (this.validateForm('.required')) {
+                if (!this.validateForm('.required')) {
                     if (typeof this._index === 'undefined') {
                         var newData = Object.assign(this.data, {
                             date_created: new Date().toISOString(),
@@ -355,9 +366,9 @@
                             'dialog-confirm': true,
                             'autofocus': true,
                             action: () => {
-                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'research', e.model.index
+                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'research', e.detail.index
                                     , () => {
-                                        this.closePanelRight()
+                                        // this.closePanelRight()
                                         this.set('data', {})
                                         Nylon.toast('delete')
                                     });
@@ -373,17 +384,27 @@
                 })
             }
             _openPanelRight(e) {
-                if (e.currentTarget.getAttribute('action') == 'edit') {
-                    this.set('data', e.model.item)
-                    this.set('_index', e.model.index)
-                } else {
-                    this.set('data', {})
-                    this.set('_index', undefined)
-                }
-                this.$.right.open();
+                // if (e.currentTarget.getAttribute('action') == 'edit') {
+                //     this.set('data', e.model.item)
+                //     this.set('_index', e.model.index)
+                // } else {
+                this.set('data', {})
+                this.set('_index', undefined)
+                // }
+                this.$.panelRight.open();
             }
+            // _openPanelRight(e) {
+            //     if (e.currentTarget.getAttribute('action') == 'edit') {
+            //         this.set('data', e.model.item)
+            //         this.set('_index', e.model.index)
+            //     } else {
+            //         this.set('data', {})
+            //         this.set('_index', undefined)
+            //     }
+            //     this.$.panelRight.open();
+            // }
             closePanelRight() {
-                this.$.right.close()
+                this.$.panelRight.close()
             }
         }
 

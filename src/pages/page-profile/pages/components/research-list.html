@@ -49,18 +49,18 @@
                         <div class="header">
                             <!-- [[i18n.page08.type]] -->
                             <!-- <div style="text-align: center">[[i18n.page08.type]]</div> -->
-                             [[i18n.page08.type]]
+                            [[i18n.page08.type]]
                         </div>
                     </template>
                     <template>
-                        <!-- <div>[[item.type_research.type_research_name]</div> -->
+                        <div>[[item.type_research.label]]</div>
                     </template>
                 </vaadin-grid-column>
                 <vaadin-grid-column width="200px">
                     <template class="header">
                         <div class="header">
                             [[i18n.page08.name]]
-                            
+
                         </div>
                     </template>
                     <template>
@@ -70,12 +70,12 @@
                 <vaadin-grid-column width="120px" flex-grow="0">
                     <template class="header">
                         <div class="header">
-                             [[i18n.page08.year]]
-                             
+                            [[i18n.page08.year]]
+
                         </div>
                     </template>
                     <template>
-                        <div style="text-align: center">[[item.year]]</div>
+                        <div style="text-align: center">[[item.research_year]]</div>
                     </template>
                 </vaadin-grid-column>
                 <!-- <vaadin-grid-column width="100px">
@@ -89,10 +89,10 @@
                     <template>
                         <div style="display:flex">
                             <aqa-tooltip label="ดู & แก้ไขรายละเอียด">
-                                <paper-icon-button class="btn-edit" icon="create" noink></paper-icon-button>
+                                <paper-icon-button class="btn-edit" icon="create" noink on-click="_openPanelRight"></paper-icon-button>
                             </aqa-tooltip>
                             <aqa-tooltip label="ลบ">
-                                <paper-icon-button class="btn-delete" icon="icomoon:bin" noink></paper-icon-button>
+                                <paper-icon-button class="btn-delete" icon="icomoon:bin" noink on-click="_delete"></paper-icon-button>
                             </aqa-tooltip>
                             <!-- <paper-icon-button class="btn-edit" id="btn-[[index]]" name="แก้ไข" on-tap="getPosition" on-mouseover="updatePosition" icon="create"></paper-icon-button>
                             <paper-icon-button class="btn-delete" id="btns-[[index]]" name="ลบ" on-tap="getPosition" on-mouseover="updatePosition" icon="delete"></paper-icon-button> -->
@@ -130,23 +130,23 @@
                     },
                     datas: {
                         type: Array,
-                        value: [
-                            {
-                                address_education: 'test',
-                                year: '2017',
-                                sub_name_education: 'คอบ',
-                                name_faculty: '30/12/2558',
-                                name_branch: 'โปรแกรมเมอร์',
-                                name_major: 'เทคโนโลยีคอมพิวเตอร์',
-                                name_major2: '',
-                                name_education: 'การศึกษาบัณฑิต',
-                                year_education: 'โปรแกรมเมอร์',
-                                edit_name: 'ผู้ใช้งาน',
-                                edit_date: '2/7/2560'
-                            },
-                        ]
-                    }
+                        statePath: 'profile.info.research',
+                        value: []
+                    },
                 }
+            }
+            _openPanelRight(e) {
+                this.dispatchEvent(new CustomEvent('open_panelRight', {
+                    detail:
+                    {
+                        data: e.model.item,
+                        index: e.model.index
+                    }
+                }))
+            }
+            _delete(e) {
+                // console.log(e.model.index);
+                this.dispatchEvent(new CustomEvent('_delete', { detail: { index: e.model.index } }))
             }
             updatePosition(e) {
                 this.$.tooltip.textContent = e.currentTarget.getAttribute('name');
