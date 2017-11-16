@@ -57,11 +57,11 @@
                             </div>
                         </div>
                     </div>
-                    <specia-list></specia-list>
+                    <specia-list id="speciaList" info="[[info]]"></specia-list>
                 </div>
             </aqa-panel>
         </div>
-        <nylon-panel-right id="right" title="สาขาที่เชี่ยวชาญ" width="80%">
+        <nylon-panel-right id="panelRight" title="สาขาที่เชี่ยวชาญ" width="80%">
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="col-md-offset-1  col-md-2">
@@ -107,7 +107,7 @@
                     <div class="row center-xs">
                         <div class="col-lg-2">
                             <div style="padding:0rem 2rem;">
-                                <aqa-button type="success btn-full-width" on-tap="getForm">[[i18n.button.save.label]]</aqa-button>
+                                <aqa-button type="success btn-full-width" on-tap="_save">[[i18n.button.save.label]]</aqa-button>
                             </div>
                         </div>
                     </div>
@@ -180,29 +180,47 @@
                     // Nylon.dispatch('PROFILE_04_GET_SPECIALISTTYPE')
                 });
             }
+            connectedCallback() {
+                // console.log(this.detail)
+                super.connectedCallback();
+                this.$.speciaList.addEventListener('open_panelRight',
+                    (detail) => {
+                        this.$.panelRight.open();
+                        this.set('data', detail.detail.data)
+                        this.set('_index', detail.detail.index)
+                    })
+                this.$.speciaList.addEventListener('_delete', this._confirmDel)
+            }
             checkIsGroupSpecialist(group_specialist) {
                 if (group_specialist !== undefined && group_specialist !== '')
                     Nylon.dispatch('PROFILE_04_GET_SPECIALISTTYPE', group_specialist);
             }
-            _openPanelRight(e) {
-                if (e.currentTarget.getAttribute('action') == 'edit') {
-                    this.set('data', e.model.item)
-                    this.set('_index', e.model.index)
-                } else {
-                    this.set('data', {})
-                    this.set('_index', undefined)
-                }
-                this.$.right.open();
-            }
-            // _openPanelRight() {
-            //     this.$.right.open()
+            // _openPanelRight(e) {
+            //     if (e.currentTarget.getAttribute('action') == 'edit') {
+            //         this.set('data', e.model.item)
+            //         this.set('_index', e.model.index)
+            //     } else {
+            //         this.set('data', {})
+            //         this.set('_index', undefined)
+            //     }
+            //     this.$.right.open();
             // }
+            _openPanelRight(e) {
+                // if (e.currentTarget.getAttribute('action') == 'edit') {
+                //     this.set('data', e.model.item)
+                //     this.set('_index', e.model.index)
+                // } else {
+                this.set('data', {})
+                this.set('_index', undefined)
+                // }
+                this.$.panelRight.open();
+            }
 
             _closePanelRight() {
-                this.$.right.close()
+                this.$.panelRight.close()
             }
             _save() {
-                if (this.validateForm('.required')) {
+                if (!this.validateForm('.required')) {
                     if (typeof this._index === 'undefined') {
                         var newData = Object.assign(this.data, {
                             date_created: new Date().toISOString(),
@@ -289,7 +307,7 @@
                             'dialog-confirm': true,
                             'autofocus': true,
                             action: () => {
-                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'specialist', e.model.index
+                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'specialist', e.detail.index
                                     , () => {
                                         this._closePanelRight()
                                         this.set('data', {})
