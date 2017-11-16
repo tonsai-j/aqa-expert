@@ -108,7 +108,7 @@
                                 <aqa-input label="[[i18n.page05.e_date]]"></aqa-input>
                             </aqa-date-picker> -->
                             <aqa-combo-box class="required" always-float-label label="" items='{{yearList}}' value="{{data.year_work_end}}" item-label-path="label"
-                                item-value-path="value">
+                                item-value-path="value" disabled={{workendyear}}>
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -116,7 +116,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-1">
                             <!-- ปัจจุบัน -->
-                            <paper-checkbox on-tap="_disabledEndYear">[[i18n.page05.present]] </paper-checkbox>
+                            <paper-checkbox on-tap="_disabledEndYear" >[[i18n.page05.present]] </paper-checkbox>
                         </div>
                     </div>
 
