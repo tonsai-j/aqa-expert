@@ -17,6 +17,7 @@
 <link rel="import" href="../../../../i18n/profile/page-05-i18n.html">
 <link rel="import" href="../../../../../images/icon-moon-delete.html">
 <link rel="import" href="../../../../layout/shared-styles.html">
+<link rel="import" href="../../../../components/nylon-panel-right/nylon-panel-right.html">
 <dom-module id="career-history-list">
     <template>
         <style include="shared-styles">
@@ -50,21 +51,21 @@
                 <vaadin-grid-column width="20px">
                     <template class="header">
                         <div class="header">
-                             [[i18n.page05.department]]  
+                            [[i18n.page05.department]]
                         </div>
                     </template>
                     <template>
-                        <div>[[item.address_education]]</div>
+                        <div>[[item.agency_name]]</div>
                     </template>
                 </vaadin-grid-column>
                 <vaadin-grid-column width="120px" flex-grow="0">
                     <template class="header">
                         <div class="header">
-                             [[i18n.page05.s_year]] 
+                            [[i18n.page05.s_year]]
                         </div>
                     </template>
                     <template>
-                        <div style="text-align: center">[[item.level_education]]</div>
+                        <div style="text-align: center">[[item.year_work_start]]</div>
                     </template>
                 </vaadin-grid-column>
                 <vaadin-grid-column width="120px" flex-grow="0">
@@ -72,7 +73,7 @@
                         <div class="header">ปีสุดท้ายที่ทำงาน</div>
                     </template>
                     <template>
-                        <div style="text-align: center">[[item.name_faculty]]</div>
+                        <div style="text-align: center">[[item.year_work_end]]</div>
                     </template>
                 </vaadin-grid-column>
                 <vaadin-grid-column width="180px" flex-grow="0">
@@ -80,7 +81,7 @@
                         <div class="header">[[i18n.page05.position]]</div>
                     </template>
                     <template>
-                        <div>[[item.name_branch]]</div>
+                        <div>[[item.first_position]]</div>
                     </template>
                 </vaadin-grid-column>
                 <vaadin-grid-column width="180px" flex-grow="0">
@@ -88,7 +89,7 @@
                         <div class="header">[[i18n.page05.category]]</div>
                     </template>
                     <template>
-                        <div>[[item.year_education]]</div>
+                        <div>[[item.working_1.REFVALUE1]]</div>
                     </template>
                 </vaadin-grid-column>
                 <!-- <vaadin-grid-column width="150px">
@@ -102,10 +103,10 @@
                     <template>
                         <div style="display:flex">
                             <aqa-tooltip label="ดู & แก้ไขรายละเอียด">
-                                <paper-icon-button class="btn-edit" icon="create" noink></paper-icon-button>
+                                <paper-icon-button class="btn-edit" icon="create" noink on-click="_openPanelRight"></paper-icon-button>
                             </aqa-tooltip>
                             <aqa-tooltip label="ลบ">
-                                <paper-icon-button class="btn-delete" icon="icomoon:bin" noink></paper-icon-button>
+                                <paper-icon-button class="btn-delete" icon="icomoon:bin" noink on-click="_delete"></paper-icon-button>
                             </aqa-tooltip>
                             <!-- <paper-icon-button class="btn-edit" id="btn-[[index]]" name="แก้ไข" on-tap="getPosition" on-mouseover="updatePosition" icon="create"></paper-icon-button>
                             <paper-icon-button class="btn-delete" id="btns-[[index]]" name="ลบ" on-tap="getPosition" on-mouseover="updatePosition" icon="delete"></paper-icon-button> -->
@@ -141,25 +142,54 @@
                         type: Object,
                         statePath: 'i18n',
                     },
+                    // working: {
+                    //     type: Array,
+                    //     statePath: 'profile.info.working'
+                    // },
                     datas: {
                         type: Array,
-                        value: [
-                            {
-                                address_education: 'มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ',
-                                level_education: '2550',
-                                sub_name_education: 'คอบ',
-                                name_faculty: '2558',
-                                name_branch: 'โปรแกรมเมอร์',
-                                name_major: 'เทคโนโลยีคอมพิวเตอร์',
-                                name_major2: '',
-                                name_education: 'การศึกษาบัณฑิต',
-                                year_education: 'โปรแกรมเมอร์',
-                                edit_name: 'ผู้ใช้งาน',
-                                edit_date: '2/7/2560'
-                            },
-                        ]
-                    }
+                        statePath: 'profile.info.working',
+                        value: []
+                    },
+                    // datas: {
+                    //     type: Object,
+                    //     value: {
+                    //         working_1: {},
+                    //         working_2: {}
+                    //     }
+                    // },
+                    // datas: {
+                    //     type: Array,
+                    //     value: [
+                    //         {
+                    //             address_education: 'มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ',
+                    //             level_education: '2550',
+                    //             sub_name_education: 'คอบ',
+                    //             name_faculty: '2558',
+                    //             name_branch: 'โปรแกรมเมอร์',
+                    //             name_major: 'เทคโนโลยีคอมพิวเตอร์',
+                    //             name_major2: '',
+                    //             name_education: 'การศึกษาบัณฑิต',
+                    //             year_education: 'โปรแกรมเมอร์',
+                    //             edit_name: 'ผู้ใช้งาน',
+                    //             edit_date: '2/7/2560'
+                    //         },
+                    //     ]
+                    // }
                 }
+            }
+            _openPanelRight(e) {
+                this.dispatchEvent(new CustomEvent('open_panelRight', {
+                    detail:
+                    {
+                        data: e.model.item,
+                        index: e.model.index
+                    }
+                }))
+            }
+            _delete(e) {
+                // console.log(e.model.index);
+                this.dispatchEvent(new CustomEvent('_delete', { detail: { index: e.model.index } }))
             }
             updatePosition(e) {
                 this.$.tooltip.textContent = e.currentTarget.getAttribute('name');

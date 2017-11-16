@@ -60,16 +60,17 @@
                             </div>
                         </div>
                     </div>
-                    <career-history-list></career-history-list>
+                    <career-history-list id="historyList" info="[[info]]"></career-history-list>
                 </div>
             </aqa-panel>
         </div>
 
-        <nylon-panel-right id="right" title="[[i18n.page05.title]]" width="80%">
+        <nylon-panel-right id="panelRight" title="[[i18n.page05.title]]" width="80%">
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                            <!-- ประเภทหน่วยงาน -->
                             <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.agency_type]]" items='{{assescentertypList}}'
                                 value="{{data.assescentertyp_id}}" item-label-path="label" item-value-path="value" on-selected-item-changed="getObject"
                                 object-name="data.assescentertyp">
@@ -81,17 +82,18 @@
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
+                            <!-- ชื่อหน่วยงาน -->
                             <aqa-input label="[[i18n.page05.agency_name]]" class="required" required always-float-label value="{{data.agency_name}}"></aqa-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2">
+                            <!-- ปีที่เริ่มทำงาน -->
                             <!-- <aqa-date-picker required>
                                 <aqa-input label="[[i18n.page05.s_date]]"></aqa-input>
                             </aqa-date-picker> -->
-                            <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.s_year]]" items='{{yearList}}'
-                                value="{{data.year_work_start}}" item-label-path="label" item-value-path="value"
-                                >
+                            <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.s_year]]" items='{{yearList}}' value="{{data.year_work_start}}"
+                                item-label-path="label" item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -101,18 +103,20 @@
                             [[i18n.page05.to]] :
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2">
+                            <!-- ปีสุดท้ายที่ทำงาน -->
                             <!-- <aqa-date-picker required>
                                 <aqa-input label="[[i18n.page05.e_date]]"></aqa-input>
                             </aqa-date-picker> -->
-                            <aqa-combo-box class="required" always-float-label label="" items='{{yearList}}' value="{{data.year_work_end}}"
-                                item-label-path="label" item-value-path="value" >
+                            <aqa-combo-box class="required" always-float-label label="" items='{{yearList}}' value="{{data.year_work_end}}" item-label-path="label"
+                                item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
                             </aqa-combo-box>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-1">
-                            <paper-checkbox on-tap="_disabledEndDate">[[i18n.page05.present]] </paper-checkbox>
+                            <!-- ปัจจุบัน -->
+                            <paper-checkbox on-tap="_disabledEndYear">[[i18n.page05.present]] </paper-checkbox>
                         </div>
                     </div>
 
@@ -134,6 +138,7 @@
                     </div> -->
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
+                            <!-- ตำแหน่ง -->
                             <aqa-input label="[[i18n.page05.position]]" class="required" required always-float-label value="{{data.first_position}}"></aqa-input>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -143,6 +148,7 @@
                                     [[item.label]]
                                 </template>
                             </aqa-combo-box> -->
+                            <!-- ประเภท -->
                             <aqa-combo-box class="required" required always-float-label label="[[i18n.page05.category]]" items='{{workpos1List}}' value="{{data.working_1_id}}"
                                 item-label-path="REFVALUE1" item-value-path="REFNAME1" on-selected-item-changed="getObject" object-name="data.working_1">
                                 <template>
@@ -167,7 +173,7 @@
                     <div class="row center-xs">
                         <div class="col-lg-2">
                             <div style="padding:0rem 2rem;">
-                                <aqa-button type="success btn-full-width" on-tap="getForm">[[i18n.button.save.label]]</aqa-button>
+                                <aqa-button type="success btn-full-width" on-click="_save">[[i18n.button.save.label]]</aqa-button>
                             </div>
                         </div>
                     </div>
@@ -233,15 +239,15 @@
                     },
                     data: {
                         type: Object,
-                        value: {
-                            working_1: {},
-                            working_2: {}
-                        }
+                        value: {}
                     },
-                    workenddate: {
+                    workendyear: {
                         type: Boolean,
                         value: false
-                    }
+                    },
+                    _index: {
+                        type: Number
+                    },
                 };
             }
 
@@ -258,45 +264,62 @@
                 });
 
             }
+            _disabledEndYear(e) {
+                // console.log(e.currentTarget.getAttribute('aria-checked'))
+                if (e.currentTarget.getAttribute('aria-checked') !== 'true') {
+                    this.set('workendyear', true)
+                    this.set('data.year_work_end', '9999')
+                } else {
+                    this.set('workenddate', false)
+                    this.set('data.year_work_end', '')
+                }
+                // console.log(this.workenddate)
+            }
+            connectedCallback() {
+                // console.log(this.detail)
+                super.connectedCallback();
+                this.$.historyList.addEventListener('open_panelRight',
+                    (detail) => {
+                        this.$.panelRight.open();
+                        this.set('data', detail.detail.data)
+                        this.set('_index', detail.detail.index)
+                    })
+                this.$.historyList.addEventListener('_delete', this._confirmDel)
+            }
             // openPanelRight() {
             //     this.$.right.open()
             // }
-            _disabledEndDate(e) {
-                // console.log(e.currentTarget.getAttribute('aria-checked'))
-                if (e.currentTarget.getAttribute('aria-checked') !== 'true') {
-                    this.set('workenddate', true)
-                    this.set('data.work_end_date', '9999-12-31')
-                } else {
-                    this.set('workenddate', false)
-                    this.set('data.work_end_date', '')
-                }
-
-
-                // console.log(this.workenddate)
-            }
             _openPanelRight(e) {
-                if (e.currentTarget.getAttribute('action') == 'edit') {
-                    let data = JSON.parse(JSON.stringify(e.model.item));
-                    data.work_start_date = data.work_start_date.split('T')[0]
-                    data.work_end_date = data.work_end_date.split('T')[0]
-                    // console.log(data);
-                    this.set('data', data)
-                    this.set('_index', e.model.index)
-                } else {
-                    this.set('data', {})
-                    this.set('_index', undefined)
-                }
-                this.$.right.open();
+                // if (e.currentTarget.getAttribute('action') == 'edit') {
+                //     this.set('data', e.model.item)
+                //     this.set('_index', e.model.index)
+                // } else {
+                this.set('data', {})
+                this.set('_index', undefined)
+                // }
+                this.$.panelRight.open();
             }
+            // _openPanelRight(e) {
+            //     if (e.currentTarget.getAttribute('action') == 'edit') {
+            //         let data = JSON.parse(JSON.stringify(e.model.item));
+            //         data.work_start_date = data.work_start_date.split('T')[0]
+            //         data.work_end_date = data.work_end_date.split('T')[0]
+            //         this.set('data', data)
+            //         this.set('_index', e.model.index)
+            //     } else {
+            //         this.set('data', {})
+            //         this.set('_index', undefined)
+            //     }
+            //     this.$.right.open();
+            // }
             _closePanelRight() {
-                this.$.right.close()
+                this.$.panelRight.close()
             }
-
             _save() {
-                // console.log(this.data)
-                if (this.validateForm('.required')) {
-                    this.set('data.work_start_date', new Date(this.data.work_start_date).toISOString());
-                    this.set('data.work_end_date', new Date(this.data.work_end_date).toISOString());
+                console.log(this.data)
+                if (!this.validateForm('.required')) {
+                    // this.set('data.work_start_date', new Date(this.data.work_start_date).toISOString());
+                    // this.set('data.work_end_date', new Date(this.data.work_end_date).toISOString());
                     if (typeof this._index === 'undefined') {
                         var newData = Object.assign(this.data, {
                             date_created: new Date().toISOString(),
@@ -326,47 +349,6 @@
 
             }
 
-            // _confirmDel(e) {
-            //     // Nylon.confirm({
-            //     //     title: this.i18n.confirm.delete.title,
-            //     //     msg: this.i18n.confirm.delete.msg
-            //     // });
-            //     Nylon.confirm({
-            //         status: 'waring',
-            //         title: 'ยืนยันการลบ',
-            //         msg: 'หากต้องการลบให้กดปุ่ม ok',
-            //         icon: 'delete',
-            //         btn: [
-            //             {
-            //                 label: 'ปิด',
-            //                 icon: 'close',
-            //                 type: 'close',
-            //                 class: 'btn-default',
-            //                 'dialog-dismiss': true
-            //             },
-            //             {
-            //                 label: 'ลบ',
-            //                 icon: 'delete',
-            //                 type: 'ok',
-            //                 class: 'btn-default',
-            //                 'dialog-confirm': true,
-            //                 'autofocus': true,
-            //                 action: () => {
-            //                     Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'working', e.model.index
-            //                         , () => {
-            //                             this._closePanelRight()
-            //                             this.set('data', {})
-            //                             Nylon.toast({
-            //                                 icon: 'delete',
-            //                                 msg: 'ลบเรียบร้อย'
-            //                             })
-            //                         });
-            //                 }
-            //             }
-            //         ]
-            //     })
-            // }
-
             _confirmDel(e) {
                 // Nylon.confirm({
                 //     title: this.i18n.confirm.delete.title,
@@ -384,7 +366,7 @@
                             'dialog-confirm': true,
                             'autofocus': true,
                             action: () => {
-                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'working', e.model.index
+                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'working', e.detail.index
                                     , () => {
                                         this._closePanelRight()
                                         this.set('data', {})
