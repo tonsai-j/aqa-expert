@@ -174,13 +174,13 @@
                             </aqa-combo-box>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
-                            <aqa-date-picker class="form" value="{{birthDay}}">
+                            <aqa-date-picker class="form" value="{{data.birth_date}}">
                                 <aqa-input label="[[i18n.page01.birth]]"></aqa-input>
                             </aqa-date-picker>
                             <!-- <aqa-date-picker id="date" label="วัน/เดือน/ปี เกิด" selected="{{birthDay}}" show-bc></aqa-date-picker> -->
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2">
-                            <aqa-input label="[[i18n.page01.age]]" value="{{mathAge(birthDay)}}" disabled></aqa-input>
+                            <aqa-input label="[[i18n.page01.age]]" value="{{mathAge(data.birth_date)}}" disabled></aqa-input>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                             <aqa-input class="form" label="[[i18n.page01.mobile]]" type="phone" value="{{data.mobile}}" required></aqa-input>
@@ -189,15 +189,15 @@
                             <aqa-input class="form" label="[[i18n.page01.tax_no]]" value="[[info.taxno]]" type="pid" required disabled></aqa-input>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                            <aqa-date-picker>
-                                <aqa-input label="[[i18n.page01.date_of_issue]]" value="{{data.issue_date}}"></aqa-input>
+                            <aqa-date-picker class="form" value="{{data.issue_date}}">
+                                <aqa-input label="[[i18n.page01.date_of_issue]]"></aqa-input>
                             </aqa-date-picker>
                             <!-- <aqa-date-picker id="date" label="วันที่ออกบัตร" selected="" show-bc></aqa-date-picker> -->
                         </div>
 
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
-                            <aqa-date-picker>
-                                <aqa-input label="[[i18n.page01.expiration_date]]" type="date" value="{{data.expire_date}}"></aqa-input>
+                            <aqa-date-picker class="form" value="{{data.expire_date}}">
+                                <aqa-input label="[[i18n.page01.expiration_date]]"></aqa-input>
                             </aqa-date-picker>
                             <!-- <aqa-date-picker id="date" label="วันที่บัตรหมดอายุ" selected="" show-bc></aqa-date-picker> -->
                         </div>
@@ -329,6 +329,8 @@
                             date.issue_date = new Date(date.issue_date).addHours(7).toISOString().split('T')[0]
                         if (date.expire_date !== undefined)
                             date.expire_date = new Date(date.expire_date).addHours(7).toISOString().split('T')[0]
+
+                        console.log(date);
                         this.set('data', date)
                     }
                 }
@@ -362,14 +364,15 @@
                 // reader.readAsDataURL(event.target.files[0]);
             }
             _save() {
-                console.log(this.info.id)
+                // console.log(this.info.id)
                 // console.log(this.validateForm('.required'));
                 if (this.validateForm('.required')) {
                     let newDataSave = JSON.parse(JSON.stringify(this.data))
+                    console.log(newDataSave)
                     newDataSave.birth_date = new Date(newDataSave.birth_date).toISOString()
                     newDataSave.issue_date = new Date(newDataSave.issue_date).toISOString()
                     newDataSave.expire_date = new Date(newDataSave.expire_date).toISOString()
-                    // console.log(newDataSave);
+                    console.log(newDataSave);
                     Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'basic', newDataSave,
                         () => {
                             Nylon.toast('update')
