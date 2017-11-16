@@ -123,7 +123,7 @@
                                 <paper-icon-button class="btn-edit" icon="create" noink on-click="_openPanelRight"></paper-icon-button>
                             </aqa-tooltip>
                             <aqa-tooltip label="ลบ">
-                                <paper-icon-button class="btn-delete" icon="icomoon:bin" noink></paper-icon-button>
+                                <paper-icon-button class="btn-delete" icon="icomoon:bin" noink on-click="_delete"></paper-icon-button>
                             </aqa-tooltip>
                             <!-- <paper-icon-button class="btn-edit" id="btn-[[index]]" name="แก้ไข" on-tap="getPosition" on-mouseover="updatePosition" icon="create"></paper-icon-button>
                             <paper-icon-button class="btn-delete" id="btns-[[index]]" name="ลบ" on-tap="getPosition" on-mouseover="updatePosition" icon="delete"></paper-icon-button> -->
@@ -142,7 +142,8 @@
                     <div style="margin-top:1rem">จำนวนรายการทั้งหมด [[datas.length]] รายการ </div>
                 </div>
                 <div class="col-xs-12 col-md-6">
-                    <div style="margin-top:1rem; text-align:right">แก้ไขล่าสุดวันที่ : 25/10/2560 <br> ผู้แก้ไข : รองศาสตร์จารย์บรรเจิด เริศฤดี </div>
+                    <div style="margin-top:1rem; text-align:right">แก้ไขล่าสุดวันที่ : 25/10/2560
+                        <br> ผู้แก้ไข : รองศาสตร์จารย์บรรเจิด เริศฤดี </div>
                 </div>
             </div>
 
@@ -159,29 +160,19 @@
                         type: Object,
                         statePath: 'i18n'
                     },
-                    // datas: {
-                    //     type: Array,
-                    //     value: [
-                    //         {
-                    //             address_education: 'มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ',
-                    //             level_education: 'ปริญญาตรี',
-                    //             sub_name_education: 'คอบ',
-                    //             name_faculty: 'คณะครุศาสตร์อุตสาหกรรม',
-                    //             name_branch: 'คอมพิวเตอร์',
-                    //             name_major: 'เทคโนโลยีคอมพิวเตอร์',
-                    //             name_major2: '',
-                    //             name_education: 'การศึกษาบัณฑิต',
-                    //             year_education: 2560,
-                    //             edit_name: 'ผู้ใช้งาน',
-                    //             edit_date: '2/7/2560'
-                    //         },
-                    //     ]
-                    // }
+                    info: {
+                        type: Object,
+                        value: {}
+                    },
                     datas: {
                         type: Array,
                         statePath: 'profile.info.education',
                         value: []
                     },
+                    // data: {
+                    //     type: Object,
+                    //     value: {}
+                    // }
                 }
             }
             updatePosition(e) {
@@ -189,24 +180,24 @@
                 this.$.tooltip.for = e.currentTarget.id;
                 this.$.tooltip.updatePosition()
             }
-            getPosition(e) {
-                console.log(e.currentTarget.positionTarget)
-            }
+            // getPosition(e) {
+            //     console.log(e.currentTarget.positionTarget)
+            // }
             count(val) {
                 return val + 1
             }
             _openPanelRight(e) {
-                // console.log(this.$.edit)
-                if (e.currentTarget.getAttribute('action') == 'edit') {
-                    this.set('data', e.model.item)
-                    this.set('_index', e.model.index)
-                } else {
-                    this.set('data', {})
-                    this.set('_index', undefined)
-                }
-                // this.$.edit.panelRight.open();
-                this.dispatchEvent(new CustomEvent('open_panelRight', { detail: { kicked: true } }))
-                console.log();
+                this.dispatchEvent(new CustomEvent('open_panelRight', {
+                    detail:
+                        {
+                            data: e.model.item,
+                            index: e.model.index
+                        }
+                }))
+            }
+            _delete(e) {
+                // console.log(e.model.index);
+                this.dispatchEvent(new CustomEvent('_delete', { detail: { index: e.model.index } }))
             }
         }
         window.customElements.define(EducationList.is, EducationList);
