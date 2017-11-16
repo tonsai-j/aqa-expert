@@ -79,10 +79,17 @@
                                     <!-- <aqa-date-picker id="date" label="วันที่ออกบัตร" selected="" show-bc></aqa-date-picker> -->
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-12 col-lg-4">
-                                    <aqa-combo-box label="[[i18n.page01.academic]]" items="[[academicList]]" item-label-path="label" item-value-path="value"
-                                        auto-validate required></aqa-combo-box>
+                                    <!-- <aqa-combo-box label="[[i18n.page01.academic]]" items="[[academicList]]" item-label-path="label" item-value-path="value"
+                                        auto-validate required></aqa-combo-box> -->
                                     <!-- <aqa-combo-box label="สถานะการทำงาน" items="[[statusList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>  -->
                                     <!-- <aqa-date-picker id="date" label="วันที่บัตรหมดอายุ" selected="" show-bc></aqa-date-picker> -->
+                                    <aqa-combo-box always-float-label label="[[i18n.page01.academic]]" items='{{academicList}}' value="{{data.type_academic_id}}"
+                                        item-label-path="label" item-value-path="value" on-selected-item-changed="getObject"
+                                        object-name="data.type_academic">
+                                        <template>
+                                            [[item.label]]
+                                        </template>
+                                    </aqa-combo-box>
                                 </div>
                             </div>
                             <div class="row">
@@ -126,23 +133,45 @@
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+
                             <!-- <aqa-combo-box label="[[i18n.page01.gender]]" items="[[genderList]]" value="{{data.gender_id}}" item-label-path="label" 
                             item-value-path="value"></aqa-combo-box> -->
                             <aqa-combo-box always-float-label label="[[i18n.page01.gender]]" items='{{genderList}}' value="{{data.gender_id}}" item-label-path="label"
                                 item-value-path="value" on-selected-item-changed="getObject" object-name="data.gender">
                                 <template>
-                                    [[item.gender_name_th]]
+                                    [[item.label]]
                                 </template>
                             </aqa-combo-box>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                            <aqa-combo-box label="[[i18n.page01.religion]]" items="[[religionList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
+                            <!-- ศาสนา -->
+                            <!-- <aqa-combo-box label="[[i18n.page01.religion]]" items="[[religionList]]" item-label-path="label" item-value-path="value"></aqa-combo-box> -->
+                            <aqa-combo-box always-float-label label="[[i18n.page01.religion]]" items='{{religionList}}' value="{{data.religion_id}}"
+                                item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="data.religion">
+                                <template>
+                                    [[item.label]]
+                                </template>
+                            </aqa-combo-box>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                            <aqa-combo-box label="[[i18n.page01.ethnicity]]" items="[[nationalityList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
+                            <!-- เชื้อชาติ -->
+                            <!-- <aqa-combo-box label="[[i18n.page01.ethnicity]]" items="[[raceList]]" item-label-path="label" item-value-path="value"></aqa-combo-box> -->
+                            <aqa-combo-box always-float-label label="[[i18n.page01.ethnicity]]" items='{{raceList}}' value="{{data.ethnicity_id}}" item-label-path="label"
+                                item-value-path="value" on-selected-item-changed="getObject" object-name="data.race">
+                                <template>
+                                    [[item.label]]
+                                </template>
+                            </aqa-combo-box>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                            <aqa-combo-box label="[[i18n.page01.nationality]]" items="[[raceList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
+                            <!-- สัญชาติ -->
+                            <!-- <aqa-combo-box label="[[i18n.page01.nationality]]" items="[[nationalityList]]" item-label-path="label" item-value-path="value"></aqa-combo-box> -->
+                            <aqa-combo-box always-float-label label="[[i18n.page01.nationality]]" items='{{nationalityList}}' value="{{data.nationality_id}}"
+                                item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="data.nationality">
+                                <template>
+                                    [[item.label]]
+                                </template>
+                            </aqa-combo-box>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
                             <aqa-date-picker class="form" value="{{birthDay}}">
@@ -173,7 +202,13 @@
                             <!-- <aqa-date-picker id="date" label="วันที่บัตรหมดอายุ" selected="" show-bc></aqa-date-picker> -->
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                            <aqa-combo-box label="[[i18n.page01.working_status]]" items="[[statusList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>
+                            <!-- <aqa-combo-box label="[[i18n.page01.working_status]]" items="[[statusList]]" item-label-path="label" item-value-path="value"></aqa-combo-box> -->
+                            <aqa-combo-box always-float-label label="[[i18n.page01.working_status]]" items='{{statusList}}' value="{{data.status_id}}"
+                                item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="data.working_status">
+                                <template>
+                                    [[item.label]]
+                                </template>
+                            </aqa-combo-box>
                         </div>
                     </div>
 
@@ -260,7 +295,7 @@
             //     Nylon.dispatch('REGISTER_CHECK_PERSON')
             // }
             ready() {
-                console.log(this.genderList)
+                // console.log(this.genderList)
                 super.ready();
                 var elem = this.$.basic
                 //this.fadeInDown(elem, 1, 500)
@@ -327,6 +362,7 @@
                 // reader.readAsDataURL(event.target.files[0]);
             }
             _save() {
+                console.log(this.info.id)
                 // console.log(this.validateForm('.required'));
                 if (this.validateForm('.required')) {
                     let newDataSave = JSON.parse(JSON.stringify(this.data))
