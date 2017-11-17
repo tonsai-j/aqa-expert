@@ -12,7 +12,7 @@ exports.list = function (req, res) {
         //         value: row('BANKCD'),
         //     }
         // })
-        .orderBy('PRIORITY')
+        .orderBy('REFCODE')
         // .pluck('label', 'value')
         .run()
         .then(function (data) {

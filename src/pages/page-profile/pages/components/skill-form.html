@@ -27,13 +27,13 @@
         </style>
         <div class="row center-xs">
 
-            <template is="dom-repeat" items="[[items]]">
+            <template is="dom-repeat" items="{{items}}">
                 <div class="start-xs end-md col-xs-12 col-md-4" style="margin:auto 0">
                     [[item.label]]
                 </div>
                 <!-- on-tap="getData" value-as="{{item.value}}" -->
                 <div class="center-xs col-xs-12 col-md-5">
-                    <nylon-rating name="[[name]][[index]]" selected="{{item.value}}" disabled></nylon-rating>
+                    <nylon-rating name="[[name]][[index]]" selected="{{item.value}}" items="{{skilllev}}"></nylon-rating>
                 </div>
                 <div class="col-xs-12 col-md-3" style="margin:auto 0;text-align:left">
                     <template is="dom-if" if="[[item.isDelete]]">
@@ -57,11 +57,16 @@
                 return {
                     items: {
                         type: Array,
-                        value: []
+                        value: [],
+                        notify: true
                     },
                     name: {
                         type: String,
                         value: '0'
+                    },
+                    skilllev: {
+                        type: Array,
+                        value: [],
                     }
                 }
             }
@@ -71,11 +76,11 @@
             }
             getData(e) {
                 let motherItem = e.model.__data.item.id
-                if (e.currentTarget.valueAs !== undefined){
+                if (e.currentTarget.valueAs !== undefined) {
                     // console.log(motherItem);
                     // console.log(e.currentTarget.value);
                 }
-                    
+
                 // console.log(e.currentTarget.value);
             }
         }

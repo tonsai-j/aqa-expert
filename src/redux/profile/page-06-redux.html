@@ -1,0 +1,80 @@
+<script>
+    Nylon.addReducer('profile_page06', function (state, action) {
+        state = state || {
+            skilllang: [],
+            skillcom: [],
+            skilltypewriting: [],
+            skilllev: []
+        }
+
+        switch (action.type) {
+            case 'PROFILE_06_GET_TYPE_SKILLLANG':
+                state.skilllang = action.payload
+                return state
+            case 'PROFILE_06_GET_TYPE_SKILLCOM':
+                state.skillcom = action.payload
+                return state
+            case 'PROFILE_06_GET_TYPE_SKILLTYPEWRITING':
+                state.skilltypewriting = action.payload
+                return state
+            case 'PROFILE_06_GET_TYPE_SKILLLEV':
+                state.skilllev = action.payload
+                return state
+            default:
+                return state
+        }
+
+    })
+
+
+    Nylon.addAction({
+        PROFILE_06_GET_TYPE_SKILL: function () {
+            // console.log(222);
+            return dispatch => {
+                axios.get('/aqaref').then(
+                    res => {
+                        const SkillFIlter = (arr, filter) => {
+                            return arr.filter(item => item.REFGROUP === filter)
+                        }
+                        let SKILLLANG = SkillFIlter(res.data, 'SKILLLANG')
+                            .sort(function (a, b) {
+                                var nameA = a.REFDESC1.toUpperCase(); // ignore upper and lowercase
+                                var nameB = b.REFDESC1.toUpperCase(); // ignore upper and lowercase
+                                if (nameA < nameB)
+                                    return -1
+                                if (nameA > nameB)
+                                    return 1
+                                return 0;
+                            })
+                            .map(item => {
+                                item.label = item.REFDESC1
+                                return item
+                            })
+                        let SKILLCOM = SkillFIlter(res.data, 'SKILLCOM').map(item => {
+                            item.label = item.REFDESC1
+                            return item
+                        })
+                        let SKILLTYPEWRITING = SkillFIlter(res.data, 'SKILLTYPEWRITING').map(item => {
+                            item.label = item.REFDESC1
+                            return item
+                        })
+                        let SKILLLEV = SkillFIlter(res.data, 'SKILLLEV')
+                            .sort((a, b) => Number(a.REFVALUE1) - Number(b.REFVALUE1))
+                            .map(item => {
+                                item.label = item.REFDESC1
+                                item.value = item.REFVALUE1
+                                return item
+                            })
+                        // console.log(SKILLLANG,SKILLCOM,SKILLTYPEWRITING);
+                        dispatch({ type: 'PROFILE_06_GET_TYPE_SKILLLANG', payload: SKILLLANG })
+                        dispatch({ type: 'PROFILE_06_GET_TYPE_SKILLCOM', payload: SKILLCOM })
+                        dispatch({ type: 'PROFILE_06_GET_TYPE_SKILLTYPEWRITING', payload: SKILLTYPEWRITING })
+                        dispatch({ type: 'PROFILE_06_GET_TYPE_SKILLLEV', payload: SKILLLEV })
+                    }
+                )
+            }
+        },
+
+    })
+
+</script>

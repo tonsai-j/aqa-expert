@@ -23,6 +23,9 @@
 <link rel="import" href="../../../../bower_components/paper-toast/paper-toast.html">
 
 
+<link rel="import" href="../../../redux/profile/page-06-redux.html">
+
+
 <dom-module id="page-06">
     <template>
         <style include="flexbox-grid shared-styles">
@@ -113,7 +116,7 @@
                         </app-toolbar>
                         <div slot="content">
                             <div>
-                                <skill-form name="1" items="[[computer]]"></skill-form>
+                                <skill-form name="1" items="{{computerList}}" skilllev="{{skilllev}}"></skill-form>
                             </div>
                         </div>
                     </aqa-panel>
@@ -128,7 +131,7 @@
                         </app-toolbar>
                         <div slot="content">
                             <div>
-                                <skill-form name="2" items="[[print]]"></skill-form>
+                                <skill-form name="2" items="{{typewritingList}}" skilllev="{{skilllev}}"></skill-form>
                             </div>
                         </div>
                     </aqa-panel>
@@ -141,8 +144,8 @@
                         </app-toolbar>
                         <div slot="content">
                             <div>
-                                <skill-form name="2" items="[[language]]"></skill-form>
-                                <div class="row">
+                                <skill-form name="2" items="{{languageList}}" skilllev="{{skilllev}}"></skill-form>
+                                <!-- <div class="row">
                                     <div class="start-xs end-md col-xs-12 col-md-4" style="margin:auto 0">
                                         อื่นๆ
                                     </div>
@@ -150,7 +153,7 @@
                                         <aqa-combo-box items="[[alllanguage]]" placeholder="เลือก" item-label-path="label" item-value-path="label" value="{{selectLanguage}}"></aqa-combo-box>
                                     </div>
                                     <div class="col-xs-3"></div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </aqa-panel>
@@ -160,7 +163,7 @@
             <div class="row center-xs">
                 <div class="col-lg-2">
                     <div style="padding:0rem 2rem;">
-                        <aqa-button type="success btn-full-width">[[i18n.button.save.label]]</aqa-button>
+                        <aqa-button type="success btn-full-width" on-tap="_save">[[i18n.button.save.label]]</aqa-button>
                     </div>
                 </div>
             </div>
@@ -203,72 +206,35 @@
                     data: {
                         type: Object,
                         statePath: 'profile.info.skills',
-                        value: {}
+                    },
+                    skilllev: {
+                        type: Object,
+                        statePath: 'profile_page06.skilllev',
+                    },
+                    computerList: {
+                        type: Array,
+                        value: []
                     },
                     computer: {
                         type: Array,
-                        value: [
-                            {
-                                id: 1,
-                                label: 'Microsoft Word',
-                                value: 2
-                            },
-                            {
-                                id: 2,
-                                label: 'Microsoft Excel',
-                                value: 0
-                            },
-                            {
-                                id: 3,
-                                label: 'Microsoft Power Point',
-                                value: 2
-                            },
-                            {
-                                id: 4,
-                                label: 'Email',
-                                value: 3
-                            },
-                            {
-                                id: 5,
-                                label: 'Smart Device (Smartphone/Tablet/Notebook)',
-                                value: 0
-                            }
-                        ]
+                        statePath: 'profile_page06.skillcom',
+                        // observer: 'setComputer'
+                    },
+                    languageList: {
+                        type: Array,
+                        value: []
                     },
                     language: {
-                        type: Array,
-                        value: [
-                            {
-                                id: 1,
-                                label: 'ภาษาอังกฤษ',
-                                value: 1
-                            },
-                            {
-                                id: 2,
-                                label: 'ภาษาจีน',
-                                value: 0
-                            },
-                            {
-                                id: 3,
-                                label: 'ภาษาญี่ปุ่น',
-                                value: 0
-                            }
-                        ]
+                        statePath: 'profile_page06.skilllang',
+                        // observer: 'setLanguage'
                     },
-                    alllanguage: {
+                    typewritingList: {
                         type: Array,
-                        value: [
-                            {
-                                id: 1,
-                                label: 'ภาษาฮ้อ',
-                                value: 0
-                            },
-                            {
-                                id: 2,
-                                label: 'ภาษาอราเมอิกใหม่คัลเดีย',
-                                value: 1
-                            }
-                        ]
+                        value: []
+                    },
+                    typewriting: {
+                        statePath: 'profile_page06.skilltypewriting',
+                        // observer: 'setTypeWriting'
                     },
                     print: {
                         type: Array,
@@ -298,7 +264,12 @@
                     }
                 };
             }
-
+            static get observers() {
+                return [
+                    // Observer method name, followed by a list of dependencies, in parenthesis
+                    'setData(info, computer,language,typewriting)'
+                ]
+            }
             /**
              * Instance of the element is created/upgraded. Use: initializing state,
              * set up event listeners, create shadow dom.
@@ -315,28 +286,122 @@
                 super.ready();
                 var elem = this.$.skills
                 //this.fadeInDown(elem, 1, 300)
+                Nylon.dispatch('PROFILE_06_GET_TYPE_SKILL')
+                // console.log(111);
+            }
+            isUndefined(check) {
+                return check !== undefined
+            }
+            setData(info, computer, language, typewriting) {
+                const setData = (arr, dataValue) => {
+                    if (!this.isUndefined(dataValue))
+                        return ''
+                    // console.log(dataValue);
+                    // let newDataCom = arr.map((item, index) => {
+                    //     item.value = ''
+                    //     return item
+                    // })
+                    let newDataCom = []
+                    arr.map((item, index) => {
+                        let check = dataValue.find(itemsub => itemsub.REFCODE === item.REFCODE)
+                        // console.log(check.value);
+                        if (this.isUndefined(check)) {
+                            item.value = check.value
+                        }else {
+                            item.value = ''
+                        }
+                       
+                        // console.log(item.REFCODE);
+                        // dataValue
+
+                    })
+                    return arr
+                    // this.set(dataSet, newDataCom)
+                }
+                if (this.isUndefined(info) && this.isUndefined(computer) &&
+                    this.isUndefined(language) && this.isUndefined(typewriting)) {
+                    // console.log(info, computer, language, typewriting);
+                    // console.log(setData(computer, info.skills));
+                    this.set('computerList',setData(computer, info.skills))
+                    this.set('languageList',setData(language, info.skills))
+                    this.set('typewritingList',setData(typewriting, info.skills))
+                    //                     computerList
+                    // languageList
+                    // typewritingList
+                }
+
+            }
+            // setComputer(com) {
+            //     if (com.length < 1)
+            //         return
+            //     let newDataCom = com.map(item => {
+            //         item.value = ''
+            //         return item
+            //     })
+            //     this.set('computerList', newDataCom)
+            // }
+            // setLanguage(language) {
+            //     if (language.length < 1)
+            //         return
+            //     let newDataCom = language.map(item => {
+            //         item.value = ''
+            //         return item
+            //     })
+            //     this.set('languageList', newDataCom)
+            // }
+            // setTypeWriting(TypeWriting) {
+            //     if (TypeWriting.length < 1)
+            //         return
+            //     let newDataCom = TypeWriting.map(item => {
+            //         item.value = ''
+            //         return item
+            //     })
+            //     this.set('typewritingList', newDataCom)
+            // }
+            _getDecodeData(data) {
+                // console.log(this.computerList);
+                let dataForSave = []
+                data.map(item => {
+                    dataForSave.push({
+                        REFCODE: item.REFCODE,
+                        REFDESC1: item.REFDESC1,
+                        REFGROUP: item.REFGROUP,
+                        id: item.id,
+                        value: item.value
+                    })
+                    return item
+                })
+                return dataForSave
             }
             _save() {
-                var req = this.shadowRoot.querySelectorAll('.required-radio')
-                for (var i = 0; i < req.length; i++) {
-                    if (typeof req[i].selectedItem === 'undefined')
-                        req[i].selectIndex(3)
-                }
-                // console.log(this.data)
-                if (this.validateForm('.required')) {
-                    for (var head in this.data) {
-                        for (var sub in this.data[head]) {
-                            this.data[head][sub] = Number(this.data[head][sub])
-                        }
+                let computerList = this._getDecodeData(this.computerList)
+                let languageList = this._getDecodeData(this.languageList)
+                let typewritingList = this._getDecodeData(this.typewritingList)
+                let dataForSave = computerList.concat(languageList.concat(typewritingList))
+                // console.log(this._getDecodeData(this.computerList))
+                // console.log(this._getDecodeData(this.languageList))
+                // console.log(dataForSave);
+                // console.log(this.info.id);
+                // var req = this.shadowRoot.querySelectorAll('.required-radio')
+                // for (var i = 0; i < req.length; i++) {
+                //     if (typeof req[i].selectedItem === 'undefined')
+                //         req[i].selectIndex(3)
+                // }
+                // // console.log(this.data)
+                // if (this.validateForm('.required')) {
+                //     for (var head in this.data) {
+                //         for (var sub in this.data[head]) {
+                //             this.data[head][sub] = Number(this.data[head][sub])
+                //         }
+                //     }
+                Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'skills', dataForSave,
+                    () => {
+                        Nylon.dialog('save')
                     }
-                    Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'skills', this.data,
-                        () => {
-                            Nylon.toast('update')
-                        }
-                    );
-                } else {
-                    Nylon.toast('required')
-                }
+                );
+                // } else {
+                //     Nylon.toast('required')
+                // }
 
 
             }
