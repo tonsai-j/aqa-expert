@@ -163,9 +163,8 @@
                     icon: 'check',
                     btn: [
                         {
-                            label: 'ตกลง',
+                            label: 'ปิด',
                             icon: '',
-                            class: 'btn-success',
                             type: 'success btn-full-width',
                             'dialog-dismiss': true,
                         }
@@ -174,6 +173,22 @@
                 switch (op) {
                     case 'save':
                         title = title
+                        break;
+                    case 'delete':
+                        title = {
+                            title: 'ลบเรียบร้อยแล้ว',
+                            // msg: 'อัพเดตข้อมูลสำเร็จ',
+                            style: 'color:#df6a68',
+                            icon: 'check',
+                            btn: [
+                                {
+                                    label: 'ปิด',
+                                    icon: '',
+                                    type: 'success btn-full-width',
+                                    'dialog-dismiss': true,
+                                }
+                            ]
+                        }
                         break;
                     default:
                         title = title

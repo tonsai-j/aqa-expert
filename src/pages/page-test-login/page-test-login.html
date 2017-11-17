@@ -187,7 +187,7 @@
                                         <br>
                                         <br>
                                         <div style="margin:20px">
-                                            <aqa-button class="font" type="success btn-full-width  row center-md" on-click="_login">
+                                            <aqa-button class="font" type="login btn-full-width  row center-md" on-click="_login">
                                                 [[i18n.button.login.label]]
                                             </aqa-button>
                                             <!-- <paper-tabs selected={{page}}>
@@ -241,12 +241,12 @@
                                 </iron-pages>
                             </div>
                             <div slot="footer" class="footer middle-md">
-                                <div style="margin:35px">
+                                <div style="margin:35px; background-color:#f2f3f9">
                                     <!-- <paper-tabs selected={{page}}>
                                         <paper-tab class="font">[[i18n.register.login]] </paper-tab>
                                         <paper-tab class="font">[[i18n.register.title]]</paper-tab>
                                     </paper-tabs> -->
-                                    <aqa-button raised type="success btn-full-width  row center-md" on-click="_goToRegister">
+                                    <aqa-button raised type="login btn-full-width  row center-md" on-click="_goToRegister">
                                         [[i18n.button.register.label]]
                                     </aqa-button>
                                     <!-- <iron-pages selected={{page}}>
@@ -503,7 +503,7 @@
                                     {
                                         label: this.i18n.button.close.label,
                                         icon: this.i18n.button.close.icon,
-                                        class: 'btn-default',
+                                        type: 'default',
                                         'dialog-dismiss': true,
                                         action: () => {
                                             this.$.comboTypeAss.value = data[0].type_assessor_id;

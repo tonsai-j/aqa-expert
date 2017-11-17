@@ -5,25 +5,31 @@
 <dom-module id="aqa-button">
     <template>
         <style>
-            button:focus {outline:0;}
+            button:focus {
+                outline: 0;
+            }
+
             .btn {
                 font-family: MitrLight;
                 padding: 0.5rem 1rem;
                 font-size: 1rem;
                 cursor: pointer;
-                
+
             }
-            .btn-full-width{
-                width:100%;
+
+            .btn-full-width {
+                width: 100%;
                 height: auto;
             }
-            .btn:disabled{
+
+            .btn:disabled {
                 cursor: no-drop;
-                color:#C2C9CE;
+                color: #C2C9CE;
                 background-color: #F7FAFB;
                 border-radius: 0.2rem;
                 border: 1px solid #C2C9CE;
             }
+
             .btn-primary {
                 color: white;
                 background-color: #4ba4d0;
@@ -41,6 +47,25 @@
                 color: white;
                 background-color: #2f8ab7;
                 border: 1px solid #2f8ab7;
+            }
+
+            .btn-login {
+                color: white;
+                background-color: #61a8ea;
+                border: 1px solid #61a8ea;
+                border-radius: 0.2rem;
+            }
+
+            .btn-login:hover {
+                color: white;
+                background-color: #89bceb;
+                border: 1px solid #89bceb;
+            }
+
+            .btn-login:active {
+                color: white;
+                background-color: #4a97d9;
+                border: 1px solid #4a97d9;
             }
 
             .btn-success {
@@ -62,6 +87,25 @@
                 border: 1px solid #459500;
             }
 
+            .btn-danger {
+                color: white;
+                background-color: #d9534f;
+                border: 1px solid #d9534f;
+                border-radius: 0.2rem;
+            }
+
+            .btn-danger:hover {
+                color: white;
+                background-color: #df6a68;
+                border: 1px solid #df6a68;
+            }
+
+            .btn-danger:active {
+                color: white;
+                background-color: #d9534f;
+                border: 1px solid #d9534f;
+            }
+
             .btn-default {
                 color: white;
                 background-color: #c6c9d0;
@@ -81,8 +125,8 @@
                 border: 1px solid #a0a3a9;
             }
         </style>
-        
-        <button class$="btn btn-[[type]]" disabled$="[[disabled]]" title="ปุ่ม"> 
+
+        <button class$="btn btn-[[type]]" disabled$="[[disabled]]" title="ปุ่ม">
             <template is="dom-if" if="[[check_icon(icon)]]">
                 <iron-icon icon="[[icon]]"></iron-icon>
             </template>
@@ -115,8 +159,8 @@
                     }
                 };
             }
-            check_icon(val){
-                if(val) return true;
+            check_icon(val) {
+                if (val) return true;
                 else return false
             }
             ready() {
