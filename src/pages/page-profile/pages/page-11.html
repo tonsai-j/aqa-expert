@@ -311,7 +311,8 @@
                             () => {
                                 this._closePanelRight();
                                 this.set('data', {});
-                                Nylon.toast('insert')
+                                // Nylon.toast('insert')
+                                Nylon.dialog('save')
                             }
                         );
                     } else {
@@ -326,7 +327,8 @@
                             , () => {
                                 this._closePanelRight();
                                 this.set('data', {});
-                                Nylon.toast('update')
+                                // Nylon.toast('update')
+                                Nylon.dialog('save')
                             });
                     }
                 } else {
@@ -357,7 +359,8 @@
                                         // this._closePanelRight()
                                         this.set('data', {})
                                         this.set('provinceList', [])
-                                        Nylon.toast('delete')
+                                        // Nylon.toast('delete')
+                                        Nylon.dialog('delete')
                                     });
                             }
                         },
