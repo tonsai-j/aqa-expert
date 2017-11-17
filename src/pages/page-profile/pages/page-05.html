@@ -376,7 +376,7 @@
                         });
                         Nylon.dispatch('PROFILE_UPDATE_ARRAY', this.info.id, 'working', this._index, newData
                             , () => {
-                                // this._closePanelRight();
+                                this._closePanelRight();
                                 this.set('data', {});
                                 // Nylon.toast('update')
                                 Nylon.dialog('save')
