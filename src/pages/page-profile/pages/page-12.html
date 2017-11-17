@@ -60,11 +60,11 @@
                             </div>
                         </div>
                     </div>
-                    <references-list></references-list>
+                    <references-list id="referencesList" info="[[info]]"></references-list>
                 </div>
             </aqa-panel>
         </div>
-        <nylon-panel-right id="right" title="[[i18n.page12.references]]" width="80%">
+        <nylon-panel-right id="panelRight" title="[[i18n.page12.references]]" width="80%">
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
@@ -159,17 +159,17 @@
             //     this.$.right.open()
             // }
             _openPanelRight(e) {
-                if (e.currentTarget.getAttribute('action') == 'edit') {
-                    this.set('data', e.model.item)
-                    this.set('_index', e.model.index)
-                } else {
+                // if (e.currentTarget.getAttribute('action') == 'edit') {
+                //     this.set('data', e.model.item)
+                //     this.set('_index', e.model.index)
+                // } else {
                     this.set('data', {})
                     this.set('_index', undefined)
-                }
-                this.$.right.open();
+                // }
+                this.$.panelRight.open();
             }
             _closePanelRight() {
-                this.$.right.close()
+                this.$.panelRight.close()
             }
             // _save() {
             //     console.log(this.validateForm('.required'));
@@ -184,6 +184,17 @@
             //     }
 
             // }
+            connectedCallback() {
+                // console.log(this.detail)
+                super.connectedCallback();
+                this.$.referencesList.addEventListener('open_panelRight',
+                    (detail) => {
+                        this.$.panelRight.open();
+                        this.set('data', detail.detail.data)
+                        this.set('_index', detail.detail.index)
+                    })
+                this.$.referencesList.addEventListener('_delete', this._confirmDel)
+            }
             _save() {
                 if (!this.validateForm('.required')) {
                     if (typeof this._index === 'undefined') {
@@ -234,9 +245,9 @@
                             'dialog-confirm': true,
                             'autofocus': true,
                             action: () => {
-                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'references', e.model.index
+                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'references', e.detail.index
                                     , () => {
-                                        this._closePanelRight()
+                                        // this._closePanelRight()
                                         this.set('data', {})
                                         Nylon.toast('delete')
                                     });
