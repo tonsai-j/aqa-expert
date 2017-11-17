@@ -447,7 +447,8 @@
                             () => {
                                 this._closePanelRight();
                                 this.set('dataSave', {});
-                                Nylon.toast('insert')
+                                // Nylon.toast('insert')
+                                Nylon.dialog('save')
                             }
                         );
                     } else {
@@ -459,7 +460,8 @@
                             , () => {
                                 this._closePanelRight();
                                 this.set('dataSave', {});
-                                Nylon.toast('update')
+                                // Nylon.toast('update')
+                                Nylon.dialog('save')
                             });
                     }
                 } else {
@@ -488,7 +490,8 @@
                                     , () => {
                                         // this._closePanelRight()
                                         this.set('data', {})
-                                        Nylon.toast('delete')
+                                        // Nylon.toast('delete')
+                                        Nylon.dialog('delete')
                                     });
                             }
                         },
