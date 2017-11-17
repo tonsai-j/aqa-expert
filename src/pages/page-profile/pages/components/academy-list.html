@@ -46,24 +46,24 @@
                 <vaadin-grid-column width="500px" flex-grow="0">
                     <template class="header">
                         <div class="header">
-                             [[i18n.page07.type]]
+                            [[i18n.page07.type]]
                         </div>
                     </template>
                     <template>
-                        <div>[[item.edit_name]]</div>
+                        <div>[[item.type_academy.label]]</div>
                     </template>
                 </vaadin-grid-column>
-                <vaadin-grid-column width="160px" >
+                <vaadin-grid-column width="160px">
                     <template class="header">
                         <div class="header">
-                             [[i18n.page07.name]]
+                            [[i18n.page07.name]]
                         </div>
                     </template>
                     <template>
-                        <div >[[item.address_education]]</div>
+                        <div>[[item.type_academy.label]]</div>
                     </template>
                 </vaadin-grid-column>
-               
+
                 <vaadin-grid-column width="100px" flex-grow="0">
                     <template class="header">
                         <div class="header">เครื่องมือ</div>
@@ -71,10 +71,10 @@
                     <template>
                         <div style="display:flex">
                             <aqa-tooltip label="ดู & แก้ไขรายละเอียด">
-                                <paper-icon-button class="btn-edit" icon="create" noink></paper-icon-button>
+                                <paper-icon-button class="btn-edit" icon="create" noink on-click="_openPanelRight"></paper-icon-button>
                             </aqa-tooltip>
                             <aqa-tooltip label="ลบ">
-                                <paper-icon-button class="btn-delete" icon="icomoon:bin" noink></paper-icon-button>
+                                <paper-icon-button class="btn-delete" icon="icomoon:bin" noink on-click="_delete"></paper-icon-button>
                             </aqa-tooltip>
                             <!-- <paper-icon-button class="btn-edit" id="btn-[[index]]" name="แก้ไข" on-tap="getPosition" on-mouseover="updatePosition" icon="create"></paper-icon-button>
                             <paper-icon-button class="btn-delete" id="btns-[[index]]" name="ลบ" on-tap="getPosition" on-mouseover="updatePosition" icon="delete"></paper-icon-button> -->
@@ -110,49 +110,43 @@
                         type: Object,
                         statePath: 'i18n',
                     },
+                    // datas: {
+                    //     type: Array,
+                    //     value: [
+                    //         {
+                    //             address_education: 'มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ',
+                    //             level_education: '10/01/2555',
+                    //             sub_name_education: 'คอบ',
+                    //             name_faculty: '30/12/2558',
+                    //             name_branch: 'โปรแกรมเมอร์',
+                    //             name_major: 'เทคโนโลยีคอมพิวเตอร์',
+                    //             name_major2: '',
+                    //             name_education: 'การศึกษาบัณฑิต',
+                    //             year_education: 'โปรแกรมเมอร์',
+                    //             edit_name: 'ผู้ใช้งาน',
+                    //             edit_date: '2/7/2560'
+                    //         },
+                    //     ]
+                    // }
                     datas: {
                         type: Array,
-                        value: [
-                            {
-                                address_education: 'มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ',
-                                level_education: '10/01/2555',
-                                sub_name_education: 'คอบ',
-                                name_faculty: '30/12/2558',
-                                name_branch: 'โปรแกรมเมอร์',
-                                name_major: 'เทคโนโลยีคอมพิวเตอร์',
-                                name_major2: '',
-                                name_education: 'การศึกษาบัณฑิต',
-                                year_education: 'โปรแกรมเมอร์',
-                                edit_name: 'ผู้ใช้งาน',
-                                edit_date: '2/7/2560'
-                            },
-                            // {
-                            //     address_education: 'มหาวิทยาลัยแม่โจ้',
-                            //     level_education: 'ปริญญาตรี',
-                            //     name_education: 'เกษตรศาสตรบัณฑิต',
-                            //     year_education: 2560,
-                            //     edit_name: 'ผู้ใช้งาน',
-                            //     edit_date: '9/10/2560'
-                            // },
-                            // {
-                            //     address_education: 'มหาวิทยาลัยเชียงใหม่',
-                            //     level_education: 'ปริญญาตรี',
-                            //     name_education: 'ครุศาสตรบัณฑิต',
-                            //     year_education: 2560,
-                            //     edit_name: 'ผู้ใช้งาน',
-                            //     edit_date: '2/10/2561'
-                            // },
-                            // {
-                            //     address_education: 'มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา',
-                            //     level_education: 'ปริญญาตรี',
-                            //     name_education: 'เทคโนโลยีบัณฑิต',
-                            //     year_education: 2560,
-                            //     edit_name: 'ผู้ใช้งาน',
-                            //     edit_date: '3/11/2561'
-                            // }
-                        ]
-                    }
+                        statePath: 'profile.info.assessment',
+                        value: []
+                    },
                 }
+            }
+            _openPanelRight(e) {
+                this.dispatchEvent(new CustomEvent('open_panelRight', {
+                    detail:
+                    {
+                        data: e.model.item,
+                        index: e.model.index
+                    }
+                }))
+            }
+            _delete(e) {
+                // console.log(e.model.index);
+                this.dispatchEvent(new CustomEvent('_delete', { detail: { index: e.model.index } }))
             }
             updatePosition(e) {
                 this.$.tooltip.textContent = e.currentTarget.getAttribute('name');

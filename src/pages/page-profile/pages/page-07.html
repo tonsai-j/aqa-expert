@@ -83,11 +83,11 @@
                             </div>
                         </div>
                     </div>
-                    <academy-list></academy-list>
+                    <academy-list id="academyList" info="[[info]]"></academy-list>
                 </div>
             </aqa-panel>
         </div>
-        <nylon-panel-right id="right" title="[[i18n.page07.title]]" width="80%">
+        <nylon-panel-right id="panelRight" title="[[i18n.page07.title]]" width="80%">
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
@@ -150,7 +150,7 @@
                     </div>
                     <div class="row col-md-offset-1 col-md-11 middle-md">
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                            <aqa-input label="[[i18n.page07.name]]" value="[[acadamyName]]" disabled></aqa-input>
+                            <aqa-input label="[[i18n.page07.name]]" class="acadamy" value="[[acadamyName]]" required disabled></aqa-input>
                         </div>
                     </div>
                     <aqa-vaadin-grid>
@@ -229,7 +229,7 @@
                     <div class="row center-xs">
                         <div class="col-lg-2">
                             <div style="padding:0rem 2rem;">
-                                <aqa-button type="success btn-full-width" on-tap="getForm">บันทึก</aqa-button>
+                                <aqa-button type="success btn-full-width" on-click="_save">บันทึก</aqa-button>
                             </div>
                         </div>
                     </div>
@@ -303,6 +303,10 @@
                     acadamyName: {
                         type: String,
                         value: ''
+                    },
+                    dataSave: {
+                        type: String,
+                        value: {}
                     }
 
                 };
@@ -338,23 +342,36 @@
             count(val) {
                 return val + 1
             }
+            connectedCallback() {
+                // console.log(this.detail)
+                super.connectedCallback();
+                this.$.academyList.addEventListener('open_panelRight',
+                    (detail) => {
+                        this.$.panelRight.open();
+                        this.set('data', detail.detail.data)
+                        this.set('_index', detail.detail.index)
+                    })
+                this.$.academyList.addEventListener('_delete', this._confirmDel)
+            }
             getData(e) {
                 let data = e.model.__data.item
+                // console.log(data)
+                this.set('dataSave', data)
                 this.set('acadamyName', data.ORGTHAICOMPLETENAME)
                 // console.log(e.model.__data.item);
             }
             _openPanelRight(e) {
-                if (e.currentTarget.getAttribute('action') == 'edit') {
-                    this.set('data', e.model.item)
-                    this.set('_index', e.model.index)
-                } else {
+                // if (e.currentTarget.getAttribute('action') == 'edit') {
+                //     this.set('data', e.model.item)
+                //     this.set('_index', e.model.index)
+                // } else {
                     this.set('data', {})
                     this.set('_index', undefined)
-                }
-                this.$.right.open();
+                // }
+                this.$.panelRight.open();
             }
             _closePanelRight() {
-                this.$.right.close()
+                this.$.panelRight.close()
             }
             _getAacademyByworkType(e) {
                 if (e.target.value == '') {
@@ -417,7 +434,8 @@
             }
             _save() {
 
-                if (this.validateForm('.required')) {
+                if (!this.validateForm('.acadamy')) {
+                    console.log(this.dataSave)
                     if (typeof this._index === 'undefined') {
                         var newData = Object.assign(this.data, {
                             date_created: new Date().toISOString(),
