@@ -401,6 +401,7 @@
                             type: 'danger',
                             'dialog-confirm': true,
                             'autofocus': true,
+                            style:'margin-right:5px',
                             action: () => {
                                 Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'working', e.detail.index
                                     , () => {

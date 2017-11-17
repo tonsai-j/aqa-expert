@@ -305,9 +305,10 @@
                         {
                             label: this.i18n.button.delete.label,
                             icon: this.i18n.button.delete.icon,
-                            class: 'btn-delete',
+                            type: 'danger',
                             'dialog-confirm': true,
                             'autofocus': true,
+                            style:'margin-right:5px',
                             action: () => {
                                 Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'specialist', e.detail.index
                                     , () => {
@@ -321,7 +322,7 @@
                         {
                             label: this.i18n.button.close.label,
                             icon: this.i18n.button.close.icon,
-                            class: 'btn-close',
+                            type: 'default',
                             'dialog-dismiss': true
                         },
                     ]
