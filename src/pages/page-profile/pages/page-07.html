@@ -435,9 +435,9 @@
             _save() {
 
                 if (!this.validateForm('.acadamy')) {
-                    console.log(this.dataSave)
+                    // console.log(this.dataSave)
                     if (typeof this._index === 'undefined') {
-                        var newData = Object.assign(this.data, {
+                        var newData = Object.assign(this.dataSave, {
                             date_created: new Date().toISOString(),
                             date_updated: new Date().toISOString(),
                             creater: this.info.taxno,
@@ -446,19 +446,19 @@
                         Nylon.dispatch('PROFILE_PUSH_ARRAY', this.info.id, 'assessment', newData,
                             () => {
                                 this._closePanelRight();
-                                this.set('data', {});
+                                this.set('dataSave', {});
                                 Nylon.toast('insert')
                             }
                         );
                     } else {
-                        var newData = Object.assign(this.data, {
+                        var newData = Object.assign(this.dataSave, {
                             date_updated: new Date().toISOString(),
                             updater: this.info.taxno
                         });
                         Nylon.dispatch('PROFILE_UPDATE_ARRAY', this.info.id, 'assessment', this._index, newData
                             , () => {
                                 this._closePanelRight();
-                                this.set('data', {});
+                                this.set('dataSave', {});
                                 Nylon.toast('update')
                             });
                     }
