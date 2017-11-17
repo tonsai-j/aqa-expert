@@ -11,6 +11,10 @@
 <link rel="import" href="../../../../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../../../components/aqa-icon-button/aqa-icon-button.html">
 
+<link rel="import" href="../../../../i18n/profile/page-11-i18n.html">
+
+<link rel="import" href="../../../../redux-mixin.html">
+
 <link rel="import" href="../../../../../images/icon-moon-delete.html">
 <link rel="import" href="../../../../layout/shared-styles.html">
 <dom-module id="zone-list">
@@ -46,21 +50,23 @@
                 <vaadin-grid-column width="200px">
                     <template class="header">
                         <div class="header">
-                            ภูมิภาค
+                            <!-- ภูมิภาค -->
+                            [[i18n.page11.region]]
                         </div>
                     </template>
                     <template>
-                        <div>[[item.region]]</div>
+                        <div>[[item.region.label]]</div>
                     </template>
                 </vaadin-grid-column>
                 <vaadin-grid-column width="200px">
                     <template class="header">
                         <div class="header">
-                            จังหวัด
+                            <!-- จังหวัด -->
+                            [[i18n.page11.province]]
                         </div>
                     </template>
                     <template>
-                        <div>[[item.province]]</div>
+                        <div style="text-align: center">[[item.province.length]] จังหวัด</div>
                     </template>
                 </vaadin-grid-column>
 
@@ -71,10 +77,10 @@
                     <template>
                         <div style="display:flex">
                             <aqa-tooltip label="ดู & แก้ไขรายละเอียด">
-                                <paper-icon-button class="btn-edit" icon="create" noink></paper-icon-button>
+                                <paper-icon-button class="btn-edit" icon="create" noink on-click="_openPanelRight"></paper-icon-button>
                             </aqa-tooltip>
                             <aqa-tooltip label="ลบ">
-                                <paper-icon-button class="btn-delete" icon="icomoon:bin" noink></paper-icon-button>
+                                <paper-icon-button class="btn-delete" icon="icomoon:bin" noink on-click="_delete"></paper-icon-button>
                             </aqa-tooltip>
                             <!-- <paper-icon-button class="btn-edit" id="btn-[[index]]" name="แก้ไข" on-tap="getPosition" on-mouseover="updatePosition" icon="create"></paper-icon-button>
                             <paper-icon-button class="btn-delete" id="btns-[[index]]" name="ลบ" on-tap="getPosition" on-mouseover="updatePosition" icon="delete"></paper-icon-button> -->
@@ -102,20 +108,33 @@
 
     </template>
     <script>
-        class ZoneList extends Polymer.Element {
+        class ZoneList extends ReduxMixin(Polymer.Element) {
             static get is() { return 'zone-list'; }
             static get properties() {
                 return {
+                    i18n: {
+                        type: Object,
+                        statePath: 'i18n',
+                    },
                     datas: {
                         type: Array,
-                        value: [
-                            {
-                                province: 'กรุงเทพมหานคร',
-                                region: 'กลาง',
-                            },
-                        ]
-                    }
+                        statePath: 'profile.info.zone',
+                        value: []
+                    },
                 }
+            }
+            _openPanelRight(e) {
+                this.dispatchEvent(new CustomEvent('open_panelRight', {
+                    detail:
+                    {
+                        data: e.model.item,
+                        index: e.model.index
+                    }
+                }))
+            }
+            _delete(e) {
+                // console.log(e.model.index);
+                this.dispatchEvent(new CustomEvent('_delete', { detail: { index: e.model.index } }))
             }
             updatePosition(e) {
                 this.$.tooltip.textContent = e.currentTarget.getAttribute('name');

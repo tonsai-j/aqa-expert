@@ -62,11 +62,11 @@
                             </div>
                         </div>
                     </div>
-                    <zone-list></zone-list>
+                    <zone-list id="zoneList" info="[[info]]"></zone-list>
                 </div>
             </aqa-panel>
         </div>
-        <nylon-panel-right id="right" title="[[i18n.page11.title]]" width="80%">
+        <nylon-panel-right id="panelRight" title="[[i18n.page11.title]]" width="80%">
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
@@ -85,6 +85,7 @@
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-5">
                             <paper-checkbox checked="{{masterCheck}}" disabled="{{masterCheckDisable}}" on-tap='seletedCheckAll'>[[i18n.page11.province_all]]</paper-checkbox>
+                            <!-- <paper-checkbox checked="{{item.checked}}">[[item.province_th]]</paper-checkbox> -->
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
@@ -100,15 +101,15 @@
                     </template> -->
 
                     <!-- <template is="dom-if" if={{!masterCheckDisable}}> -->
-                        <div class="row col-md-offset-1 middle-md">
-                            <div class="row col-md-9">
-                                <template is="dom-repeat" items={{provinceList}}>
-                                    <span class="col-md-4">
+                    <div class="row col-md-offset-1 middle-md">
+                        <div class="row col-md-9">
+                            <template is="dom-repeat" items={{provinceList}}>
+                                <span class="col-md-4">
                                         <paper-checkbox checked="{{item.checked}}">[[item.label]]</paper-checkbox>
                                     </span>
-                                </template>
-                            </div>
+                            </template>
                         </div>
+                    </div>
                     <!-- </template> -->
                     <!-- <div class="row center-md button-buttom">
                         <div class="button-action-bottom">
@@ -123,7 +124,7 @@
                     <div class="row center-xs">
                         <div class="col-lg-2">
                             <div style="padding:0rem 2rem;">
-                                <aqa-button type="success btn-full-width" on-tap="getForm">บันทึก</aqa-button>
+                                <aqa-button type="success btn-full-width" on-click="_save">บันทึก</aqa-button>
                             </div>
                         </div>
                     </div>
@@ -279,9 +280,20 @@
                     this.set(`provinceList.${index}.checked`, !inputChecked)
                 })
             }
+            connectedCallback() {
+                // console.log(this.detail)
+                super.connectedCallback();
+                this.$.zoneList.addEventListener('open_panelRight',
+                    (detail) => {
+                        this.$.panelRight.open();
+                        this.set('data', detail.detail.data)
+                        this.set('_index', detail.detail.index)
+                    })
+                this.$.zoneList.addEventListener('_delete', this._confirmDel)
+            }
             _save() {
 
-                if (this.validateForm('.required')) {
+                if (!this.validateForm('.required')) {
                     let newProvince = this.provinceList.filter(province => province.checked === true).map(item => {
                         delete item.checked
                         return item
@@ -340,9 +352,9 @@
                             'dialog-confirm': true,
                             'autofocus': true,
                             action: () => {
-                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'zone', e.model.index
+                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'zone', e.detail.index
                                     , () => {
-                                        this._closePanelRight()
+                                        // this._closePanelRight()
                                         this.set('data', {})
                                         this.set('provinceList', [])
                                         Nylon.toast('delete')
@@ -372,10 +384,20 @@
                     this.set('regionDisabled', false)
                 }
                 Nylon.dispatch('PROFILE_11_GET_LIST_REGION')
-                this.$.right.open()
+                this.$.panelRight.open()
             }
+            // _openPanelRight(e) {
+            //     // if (e.currentTarget.getAttribute('action') == 'edit') {
+            //     //     this.set('data', e.model.item)
+            //     //     this.set('_index', e.model.index)
+            //     // } else {
+            //     this.set('data', {})
+            //     this.set('_index', undefined)
+            //     // }
+            //     this.$.panelRight.open();
+            // }
             _closePanelRight() {
-                this.$.right.close()
+                this.$.panelRight.close()
             }
         }
 
