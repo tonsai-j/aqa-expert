@@ -435,7 +435,7 @@
             _save() {
 
                 if (!this.validateForm('.acadamy')) {
-                    // console.log(this.dataSave)
+                    console.log(this.dataSave)
                     if (typeof this._index === 'undefined') {
                         var newData = Object.assign(this.dataSave, {
                             date_created: new Date().toISOString(),
@@ -484,9 +484,9 @@
                             'dialog-confirm': true,
                             'autofocus': true,
                             action: () => {
-                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'assessment', e.model.index
+                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'assessment', e.detail.index
                                     , () => {
-                                        this._closePanelRight()
+                                        // this._closePanelRight()
                                         this.set('data', {})
                                         Nylon.toast('delete')
                                     });
