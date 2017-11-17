@@ -116,7 +116,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-1">
                             <!-- ปัจจุบัน -->
-                            <paper-checkbox on-tap="_disabledEndYear" >[[i18n.page05.present]] </paper-checkbox>
+                            <paper-checkbox on-tap="_disabledEndYear">[[i18n.page05.present]] </paper-checkbox>
                         </div>
                     </div>
 
@@ -190,7 +190,7 @@
             </nylon-panel-card>
         </nylon-panel-right>
 
-        <paper-toast id="toast" horizontal-align="right" vertical-align="bottom" text="[[i18n.toast.save]]"></paper-toast>
+        <!-- <paper-toast id="toast" horizontal-align="right" vertical-align="bottom" text="[[i18n.toast.save]]"></paper-toast> -->
 
     </template>
 
@@ -315,9 +315,44 @@
             _closePanelRight() {
                 this.$.panelRight.close()
             }
+            // _save() {
+            //     console.log(this.data)
+            //     if (this.validateForm('.required')) {
+            //         // this.set('data.work_start_date', new Date(this.data.work_start_date).toISOString());
+            //         // this.set('data.work_end_date', new Date(this.data.work_end_date).toISOString());
+            //         if (typeof this._index === 'undefined') {
+            //             var newData = Object.assign(this.data, {
+            //                 date_created: new Date().toISOString(),
+            //                 date_updated: new Date().toISOString(),
+            //                 creater: this.info.taxno,
+            //                 updater: this.info.taxno
+            //             });
+            //             Nylon.dispatch('PROFILE_PUSH_ARRAY', this.info.id, 'working', newData
+            //                 , () => {
+            //                     this._closePanelRight();
+            //                     this.set('data', {});
+            //                     // Nylon.toast('insert')
+            //                     Nylon.dialog('save')
+            //                 });
+            //         } else {
+            //             var newData = Object.assign(this.data, {
+            //                 date_updated: new Date(),
+            //                 updater: this.info.taxno
+            //             });
+            //             Nylon.dispatch('PROFILE_UPDATE_ARRAY', this.info.id, 'working', this._index, newData
+            //                 , () => {
+            //                     this._closePanelRight();
+            //                     this.set('data', {});
+            //                     // Nylon.toast('update')
+            //                     Nylon.dialog('save')
+            //                 });
+            //         }
+            //     }
+
+            // }
             _save() {
                 // console.log(this.data)
-                if (this.validateForm('.required')) {
+                if (!this.validateForm('.required')) {
                     // this.set('data.work_start_date', new Date(this.data.work_start_date).toISOString());
                     // this.set('data.work_end_date', new Date(this.data.work_end_date).toISOString());
                     if (typeof this._index === 'undefined') {
@@ -341,14 +376,13 @@
                         });
                         Nylon.dispatch('PROFILE_UPDATE_ARRAY', this.info.id, 'working', this._index, newData
                             , () => {
-                                this._closePanelRight();
+                                // this._closePanelRight();
                                 this.set('data', {});
                                 // Nylon.toast('update')
                                 Nylon.dialog('save')
                             });
                     }
                 }
-
             }
 
             _confirmDel(e) {
