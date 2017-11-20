@@ -48,6 +48,7 @@
 <link rel="import" href="../../../../bower_components/paper-toast/paper-toast.html">
 
 
+
 <dom-module id="page-02">
     <template>
         <style include="flexbox-grid shared-styles">
@@ -88,11 +89,15 @@
                     </div> -->
                     <div class="section-content">
                         <div class="row">
-                            <div class="col-xs-12 col-sm-6">
+                            <div class="col-xs-12 col-sm-6" >
                                 <input type="radio" name="address" checked> [[i18n.page02.add_contract]]
                                 <input type="radio" name="address"> [[i18n.page02.addsWork]]
                                 <!-- <aqa-combo-box label="สถานที่จัดส่งเอกสาร" items="[[address]]" item-label-path="label" item-value-path="value"></aqa-combo-box> -->
                             </div>
+                            <!-- <paper-radio-group selected="{{address.address_selected}}">
+                                <paper-radio-button name="address_contract">[[i18n.page02.address_contract]]</paper-radio-button>
+                                <paper-radio-button name="address_work">[[i18n.page02.address_work]]</paper-radio-button>
+                            </paper-radio-group> -->
                         </div>
                     </div>
                 </div>
@@ -110,7 +115,7 @@
                         </div>
                     </div> -->
                     <div class="section-content">
-                        <address-form-contact></address-form-contact>
+                        <!-- <address-form-contact address="{{address.contract}}"></address-form-contact> -->
                     </div>
                 </div>
             </aqa-panel>
@@ -137,7 +142,7 @@
                                 <aqa-input label="[[i18n.page02.company_name]]" value=""></aqa-input>
                             </div>
                         </div>
-                        <address-form-contact></address-form-contact>
+                        <!-- <address-form-contact address="{{address.work}}"></address-form-contact> -->
                     </div>
 
                 </div>
@@ -146,7 +151,7 @@
             <div class="row center-xs">
                 <div class="col-lg-2">
                     <div style="padding:0rem 2rem;">
-                        <aqa-button type="success btn-full-width">[[i18n.button.save.label]]</aqa-button>
+                        <aqa-button type="success btn-full-width" on-click="_save">[[i18n.button.save.label]]</aqa-button>
                     </div>
                 </div>
             </div>
@@ -201,53 +206,44 @@
                         statePath: 'profile.info'
                     },
                     address: {
-                        type: Array,
+                        type: Object,
                         statePath: 'profile.info.address',
-                        value: []
+                        // value: {
+                        //     contract: {},
+                        //     work: {}
+                        // }
                     },
-                    // contact: {
+                    // address: {
                     //     type: Object,
-                    //     statePath: 'profile.info.contact',
+                    //     // statePath: 'profile.info.address',
+                    //     value: {}
+                    // },
+                    // data: {
+                    //     type: Object,
                     //     value: {
-                    //         home: {},
-                    //         mail: {},
-                    //         work: {}
+                    //         address_contract: {},
+                    //         address_work: {}
                     //     }
                     // },
-                    home: {
-                        type: Object,
-                        statePath: 'profile.info.contact.home',
-                        value: {}
-                    },
-                    mail: {
-                        type: Object,
-                        statePath: 'profile.info.contact.mail',
-                        value: {}
-                    },
-                    work: {
-                        type: Object,
-                        statePath: 'profile.info.contact.work',
-                        value: {}
-                    },
-                    data: {
-                        type: Object,
-                        value: {
-                            home_number: '',
-                            village_no: '',
-                            village_name: '',
-                            building: '',
-                            alley: '',
-                            road: '',
-                            // region_id: '',
-                            provinc_id: '',
-                            amphoe: '',
-                            district: '',
-                            zipcode: '',
-                            telephone: '',
-                            fax: ''
-                            // mobile_phone: ''
-                        }
-                    },
+                    // data: {
+                    //     type: Object,
+                    //     value: {
+                    //         home_number: '',
+                    //         village_no: '',
+                    //         village_name: '',
+                    //         building: '',
+                    //         alley: '',
+                    //         road: '',
+                    //         // region_id: '',
+                    //         provinc_id: '',
+                    //         amphoe: '',
+                    //         district: '',
+                    //         zipcode: '',
+                    //         telephone: '',
+                    //         fax: ''
+                    //         // mobile_phone: ''
+                    //     }
+                    // },
                 };
             }
 
@@ -298,35 +294,50 @@
                     }
                 )
             }
+            // _save() {
+            // console.log(this.data)
+            // console.log(this.address)
+            // if (this.validateForm('.required')) {
+            //     if (typeof this._index === 'undefined') {
+            //         var newData = Object.assign(this.data, {
+            //             date_created: new Date().toISOString(),
+            //             date_updated: new Date().toISOString(),
+            //             creater: this.info.taxno,
+            //             updater: this.info.taxno
+            //         });
+            //         Nylon.dispatch('PROFILE_PUSH_ARRAY', this.info.id, 'address', newData
+            //             , () => {
+            //                 this._closePanelRight();
+            //                 this.set('data', {});
+            //                 Nylon.toast('insert')
+            //                 this.notifyPath('address');
+            //             });
+            //     } else {
+            //         var newData = Object.assign(this.data, {
+            //             date_updated: new Date().toISOString(),
+            //             updater: this.info.taxno
+            //         });
+            //         Nylon.dispatch('PROFILE_UPDATE_ARRAY', this.info.id, 'address', this._index, newData
+            //             , () => {
+            //                 this._closePanelRight();
+            //                 this.set('data', {});
+            //                 Nylon.toast('update')
+            //                 this.notifyPath('address');
+            //             });
+            //     }
+            // } else {
+            //     Nylon.toast('required')
+            // }
+            // }
             _save() {
+                console.log(this.address)
+                // console.log(this.validateForm('.required'));
                 if (this.validateForm('.required')) {
-                    if (typeof this._index === 'undefined') {
-                        var newData = Object.assign(this.data, {
-                            date_created: new Date().toISOString(),
-                            date_updated: new Date().toISOString(),
-                            creater: this.info.taxno,
-                            updater: this.info.taxno
-                        });
-                        Nylon.dispatch('PROFILE_PUSH_ARRAY', this.info.id, 'address', newData
-                            , () => {
-                                this._closePanelRight();
-                                this.set('data', {});
-                                Nylon.toast('insert')
-                                this.notifyPath('address');
-                            });
-                    } else {
-                        var newData = Object.assign(this.data, {
-                            date_updated: new Date().toISOString(),
-                            updater: this.info.taxno
-                        });
-                        Nylon.dispatch('PROFILE_UPDATE_ARRAY', this.info.id, 'address', this._index, newData
-                            , () => {
-                                this._closePanelRight();
-                                this.set('data', {});
-                                Nylon.toast('update')
-                                this.notifyPath('address');
-                            });
-                    }
+                    Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'address', this.address,
+                        () => {
+                            Nylon.toast('update')
+                        }
+                    )
                 } else {
                     Nylon.toast('required')
                 }
