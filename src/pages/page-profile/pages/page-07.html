@@ -435,7 +435,7 @@
             _save() {
 
                 if (!this.validateForm('.acadamy')) {
-                    console.log(this.dataSave)
+                    // console.log(this.dataSave)
                     if (typeof this._index === 'undefined') {
                         var newData = Object.assign(this.dataSave, {
                             date_created: new Date().toISOString(),
@@ -482,9 +482,10 @@
                         {
                             label: this.i18n.button.delete.label,
                             icon: this.i18n.button.delete.icon,
-                            class: 'btn-delete',
+                            type: 'danger',
                             'dialog-confirm': true,
                             'autofocus': true,
+                            style:'margin-right:5px',
                             action: () => {
                                 Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'assessment', e.detail.index
                                     , () => {
@@ -498,7 +499,7 @@
                         {
                             label: this.i18n.button.close.label,
                             icon: this.i18n.button.close.icon,
-                            class: 'btn-close',
+                            type: 'default',
                             'dialog-dismiss': true
                         },
                     ]

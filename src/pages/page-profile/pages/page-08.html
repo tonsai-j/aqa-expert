@@ -304,7 +304,7 @@
                 //this.fadeInDown(elem, 1, 300)
                 Polymer.RenderStatus.afterNextRender(this, function () {
                     Nylon.dispatch('PROFILE_08_GET_LIST_TYPE_RESEARCH')
-                    console.log(1);
+                    // console.log(1);
                 });
             }
             _date(d) {
@@ -364,9 +364,10 @@
                         {
                             label: this.i18n.button.delete.label,
                             icon: this.i18n.button.delete.icon,
-                            class: 'btn-delete',
+                            type: 'danger',
                             'dialog-confirm': true,
                             'autofocus': true,
+                            style:'margin-right:5px',
                             action: () => {
                                 Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'research', e.detail.index
                                     , () => {
@@ -380,7 +381,7 @@
                         {
                             label: this.i18n.button.close.label,
                             icon: this.i18n.button.close.icon,
-                            class: 'btn-close',
+                            type: 'default',
                             'dialog-dismiss': true
                         },
                     ]
