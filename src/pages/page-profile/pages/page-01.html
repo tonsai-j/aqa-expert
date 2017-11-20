@@ -122,8 +122,9 @@
                         <div class="first-xs last-lg col-xs-12 col-sm-4 col-lg-2">
                             <div>
                                 <!-- <div class="flex-item"> -->
-                                <img id="output_image" src$="[[rootPath]]../../../images/user upload.png" />
-                                <aqa-button type="primary btn-full-width" icon="icons:file-upload" style="max-width:96px">[[i18n.page01.upload]]</aqa-button>
+                                <img id="output_image" src$="[[pic_url]]" />
+                                <input type="file" id="upFile" on-change="fileChange" hidden>
+                                <aqa-button type="primary btn-full-width" icon="icons:file-upload" style="max-width:96px" on-tap="upLoadFile">[[i18n.page01.upload]]</aqa-button>
                                 <!-- </div> -->
                             </div>
                             <div style="margin:1rem"></div>
@@ -283,6 +284,18 @@
                     age: {
                         type: Number,
                         value: 0
+                    },
+                    file: {
+                        type: Object,
+                        value: {}
+                    },
+                    pic_url: {
+                        type: String,
+                    },
+                    url: {
+                        type: String,
+                        statePath: 'profile_page01.url',
+                        observer: 'setUrlBank'
                     }
                 };
             }
@@ -309,8 +322,30 @@
                     // Nylon.dispatch('REGISTER_CHECK_PERSON', localStorage.getItem('taxno'))
                 });
             }
-            upload_img() {
-                this.$.ifile.click()
+            upLoadFile() {
+                this.$.upFile.click()
+            }
+            fileChange(e) {
+                // console.log(e);
+                let reader = new FileReader()
+                reader.onload = () => {
+                    var output = this.$.output_image
+                    output.src = reader.result
+                }
+                this.set('file', event.target.files[0])
+                // console.log(event.target.files[0]);
+                reader.readAsDataURL(event.target.files[0])
+                let profile = {
+                    pic_type: 'profile',
+                    user_id: this.info.id
+                }
+                Nylon.dispatch('PROFILE_01_POST_PICTURE', this.file, profile)
+            }
+            setUrlBank(url) {
+                // console.log(url);
+                if (this.basic === undefined)
+                    return ''
+                this.set('basic.profile_url', url)
             }
             _openDropDown(e) {
                 e.currentTarget.previousElementSibling.open()
@@ -330,6 +365,11 @@
                         if (date.expire_date !== undefined)
                             date.expire_date = new Date(date.expire_date).addHours(7).toISOString().split('T')[0]
 
+                        if (this.basic.profile_url !== undefined && this.basic.profile_url !== '') {
+                            this.set('pic_url', this.basic.profile_url)
+                        } else {
+                            this.set('pic_url', this.rootPath + '/images/icon-img.png')
+                        }
                         // console.log(date);
                         this.set('data', date)
                     }

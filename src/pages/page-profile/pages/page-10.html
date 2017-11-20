@@ -279,26 +279,7 @@
                 }
                 Nylon.dispatch('PROFILE_01_POST_PICTURE', this.file, profile)
             }
-            // preview_image(e) {
-            //     var reader = new FileReader()
-            //     reader.onload = () => {
-            //         var output = this.$.output_image
-            //         output.src = reader.result
-            //     }
-            //     reader.readAsDataURL(event.target.files[0])
-            // }
-            // _save() {
-            //     console.log(this.bank);
-            // if (this.validateForm('.required')) {
-            //     Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'bank', this.bank,
-            //         () => {
-            //             Nylon.toast('update')
-            //         }
-            //     )
-            // } else {
-            //     Nylon.toast('required')
-            // }
-            // }
+            
             setUrl(e) {
                 if (this.bank.bank_url !== undefined && this.bank.bank_url !== '') {
                     this.set('pic_url', this.bank.bank_url)
@@ -309,7 +290,7 @@
                 // this.set('bank.bank_url', url) 
             }
             setUrlBank(url) {
-                console.log(url);
+                // console.log(url);
                 if (this.bank === undefined)
                     return ''
                 this.set('bank.bank_url', url)
