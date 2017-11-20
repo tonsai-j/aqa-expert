@@ -71,7 +71,6 @@
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-4">{{getProvince(data.region_id,data.region_id.*)}}
-                            <!-- items='{{regionList}}' -->
                             <aqa-combo-box class="required" disabled={{regionDisabled}} required always-float-label label="[[i18n.page11.region]]" items='{{_filterChanged(regionList,regionList.*)}}'
                                 value="{{data.region_id}}" item-label-path="label" item-value-path="value" on-selected-item-changed="getObject"
                                 object-name="data.region">
@@ -84,7 +83,7 @@
 
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-5">
-                            <paper-checkbox checked="{{masterCheck}}" disabled="{{masterCheckDisable}}" on-tap='seletedCheckAll'>[[i18n.page11.province_all]]</paper-checkbox>
+                            <paper-checkbox checked="{{masterCheck}}" disabled="{{!masterCheckDisable}}" on-tap='seletedCheckAll'>[[i18n.page11.province_all]]</paper-checkbox>
                             <!-- <paper-checkbox checked="{{item.checked}}">[[item.province_th]]</paper-checkbox> -->
                         </div>
                     </div>
@@ -100,17 +99,17 @@
                         </div>
                     </template> -->
 
-                    <!-- <template is="dom-if" if={{!masterCheckDisable}}> -->
-                    <div class="row col-md-offset-1 middle-md">
-                        <div class="row col-md-9">
-                            <template is="dom-repeat" items={{provinceList}}>
-                                <span class="col-md-4">
+                    <template is="dom-if" if={{masterCheckDisable}}>
+                        <div class="row col-md-offset-1 middle-md">
+                            <div class="row col-md-9">
+                                <template is="dom-repeat" items={{provinceList}}>
+                                    <span class="col-md-4">
                                         <paper-checkbox checked="{{item.checked}}">[[item.label]]</paper-checkbox>
                                     </span>
-                            </template>
+                                </template>
+                            </div>
                         </div>
-                    </div>
-                    <!-- </template> -->
+                    </template>
                     <!-- <div class="row center-md button-buttom">
                         <div class="button-action-bottom">
                             <paper-button raised class="btn-success" on-click="_save">
@@ -191,7 +190,21 @@
                     }
                 };
             }
-
+            connectedCallback() {
+                // console.log(this.detail)
+                Nylon.dispatch('PROFILE_11_GET_LIST_REGION')
+                super.connectedCallback();
+                this.$.zoneList.addEventListener('open_panelRight',
+                    (detail) => {
+                        this.$.panelRight.open();
+                        // console.log(detail.detail.data);
+                        this.set('data', detail.detail.data)
+                        this.setChecked(this.provinceList)
+                        this.set('_index', detail.detail.index)
+                        this.set('regionDisabled', true)
+                    })
+                this.$.zoneList.addEventListener('_delete', this._confirmDel)
+            }
             ready() {
                 super.ready();
                 var elem = this.$.zone
@@ -212,18 +225,18 @@
                 if (province.length < 1)
                     return
                 province.map((item, index) => {
-                    // if (!item.hasOwnProperty('checked')) {
-                    //     // console.log(this.data.province);
-                    //     if (this.data.province !== undefined) {
-                    //         if (this.data.province.find(el => el.id === item.id) !== undefined) {
-                    //             item.checked = true
-                    //         } else {
-                    //             item.checked = false
-                    //         }
-                    //     }
-                    // } else {
-                    item.checked = false
-                    // }
+                    if (!item.hasOwnProperty('checked')) {
+                        // console.log(this.data.province);
+                        if (this.data.province !== undefined) {
+                            if (this.data.province.find(el => el.id === item.id) !== undefined) {
+                                item.checked = true
+                            } else {
+                                item.checked = false
+                            }
+                        }
+                    } else {
+                        item.checked = false
+                    }
                     return item
                 })
                 let checkManster = province.map(prv => prv.checked).every(elem => elem == true)
@@ -261,17 +274,17 @@
                     Polymer.Async.timeOut.after(100),
                     () => {
                         // console.log(value);
-                        // if (this.data !== undefined && value !== undefined) {
-                        // if (this.data.region_id !== '' &&
-                        //     this.data.region_id !== undefined &&
-                        //     this.data.region !== undefined) {
-                        //     this.set('masterCheckDisable', false)
-                        Nylon.dispatch('PROFILE_11_GET_LIST_PROVINCE', value)
-                        // this.set('masterCheckDisable',!this.masterCheckDisable)
-                        // } else {
-                        //     this.set('provinceList', [])
-                        // }
-                        // }
+                        if (this.data !== undefined && value !== undefined) {
+                            if (this.data.region_id !== '' &&
+                                this.data.region_id !== undefined &&
+                                this.data.region !== undefined) {
+                                this.set('masterCheckDisable', false)
+                                Nylon.dispatch('PROFILE_11_GET_LIST_PROVINCE', value)
+                                this.set('masterCheckDisable', !this.masterCheckDisable)
+                            } else {
+                                this.set('provinceList', [])
+                            }
+                        }
                     })
             }
             seletedCheckAll(e) {
@@ -280,17 +293,7 @@
                     this.set(`provinceList.${index}.checked`, !inputChecked)
                 })
             }
-            connectedCallback() {
-                // console.log(this.detail)
-                super.connectedCallback();
-                this.$.zoneList.addEventListener('open_panelRight',
-                    (detail) => {
-                        this.$.panelRight.open();
-                        this.set('data', detail.detail.data)
-                        this.set('_index', detail.detail.index)
-                    })
-                this.$.zoneList.addEventListener('_delete', this._confirmDel)
-            }
+
             _save() {
 
                 if (!this.validateForm('.required')) {
@@ -350,9 +353,10 @@
                         {
                             label: this.i18n.button.delete.label,
                             icon: this.i18n.button.delete.icon,
-                            class: 'btn-delete',
+                            type: 'danger',
                             'dialog-confirm': true,
                             'autofocus': true,
+                            style: 'margin-right:5px',
                             action: () => {
                                 Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'zone', e.detail.index
                                     , () => {
@@ -367,7 +371,7 @@
                         {
                             label: this.i18n.button.close.label,
                             icon: this.i18n.button.close.icon,
-                            class: 'btn-close',
+                            type: 'default',
                             'dialog-dismiss': true
                         },
                     ]
@@ -375,18 +379,18 @@
             }
 
             _openPanelRight(e) {
-                if (e.currentTarget.getAttribute('action') == 'edit') {
-                    this.set('data', e.model.item)
-                    this.set('_index', e.model.index)
-                    this.set('regionDisabled', true)
-                } else {
-                    this.set('data', {})
-                    this.set('provinceList', [])
-                    this.set('masterCheck', false)
-                    this.set('_index', undefined)
-                    this.set('regionDisabled', false)
-                }
-                Nylon.dispatch('PROFILE_11_GET_LIST_REGION')
+                // if (e.currentTarget.getAttribute('action') == 'edit') {
+                //     this.set('data', e.model.item)
+                //     this.set('_index', e.model.index)
+                //     this.set('regionDisabled', true)
+                // } else {
+                this.set('data', {})
+                this.set('provinceList', [])
+                this.set('masterCheck', false)
+                this.set('_index', undefined)
+                this.set('regionDisabled', false)
+                // }
+                // Nylon.dispatch('PROFILE_11_GET_LIST_REGION')
                 this.$.panelRight.open()
             }
             // _openPanelRight(e) {

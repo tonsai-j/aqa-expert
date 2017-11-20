@@ -124,6 +124,7 @@
                 }
             }
             _openPanelRight(e) {
+                // console.log(e.model.item);
                 this.dispatchEvent(new CustomEvent('open_panelRight', {
                     detail:
                     {
@@ -141,9 +142,9 @@
                 this.$.tooltip.for = e.currentTarget.id;
                 this.$.tooltip.updatePosition()
             }
-            getPosition(e) {
-                console.log(e.currentTarget.positionTarget)
-            }
+            // getPosition(e) {
+            //     console.log(e.currentTarget.positionTarget)
+            // }
             count(val) {
                 return val + 1
             }

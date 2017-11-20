@@ -153,8 +153,12 @@
                         <aqa-combo-box-item item="[[item]]" item-label-path="[[itemLabelPath]]"></aqa-combo-box-item>
                     </template>
                 </vaadin-combo-box-light>
-                <iron-icon class="arrow-drop-downw" hidden="{{!value}}" icon="icons:clear" on-click="reset"></iron-icon>
+
+                <iron-icon class="arrow-drop-downw" hidden="{{disabled}}" icon="icons:clear" on-click="reset"></iron-icon>
                 <iron-icon class="arrow-drop-down" icon="icons:arrow-drop-down" on-click="_focusInput"></iron-icon>
+
+
+
             </div>
 
             <template is="dom-if" if="[[invalid]]">
