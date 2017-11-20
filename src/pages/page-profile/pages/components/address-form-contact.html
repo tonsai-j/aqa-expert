@@ -40,17 +40,17 @@
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                     <aqa-input label="[[i18n.page02.road]]" value="{{address.road}}"></aqa-input>
                 </div>
-                <!-- <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                    <aqa-combo-box label="[[i18n.page02.region]]" items="[[regionList]]" item-label-path="label" item-value-path="value" 
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <!-- <aqa-combo-box label="[[i18n.page02.region]]" items="[[regionList]]" item-label-path="label" item-value-path="value" 
                     value="{{address.region_id}}"></aqa-combo-box> -->
-                <!-- <aqa-combo-box always-float-label label="[[i18n.page02.region]]" items='{{regionList}}' value="{{address.region_id}}" item-label-path="label"
-                        item-value-path="value" on-selected-item-changed="getObject" object-name="address.region">
+                <aqa-combo-box always-float-label label="[[i18n.page02.region]]" items='{{regionList}}' value="{{address.region_id}}" item-label-path="label"
+                        item-value-path="value" object-name="address.region">
                         <template>
                             [[item.label]]
                         </template>
-                    </aqa-combo-box> -->
-                <!-- </div>
-                <div class="col-xs-12 col-sm-6 col-md-12 col-lg-3">[[checkIsRegion(region_id,region_id.*)]]
+                    </aqa-combo-box>
+                </div>
+                <!-- <div class="col-xs-12 col-sm-6 col-md-12 col-lg-3">[[checkIsRegion(region_id,region_id.*)]]
                     <aqa-combo-box id="province" label="[[i18n.page02.province]]" items="[[provinceList]]" item-label-path="label" item-value-path="value"
                         value="{{province_id}}"></aqa-combo-box> -->
 
@@ -64,45 +64,45 @@
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                     <!-- <aqa-combo-box label="[[i18n.page02.region]]" items="[[regionList]]" item-label-path="label" item-value-path="value" value="{{address.region_id}}">
                         </aqa-combo-box> -->
-                    <!-- <aqa-combo-box always- float-label label="[[i18n.page02.region]]" items='{{regionList}}' value="{{address.region_id}}" item-label-path="label"
-                        item-value-path="value" on-selected-item-changed="getObject" object-name="address.region">
+                    <aqa-combo-box always- float-label label="[[i18n.page02.region]]" items='{{regionList}}' value="{{address.region_id}}" item-label-path="label"
+                        item-value-path="value"  object-name="address.region">
                         <template>
                             [[item.label]]
                         </template>
-                    </aqa-combo-box> -->
+                    </aqa-combo-box>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-12 col-lg-3">[[checkIsRegion(address.region_id,address.region_id.*)]]
                     <!-- <aqa-combo-box id="province" label="[[i18n.page02.province]]" items="[[provinceList]]" item-label-path="label" item-value-path="value"
                         value="{{address.province_id}}"></aqa-combo-box> -->
-                    <!-- <aqa-combo-box always-float-label label="[[i18n.page02.province]]" items='{{provinceList}}' value="{{address.province_id}}"
-                        item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="address.province">
+                    <aqa-combo-box always-float-label label="[[i18n.page02.province]]" items='{{provinceList}}' value="{{address.province_id}}"
+                        item-label-path="label" item-value-path="value"  object-name="address.province">
                         <template>
                             [[item.label]]
                         </template>
-                    </aqa-combo-box> -->
+                    </aqa-combo-box>
                 </div>
             </div>
             <div class="section-content row">
                 <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-4">[[checkIsProvince(address.province_id,address.province_id.*)]]
                     <!-- <aqa-input label="อำเภอ / เขต" value="" ></aqa-input> -->
-                    <!-- <aqa-combo-box always-float-label label="[[i18n.page02.amphoe]]" items='{{amphoeList}}' value="{{address.amphoe}}" item-label-path="label"
-                        item-value-path="value" on-selected-item-changed="getObject" object-name="address.amphoe">
+                    <aqa-combo-box always-float-label label="[[i18n.page02.amphoe]]" items='{{amphoeList}}' value="{{address.amphoe}}" item-label-path="label"
+                        item-value-path="value"  object-name="address.amphoe">
                         <template>
                             [[item.label]]
                         </template>
-                    </aqa-combo-box> -->
+                    </aqa-combo-box>
                     <!-- <aqa-combo-box label="[[i18n.page02.amphoe]]" items="[[amphoeList]]" item-label-path="label" item-value-path="value" value="{{address.amphoeList_id}}">
                         </aqa-combo-box> -->
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">[[checkIsAmphoe(address.amphoeList_id,address.amphoeList_id.*)]]
                     <!-- <aqa-combo-box label="[[i18n.page02.district]]" items="[[districtList]]" item-label-path="label" item-value-path="value"
                         value=""></aqa-combo-box> -->
-                    <!-- <aqa-combo-box always-float-label label="[[i18n.page02.district]]" items='{{districtList}}' value="{{address.district}}" item-label-path="label"
-                        item-value-path="value" on-selected-item-changed="getObject" object-name="address.district">
+                    <aqa-combo-box always-float-label label="[[i18n.page02.district]]" items='{{districtList}}' value="{{address.district}}" item-label-path="label"
+                        item-value-path="value" object-name="address.district">
                         <template>
                             [[item.label]]
                         </template>
-                    </aqa-combo-box> -->
+                    </aqa-combo-box>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                     <aqa-input label="[[i18n.page02.zipcode]]" value="{{address.zipcode}}"></aqa-input>
