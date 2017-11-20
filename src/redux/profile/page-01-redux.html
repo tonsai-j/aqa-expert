@@ -8,7 +8,7 @@
             nationality: [],
             race: [],
             workStatus: [],
-
+            url: ''
         }
 
         switch (action.type) {
@@ -29,6 +29,9 @@
                 return state
             case 'PROFILE_01_GET_LIST_WORK_STATUS':
                 state.workStatus = action.payload
+                return state
+            case 'PROFILE_01_POST_PICTURE':
+                state.url = action.payload
                 return state
             default:
                 return state
@@ -111,17 +114,21 @@
         PROFILE_01_POST_PICTURE: function (dataPic, profile) {
             // console.log(dataPic);
             var data = new FormData()
-            data.append('file', dataPic[0])
+            data.append('file', dataPic)
 
             // console.log(data);
+
             return dispatch => {
                 axios.defaults.headers.common['pic_type'] = profile.pic_type
                 axios.defaults.headers.common['user_id'] = profile.user_id
                 axios.post('/upload/uploadpic', data)
                     .then(res => {
                         if (res.status === 200) {
-                            Nylon.toast('update')
+                            // Nylon.toast('update')
+                            // return res.data
+                            dispatch({ type: 'PROFILE_01_POST_PICTURE', payload: res.data })
                         }
+
                         // dispatch({ type: 'PROFILE_01_GET_LIST_WORK_STATUS', payload: res.data })
                     }
                     ).catch(err => {
