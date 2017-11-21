@@ -1,0 +1,33 @@
+<script>
+        Nylon.addReducer('profile_page13', function (state, action) {
+            state = state || {
+                doc_type: [],
+            }
+    
+            switch (action.type) {
+                case 'PROFILE_11_GET_LIST_DOC_TYPE':
+                    state.doc_type = action.payload
+                    return state
+                default:
+                    return state
+            }
+            return state
+        })
+    
+    
+        Nylon.addAction({
+            PROFILE_11_GET_LIST_DOC_TYPE: function () {
+                return dispatch => {
+                    axios.get('/type/doc?code=9022,9023,9024')
+                        .then(res => {
+                            dispatch({ type: 'PROFILE_11_GET_LIST_DOC_TYPE', payload: res.data })
+                        }
+                        ).catch(err => {
+                            console.log({ err })
+                        })
+                }
+            },
+    
+        })
+    
+    </script>

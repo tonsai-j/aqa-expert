@@ -27,12 +27,7 @@ exports.post = function (req, res) {
                             education: [],
                             specialist: [],
                             working: [],
-                            skills: {
-                                computer: {},
-                                edu: {},
-                                lang: {},
-                                type: {}
-                            },
+                            skills: [],
                             assessment: [],
                             researches: [],
                             training: [],

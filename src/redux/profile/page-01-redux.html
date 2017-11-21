@@ -124,7 +124,7 @@
                 axios.post('/upload/uploadpic', data)
                     .then(res => {
                         if (res.status === 200) {
-                            // Nylon.toast('update')
+                            Nylon.toast('update')
                             // return res.data
                             dispatch({ type: 'PROFILE_01_POST_PICTURE', payload: res.data })
                         }
