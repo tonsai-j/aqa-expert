@@ -49,9 +49,11 @@
 <link rel="import" href="../../../components/aqa-form/aqa-date-picker.html">
 <link rel="import" href="../../../../bower_components/paper-toast/paper-toast.html">
 
+<link rel="import" href="../../../layout/shared-styles.html">
+
 <dom-module id="page-08">
     <template>
-        <style include="flexbox-grid"></style>
+        <style include="flexbox-grid shared-styles"></style>
         <div class="page-container">
             <aqa-title-name item=[[info.basic]]></aqa-title-name>
             <aqa-panel id="basic">
@@ -367,7 +369,7 @@
                             type: 'danger',
                             'dialog-confirm': true,
                             'autofocus': true,
-                            style:'margin-right:5px',
+                            style: 'margin-right:5px',
                             action: () => {
                                 Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'research', e.detail.index
                                     , () => {
