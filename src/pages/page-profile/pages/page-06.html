@@ -296,11 +296,6 @@
                 const setData = (arr, dataValue) => {
                     if (!this.isUndefined(dataValue))
                         return ''
-                    // console.log(dataValue);
-                    // let newDataCom = arr.map((item, index) => {
-                    //     item.value = ''
-                    //     return item
-                    // })
                     let newDataCom = []
                     arr.map((item, index) => {
                         let check = dataValue.find(itemsub => itemsub.REFCODE === item.REFCODE)
@@ -310,10 +305,6 @@
                         }else {
                             item.value = ''
                         }
-                       
-                        // console.log(item.REFCODE);
-                        // dataValue
-
                     })
                     return arr
                     // this.set(dataSet, newDataCom)

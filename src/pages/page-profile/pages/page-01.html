@@ -345,7 +345,7 @@
                 // console.log(url);
                 if (this.basic === undefined)
                     return ''
-                this.set('basic.profile_url', url)
+                this.set('basic.profile_url', url.url)
             }
             _openDropDown(e) {
                 e.currentTarget.previousElementSibling.open()
@@ -412,7 +412,7 @@
                     newDataSave.birth_date = new Date(newDataSave.birth_date).toISOString()
                     newDataSave.issue_date = new Date(newDataSave.issue_date).toISOString()
                     newDataSave.expire_date = new Date(newDataSave.expire_date).toISOString()
-                    console.log(newDataSave);
+                    // console.log(newDataSave);
                     Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'basic', newDataSave,
                         () => {
                             Nylon.dialog('save')

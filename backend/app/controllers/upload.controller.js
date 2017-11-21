@@ -13,10 +13,12 @@ exports.uploadPic = function (req, res) {
         let pic_type = req.headers.pic_type
         let user_id = req.headers.user_id
         // let newFileName = time + '-' + fileName
-        let newFileName = user_id
-        let pathUrl = 'images/pic_profile/'
         let con = 'content-type'
         let typeImage = '.' + prefile.headers[con].split('/')[1]
+        let newFileName = user_id + typeImage
+        let pathUrl = 'images/pic_profile/'
+        let dateNow = new Date().getTime()
+        // console.log(dateNow);
         // let url = pathUrl + newFileName + typeImage
         // console.log(prefile);
         // console.log(typeImage);
@@ -29,11 +31,15 @@ exports.uploadPic = function (req, res) {
             case 'bank':
                 pathUrl = 'images/pic_bank/'
                 break;
+            case 'files':
+                newFileName = dateNow + '-' + prefile.originalFilename
+                pathUrl = 'files/'
+                break;
             default:
                 break;
         }
         // console.log(pathUrl);
-        let url = pathUrl + newFileName + typeImage
+        let url = pathUrl + newFileName
         fs.readFile(prefile.path, function (err, data) {
             // console.log(data);
             fs.writeFile('./../' + url, data, ['utf8'], (err) => {
@@ -41,7 +47,11 @@ exports.uploadPic = function (req, res) {
                     // return console.log(err)
                     res.json(err)
                 }
-                res.json(url)
+                let data = {
+                    newFileName: newFileName,
+                    url: url
+                }
+                res.json(data)
 
             })
         })
