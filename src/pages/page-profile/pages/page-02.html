@@ -340,9 +340,9 @@
             // }
             // }
             _save() {
-                console.log(this.address)
+                // console.log(this.address)
                 // console.log(this.validateForm('.required'));
-                if (this.validateForm('.required')) {
+                if (!this.validateForm('.required')) {
                     Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'address', this.address,
                         () => {
                             // Nylon.toast('update')

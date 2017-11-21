@@ -21,24 +21,24 @@
         <div>
             <div class="section-content row">
                 <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                    <aqa-input label="[[i18n.page02.home_number]]" value="{{address.home_number}}"></aqa-input>
+                    <aqa-input label="[[i18n.page02.home_number]]" value="{{address.home_number}}" class="required" required></aqa-input>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                    <aqa-input label="[[i18n.page02.village_no]]" value="{{address.village_no}}"></aqa-input>
+                    <aqa-input label="[[i18n.page02.village_no]]" value="{{address.village_no}}" class="required" required></aqa-input>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                    <aqa-input label="[[i18n.page02.village_name]]" value="{{address.village_name}}"></aqa-input>
+                    <aqa-input label="[[i18n.page02.village_name]]" value="{{address.village_name}}" class="required" required></aqa-input>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-12 col-lg-4">
-                    <aqa-input label="[[i18n.page02.building]]" value="{{address.building}}"></aqa-input>
+                    <aqa-input label="[[i18n.page02.building]]" value="{{address.building}}" class="required" required></aqa-input>
                 </div>
             </div>
             <div class="section-content row">
                 <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                    <aqa-input label="[[i18n.page02.alley]]" value="{{address.alley}}"></aqa-input>
+                    <aqa-input label="[[i18n.page02.alley]]" value="{{address.alley}}" class="required" required></aqa-input>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                    <aqa-input label="[[i18n.page02.road]]" value="{{address.road}}"></aqa-input>
+                    <aqa-input label="[[i18n.page02.road]]" value="{{address.road}}" class="required" required></aqa-input>
                 </div>
                 <!-- <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                     <aqa-combo-box label="[[i18n.page02.region]]" items="[[regionList]]" item-label-path="label" item-value-path="value" 
@@ -65,7 +65,7 @@
                     <!-- <aqa-combo-box label="[[i18n.page02.region]]" items="[[regionList]]" item-label-path="label" item-value-path="value" 
                     value="{{address.region_id}}"></aqa-combo-box> -->
                     <aqa-combo-box always-float-label label="[[i18n.page02.region]]" items='{{regionList}}' value="{{address.region_id}}" item-label-path="label"
-                        item-value-path="value" on-selected-item-changed="getObject" object-name="address.region">
+                        item-value-path="value" on-selected-item-changed="getObject" object-name="address.region" class="required" required>
                         <template>
                             [[item.label]]
                         </template>
@@ -85,7 +85,7 @@
                     <!-- <aqa-combo-box id="province" label="[[i18n.page02.province]]" items="[[provinceList]]" item-label-path="label" item-value-path="value"
                         value="{{province_id}}"></aqa-combo-box> -->
                     <aqa-combo-box always-float-label label="[[i18n.page02.province]]" items='{{provinceList}}' value="{{address.province_id}}"
-                        item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="address.province">
+                        item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="address.province" class="required" required>
                         <template>
                             [[item.label]]
                         </template>
@@ -96,7 +96,7 @@
                 <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-4">[[checkIsProvince(address.province_id,address.province_id.*)]]
                     <!-- <aqa-input label="อำเภอ / เขต" value="" ></aqa-input> -->
                     <aqa-combo-box always-float-label label="[[i18n.page02.amphoe]]" items='{{amphoeList}}' value="{{address.amphoeList_id}}" item-label-path="label"
-                        item-value-path="value" on-selected-item-changed="getObject" object-name="address.amphoe">
+                        item-value-path="value" on-selected-item-changed="getObject" object-name="address.amphoe" class="required" required>
                         <template>
                             [[item.label]]
                         </template>
@@ -108,33 +108,33 @@
                     <!-- <aqa-combo-box label="[[i18n.page02.district]]" items="[[districtList]]" item-label-path="label" item-value-path="value"
                         value=""></aqa-combo-box> -->
                     <aqa-combo-box always-float-label label="[[i18n.page02.district]]" items='{{districtList}}' value="{{address.district_id}}"
-                        item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="address.district">
+                        item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="address.district" class="required" required>
                         <template>
                             [[item.label]]
                         </template>
                     </aqa-combo-box>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                    <aqa-input label="[[i18n.page02.zipcode]]" value="{{address.zipcode}}"></aqa-input>
+                    <aqa-input label="[[i18n.page02.zipcode]]" value="{{address.zipcode}}" class="required" required></aqa-input>
                 </div>
             </div>
             <div class="section-content row">
                 <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                    <aqa-input label="[[i18n.page02.telephone]]" value="{{address.telephone}}"></aqa-input>
+                    <aqa-input label="[[i18n.page02.telephone]]" value="{{address.telephone}}" class="required" required></aqa-input>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                     <aqa-input label="[[i18n.page02.fax]]" value=""></aqa-input>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                    <aqa-input type="phone" label="[[i18n.page02.mobile_phone]]" value="{{address.mobile_phone}}"></aqa-input>
+                    <aqa-input type="phone" label="[[i18n.page02.mobile_phone]]" value="{{address.mobile_phone}}" class="required" required></aqa-input>
                 </div>
             </div>
             <div class="section-content row">
                 <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                    <aqa-input label="[[i18n.page02.email]]" value="{{address.email}}"></aqa-input>
+                    <aqa-input label="[[i18n.page02.email]]" value="{{address.email}}" class="required" required></aqa-input>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                    <aqa-input label="[[i18n.page02.line_id]]" value="{{address.line_id}}"></aqa-input>
+                    <aqa-input label="[[i18n.page02.line_id]]" value="{{address.line_id}}" class="required" required></aqa-input>
                 </div>
             </div>
             <!-- <div class="section-content row">
