@@ -48,6 +48,8 @@
 
 <link rel="import" href="../../../../bower_components/paper-toast/paper-toast.html">
 
+<link rel="import" href="../../../../bower_components/paper-radio-group/paper-radio-group.html">
+
 
 
 <dom-module id="page-02">
@@ -90,15 +92,15 @@
                     </div> -->
                     <div class="section-content">
                         <div class="row">
-                            <div class="col-xs-12 col-sm-6" >
-                                <input type="radio" name="address" checked> [[i18n.page02.add_contract]]
-                                <input type="radio" name="address"> [[i18n.page02.addsWork]]
-                                <!-- <aqa-combo-box label="สถานที่จัดส่งเอกสาร" items="[[address]]" item-label-path="label" item-value-path="value"></aqa-combo-box> -->
-                            </div>
-                            <!-- <paper-radio-group selected="{{address.address_selected}}">
-                                <paper-radio-button name="address_contract">[[i18n.page02.address_contract]]</paper-radio-button>
-                                <paper-radio-button name="address_work">[[i18n.page02.address_work]]</paper-radio-button>
-                            </paper-radio-group> -->
+                            <!-- <div class="col-xs-12 col-sm-6" > -->
+                            <!-- <input type="radio" name="address" checked> [[i18n.page02.add_contract]]
+                                <input type="radio" name="address"> [[i18n.page02.addsWork]] -->
+                            <!-- <aqa-combo-box label="สถานที่จัดส่งเอกสาร" items="[[address]]" item-label-path="label" item-value-path="value"></aqa-combo-box> -->
+                            <!-- </div> -->
+                            <paper-radio-group selected="{{address.address_selected}}">
+                                <paper-radio-button name="address_contract">[[i18n.page02.add_contract]]</paper-radio-button>
+                                <paper-radio-button name="address_work">[[i18n.page02.addsWork]]</paper-radio-button>
+                            </paper-radio-group>
                         </div>
                     </div>
                 </div>
@@ -135,7 +137,7 @@
                     </div> -->
                     <div class="section-content">
                         <p>
-                            <aqa-button type="primary">[[i18n.page02.copy_address]]</aqa-button>
+                            <aqa-button type="primary" on-tap='copyDataAddress'>[[i18n.page02.copy_address]]</aqa-button>
                         </p>
 
                         <div class="row">
@@ -271,6 +273,13 @@
             //         // Nylon.dispatch('PROFILE_02_GET_LIST_DISTRICT')
             //     });
             // }
+            copyDataAddress(data) {
+                console.log(this.address.contract)
+                this.address = Object.assign(this.address, {
+                    work: this.address.contract
+                });
+                this.notifyPath('address.work')
+            }
             _closePanelRight() {
                 this.$.panelRight.close();
             }
