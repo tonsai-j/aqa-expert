@@ -345,7 +345,8 @@
                 if (this.validateForm('.required')) {
                     Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'address', this.address,
                         () => {
-                            Nylon.toast('update')
+                            // Nylon.toast('update')
+                            Nylon.dialog('save')
                         }
                     )
                 } else {
@@ -370,7 +371,8 @@
                                     , () => {
                                         this._closePanelRight()
                                         this.set('data', {})
-                                        Nylon.toast('delete')
+                                        // Nylon.toast('delete')
+                                        Nylon.dialog('delete')
                                     });
                             }
                         },
