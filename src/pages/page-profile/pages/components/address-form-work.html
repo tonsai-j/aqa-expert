@@ -1,15 +1,201 @@
 <link rel="import" href="../../../../../bower_components/polymer/polymer-element.html">
+
+<link rel="import" href="../../../../layout/flexbox-grid.html">
+<link rel="import" href="../../../../layout/shared-styles.html">
+<link rel="import" href="../../../../components/aqa-form/aqa-combo-box.html">
+<link rel="import" href="../../../../components/aqa-panel/aqa-panel.html">
+<link rel="import" href="../../../../components/aqa-button/aqa-button.html">
+<link rel="import" href="../../../../components/aqa-form/aqa-input.html">
+
+<link rel="import" href="../../../../redux-mixin.html">
+<link rel="import" href="../../../../i18n/profile/page-02-i18n.html">
+<link rel="import" href="../../../../../bower_components/paper-toast/paper-toast.html">
+
+<link rel="import" href="../../../../mixins/common-mixin.html">
+
 <dom-module id="address-form-work">
     <template>
-        <style include="shared-styles"></style>
-        AddressFormWork
+        <style include="flexbox-grid shared-styles">
+
+        </style>
+        <div>
+            <div class="section-content row">
+                <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                    <aqa-input label="[[i18n.page02.home_number]]" value="{{address.home_number}}"></aqa-input>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                    <aqa-input label="[[i18n.page02.village_no]]" value="{{address.village_no}}"></aqa-input>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <aqa-input label="[[i18n.page02.village_name]]" value="{{address.village_name}}"></aqa-input>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-12 col-lg-4">
+                    <aqa-input label="[[i18n.page02.building]]" value="{{address.building}}"></aqa-input>
+                </div>
+            </div>
+            <div class="section-content row">
+                <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                    <aqa-input label="[[i18n.page02.alley]]" value="{{address.alley}}"></aqa-input>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <aqa-input label="[[i18n.page02.road]]" value="{{address.road}}"></aqa-input>
+                </div>
+                <!-- <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <aqa-combo-box label="[[i18n.page02.region]]" items="[[regionList]]" item-label-path="label" item-value-path="value" 
+                    value="{{address.region_id}}"></aqa-combo-box> -->
+                <!-- <aqa-combo-box always-float-label label="[[i18n.page02.region]]" items='{{regionList}}' value="{{address.region_id}}" item-label-path="label"
+                        item-value-path="value" on-selected-item-changed="getObject" object-name="address.region">
+                        <template>
+                            [[item.label]]
+                        </template>
+                    </aqa-combo-box> -->
+                <!-- </div>
+                <div class="col-xs-12 col-sm-6 col-md-12 col-lg-3">[[checkIsRegion(region_id,region_id.*)]]
+                    <aqa-combo-box id="province" label="[[i18n.page02.province]]" items="[[provinceList]]" item-label-path="label" item-value-path="value"
+                        value="{{province_id}}"></aqa-combo-box> -->
+
+                <!-- <aqa-combo-box always-float-label label="[[i18n.page02.province]]" items='{{provinceList}}' value="{{address.province_id}}"
+                        item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="address.province">
+                        <template>
+                            [[item.label]]
+                        </template>
+                    </aqa-combo-box> -->
+                <!-- </div> -->
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <!-- <aqa-combo-box label="[[i18n.page02.region]]" items="[[regionList]]" item-label-path="label" item-value-path="value" 
+                        value="{{address.region_id}}"></aqa-combo-box> -->
+                    <aqa-combo-box always-float-label label="[[i18n.page02.region]]" items='{{regionList}}' value="{{address.region_id}}" item-label-path="label"
+                        item-value-path="value" on-selected-item-changed="getObject" object-name="address.region">
+                        <template>
+                            [[item.label]]
+                        </template>
+                    </aqa-combo-box>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-12 col-lg-3">[[checkIsRegion(address.region_id,address.region_id.*)]]
+                    <!-- <aqa-combo-box id="province" label="[[i18n.page02.province]]" items="[[provinceList]]" item-label-path="label" item-value-path="value"
+                        value="{{province_id}}"></aqa-combo-box> -->
+                    <aqa-combo-box always-float-label label="[[i18n.page02.province]]" items='{{provinceList}}' value="{{address.province_id}}"
+                        item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="address.province">
+                        <template>
+                            [[item.label]]
+                        </template>
+                    </aqa-combo-box>
+                </div>
+            </div>
+            <div class="section-content row">
+                <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-4">[[checkIsProvince(address.province_id,address.province_id.*)]]
+                    <!-- <aqa-input label="อำเภอ / เขต" value="" ></aqa-input> -->
+                    <aqa-combo-box always-float-label label="[[i18n.page02.amphoe]]" items='{{amphoeList}}' value="{{address.amphoeList_id}}" item-label-path="label"
+                        item-value-path="value" on-selected-item-changed="getObject" object-name="address.amphoe">
+                        <template>
+                            [[item.label]]
+                        </template>
+                    </aqa-combo-box>
+                    <!-- <aqa-combo-box label="[[i18n.page02.amphoe]]" items="[[amphoeList]]" item-label-path="label" item-value-path="value" value="{{address.amphoeList_id}}"></aqa-combo-box> -->
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">[[checkIsAmphoe(address.amphoeList_id,address.amphoeList_id.*)]]
+                    <!-- <aqa-combo-box label="[[i18n.page02.district]]" items="[[districtList]]" item-label-path="label" item-value-path="value"
+                        value=""></aqa-combo-box> -->
+                    <aqa-combo-box always-float-label label="[[i18n.page02.district]]" items='{{districtList}}' value="{{address.district_id}}"
+                        item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="address.district">
+                        <template>
+                            [[item.label]]
+                        </template>
+                    </aqa-combo-box>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <aqa-input label="[[i18n.page02.zipcode]]" value="{{address.zipcode}}"></aqa-input>
+                </div>
+            </div>
+            <div class="section-content row">
+                <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <aqa-input label="[[i18n.page02.telephone]]" value="{{address.telephone}}"></aqa-input>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <aqa-input label="[[i18n.page02.fax]]" value=""></aqa-input>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <aqa-input type="phone" label="[[i18n.page02.mobile_phone]]" value="{{address.mobile_phone}}"></aqa-input>
+                </div>
+            </div>
+            <div class="section-content row">
+                <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <aqa-input label="[[i18n.page02.email]]" value="{{address.email}}"></aqa-input>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <aqa-input label="[[i18n.page02.line_id]]" value="{{address.line_id}}"></aqa-input>
+                </div>
+            </div>
+            <!-- <div class="section-content row">
+                <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-2" style="margin:auto 0">
+                    <b>ช่วงเวลาที่สามารถติดต่อได้ : </b>
+                </div>
+                <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                    <aqa-input label="ตั้งแต่เวลา" value=""></aqa-input>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                    <aqa-input label="ถึงเวลา" value=""></aqa-input>
+                </div>
+            </div> -->
+        </div>
+
+
+        <paper-toast id="toast" horizontal-align="right" vertical-align="bottom" text="[[i18n.toast.save]]"></paper-toast>
+
+
     </template>
     <script>
-        class AddressFormWork extends Polymer.Element {
+        class AddressFormWork extends CommonMixin(ReduxMixin(Polymer.Element)) {
             static get is() { return 'address-form-work'; }
             static get properties() {
                 return {
+                    i18n: {
+                        type: Object,
+                        statePath: 'i18n',
+                    },
+                    regionList: {
+                        statePath: 'profile_page02.region'
+                    },
+                    provinceList: {
+                        statePath: 'profile_page02.province_work'
+                    },
+                    amphoeList: {
+                        statePath: 'profile_page02.amphoe_work'
+                    },
+                    districtList: {
+                        statePath: 'profile_page02.district_work'
+                    },
+                    address: {
+                        type: Object,
+                        value: {},
+                        notify: true
+                    },
                 }
+            }
+            ready() {
+                // console.log(this.address)
+                // console.log(this.data)
+                super.ready()
+                var elem = this.$.address
+                //this.fadeInDown(elem, 1, 300)
+                Polymer.RenderStatus.afterNextRender(this, function () {
+                    Nylon.dispatch('PROFILE_02_GET_LIST_REGION')
+                    // Nylon.dispatch('PROFILE_02_GET_LIST_PROVINCE')
+                    // Nylon.dispatch('PROFILE_02_GET_LIST_AMPHOE')
+                    // Nylon.dispatch('PROFILE_02_GET_LIST_DISTRICT')
+                });
+            }
+            checkIsRegion(region_id) {
+                if (region_id !== undefined && region_id !== '')
+                    Nylon.dispatch('PROFILE_02_GET_LIST_PROVINCE_WORK', region_id)
+            }
+            checkIsProvince(province_id) {
+                if (province_id !== undefined && province_id !== '')
+                    Nylon.dispatch('PROFILE_02_GET_LIST_AMPHOE_WORK', province_id)
+            }
+            checkIsAmphoe(amphoeList_id) {
+                if (amphoeList_id !== undefined && amphoeList_id !== '')
+                    Nylon.dispatch('PROFILE_02_GET_LIST_DISTRICT_WORK', amphoeList_id)
             }
         }
         window.customElements.define(AddressFormWork.is, AddressFormWork);

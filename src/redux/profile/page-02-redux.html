@@ -6,6 +6,9 @@
             province: [],
             amphoe: [],
             district: [],
+            province_work: [],
+            amphoe_work: [],
+            district_work: [],
         }
 
         switch (action.type) {
@@ -20,6 +23,15 @@
                 return state
             case 'PROFILE_02_GET_LIST_DISTRICT':
                 state.district = action.payload
+                return state
+            case 'PROFILE_02_GET_LIST_PROVINCE_WORK':
+                state.province_work = action.payload
+                return state
+            case 'PROFILE_02_GET_LIST_AMPHOE_WORK':
+                state.amphoe_work = action.payload
+                return state
+            case 'PROFILE_02_GET_LIST_DISTRICT_WORK':
+                state.district_work = action.payload
                 return state
             default:
                 return state
@@ -52,6 +64,18 @@
                     })
             }
         },
+        PROFILE_02_GET_LIST_PROVINCE_WORK: function (REGION_ID = 1) {
+            return dispatch => {
+                axios.get('/province?region_id=' + REGION_ID)
+                    .then(res => {
+                        // console.log(addressContract);
+                        dispatch({ type: 'PROFILE_02_GET_LIST_PROVINCE_WORK', payload: res.data })
+                    }
+                    ).catch(err => {
+                        console.log({ err })
+                    })
+            }
+        },
 
         PROFILE_02_GET_LIST_AMPHOE: function (province_id) {
             return dispatch => {
@@ -65,12 +89,36 @@
                     })
             }
         },
+        PROFILE_02_GET_LIST_AMPHOE_WORK: function (province_id) {
+            return dispatch => {
+                axios.get('/district?province_id=' + province_id)
+                    .then(res => {
+                        // console.log(addressContract);
+                        dispatch({ type: 'PROFILE_02_GET_LIST_AMPHOE_WORK', payload: res.data })
+                    }
+                    ).catch(err => {
+                        console.log({ err })
+                    })
+            }
+        },
         PROFILE_02_GET_LIST_DISTRICT: function (district_id) {
             return dispatch => {
                 axios.get('/district/sub?district_id=' + district_id)
                     .then(res => {
                         // console.log(addressContract);
                         dispatch({ type: 'PROFILE_02_GET_LIST_DISTRICT', payload: res.data })
+                    }
+                    ).catch(err => {
+                        console.log({ err })
+                    })
+            }
+        },
+        PROFILE_02_GET_LIST_DISTRICT_WORK: function (district_id) {
+            return dispatch => {
+                axios.get('/district/sub?district_id=' + district_id)
+                    .then(res => {
+                        // console.log(addressContract);
+                        dispatch({ type: 'PROFILE_02_GET_LIST_DISTRICT_WORK', payload: res.data })
                     }
                     ).catch(err => {
                         console.log({ err })
