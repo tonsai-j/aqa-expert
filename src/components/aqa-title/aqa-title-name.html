@@ -9,21 +9,25 @@
                 font-family: MitrLight;
                 text-align: left;
             }
+
             .flex-container {
                 display: flex;
                 justify-content: space-between;
             }
+
             .img-circle {
                 width: 30px;
                 height: 30px;
                 border-radius: 50%;
             }
-            iron-icon{
+
+            iron-icon {
                 margin-right: 0.5rem;
-                --iron-icon-width:42px;
-                --iron-icon-height:42px;
+                --iron-icon-width: 42px;
+                --iron-icon-height: 42px;
             }
-            #output_image{
+
+            #output_image {
                 width: 42px;
                 height: 42px;
                 margin-right: 0.5rem;
@@ -32,11 +36,11 @@
         <div class="flex-container">
             <div class="flex-item" style="display:flex">
                 <div style="margin:auto">
-                   <img id="output_image" src$="[[rootPath]]../../../images/user upload.png" />
+                    <img id="output_image" src$="[[picUrl]]" />
                 </div>
                 <div style="margin:auto">
                     <div class="header-content">
-                        <b>รองศาสตร์จารย์บรรเจิด เริศฤดี</b>
+                        <b>[[item.type_academic.POSITIONTHAIDESC]][[item.firstname_th]] [[item.lastname_th]]</b>
                     </div>
                     <div class="header-content">
                         <b>ผู้ประเมินระดับการศึกษาขั้นพื้นฐาน (ปฐมวัย)</b>
@@ -57,7 +61,14 @@
 
             static get properties() {
                 return {
-
+                    picUrl: {
+                        type: String,
+                        value: ''
+                    },
+                    item: {
+                        type: Object,
+                        value: {}
+                    }
                 };
             }
             ready() {

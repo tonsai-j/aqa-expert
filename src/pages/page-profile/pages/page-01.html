@@ -33,6 +33,11 @@
                 margin: 0 auto;
             }
 
+            img {
+                width: 100px;
+                hyphens: 100px;
+            }
+
             .img-circle {
                 width: 30px;
                 height: 30px;
@@ -58,7 +63,7 @@
         </style>
         <div class="page-container">
 
-            <aqa-title-name></aqa-title-name>
+            <aqa-title-name pic-url="[[pic_url]]" item=[[data]]></aqa-title-name>
             <aqa-panel id="basic">
                 <app-toolbar slot="header">
                     <div main-title>[[i18n.page01.basic_data]]</div>
@@ -71,7 +76,7 @@
                                     <aqa-input class="form" label="เลขประจำตัวประชาชน" type="pid" required></aqa-input>
                                 </div> -->
                                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                                    <aqa-input class="form "  label="[[i18n.page01.register]]" value="[[info.id]]" disabled></aqa-input>
+                                    <aqa-input class="form " label="[[i18n.page01.register]]" value="[[info.id]]" disabled></aqa-input>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
                                     <aqa-input label="[[i18n.page01.status]]" value=""></aqa-input>
@@ -82,7 +87,7 @@
                                     <!-- <aqa-combo-box label="[[i18n.page01.academic]]" items="[[academicList]]" item-label-path="label" item-value-path="value"
                                         auto-validate required></aqa-combo-box> -->
                                     <!-- <aqa-combo-box label="สถานะการทำงาน" items="[[statusList]]" item-label-path="label" item-value-path="value"></aqa-combo-box>  -->
-                                    <!-- <aqa-date-picker id="date" label="วันที่บัตรหมดอายุ" selected="" show-bc></aqa-date-picker> -->
+                                    <!-- {{data.type_academic_id}}// -->
                                     <aqa-combo-box always-float-label label="[[i18n.page01.academic]]" items='{{academicList}}' value="{{data.type_academic_id}}"
                                         item-label-path="label" item-value-path="value" on-selected-item-changed="getObject"
                                         object-name="data.type_academic" class="required" required>
@@ -94,35 +99,38 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
-                                    <aqa-input class="required" required label="[[i18n.page01.prefix_th]]" value="{{data.prefix_th}}" ></aqa-input>
+                                    <aqa-input class="required" required label="[[i18n.page01.prefix_th]]" value="{{data.prefix_th}}"></aqa-input>
                                     <!-- <aqa-combo-box class="form" label="คำนำหน้า (ไทย)" items="[[prefix]]" item-label-path="label_th" item-value-path="value"></aqa-combo-box> -->
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                                     <aqa-input class="required" required label="[[i18n.page01.firstname_th]]" value="{{data.firstname_th}}" auto-validate pattern="[a-zA-Zก-์. ]*"
-                                        error-message="ตัวอักษรเท่านั้น" ></aqa-input>
+                                        error-message="ตัวอักษรเท่านั้น"></aqa-input>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
                                     <aqa-input class="required" required label="[[i18n.page01.lastname_th]]" value="{{data.lastname_th}}" auto-validate pattern="[a-zA-Zก-์. ]*"
-                                        error-message="ตัวอักษรเท่านั้น" ></aqa-input>
+                                        error-message="ตัวอักษรเท่านั้น"></aqa-input>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
-                                    <aqa-input class="required" required label="[[i18n.page01.prefix_en]]" value="{{data.prefix_en}}" ></aqa-input>
+                                    <aqa-input class="required" required label="[[i18n.page01.prefix_en]]" value="{{data.prefix_en}}"></aqa-input>
                                     <!-- <aqa-combo-box class="form" label="คำนำหน้า (อังกฤษ)" items="[[prefix]]" item-label-path="label_eng" item-value-path="value"></aqa-combo-box> -->
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                                    <aqa-input class="required" required label="[[i18n.page01.firstname_en]]" value="{{data.firstname_en}}" ></aqa-input>
+                                    <aqa-input class="required" required label="[[i18n.page01.firstname_en]]" value="{{data.firstname_en}}"></aqa-input>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
-                                    <aqa-input class="required" required label="[[i18n.page01.lastname_en]]" value="{{data.lastname_en}}" ></aqa-input>
+                                    <aqa-input class="required" required label="[[i18n.page01.lastname_en]]" value="{{data.lastname_en}}"></aqa-input>
                                 </div>
                             </div>
                         </div>
                         <div class="first-xs last-lg col-xs-12 col-sm-4 col-lg-2">
                             <div>
                                 <!-- <div class="flex-item"> -->
-                                <img id="output_image" src$="[[pic_url]]" />
+                                <img id="output_image" src$="[[pic_url]]" style="
+                                width: 170px;
+                                height: 200px;
+                            " />
                                 <input type="file" id="upFile" on-change="fileChange" hidden>
                                 <aqa-button type="primary btn-full-width" icon="icons:file-upload" style="max-width:96px" on-tap="upLoadFile">[[i18n.page01.upload]]</aqa-button>
                                 <!-- </div> -->
@@ -137,8 +145,8 @@
 
                             <!-- <aqa-combo-box label="[[i18n.page01.gender]]" items="[[genderList]]" value="{{data.gender_id}}" item-label-path="label" 
                             item-value-path="value"></aqa-combo-box> -->
-                            <aqa-combo-box class="required" required always-float-label label="[[i18n.page01.gender]]" items='{{genderList}}' value="{{data.gender_id}}" item-label-path="label"
-                                item-value-path="value" on-selected-item-changed="getObject" object-name="data.gender" >
+                            <aqa-combo-box class="required" required always-float-label label="[[i18n.page01.gender]]" items='{{genderList}}' value="{{data.gender_id}}"
+                                item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="data.gender">
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -148,7 +156,7 @@
                             <!-- ศาสนา -->
                             <!-- <aqa-combo-box label="[[i18n.page01.religion]]" items="[[religionList]]" item-label-path="label" item-value-path="value"></aqa-combo-box> -->
                             <aqa-combo-box class="required" required always-float-label label="[[i18n.page01.religion]]" items='{{religionList}}' value="{{data.religion_id}}"
-                                item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="data.religion" >
+                                item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="data.religion">
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -157,8 +165,8 @@
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                             <!-- เชื้อชาติ -->
                             <!-- <aqa-combo-box label="[[i18n.page01.ethnicity]]" items="[[raceList]]" item-label-path="label" item-value-path="value"></aqa-combo-box> -->
-                            <aqa-combo-box class="required" required always-float-label label="[[i18n.page01.ethnicity]]" items='{{raceList}}' value="{{data.ethnicity_id}}" item-label-path="label"
-                                item-value-path="value" on-selected-item-changed="getObject" object-name="data.race" >
+                            <aqa-combo-box class="required" required always-float-label label="[[i18n.page01.ethnicity]]" items='{{raceList}}' value="{{data.ethnicity_id}}"
+                                item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="data.race">
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -167,8 +175,9 @@
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                             <!-- สัญชาติ -->
                             <!-- <aqa-combo-box label="[[i18n.page01.nationality]]" items="[[nationalityList]]" item-label-path="label" item-value-path="value"></aqa-combo-box> -->
-                            <aqa-combo-box class="required" required always-float-label label="[[i18n.page01.nationality]]" items='{{nationalityList}}' value="{{data.nationality_id}}"
-                                item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="data.nationality" >
+                            <aqa-combo-box class="required" required always-float-label label="[[i18n.page01.nationality]]" items='{{nationalityList}}'
+                                value="{{data.nationality_id}}" item-label-path="label" item-value-path="value" on-selected-item-changed="getObject"
+                                object-name="data.nationality">
                                 <template>
                                     [[item.label]]
                                 </template>
@@ -176,36 +185,37 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
                             <aqa-date-picker class="required" required value="{{data.birth_date}}">
-                                <aqa-input label="[[i18n.page01.birth]]" ></aqa-input>
+                                <aqa-input label="[[i18n.page01.birth]]"></aqa-input>
                             </aqa-date-picker>
                             <!-- <aqa-date-picker id="date" label="วัน/เดือน/ปี เกิด" selected="{{birthDay}}" show-bc></aqa-date-picker> -->
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2">
-                            <aqa-input  label="[[i18n.page01.age]]" value="{{mathAge(data.birth_date)}}" disabled></aqa-input>
+                            <aqa-input label="[[i18n.page01.age]]" value="{{mathAge(data.birth_date)}}" disabled></aqa-input>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                            <aqa-input class="required" required label="[[i18n.page01.mobile]]" type="phone" value="{{data.mobile}}" ></aqa-input>
+                            <aqa-input class="required" required label="[[i18n.page01.mobile]]" type="phone" value="{{data.mobile}}"></aqa-input>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                            <aqa-input class="required" required label="[[i18n.page01.tax_no]]" value="[[info.taxno]]" type="pid"  disabled></aqa-input>
+                            <aqa-input class="required" required label="[[i18n.page01.tax_no]]" value="[[info.taxno]]" type="pid" disabled></aqa-input>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                             <aqa-date-picker class="required" required value="{{data.issue_date}}">
-                                <aqa-input label="[[i18n.page01.date_of_issue]]" ></aqa-input>
+                                <aqa-input label="[[i18n.page01.date_of_issue]]"></aqa-input>
                             </aqa-date-picker>
                             <!-- <aqa-date-picker id="date" label="วันที่ออกบัตร" selected="" show-bc></aqa-date-picker> -->
                         </div>
 
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
                             <aqa-date-picker class="required" required value="{{data.expire_date}}">
-                                <aqa-input label="[[i18n.page01.expiration_date]]" ></aqa-input>
+                                <aqa-input label="[[i18n.page01.expiration_date]]"></aqa-input>
                             </aqa-date-picker>
                             <!-- <aqa-date-picker id="date" label="วันที่บัตรหมดอายุ" selected="" show-bc></aqa-date-picker> -->
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                             <!-- <aqa-combo-box label="[[i18n.page01.working_status]]" items="[[statusList]]" item-label-path="label" item-value-path="value"></aqa-combo-box> -->
-                            <aqa-combo-box class="required" required always-float-label label="[[i18n.page01.working_status]]" items='{{statusList}}' value="{{data.status_id}}"
-                                item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="data.working_status" >
+                            <aqa-combo-box class="required" required always-float-label label="[[i18n.page01.working_status]]" items='{{statusList}}'
+                                value="{{data.status_id}}" item-label-path="label" item-value-path="value" on-selected-item-changed="getObject"
+                                object-name="data.working_status">
                                 <template>
                                     [[item.label]]
                                 </template>
