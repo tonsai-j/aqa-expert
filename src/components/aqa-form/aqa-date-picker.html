@@ -184,7 +184,7 @@
       }
       validate() {
         // 29/9/2560
-        setTimeout(() => {
+        // setTimeout(() => {
 
 
           let be = this.aqaDataPickerLight.selectedBe
@@ -194,7 +194,7 @@
           arr.push((/^\d{4}[-]\d{1,2}[-]\d{1,2}/).test(dc))
           arr.push((/^\d{1,2}[/]\d{1,2}[/]\d{4}/).test(be))
           let checkData = (arr.find(item => item === false) === undefined ? false : true)
-          console.log(this.errorMessage);
+          // console.log(this.errorMessage);
           // console.log(checkData);
           this.child.invalid = checkData
           this.child.errorMessage = this.errorMessage
@@ -203,7 +203,7 @@
           // console.log(this.invalid);
 
           return checkData
-        }, 4)
+        // }, 4)
       }
 
 

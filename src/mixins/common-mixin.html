@@ -22,7 +22,8 @@
         }
 
         validateForm(required) {
-            return this.extarFrom(required).every(elem => elem == true)
+            // console.log(this.extarFrom(required));
+            return this.extarFrom(required).every(elem => elem === false)
         }
 
         autoIndex(index) {
