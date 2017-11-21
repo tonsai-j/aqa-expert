@@ -352,7 +352,7 @@
             // }
             _save() {
                 // console.log(this.data)
-                if (!this.validateForm('.required')) {
+                if (this.validateForm('.required')) {
                     // this.set('data.work_start_date', new Date(this.data.work_start_date).toISOString());
                     // this.set('data.work_end_date', new Date(this.data.work_end_date).toISOString());
                     if (typeof this._index === 'undefined') {
