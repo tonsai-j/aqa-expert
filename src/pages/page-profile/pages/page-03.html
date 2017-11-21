@@ -286,7 +286,7 @@
             // }
 
             _save() {
-                if (!this.validateForm('.required')) {
+                if (this.validateForm('.required')) {
                     if (typeof this._index === 'undefined') {
                         var newData = Object.assign(this.data, {
                             date_created: new Date().toISOString(),
