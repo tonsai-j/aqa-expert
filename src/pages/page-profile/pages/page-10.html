@@ -297,7 +297,7 @@
             }
             _save() {
 
-                if (!this.validateForm('.required')) {
+                if (this.validateForm('.required')) {
                     Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'bank', this.bank,
                         () => {
                             // Nylon.toast('update')
