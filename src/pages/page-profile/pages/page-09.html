@@ -294,13 +294,21 @@
                 this.$.meetingList.addEventListener('_delete', this._confirmDel)
             }
             cutdate(dates) {
+                Date.prototype.addHours = function (h) {
+                    this.setTime(this.getTime() + (h * 60 * 60 * 1000));
+                    return this;
+                }
                 dates.map(date => {
                     // console.log(date);
-                    if (date.end_training !== undefined && date.end_training !== '')
-                        date.end_training = this.changeDate(date.end_training)
-                    if (date.training_date !== undefined && date.training_date !== '')
-                        date.training_date = this.changeDate(date.training_date)
-
+                    if (date.end_training !== undefined && date.end_training !== '') {
+                        date.end_training_show = this.changeDate(date.end_training)
+                        date.end_training = new Date(date.end_training).addHours(7).toISOString().split('T')[0]  
+                    }
+                    if (date.training_date !== undefined && date.training_date !== '') {
+                        date.training_date_show = this.changeDate(date.training_date)
+                        date.training_date = new Date(date.training_date).addHours(7).toISOString().split('T')[0]
+                        
+                    }
                     return date
                 })
                 // console.log(dates);
@@ -332,6 +340,9 @@
                 // console.log(this.data)
                 if (this.validateForm('.required')) {
                     if (typeof this._index === 'undefined') {
+                        delete this.data.training_date_show
+                        delete this.data.end_training_show
+
                         var newData = Object.assign(this.data, {
                             date_created: new Date().toISOString(),
                             date_updated: new Date().toISOString(),
@@ -340,7 +351,7 @@
                             creater: this.info.taxno,
                             updater: this.info.taxno
                         });
-                        // console.log(this.newData)
+                        console.log(newData)
                         Nylon.dispatch('PROFILE_PUSH_ARRAY', this.info.id, 'meetings', newData
                             , () => {
                                 this._closePanelRight();
@@ -349,6 +360,8 @@
                                 Nylon.dialog('save')
                             });
                     } else {
+                        delete this.data.training_date_show
+                        delete this.data.end_training_show
                         var newData = Object.assign(this.data, {
                             date_updated: new Date().toISOString(),
                             training_date: new Date(this.data.training_date).toISOString(),
