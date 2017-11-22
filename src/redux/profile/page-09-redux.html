@@ -2,10 +2,13 @@
     Nylon.addReducer('profile09', function (state, action) {
         state = state || {
             meeting: [],
-
+            typeMeeting: [],
         }
 
         switch (action.type) {
+            case 'PROFILE_09_GET_TYPE_MEETING':
+                state.typeMeeting = action.data
+                return state
             case 'PROFILE_09_GET_MEETING':
                 state.meeting = action.data
                 return state
@@ -16,6 +19,17 @@
     })
 
     Nylon.addAction({
+        PROFILE_09_GET_TYPE_MEETING: function () {
+            return dispatch => {
+                axios.get('/type/actother')
+                    .then(res => {
+                        dispatch({ type: 'PROFILE_09_GET_TYPE_MEETING', data: res.data })
+                    })
+                    .catch(err => {
+                        console.log({ err })
+                    })
+            }
+        },
         PROFILE_09_GET_MEETING: function (data) {
             return dispatch => {
                 axios.get('/profile/meeting?' + data)
