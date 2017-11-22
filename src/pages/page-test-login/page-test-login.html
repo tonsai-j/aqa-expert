@@ -376,7 +376,7 @@
                 //         }
                 //     });
                 // } else {
-                if (this.validateForm('.required')) {
+                if (!this.validateForm('.required')) {
                     // this.set('data.basic', {})
                     if (this.checkPersonID(this.data.taxno)) {
                         // console.log(this.data)
