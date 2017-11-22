@@ -46,8 +46,6 @@
 
 <link rel="import" href="../../../layout/shared-styles.html">
 
-<link rel="import" href="../../../components/aqa-form/aqa-date-picker.html">
-
 
 <dom-module id="page-09">
     <template>
@@ -133,7 +131,7 @@
                             </div>
                         </div>
                     </div>
-                    <meeting-list id="meetingList" info="[[info]]"></meeting-list>
+                    <meeting-list id="meetingList" info="[[info]]" datas="{{datas}}"></meeting-list>
 
                 </div>
             </aqa-panel>
@@ -147,15 +145,15 @@
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-7">
-                            <aqa-input label="[[i18n.page09.projects]]" class="required" required always-float-label value="{{quality.projects}}"></aqa-input>
+                            <aqa-input label="[[i18n.page09.projects]]" class="required" required always-float-label value="{{data.projects}}"></aqa-input>
                         </div>
                         <div class="col-md-2">
-                            <aqa-input label="[[i18n.page09.time]]" class="required" required always-float-label value="{{quality.time}}"></aqa-input>
+                            <aqa-input label="[[i18n.page09.time]]" class="required" required always-float-label value="{{data.time}}"></aqa-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-9">
-                            <aqa-combo-box always-float-label label="[[i18n.page09.type]]" items='{{listTypeMeeting}}' value="{{quality.type}}" item-label-path="label"
+                            <aqa-combo-box always-float-label label="[[i18n.page09.type]]" items='{{listTypeMeeting}}' value="{{data.type}}" item-label-path="label"
                                 item-value-path="value">
                                 <template>
                                     [[item.label]]
@@ -165,25 +163,25 @@
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-9">
-                            <!-- <aqa-input label="[[i18n.page09.facility]]*" class="required" required always-float-label rows=2 value="{{quality.facility}}"></aqa-input> -->
-                            <aqa-input label="[[i18n.page09.training_venues]]" class="required" required always-float-label value="{{quality.projects}}"></aqa-input>
+                            <!-- <aqa-input label="[[i18n.page09.facility]]*" class="required" required always-float-label rows=2 value="{{data.facility}}"></aqa-input> -->
+                            <aqa-input label="[[i18n.page09.training_venues]]" class="required" required always-float-label value="{{data.training_venues}}"></aqa-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-3">
-                            <aqa-date-picker class="required" required value="{{quality.training}}">
+                            <aqa-date-picker class="required" required value="{{data.training_date}}">
                                 <aqa-input label="[[i18n.page09.training_date]]"></aqa-input>
                             </aqa-date-picker>
-                            <!-- <paper-input label="[[i18n.page09.training]]*" class="required" required always-float-label type=date value="{{quality.training}}"></paper-input> -->
+                            <!-- <paper-input label="[[i18n.page09.training]]*" class="required" required always-float-label type=date value="{{data.training}}"></paper-input> -->
                         </div>
                         <div class="col-md-3">
-                            <aqa-date-picker class="required" required value="{{quality.end}}">
-                                <aqa-input label="[[i18n.page09.end_training]]">วันที่สิ้นสุดการอบรม</aqa-input>
+                            <aqa-date-picker class="required" required value="{{data.end_training}}">
+                                <aqa-input label="[[i18n.page09.end_training]]"></aqa-input>
                             </aqa-date-picker>
-                            <!-- <paper-input label="[[i18n.page09.end]]*" class="required" required always-float-label type=date value="{{quality.end}}"></paper-input> -->
+                            <!-- <paper-input label="[[i18n.page09.end]]*" class="required" required always-float-label type=date value="{{data.end}}"></paper-input> -->
                         </div>
                         <div class="col-md-3">
-                            <aqa-input label="[[i18n.page09.hours]]*" class="required" required always-float-label value="{{quality.hours}}"></aqa-input>
+                            <aqa-input label="[[i18n.page09.hours]]*" class="required" required always-float-label value="{{data.hours}}"></aqa-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
@@ -250,14 +248,18 @@
                         type: Object,
                         statePath: 'i18n',
                     },
+                    // info: {
+                    //     type: Object,
+                    //     statePath: 'profile.info',
+                    //     observer: '_getMeeting'
+                    // },
                     info: {
                         type: Object,
                         statePath: 'profile.info',
-                        observer: '_getMeeting'
                     },
                     datas: {
                         type: Array,
-                        statePath: 'profile09.meeting',
+                        statePath: 'profile.info.meetings',
                     },
                     listTypeMeeting: {
                         type: Array,
@@ -274,6 +276,17 @@
                     Nylon.dispatch('PROFILE_09_GET_TYPE_MEETING')
                     // console.log(1);
                 });
+            }
+            connectedCallback() {
+                console.log(this.detail)
+                super.connectedCallback();
+                this.$.meetingList.addEventListener('open_panelRight',
+                    (detail) => {
+                        this.$.panelRight.open();
+                        this.set('data', detail.detail.data)
+                        this.set('_index', detail.detail.index)
+                    })
+                this.$.meetingList.addEventListener('_delete', this._confirmDel)
             }
             upLoadFile() {
                 this.$.upFile.click()
@@ -295,6 +308,77 @@
             }
             _date(d) {
                 return new Date(d).toLocaleString().split(',')[0]
+            }
+            _save() {
+                console.log(this.data)
+                if (this.validateForm('.required')) {
+                    if (typeof this._index === 'undefined') {
+                        var newData = Object.assign(this.data, {
+                            date_created: new Date().toISOString(),
+                            date_updated: new Date().toISOString(),
+                            creater: this.info.taxno,
+                            updater: this.info.taxno
+                        });
+                        console.log(this.newData)
+                        Nylon.dispatch('PROFILE_PUSH_ARRAY', this.info.id, 'meetings', newData
+                            , () => {
+                                this._closePanelRight();
+                                this.set('data', {});
+                                // Nylon.toast('insert')
+                                Nylon.dialog('save')
+                            });
+                    } else {
+                        var newData = Object.assign(this.data, {
+                            date_updated: new Date().toISOString(),
+                            updater: this.info.taxno
+                        });
+                        Nylon.dispatch('PROFILE_UPDATE_ARRAY', this.info.id, 'meetings', this._index, newData
+                            , () => {
+                                this._closePanelRight();
+                                this.set('data', {});
+                                // Nylon.toast('update')
+                                Nylon.dialog('save')
+                            });
+                    }
+                } else {
+                    Nylon.toast('required')
+                }
+
+            }
+            _closePanelRight() {
+                this.$.panelRight.close();
+            }
+            _confirmDel(e) {
+                Nylon.confirm({
+                    title: this.i18n.confirm.delete.title,
+                    msg: this.i18n.confirm.delete.msg,
+                    icon: this.i18n.confirm.delete.icon,
+                    btn: [
+                        {
+                            label: this.i18n.button.delete.label,
+                            icon: this.i18n.button.delete.icon,
+                            type: 'danger',
+                            'dialog-confirm': true,
+                            'autofocus': true,
+                            style: 'margin-right:5px',
+                            action: () => {
+                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'meetings', e.detail.index
+                                    , () => {
+                                        // this._closePanelRight()
+                                        this.set('data', {})
+                                        // Nylon.toast('delete')
+                                        Nylon.dialog('delete')
+                                    });
+                            }
+                        },
+                        {
+                            label: this.i18n.button.close.label,
+                            icon: this.i18n.button.close.icon,
+                            type: 'default',
+                            'dialog-dismiss': true
+                        },
+                    ]
+                })
             }
 
         }
