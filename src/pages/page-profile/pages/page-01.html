@@ -355,6 +355,7 @@
                 if (this.basic === undefined)
                     return ''
                 this.set('basic.profile_url', url.url)
+                this.set('data.profile_url', url.url)
             }
             _openDropDown(e) {
                 e.currentTarget.previousElementSibling.open()
@@ -373,11 +374,13 @@
                             date.issue_date = new Date(date.issue_date).addHours(7).toISOString().split('T')[0]
                         if (date.expire_date !== undefined)
                             date.expire_date = new Date(date.expire_date).addHours(7).toISOString().split('T')[0]
-
-                        if (this.basic.profile_url !== undefined && this.basic.profile_url !== '') {
-                            this.set('pic_url', this.basic.profile_url)
+                        // console.log(this.info);
+                        if (this.info.basic.profile_url !== undefined && this.info.basic.profile_url !== '') {
+                            this.set('pic_url', this.info.basic.profile_url)
+                            this.set('data.profile_url', this.info.basic.profile_url)
                         } else {
                             this.set('pic_url', this.rootPath + '/images/icon-img.png')
+                            this.set('data.profile_url', this.rootPath + '/images/icon-img.png')
                         }
                         // console.log(date);
                         this.set('data', date)
@@ -392,25 +395,6 @@
                     output.src = reader.result
                 }
                 reader.readAsDataURL(event.target.files[0])
-                // console.log(reader);
-                // reader.onload = () => {
-                //     var output = this.$.output_image
-                //     // console.log(reader.result);
-                //     output.src = reader.result;
-                //     let dataPic = {}
-                //     dataPic.picture = reader.result
-                //     // Nylon.dispatch('PROFILE_01_POST_PICTURE',dataPic)
-                // }
-                // reader.onloadend = () => {
-                // console.log(this.info.id);
-                // var file = this.$.ifile.files
-                // let profile = {}
-                // profile.pic_type = 'profile'
-                // profile.user_id = this.info.id
-                // Nylon.dispatch('PROFILE_01_POST_PICTURE', file, profile)
-
-                // }
-                // reader.readAsDataURL(event.target.files[0]);
             }
             _save() {
                 // console.log(this.info.id)
