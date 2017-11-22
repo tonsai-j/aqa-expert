@@ -148,7 +148,7 @@
                             <aqa-input label="[[i18n.page09.projects]]" class="required" required always-float-label value="{{data.projects}}"></aqa-input>
                         </div>
                         <div class="col-md-2">
-                            <aqa-input label="[[i18n.page09.time]]" class="required" required always-float-label value="{{data.time}}"></aqa-input>
+                            <aqa-input label="[[i18n.page09.time]]" maxlength="3" class="required" required always-float-label value="{{data.time}}"></aqa-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
@@ -180,7 +180,7 @@
                             <!-- <paper-input label="[[i18n.page09.end]]*" class="required" required always-float-label type=date value="{{data.end}}"></paper-input> -->
                         </div>
                         <div class="col-md-3">
-                            <aqa-input label="[[i18n.page09.hours]]*" class="required" required always-float-label value="{{data.hours}}"></aqa-input>
+                            <aqa-input label="[[i18n.page09.hours]]" maxlength="2" class="required" required always-float-label value="{{data.hours}}"></aqa-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
@@ -460,19 +460,19 @@
                                 let url = e.detail.data.item.url_file
                                 // if (e.detail.data.item.hasOwnProperty('url_file') && url !== '') {
 
-                                    // this._index = e.detail.index
-                                    // console.log(this._index);
-                                    Nylon.dispatch('PROFILE_01_DELETE_PICTURE', {
-                                        url: url
-                                    })
+                                // this._index = e.detail.index
+                                // console.log(this._index);
+                                Nylon.dispatch('PROFILE_01_DELETE_PICTURE', {
+                                    url: url
+                                })
                                 // } else {
-                                    Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'meetings', e.detail.index
-                                        , () => {
-                                            // this._closePanelRight()
-                                            this.set('data', {})
-                                            // Nylon.toast('delete')
-                                            Nylon.dialog('delete')
-                                        });
+                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'meetings', e.detail.index
+                                    , () => {
+                                        // this._closePanelRight()
+                                        this.set('data', {})
+                                        // Nylon.toast('delete')
+                                        Nylon.dialog('delete')
+                                    });
                                 // }
                             }
                         },

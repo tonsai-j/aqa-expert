@@ -53,7 +53,7 @@
                 border-color: #e4eaec;
                 color: #a8b3c5;
                 cursor: pointer;
-                cursor:no-drop;
+                cursor: no-drop;
             }
 
             input:focus {
@@ -116,7 +116,7 @@
                 </template>
             </label>
             <input id="nativeInput" class="form-control" placeholder="[[placeholder]]" on-input="_inputChanged" invalid$="[[invalid]]"
-                disabled$="[[disabled]]">
+                disabled$="[[disabled]]" maxlength$="[[maxlength]]" minlength$="[[minlength]]">
             <template is="dom-if" if="[[invalid]]">
                 <span class="help-block">[[errorMessage]]</span>
             </template>
@@ -145,6 +145,12 @@
                     pattern: {
                         type: String,
                         value: ""
+                    },
+                    maxlength: {
+                        type: Number,
+                    },
+                    minlength: {
+                        type: Number,
                     },
                     invalid: {
                         type: Boolean,
