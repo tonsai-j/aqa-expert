@@ -35,6 +35,12 @@
             .btn-edit:hover {
                 color: #000000;
             }
+
+            .file:hover {
+                color: #62a8ea;
+                text-decoration: underline;
+                cursor: pointer;
+            }
         </style>
 
         <aqa-vaadin-grid>
@@ -98,7 +104,9 @@
                         <div class="header">[[i18n.page09.file]]</div>
                     </template>
                     <template>
-                        <div style="text-align: center">[[item.]]</div>
+                        <div style="text-align: center">
+                            <a class="file" on-tap="openDownload"> [[item.file_name]]</a>
+                        </div>
                     </template>
                 </vaadin-grid-column>
                 <vaadin-grid-column id="edit" width="100px" flex-grow="0">
@@ -133,7 +141,8 @@
                     <div style="margin-top:1rem">จำนวนรายการทั้งหมด [[datas.length]] รายการ </div>
                 </div>
                 <div class="col-xs-12 col-md-6">
-                    <div style="margin-top:1rem; text-align:right">แก้ไขล่าสุดวันที่ : 25/10/2560 <br> ผู้แก้ไข : รองศาสตร์จารย์บรรเจิด เริศฤดี </div>
+                    <div style="margin-top:1rem; text-align:right">แก้ไขล่าสุดวันที่ : 25/10/2560
+                        <br> ผู้แก้ไข : รองศาสตร์จารย์บรรเจิด เริศฤดี </div>
                 </div>
             </div>
 
@@ -152,12 +161,12 @@
                     },
                     datas: {
                         type: Array,
-                        observer:'gwts'
+                        observer: 'gwts'
                         // statePath: 'profile09.meeting',
                     }
                 }
             }
-            gwts(e){
+            gwts(e) {
                 console.log(e);
             }
             updatePosition(e) {
@@ -174,15 +183,19 @@
             _openPanelRight(e) {
                 this.dispatchEvent(new CustomEvent('open_panelRight', {
                     detail:
-                    {
-                        data: e.model.item,
-                        index: e.model.index
-                    }
+                        {
+                            data: e.model.item,
+                            index: e.model.index
+                        }
                 }))
             }
             _delete(e) {
                 // console.log(e.model.index);
                 this.dispatchEvent(new CustomEvent('_delete', { detail: { index: e.model.index } }))
+            }
+            openDownload(e) {
+                // console.log(e.model.item);
+                window.open(this.rootPath + e.model.item.url_file);
             }
         }
         window.customElements.define(MeetingList.is, MeetingList);

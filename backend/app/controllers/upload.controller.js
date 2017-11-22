@@ -35,6 +35,10 @@ exports.uploadPic = function (req, res) {
                 newFileName = dateNow + '-' + prefile.originalFilename
                 pathUrl = 'files/'
                 break;
+            case 'files_meeting':
+                newFileName = dateNow + '-' + prefile.originalFilename
+                pathUrl = 'files_meeting/'
+                break;
             default:
                 break;
         }
