@@ -77,12 +77,12 @@
                             <aqa-input label="[[i18n.page12.lastname]]" class="required" required always-float-label value="{{data.lastname}}"></aqa-input>
                         </div>
                         <div class="col-md-3">
-                            <aqa-input label="[[i18n.page12.phone]]" class="required" required always-float-label value="{{data.phone}}"></aqa-input>
+                            <aqa-input type="phone" label="[[i18n.page12.phone]]" class="required" required always-float-label value="{{data.phone}}"></aqa-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-3">
-                            <aqa-input label="[[i18n.page12.cell_phone]]" class="required" required always-float-label value="{{data.cell_phone}}"></aqa-input>
+                            <aqa-input type="phone" label="[[i18n.page12.cell_phone]]" class="required" required always-float-label value="{{data.cell_phone}}"></aqa-input>
                         </div>
                         <div class="col-md-4">
                             <aqa-input label="[[i18n.page12.email]]" class="required" required always-float-label value="{{data.email}}"></aqa-input>
@@ -198,7 +198,7 @@
                 this.$.referencesList.addEventListener('_delete', this._confirmDel)
             }
             _save() {
-                if (!this.validateForm('.required')) {
+                if (this.validateForm('.required')) {
                     if (typeof this._index === 'undefined') {
                         var newData = Object.assign(this.data, {
                             date_created: new Date().toISOString(),
