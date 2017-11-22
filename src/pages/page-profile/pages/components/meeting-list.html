@@ -167,7 +167,7 @@
                 }
             }
             gwts(e) {
-                console.log(e);
+                // console.log(e);
             }
             updatePosition(e) {
                 this.$.tooltip.textContent = e.currentTarget.getAttribute('name');
@@ -175,7 +175,7 @@
                 this.$.tooltip.updatePosition()
             }
             getPosition(e) {
-                console.log(e.currentTarget.positionTarget)
+                // console.log(e.currentTarget.positionTarget)
             }
             count(val) {
                 return val + 1
@@ -191,7 +191,7 @@
             }
             _delete(e) {
                 // console.log(e.model.index);
-                this.dispatchEvent(new CustomEvent('_delete', { detail: { index: e.model.index } }))
+                this.dispatchEvent(new CustomEvent('_delete', { detail: { index: e.model.index ,data: e.model.__data }}))
             }
             openDownload(e) {
                 // console.log(e.model.item);

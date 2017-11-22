@@ -56,11 +56,36 @@ exports.uploadPic = function (req, res) {
                     url: url
                 }
                 res.json(data)
-
             })
         })
-
     })
+}
+exports.deletefile = function (req, res) {
+    // console.log(111);
+    var filePath = req.body.url//'files_meeting/1511344193476-02-ระบบการส่งมอบข้าวแบบรัฐบาลต่อรัฐบาล-Unit-Test.docx';
+    // // console.log(filePath);
+    var data = {
+        status: 'False'
+    }
+    try {
+        
+        fs.readFile(filePath, (err, data) => {
+            if (err) {
+                res.json(data)
+            }
+            fs.unlink('./../' + filePath, (err) => {
+                if (err) {
+                    // return console.log(err)
+                    res.json(err)
+                }
+                data = {
+                    status: 'Success',
+                }
+                res.json(data)
+            })
+        })
+    } catch (e) {
+        res.json(e)
+    }
 
-    return
 }

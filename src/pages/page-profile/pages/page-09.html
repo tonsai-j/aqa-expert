@@ -276,7 +276,11 @@
                         type: String,
                         statePath: 'profile_page01.url',
                         observer: 'setUrlDoc'
-                    }
+                    },
+                    // removeStatus: {
+                    //     statePath: 'profile_page01.removeStatus',
+                    //     observer: 'removeFile'
+                    // }
                 };
             }
 
@@ -339,7 +343,7 @@
                 })
                 // console.log(newData);
                 this.set('data', newData)
-                console.log(this.data);
+                // console.log(this.data);
                 // this.documentList[this.seletedFile.index] = Object.assign(
                 //     this.documentList[this.seletedFile.index], {
                 //         date_updated: new Date().toISOString(),
@@ -436,6 +440,8 @@
                 this.$.panelRight.close();
             }
             _confirmDel(e) {
+
+
                 Nylon.confirm({
                     title: this.i18n.confirm.delete.title,
                     msg: this.i18n.confirm.delete.msg,
@@ -449,13 +455,25 @@
                             'autofocus': true,
                             style: 'margin-right:5px',
                             action: () => {
-                                Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'meetings', e.detail.index
-                                    , () => {
-                                        // this._closePanelRight()
-                                        this.set('data', {})
-                                        // Nylon.toast('delete')
-                                        Nylon.dialog('delete')
-                                    });
+                                // console.log(e.detail.index);
+                                // this.set('_index', e.detail.index)
+                                let url = e.detail.data.item.url_file
+                                // if (e.detail.data.item.hasOwnProperty('url_file') && url !== '') {
+
+                                    // this._index = e.detail.index
+                                    // console.log(this._index);
+                                    Nylon.dispatch('PROFILE_01_DELETE_PICTURE', {
+                                        url: url
+                                    })
+                                // } else {
+                                    Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'meetings', e.detail.index
+                                        , () => {
+                                            // this._closePanelRight()
+                                            this.set('data', {})
+                                            // Nylon.toast('delete')
+                                            Nylon.dialog('delete')
+                                        });
+                                // }
                             }
                         },
                         {
@@ -466,6 +484,7 @@
                         },
                     ]
                 })
+
             }
 
         }
