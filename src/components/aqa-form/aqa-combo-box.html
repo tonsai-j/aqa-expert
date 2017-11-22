@@ -154,7 +154,7 @@
                     </template>
                 </vaadin-combo-box-light>
 
-                <template is="dom-if" if={{!value}}>
+                <template is="dom-if" if={{value}}>
                     <iron-icon class="arrow-drop-downw" hidden="{{disabled}}" icon="icons:clear" on-click="reset"></iron-icon>
                 </template>
                 <iron-icon class="arrow-drop-down" hidden="{{disabled}}" icon="icons:arrow-drop-down" on-click="_focusInput"></iron-icon>
@@ -231,10 +231,11 @@
             validate() {
                 this.invalid = false
                 // this.value = this.value.trim()
-                if (this.required && this.value == "") {
+                // console.log(this.required, this.value);
+                if (this.required && (this.value === "" || this.value === undefined || this.value === null)) {
                     this.invalid = true
                 }
-
+                // console.log(this.invalid);
                 return this.invalid
             }
 

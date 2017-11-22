@@ -197,16 +197,6 @@
                 if (group_specialist !== undefined && group_specialist !== '')
                     Nylon.dispatch('PROFILE_04_GET_SPECIALISTTYPE', group_specialist);
             }
-            // _openPanelRight(e) {
-            //     if (e.currentTarget.getAttribute('action') == 'edit') {
-            //         this.set('data', e.model.item)
-            //         this.set('_index', e.model.index)
-            //     } else {
-            //         this.set('data', {})
-            //         this.set('_index', undefined)
-            //     }
-            //     this.$.right.open();
-            // }
             _openPanelRight(e) {
                 // if (e.currentTarget.getAttribute('action') == 'edit') {
                 //     this.set('data', e.model.item)
@@ -222,7 +212,7 @@
                 this.$.panelRight.close()
             }
             _save() {
-                if (!this.validateForm('.required')) {
+                if (this.validateForm('.required')) {
                     if (typeof this._index === 'undefined') {
                         var newData = Object.assign(this.data, {
                             date_created: new Date().toISOString(),
@@ -253,45 +243,6 @@
                 }
 
             }
-            // _confirmDel(e) {
-            //     // Nylon.confirm({
-            //     //     title: this.i18n.confirm.delete.title,
-            //     //     msg: this.i18n.confirm.delete.msg
-            //     // });
-            //     Nylon.confirm({
-            //         title: this.i18n.confirm.delete.title,
-            //         msg: this.i18n.confirm.delete.msg,
-            //         icon: this.i18n.confirm.delete.icon,
-            //         btn: [
-            //             {
-            //                 label: this.i18n.button.close.label,
-            //                 icon: this.i18n.button.close.icon,
-            //                 type: 'close',
-            //                 class: 'btn-default',
-            //                 'dialog-dismiss': true
-            //             },
-            //             {
-            //                 label: 'ลบ',
-            //                 icon: 'delete',
-            //                 type: 'ok',
-            //                 class: 'btn-default',
-            //                 'dialog-confirm': true,
-            //                 'autofocus': true,
-            //                 action: () => {
-            //                     Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'specialist', e.model.index
-            //                         , () => {
-            //                             this._closePanelRight()
-            //                             this.set('data', {})
-            //                             Nylon.toast({
-            //                                 icon: 'delete',
-            //                                 msg: 'ลบเรียบร้อย'
-            //                             })
-            //                         });
-            //                 }
-            //             }
-            //         ]
-            //     })
-            // }
 
             _confirmDel(e) {
                 // Nylon.confirm({
