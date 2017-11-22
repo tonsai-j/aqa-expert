@@ -14,6 +14,9 @@
 <link rel="import" href="../../../../redux/profile/page-09-redux.html">
 <link rel="import" href="../../../../../images/icon-moon-delete.html">
 <link rel="import" href="../../../../layout/shared-styles.html">
+
+<link rel="import" href="../../../../mixins/common-mixin.html">
+
 <dom-module id="meeting-list">
     <template>
         <style include="shared-styles">
@@ -61,7 +64,7 @@
                         </div>
                     </template>
                     <template>
-                        <div>[[item.training_date_show]]</div>
+                        <div>[[changeDate(item.training_date)]]</div>
                     </template>
                 </vaadin-grid-column>
                 <vaadin-grid-column width="200px" flex-grow="0">
@@ -71,7 +74,7 @@
                         </div>
                     </template>
                     <template>
-                        <div>[[item.end_training_show]]</div>
+                        <div>[[changeDate(item.end_training)]]</div>
                     </template>
                 </vaadin-grid-column>
                 <vaadin-grid-column width="140px" flex-grow="0">
@@ -139,7 +142,7 @@
 
     </template>
     <script>
-        class MeetingList extends ReduxMixin(Polymer.Element) {
+        class MeetingList extends CommonMixin(ReduxMixin(Polymer.Element)) {
             static get is() { return 'meeting-list'; }
             static get properties() {
                 return {
