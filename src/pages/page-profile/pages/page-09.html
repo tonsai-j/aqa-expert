@@ -46,6 +46,8 @@
 
 <link rel="import" href="../../../layout/shared-styles.html">
 
+<link rel="import" href="../../../components/aqa-form/aqa-date-picker.html">
+
 
 <dom-module id="page-09">
     <template>
@@ -124,9 +126,15 @@
                     <div main-title>[[i18n.page09.title]]</div>
                 </app-toolbar>
                 <div slot="content">
+                    <div class="row start-xs" style="margin-bottom:0.5rem">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <aqa-button type="primary" icon="add" on-tap=_openPanelRight>[[i18n.button.add.label]]</aqa-button>
+                            </div>
+                        </div>
+                    </div>
+                    <meeting-list id="meetingList" info="[[info]]"></meeting-list>
 
-                    <meeting-list></meeting-list>
-                    
                 </div>
             </aqa-panel>
         </div>
@@ -134,41 +142,48 @@
 
 
         </nylon-panel-card>
-        <!-- <nylon-panel-right id="right" title="[[i18n.page09.history]]" width="80%">
+        <nylon-panel-right id="panelRight" title="[[i18n.page09.history]]" width="80%">
             <nylon-panel-card slot="content">
                 <div slot="content">
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-7">
-                            <paper-input label="[[i18n.page09.projects]]*" class="required" required always-float-label value="{{quality.projects}}"></paper-input>
+                            <aqa-input label="[[i18n.page09.projects]]" class="required" required always-float-label value="{{quality.projects}}"></aqa-input>
                         </div>
                         <div class="col-md-2">
-                            <paper-input label="[[i18n.page09.time]]*" class="required" required always-float-label value="{{quality.time}}"></paper-input>
+                            <aqa-input label="[[i18n.page09.time]]" class="required" required always-float-label value="{{quality.time}}"></aqa-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-9">
-                            <nylon-combo-box always-float-label label="[[i18n.page09.type]]" items='{{amphoeList}}' value="{{quality.type}}" item-label-path="label"
+                            <aqa-combo-box always-float-label label="[[i18n.page09.type]]" items='{{amphoeList}}' value="{{quality.type}}" item-label-path="label"
                                 item-value-path="value">
                                 <template>
                                     [[item.label]]
                                 </template>
-                            </nylon-combo-box>
+                            </aqa-combo-box>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-9">
-                            <paper-textarea label="[[i18n.page09.facility]]*" class="required" required always-float-label rows=2 value="{{quality.facility}}"></paper-textarea>
+                            <!-- <aqa-input label="[[i18n.page09.facility]]*" class="required" required always-float-label rows=2 value="{{quality.facility}}"></aqa-input> -->
+                            <aqa-input label="[[i18n.page09.training_venues]]" class="required" required always-float-label value="{{quality.projects}}"></aqa-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
                         <div class="col-md-3">
-                            <paper-input label="[[i18n.page09.training]]*" class="required" required always-float-label type=date value="{{quality.training}}"></paper-input>
+                            <aqa-date-picker class="required" required value="{{quality.training}}">
+                                <aqa-input label="[[i18n.page09.training_date]]"></aqa-input>
+                            </aqa-date-picker>
+                            <!-- <paper-input label="[[i18n.page09.training]]*" class="required" required always-float-label type=date value="{{quality.training}}"></paper-input> -->
                         </div>
                         <div class="col-md-3">
-                            <paper-input label="[[i18n.page09.end]]*" class="required" required always-float-label type=date value="{{quality.end}}"></paper-input>
+                            <aqa-date-picker class="required" required value="{{quality.end}}">
+                                <aqa-input label="[[i18n.page09.end_training]]">วันที่สิ้นสุดการอบรม</aqa-input>
+                            </aqa-date-picker>
+                            <!-- <paper-input label="[[i18n.page09.end]]*" class="required" required always-float-label type=date value="{{quality.end}}"></paper-input> -->
                         </div>
                         <div class="col-md-3">
-                            <paper-input label="[[i18n.page09.hours]]*" class="required" required always-float-label value="{{quality.hours}}"></paper-input>
+                            <aqa-input label="[[i18n.page09.hours]]*" class="required" required always-float-label value="{{quality.hours}}"></aqa-input>
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
@@ -177,27 +192,31 @@
                         </div>
                     </div>
                     <div class="row col-md-offset-1 middle-md">
-                        <div class="col-md-9">
-                            <vaadin-upload accept="application/pdf" headers='{"X-Foo": "Bar"}' max-files="3" max-file-size="1000000" method=POST target=http://localhost:3000/api/upload
+                        <div class="col-md-1">
+                            <!-- <vaadin-upload accept="application/pdf" headers='{"X-Foo": "Bar"}' max-files="3" max-file-size="1000000" method=POST target=http://localhost:3000/api/upload
                                 on-upload-request="_addHeader">
                                 <iron-icon slot="drop-label-icon" icon="description"></iron-icon>
                                 <span slot="drop-label">Up to 3&nbsp;PDF&nbsp;files, 1&nbsp;MB&nbsp;each</span>
-                            </vaadin-upload>
+                            </vaadin-upload> -->
+
+                            <input type="file" id="upFile" on-change="fileChange" hidden>
+                            <aqa-button type="primary btn-full-width" icon="icons:file-upload" style="max-width:50px" on-tap="upLoadFile">[[i18n.page09.upload]]</aqa-button>
+
+                        </div>
+                        <font color="red">**ไฟล์แนบต้องมีขนาดไม่เกิน 10 MB</font>
+                    </div>
+                    <br>
+                    <div class="row center-xs">
+                        <div class="col-lg-2">
+                            <div style="padding:0rem 2rem;">
+                                <aqa-button type="success btn-full-width" on-click="_save">[[i18n.button.save.label]]</aqa-button>
+                            </div>
                         </div>
                     </div>
-
                 </div>
-                <app-toolbar slot="footer">
-                    <div main-title></div>
-                    <paper-button raised on-click="closePanelRight">
-                        <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>[[i18n.button.close.label]]
-                    </paper-button>
-                    <paper-button raised class="btn-success" on-click="_save">
-                        <iron-icon icon="[[i18n.button.save.icon]]"></iron-icon>[[i18n.button.save.label]]
-                    </paper-button>
-                </app-toolbar>
+
             </nylon-panel-card>
-        </nylon-panel-right> -->
+        </nylon-panel-right>
 
 
     </template>
@@ -245,6 +264,19 @@
                 var elem = this.$.meeting
                 //this.fadeInDown(elem, 1, 300)
 
+            }
+            upLoadFile() {
+                this.$.upFile.click()
+            }
+            _openPanelRight(e) {
+                // if (e.currentTarget.getAttribute('action') == 'edit') {
+                //     this.set('data', e.model.item)
+                //     this.set('_index', e.model.index)
+                // } else {
+                this.set('data', {})
+                this.set('_index', undefined)
+                // }
+                this.$.panelRight.open();
             }
             _getMeeting() {
                 if (this.info.hasOwnProperty('type_assessor')) {
