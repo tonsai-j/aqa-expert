@@ -298,7 +298,7 @@
 
             _save() {
 
-                if (!this.validateForm('.required')) {
+                if (this.validateForm('.required')) {
                     let newProvince = this.provinceList.filter(province => province.checked === true).map(item => {
                         delete item.checked
                         return item
