@@ -18,12 +18,15 @@ exports.post = function (req, res) {
                             properties: false,
                             meeting: false,
                             exam: false,
-                            address: [],
-                            contact: {
-                                address_selected: '',
+                            address: {
                                 contract: {},
                                 work: {}
                             },
+                            // contact: {
+                            //     address_selected: '',
+                            //     contract: {},
+                            //     work: {}
+                            // },
                             meetings: [],
                             education: [],
                             specialist: [],

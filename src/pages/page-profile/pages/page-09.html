@@ -131,7 +131,7 @@
                             </div>
                         </div>
                     </div>
-                    <meeting-list id="meetingList" info="[[info]]" datas="{{datas}}"></meeting-list>
+                    <meeting-list id="meetingList" info="[[info]]" datas="{{listMeeting}}"></meeting-list>
 
                 </div>
             </aqa-panel>
@@ -260,6 +260,11 @@
                     datas: {
                         type: Array,
                         statePath: 'profile.info.meetings',
+                        observer: 'cutdate'
+                    },
+                    listMeeting: {
+                        type: Array,
+                        value: []
                     },
                     listTypeMeeting: {
                         type: Array,
@@ -278,7 +283,7 @@
                 });
             }
             connectedCallback() {
-                console.log(this.detail)
+                // console.log(this.detail)
                 super.connectedCallback();
                 this.$.meetingList.addEventListener('open_panelRight',
                     (detail) => {
@@ -287,6 +292,20 @@
                         this.set('_index', detail.detail.index)
                     })
                 this.$.meetingList.addEventListener('_delete', this._confirmDel)
+            }
+            cutdate(dates) {
+                dates.map(date => {
+                    // console.log(date);
+                    if (date.end_training !== undefined && date.end_training !== '')
+                        date.end_training = this.changeDate(date.end_training)
+                    if (date.training_date !== undefined && date.training_date !== '')
+                        date.training_date = this.changeDate(date.training_date)
+
+                    return date
+                })
+                // console.log(dates);
+                this.set('listMeeting', JSON.parse(JSON.stringify(dates)))
+                // return 
             }
             upLoadFile() {
                 this.$.upFile.click()
@@ -310,16 +329,18 @@
                 return new Date(d).toLocaleString().split(',')[0]
             }
             _save() {
-                console.log(this.data)
+                // console.log(this.data)
                 if (this.validateForm('.required')) {
                     if (typeof this._index === 'undefined') {
                         var newData = Object.assign(this.data, {
                             date_created: new Date().toISOString(),
                             date_updated: new Date().toISOString(),
+                            training_date: new Date(this.data.training_date).toISOString(),
+                            end_training: new Date(this.data.end_training).toISOString(),
                             creater: this.info.taxno,
                             updater: this.info.taxno
                         });
-                        console.log(this.newData)
+                        // console.log(this.newData)
                         Nylon.dispatch('PROFILE_PUSH_ARRAY', this.info.id, 'meetings', newData
                             , () => {
                                 this._closePanelRight();
@@ -330,6 +351,8 @@
                     } else {
                         var newData = Object.assign(this.data, {
                             date_updated: new Date().toISOString(),
+                            training_date: new Date(this.data.training_date).toISOString(),
+                            end_training: new Date(this.data.end_training).toISOString(),
                             updater: this.info.taxno
                         });
                         Nylon.dispatch('PROFILE_UPDATE_ARRAY', this.info.id, 'meetings', this._index, newData

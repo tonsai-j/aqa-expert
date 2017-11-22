@@ -149,9 +149,13 @@
                     },
                     datas: {
                         type: Array,
+                        observer:'gwts'
                         // statePath: 'profile09.meeting',
                     }
                 }
+            }
+            gwts(e){
+                console.log(e);
             }
             updatePosition(e) {
                 this.$.tooltip.textContent = e.currentTarget.getAttribute('name');
