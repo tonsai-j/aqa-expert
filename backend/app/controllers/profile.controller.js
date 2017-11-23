@@ -30,8 +30,10 @@ exports.update = function (req, res) {
     }
 }
 exports.meeting = function (req, res) {
-    r.db('aqa_meeting').table('participant')
-        .getAll([req.query.taxno, true], { index: 'taxnoConfirm' })
+    // r.db('aqa_meeting').table('participant')
+    r.db('aqa_expert').table('profile')
+        .getAll([req.query.taxno, true], { index: 'taxnoConfirm' })(0)
+        .getField('meetings')
         .run()
         .then(function (data) {
             res.json(data)
