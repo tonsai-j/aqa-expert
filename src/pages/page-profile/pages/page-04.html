@@ -220,6 +220,7 @@
                             creater: this.info.taxno,
                             updater: this.info.taxno
                         });
+                        // console.log(newData);
                         Nylon.dispatch('PROFILE_PUSH_ARRAY', this.info.id, 'specialist', newData
                             , () => {
                                 this._closePanelRight();
@@ -232,6 +233,7 @@
                             date_updated: new Date(),
                             updater: this.info.taxno
                         });
+                        // console.log(newData);
                         Nylon.dispatch('PROFILE_UPDATE_ARRAY', this.info.id, 'specialist', this._index, newData
                             , () => {
                                 this._closePanelRight();

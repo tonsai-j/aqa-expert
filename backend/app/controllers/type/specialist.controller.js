@@ -6,7 +6,7 @@ exports.list = function (req, res) {
         .merge((row) => {
             return {
                 label: row('SPECIALTYPDESC'),
-                value: row('SPECIALGRPCD'),
+                value: row('SPECIALTYPCD'),
             }
         })
         .orderBy('SPECIALTYPDESC')
