@@ -29,7 +29,7 @@
 <dom-module id="nylon-init">
   <template>
     <style>
-       :host {
+      :host {
         display: block;
       }
 
@@ -39,24 +39,39 @@
     </style>
 
     <nylon-dialog></nylon-dialog>
-    <layout-main id="layoutMain" path-name="[[pathName]]">
-      <nylon-pages id="nylonPage">
-        <!-- <page-register path="/"></page-register> -->
-        <page-profile path="/profile/:name"></page-profile> 
-        <page-approve path="/approve"></page-approve>
-        <page-test-login path="/"></page-test-login>
-        <!-- <page-basic path="basic"></page-basic>
-        <page-address path="address"></page-address>
-        <page-bank path="bank"></page-bank>
-        <page-skill path="skill"></page-skill>
-        <page-education path="education"></page-education> -->
-        <!-- <page-dashboard path="/dashboard" rule></page-dashboard> -->
-        <page-tests path="/tests"></page-tests>
-        <!-- <page-401 path="*"></page-401> -->
-        <page-404 path="*"></page-404>
-      </nylon-pages>
-    </layout-main>
-   
+    <!-- <template is="dom-if" if={{!checkLoginPage(pathName)}}> -->
+    <!-- <layout-main id="layoutMain" path-name="[[pathName]]">
+        <nylon-pages id="nylonPage">
+          <page-register path="/"></page-register>
+          <page-profile path="/profile/:name"></page-profile>
+          <page-approve path="/approve"></page-approve>
+          <page-test-login path="/"></page-test-login>
+          <page-dashboard path="/dashboard" rule></page-dashboard>
+          <page-tests path="/tests"></page-tests>
+          <page-401 path="*"></page-401>
+          <page-404 path="*"></page-404>
+        </nylon-pages>
+      </layout-main> -->
+    <div hidden="{{checkLoginPage(pathName)}}">
+      <layout-main id="layoutMain" path-name="[[pathName]]">
+        <nylon-pages id="nylonPage">
+          <!-- <page-register path="/"></page-register> -->
+          <page-profile path="/profile/:name"></page-profile>
+          <page-approve path="/approve"></page-approve>
+          <page-test-login path="/"></page-test-login>
+          <page-dashboard path="/dashboard" rule></page-dashboard>
+          <page-tests path="/tests"></page-tests>
+          <!-- <page-401 path="*"></page-401> -->
+          <page-404 path="*"></page-404>
+        </nylon-pages>
+      </layout-main>
+    </div>
+    <!-- </template> -->
+    <template is="dom-if" if={{checkLoginPage(pathName)}}>
+      <page-test-login path="/"></page-test-login>
+    </template>
+
+
 
 
   </template>
@@ -99,7 +114,7 @@
               })
             } else {
               // console.log('init');
-              Nylon.redirect('/')
+              // Nylon.redirect('/')
             }
 
           });
@@ -120,22 +135,27 @@
           this.dashboard = false;
         }
       }
-
-      checkLoginPage(login, dashboard) {
-        if (login === true && dashboard === false)
-          return false
-        return true
+      checkLoginPage(path) {
+        console.log(path);
+        if (path === "/")
+          return true
+        return false
       }
-      checkNomal(login, dashboard) {
-        if (login === false && dashboard === false)
-          return false
-        return true
-      }
-      checkDashboard(login, dashboard) {
-        if (login === false && dashboard === true)
-          return false
-        return true
-      }
+      // checkLoginPage(login, dashboard) {
+      //   if (login === true && dashboard === false)
+      //     return false
+      //   return true
+      // }
+      // checkNomal(login, dashboard) {
+      //   if (login === false && dashboard === false)
+      //     return false
+      //   return true
+      // }
+      // checkDashboard(login, dashboard) {
+      //   if (login === false && dashboard === true)
+      //     return false
+      //   return true
+      // }
     }
 
     window.customElements.define(NylonInit.is, NylonInit);

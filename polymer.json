@@ -3,6 +3,7 @@
   "shell": "src/nylon-app.html",
   "fragments": [
     "src/pages/page-register/page-register.html",
+    "src/pages/page-test-login/page-test-login.html",
     "src/pages/page-profile/page-profile.html",
     "src/pages/page-404/page-404.html"
   ],

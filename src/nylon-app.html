@@ -65,6 +65,7 @@
         //console.log(this.$.nylonInit.$.layoutMain.$.progress)
         //var progress = this.$.nylonInit.$.layoutMain.progress()
         // console.log(resolvedUrl);
+        // this.pathName = e.detail.ctx.pathname
         Polymer.importHref(
           resolvedUrl,
           () => {
@@ -76,6 +77,7 @@
               Nylon.$[elementName] = e.detail.element
 
             //progress()
+            // console.log(e.detail.ctx.pathname);
             this.pathName = e.detail.ctx.pathname
             // console.log(this.pathName);
             e.detail.active()
