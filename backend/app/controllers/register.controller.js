@@ -7,7 +7,7 @@ exports.post = function (req, res) {
                 r.expr(req.body)
                     .merge(function (m) {
                         return {
-                            type_assessor: r.table('type_assessor').get(req.body.type_assessor_id),
+                            type_assessor: r.db('aqa_cds').table('assessortyp').getAll(req.body.type_assessor_id, { index: 'ASSESSORTYPCD' })(0),
                             // basic: m('basic').merge(function (m2) {
                             //     return r.branch(m2.hasFields('birth_date'), {
                             //         birth_date: r.ISO8601(m2('birth_date')).inTimezone('+07'),

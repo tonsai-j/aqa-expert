@@ -16,7 +16,6 @@
 <dom-module id="address-form-work">
     <template>
         <style include="flexbox-grid shared-styles">
-
         </style>
         <div>
             <div class="section-content row">
@@ -65,7 +64,8 @@
                     <!-- <aqa-combo-box label="[[i18n.page02.region]]" items="[[regionList]]" item-label-path="label" item-value-path="value" 
                         value="{{address.region_id}}"></aqa-combo-box> -->
                     <aqa-combo-box always-float-label label="[[i18n.page02.region]]" items='{{regionList}}' value="{{address.region_id}}" item-label-path="label"
-                        item-value-path="value" on-selected-item-changed="getObject" object-name="address.region" class="required" required>
+                        item-value-path="value" on-selected-item-changed="getObject" object-name="address.region" class="required"
+                        required>
                         <template>
                             [[item.label]]
                         </template>
@@ -75,7 +75,8 @@
                     <!-- <aqa-combo-box id="province" label="[[i18n.page02.province]]" items="[[provinceList]]" item-label-path="label" item-value-path="value"
                         value="{{province_id}}"></aqa-combo-box> -->
                     <aqa-combo-box always-float-label label="[[i18n.page02.province]]" items='{{provinceList}}' value="{{address.province_id}}"
-                        item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="address.province" class="required" required>
+                        item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="address.province"
+                        class="required" required>
                         <template>
                             [[item.label]]
                         </template>
@@ -85,8 +86,9 @@
             <div class="section-content row">
                 <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-4">[[checkIsProvince(address.province_id,address.province_id.*)]]
                     <!-- <aqa-input label="อำเภอ / เขต" value="" ></aqa-input> -->
-                    <aqa-combo-box always-float-label label="[[i18n.page02.amphoe]]" items='{{amphoeList}}' value="{{address.amphoeList_id}}" item-label-path="label"
-                        item-value-path="value" on-selected-item-changed="getObject" object-name="address.amphoe" class="required" required>
+                    <aqa-combo-box always-float-label label="[[i18n.page02.amphoe]]" items='{{amphoeList}}' value="{{address.amphoeList_id}}"
+                        item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="address.amphoe"
+                        class="required" required>
                         <template>
                             [[item.label]]
                         </template>
@@ -97,7 +99,8 @@
                     <!-- <aqa-combo-box label="[[i18n.page02.district]]" items="[[districtList]]" item-label-path="label" item-value-path="value"
                         value=""></aqa-combo-box> -->
                     <aqa-combo-box always-float-label label="[[i18n.page02.district]]" items='{{districtList}}' value="{{address.district_id}}"
-                        item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="address.district" class="required" required>
+                        item-label-path="label" item-value-path="value" on-selected-item-changed="getObject" object-name="address.district"
+                        class="required" required>
                         <template>
                             [[item.label]]
                         </template>
@@ -196,6 +199,9 @@
             checkIsAmphoe(amphoeList_id) {
                 if (amphoeList_id !== undefined && amphoeList_id !== '')
                     Nylon.dispatch('PROFILE_02_GET_LIST_DISTRICT_WORK', amphoeList_id)
+            }
+            validate() {
+                return this.validateForm('.required')
             }
         }
         window.customElements.define(AddressFormWork.is, AddressFormWork);

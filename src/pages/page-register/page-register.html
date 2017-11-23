@@ -421,7 +421,8 @@
                                         action: () => {
                                             this.$.comboTypeAss.value = data[0].type_assessor_id;
                                             // this.$.comboTypeAss.disabled = true;
-                                            Nylon.dispatch('REGISTER_POST', this.data)
+                                            console.log(this.data);
+                                            // Nylon.dispatch('REGISTER_POST', this.data)
                                         }
                                     }
                                 ]

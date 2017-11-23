@@ -63,6 +63,7 @@
                 margin-bottom: 1rem;
                 font-size: 1.2rem;
             }
+
             /* .section-content {
                 margin-left: 1.5rem;
             } */
@@ -118,7 +119,7 @@
                         </div>
                     </div> -->
                     <div class="section-content">
-                        <address-form-contact address="{{address.contract}}"></address-form-contact>
+                        <address-form-contact id="contract" address="{{address.contract}}"></address-form-contact>
                     </div>
                 </div>
             </aqa-panel>
@@ -145,7 +146,7 @@
                                 <aqa-input label="[[i18n.page02.company_name]]" value=""></aqa-input>
                             </div>
                         </div>
-                        <address-form-work address="{{address.work}}"></address-form-work>
+                        <address-form-work id="work" address="{{address.work}}"></address-form-work>
                     </div>
 
                 </div>
@@ -341,8 +342,10 @@
             // }
             _save() {
                 // console.log(this.address)
+                // console.log(this.$.contract.validate());
+                // console.log(this.$.work.validate());
                 // console.log(this.validateForm('.required'));
-                if (!this.validateForm('.required')) {
+                if (this.$.contract.validate() && this.$.work.validate()) {
                     Nylon.dispatch('PROFILE_UPDATE', this.info.id, 'address', this.address,
                         () => {
                             // Nylon.toast('update')

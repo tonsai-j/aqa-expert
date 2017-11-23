@@ -7,7 +7,7 @@ exports.list = function (req, res) {
                 value: row('ASSESSORTYPCD'),
             }
         })
-        .orderBy('ASSESSORTYPCD')
+        .orderBy('ASSESSORTYPID')
         // .pluck('label', 'value')
         .run()
         .then(function (data) {
