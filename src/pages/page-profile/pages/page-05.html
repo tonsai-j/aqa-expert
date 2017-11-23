@@ -109,6 +109,7 @@
                             <!-- <aqa-date-picker required>
                                 <aqa-input label="[[i18n.page05.e_date]]"></aqa-input>
                             </aqa-date-picker> -->
+                            <!-- {{data.year_work_end}} -->
                             <aqa-combo-box class="required" always-float-label label="" items='{{yearList}}' value="{{data.year_work_end}}" item-label-path="label"
                                 item-value-path="value" disabled={{workendyear}}>
                                 <template>
@@ -118,7 +119,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-1">
                             <!-- ปัจจุบัน -->
-                            <paper-checkbox on-tap="_disabledEndYear">[[i18n.page05.present]] </paper-checkbox>
+                            <paper-checkbox checked="{{isNow}}" on-tap="_disabledEndYear">[[i18n.page05.present]] </paper-checkbox>
                         </div>
                     </div>
 
@@ -232,6 +233,10 @@
                                     value: i
                                 })
                             }
+                            year.push({
+                                label: 9999,
+                                value: 9999
+                            })
                             return year
                         }
                     },
@@ -250,6 +255,10 @@
                     _index: {
                         type: Number
                     },
+                    isNow: {
+                        type: Boolean,
+                        value: false
+                    }
                 };
             }
 
@@ -270,9 +279,10 @@
                 // console.log(e.currentTarget.getAttribute('aria-checked'))
                 if (e.currentTarget.getAttribute('aria-checked') !== 'true') {
                     this.set('workendyear', true)
-                    this.set('data.year_work_end', '9999')
+                    this.set('data.year_work_end', 9999)
+                    // console.log(this.$.isNow);
                 } else {
-                    this.set('workenddate', false)
+                    this.set('workendyear', false)
                     this.set('data.year_work_end', '')
                 }
                 // console.log(this.workenddate)
@@ -285,6 +295,14 @@
                         this.$.panelRight.open();
                         this.set('data', detail.detail.data)
                         this.set('_index', detail.detail.index)
+                        if (this.data.year_work_end === 9999) {
+                            this.set('workendyear', true)
+                            this.isNow = true
+                        } else {
+                            this.set('workendyear', false)
+                            this.isNow = false
+                        }
+
                     })
                 this.$.historyList.addEventListener('_delete', this._confirmDel)
             }
@@ -299,59 +317,13 @@
                 this.set('data', {})
                 this.set('_index', undefined)
                 // }
+                this.set('workendyear', false)
                 this.$.panelRight.open();
             }
-            // _openPanelRight(e) {
-            //     if (e.currentTarget.getAttribute('action') == 'edit') {
-            //         let data = JSON.parse(JSON.stringify(e.model.item));
-            //         data.work_start_date = data.work_start_date.split('T')[0]
-            //         data.work_end_date = data.work_end_date.split('T')[0]
-            //         this.set('data', data)
-            //         this.set('_index', e.model.index)
-            //     } else {
-            //         this.set('data', {})
-            //         this.set('_index', undefined)
-            //     }
-            //     this.$.right.open();
-            // }
             _closePanelRight() {
                 this.$.panelRight.close()
             }
-            // _save() {
-            //     console.log(this.data)
-            //     if (this.validateForm('.required')) {
-            //         // this.set('data.work_start_date', new Date(this.data.work_start_date).toISOString());
-            //         // this.set('data.work_end_date', new Date(this.data.work_end_date).toISOString());
-            //         if (typeof this._index === 'undefined') {
-            //             var newData = Object.assign(this.data, {
-            //                 date_created: new Date().toISOString(),
-            //                 date_updated: new Date().toISOString(),
-            //                 creater: this.info.taxno,
-            //                 updater: this.info.taxno
-            //             });
-            //             Nylon.dispatch('PROFILE_PUSH_ARRAY', this.info.id, 'working', newData
-            //                 , () => {
-            //                     this._closePanelRight();
-            //                     this.set('data', {});
-            //                     // Nylon.toast('insert')
-            //                     Nylon.dialog('save')
-            //                 });
-            //         } else {
-            //             var newData = Object.assign(this.data, {
-            //                 date_updated: new Date(),
-            //                 updater: this.info.taxno
-            //             });
-            //             Nylon.dispatch('PROFILE_UPDATE_ARRAY', this.info.id, 'working', this._index, newData
-            //                 , () => {
-            //                     this._closePanelRight();
-            //                     this.set('data', {});
-            //                     // Nylon.toast('update')
-            //                     Nylon.dialog('save')
-            //                 });
-            //         }
-            //     }
-
-            // }
+            
             _save() {
                 // console.log(this.data)
                 if (this.validateForm('.required')) {
@@ -403,7 +375,7 @@
                             type: 'danger',
                             'dialog-confirm': true,
                             'autofocus': true,
-                            style:'margin-right:5px',
+                            style: 'margin-right:5px',
                             action: () => {
                                 Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'working', e.detail.index
                                     , () => {
