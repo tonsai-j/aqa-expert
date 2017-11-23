@@ -163,10 +163,15 @@
                             </paper-button>
                         </div>
                     </div> -->
-                    <div class="row center-xs">
+                    <div class="row center-lg">
                         <div class="col-lg-2">
                             <div style="padding:0rem 2rem;">
                                 <aqa-button type="success btn-full-width" on-tap="_save">[[i18n.button.save.label]]</aqa-button>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div style="padding:0rem 2rem;">
+                                <aqa-button type="default btn-full-width" on-tap="_closePanelRight">[[i18n.button.close.label]]</aqa-button>
                             </div>
                         </div>
                     </div>
@@ -333,7 +338,7 @@
                             type: 'danger',
                             'dialog-confirm': true,
                             'autofocus': true,
-                            style:'margin-right:5px',
+                            style: 'margin-right:5px',
                             action: () => {
                                 Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'education', e.detail.index
                                     , () => {
