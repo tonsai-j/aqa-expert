@@ -348,7 +348,14 @@
                 this.$.academyList.addEventListener('open_panelRight',
                     (detail) => {
                         this.$.panelRight.open();
-                        this.set('data', detail.detail.data)
+                        this.set('data', {})
+                        this.set('data', {
+                            province_id: '',
+                            amphoe_id: '',
+                        })
+                        this.set('acadamyName', '')
+                        this.set('academy', '')
+                        // this.set('data', detail.detail.data)
                         this.set('_index', detail.detail.index)
                     })
                 this.$.academyList.addEventListener('_delete', this._confirmDel)
@@ -365,8 +372,17 @@
                 //     this.set('data', e.model.item)
                 //     this.set('_index', e.model.index)
                 // } else {
-                    this.set('data', {})
-                    this.set('_index', undefined)
+                // console.log(this.data);
+                this.set('data', {})
+                this.set('data', {
+                    province_id: '',
+                    amphoe_id: '',
+                })
+                this.set('acadamyName', '')
+                this.set('academy', '')
+
+
+                this.set('_index', undefined)
                 // }
                 this.$.panelRight.open();
             }
@@ -419,7 +435,7 @@
                 } else {
                     amphoe = { DISTRICTID: '' }
                 }
-
+                // console.log(amphoe);
                 let data = {
                     amphoe_id: amphoe.DISTRICTID || '',
                     group_work_id: group_work.old_id || '',
@@ -434,7 +450,7 @@
             }
             _save() {
 
-                if (!this.validateForm('.acadamy')) {
+                if (this.validateForm('.acadamy')) {
                     // console.log(this.dataSave)
                     if (typeof this._index === 'undefined') {
                         var newData = Object.assign(this.dataSave, {
@@ -485,7 +501,7 @@
                             type: 'danger',
                             'dialog-confirm': true,
                             'autofocus': true,
-                            style:'margin-right:5px',
+                            style: 'margin-right:5px',
                             action: () => {
                                 Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'assessment', e.detail.index
                                     , () => {
