@@ -196,6 +196,19 @@
                 if (this.required && (this.value == "" || typeof this.value == "undefined")) {
                     this.invalid = true
                 }
+                // console.log(this.value);
+                if (this.value !== undefined) {
+                    switch (this.type) {
+                        case 'phone':
+                            this.invalid = (this.value.length !== 10 ? true : false)
+                            break;
+                        case 'pid':
+                            this.invalid = (this.value.length !== 13 ? true : false)
+                            break;
+                        default:
+
+                    }
+                }
 
                 return this.invalid
             }
@@ -235,11 +248,22 @@
                     }
 
                 }
-                if (this.type === 'phone') {
-                    this.invalid = (newVal.length !== 10 ? true : false)
-                }
-                if (this.type === 'pid') {
-                    this.invalid = (newVal.length !== 13 ? true : false)
+                // if (this.type === 'phone') {
+                //     this.invalid = (newVal.length !== 10 ? true : false)
+                // }
+                // if (this.type === 'pid') {
+                //     this.invalid = (newVal.length !== 13 ? true : false)
+                // }
+                if (this.value !== undefined) {
+                    switch (this.type) {
+                        case 'phone':
+                            this.invalid = (this.value.length !== 10 ? true : false)
+                            break;
+                        case 'pid':
+                            this.invalid = (this.value.length !== 13 ? true : false)
+                            break;
+                        default:
+                    }
                 }
 
             }
