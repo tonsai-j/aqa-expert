@@ -104,6 +104,11 @@
                                 <aqa-button type="success btn-full-width" on-click="_save">[[i18n.button.save.label]]</aqa-button>
                             </div>
                         </div>
+                        <div class="col-lg-2">
+                            <div style="padding:0rem 2rem;">
+                                <aqa-button type="default btn-full-width" on-tap="_closePanelRight">[[i18n.button.close.label]]</aqa-button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </nylon-panel-card>
@@ -248,7 +253,7 @@
                             type: 'danger',
                             'dialog-confirm': true,
                             'autofocus': true,
-                            style:'margin-right:5px',
+                            style: 'margin-right:5px',
                             action: () => {
                                 Nylon.dispatch('PROFILE_SPLICE_ARRAY', this.info.id, 'references', e.detail.index
                                     , () => {

@@ -90,19 +90,20 @@
         super.ready()
         this._debouncer = Polymer.Debouncer.debounce(
           this._debouncer, // initially undefined
-          Polymer.Async.timeOut.after(700),
+          Polymer.Async.timeOut.after(1000),
           () => {
             // console.log(localStorage.getItem('taxno'));
             let texno = localStorage.getItem('taxno')
             // console.log(texno);
             if (texno !== null && texno !== undefined && texno !== '') {
               Nylon.dispatch('REGISTER_CHECK_TAXNO', texno, (data) => {
-
+                // console.log(this.pathName);
                 let pathUrl = this.pathName
                 Nylon.dispatch('REGISTER_POST', data[0], pathUrl)
               })
             } else {
-              // Nylon.redirect('/')
+              // console.log('init');
+              Nylon.redirect('/')
             }
 
           });
