@@ -40,7 +40,7 @@
         display: none;
       }
     </style>
-
+    {{checkLoginPage(pathName)}}
     <nylon-dialog></nylon-dialog>
     <!-- <template is="dom-if" if={{!checkLoginPage(pathName)}}> -->
     <!-- <layout-main id="layoutMain" path-name="[[pathName]]">
@@ -55,7 +55,7 @@
           <page-404 path="*"></page-404>
         </nylon-pages>
       </layout-main> -->
-    <div hidden="{{checkLoginPage(pathName)}}">
+    <div hidden="{{checkUrl}}">
       <layout-main id="layoutMain" path-name="[[pathName]]">
         <nylon-pages id="nylonPage">
           <!-- <page-register path="/"></page-register> -->
@@ -70,7 +70,7 @@
       </layout-main>
     </div>
     <!-- </template> -->
-    <template is="dom-if" if={{checkLoginPage(pathName)}}>
+    <template is="dom-if" if={{checkUrl}}>
       <page-test-login path="/"></page-test-login>
     </template>
 
@@ -97,14 +97,18 @@
           dashboard: {
             type: Boolean,
             value: false
-          }
+          },
+          checkUrl: {
+            type: Boolean,
+            value: true
+          },
         }
       }
       ready() {
         super.ready()
         this._debouncer = Polymer.Debouncer.debounce(
           this._debouncer, // initially undefined
-          Polymer.Async.timeOut.after(1000),
+          Polymer.Async.timeOut.after(1),
           () => {
             // console.log(localStorage.getItem('taxno'));
             let texno = localStorage.getItem('taxno')
@@ -139,10 +143,12 @@
         }
       }
       checkLoginPage(path) {
-        console.log(path);
-        if (path === "/")
-          return true
-        return false
+        // console.log(path);
+        if (path === "/") {
+          this.set('checkUrl', true)
+        } else {
+          this.set('checkUrl', false)
+        }
       }
       // checkLoginPage(login, dashboard) {
       //   if (login === true && dashboard === false)
