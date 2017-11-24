@@ -232,9 +232,6 @@
             connectedCallback() {
                 super.connectedCallback()
                 this.$.vaadinComboBox.addEventListener('value-changed', (e) => {
-                    // console.log(e);
-                    // console.log(this.$.vaadinComboBox.value);
-                    // this.value 
                     this.set('value', this.$.vaadinComboBox.value)
                 })
                 // console.log(111111111111);
@@ -297,9 +294,9 @@
                         queueProperty: true,
                         value: newDate
                     }
-                    console.log(detail);
+                    // console.log(detail);
                 }
-                console.log(val);
+                // console.log(val);
                 this.dispatchEvent(new CustomEvent('selected-item-changed', {
                     detail: detail
                 }))
