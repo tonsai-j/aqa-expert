@@ -30,15 +30,19 @@
 <link rel="import" href="../redux-mixin.html">
 
 
+<link rel="import" href="../redux/auth-redux.html">
+
+<link rel="import" href="../redux/profile/profile-redux.html">
+
 
 <dom-module id="layout-main">
     <template>
         <style>
-             :host {
+            :host {
                 --app-primary-color: #0288D1;
                 --app-secondary-color: black;
                 display: block;
-                  --paper-listbox: {
+                --paper-listbox: {
                     padding: 0.2rem;
                     min-width: 300px;
                     border-radius: 0.2rem;
@@ -66,32 +70,39 @@
                 }
                 --paper-item-selected-weight:100;
             }
-            iron-icon{
+
+            iron-icon {
                 cursor: pointer;
             }
-            .icon-sm{
+
+            .icon-sm {
                 --iron-icon-height: 16px;
                 --iron-icon-width: 16px;
             }
-            .icon-md{
+
+            .icon-md {
                 margin-left: 0.4rem;
                 margin-right: 0.4rem;
                 --iron-icon-height: 24px;
                 --iron-icon-width: 24px;
             }
-            .icon-lg{
+
+            .icon-lg {
                 --iron-icon-height: 32px;
                 --iron-icon-width: 32px;
             }
+
             paper-item,
             paper-item-body {
                 height: 1px;
                 font-family: MitrLight;
                 /* edit for ie.*/
             }
+
             app-drawer-layout:not([narrow]) [drawer-toggle] {
                 display: none;
             }
+
             /* 
             app-header {
                 position: fixed;
@@ -119,7 +130,7 @@
                 }
             }
 
-            
+
 
             paper-icon-button {
                 color: #777;
@@ -158,15 +169,15 @@
                         <paper-icon-button icon="icons:mail"></paper-icon-button>
                         <paper-menu-button no-overlap horizontal-align="right">
                             <div class="divImage" slot="dropdown-trigger" alt="menu">
-                                <img class="img-circle" src$="[[rootPath]]images/I20170901111610.jpg" />
+                                <img class="img-circle" src$="[[rootPath]][[info.profile_url]]" />
                             </div>
                             <paper-listbox slot="dropdown-content">
 
                                 <paper-icon-item disabled>
-                                    <img class="img-circle" src$="[[rootPath]]images/I20170901111610.jpg" / slot="item-icon">
+                                    <img class="img-circle" src$="[[rootPath]][[info.profile_url]]" / slot="item-icon">
                                     <paper-item-body two-line>
-                                        <div>รองศาสตร์จารย์บรรเจิด เริศฤดี</div>
-                                        <div secondary>test@gmail.com</div>
+                                        <div>[[info.type_academic.POSITIONTHAIDESC]][[info.firstname_th]] [[info.lastname_th]]</div>
+                                        <!-- <div secondary>test@gmail.com</div> -->
                                     </paper-item-body>
                                 </paper-icon-item>
 
@@ -183,13 +194,13 @@
                                     <iron-icon class="icon-md" icon="editor:format-size" size="1" on-tap="chFont"></iron-icon>
                                     <iron-icon class="icon-lg" icon="editor:format-size" size="1.2" on-tap="chFont"></iron-icon>
                                 </paper-item>
-                                <paper-item>
+                                <paper-item on-tap="logout">
                                     <iron-icon icon="icons:exit-to-app"></iron-icon>
                                     &nbsp;&nbsp;Log-out
                                 </paper-item>
                             </paper-listbox>
                         </paper-menu-button>
-                        
+
                     </app-toolbar>
                     <template is="dom-if" if="[[progressEnable]]">
                         <paper-progress id="progress" value="[[progressValue]]" indeterminate="[[progressIndeterminate]]"></paper-progress>
@@ -226,11 +237,21 @@
                         type: String,
                         value: "/",
                         observer: 'setFullScreen'
-                    }
+                    },
+                    info: {
+                        type: Object,
+                        statePath: 'profile.info.basic',
+                        observer: 'ffff'
+                    },
 
                 };
             }
-
+            ffff(data){
+                console.log(data);
+            }
+            logout(){
+                Nylon.dispatch('authLogout') 
+            }
             ready() {
                 super.ready()
                 Nylon.changeLanguage('th')
@@ -251,12 +272,12 @@
                 }
             }
 
-            
+
             _closeDrawer() {
-                if(document.body.offsetWidth<=1024){
+                if (document.body.offsetWidth <= 1024) {
                     this.$.drawer.close()
                 }
-                
+
             }
 
             progress() {
@@ -291,8 +312,8 @@
                 }, 500)
             }
 
-            chFont(e){
-                document.querySelector('body').style.fontSize = e.currentTarget.getAttribute('size')+'rem'
+            chFont(e) {
+                document.querySelector('body').style.fontSize = e.currentTarget.getAttribute('size') + 'rem'
             }
 
             // smFont(){

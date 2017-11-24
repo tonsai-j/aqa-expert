@@ -475,6 +475,9 @@
                 let rawDate = e.model.item2.date.split('-')
                 rawDate = rawDate[0] + '-' + rawDate[1] + '-' + this.setZeroBefore(rawDate[2])
                 this.set('selected', rawDate)
+                this.dispatchEvent(new CustomEvent('setDate', { detail: { model: 'close' } }))
+
+                console.log(111);
                 // this.selected = rawDate
                 // rawDate = this.setZeroBefore(rawDate[2]) + '/' + rawDate[1] + '/' + Number(rawDate[0]) + 543
                 // this.set('selectedBe', rawDate)

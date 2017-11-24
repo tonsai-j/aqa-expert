@@ -361,6 +361,9 @@
                     Nylon.toast('required')
                 }
             }
+            closePanelRight() {
+                this.$.panelRight.close();
+            }
             _confirmDel(e) {
                 Nylon.confirm({
                     title: this.i18n.confirm.delete.title,

@@ -87,11 +87,20 @@
           this.child.disabled = this.disabled
           this.nativeInput = this.child.$.nativeInput
           this.nativeInput.addEventListener('focus', this._showDatePicker.bind(this))
-          this.nativeInput.addEventListener('blur', this._hideDatePicker.bind(this))
+
+
+          // this.nativeInput.addEventListener('focusout', this._hideDatePicker.bind(this))
+          this.nativeInput.addEventListener('focusout', (e) => {
+            // console.log(e);
+          })
+
 
           this.aqaDataPickerLight = document.getElementById('aqaDataPickerLight')
           this.calendar = aqaDataPickerLight.$.calendar
-
+          // console.log(this.aqaDataPickerLight );
+          // console.log(this.calendar);
+          // console.log(this.nativeInput);
+          this.aqaDataPickerLight.addEventListener('setDate', this._hideDatePicker.bind(this))
         }, 1)
 
       }
@@ -188,22 +197,22 @@
         // setTimeout(() => {
 
 
-          let be = this.aqaDataPickerLight.selectedBe
-          let dc = this.aqaDataPickerLight.selected
-          // console.log(be, dc);
-          let arr = []
-          arr.push((/^\d{4}[-]\d{1,2}[-]\d{1,2}/).test(dc))
-          arr.push((/^\d{1,2}[/]\d{1,2}[/]\d{4}/).test(be))
-          let checkData = (arr.find(item => item === false) === undefined ? false : true)
-          // console.log(this.errorMessage);
-          // console.log(checkData);
-          this.child.invalid = checkData
-          this.child.errorMessage = this.errorMessage
-          // console.log(this.child.invalid = checkData);
-          // this.set('invalid', !checkData)
-          // console.log(this.invalid);
+        let be = this.aqaDataPickerLight.selectedBe
+        let dc = this.aqaDataPickerLight.selected
+        // console.log(be, dc);
+        let arr = []
+        arr.push((/^\d{4}[-]\d{1,2}[-]\d{1,2}/).test(dc))
+        arr.push((/^\d{1,2}[/]\d{1,2}[/]\d{4}/).test(be))
+        let checkData = (arr.find(item => item === false) === undefined ? false : true)
+        // console.log(this.errorMessage);
+        // console.log(checkData);
+        this.child.invalid = checkData
+        this.child.errorMessage = this.errorMessage
+        // console.log(this.child.invalid = checkData);
+        // this.set('invalid', !checkData)
+        // console.log(this.invalid);
 
-          return checkData
+        return checkData
         // }, 4)
       }
 
