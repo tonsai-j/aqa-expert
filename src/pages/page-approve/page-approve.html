@@ -217,7 +217,7 @@
                                     <div class="header" style="text-align: center">[[i18n.approve.project]]</div>
                                 </template>
                                 <template>
-                                    <div >[[item.projects]]</div>
+                                    <div>[[item.projects]]</div>
                                 </template>
                             </vaadin-grid-column>
 
@@ -263,7 +263,7 @@
                                     <div class="header" style="text-align: center">[[i18n.approve.place]]</div>
                                 </template>
                                 <template>
-                                    <div >[[item.training_venues]]</div>
+                                    <div>[[item.training_venues]]</div>
                                 </template>
                             </vaadin-grid-column>
 
@@ -355,8 +355,9 @@
                 }
             }
             _card(e) {
-                // console.log(e.model.item.id);
-                window.open('https://localhost:3000/api/report/assessor/cardId?id=' + e.model.item.id)
+                console.log(e.model.item);
+                if (e.model.item.confirm && e.model.item.exam )
+                    window.open('https://localhost:3000/api/report/assessor/cardId?id=' + e.model.item.id)
                 // Nylon.dispatch('APPROVE_GET_CARD', e.model.item.id)
             }
             _closePanelRight() {
