@@ -136,7 +136,7 @@
             }
         </style>
 
-
+        <!-- {{value}}//[[items.length]] -->
         <div class="form-group">
             <label class="control-label" invalid$="{{invalid}}">[[label]] &nbsp;
                 <template is="dom-if" if="[[required]]">
@@ -145,7 +145,7 @@
             </label>
             <div class="input-container">
                 <vaadin-combo-box-light id="vaadinComboBox" items="[[items]]" item-label-path="[[itemLabelPath]]" item-value-path="[[itemValuePath]]"
-                    attr-for-value="bind-value" value="{{value}}" disabled$="[[disabled]]">
+                    attr-for-value="bind-value" value={{value}} disabled$="[[disabled]]">
                     <iron-input>
                         <input id="nativeInput" class="form-control" placeholder="[[placeholder]]" invalid$="{{invalid}}" disabled$="[[disabled]]">
                     </iron-input>
@@ -158,9 +158,6 @@
                     <iron-icon class="arrow-drop-downw" hidden="{{disabled}}" icon="icons:clear" on-click="reset"></iron-icon>
                 </template>
                 <iron-icon class="arrow-drop-down" hidden="{{disabled}}" icon="icons:arrow-drop-down" on-click="_focusInput"></iron-icon>
-
-
-
             </div>
 
             <template is="dom-if" if="[[invalid]]">
@@ -178,11 +175,16 @@
                         type: Array,
                         value: function () {
                             return []
-                        }
+                        },
+                        observer: 'setSeleted'
                     },
                     label: {
                         type: String,
                         value: ""
+                    },
+                    setData: {
+                        type: Number,
+                        observer: '_valueChanged'
                     },
                     autoValidate: Boolean,
                     required: {
@@ -227,7 +229,6 @@
 
                 }
             }
-
             validate() {
                 this.invalid = false
                 // this.value = this.value.trim()
@@ -239,14 +240,28 @@
                 return this.invalid
             }
 
-
-
             reset() {
                 this.invalid = false
-                this.value = {}
+                this.value = null
+                // this.setData = null
+            }
+            setSeleted(items) {
+                // console.log(items.length >= 1);
+                // console.log(this.value);
+                if (items.length >= 1) {
+                    this._valueChanged(this.value)
+                    // console.log(typeof this.value);
+                    this.$.vaadinComboBox.value = 1
+                    // console.log(this.$.vaadinComboBox.value);
+                }
+
             }
 
             _valueChanged(val) {
+                // if (val === undefined)
+                //     return
+                // console.log(val);
+                // console.log(this.itemValuePath);
                 if (this.autoValidate && this.required) {
                     if (this.fristValue && this.value == "") {
                         this.invalid = false
@@ -264,11 +279,15 @@
                 }
                 if (val !== undefined && val !== '') {
                     newDate = this.items.find(el => el[this.itemValuePath] === val)
+                    // console.log(this.items);
+                    // console.log(newDate);
                     detail = {
                         queueProperty: true,
                         value: newDate
                     }
+                    // console.log(detail);
                 }
+                // console.log(val);
                 this.dispatchEvent(new CustomEvent('selected-item-changed', {
                     detail: detail
                 }))
