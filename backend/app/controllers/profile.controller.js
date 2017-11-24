@@ -43,7 +43,7 @@ exports.approve = function (req, res) {
     var approve = true;
     if (typeof req.query.approve !== 'undefined' && req.query.approve == 'false') approve = false;
     r.table('profile').getAll(approve, { index: 'approve' })
-        .pluck('id', 'taxno', 'basic', 'properties', 'exam', 'type_assessor')
+        .pluck('id', 'taxno', 'basic', 'properties', 'exam', 'type_assessor', 'meeting', 'approve','confirm')
         .run()
         .then(function (data) {
             res.json(data)
