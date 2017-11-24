@@ -90,26 +90,26 @@
                             </template>
                         </vaadin-grid-column>
 
-                        <vaadin-grid-column width="14%" flex-grow="0">
+                        <vaadin-grid-column width="15%" flex-grow="0">
                             <!-- เลขประชาชน -->
                             <template class="header">[[i18n.approve.taxno]]</template>
                             <template>[[item.taxno]]
                             </template>
                         </vaadin-grid-column>
 
-                        <vaadin-grid-column width="15%" flex-grow="0" resizable>
+                        <vaadin-grid-column width="25%" flex-grow="0" resizable>
                             <!-- ชื่อ-นามสกุล -->
                             <template class="header">[[i18n.approve.fullname]]</template>
                             <template>[[item.basic.prefix_th]] [[item.basic.firstname_th]] [[item.basic.lastname_th]]</template>
                         </vaadin-grid-column>
 
-                        <vaadin-grid-column width="15%" flex-grow="0" resizable>
-                            <!-- ประเภทผู้ประเมิน -->
-                            <template class="header">[[i18n.approve.type_assessor]]</template>
+                        <!-- <vaadin-grid-column width="15%" flex-grow="0" resizable> -->
+                        <!-- ประเภทผู้ประเมิน -->
+                        <!-- <template class="header">[[i18n.approve.type_assessor]]</template>
                             <template>[[item.type_assessor.type_assessor_name]]</template>
-                        </vaadin-grid-column>
+                        </vaadin-grid-column> -->
 
-                        <vaadin-grid-column width="10%" flex-grow="0">
+                        <vaadin-grid-column width="15%" flex-grow="0">
                             <!-- ระดับการประเมิน -->
                             <template class="header">[[i18n.approve.level]]</template>
                             <template>[[item.type_assessor.group_work.group_work_name]]</template>
@@ -139,22 +139,24 @@
                             </template>
                         </vaadin-grid-column>
 
-                        <vaadin-grid-column width="21%" flex-grow="0">
+                        <vaadin-grid-column width="20%" flex-grow="0">
                             <template class="header">
                                 <div class="text-center">[[i18n.approve.history]]</div>
                             </template>
                             <template>
                                 <span class="text-center">
                                     <div class="row">
-                                        <div class="col-xs">
+                                        <!-- <div class="col-xs">
                                             <aqa-button class="box" raised type="login " on-tap=_card>ออกบัตร</aqa-button>
+                                        </div> -->
+                                        <div class="col-xs" style="text-align: center">
+                                            <aqa-button raised type="login " on-tap=_openPanelRight >
+                                                <!-- [[i18n.approve.meeting]] -->รายละเอียด
+                                            </aqa-button>
                                         </div>
-                                        <div class="col-xs">
-                                            <aqa-button raised type="login " on-tap=_openPanelRight>[[i18n.approve.meeting]]</aqa-button>
-                                        </div>
-                                        <div class="col-xs">
+                                        <!-- <div class="col-xs">
                                             <aqa-button raised type="login " action="panel" on-tap=_openPanelRight>[[i18n.approve.exam]]</aqa-button>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     
                                     <!-- <aqa-button raised type="login " on-tap=_openPanelRight>[[i18n.approve.meeting]]</aqa-button>
@@ -189,6 +191,7 @@
                     <!-- </legend> -->
                     <br>
                     <aqa-vaadin-grid>
+
                         <vaadin-grid id='material' items='{{datas1}}'>
                             <!-- <vaadin-grid-column width="50px" flex-grow="0" resizable>
                                 <template class="header">
@@ -283,12 +286,19 @@
                                 </template>
                             </vaadin-grid-column>
                         </vaadin-grid>
-
+                        <div style="text-align: center">
+                            ไม่มีข้อมูล
+                        </div>
+                        <div style="text-align: right">
+                            <aqa-button raised type="login " on-tap=_openPanelRight>
+                                <!-- [[i18n.approve.meeting]] -->ผ่านการอบรม
+                            </aqa-button>
+                        </div>
                         <!-- </fieldset> -->
                         <!-- </div> -->
                     </aqa-vaadin-grid>
                 </div>
-                <app-toolbar slot="footer">
+                <!-- <app-toolbar slot="footer">
                     <div main-title></div>
                     <paper-button raised on-click="_closePanelRight">
                         <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>[[i18n.button.close.label]]
@@ -296,9 +306,102 @@
                     <paper-button raised class="btn-success" id="btnExam" hidden="[[exams]]" on-click="_confirmApprove">
                         <iron-icon icon="offline-pin"></iron-icon>[[i18n.approve.pass_the_exam]]
                     </paper-button>
+                </app-toolbar> -->
+
+                <!-- -----------------------------ผ่านการทดสอบ---------------------------------- -->
+
+                <div slot="content" class="col-md-offset-1 col-xs-12 col-sm-12 col-md-10">
+                    <br>
+                    <aqa-vaadin-grid>
+                        <vaadin-grid id='material' items='{{datas1}}'>
+                            <vaadin-grid-column width="5%" flex-grow="0" resizable>
+                                <!-- ลำดับ -->
+                                <template class="header">
+                                    <div class="header" style="text-align: center">[[i18n.common.no]]</div>
+                                </template>
+                                <template>
+                                    <div style="text-align: center">[[autoIndex(index)]]</div>
+                                </template>
+                            </vaadin-grid-column>
+                            <vaadin-grid-column width="30%" flex-grow="0" resizable>
+                                <!-- โครงการ/หลักสูตร -->
+                                <template class="header">
+                                    <div class="header" style="text-align: center">การทดสอบ</div>
+                                </template>
+                                <template>
+                                    <div>[[item.projects]]</div>
+                                </template>
+                            </vaadin-grid-column>
+
+                            <vaadin-grid-column width="20%" flex-grow="0" resizable>
+                                <!-- วันที่อบรม -->
+                                <template class="header">
+                                    <div class="header" style="text-align: center">[[i18n.approve.date]]</div>
+                                </template>
+                                <template>
+                                    <div style="text-align: center">วันที่สอบ</div>
+                                </template>
+                            </vaadin-grid-column>
+
+                            <vaadin-grid-column width="10%" flex-grow="0" resizable>
+                                <!-- จำนวนชั่วโมง -->
+                                <template class="header">
+                                    <div class="header" style="text-align: center">[[i18n.approve.hours]]</div>
+                                </template>
+                                <template>
+                                    <div style="text-align: center">[[item.hours]]</div>
+                                </template>
+                            </vaadin-grid-column>
+
+                            <vaadin-grid-column width="20%" flex-grow="0" resizable>
+                                <!-- สถานที่ -->
+                                <template class="header">
+                                    <div class="header" style="text-align: center">[[i18n.approve.place]]</div>
+                                </template>
+                                <template>
+                                    <div>[[item.training_venues]]</div>
+                                </template>
+                            </vaadin-grid-column>
+
+                            <vaadin-grid-column width="15%" flex-grow="0" resizable>
+                                <!-- ไฟล์แนบ -->
+                                <template class="header">
+                                    <div class="header" style="text-align: center">[[i18n.approve.file]]</div>
+                                </template>
+                                <template>
+                                    <div style="text-align: center">[[i18n.url_file]]</div>
+                                </template>
+                            </vaadin-grid-column>
+                        </vaadin-grid>
+
+                        <!-- </fieldset> -->
+                        <!-- </div> -->
+                        <div style="text-align: center">
+                            ไม่มีข้อมูล
+                        </div>
+                        <div style="text-align: right">
+                            <aqa-button raised type="login " on-tap=_openPanelRight>
+                                <!-- [[i18n.approve.meeting]] -->ผ่านการทดสอบ
+                            </aqa-button>
+                        </div>
+                    </aqa-vaadin-grid>
+                </div>
+                <app-toolbar slot="footer">
+                    <div main-title></div>
+                    <!-- <paper-button raised on-click="_closePanelRight">
+                        <iron-icon icon="[[i18n.button.close.icon]]"></iron-icon>[[i18n.button.close.label]]
+                    </paper-button> -->
+                    <aqa-button class="box" raised type="login " on-tap=_card>ออกบัตร</aqa-button>
+                    <!-- <paper-button raised class="btn-success" id="btnExam" hidden="[[exams]]" on-click="_confirmApprove">
+                        <iron-icon icon="offline-pin"></iron-icon>[[i18n.approve.pass_the_exam]]
+                    </paper-button> -->
                 </app-toolbar>
             </nylon-panel-card>
+
+
         </nylon-panel-right>
+
+
 
 
 
@@ -355,8 +458,8 @@
                 }
             }
             _card(e) {
-                console.log(e.model.item);
-                if (e.model.item.confirm && e.model.item.exam )
+                console.log(e.model);
+                if (e.model.item.confirm && e.model.item.exam)
                     window.open('https://localhost:3000/api/report/assessor/cardId?id=' + e.model.item.id)
                 // Nylon.dispatch('APPROVE_GET_CARD', e.model.item.id)
             }
