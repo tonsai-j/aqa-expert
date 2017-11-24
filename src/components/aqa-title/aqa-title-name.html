@@ -56,25 +56,25 @@
             </div>
         </div> -->
         <br>
-        <div class="row between-xs">
-            <div class="col-xs-2">
-                <div class="box">
+        <div class="row between-md">
+            <div class="col-md-5">
+                <div class="box ">
                     <div class="flex-item" style="display:flex">
                         <div style="margin:auto">
-                            <img id="output_image" src$="[[item.profile_url]]" />
+                            <img id="output_image" src$="[[item.basic.profile_url]]" />
                         </div>
                         <div style="margin:auto">
                             <div class="header-content">
-                                <b>[[item.type_academic.POSITIONTHAIDESC]][[item.firstname_th]] [[item.lastname_th]]</b>
+                                <b>[[item.basic.type_academic.POSITIONTHAIDESC]][[item.basic.firstname_th]] [[item.basic.lastname_th]]</b>
                             </div>
                             <div class="header-content">
-                                <b>ผู้ประเมินระดับการศึกษาขั้นพื้นฐาน (ปฐมวัย)</b>
+                                <b>[[item.type_assessor.ASSESSORTYPDESC]]</b>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-2">
+            <div class="col-md-3">
                 <div class="box">
                     <!-- <aqa-button raised type="login " on-tap=_openPanelRight>[[i18n.approve.meeting]]</aqa-button> -->
                     <div class="col-md-12">
